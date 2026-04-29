@@ -355,6 +355,87 @@
   .doc-footer{background:var(--dark);color:rgba(255,255,255,.35);text-align:center;padding:22px 32px;font-size:11px;letter-spacing:.04em;}
   .doc-footer strong{color:rgba(255,255,255,.5);}
 
+  /* ── PIN GATE ── */
+  #pin-screen{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:32px 24px;
+    background:var(--bg);
+  }
+  .pin-card{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:40px 44px;
+    width:100%;
+    max-width:380px;
+    box-shadow:0 4px 24px rgba(0,0,0,.08);
+    text-align:center;
+  }
+  .pin-logo{display:flex;justify-content:center;margin-bottom:28px;}
+  .pin-logo img{height:28px;width:auto;}
+  .pin-badge{
+    display:inline-block;
+    background:var(--orange-bg);
+    border:1px solid var(--orange-bd);
+    color:var(--orange);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    padding:4px 12px;
+    border-radius:20px;
+    margin-bottom:20px;
+  }
+  .pin-title{font-size:17px;font-weight:700;color:var(--black);margin-bottom:6px;letter-spacing:-.02em;}
+  .pin-sub{font-size:13px;color:var(--gray);margin-bottom:28px;line-height:1.55;}
+  .pin-input{
+    width:100%;
+    padding:14px;
+    border:1.5px solid var(--border);
+    border-radius:6px;
+    font-family:var(--mono);
+    font-size:22px;
+    font-weight:700;
+    color:var(--dark);
+    text-align:center;
+    letter-spacing:.18em;
+    outline:none;
+    transition:border-color .15s;
+    background:var(--white);
+  }
+  .pin-input:focus{border-color:var(--orange);}
+  .pin-btn{
+    width:100%;
+    padding:12px;
+    background:var(--orange);
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-family:var(--font);
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:12px;
+    transition:background .15s;
+  }
+  .pin-btn:hover{background:var(--orange-h);}
+  .pin-btn:disabled{opacity:.6;cursor:default;}
+  .pin-error{
+    background:#fff5f5;
+    border:1px solid #fed7d7;
+    color:var(--red);
+    border-radius:6px;
+    padding:9px 14px;
+    font-size:13px;
+    margin-top:12px;
+    display:none;
+  }
+  .pin-footer{margin-top:24px;font-size:11px;color:var(--gray-l);letter-spacing:.04em;}
+
   @media(max-width:720px){
     .cover{padding:36px 24px 32px;}
     .cover-headline{font-size:30px;}
@@ -376,6 +457,34 @@
 </style>
 </head>
 <body>
+
+<!-- ══ PIN GATE ══ -->
+<div id="pin-screen">
+  <div class="pin-card">
+    <div class="pin-logo">
+      <img src="../assets/logo.svg" alt="Made" height="28"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <svg style="display:none" height="28" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
+        <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
+        <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
+      </svg>
+    </div>
+    <div class="pin-badge">A Grupo Peñoles</div>
+    <div class="pin-title">Propuesta confidencial</div>
+    <p class="pin-sub">Ingresa el código de acceso<br>que te compartió el equipo de Made.</p>
+    <form onsubmit="handlePin(event)">
+      <input id="pin-input" class="pin-input" type="text" inputmode="numeric"
+             pattern="[0-9]*" maxlength="6" placeholder="······" autocomplete="one-time-code" required>
+      <button class="pin-btn" type="submit" id="pin-btn">Ver propuesta</button>
+    </form>
+    <div class="pin-error" id="pin-error">Código incorrecto. Verifica e intenta de nuevo.</div>
+    <div class="pin-footer">MADE OS · CONFIDENCIAL · madeos.ai</div>
+  </div>
+</div>
+
+<!-- ══ PROPUESTA ══ -->
+<div id="proposal" style="display:none">
 
 <!-- ══════════════ PORTADA ══════════════ -->
 <div class="cover">
@@ -904,6 +1013,50 @@
 <div class="doc-footer">
   <strong>MADE OS</strong> × GRUPO PEÑOLES · MAD-PENOLES-02 · Abril 2026 · CONFIDENCIAL
 </div>
+
+</div><!-- /proposal -->
+
+<script>
+  const PIN_HASH = '080918c99578d2e0b9c273e0ae30542255f644a06aeec643f6c71c16b164c088';
+  const PIN_SESSION = 'made_pin_penoles_v1';
+
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  async function handlePin(e) {
+    e.preventDefault();
+    const btn = document.getElementById('pin-btn');
+    const err = document.getElementById('pin-error');
+    const pin = document.getElementById('pin-input').value.trim();
+
+    btn.disabled = true;
+    btn.textContent = 'Verificando…';
+    err.style.display = 'none';
+
+    const hash = await sha256('penoles:' + pin);
+    if (hash === PIN_HASH) {
+      sessionStorage.setItem(PIN_SESSION, '1');
+      showProposal();
+    } else {
+      err.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Ver propuesta';
+      document.getElementById('pin-input').value = '';
+      document.getElementById('pin-input').focus();
+    }
+  }
+
+  function showProposal() {
+    document.getElementById('pin-screen').style.display = 'none';
+    document.getElementById('proposal').style.display = 'block';
+  }
+
+  (function() {
+    if (sessionStorage.getItem(PIN_SESSION) === '1') showProposal();
+  })();
+</script>
 
 </body>
 </html>
