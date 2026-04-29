@@ -489,8 +489,13 @@
   @media(max-width:720px){
     /* Cover */
     .cover{padding:24px 20px 28px;}
+    /* Cover header: stack columns vertically on mobile (overrides inline styles) */
+    .cover-header{flex-direction:column !important;align-items:flex-start !important;gap:14px;margin-bottom:16px !important;}
+    .cover-header > div:last-child{flex-direction:row !important;align-items:center !important;gap:10px;}
+    .cover-header > div:last-child img{height:28px !important;}
+    .logo{margin-top:0 !important;}
+    .cover-tagline{margin-bottom:0 !important;margin-top:8px !important;font-size:10px;}
     .company-badge{font-size:10px;padding:7px 14px;letter-spacing:.06em;}
-    .cover-tagline{margin-bottom:20px;font-size:10px;}
     .cover-rule{margin-bottom:30px;}
     .cover-headline{font-size:27px;margin-bottom:20px;}
     .cover-highlight{font-size:14px;padding:16px 18px;margin-bottom:28px;}
@@ -1176,6 +1181,7 @@ function showProposal(asAdmin) {
   isAdmin = !!asAdmin;
   document.getElementById('pin-screen').style.display = 'none';
   document.getElementById('proposal').style.display   = 'block';
+  window.scrollTo(0, 0);
   if (isAdmin) { _assignIds(); _restoreEdits(); _initAdminBar(); }
 }
 
@@ -1480,7 +1486,7 @@ document.addEventListener('keydown', function(e) {
     if (sessionStorage.getItem(ASK)) { showProposal(true); return; }
     if (sessionStorage.getItem(PSK) === '1') { showProposal(false); return; }
   } catch(e) {}
-  document.getElementById('pin-input').focus();
+  if (!('ontouchstart' in window)) document.getElementById('pin-input').focus();
 })();
 </script>
 
