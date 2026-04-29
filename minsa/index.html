@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Made OS × Minsa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:     #d84200;
+    --orange-h:   #f04900;
+    --orange-bg:  rgba(216,66,0,.08);
+    --orange-bd:  rgba(216,66,0,.28);
+    --black:      #111213;
+    --dark:       #1a1c1e;
+    --gray-d:     #3e4245;
+    --gray:       #636870;
+    --gray-l:     #9ba3ab;
+    --border:     #e4e7ea;
+    --bg:         #f7f8f9;
+    --white:      #ffffff;
+    --gold:       #92650a;
+    --gold-l:     #d4a017;
+    --red:        #c53030;
+    --green:      #2a7a4a;
+    --font:       'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:       'JetBrains Mono','Fira Code',monospace;
+    --r:          6px;
+    --r-lg:       10px;
+    --sh:         0 1px 4px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--font);color:var(--dark);background:var(--bg);font-size:15px;line-height:1.7;}
+
+  /* ═══ PORTADA ═══ */
+  .cover{
+    background:var(--white);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    padding:48px max(72px,calc((100vw - 960px)/2 + 72px)) 40px;
+  }
+  .cover-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+  }
+  .logo img{height:34px;width:auto;display:block;}
+
+  .logo-inline{display:none;align-items:center;}
+  .logo-mark{display:flex;align-items:center;}
+
+  .company-badge{
+    background:var(--orange);
+    color:white;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:10px 22px;
+    border-radius:var(--r);
+    white-space:nowrap;
+  }
+  .cover-tagline{
+    font-size:10.5px;
+    font-weight:500;
+    letter-spacing:.09em;
+    color:var(--gray);
+    text-transform:uppercase;
+    margin-bottom:36px;
+  }
+  .cover-rule{height:1px;background:var(--border);margin-bottom:52px;}
+
+  .cover-body{flex:1;display:flex;flex-direction:column;}
+
+  .cover-eyebrow{
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--orange);
+    margin-bottom:20px;
+  }
+  .cover-headline{
+    font-size:46px;
+    font-weight:800;
+    line-height:1.07;
+    color:var(--black);
+    letter-spacing:-.03em;
+    margin-bottom:32px;
+    max-width:680px;
+  }
+  .cover-highlight{
+    background:var(--dark);
+    color:rgba(255,255,255,.86);
+    padding:22px 28px;
+    border-radius:var(--r);
+    font-size:15px;
+    line-height:1.68;
+    margin-bottom:52px;
+    max-width:660px;
+  }
+  .cover-metrics{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    padding:22px 0;
+    margin-bottom:auto;
+  }
+  .cover-metric{
+    padding:0 24px;
+    border-right:1px solid var(--border);
+  }
+  .cover-metric:first-child{padding-left:0;}
+  .cover-metric:last-child{border-right:none;}
+  .m-label{
+    font-size:9.5px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.11em;
+    color:var(--orange);
+    margin-bottom:5px;
+  }
+  .m-value{
+    font-size:14px;
+    font-weight:600;
+    color:var(--black);
+    line-height:1.3;
+  }
+  .cover-creds{
+    font-size:12px;
+    color:var(--gray);
+    line-height:1.65;
+    margin-top:40px;
+    max-width:540px;
+  }
+  .cover-footer{
+    display:flex;
+    justify-content:space-between;
+    border-top:1px solid var(--border);
+    padding-top:14px;
+    margin-top:20px;
+    font-size:9.5px;
+    color:var(--gray-l);
+    letter-spacing:.07em;
+    text-transform:uppercase;
+  }
+
+  /* ═══ PÁGINAS ═══ */
+  .page{max-width:960px;margin:0 auto;padding:64px 72px;}
+  .section{margin-bottom:56px;}
+
+  .s-label{
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--orange);
+    margin-bottom:8px;
+  }
+  .s-title{
+    font-size:27px;
+    font-weight:700;
+    color:var(--black);
+    letter-spacing:-.02em;
+    line-height:1.2;
+    margin-bottom:12px;
+  }
+  .s-lead{
+    font-size:15px;
+    color:var(--gray);
+    max-width:640px;
+    margin-bottom:28px;
+    line-height:1.65;
+  }
+  .divider{height:1px;background:var(--border);margin:52px 0;}
+
+  /* Cards */
+  .card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 32px;box-shadow:var(--sh);}
+  .card+.card{margin-top:14px;}
+  .card-title{font-size:13px;font-weight:600;color:var(--black);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+  .card-title svg{width:15px;height:15px;color:var(--orange);}
+
+  /* Exec grid */
+  .exec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;}
+  .exec-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 24px;box-shadow:var(--sh);}
+  .exec-item-label{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gray);margin-bottom:6px;}
+  .exec-item-val{font-size:30px;font-weight:700;color:var(--black);letter-spacing:-.02em;line-height:1;margin-bottom:4px;}
+  .exec-item-sub{font-size:12px;color:var(--gray);line-height:1.5;}
+
+  /* Stat grid */
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px;}
+  .stat-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 12px;text-align:center;}
+  .stat-metal{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray);margin-bottom:4px;}
+  .stat-price{font-size:17px;font-weight:700;color:var(--black);line-height:1;margin-bottom:2px;}
+  .stat-change{font-size:11px;font-weight:600;}
+  .stat-change.down{color:var(--red);}
+  .stat-change.up{color:var(--green);}
+
+  /* Alerts */
+  .alert{display:flex;gap:12px;border-left:3px solid;border-radius:var(--r);padding:14px 16px;font-size:13px;margin-top:14px;}
+  .alert svg{width:15px;height:15px;flex-shrink:0;margin-top:1px;}
+  .alert-gold{background:#fdf8ec;border-color:var(--gold-l);color:var(--gold);}
+  .alert-gold svg{color:var(--gold-l);}
+  .alert-info{background:var(--bg);border-color:var(--border);color:var(--dark);}
+  .alert-info svg{color:var(--gray-l);}
+  .alert-warn{background:var(--orange-bg);border-color:var(--orange);color:var(--dark);}
+  .alert-warn svg{color:var(--orange);}
+
+  /* Requirements */
+  .req-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px;}
+  .req-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;}
+  .req-num{width:28px;height:28px;border-radius:50%;background:var(--orange);color:white;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .req-title{font-size:13px;font-weight:600;color:var(--black);margin-bottom:5px;}
+  .req-desc{font-size:12px;color:var(--gray);line-height:1.55;}
+
+  /* Steps */
+  .steps{display:flex;flex-direction:column;}
+  .step{display:flex;gap:0;}
+  .step-left{display:flex;flex-direction:column;align-items:center;width:44px;flex-shrink:0;}
+  .step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;}
+  .step-line{width:2px;background:var(--border);flex:1;margin:6px auto;min-height:16px;}
+  .step:last-child .step-line{display:none;}
+  .step-body{padding:2px 0 28px 16px;flex:1;}
+  .step-tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--gray-l);margin-bottom:4px;}
+  .step-title{font-size:15px;font-weight:700;color:var(--black);margin-bottom:6px;}
+  .step-desc{font-size:13px;color:var(--gray);line-height:1.6;}
+
+  /* Platform screenshot */
+  .platform-wrap{
+    margin-top:24px;
+    border:1px solid var(--border);
+    border-radius:var(--r-lg);
+    overflow:hidden;
+    box-shadow:0 4px 24px rgba(0,0,0,.10);
+  }
+  .platform-wrap img{width:100%;display:block;}
+  .img-caption{font-size:11px;color:var(--gray-l);margin-top:8px;text-align:center;font-style:italic;}
+
+  /* Edge device */
+  .edge-wrap{
+    margin-top:20px;
+    border-radius:var(--r-lg);
+    overflow:hidden;
+    box-shadow:0 4px 20px rgba(0,0,0,.12);
+  }
+  .edge-wrap img{width:100%;display:block;max-height:300px;object-fit:cover;object-position:center;}
+
+  /* Hardware */
+  .hw-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;}
+  .hw-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:24px 26px;position:relative;}
+  .hw-card.featured{border-color:var(--orange);}
+  .hw-badge{position:absolute;top:-12px;left:20px;background:var(--orange);color:white;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 12px;border-radius:20px;}
+  .hw-title{font-size:15px;font-weight:700;color:var(--black);margin-bottom:4px;margin-top:8px;}
+  .hw-sub{font-size:12px;color:var(--gray);margin-bottom:16px;line-height:1.5;}
+  .spec-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;}
+  .spec-row:last-of-type{border-bottom:none;}
+  .spec-key{color:var(--gray);}
+  .spec-val{font-weight:600;color:var(--black);font-family:var(--mono);font-size:11px;}
+  .hw-ideal{margin-top:14px;padding:10px 12px;border-radius:var(--r);background:var(--orange-bg);font-size:12px;color:var(--dark);border-left:3px solid var(--orange);}
+  .hw-ideal strong{display:block;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--orange);margin-bottom:3px;}
+
+  /* Features */
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px;}
+  .feat{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 22px;}
+  .feat-icon{width:34px;height:34px;background:var(--orange-bg);border-radius:var(--r);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .feat-icon svg{width:17px;height:17px;color:var(--orange);}
+  .feat-title{font-size:13px;font-weight:600;color:var(--black);margin-bottom:5px;}
+  .feat-desc{font-size:12px;color:var(--gray);line-height:1.55;}
+
+  /* Terms */
+  .terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .terms-col{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 26px;box-shadow:var(--sh);}
+  .terms-col-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:16px;display:flex;align-items:center;gap:7px;}
+  .terms-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;font-size:13px;color:var(--dark);line-height:1.55;}
+  .terms-item:last-child{margin-bottom:0;}
+  .terms-check{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px;}
+  .check-green{background:var(--bg);border:1px solid var(--border);color:var(--gray-d);}
+  .check-orange{background:var(--orange-bg);border:1px solid var(--orange-bd);color:var(--orange);}
+
+  /* Cost table */
+  .cost-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .cost-table th{background:var(--bg);color:var(--black);font-weight:600;font-size:11px;letter-spacing:.04em;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
+  .cost-table td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  .cost-table tr:last-child td{border-bottom:none;}
+  .metal-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;}
+
+  /* ROI */
+  .roi-hero{background:var(--bg);border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:var(--r-lg);padding:22px 26px;margin-bottom:14px;}
+  .roi-hero-label{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-bottom:6px;}
+  .roi-hero-val{font-size:36px;font-weight:800;color:var(--black);line-height:1;letter-spacing:-.02em;margin-bottom:4px;}
+  .roi-hero-sub{font-size:13px;color:var(--gray);}
+  .roi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .roi-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px;box-shadow:var(--sh);}
+  .roi-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--gray);margin-bottom:5px;}
+  .roi-val{font-size:20px;font-weight:700;color:var(--black);line-height:1;margin-bottom:2px;}
+  .roi-delta{font-size:11px;color:var(--orange);font-weight:500;}
+
+  /* Pricing */
+  .pricing-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 32px;box-shadow:var(--sh);position:relative;overflow:hidden;margin-top:24px;}
+  .pricing-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--orange);}
+  .pricing-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .pricing-table th{background:var(--bg);color:var(--black);font-weight:600;font-size:11px;letter-spacing:.03em;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
+  .pricing-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  .pricing-table tr:last-child td{border-bottom:none;}
+  .price-val{font-weight:700;color:var(--black);}
+  .price-note{font-size:11px;color:var(--gray);}
+
+  /* Comparison */
+  .comp-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .comp-table th{padding:10px 14px;text-align:left;font-size:12px;font-weight:600;}
+  .comp-table th:first-child{background:var(--bg);color:var(--gray);border-bottom:2px solid var(--border);}
+  .comp-table th:nth-child(2){background:#fff5f5;color:var(--red);border-bottom:2px solid #fed7d7;}
+  .comp-table th:nth-child(3){background:#fff8f5;color:var(--orange);border-bottom:2px solid var(--orange-bd);}
+  .comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);}
+  .comp-table tr:last-child td{border-bottom:none;}
+  .comp-table td:nth-child(3){font-weight:500;color:var(--black);background:rgba(216,66,0,.025);}
+
+  /* Guarantee */
+  .guarantee{
+    border:1px solid var(--border);
+    border-radius:var(--r-lg);
+    overflow:hidden;
+    background:var(--white);
+    position:relative;
+  }
+  .guarantee::before{
+    content:'';position:absolute;top:0;left:0;right:0;
+    height:4px;background:var(--orange);
+  }
+  .guarantee-grid{
+    display:grid;grid-template-columns:1fr 1fr;
+    padding:44px 40px 36px;gap:0;
+  }
+  .g-statement{
+    padding-right:36px;
+    border-right:1px solid var(--border);
+  }
+  .g-label{
+    font-size:10.5px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--orange);
+    margin-bottom:16px;display:flex;align-items:center;gap:8px;
+  }
+  .g-label svg{width:14px;height:14px;}
+  .guarantee h3{
+    font-size:20px;font-weight:800;line-height:1.4;
+    color:var(--black);letter-spacing:-.02em;margin:0;
+  }
+  .guarantee h3 em{color:var(--orange);font-style:normal;}
+  .g-items{
+    display:flex;flex-direction:column;
+    padding-left:36px;
+  }
+  .g-item{
+    display:flex;gap:12px;align-items:flex-start;
+    font-size:13px;color:var(--dark);line-height:1.65;
+    padding:16px 0;border-bottom:1px solid var(--border);
+  }
+  .g-item:last-child{border-bottom:none;padding-bottom:0;}
+  .g-check{
+    width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:1px;
+    background:var(--orange-bg);border:1px solid var(--orange-bd);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--orange);font-size:10px;font-weight:800;
+  }
+  .g-faqs{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--border);
+    background:var(--bg);
+  }
+  .g-faq{
+    padding:22px 26px;
+    border-right:1px solid var(--border);
+    font-size:13px;color:var(--gray);line-height:1.65;
+  }
+  .g-faq:last-child{border-right:none;}
+  .g-faq-q{
+    font-size:10px;font-weight:700;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--orange);margin-bottom:5px;
+  }
+
+  /* CTA */
+  .cta-block{background:var(--dark);border-radius:var(--r-lg);padding:38px 44px;display:flex;gap:40px;align-items:center;justify-content:space-between;color:white;position:relative;overflow:hidden;}
+  .cta-block::after{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--orange);}
+  .cta-left{max-width:480px;}
+  .cta-tag{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--orange);margin-bottom:10px;}
+  .cta-block h3{font-size:20px;font-weight:700;line-height:1.3;letter-spacing:-.01em;margin-bottom:10px;}
+  .cta-block p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.65;}
+  .cta-right{flex-shrink:0;text-align:center;}
+  .cta-btn{display:block;background:var(--orange);color:white;text-decoration:none;padding:14px 28px;border-radius:var(--r);font-weight:700;font-size:14px;box-shadow:0 4px 14px rgba(216,66,0,.3);margin-bottom:10px;text-align:center;}
+  .cta-btn:hover{background:var(--orange-h);}
+  .cta-sub{font-size:11px;color:rgba(255,255,255,.35);}
+
+  /* Signature */
+  .sig{display:flex;align-items:center;gap:16px;margin-top:28px;}
+  .sig-av{width:48px;height:48px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;color:white;font-size:16px;font-weight:700;flex-shrink:0;}
+  .sig-name{font-size:15px;font-weight:600;color:var(--black);}
+  .sig-role{font-size:13px;color:var(--gray);}
+  .sig-contact{font-size:12px;color:var(--orange);margin-top:2px;}
+
+  /* Footer */
+  .doc-footer{background:var(--dark);color:rgba(255,255,255,.35);text-align:center;padding:22px 32px;font-size:11px;letter-spacing:.04em;}
+  .doc-footer strong{color:rgba(255,255,255,.5);}
+
+  /* ── PIN GATE ── */
+  #pin-screen{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:32px 24px;
+    background:var(--bg);
+  }
+  .pin-card{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:40px 44px;
+    width:100%;
+    max-width:380px;
+    box-shadow:0 4px 24px rgba(0,0,0,.08);
+    text-align:center;
+  }
+  .pin-logo{display:flex;justify-content:center;margin-bottom:28px;}
+  .pin-logo img{height:28px;width:auto;}
+  .pin-badge{
+    display:inline-block;
+    background:var(--orange-bg);
+    border:1px solid var(--orange-bd);
+    color:var(--orange);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    padding:4px 12px;
+    border-radius:20px;
+    margin-bottom:20px;
+  }
+  .pin-title{font-size:17px;font-weight:700;color:var(--black);margin-bottom:6px;letter-spacing:-.02em;}
+  .pin-sub{font-size:13px;color:var(--gray);margin-bottom:28px;line-height:1.55;}
+  .pin-input{
+    width:100%;
+    padding:14px;
+    border:1.5px solid var(--border);
+    border-radius:6px;
+    font-family:var(--mono);
+    font-size:22px;
+    font-weight:700;
+    color:var(--dark);
+    text-align:center;
+    letter-spacing:.18em;
+    outline:none;
+    transition:border-color .15s;
+    background:var(--white);
+  }
+  .pin-input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(216,66,0,.12);}
+  .pin-input.shake{animation:shake .35s ease;border-color:var(--red);}
+  @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+  .pin-btn{
+    width:100%;
+    padding:12px;
+    background:var(--orange);
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-family:var(--font);
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:12px;
+    transition:background .15s;
+  }
+  .pin-btn:hover{background:var(--orange-h);}
+  .pin-btn:disabled{opacity:.6;cursor:default;}
+  .pin-error{
+    background:#fff5f5;
+    border:1px solid #fed7d7;
+    color:var(--red);
+    border-radius:6px;
+    padding:9px 14px;
+    font-size:13px;
+    margin-top:12px;
+    display:none;
+  }
+  .pin-footer{margin-top:24px;font-size:11px;color:var(--gray-l);letter-spacing:.04em;}
+
+  /* ── RESPONSIVE ─────────────────────────────── */
+  @media(max-width:720px){
+    /* Cover */
+    .cover{padding:24px 20px 28px;}
+    .company-badge{font-size:10px;padding:7px 14px;letter-spacing:.06em;}
+    .cover-tagline{margin-bottom:20px;font-size:10px;}
+    .cover-rule{margin-bottom:30px;}
+    .cover-headline{font-size:27px;margin-bottom:20px;}
+    .cover-highlight{font-size:14px;padding:16px 18px;margin-bottom:28px;}
+    /* cover-metrics: 4 items → 2×2 grid with correct borders */
+    .cover-metrics{grid-template-columns:1fr 1fr;padding:14px 0;}
+    .cover-metric{padding:10px 10px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .cover-metric:first-child{padding-left:0;}
+    .cover-metric:nth-child(even){border-right:none;}
+    .cover-metric:nth-child(3),.cover-metric:nth-child(4){border-bottom:none;}
+    .cover-creds{margin-top:22px;}
+    .cover-footer{flex-direction:column;gap:3px;}
+
+    /* Layout */
+    .page{padding:32px 20px;}
+    .divider{margin:32px 0;}
+    .section{margin-bottom:36px;}
+    .s-title{font-size:21px;}
+    .s-lead{font-size:14px;margin-bottom:20px;}
+
+    /* Cards */
+    .card{padding:18px 16px;}
+
+    /* Multi-column grids → single column */
+    .exec-grid,.req-grid,.feat-grid,.hw-grid,.terms-grid{grid-template-columns:1fr;}
+
+    /* Stat grid: 4 items → 2 cols */
+    .stat-grid{grid-template-columns:1fr 1fr;}
+
+    /* ROI grid: 4 items → 2 cols */
+    .roi-grid{grid-template-columns:1fr 1fr;}
+    .roi-hero-val{font-size:28px;}
+
+    /* Tables → horizontal scroll (preserves all data) */
+    .cost-table,.comp-table,.pricing-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    .cost-table{min-width:480px;}
+    .comp-table{min-width:500px;font-size:12px;}
+    .pricing-table{min-width:400px;}
+    .pricing-wrap{padding:22px 18px;}
+
+    /* Guarantee */
+    .guarantee-grid{grid-template-columns:1fr;padding:28px 22px 22px;}
+    .g-statement{padding-right:0;border-right:none;border-bottom:1px solid var(--border);padding-bottom:22px;}
+    .guarantee h3{font-size:17px;}
+    .g-items{padding-left:0;padding-top:4px;}
+    .g-faqs{grid-template-columns:1fr;}
+    .g-faq{border-right:none;border-bottom:1px solid var(--border);padding:18px 22px;}
+    .g-faq:last-child{border-bottom:none;}
+
+    /* CTA */
+    .cta-block{flex-direction:column;gap:20px;padding:28px 22px;}
+    .cta-right{width:100%;}
+    .cta-btn{width:100%;text-align:center;}
+
+    /* Pin card */
+    .pin-card{padding:32px 22px;}
+  }
+
+  @media(max-width:480px){
+    .cover-headline{font-size:22px;}
+    .cover-metrics{grid-template-columns:1fr;}
+    .cover-metric{border-right:none;padding:10px 0;}
+    .cover-metric:nth-child(even){padding-left:0;}
+    .cover-metric:nth-child(3){border-bottom:1px solid var(--border);}
+    .cover-metric:nth-child(4){border-bottom:none;}
+    .roi-grid{grid-template-columns:1fr;}
+    .exec-item-val{font-size:24px;}
+  }
+  @media print{
+    body{background:white;}
+    .cover{min-height:auto;padding:32px 48px;}
+    .page{padding:40px 48px;}
+    .divider{margin:36px 0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ PIN GATE ══ -->
+<div id="pin-screen">
+  <div class="pin-card">
+    <div class="pin-logo">
+      <img src="../assets/logo.svg" alt="Made" height="28"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <svg style="display:none" height="28" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
+        <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
+        <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
+      </svg>
+    </div>
+    <div class="pin-badge">A Grupo PEO · Minsa</div>
+    <div class="pin-title">Propuesta confidencial</div>
+    <p class="pin-sub">Ingresa el código de acceso<br>que te compartió el equipo de Made.</p>
+    <form onsubmit="event.preventDefault(); doPin()">
+      <input id="pin-input" class="pin-input" type="text" inputmode="numeric"
+             pattern="[0-9]*" maxlength="6" placeholder="······" autocomplete="one-time-code" required>
+      <button class="pin-btn" type="submit" id="pin-btn">Ver propuesta</button>
+    </form>
+    <div class="pin-error" id="pin-error">Código incorrecto. Verifica e intenta de nuevo.</div>
+    <div class="pin-footer">MADE OS · CONFIDENCIAL · madeos.ai</div>
+  </div>
+</div>
+
+<!-- ══ PROPUESTA ══ -->
+<div id="proposal" style="display:none">
+
+<!-- ══════════════ PORTADA ══════════════ -->
+<div class="cover">
+
+  <div class="cover-header">
+    <div class="logo">
+      <img src="../assets/logo.svg" alt="Made" height="34"
+           onerror="this.style.display='none';document.querySelector('.logo-inline').style.display='flex'">
+      <div class="logo-inline">
+        <svg height="34" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+          <path d="M27.3,13.0 V21.8 L9.0,39.0 H0 Z" fill="#d84200"/>
+          <path d="M39.6,9.8 V39.0 H13.3 Z" fill="#d84200"/>
+          <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
+        </svg>
+      </div>
+    </div>
+    <div class="company-badge">A Grupo PEO · Minsa</div>
+  </div>
+
+  <div class="cover-tagline">Inteligencia artificial para una manufactura sin pérdidas</div>
+  <div class="cover-rule"></div>
+
+  <div class="cover-body">
+    <div class="cover-eyebrow">Propuesta Comercial</div>
+
+    <h1 class="cover-headline">Cero pérdidas en líneas de molienda y empacado para Minsa</h1>
+
+    <div class="cover-highlight">
+      Transformamos la telemetría de su planta en contexto operativo: eventos clasificados y riesgo priorizado para detectar y prevenir anomalías en molinos de nixtamal, sistemas de dosificación y líneas de empaque antes de que generen un paro de producción.
+    </div>
+
+    <div class="cover-metrics">
+      <div class="cover-metric">
+        <div class="m-label">Programa</div>
+        <div class="m-value">Planta fundadora</div>
+      </div>
+      <div class="cover-metric">
+        <div class="m-label">Duración</div>
+        <div class="m-value">6 meses</div>
+      </div>
+      <div class="cover-metric">
+        <div class="m-label">Inversión base</div>
+        <div class="m-value">$1,250 USD / mes x línea</div>
+      </div>
+      <div class="cover-metric">
+        <div class="m-label">Alcance</div>
+        <div class="m-value">Hasta 3 líneas</div>
+      </div>
+    </div>
+
+    <p class="cover-creds">
+      <strong style="color:var(--dark)">Made</strong> es una empresa de inteligencia artificial industrial respaldada por NVIDIA Inception, Founders Inc y Startup Chile, con el reconocimiento del MIT Technology Review Innovators Under 35 LATAM 2025.
+    </p>
+
+    <div class="cover-footer">
+      <span>MADEOS.AI · CONFIDENCIAL</span>
+      <span>Abril 2026</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════ CONTENIDO ══════════════ -->
+<div class="page">
+
+  <!-- ── 01 RESUMEN EJECUTIVO ── -->
+  <div class="section">
+    <div class="s-label">01. Resumen ejecutivo</div>
+    <div class="s-title">Cada hora de paro no planificado en una línea de empacado cuesta entre $35,000 y $60,000 USD. La industria de alimentos masivos en LATAM pierde en promedio 20 horas por línea al año.</div>
+    <p class="s-lead">Las plantas de masa harina que operan con inteligencia prescriptiva reducen el downtime no planificado hasta un 36% y eliminan la variabilidad de gramaje que genera merma. Las que no, mantienen el costo operativo que han tenido los últimos 10 años.<br><span style="font-size:12px;color:var(--gray-l)">Fuente: McKinsey &amp; Company · Siemens True Cost of Downtime 2024</span></p>
+
+    <p style="font-size:15px;color:var(--dark);line-height:1.7;margin-bottom:24px">Las líneas de molienda y empacado de Minsa operan con molinos de nixtamal, sistemas de dosificación de harina y empacadoras de alta velocidad. Las señales de falla temprana, vibración anormal, picos de temperatura y corriente, ya existen en los PLCs y sensores instalados. El problema: no existe una capa de inteligencia que las interprete en tiempo real y anticipe el evento antes del paro. Con un costo estimado de <strong>$700,000 USD anuales por línea de empacado</strong> en downtime y merma acumulados, la oportunidad de mejora es inmediata y medible.</p>
+
+    <div class="exec-grid">
+      <div class="exec-item">
+        <div class="exec-item-label">Costo por hora de paro</div>
+        <div class="exec-item-val">$35K–$60K</div>
+        <div class="exec-item-sub">USD por hora de downtime no planificado en línea de empacado</div>
+      </div>
+      <div class="exec-item">
+        <div class="exec-item-label">Downtime anual estimado</div>
+        <div class="exec-item-val">~20 hrs</div>
+        <div class="exec-item-sub">por línea al año, promedio industria alimentos masivos LATAM</div>
+      </div>
+      <div class="exec-item">
+        <div class="exec-item-label">Pérdida anual estimada</div>
+        <div class="exec-item-val">+$700K</div>
+        <div class="exec-item-sub">USD por línea de empacado entre downtime y merma acumulada</div>
+      </div>
+      <div class="exec-item">
+        <div class="exec-item-label">Merma por variabilidad</div>
+        <div class="exec-item-val">1.5%–3%</div>
+        <div class="exec-item-sub">de producción perdida por variabilidad de gramaje en dosificación</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;border-left:4px solid var(--orange);">
+      <div class="card-title" style="margin-bottom:10px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+        Nuestra propuesta de valor
+      </div>
+      <p style="font-size:14px;color:var(--dark);line-height:1.7;margin:0">Llevamos las operaciones de Minsa hacia cero pérdidas de forma progresiva, identificando y previniendo fallas antes de que ocurran. Desde el primer evento critico evitado en cada linea implementada, Minsa obtiene ROI positivo y comprobable.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 02 SOLUCIÓN ── -->
+  <div class="section">
+    <div class="s-label">02. Solución</div>
+    <div class="s-title">Minsa + Made OS</div>
+    <p class="s-lead">Made OS es una capa de inteligencia multi-agente que se conecta a los PLCs y sensores que la planta ya tiene. Se integra en menos de 10 dias, sin detener el proceso. Modo solo-lectura. No escribe en el PLC.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-left">
+          <div class="step-dot" style="background:var(--black)">01</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-tag">Primeros 30 dias</div>
+          <div class="step-title">Integración y conexión</div>
+          <div class="step-desc">Se identifican las lineas candidatas y se selecciona el tipo de integración. Made OS puede desplegarse via API o mediante hardware dedicado para activos de alta velocidad. Al dia 10, Made OS lee sus lineas en tiempo real. Cada señal de vibración, temperatura y corriente tiene contexto, timestamp y trazabilidad completa.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-dot" style="background:var(--gray)">02</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-tag">Desde la implementación en adelante</div>
+          <div class="step-title">Análisis continuo y baseline</div>
+          <div class="step-desc">Made OS genera lecturas continuas para identificar las principales causas de pérdidas: variabilidad de dosificación, desgaste en molinos, microparos de empacadoras. El agente AI etiqueta eventos criticos en niveles de impacto. Aprende continuamente y se vuelve mas preciso en cada ciclo de producción.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-dot" style="background:var(--orange)">03</div>
+        </div>
+        <div class="step-body">
+          <div class="step-tag">Est. desde el dia 60 en adelante</div>
+          <div class="step-title">Prescripción hacia zero-loss</div>
+          <div class="step-desc">Detección activa de anomalias y degradación progresiva en rodamientos, ejes, dosificadores y selladoras. Made OS instruye al operador con acciones predictivas para evitar eventos criticos. El objetivo: en cada ciclo, la planta produce mas, pierde menos merma y decide con mejor información.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 03 INTEGRACIÓN ── -->
+  <div class="section">
+    <div class="s-label">03. Modalidades de integración</div>
+    <div class="s-title">Dos caminos de implementación</div>
+    <p class="s-lead">Made OS se adapta a la infraestructura existente en cada planta de Minsa. En la sesión tecnica inicial definimos cual es la mas adecuada para cada linea candidata.</p>
+
+    <div class="hw-grid">
+      <div class="hw-card featured">
+        <div class="hw-badge">Recomendado para alta velocidad</div>
+        <div class="hw-title">Hardware Edge AI</div>
+        <div class="hw-sub">Dispositivo dedicado instalado en planta por el equipo de Made. Ideal para lineas de empacado de alta velocidad que requieren baja latencia o detección precisa de vibración y temperatura en tiempo real.</div>
+
+        <div class="edge-wrap img-zoom" onclick="openModal('../assets/edge-device.jpg','Made Edge: Dispositivo IA industrial instalado en tablero DIN rail')">
+          <img src="../assets/edge-device.jpg" alt="Made Edge: Dispositivo IA industrial instalado en tablero DIN rail" loading="lazy">
+        </div>
+        <p class="img-caption">Made Edge instalado en tablero DIN rail con conectividad industrial</p>
+
+        <div style="margin-top:16px">
+          <div class="spec-row"><span class="spec-key">Plataforma</span><span class="spec-val">NVIDIA Jetson Orin Nano Super</span></div>
+          <div class="spec-row"><span class="spec-key">IA on-device</span><span class="spec-val">67 INT8 TOPS</span></div>
+          <div class="spec-row"><span class="spec-key">GPU</span><span class="spec-val">1024 CUDA · 32 tensor cores</span></div>
+          <div class="spec-row"><span class="spec-key">Memoria</span><span class="spec-val">8 GB LPDDR5 · 102 GB/s</span></div>
+          <div class="spec-row"><span class="spec-key">Almacenamiento</span><span class="spec-val">512 GB NVMe</span></div>
+          <div class="spec-row"><span class="spec-key">Consumo</span><span class="spec-val">7 W – 25 W</span></div>
+          <div class="spec-row"><span class="spec-key">Protección</span><span class="spec-val">IP67 · NEMA 4X</span></div>
+          <div class="spec-row"><span class="spec-key">Seguridad OT</span><span class="spec-val">IEC 62443 · TLS 1.3 · Air-gap ready</span></div>
+        </div>
+        <div class="hw-ideal">
+          <strong>Ideal para</strong>
+          Lineas de empacado de alta velocidad, molinos de nixtamal con sensores de vibración, sistemas de dosificación con tolerancias criticas de gramaje.
+        </div>
+      </div>
+
+      <div class="hw-card">
+        <div class="hw-title" style="margin-top:0">Software + API</div>
+        <div class="hw-sub">Instalación en servidor o PC industrial existente en planta. Sin hardware adicional. Máximo control para el equipo de IT de Minsa.</div>
+
+        <div class="edge-wrap img-zoom" onclick="openModal('../assets/platform-screenshot.png','Made OS: Plataforma web con análisis de sensores y agente conversacional')">
+          <img src="../assets/platform-screenshot.png" alt="Made OS: Vista de plataforma, sensores y agente conversacional" loading="lazy">
+        </div>
+        <p class="img-caption">Made OS · Plataforma web con análisis de sensores y agente conversacional</p>
+
+        <div style="margin-top:16px">
+        <div class="spec-row"><span class="spec-key">SO compatible</span><span class="spec-val">Ubuntu · Debian · RHEL · Windows</span></div>
+        <div class="spec-row"><span class="spec-key">CPU mínimo</span><span class="spec-val">8 cores</span></div>
+        <div class="spec-row"><span class="spec-key">RAM mínimo</span><span class="spec-val">8 GB</span></div>
+        <div class="spec-row"><span class="spec-key">Disco mínimo</span><span class="spec-val">200 GB</span></div>
+        <div class="spec-row"><span class="spec-key">Protocolo</span><span class="spec-val">OPC-UA Client (on-premise)</span></div>
+        <div class="spec-row"><span class="spec-key">Conectividad cloud</span><span class="spec-val">WSS (WebSocket sobre SSL)</span></div>
+        <div class="spec-row"><span class="spec-key">Señales OPC-UA</span><span class="spec-val">Volumen ilimitado en programa</span></div>
+        </div>
+        <div class="hw-ideal">
+          <strong>Ideal para</strong>
+          Plantas con infraestructura de servidores disponible. IT de Minsa prefiere control total del software. Reduce CAPEX aprovechando hardware existente.
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h10v10H4z"/><path d="M4 8h10M8 4v10"/></svg></div>
+        <div class="feat-title">Multiprotocolo</div>
+        <div class="feat-desc">Modbus RTU/TCP, OPC-UA, señales 4–20 mA. Compatible con PLCs Siemens S7 y Allen Bradley presentes en plantas de alimentos masivos.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3l6 3v5l-6 3-6-3V6z"/></svg></div>
+        <div class="feat-title">Solo-lectura, siempre</div>
+        <div class="feat-desc">No escribe ni modifica parámetros en PLCs ni SCADA. Si Made no está disponible, la linea opera exactamente igual.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h12M3 9h9M3 12h6"/></svg></div>
+        <div class="feat-title">Canal de alertas Minsa</div>
+        <div class="feat-desc">WebApp, email, WhatsApp o cualquier endpoint que IT de Minsa defina. Incluye agente conversacional bidireccional para el operador en piso.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 04 REQUERIMIENTOS ── -->
+  <div class="section">
+    <div class="s-label">04. Requerimientos del programa</div>
+    <p class="s-lead">Made no instala infraestructura de medición desde cero. Estos tres requisitos determinan si la linea candidata califica para el programa y qué tipo de integración aplica.</p>
+    <div class="req-grid">
+      <div class="req-item">
+        <div class="req-num">1</div>
+        <div class="req-title">Infraestructura conectada</div>
+        <div class="req-desc">Al menos una linea con PLC o sensores en operación que genere señal de vibración, temperatura o corriente. Made no instala instrumentación desde cero.</div>
+      </div>
+      <div class="req-item">
+        <div class="req-num">2</div>
+        <div class="req-title">Contraparte operativa con autoridad</div>
+        <div class="req-desc">Un Jefe de Planta o Gerente de Mantenimiento designado, con acceso a datos de producción y autoridad para definir los KPIs de éxito junto con Made.</div>
+      </div>
+      <div class="req-item">
+        <div class="req-num">3</div>
+        <div class="req-title">Compromiso de medición conjunta</div>
+        <div class="req-desc">Al finalizar el programa, una sesión de 60 minutos con dirección donde se auditan resultados contra el baseline inicial. Los datos y la narrativa de ROI son de ambas partes.</div>
+      </div>
+    </div>
+    <div class="alert alert-info" style="margin-top:8px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 7v4M8 5.5v.5"/></svg>
+      <span><strong>Nota tecnica:</strong> Para lineas de empacado con ambientes de polvo de harina o humedad elevada, el hardware Edge se especifica con protección IP67 y NEMA 4X como baseline. El enclosure definitivo se valida conjuntamente en la visita técnica inicial antes del inicio del programa.</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 05 TÉRMINOS ── -->
+  <div class="section">
+    <div class="s-label">05. Términos del programa</div>
+    <div class="s-title">Lo que cada parte aporta y recibe</div>
+    <p class="s-lead">Modelo de colaboración con riesgo compartido. Made asume el riesgo operativo. Minsa captura el valor.</p>
+    <div class="terms-grid">
+      <div class="terms-col">
+        <div class="terms-col-title" style="color:var(--dark)">
+          Minsa recibe
+        </div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Implementación API y/o Edge (según selección) en hasta 3 lineas de producción.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Precio preferencial de API sin limite de tokens durante la vigencia del programa.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Onboarding tecnico completo: conexión a señales existentes y calibración de modelos incluidos.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Soporte directo del equipo fundador de Made durante todo el programa.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Acceso a Made OS y nuevas actualizaciones durante la vigencia.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Reporte ejecutivo con metricas auditadas por ambos equipos al cierre.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Trayectoria zero-loss iniciada con plan de expansión multi-linea para el año 2.</span></div>
+      </div>
+      <div class="terms-col">
+        <div class="terms-col-title" style="color:var(--dark)">
+          Made recibe
+        </div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span>Acceso de lectura a datos reales de producción de las lineas durante el programa.</span></div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span>Colaboración tecnica del equipo de planta para calibrar el modelo a la operación especifica de Minsa.</span></div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span>Desarrollo conjunto de caso de estudio en alimentos masivos para LATAM.</span></div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span>Sesión de cierre de resultados con dirección al finalizar el programa.</span></div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span>Pago base al inicio y honorarios por éxito conforme a la definición de eventos auditados.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 06 PRECIO Y ROI ── -->
+  <div class="section">
+    <div class="s-label">06. Precio y retorno de inversión</div>
+    <div class="s-title">Con solo evitar el primer evento critico, Made OS se paga solo.</div>
+
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
+        Costo por hora de paro no planificado, por linea
+      </div>
+      <table class="cost-table">
+        <thead>
+          <tr><th>Linea / Activo</th><th>Señales criticas monitoreadas</th><th>Costo estimado / hora paro</th><th>Pérdida anual estimada</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Linea de empacado (alta velocidad)</td>
+            <td>Vibración selladora, temp. rodamientos, corriente motor</td>
+            <td style="font-weight:700;color:var(--red)">$35,000 – $60,000 USD</td>
+            <td style="font-weight:700">+$700,000 USD</td>
+          </tr>
+          <tr>
+            <td>Molino de nixtamal</td>
+            <td>Vibración eje, temp. cojinetes, picos de corriente</td>
+            <td style="font-weight:700">$20,000 – $40,000 USD</td>
+            <td style="font-weight:700">$400,000 – $800,000 USD</td>
+          </tr>
+          <tr>
+            <td>Sistema de dosificación de harina</td>
+            <td>Variabilidad de gramaje, presión, flujo másico</td>
+            <td style="font-weight:700">Merma 1.5%–3% producción</td>
+            <td style="font-weight:700">$150,000 – $300,000 USD</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="font-size:11px;color:var(--gray-l);margin-top:10px">Estimaciones basadas en throughput tipico por linea, precio de producción de masa harina, costo de correctivo vs. preventivo (5x) y benchmarks de industria de alimentos masivos. El costo exacto por linea se calcula con datos reales de Minsa en la sesión tecnica.</div>
+    </div>
+
+    <div class="roi-hero">
+      <div class="roi-hero-label">Ahorro estimado, programa 6 meses · hasta 3 lineas · 3–5 eventos evitados</div>
+      <div class="roi-hero-val">$280,000 – $480,000 USD</div>
+      <div class="roi-hero-sub">Basado en 3–5 eventos criticos evitados a $35K–$60K/hora por linea de empacado</div>
+    </div>
+    <div class="roi-grid">
+      <div class="roi-item">
+        <div class="roi-lbl">Eventos evitados estimados</div>
+        <div class="roi-val">3–5</div>
+        <div class="roi-delta">en 6 meses · hasta 3 lineas</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-lbl">Payback del programa</div>
+        <div class="roi-val">4–8 sem.</div>
+        <div class="roi-delta">primer evento = inversión recuperada</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-lbl">ROI estimado</div>
+        <div class="roi-val">300%–700%</div>
+        <div class="roi-delta">sobre inversión total 6 meses</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-lbl">Costo si no cumplimos</div>
+        <div class="roi-val">$0</div>
+        <div class="roi-delta">extensión 90 dias sin costo de licencia</div>
+      </div>
+    </div>
+
+    <div class="pricing-wrap">
+      <div class="card-title" style="margin-bottom:14px;font-size:12px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M5 7h6M5 10h4"/></svg>
+        Modelo de pricing basado en resultados
+      </div>
+      <table class="pricing-table">
+        <thead><tr><th>Concepto</th><th>Monto</th><th>Notas</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Made OS: Precio base</strong></td>
+            <td class="price-val">$1,250 USD</td>
+            <td class="price-note">Fijo mensual por linea · hasta 3 lineas</td>
+          </tr>
+          <tr>
+            <td><strong>Success fee: Evento Clase A</strong></td>
+            <td class="price-val">$2,500 USD / evento</td>
+            <td class="price-note">Cap: $10,000 al mes · definición auditada conjunta</td>
+          </tr>
+          <tr>
+            <td><strong>Integración API</strong></td>
+            <td class="price-val">Sin costo</td>
+            <td class="price-note">Incluida en el programa · tokens ilimitados</td>
+          </tr>
+          <tr>
+            <td><strong>Gateway Edge grado industrial</strong><br><span style="font-size:11px;color:var(--gray)">IP67 · NEMA 4X · Apto para ambientes de polvo y humedad</span></td>
+            <td class="price-val">$5,000 USD</td>
+            <td class="price-note">Pago único · incluye hardware e instalación en planta</td>
+          </tr>
+          <tr>
+            <td><strong>Inversión total estimada (6 meses · 3 lineas)</strong></td>
+            <td class="price-val">~$37,500 – $52,500 USD</td>
+            <td class="price-note">Base + hardware + success fees estimados</td>
+          </tr>
+          <tr>
+            <td><strong>ROI estimado del programa</strong></td>
+            <td class="price-val" style="color:var(--orange)">300% – 700%</td>
+            <td class="price-note">Estimado 6 meses · 3 lineas · 3–5 eventos evitados</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert alert-info" style="margin-top:16px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8l2 2 4-4"/></svg>
+      <div>
+        <strong>Definición de "Evento Critico Evitado"</strong><br>
+        <strong>Clase A: Paro mayor evitado:</strong> alerta emitida antes de la falla, intervención ejecutada, evidencia en bitácora, contrafactual razonable de que el activo habria causado paro de linea. <em>Genera success fee.</em><br>
+        <strong>Clase B: Operación degradada evitada:</strong> se evitó pérdida material de velocidad, gramaje o estabilidad del proceso. <em>Genera success fee.</em><br>
+        <strong>Clase C: Alerta útil validada:</strong> detección correcta, no genera fee; alimenta aprendizaje del modelo.<br>
+        <em style="font-size:12px">Baseline primeros 30 dias · ventana de disputa 10 dias hábiles · árbitro tecnico independiente designado al inicio del programa.</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 07 COMPARATIVA ── -->
+  <div class="section">
+    <div class="s-label">07. Made OS vs. Mantenimiento Preventivo Tradicional</div>
+    <div class="s-title">Una categoria diferente</div>
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Dimensión</th>
+          <th>Preventivo tradicional / CMMS</th>
+          <th>Made OS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Implementación</td><td>Configuración manual, meses de parametrización</td><td>10 a 30 dias, sin detener linea</td></tr>
+        <tr><td>Mes 3</td><td>Calendarios fijos, sin contexto operativo real</td><td>Inteligencia predictiva activa por linea</td></tr>
+        <tr><td>Precio</td><td>CAPEX alto + técnicos externos + paros programados</td><td>Base mensual baja + success fee por resultado</td></tr>
+        <tr><td>Detección de falla</td><td>Reactiva o por calendario fijo</td><td>Continua, en tiempo real, por señal anomala</td></tr>
+        <tr><td>Correctivo vs. preventivo</td><td>Correctivo cuesta 5x mas que preventivo</td><td>Made evita ambos con prescripción anticipada</td></tr>
+        <tr><td>Riesgo</td><td>100% del cliente</td><td>Compartido, extensión sin costo si no hay ROI</td></tr>
+        <tr><td>Modificación de control</td><td>Puede requerir cambios en SCADA o PLC</td><td>Solo-lectura, no modifica lógica de control</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 08 GARANTÍA ── -->
+  <div class="section">
+    <div class="s-label">08. Garantia</div>
+    <div class="s-title">Made asume el riesgo operativo</div>
+    <div class="guarantee">
+      <div class="guarantee-grid">
+        <div class="g-statement">
+          <div class="g-label">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1l4.5 1.8v4.2c0 2.8-2 4.5-4.5 5-2.5-.5-4.5-2.2-4.5-5V2.8L7 1z"/></svg>
+            Garantia comercial Made OS, 6 meses
+          </div>
+          <h3>Si al finalizar el programa Made OS no ha demostrado ROI positivo auditado, <em>Made extiende el programa hasta 90 dias adicionales sin costo de licencia.</em></h3>
+        </div>
+        <div class="g-items">
+          <div class="g-item"><div class="g-check">✓</div><span>Si el programa demuestra ROI positivo, el 100% del fee base pagado durante el piloto se acredita al contrato SaaS del primer año. Minsa no paga dos veces.</span></div>
+          <div class="g-item"><div class="g-check">✓</div><span>Made mantiene soporte operativo y analitico completo durante cualquier extensión de garantia.</span></div>
+          <div class="g-item"><div class="g-check">✓</div><span>Los modelos entrenados y el historial de datos son propiedad de Minsa independientemente del resultado.</span></div>
+        </div>
+      </div>
+      <div class="g-faqs">
+        <div class="g-faq">
+          <div class="g-faq-q">¿Sin presupuesto asignado este trimestre?</div>
+          Made ofrece un esquema de inicio flexible con fee base accesible. El ROI positivo desde el primer evento facilita la justificación interna ante cualquier comité de compras.
+        </div>
+        <div class="g-faq">
+          <div class="g-faq-q">¿IT necesita aprobar la conexión OT?</div>
+          Made trabaja directamente con IT. Si no se conecta en 10 dias sin alterar operaciones, el programa no inicia. Solo-lectura garantizado por contrato.
+        </div>
+        <div class="g-faq">
+          <div class="g-faq-q">¿Ya tienen CMMS o preventivo instalado?</div>
+          Made no reemplaza nada. Es una capa de inteligencia que aprende y prescribe encima de lo que ya funciona, potenciando el programa de mantenimiento existente.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 09 SESIÓN INICIAL ── -->
+  <div class="section">
+    <div class="s-label">09. Sesión inicial</div>
+    <p class="s-lead">Una sesión tecnica con el equipo fundador de Made para responder cualquier duda, evaluar si las lineas candidatas de Minsa califican, y definir el tipo de implementación con su equipo de IT y operaciones.</p>
+    <div class="cta-block">
+      <div class="cta-left">
+        <div class="cta-tag">07 / 10 plantas seleccionadas · Programa Planta Fundadora</div>
+        <h3>Solicite su acceso al programa</h3>
+        <p>Sesión tecnica de 30 minutos · Remota · Asistentes: Gerardo Peña (CEO) + Ramiro Pantoja (CTO). Objetivo: calificación tecnica + plan de programa en 1 pagina. Una vez aprobado, el programa inicia en menos de 10 dias hábiles.</p>
+      </div>
+      <div class="cta-right">
+        <a href="https://cal.com/madeos.ai/demo" class="cta-btn">Agendar sesión →</a>
+        <div class="cta-sub">cal.com/madeos.ai/demo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="sig">
+    <div class="sig-av">GP</div>
+    <div>
+      <div class="sig-name">Gerardo Peña</div>
+      <div class="sig-role">CEO, Made OS · MIT Innovator Under 35 LATAM 2025</div>
+      <div class="sig-contact">ger@madeos.ai · madeos.ai · NVIDIA Inception · Founders Inc · Startup Chile BIG 10</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="doc-footer">
+  <strong>MADE OS</strong> × MINSA · Abril 2026 · CONFIDENCIAL
+</div>
+
+</div><!-- /proposal -->
+
+<!-- ══ IMAGE MODAL ══ -->
+<div id="img-modal" aria-modal="true" role="dialog" aria-label="Imagen ampliada">
+  <div id="img-modal-backdrop" onclick="closeModal()"></div>
+  <div id="img-modal-box">
+    <img id="img-modal-img" src="" alt="">
+    <p id="img-modal-cap"></p>
+    <button id="img-modal-close" onclick="closeModal()" aria-label="Cerrar">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+var _PIN = 'MzM0NDU1';
+var PSK  = 'mpin_min1';
+var ASK  = 'mauth1';
+var SAVE_KEY = 'made_min_v1';
+var isAdmin  = false;
+var editMode = false;
+var _saveTimer = null;
+var _ftTimer   = null;
+var lastSaved  = null;
+
+var EDIT_SEL = [
+  '.cover-headline','.cover-highlight','.cover-eyebrow','.company-badge',
+  '.cover-creds','.m-value','.m-label','.cover-tagline',
+  '.s-title','.s-lead',
+  '.exec-item-val','.exec-item-sub','.exec-item-label',
+  '.stat-price','.stat-change','.stat-metal',
+  '.step-title','.step-desc','.step-tag',
+  '.roi-hero-val','.roi-hero-sub','.roi-lbl','.roi-val','.roi-delta','.roi-hero-label',
+  '.req-title','.req-desc',
+  '.hw-title','.hw-sub',
+  '.feat-title','.feat-desc',
+  '.g-faq-q','.g-faq div',
+  '.guarantee h3',
+  '.cta-block h3','.cta-block p','.cta-tag','.cta-sub',
+  '.sig-name','.sig-role','.sig-contact',
+  '.doc-footer'
+].join(',');
+
+/* ── PIN ── */
+function doPin() {
+  var pin = document.getElementById('pin-input').value.trim();
+  if (atob(_PIN) === pin) {
+    try { sessionStorage.setItem(PSK, '1'); } catch(e) {}
+    showProposal(false);
+  } else {
+    var inp = document.getElementById('pin-input');
+    document.getElementById('pin-error').style.display = 'block';
+    inp.value = ''; inp.classList.remove('shake'); void inp.offsetWidth;
+    inp.classList.add('shake'); inp.focus();
+    setTimeout(function(){ inp.classList.remove('shake'); }, 400);
+  }
+}
+
+/* ── Show proposal ── */
+function showProposal(asAdmin) {
+  isAdmin = !!asAdmin;
+  document.getElementById('pin-screen').style.display = 'none';
+  document.getElementById('proposal').style.display   = 'block';
+  if (isAdmin) { _assignIds(); _restoreEdits(); _initAdminBar(); }
+}
+
+/* ── Stable element IDs ── */
+function _assignIds() {
+  document.querySelectorAll(EDIT_SEL).forEach(function(el, i) {
+    if (!el.dataset.eid) el.dataset.eid = 'e' + i;
+  });
+  document.querySelectorAll('#proposal td,#proposal th').forEach(function(el, i) {
+    if (!el.dataset.eid) el.dataset.eid = 'c' + i;
+  });
+}
+
+/* ── Persistence ── */
+function _saveEdits() {
+  var data = { ts: Date.now(), d: {} };
+  document.querySelectorAll('[data-eid]').forEach(function(el) {
+    data.d[el.dataset.eid] = el.innerHTML;
+  });
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify(data)); } catch(e) {}
+  lastSaved = new Date(data.ts);
+  _updateSaveUI();
+}
+
+function _restoreEdits() {
+  try {
+    var raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    Object.keys(data.d).forEach(function(eid) {
+      var el = document.querySelector('[data-eid="' + eid + '"]');
+      if (el) el.innerHTML = data.d[eid];
+    });
+    lastSaved = data.ts ? new Date(data.ts) : null;
+  } catch(e) {}
+}
+
+function _autoSave() {
+  clearTimeout(_saveTimer);
+  _setSaveUI('saving');
+  _saveTimer = setTimeout(_saveEdits, 600);
+}
+
+function _setSaveUI(state) {
+  var lbl = document.getElementById('ab-status');
+  if (!lbl) return;
+  if (state === 'saving') { lbl.textContent = 'Guardando…'; lbl.className = 'ab-saving'; }
+}
+
+function _updateSaveUI() {
+  var lbl = document.getElementById('ab-status');
+  if (!lbl || !lastSaved) return;
+  lbl.textContent = '✓ ' + lastSaved.getHours() + ':' + String(lastSaved.getMinutes()).padStart(2,'0');
+  lbl.className = 'ab-saved';
+}
+
+function saveNow() {
+  _saveEdits();
+  var btn = document.getElementById('ab-save');
+  if (btn) {
+    var prev = btn.innerHTML;
+    btn.textContent = '✓ Guardado';
+    setTimeout(function(){ btn.innerHTML = prev; }, 1600);
+  }
+}
+
+function restoreOriginal() {
+  if (!confirm('¿Restaurar el contenido original?\nSe borrarán todos los cambios guardados en este navegador.')) return;
+  try { localStorage.removeItem(SAVE_KEY); } catch(e) {}
+  location.reload();
+}
+
+/* ── Edit mode ── */
+function toggleEdit() {
+  editMode = !editMode;
+  var all = [].slice.call(document.querySelectorAll(EDIT_SEL))
+    .concat([].slice.call(document.querySelectorAll('#proposal td,#proposal th')));
+  all.forEach(function(el) {
+    el.contentEditable = editMode ? 'true' : 'false';
+    el.classList.toggle('ced', editMode);
+  });
+  if (editMode) {
+    _ensureToolbar();
+    document.addEventListener('input', _onInput, true);
+    document.addEventListener('selectionchange', _onSel);
+  } else {
+    document.removeEventListener('input', _onInput, true);
+    document.removeEventListener('selectionchange', _onSel);
+    _hideToolbar();
+  }
+  _updateAdminBar();
+}
+
+function exitEdit() { if (editMode) toggleEdit(); }
+
+function _onInput(e) { if (e.target && e.target.isContentEditable) _autoSave(); }
+
+/* ── Floating toolbar ── */
+var FT = 'ft-bar';
+
+function _ensureToolbar() {
+  if (document.getElementById(FT)) return;
+  var tb = document.createElement('div');
+  tb.id = FT;
+  tb.innerHTML =
+    '<button class="ft-btn ft-b" data-cmd="bold"        title="Negrita (Ctrl+B)"><b>B</b></button>' +
+    '<button class="ft-btn ft-i" data-cmd="italic"      title="Cursiva (Ctrl+I)"><i>I</i></button>' +
+    '<button class="ft-btn ft-u" data-cmd="underline"   title="Subrayado (Ctrl+U)"><u>U</u></button>' +
+    '<button class="ft-btn ft-s" data-cmd="strikeThrough" title="Tachado"><s>S</s></button>' +
+    '<span class="ft-sep"></span>' +
+    '<button class="ft-btn" data-action="link"   title="Enlace (Ctrl+K)"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 6l-2 2M10 4.5l.5-.5a3.18 3.18 0 0 1 4.5 4.5l-.5.5M4 9.5l-.5.5a3.18 3.18 0 0 1-4.5-4.5l.5-.5"/></svg></button>' +
+    '<button class="ft-btn" data-action="unlink" title="Quitar enlace"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="2" y1="2" x2="12" y2="12"/><path d="M10 4l1-1a3 3 0 0 1 0 4.24M4 10l-1 1a3 3 0 0 1 0-4.24"/></svg></button>' +
+    '<span class="ft-sep"></span>' +
+    '<button class="ft-dot" data-color="#d84200" style="background:#d84200" title="Naranja Made"></button>' +
+    '<button class="ft-dot" data-color="#111213" style="background:#111213" title="Negro"></button>' +
+    '<button class="ft-dot" data-color="#636870" style="background:#636870" title="Gris"></button>' +
+    '<button class="ft-dot" data-color="#2a7a4a" style="background:#2a7a4a" title="Verde"></button>' +
+    '<button class="ft-dot" data-color="#c53030" style="background:#c53030" title="Rojo"></button>' +
+    '<span class="ft-sep"></span>' +
+    '<button class="ft-btn" data-action="clear" title="Quitar formato"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg></button>' +
+    '<span id="ft-arrow"></span>';
+  document.body.appendChild(tb);
+
+  tb.addEventListener('mousedown', function(e) {
+    e.preventDefault();
+    var btn = e.target.closest('.ft-btn');
+    var dot = e.target.closest('.ft-dot');
+    if (btn) {
+      var cmd = btn.dataset.cmd, act = btn.dataset.action;
+      if (cmd) document.execCommand(cmd, false, null);
+      else if (act === 'link')   _doLink();
+      else if (act === 'unlink') document.execCommand('unlink', false, null);
+      else if (act === 'clear')  document.execCommand('removeFormat', false, null);
+      _autoSave(); _refreshBtns();
+    } else if (dot) {
+      document.execCommand('foreColor', false, dot.dataset.color);
+      _autoSave();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!editMode) return;
+    if (e.ctrlKey || e.metaKey) {
+      if (e.key.toLowerCase() === 'k') { e.preventDefault(); _doLink(); }
+      if (e.key.toLowerCase() === 's') { e.preventDefault(); saveNow(); }
+    }
+  });
+}
+
+function _doLink() {
+  var sel = window.getSelection();
+  var txt = sel && !sel.isCollapsed ? sel.toString().substring(0,50) : '';
+  var node = sel && sel.anchorNode;
+  var a = node ? (node.nodeType===1 ? node.closest('a') : node.parentElement && node.parentElement.closest('a')) : null;
+  var url = prompt('URL del enlace' + (txt ? ' para "' + txt + '"' : '') + ':', (a && a.href) || 'https://');
+  if (url !== null && url.trim() && url.trim() !== 'https://') {
+    document.execCommand('createLink', false, url.trim());
+    setTimeout(function() {
+      document.querySelectorAll('[data-eid] a[href]').forEach(function(lnk) {
+        lnk.setAttribute('target','_blank'); lnk.setAttribute('rel','noopener noreferrer');
+      });
+    }, 50);
+    _autoSave();
+  }
+}
+
+function _onSel() {
+  clearTimeout(_ftTimer);
+  _ftTimer = setTimeout(_updateToolbarPos, 55);
+}
+
+function _updateToolbarPos() {
+  if (!editMode) return;
+  var sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !sel.rangeCount) { _hideToolbar(); return; }
+  var range = sel.getRangeAt(0);
+  var node  = range.commonAncestorContainer;
+  var el    = node.nodeType === 3 ? node.parentElement : node;
+  var cur   = el;
+  while (cur && cur !== document.documentElement) {
+    if (cur.isContentEditable) break;
+    cur = cur.parentElement;
+  }
+  if (!cur || !cur.isContentEditable || cur === document.documentElement) { _hideToolbar(); return; }
+
+  var tb = document.getElementById(FT);
+  if (!tb) return;
+  tb.style.visibility = 'hidden'; tb.style.display = 'flex';
+
+  var rect = range.getBoundingClientRect();
+  var tbW  = tb.offsetWidth, tbH = tb.offsetHeight;
+  var sy   = window.scrollY, vw = document.documentElement.clientWidth;
+
+  var idealLeft = rect.left + window.scrollX + (rect.width - tbW) / 2;
+  var left = Math.max(window.scrollX + 8, Math.min(idealLeft, window.scrollX + vw - tbW - 8));
+
+  var selCX = rect.left + window.scrollX + rect.width / 2;
+  var arrow = document.getElementById('ft-arrow');
+  if (arrow) arrow.style.left = Math.max(12, Math.min(selCX - left, tbW - 20)) + 'px';
+
+  var topAbove = rect.top + sy - tbH - 10;
+  var below    = topAbove < sy + 4;
+  var top      = below ? rect.bottom + sy + 10 : topAbove;
+
+  tb.classList.toggle('below', below);
+  tb.style.top  = top + 'px';
+  tb.style.left = left + 'px';
+  tb.style.visibility = 'visible';
+  _refreshBtns();
+}
+
+function _refreshBtns() {
+  var tb = document.getElementById(FT); if (!tb) return;
+  ['bold','italic','underline','strikeThrough'].forEach(function(cmd) {
+    var btn = tb.querySelector('[data-cmd="' + cmd + '"]');
+    if (btn) btn.classList.toggle('active', !!document.queryCommandState(cmd));
+  });
+}
+
+function _hideToolbar() {
+  var tb = document.getElementById(FT);
+  if (tb) tb.style.display = 'none';
+}
+
+/* ── Export HTML ── */
+function downloadHTML() {
+  saveNow();
+  var clone = document.documentElement.cloneNode(true);
+  ['#admin-bar','#'+FT].forEach(function(s){ var el=clone.querySelector(s); if(el) el.remove(); });
+  clone.querySelectorAll('[contenteditable]').forEach(function(el) {
+    el.removeAttribute('contenteditable'); el.classList.remove('ced');
+  });
+  clone.querySelectorAll('[data-eid]').forEach(function(el){ el.removeAttribute('data-eid'); });
+  var html = '<!DOCTYPE html>\n' + clone.outerHTML;
+  var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'minsa-propuesta.html';
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(a.href); }, 200);
+}
+
+/* ── Admin bar ── */
+function _initAdminBar() {
+  var saved = lastSaved;
+  var bar = document.createElement('div');
+  bar.id = 'admin-bar';
+  bar.innerHTML =
+    '<span id="ab-label">✏ Admin</span>' +
+    '<span id="ab-status" class="' + (saved ? 'ab-saved' : '') + '">' +
+      (saved ? ('✓ ' + saved.getHours() + ':' + String(saved.getMinutes()).padStart(2,'0')) : '') +
+    '</span>' +
+    '<button id="ab-edit"    onclick="toggleEdit()">✏ Editar</button>' +
+    '<button id="ab-save"    onclick="saveNow()"        style="display:none">✓ Guardar</button>' +
+    '<button id="ab-dl"      onclick="downloadHTML()"   style="display:none">⬇ Exportar HTML</button>' +
+    '<button id="ab-restore" onclick="restoreOriginal()" style="display:none" title="Volver al contenido original">↺ Restaurar</button>' +
+    '<button id="ab-close"   onclick="exitEdit()"       style="display:none">Listo</button>';
+  document.body.appendChild(bar);
+}
+
+function _updateAdminBar() {
+  document.getElementById('ab-edit').style.display    = editMode ? 'none' : '';
+  document.getElementById('ab-save').style.display    = editMode ? '' : 'none';
+  document.getElementById('ab-dl').style.display      = editMode ? '' : 'none';
+  document.getElementById('ab-restore').style.display = editMode ? '' : 'none';
+  document.getElementById('ab-close').style.display   = editMode ? '' : 'none';
+  document.getElementById('admin-bar').classList.toggle('edit-active', editMode);
+}
+
+document.getElementById('pin-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') { e.preventDefault(); doPin(); }
+});
+document.getElementById('pin-input').addEventListener('input', function() {
+  document.getElementById('pin-error').style.display = 'none';
+});
+
+/* ── Image modal ── */
+function openModal(src, caption) {
+  var m = document.getElementById('img-modal');
+  var img = document.getElementById('img-modal-img');
+  var cap = document.getElementById('img-modal-cap');
+  img.src = src;
+  img.alt = caption || '';
+  cap.textContent = caption || '';
+  m.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  var m = document.getElementById('img-modal');
+  m.classList.remove('is-open');
+  document.body.style.overflow = '';
+  setTimeout(function() {
+    document.getElementById('img-modal-img').src = '';
+  }, 300);
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ── Bootstrap ── */
+(function() {
+  try {
+    if (sessionStorage.getItem(ASK)) { showProposal(true); return; }
+    if (sessionStorage.getItem(PSK) === '1') { showProposal(false); return; }
+  } catch(e) {}
+  document.getElementById('pin-input').focus();
+})();
+</script>
+
+<style>
+/* ── Image modal ── */
+.img-zoom{cursor:zoom-in;}
+.img-zoom:hover img{opacity:.92;}
+.img-zoom img{transition:opacity .15s;}
+
+#img-modal{
+  position:fixed;inset:0;z-index:10000;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease;
+}
+#img-modal.is-open{opacity:1;pointer-events:all;}
+
+#img-modal-backdrop{
+  position:absolute;inset:0;
+  background:rgba(13,14,15,.88);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+#img-modal-box{
+  position:relative;z-index:1;
+  max-width:min(92vw,1080px);
+  max-height:90vh;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  transform:scale(.96);
+  transition:transform .28s cubic-bezier(.34,1.4,.64,1);
+}
+#img-modal.is-open #img-modal-box{transform:scale(1);}
+
+#img-modal-img{
+  max-width:100%;max-height:80vh;
+  border-radius:8px;
+  box-shadow:0 24px 64px rgba(0,0,0,.6),0 4px 16px rgba(0,0,0,.4);
+  display:block;
+}
+#img-modal-cap{
+  font-size:12px;color:rgba(255,255,255,.45);
+  font-family:'Inter',-apple-system,sans-serif;
+  letter-spacing:.03em;text-align:center;
+}
+#img-modal-close{
+  position:fixed;top:20px;right:24px;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.8);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .15s,transform .15s;
+}
+#img-modal-close:hover{background:rgba(255,255,255,.2);transform:scale(1.08);}
+
+/* ── Admin bar ── */
+#admin-bar{
+  position:fixed; bottom:20px; right:20px;
+  background:#111213; border:1px solid rgba(255,255,255,.1);
+  border-radius:12px; padding:8px 14px;
+  display:flex; align-items:center; gap:8px;
+  z-index:9999; box-shadow:0 4px 24px rgba(0,0,0,.5);
+  font-family:'Inter',sans-serif; transition:border-color .2s;
+}
+#ab-label{
+  font-size:10px; font-weight:700; letter-spacing:.08em;
+  color:rgba(255,255,255,.3); text-transform:uppercase;
+  padding-right:8px; border-right:1px solid rgba(255,255,255,.1);
+  white-space:nowrap;
+}
+#ab-status{ font-size:11px; min-width:52px; white-space:nowrap; }
+.ab-saved  { color:#4ade80; }
+.ab-saving { color:rgba(255,255,255,.35); }
+#admin-bar button{
+  font-size:12px; font-weight:600; padding:6px 12px;
+  border-radius:6px; border:none; cursor:pointer;
+  font-family:'Inter',sans-serif; white-space:nowrap; transition:opacity .15s;
+}
+#admin-bar button:hover{ opacity:.82; }
+#ab-edit    { background:#d84200; color:white; }
+#ab-save    { background:#15803d; color:white; }
+#ab-dl      { background:#1d4ed8; color:white; }
+#ab-restore { background:transparent; color:rgba(255,255,255,.45); border:1px solid rgba(255,255,255,.12)!important; }
+#ab-close   { background:transparent; color:rgba(255,255,255,.5);  border:1px solid rgba(255,255,255,.12)!important; }
+#admin-bar.edit-active{ border-color:rgba(216,66,0,.5); }
+
+/* ── Editable highlight ── */
+.ced{
+  outline:1.5px dashed rgba(216,66,0,.4)!important;
+  outline-offset:2px!important; border-radius:3px!important; cursor:text!important;
+}
+.ced:hover{ outline-color:rgba(216,66,0,.7)!important; }
+.ced:focus{
+  outline:2px solid #d84200!important; outline-offset:2px!important;
+  box-shadow:0 0 0 3px rgba(216,66,0,.12)!important;
+}
+
+/* ── Floating toolbar ── */
+#ft-bar{
+  position:absolute; top:0; left:0; display:none;
+  align-items:center; gap:2px; padding:5px 7px;
+  background:#1e2023; border:1px solid rgba(255,255,255,.12);
+  border-radius:9px;
+  box-shadow:0 6px 24px rgba(0,0,0,.55), 0 1px 6px rgba(0,0,0,.3);
+  z-index:99999; user-select:none; font-family:'Inter',sans-serif; white-space:nowrap;
+}
+.ft-btn{
+  display:flex; align-items:center; justify-content:center;
+  width:29px; height:29px;
+  background:transparent; border:none; border-radius:5px;
+  color:rgba(255,255,255,.65); cursor:pointer; transition:background .1s,color .1s;
+}
+.ft-btn:hover{ background:rgba(255,255,255,.09); color:rgba(255,255,255,.95); }
+.ft-btn.active{ background:rgba(216,66,0,.22); color:#ff8c5a; }
+.ft-b b,.ft-i i,.ft-u u,.ft-s s{
+  font-family:'Inter',-apple-system,sans-serif; font-size:13px; pointer-events:none;
+}
+.ft-sep{
+  width:1px; height:16px; background:rgba(255,255,255,.1); margin:0 2px; flex-shrink:0;
+}
+.ft-dot{
+  width:13px; height:13px; border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.18);
+  cursor:pointer; margin:0 2px; flex-shrink:0;
+  transition:border-color .12s, transform .12s;
+}
+.ft-dot:hover{ border-color:rgba(255,255,255,.8); transform:scale(1.2); }
+#ft-arrow{
+  position:absolute; bottom:-5px; left:50%;
+  width:10px; height:10px; background:#1e2023;
+  border-right:1px solid rgba(255,255,255,.12);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  transform:translateX(-50%) rotate(45deg); pointer-events:none;
+}
+#ft-bar.below #ft-arrow{
+  bottom:auto; top:-5px;
+  border-right:none; border-bottom:none;
+  border-left:1px solid rgba(255,255,255,.12);
+  border-top:1px solid rgba(255,255,255,.12);
+}
+</style>
+
+</body>
+</html>
