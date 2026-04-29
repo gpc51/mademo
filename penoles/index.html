@@ -300,13 +300,25 @@
   .roi-val{font-size:20px;font-weight:700;color:var(--black);line-height:1;margin-bottom:2px;}
   .roi-delta{font-size:11px;color:var(--orange);font-weight:500;}
 
-  /* Pricing */
-  .pricing-table{width:100%;border-collapse:collapse;font-size:13px;}
-  .pricing-table th{background:var(--bg);color:var(--black);font-weight:600;font-size:11px;letter-spacing:.03em;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
-  .pricing-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
-  .pricing-table tr:last-child td{border-bottom:none;}
-  .price-val{font-weight:700;color:var(--black);}
-  .price-note{font-size:11px;color:var(--gray);}
+  /* Pricing card */
+  .pricing-card{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;background:var(--white);position:relative;margin-top:24px;}
+  .pricing-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--orange);}
+  .pricing-card-grid{display:grid;grid-template-columns:1fr 1fr;padding:44px 40px 36px;gap:0;}
+  .p-statement{padding-right:36px;border-right:1px solid var(--border);}
+  .p-statement h3{font-size:20px;font-weight:800;line-height:1.4;color:var(--black);letter-spacing:-.02em;margin:0;}
+  .p-statement h3 em{color:var(--orange);font-style:normal;}
+  .p-rows{display:flex;flex-direction:column;padding-left:36px;}
+  .p-row{display:flex;justify-content:space-between;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--dark);line-height:1.5;gap:16px;}
+  .p-row:first-child{padding-top:0;}
+  .p-row:last-child{border-bottom:none;padding-bottom:0;}
+  .p-concept{font-weight:500;color:var(--dark);}
+  .p-concept small{display:block;font-size:11px;color:var(--gray);font-weight:400;margin-top:2px;}
+  .p-amount{font-weight:700;color:var(--black);white-space:nowrap;font-size:13px;text-align:right;flex-shrink:0;}
+  .p-amount.highlight{color:var(--orange);}
+  .p-classes{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);background:var(--bg);}
+  .p-class{padding:22px 26px;border-right:1px solid var(--border);font-size:13px;color:var(--gray);line-height:1.65;}
+  .p-class:last-child{border-right:none;}
+  .p-class-q{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--orange);margin-bottom:5px;}
 
   /* Comparison */
   .comp-table{width:100%;border-collapse:collapse;font-size:13px;}
@@ -920,56 +932,55 @@
       </div>
     </div>
 
-    <div style="margin-top:24px">
-      <div class="card-title" style="margin-bottom:14px;font-size:12px">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M5 7h6M5 10h4"/></svg>
-        Modelo de pricing — basado en resultados
+    <div class="pricing-card">
+      <div class="pricing-card-grid">
+        <div class="p-statement">
+          <div class="g-label">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M5 7h6M5 10h4"/></svg>
+            Modelo de pricing — basado en resultados
+          </div>
+          <h3>Pagás por lo que funciona. Si no hay ROI demostrado, <em>no hay success fee.</em></h3>
+        </div>
+        <div class="p-rows">
+          <div class="p-row">
+            <div class="p-concept">Made OS — Precio base<small>Fijo mensual por circuito · hasta 3 circuitos</small></div>
+            <div class="p-amount">$2,000 USD</div>
+          </div>
+          <div class="p-row">
+            <div class="p-concept">Success fee — Evento Clase A<small>Cap: $50,000 al mes · definición auditada conjunta</small></div>
+            <div class="p-amount">$5,000 USD / evento</div>
+          </div>
+          <div class="p-row">
+            <div class="p-concept">Integración API<small>Incluida en el programa</small></div>
+            <div class="p-amount">Sin costo</div>
+          </div>
+          <div class="p-row">
+            <div class="p-concept">Gateway Edge grado industrial<small>IP67 · NEMA 4X · pago único · incluye hardware e instalación en planta</small></div>
+            <div class="p-amount">$8,000 USD</div>
+          </div>
+          <div class="p-row">
+            <div class="p-concept">Inversión total estimada (9–12 meses · 3 circuitos)<small>Base + hardware + success fees estimados</small></div>
+            <div class="p-amount">~$116K–$138K USD</div>
+          </div>
+          <div class="p-row">
+            <div class="p-concept">ROI estimado del programa<small>9–12 meses · cartera completa Peñoles</small></div>
+            <div class="p-amount highlight">1,100% – 3,500%</div>
+          </div>
+        </div>
       </div>
-      <table class="pricing-table">
-        <thead><tr><th>Concepto</th><th>Monto</th><th>Notas</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><strong>Made OS — Precio base</strong></td>
-            <td class="price-val">$2,000 USD</td>
-            <td class="price-note">Fijo mensual por circuito · hasta 3 circuitos</td>
-          </tr>
-          <tr>
-            <td><strong>Success fee — Evento Clase A</strong></td>
-            <td class="price-val">$5,000 USD / evento</td>
-            <td class="price-note">Cap: $50,000 al mes · definición auditada conjunta</td>
-          </tr>
-          <tr>
-            <td><strong>Integración API</strong></td>
-            <td class="price-val">Sin costo</td>
-            <td class="price-note">Incluida en el programa</td>
-          </tr>
-          <tr>
-            <td><strong>Gateway Edge grado industrial</strong><br><span style="font-size:11px;color:var(--gray)">IP67 · NEMA 4X · Zonas clasificadas evaluadas conjuntamente</span></td>
-            <td class="price-val">$8,000 USD</td>
-            <td class="price-note">Pago único · incluye hardware e instalación en planta</td>
-          </tr>
-          <tr>
-            <td><strong>Inversión total estimada (9–12 meses · 3 circuitos)</strong></td>
-            <td class="price-val">~$116K–$138K USD</td>
-            <td class="price-note">Base + hardware + success fees estimados</td>
-          </tr>
-          <tr>
-            <td><strong>ROI estimado del programa</strong></td>
-            <td class="price-val" style="color:var(--orange)">1,100% – 3,500%</td>
-            <td class="price-note">Estimado 9–12 meses · cartera completa Peñoles</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="alert alert-info" style="margin-top:16px">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8l2 2 4-4"/></svg>
-      <div>
-        <strong>Definición de "Evento Crítico Evitado"</strong><br>
-        <strong>Clase A — Paro mayor evitado:</strong> alerta emitida antes de la falla, intervención ejecutada, evidencia en CMMS/bitácora, contrafactual razonable de que el activo habría causado paro. <em>Genera success fee.</em><br>
-        <strong>Clase B — Operación degradada evitada:</strong> se evitó pérdida material de velocidad, calidad o estabilidad del proceso. <em>Genera success fee.</em><br>
-        <strong>Clase C — Alerta útil validada:</strong> detección correcta, no genera fee; alimenta aprendizaje.<br>
-        <em style="font-size:12px">Baseline primeros 30 días · ventana de disputa 10 días hábiles · árbitro técnico independiente designado al inicio del programa.</em>
+      <div class="p-classes">
+        <div class="p-class">
+          <div class="p-class-q">Clase A — Paro mayor evitado</div>
+          Alerta emitida antes de la falla, intervención ejecutada, evidencia en CMMS/bitácora, contrafactual razonable. <em>Genera success fee.</em>
+        </div>
+        <div class="p-class">
+          <div class="p-class-q">Clase B — Operación degradada evitada</div>
+          Se evitó pérdida material de velocidad, calidad o estabilidad del proceso. <em>Genera success fee.</em>
+        </div>
+        <div class="p-class">
+          <div class="p-class-q">Clase C — Alerta útil validada</div>
+          Detección correcta, no genera fee. Alimenta el aprendizaje continuo del modelo. Baseline: primeros 30 días.
+        </div>
       </div>
     </div>
   </div>
