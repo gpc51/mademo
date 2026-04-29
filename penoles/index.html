@@ -1022,19 +1022,21 @@
 var _PIN = 'NDQ5MTM0';
 var PSK  = 'mpin_pen1';
 var ASK  = 'mauth1';
-var isAdmin = false;
+var SAVE_KEY = 'made_pen_v1';
+var isAdmin  = false;
 var editMode = false;
+var _saveTimer = null;
+var _ftTimer   = null;
+var lastSaved  = null;
 
-/* ── Selectores de texto editable ── */
 var EDIT_SEL = [
   '.cover-headline','.cover-highlight','.cover-eyebrow','.company-badge',
-  '.cover-creds','.m-value','.m-label',
+  '.cover-creds','.m-value','.m-label','.cover-tagline',
   '.s-title','.s-lead',
   '.exec-item-val','.exec-item-sub','.exec-item-label',
   '.stat-price','.stat-change','.stat-metal',
   '.step-title','.step-desc','.step-tag',
-  '.roi-hero-val','.roi-hero-sub','.roi-lbl','.roi-val','.roi-delta',
-  '.roi-hero-label',
+  '.roi-hero-val','.roi-hero-sub','.roi-lbl','.roi-val','.roi-delta','.roi-hero-label',
   '.req-title','.req-desc',
   '.hw-title','.hw-sub',
   '.feat-title','.feat-desc',
@@ -1045,89 +1047,292 @@ var EDIT_SEL = [
   '.doc-footer'
 ].join(',');
 
+/* ── PIN ── */
 function doPin() {
   var pin = document.getElementById('pin-input').value.trim();
   if (atob(_PIN) === pin) {
     try { sessionStorage.setItem(PSK, '1'); } catch(e) {}
     showProposal(false);
   } else {
-    var err = document.getElementById('pin-error');
     var inp = document.getElementById('pin-input');
-    err.style.display = 'block';
-    inp.value = '';
-    inp.classList.remove('shake');
-    void inp.offsetWidth;
-    inp.classList.add('shake');
-    inp.focus();
-    setTimeout(function() { inp.classList.remove('shake'); }, 400);
+    document.getElementById('pin-error').style.display = 'block';
+    inp.value = ''; inp.classList.remove('shake'); void inp.offsetWidth;
+    inp.classList.add('shake'); inp.focus();
+    setTimeout(function(){ inp.classList.remove('shake'); }, 400);
   }
 }
 
+/* ── Show proposal ── */
 function showProposal(asAdmin) {
   isAdmin = !!asAdmin;
   document.getElementById('pin-screen').style.display = 'none';
   document.getElementById('proposal').style.display   = 'block';
-  if (isAdmin) initAdminBar();
+  if (isAdmin) { _assignIds(); _restoreEdits(); _initAdminBar(); }
 }
 
-/* ── Admin toolbar ── */
-function initAdminBar() {
-  var bar = document.createElement('div');
-  bar.id = 'admin-bar';
-  bar.innerHTML =
-    '<span id="ab-label">&#9998; Admin</span>' +
-    '<button id="ab-edit" onclick="toggleEdit()">Editar</button>' +
-    '<button id="ab-save" onclick="downloadHTML()" style="display:none">&#8595; Descargar HTML</button>' +
-    '<button id="ab-cancel" onclick="cancelEdit()" style="display:none">Cancelar</button>';
-  document.body.appendChild(bar);
-}
-
-function toggleEdit() {
-  editMode = !editMode;
-  document.querySelectorAll(EDIT_SEL).forEach(function(el) {
-    el.contentEditable = editMode ? 'true' : 'false';
-    el.style.outline = editMode ? '2px dashed rgba(216,66,0,.4)' : '';
-    el.style.borderRadius = editMode ? '3px' : '';
-    el.style.minWidth = editMode ? '20px' : '';
-    el.style.cursor = editMode ? 'text' : '';
+/* ── Stable element IDs ── */
+function _assignIds() {
+  document.querySelectorAll(EDIT_SEL).forEach(function(el, i) {
+    if (!el.dataset.eid) el.dataset.eid = 'e' + i;
   });
-  /* table cells */
-  document.querySelectorAll('#proposal td, #proposal th').forEach(function(el) {
-    el.contentEditable = editMode ? 'true' : 'false';
-    el.style.outline = editMode ? '2px dashed rgba(216,66,0,.25)' : '';
+  document.querySelectorAll('#proposal td,#proposal th').forEach(function(el, i) {
+    if (!el.dataset.eid) el.dataset.eid = 'c' + i;
   });
-  document.getElementById('ab-edit').textContent   = editMode ? 'Guardando…' : 'Editar';
-  document.getElementById('ab-edit').style.display = editMode ? 'none' : '';
-  document.getElementById('ab-save').style.display = editMode ? '' : 'none';
-  document.getElementById('ab-cancel').style.display = editMode ? '' : 'none';
-  document.getElementById('admin-bar').classList.toggle('edit-active', editMode);
 }
 
-function cancelEdit() {
+/* ── Persistence ── */
+function _saveEdits() {
+  var data = { ts: Date.now(), d: {} };
+  document.querySelectorAll('[data-eid]').forEach(function(el) {
+    data.d[el.dataset.eid] = el.innerHTML;
+  });
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify(data)); } catch(e) {}
+  lastSaved = new Date(data.ts);
+  _updateSaveUI();
+}
+
+function _restoreEdits() {
+  try {
+    var raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    Object.keys(data.d).forEach(function(eid) {
+      var el = document.querySelector('[data-eid="' + eid + '"]');
+      if (el) el.innerHTML = data.d[eid];
+    });
+    lastSaved = data.ts ? new Date(data.ts) : null;
+  } catch(e) {}
+}
+
+function _autoSave() {
+  clearTimeout(_saveTimer);
+  _setSaveUI('saving');
+  _saveTimer = setTimeout(_saveEdits, 600);
+}
+
+function _setSaveUI(state) {
+  var lbl = document.getElementById('ab-status');
+  if (!lbl) return;
+  if (state === 'saving') { lbl.textContent = 'Guardando…'; lbl.className = 'ab-saving'; }
+}
+
+function _updateSaveUI() {
+  var lbl = document.getElementById('ab-status');
+  if (!lbl || !lastSaved) return;
+  lbl.textContent = '✓ ' + lastSaved.getHours() + ':' + String(lastSaved.getMinutes()).padStart(2,'0');
+  lbl.className = 'ab-saved';
+}
+
+function saveNow() {
+  _saveEdits();
+  var btn = document.getElementById('ab-save');
+  if (btn) {
+    var prev = btn.innerHTML;
+    btn.textContent = '✓ Guardado';
+    setTimeout(function(){ btn.innerHTML = prev; }, 1600);
+  }
+}
+
+function restoreOriginal() {
+  if (!confirm('¿Restaurar el contenido original?\nSe borrarán todos los cambios guardados en este navegador.')) return;
+  try { localStorage.removeItem(SAVE_KEY); } catch(e) {}
   location.reload();
 }
 
-function downloadHTML() {
-  var clone = document.documentElement.cloneNode(true);
-  /* limpiar admin bar */
-  var bar = clone.querySelector('#admin-bar');
-  if (bar) bar.remove();
-  /* quitar contenteditable y outlines */
-  clone.querySelectorAll('[contenteditable]').forEach(function(el) {
-    el.removeAttribute('contenteditable');
-    el.style.outline = '';
-    el.style.borderRadius = '';
-    el.style.minWidth = '';
-    el.style.cursor = '';
+/* ── Edit mode ── */
+function toggleEdit() {
+  editMode = !editMode;
+  var all = [].slice.call(document.querySelectorAll(EDIT_SEL))
+    .concat([].slice.call(document.querySelectorAll('#proposal td,#proposal th')));
+  all.forEach(function(el) {
+    el.contentEditable = editMode ? 'true' : 'false';
+    el.classList.toggle('ced', editMode);
   });
+  if (editMode) {
+    _ensureToolbar();
+    document.addEventListener('input', _onInput, true);
+    document.addEventListener('selectionchange', _onSel);
+  } else {
+    document.removeEventListener('input', _onInput, true);
+    document.removeEventListener('selectionchange', _onSel);
+    _hideToolbar();
+  }
+  _updateAdminBar();
+}
+
+function exitEdit() { if (editMode) toggleEdit(); }
+
+function _onInput(e) { if (e.target && e.target.isContentEditable) _autoSave(); }
+
+/* ── Floating toolbar ── */
+var FT = 'ft-bar';
+
+function _ensureToolbar() {
+  if (document.getElementById(FT)) return;
+  var tb = document.createElement('div');
+  tb.id = FT;
+  tb.innerHTML =
+    '<button class="ft-btn ft-b" data-cmd="bold"        title="Negrita (Ctrl+B)"><b>B</b></button>' +
+    '<button class="ft-btn ft-i" data-cmd="italic"      title="Cursiva (Ctrl+I)"><i>I</i></button>' +
+    '<button class="ft-btn ft-u" data-cmd="underline"   title="Subrayado (Ctrl+U)"><u>U</u></button>' +
+    '<button class="ft-btn ft-s" data-cmd="strikeThrough" title="Tachado"><s>S</s></button>' +
+    '<span class="ft-sep"></span>' +
+    '<button class="ft-btn" data-action="link"   title="Enlace (Ctrl+K)"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 6l-2 2M10 4.5l.5-.5a3.18 3.18 0 0 1 4.5 4.5l-.5.5M4 9.5l-.5.5a3.18 3.18 0 0 1-4.5-4.5l.5-.5"/></svg></button>' +
+    '<button class="ft-btn" data-action="unlink" title="Quitar enlace"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="2" y1="2" x2="12" y2="12"/><path d="M10 4l1-1a3 3 0 0 1 0 4.24M4 10l-1 1a3 3 0 0 1 0-4.24"/></svg></button>' +
+    '<span class="ft-sep"></span>' +
+    '<button class="ft-dot" data-color="#d84200" style="background:#d84200" title="Naranja Made"></button>' +
+    '<button class="ft-dot" data-color="#111213" style="background:#111213" title="Negro"></button>' +
+    '<button class="ft-dot" data-color="#636870" style="background:#636870" title="Gris"></button>' +
+    '<button class="ft-dot" data-color="#2a7a4a" style="background:#2a7a4a" title="Verde"></button>' +
+    '<button class="ft-dot" data-color="#c53030" style="background:#c53030" title="Rojo"></button>' +
+    '<span class="ft-sep"></span>' +
+    '<button class="ft-btn" data-action="clear" title="Quitar formato"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg></button>' +
+    '<span id="ft-arrow"></span>';
+  document.body.appendChild(tb);
+
+  tb.addEventListener('mousedown', function(e) {
+    e.preventDefault();
+    var btn = e.target.closest('.ft-btn');
+    var dot = e.target.closest('.ft-dot');
+    if (btn) {
+      var cmd = btn.dataset.cmd, act = btn.dataset.action;
+      if (cmd) document.execCommand(cmd, false, null);
+      else if (act === 'link')   _doLink();
+      else if (act === 'unlink') document.execCommand('unlink', false, null);
+      else if (act === 'clear')  document.execCommand('removeFormat', false, null);
+      _autoSave(); _refreshBtns();
+    } else if (dot) {
+      document.execCommand('foreColor', false, dot.dataset.color);
+      _autoSave();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!editMode) return;
+    if (e.ctrlKey || e.metaKey) {
+      if (e.key.toLowerCase() === 'k') { e.preventDefault(); _doLink(); }
+      if (e.key.toLowerCase() === 's') { e.preventDefault(); saveNow(); }
+    }
+  });
+}
+
+function _doLink() {
+  var sel = window.getSelection();
+  var txt = sel && !sel.isCollapsed ? sel.toString().substring(0,50) : '';
+  var node = sel && sel.anchorNode;
+  var a = node ? (node.nodeType===1 ? node.closest('a') : node.parentElement && node.parentElement.closest('a')) : null;
+  var url = prompt('URL del enlace' + (txt ? ' para "' + txt + '"' : '') + ':', (a && a.href) || 'https://');
+  if (url !== null && url.trim() && url.trim() !== 'https://') {
+    document.execCommand('createLink', false, url.trim());
+    setTimeout(function() {
+      document.querySelectorAll('[data-eid] a[href]').forEach(function(lnk) {
+        lnk.setAttribute('target','_blank'); lnk.setAttribute('rel','noopener noreferrer');
+      });
+    }, 50);
+    _autoSave();
+  }
+}
+
+function _onSel() {
+  clearTimeout(_ftTimer);
+  _ftTimer = setTimeout(_updateToolbarPos, 55);
+}
+
+function _updateToolbarPos() {
+  if (!editMode) return;
+  var sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !sel.rangeCount) { _hideToolbar(); return; }
+  var range = sel.getRangeAt(0);
+  var node  = range.commonAncestorContainer;
+  var el    = node.nodeType === 3 ? node.parentElement : node;
+  var cur   = el;
+  while (cur && cur !== document.documentElement) {
+    if (cur.isContentEditable) break;
+    cur = cur.parentElement;
+  }
+  if (!cur || !cur.isContentEditable || cur === document.documentElement) { _hideToolbar(); return; }
+
+  var tb = document.getElementById(FT);
+  if (!tb) return;
+  tb.style.visibility = 'hidden'; tb.style.display = 'flex';
+
+  var rect = range.getBoundingClientRect();
+  var tbW  = tb.offsetWidth, tbH = tb.offsetHeight;
+  var sy   = window.scrollY, vw = document.documentElement.clientWidth;
+
+  var idealLeft = rect.left + window.scrollX + (rect.width - tbW) / 2;
+  var left = Math.max(window.scrollX + 8, Math.min(idealLeft, window.scrollX + vw - tbW - 8));
+
+  var selCX = rect.left + window.scrollX + rect.width / 2;
+  var arrow = document.getElementById('ft-arrow');
+  if (arrow) arrow.style.left = Math.max(12, Math.min(selCX - left, tbW - 20)) + 'px';
+
+  var topAbove = rect.top + sy - tbH - 10;
+  var below    = topAbove < sy + 4;
+  var top      = below ? rect.bottom + sy + 10 : topAbove;
+
+  tb.classList.toggle('below', below);
+  tb.style.top  = top + 'px';
+  tb.style.left = left + 'px';
+  tb.style.visibility = 'visible';
+  _refreshBtns();
+}
+
+function _refreshBtns() {
+  var tb = document.getElementById(FT); if (!tb) return;
+  ['bold','italic','underline','strikeThrough'].forEach(function(cmd) {
+    var btn = tb.querySelector('[data-cmd="' + cmd + '"]');
+    if (btn) btn.classList.toggle('active', !!document.queryCommandState(cmd));
+  });
+}
+
+function _hideToolbar() {
+  var tb = document.getElementById(FT);
+  if (tb) tb.style.display = 'none';
+}
+
+/* ── Export HTML ── */
+function downloadHTML() {
+  saveNow();
+  var clone = document.documentElement.cloneNode(true);
+  ['#admin-bar','#'+FT].forEach(function(s){ var el=clone.querySelector(s); if(el) el.remove(); });
+  clone.querySelectorAll('[contenteditable]').forEach(function(el) {
+    el.removeAttribute('contenteditable'); el.classList.remove('ced');
+  });
+  clone.querySelectorAll('[data-eid]').forEach(function(el){ el.removeAttribute('data-eid'); });
   var html = '<!DOCTYPE html>\n' + clone.outerHTML;
   var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
   var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'penoles-propuesta.html';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  a.href = URL.createObjectURL(blob); a.download = 'penoles-propuesta.html';
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(a.href); }, 200);
+}
+
+/* ── Admin bar ── */
+function _initAdminBar() {
+  var saved = lastSaved;
+  var bar = document.createElement('div');
+  bar.id = 'admin-bar';
+  bar.innerHTML =
+    '<span id="ab-label">✏ Admin</span>' +
+    '<span id="ab-status" class="' + (saved ? 'ab-saved' : '') + '">' +
+      (saved ? ('✓ ' + saved.getHours() + ':' + String(saved.getMinutes()).padStart(2,'0')) : '') +
+    '</span>' +
+    '<button id="ab-edit"    onclick="toggleEdit()">✏ Editar</button>' +
+    '<button id="ab-save"    onclick="saveNow()"        style="display:none">✓ Guardar</button>' +
+    '<button id="ab-dl"      onclick="downloadHTML()"   style="display:none">⬇ Exportar HTML</button>' +
+    '<button id="ab-restore" onclick="restoreOriginal()" style="display:none" title="Volver al contenido original">↺ Restaurar</button>' +
+    '<button id="ab-close"   onclick="exitEdit()"       style="display:none">Listo</button>';
+  document.body.appendChild(bar);
+}
+
+function _updateAdminBar() {
+  document.getElementById('ab-edit').style.display    = editMode ? 'none' : '';
+  document.getElementById('ab-save').style.display    = editMode ? '' : 'none';
+  document.getElementById('ab-dl').style.display      = editMode ? '' : 'none';
+  document.getElementById('ab-restore').style.display = editMode ? '' : 'none';
+  document.getElementById('ab-close').style.display   = editMode ? '' : 'none';
+  document.getElementById('admin-bar').classList.toggle('edit-active', editMode);
 }
 
 document.getElementById('pin-input').addEventListener('keydown', function(e) {
@@ -1137,7 +1342,7 @@ document.getElementById('pin-input').addEventListener('input', function() {
   document.getElementById('pin-error').style.display = 'none';
 });
 
-/* ── Inicio: admin bypass o PIN ── */
+/* ── Bootstrap ── */
 (function() {
   try {
     if (sessionStorage.getItem(ASK)) { showProposal(true); return; }
@@ -1148,45 +1353,91 @@ document.getElementById('pin-input').addEventListener('input', function() {
 </script>
 
 <style>
-#admin-bar {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: #111213;
-  border: 1px solid #333;
-  border-radius: 10px;
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  z-index: 9999;
-  box-shadow: 0 4px 20px rgba(0,0,0,.35);
-  font-family: 'Inter', sans-serif;
+/* ── Admin bar ── */
+#admin-bar{
+  position:fixed; bottom:20px; right:20px;
+  background:#111213; border:1px solid rgba(255,255,255,.1);
+  border-radius:12px; padding:8px 14px;
+  display:flex; align-items:center; gap:8px;
+  z-index:9999; box-shadow:0 4px 24px rgba(0,0,0,.5);
+  font-family:'Inter',sans-serif; transition:border-color .2s;
 }
-#ab-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .06em;
-  color: rgba(255,255,255,.45);
-  text-transform: uppercase;
-  padding-right: 6px;
-  border-right: 1px solid #333;
+#ab-label{
+  font-size:10px; font-weight:700; letter-spacing:.08em;
+  color:rgba(255,255,255,.3); text-transform:uppercase;
+  padding-right:8px; border-right:1px solid rgba(255,255,255,.1);
+  white-space:nowrap;
 }
-#admin-bar button {
-  font-size: 12px;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  transition: opacity .15s;
+#ab-status{ font-size:11px; min-width:52px; white-space:nowrap; }
+.ab-saved  { color:#4ade80; }
+.ab-saving { color:rgba(255,255,255,.35); }
+#admin-bar button{
+  font-size:12px; font-weight:600; padding:6px 12px;
+  border-radius:6px; border:none; cursor:pointer;
+  font-family:'Inter',sans-serif; white-space:nowrap; transition:opacity .15s;
 }
-#admin-bar button:hover { opacity: .85; }
-#ab-edit   { background: #d84200; color: white; }
-#ab-save   { background: #2a7a4a; color: white; }
-#ab-cancel { background: transparent; color: rgba(255,255,255,.5); border: 1px solid #444 !important; }
-#admin-bar.edit-active { border-color: rgba(216,66,0,.6); }
+#admin-bar button:hover{ opacity:.82; }
+#ab-edit    { background:#d84200; color:white; }
+#ab-save    { background:#15803d; color:white; }
+#ab-dl      { background:#1d4ed8; color:white; }
+#ab-restore { background:transparent; color:rgba(255,255,255,.45); border:1px solid rgba(255,255,255,.12)!important; }
+#ab-close   { background:transparent; color:rgba(255,255,255,.5);  border:1px solid rgba(255,255,255,.12)!important; }
+#admin-bar.edit-active{ border-color:rgba(216,66,0,.5); }
+
+/* ── Editable highlight ── */
+.ced{
+  outline:1.5px dashed rgba(216,66,0,.4)!important;
+  outline-offset:2px!important; border-radius:3px!important; cursor:text!important;
+}
+.ced:hover{ outline-color:rgba(216,66,0,.7)!important; }
+.ced:focus{
+  outline:2px solid #d84200!important; outline-offset:2px!important;
+  box-shadow:0 0 0 3px rgba(216,66,0,.12)!important;
+}
+
+/* ── Floating toolbar ── */
+#ft-bar{
+  position:absolute; top:0; left:0; display:none;
+  align-items:center; gap:2px; padding:5px 7px;
+  background:#1e2023; border:1px solid rgba(255,255,255,.12);
+  border-radius:9px;
+  box-shadow:0 6px 24px rgba(0,0,0,.55), 0 1px 6px rgba(0,0,0,.3);
+  z-index:99999; user-select:none; font-family:'Inter',sans-serif; white-space:nowrap;
+}
+.ft-btn{
+  display:flex; align-items:center; justify-content:center;
+  width:29px; height:29px;
+  background:transparent; border:none; border-radius:5px;
+  color:rgba(255,255,255,.65); cursor:pointer; transition:background .1s,color .1s;
+}
+.ft-btn:hover{ background:rgba(255,255,255,.09); color:rgba(255,255,255,.95); }
+.ft-btn.active{ background:rgba(216,66,0,.22); color:#ff8c5a; }
+.ft-b b,.ft-i i,.ft-u u,.ft-s s{
+  font-family:'Inter',-apple-system,sans-serif; font-size:13px; pointer-events:none;
+}
+.ft-sep{
+  width:1px; height:16px; background:rgba(255,255,255,.1); margin:0 2px; flex-shrink:0;
+}
+.ft-dot{
+  width:13px; height:13px; border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.18);
+  cursor:pointer; margin:0 2px; flex-shrink:0;
+  transition:border-color .12s, transform .12s;
+}
+.ft-dot:hover{ border-color:rgba(255,255,255,.8); transform:scale(1.2); }
+#ft-arrow{
+  position:absolute; bottom:-5px; left:50%;
+  width:10px; height:10px; background:#1e2023;
+  border-right:1px solid rgba(255,255,255,.12);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  transform:translateX(-50%) rotate(45deg); pointer-events:none;
+}
+#ft-bar.below #ft-arrow{
+  bottom:auto; top:-5px;
+  border-right:none; border-bottom:none;
+  border-left:1px solid rgba(255,255,255,.12);
+  border-top:1px solid rgba(255,255,255,.12);
+}
 </style>
 
 </body>
