@@ -281,37 +281,27 @@
 </div>
 
 <script>
-  /* ── Credenciales: SHA-256("usuario:contraseña") ── */
-  const CREDENTIALS = {
-    '97a7316d0afb7f5dc0286caa905e2afb825c49c7c5f0036574aff448393c0c07': 'gerardpea'
-  };
+  const SK = 'made_auth_v1';
 
-  const SESSION_KEY = 'made_auth_v1';
-
-  async function sha256(str) {
-    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+  function ok(u, p) {
+    try { return btoa(u + ':' + p) === 'Z2VyYXJkcGVhOk1hZGUzMDAwRzNS'; }
+    catch(_) { return false; }
   }
 
-  async function handleLogin(e) {
+  function handleLogin(e) {
     e.preventDefault();
     const btn = document.getElementById('login-btn');
     const err = document.getElementById('login-error');
-    const u = document.getElementById('u').value.trim().toLowerCase();
-    const p = document.getElementById('p').value;
+    const u   = document.getElementById('u').value.trim().toLowerCase();
+    const p   = document.getElementById('p').value;
 
-    btn.disabled = true;
-    btn.textContent = 'Verificando…';
     err.style.display = 'none';
 
-    const hash = await sha256(u + ':' + p);
-    if (CREDENTIALS[hash] !== undefined) {
-      sessionStorage.setItem(SESSION_KEY, JSON.stringify({ user: u, ts: Date.now() }));
+    if (ok(u, p)) {
+      try { sessionStorage.setItem(SK, u); } catch(_) {}
       showHub(u);
     } else {
       err.style.display = 'block';
-      btn.disabled = false;
-      btn.textContent = 'Ingresar';
       document.getElementById('p').value = '';
       document.getElementById('p').focus();
     }
@@ -319,27 +309,23 @@
 
   function showHub(user) {
     document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('hub-screen').style.display = 'block';
-    document.getElementById('topbar-user').textContent = user || '';
+    document.getElementById('hub-screen').style.display  = 'block';
+    document.getElementById('topbar-user').textContent   = user || '';
   }
 
   function logout() {
-    sessionStorage.removeItem(SESSION_KEY);
-    document.getElementById('hub-screen').style.display = 'none';
+    try { sessionStorage.removeItem(SK); } catch(_) {}
+    document.getElementById('hub-screen').style.display  = 'none';
     document.getElementById('login-screen').style.display = 'flex';
     document.getElementById('u').value = '';
     document.getElementById('p').value = '';
+    document.getElementById('u').focus();
   }
 
-  /* ── Check session on load ── */
-  (function() {
-    try {
-      const session = JSON.parse(sessionStorage.getItem(SESSION_KEY));
-      if (session && session.user) {
-        showHub(session.user);
-      }
-    } catch(e) { /* no session */ }
-  })();
+  try {
+    const saved = sessionStorage.getItem(SK);
+    if (saved) showHub(saved);
+  } catch(_) {}
 </script>
 
 </body>
