@@ -319,18 +319,68 @@
   .comp-table td:nth-child(3){font-weight:500;color:var(--black);background:rgba(216,66,0,.025);}
 
   /* Guarantee */
-  .guarantee{background:var(--dark);border-radius:var(--r-lg);padding:36px 40px;color:white;position:relative;overflow:hidden;}
-  .guarantee::after{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--orange);}
-  .g-label{font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  /* ── Guarantee ── */
+  .guarantee{
+    border:1px solid var(--border);
+    border-radius:var(--r-lg);
+    overflow:hidden;
+    background:var(--white);
+    position:relative;
+  }
+  .guarantee::before{
+    content:'';position:absolute;top:0;left:0;right:0;
+    height:4px;background:var(--orange);
+  }
+  .guarantee-grid{
+    display:grid;grid-template-columns:1fr 1fr;
+    padding:44px 40px 36px;gap:0;
+  }
+  .g-statement{
+    padding-right:36px;
+    border-right:1px solid var(--border);
+  }
+  .g-label{
+    font-size:10.5px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--orange);
+    margin-bottom:16px;display:flex;align-items:center;gap:8px;
+  }
   .g-label svg{width:14px;height:14px;}
-  .guarantee h3{font-size:19px;font-weight:700;line-height:1.35;margin-bottom:20px;letter-spacing:-.01em;}
-  .guarantee h3 em{color:#ff8c5a;font-style:normal;}
-  .g-items{display:flex;flex-direction:column;gap:10px;}
-  .g-item{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:rgba(255,255,255,.82);line-height:1.6;}
-  .g-check{width:20px;height:20px;border-radius:50%;background:rgba(216,66,0,.2);border:1px solid rgba(216,66,0,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;color:#ff8c5a;font-size:11px;font-weight:700;}
-  .g-faqs{display:flex;flex-direction:column;gap:12px;margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);}
-  .g-faq{font-size:13px;color:rgba(255,255,255,.65);}
-  .g-faq-q{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);margin-bottom:3px;}
+  .guarantee h3{
+    font-size:20px;font-weight:800;line-height:1.4;
+    color:var(--black);letter-spacing:-.02em;margin:0;
+  }
+  .guarantee h3 em{color:var(--orange);font-style:normal;}
+  .g-items{
+    display:flex;flex-direction:column;
+    padding-left:36px;
+  }
+  .g-item{
+    display:flex;gap:12px;align-items:flex-start;
+    font-size:13px;color:var(--dark);line-height:1.65;
+    padding:16px 0;border-bottom:1px solid var(--border);
+  }
+  .g-item:last-child{border-bottom:none;padding-bottom:0;}
+  .g-check{
+    width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:1px;
+    background:var(--orange-bg);border:1px solid var(--orange-bd);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--orange);font-size:10px;font-weight:800;
+  }
+  .g-faqs{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--border);
+    background:var(--bg);
+  }
+  .g-faq{
+    padding:22px 26px;
+    border-right:1px solid var(--border);
+    font-size:13px;color:var(--gray);line-height:1.65;
+  }
+  .g-faq:last-child{border-right:none;}
+  .g-faq-q{
+    font-size:10px;font-weight:700;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--orange);margin-bottom:5px;
+  }
 
   /* CTA */
   .cta-block{background:var(--dark);border-radius:var(--r-lg);padding:38px 44px;display:flex;gap:40px;align-items:center;justify-content:space-between;color:white;position:relative;overflow:hidden;}
@@ -957,25 +1007,32 @@
     <div class="s-label">08 — Garantía</div>
     <div class="s-title">Made asume el riesgo operativo</div>
     <div class="guarantee">
-      <div class="g-label">
-        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1l4.5 1.8v4.2c0 2.8-2 4.5-4.5 5-2.5-.5-4.5-2.2-4.5-5V2.8L7 1z"/></svg>
-        Garantía comercial Made OS — 9–12 meses
-      </div>
-      <h3>Si al finalizar el programa Made OS no ha demostrado ROI positivo auditado, <em>Made extiende el programa hasta 90 días adicionales sin costo de licencia.</em></h3>
-      <div class="g-items">
-        <div class="g-item"><div class="g-check">✓</div><span>Si el programa demuestra ROI positivo, el 100% del fee base pagado durante el piloto se acredita al contrato SaaS del primer año — Peñoles no paga dos veces.</span></div>
-        <div class="g-item"><div class="g-check">✓</div><span>Made mantiene soporte operativo y analítico completo durante cualquier extensión de garantía.</span></div>
-        <div class="g-item"><div class="g-check">✓</div><span>Los modelos entrenados y el historial de datos son propiedad de Peñoles independientemente del resultado.</span></div>
+      <div class="guarantee-grid">
+        <div class="g-statement">
+          <div class="g-label">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1l4.5 1.8v4.2c0 2.8-2 4.5-4.5 5-2.5-.5-4.5-2.2-4.5-5V2.8L7 1z"/></svg>
+            Garantía comercial Made OS — 9–12 meses
+          </div>
+          <h3>Si al finalizar el programa Made OS no ha demostrado ROI positivo auditado, <em>Made extiende el programa hasta 90 días adicionales sin costo de licencia.</em></h3>
+        </div>
+        <div class="g-items">
+          <div class="g-item"><div class="g-check">✓</div><span>Si el programa demuestra ROI positivo, el 100% del fee base pagado durante el piloto se acredita al contrato SaaS del primer año — Peñoles no paga dos veces.</span></div>
+          <div class="g-item"><div class="g-check">✓</div><span>Made mantiene soporte operativo y analítico completo durante cualquier extensión de garantía.</span></div>
+          <div class="g-item"><div class="g-check">✓</div><span>Los modelos entrenados y el historial de datos son propiedad de Peñoles independientemente del resultado.</span></div>
+        </div>
       </div>
       <div class="g-faqs">
         <div class="g-faq">
-          <div><div class="g-faq-q">¿IT necesita aprobar la conexión OT?</div>Made trabaja directamente con IT. Si no se conecta en 10 días sin alterar operaciones, el programa no inicia.</div>
+          <div class="g-faq-q">¿IT necesita aprobar la conexión OT?</div>
+          Made trabaja directamente con IT. Si no se conecta en 10 días sin alterar operaciones, el programa no inicia.
         </div>
         <div class="g-faq">
-          <div><div class="g-faq-q">¿Ya tienen CMMS o preventivo instalado?</div>Made no reemplaza nada. Es una capa de inteligencia que aprende y prescribe encima de lo que ya funciona.</div>
+          <div class="g-faq-q">¿Ya tienen CMMS o preventivo instalado?</div>
+          Made no reemplaza nada. Es una capa de inteligencia que aprende y prescribe encima de lo que ya funciona.
         </div>
         <div class="g-faq">
-          <div><div class="g-faq-q">¿El presupuesto ya fue asignado este trimestre?</div>Made ofrece un esquema de inicio flexible. Consulta condiciones con el equipo fundador en la sesión técnica inicial.</div>
+          <div class="g-faq-q">¿El presupuesto ya fue asignado este trimestre?</div>
+          Made ofrece un esquema de inicio flexible. Consulta condiciones con el equipo fundador en la sesión técnica inicial.
         </div>
       </div>
     </div>
