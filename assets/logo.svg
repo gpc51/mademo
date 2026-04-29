@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 429 122" width="429" height="122">
+  <!-- Mark: path 1 (quadrilateral) -->
+  <path d="M69.912,41.633 V65.944 L28.094,101.770 H0 Z" fill="#d84200"/>
+  <!-- Mark: path 2 (triangle) -->
+  <path d="M123.753,30.856 V101.771 H41.310 Z" fill="#d84200"/>
+  <!-- Wordmark -->
+  <text x="140" y="100" font-size="98" font-family="Inter,-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif" font-weight="800" fill="#3e4245" letter-spacing="5">Made</text>
+</svg>
