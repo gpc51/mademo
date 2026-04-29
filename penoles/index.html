@@ -1019,14 +1019,37 @@
 </div><!-- /proposal -->
 
 <script>
-var _PIN = 'NDQ5MTM0'; // atob → '449134'
+var _PIN = 'NDQ5MTM0';
 var PSK  = 'mpin_pen1';
+var ASK  = 'mauth1';
+var isAdmin = false;
+var editMode = false;
+
+/* ── Selectores de texto editable ── */
+var EDIT_SEL = [
+  '.cover-headline','.cover-highlight','.cover-eyebrow','.company-badge',
+  '.cover-creds','.m-value','.m-label',
+  '.s-title','.s-lead',
+  '.exec-item-val','.exec-item-sub','.exec-item-label',
+  '.stat-price','.stat-change','.stat-metal',
+  '.step-title','.step-desc','.step-tag',
+  '.roi-hero-val','.roi-hero-sub','.roi-lbl','.roi-val','.roi-delta',
+  '.roi-hero-label',
+  '.req-title','.req-desc',
+  '.hw-title','.hw-sub',
+  '.feat-title','.feat-desc',
+  '.g-faq-q','.g-faq div',
+  '.guarantee h3',
+  '.cta-block h3','.cta-block p','.cta-tag','.cta-sub',
+  '.sig-name','.sig-role','.sig-contact',
+  '.doc-footer'
+].join(',');
 
 function doPin() {
   var pin = document.getElementById('pin-input').value.trim();
   if (atob(_PIN) === pin) {
     try { sessionStorage.setItem(PSK, '1'); } catch(e) {}
-    showProposal();
+    showProposal(false);
   } else {
     var err = document.getElementById('pin-error');
     var inp = document.getElementById('pin-input');
@@ -1040,9 +1063,71 @@ function doPin() {
   }
 }
 
-function showProposal() {
+function showProposal(asAdmin) {
+  isAdmin = !!asAdmin;
   document.getElementById('pin-screen').style.display = 'none';
   document.getElementById('proposal').style.display   = 'block';
+  if (isAdmin) initAdminBar();
+}
+
+/* ── Admin toolbar ── */
+function initAdminBar() {
+  var bar = document.createElement('div');
+  bar.id = 'admin-bar';
+  bar.innerHTML =
+    '<span id="ab-label">&#9998; Admin</span>' +
+    '<button id="ab-edit" onclick="toggleEdit()">Editar</button>' +
+    '<button id="ab-save" onclick="downloadHTML()" style="display:none">&#8595; Descargar HTML</button>' +
+    '<button id="ab-cancel" onclick="cancelEdit()" style="display:none">Cancelar</button>';
+  document.body.appendChild(bar);
+}
+
+function toggleEdit() {
+  editMode = !editMode;
+  document.querySelectorAll(EDIT_SEL).forEach(function(el) {
+    el.contentEditable = editMode ? 'true' : 'false';
+    el.style.outline = editMode ? '2px dashed rgba(216,66,0,.4)' : '';
+    el.style.borderRadius = editMode ? '3px' : '';
+    el.style.minWidth = editMode ? '20px' : '';
+    el.style.cursor = editMode ? 'text' : '';
+  });
+  /* table cells */
+  document.querySelectorAll('#proposal td, #proposal th').forEach(function(el) {
+    el.contentEditable = editMode ? 'true' : 'false';
+    el.style.outline = editMode ? '2px dashed rgba(216,66,0,.25)' : '';
+  });
+  document.getElementById('ab-edit').textContent   = editMode ? 'Guardando…' : 'Editar';
+  document.getElementById('ab-edit').style.display = editMode ? 'none' : '';
+  document.getElementById('ab-save').style.display = editMode ? '' : 'none';
+  document.getElementById('ab-cancel').style.display = editMode ? '' : 'none';
+  document.getElementById('admin-bar').classList.toggle('edit-active', editMode);
+}
+
+function cancelEdit() {
+  location.reload();
+}
+
+function downloadHTML() {
+  var clone = document.documentElement.cloneNode(true);
+  /* limpiar admin bar */
+  var bar = clone.querySelector('#admin-bar');
+  if (bar) bar.remove();
+  /* quitar contenteditable y outlines */
+  clone.querySelectorAll('[contenteditable]').forEach(function(el) {
+    el.removeAttribute('contenteditable');
+    el.style.outline = '';
+    el.style.borderRadius = '';
+    el.style.minWidth = '';
+    el.style.cursor = '';
+  });
+  var html = '<!DOCTYPE html>\n' + clone.outerHTML;
+  var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'penoles-propuesta.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 document.getElementById('pin-input').addEventListener('keydown', function(e) {
@@ -1052,11 +1137,57 @@ document.getElementById('pin-input').addEventListener('input', function() {
   document.getElementById('pin-error').style.display = 'none';
 });
 
+/* ── Inicio: admin bypass o PIN ── */
 (function() {
-  try { if (sessionStorage.getItem(PSK) === '1') showProposal(); } catch(e) {}
+  try {
+    if (sessionStorage.getItem(ASK)) { showProposal(true); return; }
+    if (sessionStorage.getItem(PSK) === '1') { showProposal(false); return; }
+  } catch(e) {}
   document.getElementById('pin-input').focus();
 })();
 </script>
+
+<style>
+#admin-bar {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #111213;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 9999;
+  box-shadow: 0 4px 20px rgba(0,0,0,.35);
+  font-family: 'Inter', sans-serif;
+}
+#ab-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: rgba(255,255,255,.45);
+  text-transform: uppercase;
+  padding-right: 6px;
+  border-right: 1px solid #333;
+}
+#admin-bar button {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: opacity .15s;
+}
+#admin-bar button:hover { opacity: .85; }
+#ab-edit   { background: #d84200; color: white; }
+#ab-save   { background: #2a7a4a; color: white; }
+#ab-cancel { background: transparent; color: rgba(255,255,255,.5); border: 1px solid #444 !important; }
+#admin-bar.edit-active { border-color: rgba(216,66,0,.6); }
+</style>
 
 </body>
 </html>
