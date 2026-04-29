@@ -695,7 +695,7 @@
         <div class="hw-sub">Dispositivo dedicado instalado en planta por el equipo de Made. Ideal para activos de proceso de alta velocidad que requieren baja latencia o procesamiento de visión.</div>
 
         <!-- Edge device photo -->
-        <div class="edge-wrap">
+        <div class="edge-wrap img-zoom" onclick="openModal('../assets/edge-device.jpg','Made Edge — Dispositivo IA industrial instalado en tablero DIN rail')">
           <img src="../assets/edge-device.jpg" alt="Made Edge — Dispositivo IA industrial instalado en tablero DIN rail" loading="lazy">
         </div>
         <p class="img-caption">Made Edge instalado en tablero DIN rail con conectividad industrial</p>
@@ -721,7 +721,7 @@
         <div class="hw-sub">Instalación en servidor o PC industrial existente en planta. Sin hardware adicional. Máximo control para el equipo de IT de Peñoles.</div>
 
         <!-- Platform screenshot -->
-        <div class="edge-wrap">
+        <div class="edge-wrap img-zoom" onclick="openModal('../assets/platform-screenshot.png','Made OS — Plataforma web con análisis de sensores y agente conversacional')">
           <img src="../assets/platform-screenshot.png" alt="Made OS — Vista de plataforma, sensores y agente conversacional" loading="lazy">
         </div>
         <p class="img-caption">Made OS · Plataforma web con análisis de sensores y agente conversacional</p>
@@ -1019,6 +1019,18 @@
 </div>
 
 </div><!-- /proposal -->
+
+<!-- ══ IMAGE MODAL ══ -->
+<div id="img-modal" aria-modal="true" role="dialog" aria-label="Imagen ampliada">
+  <div id="img-modal-backdrop" onclick="closeModal()"></div>
+  <div id="img-modal-box">
+    <img id="img-modal-img" src="" alt="">
+    <p id="img-modal-cap"></p>
+    <button id="img-modal-close" onclick="closeModal()" aria-label="Cerrar">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg>
+    </button>
+  </div>
+</div>
 
 <script>
 var _PIN = 'NDQ5MTM0';
@@ -1344,6 +1356,29 @@ document.getElementById('pin-input').addEventListener('input', function() {
   document.getElementById('pin-error').style.display = 'none';
 });
 
+/* ── Image modal ── */
+function openModal(src, caption) {
+  var m = document.getElementById('img-modal');
+  var img = document.getElementById('img-modal-img');
+  var cap = document.getElementById('img-modal-cap');
+  img.src = src;
+  img.alt = caption || '';
+  cap.textContent = caption || '';
+  m.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  var m = document.getElementById('img-modal');
+  m.classList.remove('is-open');
+  document.body.style.overflow = '';
+  setTimeout(function() {
+    document.getElementById('img-modal-img').src = '';
+  }, 300);
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
 /* ── Bootstrap ── */
 (function() {
   try {
@@ -1355,6 +1390,57 @@ document.getElementById('pin-input').addEventListener('input', function() {
 </script>
 
 <style>
+/* ── Image modal ── */
+.img-zoom{cursor:zoom-in;}
+.img-zoom:hover img{opacity:.92;}
+.img-zoom img{transition:opacity .15s;}
+
+#img-modal{
+  position:fixed;inset:0;z-index:10000;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease;
+}
+#img-modal.is-open{opacity:1;pointer-events:all;}
+
+#img-modal-backdrop{
+  position:absolute;inset:0;
+  background:rgba(13,14,15,.88);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+#img-modal-box{
+  position:relative;z-index:1;
+  max-width:min(92vw,1080px);
+  max-height:90vh;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  transform:scale(.96);
+  transition:transform .28s cubic-bezier(.34,1.4,.64,1);
+}
+#img-modal.is-open #img-modal-box{transform:scale(1);}
+
+#img-modal-img{
+  max-width:100%;max-height:80vh;
+  border-radius:8px;
+  box-shadow:0 24px 64px rgba(0,0,0,.6),0 4px 16px rgba(0,0,0,.4);
+  display:block;
+}
+#img-modal-cap{
+  font-size:12px;color:rgba(255,255,255,.45);
+  font-family:'Inter',-apple-system,sans-serif;
+  letter-spacing:.03em;text-align:center;
+}
+#img-modal-close{
+  position:fixed;top:20px;right:24px;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.8);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .15s,transform .15s;
+}
+#img-modal-close:hover{background:rgba(255,255,255,.2);transform:scale(1.08);}
+
 /* ── Admin bar ── */
 #admin-bar{
   position:fixed; bottom:20px; right:20px;
