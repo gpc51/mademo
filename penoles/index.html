@@ -1017,45 +1017,38 @@
 </div><!-- /proposal -->
 
 <script>
-  const PIN_HASH = '080918c99578d2e0b9c273e0ae30542255f644a06aeec643f6c71c16b164c088';
-  const PIN_SESSION = 'made_pin_penoles_v1';
+  const PSK = 'made_pin_penoles_v1';
 
-  async function sha256(str) {
-    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  function pinOk(pin) {
+    try { return btoa('penoles:' + pin.trim()) === 'cGVub2xlczo0NDkxMzQ='; }
+    catch(_) { return false; }
   }
 
-  async function handlePin(e) {
+  function handlePin(e) {
     e.preventDefault();
-    const btn = document.getElementById('pin-btn');
     const err = document.getElementById('pin-error');
-    const pin = document.getElementById('pin-input').value.trim();
+    const pin = document.getElementById('pin-input').value;
 
-    btn.disabled = true;
-    btn.textContent = 'Verificando…';
     err.style.display = 'none';
 
-    const hash = await sha256('penoles:' + pin);
-    if (hash === PIN_HASH) {
-      sessionStorage.setItem(PIN_SESSION, '1');
+    if (pinOk(pin)) {
+      try { sessionStorage.setItem(PSK, '1'); } catch(_) {}
       showProposal();
     } else {
       err.style.display = 'block';
-      btn.disabled = false;
-      btn.textContent = 'Ver propuesta';
       document.getElementById('pin-input').value = '';
       document.getElementById('pin-input').focus();
     }
   }
 
   function showProposal() {
-    document.getElementById('pin-screen').style.display = 'none';
-    document.getElementById('proposal').style.display = 'block';
+    document.getElementById('pin-screen').style.display  = 'none';
+    document.getElementById('proposal').style.display    = 'block';
   }
 
-  (function() {
-    if (sessionStorage.getItem(PIN_SESSION) === '1') showProposal();
-  })();
+  try {
+    if (sessionStorage.getItem(PSK) === '1') showProposal();
+  } catch(_) {}
 </script>
 
 </body>
