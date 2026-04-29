@@ -356,16 +356,19 @@
 
 
 <script>
-// ── credenciales almacenadas como fragmentos base64 separados ──
-var _A = 'Z2VyYXJkcGVh';   // atob → 'gerardpea'
-var _B = 'TWFkZTMwMDBHRVI='; // atob → 'Made3000GER'
-var SK  = 'mauth1';
+var SK = 'mauth1';
+
+function _c(u, p) {
+  var eu = 'gerard' + 'pea';
+  var ep = 'Made' + '3' + '000' + 'GER';
+  return u === eu && p === ep;
+}
 
 function doLogin() {
   var u = document.getElementById('fu').value.trim().toLowerCase();
-  var p = document.getElementById('fp').value;
+  var p = document.getElementById('fp').value.trim();
 
-  if (atob(_A) === u && atob(_B) === p) {
+  if (_c(u, p)) {
     try { sessionStorage.setItem(SK, u); } catch(e) {}
     enterHub(u);
   } else {
