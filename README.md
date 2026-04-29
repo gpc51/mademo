@@ -1,2 +1,2 @@
 # mademo
-Made OS × Grupo Peñoles — Propuesta Comercial
+Made OS × Archivo — Propuesta Comercial
