@@ -3,204 +3,344 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Made OS — Propuestas Comerciales</title>
+<title>Made OS — Acceso</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--orange:#d84200;--black:#111213;--dark:#1a1c1e;--gray:#636870;--gray-l:#9ba3ab;--border:#e4e7ea;--bg:#f7f8f9;--white:#ffffff;--font:'Inter',-apple-system,sans-serif;}
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:var(--font);color:var(--dark);background:var(--bg);min-height:100vh;}
-
-  .topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 64px;height:60px;display:flex;align-items:center;justify-content:space-between;}
-  .logo{display:flex;align-items:center;}
-  .logo img{height:28px;width:auto;}
-  .logo-inline{display:none;align-items:center;}
-  .topbar-right{font-size:12px;color:var(--gray-l);letter-spacing:.04em;}
-
-  .hero{padding:72px 64px 48px;}
-  .hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;}
-  .hero h1{font-size:38px;font-weight:800;letter-spacing:-.03em;color:var(--black);margin-bottom:12px;line-height:1.1;}
-  .hero p{font-size:15px;color:var(--gray);max-width:520px;line-height:1.65;}
-
-  .proposals{padding:0 64px 80px;}
-  .proposals-label{font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-l);margin-bottom:20px;}
-
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
-
-  .card{
-    background:var(--white);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:24px 28px;
-    text-decoration:none;
-    color:inherit;
-    display:block;
-    transition:box-shadow .15s,border-color .15s;
+  :root{
+    --orange:#d84200;--orange-h:#f04900;--orange-bg:rgba(216,66,0,.08);
+    --black:#111213;--dark:#1a1c1e;--gray:#636870;--gray-l:#9ba3ab;
+    --border:#e4e7ea;--bg:#f7f8f9;--white:#ffffff;--red:#c53030;
+    --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   }
-  .card:hover{box-shadow:0 4px 20px rgba(0,0,0,.10);border-color:#d0d4d9;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--font);background:var(--bg);color:var(--dark);min-height:100vh;}
 
-  .card-status{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:14px;}
-  .status-active{background:rgba(216,66,0,.1);color:var(--orange);}
-  .status-draft{background:var(--bg);color:var(--gray-l);border:1px solid var(--border);}
-  .status-dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
-
-  .card-company{font-size:18px;font-weight:700;color:var(--black);letter-spacing:-.01em;margin-bottom:4px;}
-  .card-industry{font-size:12px;color:var(--gray);margin-bottom:16px;}
-  .card-ref{font-size:11px;color:var(--gray-l);font-variant-numeric:tabular-nums;}
-
-  .card-meta{display:flex;gap:20px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
-  .card-meta-item{display:flex;flex-direction:column;gap:2px;}
-  .card-meta-label{font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--orange);}
-  .card-meta-val{font-size:12px;font-weight:600;color:var(--dark);}
-
-  .card-add{
-    background:transparent;
-    border:1.5px dashed var(--border);
-    border-radius:10px;
-    padding:24px 28px;
+  /* ── LOGIN ── */
+  #login-screen{
+    min-height:100vh;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:10px;
-    min-height:160px;
-    color:var(--gray-l);
+    padding:32px 24px;
+  }
+  .login-card{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:40px 44px;
+    width:100%;
+    max-width:400px;
+    box-shadow:0 4px 24px rgba(0,0,0,.08);
+  }
+  .login-logo{display:flex;justify-content:center;margin-bottom:32px;}
+  .login-logo img{height:30px;width:auto;}
+  .login-logo svg{height:30px;}
+
+  .login-title{font-size:18px;font-weight:700;color:var(--black);text-align:center;margin-bottom:4px;letter-spacing:-.02em;}
+  .login-sub{font-size:13px;color:var(--gray);text-align:center;margin-bottom:28px;}
+
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:var(--gray);margin-bottom:6px;text-transform:uppercase;}
+  .field input{
+    width:100%;
+    padding:11px 14px;
+    border:1.5px solid var(--border);
+    border-radius:6px;
+    font-family:var(--font);
+    font-size:14px;
+    color:var(--dark);
+    background:var(--white);
+    outline:none;
+    transition:border-color .15s;
+  }
+  .field input:focus{border-color:var(--orange);}
+
+  .login-btn{
+    width:100%;
+    padding:12px;
+    background:var(--orange);
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-family:var(--font);
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:8px;
+    transition:background .15s;
+  }
+  .login-btn:hover{background:var(--orange-h);}
+  .login-btn:disabled{opacity:.6;cursor:default;}
+
+  .login-error{
+    background:#fff5f5;
+    border:1px solid #fed7d7;
+    color:var(--red);
+    border-radius:6px;
+    padding:10px 14px;
     font-size:13px;
-    font-weight:500;
+    margin-top:14px;
+    display:none;
     text-align:center;
   }
-  .card-add svg{width:24px;height:24px;opacity:.5;}
+  .login-footer{margin-top:24px;font-size:11px;color:var(--gray-l);text-align:center;letter-spacing:.04em;}
 
-  .footer{border-top:1px solid var(--border);padding:24px 64px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--gray-l);}
+  /* ── HUB ── */
+  #hub-screen{display:none;}
+
+  .topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 64px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+  .topbar-logo img{height:28px;width:auto;}
+  .topbar-right{display:flex;align-items:center;gap:20px;}
+  .topbar-user{font-size:12px;color:var(--gray);}
+  .logout-btn{font-size:12px;color:var(--gray-l);background:none;border:1px solid var(--border);border-radius:5px;padding:5px 12px;cursor:pointer;font-family:var(--font);transition:color .15s,border-color .15s;}
+  .logout-btn:hover{color:var(--dark);border-color:var(--gray-l);}
+
+  .hero{padding:64px 64px 40px;}
+  .hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:14px;}
+  .hero h1{font-size:36px;font-weight:800;letter-spacing:-.03em;color:var(--black);margin-bottom:10px;line-height:1.1;}
+  .hero p{font-size:15px;color:var(--gray);max-width:500px;line-height:1.65;}
+
+  .proposals{padding:0 64px 72px;}
+  .proposals-label{font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-l);margin-bottom:20px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+
+  .card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;text-decoration:none;color:inherit;display:block;transition:box-shadow .15s,border-color .15s;}
+  .card:hover{box-shadow:0 4px 20px rgba(0,0,0,.09);border-color:#d0d4d9;}
+  .card-status{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:14px;}
+  .status-active{background:var(--orange-bg);color:var(--orange);}
+  .status-draft{background:var(--bg);color:var(--gray-l);border:1px solid var(--border);}
+  .status-dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
+  .card-company{font-size:18px;font-weight:700;color:var(--black);letter-spacing:-.01em;margin-bottom:4px;}
+  .card-industry{font-size:12px;color:var(--gray);margin-bottom:16px;}
+  .card-ref{font-size:11px;color:var(--gray-l);}
+  .card-meta{display:flex;gap:20px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
+  .card-meta-item{display:flex;flex-direction:column;gap:2px;}
+  .meta-label{font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--orange);}
+  .meta-val{font-size:12px;font-weight:600;color:var(--dark);}
+  .card-add{background:transparent;border:1.5px dashed var(--border);border-radius:10px;padding:24px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:160px;color:var(--gray-l);font-size:13px;font-weight:500;text-align:center;}
+  .card-add svg{width:22px;height:22px;opacity:.5;}
+
+  .hub-footer{border-top:1px solid var(--border);padding:22px 64px;display:flex;justify-content:space-between;font-size:11px;color:var(--gray-l);}
 
   @media(max-width:600px){
-    .topbar,.hero,.proposals,.footer{padding-left:24px;padding-right:24px;}
-    .hero h1{font-size:28px;}
+    .login-card{padding:28px 24px;}
+    .topbar,.hero,.proposals,.hub-footer{padding-left:24px;padding-right:24px;}
+    .hero h1{font-size:26px;}
     .grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div class="logo">
-    <img src="assets/logo.svg" alt="Made" height="28"
-         onerror="this.style.display='none';document.querySelector('.logo-inline').style.display='flex'">
-    <div class="logo-inline">
-      <svg height="28" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
-        <path d="M27.3,13.0 V21.8 L9.0,39.0 H0 Z" fill="#d84200"/>
-        <path d="M39.6,9.8 V39.0 H13.3 Z" fill="#d84200"/>
+<!-- ══ LOGIN ══ -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <img src="assets/logo.svg" alt="Made" height="30"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <svg style="display:none" height="30" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
+        <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
         <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
       </svg>
     </div>
-  </div>
-  <div class="topbar-right">PROPUESTAS COMERCIALES · CONFIDENCIAL</div>
-</div>
+    <div class="login-title">Acceso restringido</div>
+    <div class="login-sub">Panel de propuestas comerciales</div>
 
-<div class="hero">
-  <div class="hero-eyebrow">Sistema de Propuestas</div>
-  <h1>Inteligencia artificial para<br>manufactura sin pérdidas</h1>
-  <p>Propuestas comerciales personalizadas para cada empresa objetivo, con investigación de operaciones, benchmarks financieros y ROI específico al sector.</p>
-</div>
-
-<div class="proposals">
-  <div class="proposals-label">Propuestas activas y en pipeline</div>
-  <div class="grid">
-
-    <!-- ── PEÑOLES (activa) ── -->
-    <a href="penoles/" class="card">
-      <div class="card-status status-active"><span class="status-dot"></span>Activa</div>
-      <div class="card-company">Grupo Peñoles</div>
-      <div class="card-industry">Minería · Oro · Plata · Zinc · México</div>
-      <div class="card-ref">MAD-PENOLES-02 · Abril 2026</div>
-      <div class="card-meta">
-        <div class="card-meta-item"><div class="card-meta-label">Inversión</div><div class="card-meta-val">~$116K–$138K</div></div>
-        <div class="card-meta-item"><div class="card-meta-label">ROI estimado</div><div class="card-meta-val">1,100%–3,500%</div></div>
-        <div class="card-meta-item"><div class="card-meta-label">Circuitos</div><div class="card-meta-val">Hasta 3</div></div>
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="field">
+        <label for="u">Usuario</label>
+        <input id="u" type="text" autocomplete="username" placeholder="usuario" required>
       </div>
-    </a>
-
-    <!-- ── CMPC (draft) ── -->
-    <div class="card" style="opacity:.55;cursor:default;">
-      <div class="card-status status-draft"><span class="status-dot"></span>Próxima</div>
-      <div class="card-company">CMPC</div>
-      <div class="card-industry">Celulosa · Papel · Tissue · Chile</div>
-      <div class="card-ref">MAD-CMPC-01 · En preparación</div>
-      <div class="card-meta">
-        <div class="card-meta-item"><div class="card-meta-label">Sector</div><div class="card-meta-val">Pulpa / Papel</div></div>
-        <div class="card-meta-item"><div class="card-meta-label">Prioridad</div><div class="card-meta-val">Tier 1</div></div>
+      <div class="field">
+        <label for="p">Contraseña</label>
+        <input id="p" type="password" autocomplete="current-password" placeholder="••••••••" required>
       </div>
-    </div>
-
-    <!-- ── AGROSUPER (draft) ── -->
-    <div class="card" style="opacity:.55;cursor:default;">
-      <div class="card-status status-draft"><span class="status-dot"></span>Próxima</div>
-      <div class="card-company">Agrosuper</div>
-      <div class="card-industry">Avicultura · Porcino · Alimentos · Chile</div>
-      <div class="card-ref">MAD-AGRO-01 · En preparación</div>
-      <div class="card-meta">
-        <div class="card-meta-item"><div class="card-meta-label">Sector</div><div class="card-meta-val">Alimentos</div></div>
-        <div class="card-meta-item"><div class="card-meta-label">Prioridad</div><div class="card-meta-val">Tier 1</div></div>
-      </div>
-    </div>
-
-    <!-- ── COCA-COLA ANDINA (draft) ── -->
-    <div class="card" style="opacity:.55;cursor:default;">
-      <div class="card-status status-draft"><span class="status-dot"></span>Próxima</div>
-      <div class="card-company">Coca-Cola Andina</div>
-      <div class="card-industry">Embotellado · Bebidas · Multi-país</div>
-      <div class="card-ref">MAD-CCA-01 · En preparación</div>
-      <div class="card-meta">
-        <div class="card-meta-item"><div class="card-meta-label">Sector</div><div class="card-meta-val">Bebidas</div></div>
-        <div class="card-meta-item"><div class="card-meta-label">Prioridad</div><div class="card-meta-val">Tier 1</div></div>
-      </div>
-    </div>
-
-    <!-- ── CCU (draft) ── -->
-    <div class="card" style="opacity:.45;cursor:default;">
-      <div class="card-status status-draft"><span class="status-dot"></span>Pipeline</div>
-      <div class="card-company">CCU</div>
-      <div class="card-industry">Cerveza · Bebidas · Chile</div>
-      <div class="card-ref">MAD-CCU-01 · Pipeline</div>
-    </div>
-
-    <!-- ── CAROZZI (draft) ── -->
-    <div class="card" style="opacity:.45;cursor:default;">
-      <div class="card-status status-draft"><span class="status-dot"></span>Pipeline</div>
-      <div class="card-company">Carozzi</div>
-      <div class="card-industry">Pasta · Galletas · Alimentos · Chile/LATAM</div>
-      <div class="card-ref">MAD-CAROZZI-01 · Pipeline</div>
-    </div>
-
-    <!-- ── MINSA (draft) ── -->
-    <div class="card" style="opacity:.45;cursor:default;">
-      <div class="card-status status-draft"><span class="status-dot"></span>Pipeline</div>
-      <div class="card-company">MINSA</div>
-      <div class="card-industry">Harina de maíz · Alimentos · México</div>
-      <div class="card-ref">MAD-MINSA-01 · Pipeline</div>
-    </div>
-
-    <!-- ── REPSOL (draft) ── -->
-    <div class="card" style="opacity:.45;cursor:default;">
-      <div class="card-status status-draft"><span class="status-dot"></span>Pipeline</div>
-      <div class="card-company">Repsol</div>
-      <div class="card-industry">Refinación · Petroquímica · LATAM</div>
-      <div class="card-ref">MAD-REPSOL-01 · Pipeline</div>
-    </div>
-
-    <!-- Add new -->
-    <div class="card-add">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
-      Nueva propuesta
-    </div>
-
+      <button class="login-btn" type="submit" id="login-btn">Ingresar</button>
+    </form>
+    <div class="login-error" id="login-error">Usuario o contraseña incorrectos</div>
+    <div class="login-footer">MADE OS · CONFIDENCIAL</div>
   </div>
 </div>
 
-<div class="footer">
-  <span>Made OS · Sistema de Propuestas Comerciales</span>
-  <span>CONFIDENCIAL · demo.madeos.ai</span>
+<!-- ══ HUB ══ -->
+<div id="hub-screen">
+  <div class="topbar">
+    <div class="topbar-logo">
+      <img src="assets/logo.svg" alt="Made" height="28"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <svg style="display:none" height="28" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
+        <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
+        <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
+      </svg>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-user" id="topbar-user"></span>
+      <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Sistema de Propuestas</div>
+    <h1>Inteligencia artificial para<br>manufactura sin pérdidas</h1>
+    <p>Propuestas comerciales personalizadas para cada empresa objetivo, con investigación de operaciones, benchmarks financieros y ROI específico al sector.</p>
+  </div>
+
+  <div class="proposals">
+    <div class="proposals-label">Propuestas activas y en pipeline</div>
+    <div class="grid">
+
+      <a href="penoles/" class="card">
+        <div class="card-status status-active"><span class="status-dot"></span>Activa</div>
+        <div class="card-company">Grupo Peñoles</div>
+        <div class="card-industry">Minería · Oro · Plata · Zinc · México</div>
+        <div class="card-ref">MAD-PENOLES-02 · Abril 2026</div>
+        <div class="card-meta">
+          <div class="card-meta-item"><div class="meta-label">Inversión</div><div class="meta-val">~$116K–$138K</div></div>
+          <div class="card-meta-item"><div class="meta-label">ROI est.</div><div class="meta-val">1,100%–3,500%</div></div>
+          <div class="card-meta-item"><div class="meta-label">Circuitos</div><div class="meta-val">Hasta 3</div></div>
+        </div>
+      </a>
+
+      <div class="card" style="opacity:.55;cursor:default;">
+        <div class="card-status status-draft"><span class="status-dot"></span>Próxima</div>
+        <div class="card-company">CMPC</div>
+        <div class="card-industry">Celulosa · Papel · Tissue · Chile</div>
+        <div class="card-ref">MAD-CMPC-01 · En preparación</div>
+        <div class="card-meta">
+          <div class="card-meta-item"><div class="meta-label">Prioridad</div><div class="meta-val">Tier 1</div></div>
+          <div class="card-meta-item"><div class="meta-label">Sector</div><div class="meta-val">Pulpa / Papel</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="opacity:.55;cursor:default;">
+        <div class="card-status status-draft"><span class="status-dot"></span>Próxima</div>
+        <div class="card-company">Agrosuper</div>
+        <div class="card-industry">Avicultura · Porcino · Alimentos · Chile</div>
+        <div class="card-ref">MAD-AGRO-01 · En preparación</div>
+        <div class="card-meta">
+          <div class="card-meta-item"><div class="meta-label">Prioridad</div><div class="meta-val">Tier 1</div></div>
+          <div class="card-meta-item"><div class="meta-label">Sector</div><div class="meta-val">Alimentos</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="opacity:.55;cursor:default;">
+        <div class="card-status status-draft"><span class="status-dot"></span>Próxima</div>
+        <div class="card-company">Coca-Cola Andina</div>
+        <div class="card-industry">Embotellado · Bebidas · Multi-país</div>
+        <div class="card-ref">MAD-CCA-01 · En preparación</div>
+        <div class="card-meta">
+          <div class="card-meta-item"><div class="meta-label">Prioridad</div><div class="meta-val">Tier 1</div></div>
+          <div class="card-meta-item"><div class="meta-label">Sector</div><div class="meta-val">Bebidas</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="opacity:.45;cursor:default;">
+        <div class="card-status status-draft"><span class="status-dot"></span>Pipeline</div>
+        <div class="card-company">CCU</div>
+        <div class="card-industry">Cerveza · Bebidas · Chile</div>
+        <div class="card-ref">MAD-CCU-01 · Pipeline</div>
+      </div>
+
+      <div class="card" style="opacity:.45;cursor:default;">
+        <div class="card-status status-draft"><span class="status-dot"></span>Pipeline</div>
+        <div class="card-company">Carozzi</div>
+        <div class="card-industry">Pasta · Galletas · Alimentos · Chile/LATAM</div>
+        <div class="card-ref">MAD-CAROZZI-01 · Pipeline</div>
+      </div>
+
+      <div class="card" style="opacity:.45;cursor:default;">
+        <div class="card-status status-draft"><span class="status-dot"></span>Pipeline</div>
+        <div class="card-company">MINSA</div>
+        <div class="card-industry">Harina de maíz · Alimentos · México</div>
+        <div class="card-ref">MAD-MINSA-01 · Pipeline</div>
+      </div>
+
+      <div class="card" style="opacity:.45;cursor:default;">
+        <div class="card-status status-draft"><span class="status-dot"></span>Pipeline</div>
+        <div class="card-company">Repsol</div>
+        <div class="card-industry">Refinación · Petroquímica · LATAM</div>
+        <div class="card-ref">MAD-REPSOL-01 · Pipeline</div>
+      </div>
+
+      <div class="card-add">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+        Nueva propuesta
+      </div>
+
+    </div>
+  </div>
+
+  <div class="hub-footer">
+    <span>Made OS · Sistema de Propuestas Comerciales</span>
+    <span>CONFIDENCIAL · demo.madeos.ai</span>
+  </div>
 </div>
+
+<script>
+  /* ── Credenciales: SHA-256("usuario:contraseña") ── */
+  const CREDENTIALS = {
+    '97a7316d0afb7f5dc0286caa905e2afb825c49c7c5f0036574aff448393c0c07': 'gerardpea'
+  };
+
+  const SESSION_KEY = 'made_auth_v1';
+
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    const btn = document.getElementById('login-btn');
+    const err = document.getElementById('login-error');
+    const u = document.getElementById('u').value.trim().toLowerCase();
+    const p = document.getElementById('p').value;
+
+    btn.disabled = true;
+    btn.textContent = 'Verificando…';
+    err.style.display = 'none';
+
+    const hash = await sha256(u + ':' + p);
+    if (CREDENTIALS[hash] !== undefined) {
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({ user: u, ts: Date.now() }));
+      showHub(u);
+    } else {
+      err.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Ingresar';
+      document.getElementById('p').value = '';
+      document.getElementById('p').focus();
+    }
+  }
+
+  function showHub(user) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('hub-screen').style.display = 'block';
+    document.getElementById('topbar-user').textContent = user || '';
+  }
+
+  function logout() {
+    sessionStorage.removeItem(SESSION_KEY);
+    document.getElementById('hub-screen').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('u').value = '';
+    document.getElementById('p').value = '';
+  }
+
+  /* ── Check session on load ── */
+  (function() {
+    try {
+      const session = JSON.parse(sessionStorage.getItem(SESSION_KEY));
+      if (session && session.user) {
+        showHub(session.user);
+      }
+    } catch(e) { /* no session */ }
+  })();
+</script>
 
 </body>
 </html>
