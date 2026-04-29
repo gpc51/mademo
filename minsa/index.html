@@ -84,13 +84,12 @@
     margin-bottom:20px;
   }
   .cover-headline{
-    font-size:46px;
+    font-size:52px;
     font-weight:800;
     line-height:1.07;
     color:var(--black);
     letter-spacing:-.03em;
     margin-bottom:32px;
-    max-width:680px;
   }
   .cover-highlight{
     background:var(--dark);
@@ -100,7 +99,6 @@
     font-size:15px;
     line-height:1.68;
     margin-bottom:52px;
-    max-width:660px;
   }
   .cover-metrics{
     display:grid;
@@ -135,7 +133,6 @@
     color:var(--gray);
     line-height:1.65;
     margin-top:40px;
-    max-width:540px;
   }
   .cover-footer{
     display:flex;
@@ -602,22 +599,26 @@
 <!-- ══════════════ PORTADA ══════════════ -->
 <div class="cover">
 
-  <div class="cover-header">
-    <div class="logo">
-      <img src="../assets/logo.svg" alt="Made" height="34"
-           onerror="this.style.display='none';document.querySelector('.logo-inline').style.display='flex'">
-      <div class="logo-inline">
-        <svg height="34" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
-          <path d="M27.3,13.0 V21.8 L9.0,39.0 H0 Z" fill="#d84200"/>
-          <path d="M39.6,9.8 V39.0 H13.3 Z" fill="#d84200"/>
-          <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
-        </svg>
+  <div class="cover-header" style="align-items:flex-start;margin-bottom:28px;">
+    <div>
+      <div class="logo" style="margin-top:17px;">
+        <img src="../assets/logo.svg" alt="Made" height="34"
+             onerror="this.style.display='none';document.querySelector('.logo-inline').style.display='flex'">
+        <div class="logo-inline">
+          <svg height="34" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+            <path d="M27.3,13.0 V21.8 L9.0,39.0 H0 Z" fill="#d84200"/>
+            <path d="M39.6,9.8 V39.0 H13.3 Z" fill="#d84200"/>
+            <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
+          </svg>
+        </div>
       </div>
+      <div class="cover-tagline" style="margin-bottom:0;margin-top:25px;">Inteligencia artificial para una manufactura sin pérdidas</div>
     </div>
-    <div class="company-badge">A Grupo PEO · Minsa</div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+      <img src="minsa-logo.png" alt="Minsa" height="68" style="display:block;width:auto;">
+      <span style="font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--orange);">A Grupo PEO · Minsa</span>
+    </div>
   </div>
-
-  <div class="cover-tagline">Inteligencia artificial para una manufactura sin pérdidas</div>
   <div class="cover-rule"></div>
 
   <div class="cover-body">
