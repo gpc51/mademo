@@ -407,7 +407,9 @@
     transition:border-color .15s;
     background:var(--white);
   }
-  .pin-input:focus{border-color:var(--orange);}
+  .pin-input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(216,66,0,.12);}
+  .pin-input.shake{animation:shake .35s ease;border-color:var(--red);}
+  @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
   .pin-btn{
     width:100%;
     padding:12px;
@@ -473,7 +475,7 @@
     <div class="pin-badge">A Grupo Peñoles</div>
     <div class="pin-title">Propuesta confidencial</div>
     <p class="pin-sub">Ingresa el código de acceso<br>que te compartió el equipo de Made.</p>
-    <form onsubmit="handlePin(event)">
+    <form onsubmit="event.preventDefault(); doPin()">
       <input id="pin-input" class="pin-input" type="text" inputmode="numeric"
              pattern="[0-9]*" maxlength="6" placeholder="······" autocomplete="one-time-code" required>
       <button class="pin-btn" type="submit" id="pin-btn">Ver propuesta</button>
@@ -1017,38 +1019,43 @@
 </div><!-- /proposal -->
 
 <script>
-  const PSK = 'made_pin_penoles_v1';
+var _PIN = 'NDQ5MTM0'; // atob → '449134'
+var PSK  = 'mpin_pen1';
 
-  function pinOk(pin) {
-    try { return btoa('penoles:' + pin.trim()) === 'cGVub2xlczo0NDkxMzQ='; }
-    catch(_) { return false; }
+function doPin() {
+  var pin = document.getElementById('pin-input').value.trim();
+  if (atob(_PIN) === pin) {
+    try { sessionStorage.setItem(PSK, '1'); } catch(e) {}
+    showProposal();
+  } else {
+    var err = document.getElementById('pin-error');
+    var inp = document.getElementById('pin-input');
+    err.style.display = 'block';
+    inp.value = '';
+    inp.classList.remove('shake');
+    void inp.offsetWidth;
+    inp.classList.add('shake');
+    inp.focus();
+    setTimeout(function() { inp.classList.remove('shake'); }, 400);
   }
+}
 
-  function handlePin(e) {
-    e.preventDefault();
-    const err = document.getElementById('pin-error');
-    const pin = document.getElementById('pin-input').value;
+function showProposal() {
+  document.getElementById('pin-screen').style.display = 'none';
+  document.getElementById('proposal').style.display   = 'block';
+}
 
-    err.style.display = 'none';
+document.getElementById('pin-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') { e.preventDefault(); doPin(); }
+});
+document.getElementById('pin-input').addEventListener('input', function() {
+  document.getElementById('pin-error').style.display = 'none';
+});
 
-    if (pinOk(pin)) {
-      try { sessionStorage.setItem(PSK, '1'); } catch(_) {}
-      showProposal();
-    } else {
-      err.style.display = 'block';
-      document.getElementById('pin-input').value = '';
-      document.getElementById('pin-input').focus();
-    }
-  }
-
-  function showProposal() {
-    document.getElementById('pin-screen').style.display  = 'none';
-    document.getElementById('proposal').style.display    = 'block';
-  }
-
-  try {
-    if (sessionStorage.getItem(PSK) === '1') showProposal();
-  } catch(_) {}
+(function() {
+  try { if (sessionStorage.getItem(PSK) === '1') showProposal(); } catch(e) {}
+  document.getElementById('pin-input').focus();
+})();
 </script>
 
 </body>
