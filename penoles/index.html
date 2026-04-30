@@ -530,11 +530,19 @@
     .roi-hero-val{font-size:28px;}
 
     /* Tables → horizontal scroll (preserves all data) */
-    .cost-table,.comp-table,.pricing-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    .cost-table,.comp-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
     .cost-table{min-width:480px;}
     .comp-table{min-width:500px;font-size:12px;}
-    .pricing-table{min-width:400px;}
     .pricing-wrap{padding:22px 18px;}
+    /* Pricing table → stacked cards on mobile */
+    .pricing-table{display:block;width:100%;}
+    .pricing-table thead{display:none;}
+    .pricing-table tbody,.pricing-table tr{display:block;}
+    .pricing-table td{display:block;padding:2px 0;border:none;}
+    .pricing-table tr{padding:12px 0;border-bottom:1px solid var(--border);}
+    .pricing-table tr:last-child{border-bottom:none;}
+    .pricing-table .price-val{font-size:15px;padding:3px 0;}
+    .pricing-table .price-note{padding:0;}
 
     /* Guarantee */
     .guarantee-grid{grid-template-columns:1fr;padding:28px 22px 22px;}
