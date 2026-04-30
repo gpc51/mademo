@@ -1149,6 +1149,8 @@ var PSK  = 'mpin_min1';
 var ASK  = 'mauth1';
 var SAVE_KEY = 'made_min_v1';
 var isAdmin  = false;
+var PROPOSAL_ID = 'minsa';
+var _trackingDone = false;
 var editMode = false;
 var _saveTimer = null;
 var _ftTimer   = null;
@@ -1189,6 +1191,70 @@ function doPin() {
   }
 }
 
+/* ── Analytics tracking ── */
+function _initTracking(proposal) {
+  if (_trackingDone) return;
+  _trackingDone = true;
+
+  // Visit count (reaperturas por sesión)
+  var vcKey = 'ph_vc_' + proposal;
+  var visitCount = parseInt(localStorage.getItem(vcKey) || '0') + 1;
+  try { localStorage.setItem(vcKey, visitCount); } catch(e) {}
+  try { posthog.capture('proposal_session_start', { proposal: proposal, client: 'Minsa', visit_count: visitCount }); } catch(e) {}
+
+  // Secciones leídas (IntersectionObserver)
+  var seenSections = {};
+  var secObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      var lbl = entry.target.querySelector('.s-label');
+      if (!lbl || seenSections[lbl.textContent]) return;
+      seenSections[lbl.textContent] = true;
+      try { posthog.capture('section_viewed', { proposal: proposal, section: lbl.textContent.trim() }); } catch(e) {}
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('#proposal .section').forEach(function(s) { secObs.observe(s); });
+
+  // CTA click
+  var cta = document.querySelector('.cta-btn');
+  if (cta) cta.addEventListener('click', function() {
+    try { posthog.capture('cta_clicked', { proposal: proposal, cta: 'agendar_sesion' }); } catch(e) {}
+  });
+
+  // Scroll depth (25 / 50 / 75 / 100%)
+  var depthReached = {};
+  window.addEventListener('scroll', function() {
+    var pct = Math.round((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100);
+    [25, 50, 75, 100].forEach(function(m) {
+      if (pct >= m && !depthReached[m]) {
+        depthReached[m] = true;
+        try { posthog.capture('scroll_depth', { proposal: proposal, depth: m }); } catch(e) {}
+      }
+    });
+  }, { passive: true });
+
+  // Tiempo activo (tab visible)
+  var activeMs = 0, lastSeen = document.hidden ? null : Date.now();
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      if (lastSeen) { activeMs += Date.now() - lastSeen; lastSeen = null; }
+    } else {
+      lastSeen = Date.now();
+    }
+  });
+  function _flushTime() {
+    if (lastSeen) { activeMs += Date.now() - lastSeen; lastSeen = null; }
+    if (activeMs > 5000) try { posthog.capture('time_spent', { proposal: proposal, seconds: Math.round(activeMs / 1000) }); } catch(e) {}
+  }
+  window.addEventListener('pagehide', _flushTime);
+  setInterval(function() {
+    if (!document.hidden && lastSeen) {
+      var now = Date.now(); activeMs += now - lastSeen; lastSeen = now;
+      try { posthog.capture('time_spent', { proposal: proposal, seconds: Math.round(activeMs / 1000), checkpoint: true }); } catch(e) {}
+    }
+  }, 120000);
+}
+
 /* ── Show proposal ── */
 function showProposal(asAdmin) {
   isAdmin = !!asAdmin;
@@ -1197,6 +1263,7 @@ function showProposal(asAdmin) {
   requestAnimationFrame(function() {
     requestAnimationFrame(function() { window.scrollTo(0, 0); });
   });
+  _initTracking(PROPOSAL_ID);
   if (isAdmin) { _assignIds(); _restoreEdits(); _initAdminBar(); }
 }
 
