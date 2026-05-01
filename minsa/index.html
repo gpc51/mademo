@@ -485,6 +485,37 @@
   }
   .pin-footer{margin-top:24px;font-size:11px;color:var(--gray-l);letter-spacing:.04em;}
 
+  /* ── TABLE SCROLL ── */
+  .tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+
+  /* ── SIDENAV DESKTOP ── */
+  .sidenav{position:fixed;left:28px;top:50%;transform:translateY(-50%);z-index:200;opacity:0;pointer-events:none;transition:opacity .4s;}
+  .sidenav.visible{opacity:1;pointer-events:all;}
+  .sidenav-hd{font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gray-l);margin-bottom:10px;}
+  .sidenav-list{display:flex;flex-direction:column;gap:1px;}
+  .sidenav-item{display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 0;}
+  .sidenav-dot{width:5px;height:5px;border-radius:50%;background:var(--border);flex-shrink:0;transition:background .18s,transform .2s,box-shadow .18s;}
+  .sidenav-label{font-size:9.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-l);white-space:nowrap;transition:color .18s;font-family:var(--font);}
+  .sidenav-item.sn-active .sidenav-dot{background:var(--orange);transform:scale(1.7);box-shadow:0 0 0 3px var(--orange-bg);}
+  .sidenav-item.sn-active .sidenav-label{color:var(--orange);}
+  .sidenav-item:hover:not(.sn-active) .sidenav-dot{background:var(--gray-d);}
+  .sidenav-item:hover:not(.sn-active) .sidenav-label{color:var(--dark);}
+  @media(max-width:1220px){.sidenav{display:none;}}
+  /* ── SIDENAV MOBILE FAB + SHEET ── */
+  .sn-fab{display:none;position:fixed;bottom:24px;right:20px;z-index:300;background:var(--orange);color:#fff;border:none;border-radius:24px;padding:10px 18px;font-size:13px;font-weight:700;letter-spacing:.04em;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.18);align-items:center;gap:8px;}
+  @media(max-width:1220px){.sn-fab{display:flex;}}
+  .sn-sheet{display:none;position:fixed;inset:0;z-index:400;}
+  .sn-sheet.open{display:block;}
+  .sn-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.45);}
+  .sn-panel{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:18px 18px 0 0;padding:24px 20px 32px;max-height:80vh;overflow-y:auto;}
+  .sn-panel-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+  .sn-panel-hd span{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-l);}
+  .sn-panel-close{background:none;border:none;cursor:pointer;padding:4px;color:var(--gray-d);}
+  .sn-sheet-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+  .sn-sheet-item:last-child{border-bottom:none;}
+  .sn-sheet-num{font-size:10px;font-weight:700;color:var(--gray-l);letter-spacing:.08em;min-width:22px;}
+  .sn-sheet-lbl{font-size:14px;font-weight:600;color:var(--dark);}
+
   /* ── RESPONSIVE ─────────────────────────────── */
   @media(max-width:720px){
     /* Cover */
@@ -680,7 +711,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <div class="page">
 
   <!-- ── 01 RESUMEN EJECUTIVO ── -->
-  <div class="section">
+  <div class="section" id="s01">
     <div class="s-label">01. Resumen ejecutivo</div>
     <div class="s-title" data-eid="exec-title">El 82% del downtime industrial es predecible.<br><span style="font-size:18px;font-weight:500;color:var(--gray-d);letter-spacing:-.01em;line-height:1.4;display:block;margin-top:10px;">Hoy, menos del 5% de las plantas en América Latina han implementado sistemas de data analítica en tiempo real para identificar eventos críticos antes de que sucedan.</span></div>
 
@@ -721,7 +752,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 02 SOLUCIÓN ── -->
-  <div class="section">
+  <div class="section" id="s02">
     <div class="s-label">02. Solución</div>
     <div class="s-title" data-eid="solucion-title">Minsa + Made OS</div>
     <p class="s-lead" data-eid="solucion-lead">Made OS es una capa de inteligencia multi-agente que se conecta a los PLCs y sensores que la planta ya tiene. Se integra en menos de 10 dias, sin detener el proceso. Modo solo-lectura. No escribe en el PLC.</p>
@@ -766,7 +797,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 03 INTEGRACIÓN ── -->
-  <div class="section">
+  <div class="section" id="s03">
     <div class="s-label">03. Modalidades de integración</div>
     <div class="s-title" data-eid="integracion-title">Dos caminos de implementación</div>
     <p class="s-lead" data-eid="integracion-lead">Made OS se adapta a la infraestructura existente en cada planta de Minsa. En la sesión tecnica inicial definimos cual es la mas adecuada para cada linea candidata.</p>
@@ -845,7 +876,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 04 PRECIO Y ROI ── -->
-  <div class="section">
+  <div class="section" id="s04">
     <div class="s-label">04. Precio y retorno de inversión</div>
 
     <div class="pricing-wrap">
@@ -926,7 +957,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         Datos utilizados para la proyección del ahorro estimado
       </div>
       <p style="font-size:12px;color:var(--gray);font-weight:600;margin-bottom:12px">Costo por hora de paro no planificado, por linea</p>
-      <table class="cost-table">
+      <div class="tbl-scroll"><table class="cost-table">
         <thead>
           <tr><th>Linea / Activo</th><th>Señales criticas monitoreadas</th><th>Costo estimado / hora paro</th><th>Pérdida anual estimada</th></tr>
         </thead>
@@ -950,7 +981,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <td style="font-weight:700">$150,000 – $300,000 USD</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
       <div style="font-size:11px;color:var(--gray-l);margin-top:10px">Estimaciones basadas en throughput tipico por linea, precio de producción de masa harina, costo de correctivo vs. preventivo (5x) y benchmarks de industria de alimentos masivos. El costo exacto por linea se calcula con datos reales de Minsa en la sesión tecnica.</div>
     </div>
 
@@ -969,7 +1000,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 05 REQUERIMIENTOS ── -->
-  <div class="section">
+  <div class="section" id="s05">
     <div class="s-label">05. Requerimientos del programa</div>
     <p class="s-lead" data-eid="reqs-lead">Made no instala infraestructura de medición desde cero. Estos tres requisitos determinan si la linea candidata califica para el programa y qué tipo de integración aplica.</p>
     <div class="req-grid">
@@ -998,7 +1029,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 06 TÉRMINOS ── -->
-  <div class="section">
+  <div class="section" id="s06">
     <div class="s-label">06. Términos del programa</div>
     <div class="s-title" data-eid="terminos-title">Lo que cada parte aporta y recibe</div>
     <p class="s-lead" data-eid="terminos-lead">Modelo de colaboración con riesgo compartido. Made asume el riesgo operativo. Minsa captura el valor.</p>
@@ -1031,10 +1062,10 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 07 COMPARATIVA ── -->
-  <div class="section">
+  <div class="section" id="s07">
     <div class="s-label">07. Made OS vs. Mantenimiento Preventivo Tradicional</div>
     <div class="s-title" data-eid="garantia-title-1">Una categoria diferente</div>
-    <table class="comp-table">
+    <div class="tbl-scroll"><table class="comp-table">
       <thead>
         <tr>
           <th>Dimensión</th>
@@ -1051,13 +1082,13 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <tr><td>Riesgo</td><td>100% del cliente</td><td>Compartido, extensión sin costo si no hay ROI</td></tr>
         <tr><td>Modificación de control</td><td>Puede requerir cambios en SCADA o PLC</td><td>Solo-lectura, no modifica lógica de control</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="divider"></div>
 
   <!-- ── 08 GARANTÍA ── -->
-  <div class="section">
+  <div class="section" id="s08">
     <div class="s-label">08. Garantia</div>
     <div class="s-title" data-eid="garantia-title-2">Made asume el riesgo operativo</div>
     <div class="guarantee">
@@ -1095,7 +1126,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 09 SESIÓN INICIAL ── -->
-  <div class="section">
+  <div class="section" id="s09">
     <div class="s-label">09. Sesión inicial</div>
     <p class="s-lead" data-eid="sesion-lead">Una sesión tecnica con el equipo fundador de Made para responder cualquier duda, evaluar si las lineas candidatas de Minsa califican, y definir el tipo de implementación con su equipo de IT y operaciones.</p>
     <div class="cta-block">
@@ -1129,6 +1160,37 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 </div>
 
 </div><!-- /proposal -->
+
+<nav class="sidenav" id="sidenav" aria-label="Índice de secciones">
+  <div class="sidenav-hd">Índice</div>
+  <div class="sidenav-list">
+    <div class="sidenav-item" data-s="s01"><span class="sidenav-dot"></span><span class="sidenav-label">01 · Resumen</span></div>
+    <div class="sidenav-item" data-s="s02"><span class="sidenav-dot"></span><span class="sidenav-label">02 · Solución</span></div>
+    <div class="sidenav-item" data-s="s03"><span class="sidenav-dot"></span><span class="sidenav-label">03 · Integración</span></div>
+    <div class="sidenav-item" data-s="s04"><span class="sidenav-dot"></span><span class="sidenav-label">04 · Precio y ROI</span></div>
+    <div class="sidenav-item" data-s="s05"><span class="sidenav-dot"></span><span class="sidenav-label">05 · Requerimientos</span></div>
+    <div class="sidenav-item" data-s="s06"><span class="sidenav-dot"></span><span class="sidenav-label">06 · Términos</span></div>
+    <div class="sidenav-item" data-s="s07"><span class="sidenav-dot"></span><span class="sidenav-label">07 · Comparativa</span></div>
+    <div class="sidenav-item" data-s="s08"><span class="sidenav-dot"></span><span class="sidenav-label">08 · Garantía</span></div>
+    <div class="sidenav-item" data-s="s09"><span class="sidenav-dot"></span><span class="sidenav-label">09 · Sesión inicial</span></div>
+  </div>
+</nav>
+<button class="sn-fab" id="sn-fab">≡ Índice</button>
+<div class="sn-sheet" id="sn-sheet">
+  <div class="sn-backdrop" id="sn-backdrop"></div>
+  <div class="sn-panel">
+    <div class="sn-panel-hd"><span>Índice</span><button class="sn-panel-close" id="sn-close" aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg></button></div>
+    <div class="sn-sheet-item" data-s="s01"><span class="sn-sheet-num">01</span><span class="sn-sheet-lbl">Resumen ejecutivo</span></div>
+    <div class="sn-sheet-item" data-s="s02"><span class="sn-sheet-num">02</span><span class="sn-sheet-lbl">Solución</span></div>
+    <div class="sn-sheet-item" data-s="s03"><span class="sn-sheet-num">03</span><span class="sn-sheet-lbl">Integración</span></div>
+    <div class="sn-sheet-item" data-s="s04"><span class="sn-sheet-num">04</span><span class="sn-sheet-lbl">Precio y ROI</span></div>
+    <div class="sn-sheet-item" data-s="s05"><span class="sn-sheet-num">05</span><span class="sn-sheet-lbl">Requerimientos</span></div>
+    <div class="sn-sheet-item" data-s="s06"><span class="sn-sheet-num">06</span><span class="sn-sheet-lbl">Términos</span></div>
+    <div class="sn-sheet-item" data-s="s07"><span class="sn-sheet-num">07</span><span class="sn-sheet-lbl">Comparativa</span></div>
+    <div class="sn-sheet-item" data-s="s08"><span class="sn-sheet-num">08</span><span class="sn-sheet-lbl">Garantía</span></div>
+    <div class="sn-sheet-item" data-s="s09"><span class="sn-sheet-num">09</span><span class="sn-sheet-lbl">Sesión inicial</span></div>
+  </div>
+</div>
 
 <!-- ══ IMAGE MODAL ══ -->
 <div id="img-modal" aria-modal="true" role="dialog" aria-label="Imagen ampliada">
@@ -1274,6 +1336,51 @@ function showProposal(asAdmin) {
     _initTracking(PROPOSAL_ID);
     try { posthog.startSessionRecording(); } catch(e) {}
   }
+  _initSideNav();
+}
+
+/* ── Side navigation ── */
+function _initSideNav() {
+  var IDS = ['s01','s02','s03','s04','s05','s06','s07','s08','s09'];
+  function scrollTo(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  var nav = document.getElementById('sidenav');
+  if (nav) {
+    nav.classList.add('visible');
+    var items = nav.querySelectorAll('.sidenav-item');
+    items.forEach(function(item) {
+      item.addEventListener('click', function() {
+        scrollTo(item.dataset.s);
+        try { posthog.capture('sidenav_click', { proposal: PROPOSAL_ID, section: item.dataset.s, section_label: item.querySelector('.sidenav-label').textContent.trim(), device: 'desktop' }); } catch(e) {}
+      });
+    });
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        items.forEach(function(item) {
+          item.classList.toggle('sn-active', item.dataset.s === entry.target.id);
+        });
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -55% 0px' });
+    IDS.forEach(function(id) { var el = document.getElementById(id); if (el) obs.observe(el); });
+  }
+  var fab = document.getElementById('sn-fab');
+  var sheet = document.getElementById('sn-sheet');
+  var backdrop = document.getElementById('sn-backdrop');
+  var closeBtn = document.getElementById('sn-close');
+  function openSheet() { sheet.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeSheet() { sheet.classList.remove('open'); document.body.style.overflow = ''; }
+  if (fab) fab.addEventListener('click', openSheet);
+  if (backdrop) backdrop.addEventListener('click', closeSheet);
+  if (closeBtn) closeBtn.addEventListener('click', closeSheet);
+  if (sheet) sheet.querySelectorAll('.sn-sheet-item').forEach(function(item) {
+    item.addEventListener('click', function() {
+      try { posthog.capture('sidenav_click', { proposal: PROPOSAL_ID, section: item.dataset.s, section_label: item.querySelector('.sn-sheet-lbl').textContent.trim(), device: 'mobile' }); } catch(e) {}
+      closeSheet(); setTimeout(function() { scrollTo(item.dataset.s); }, 120);
+    });
+  });
 }
 
 /* ── Stable element IDs ── */
