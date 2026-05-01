@@ -265,13 +265,16 @@
   .pin-footer{margin-top:24px;font-size:11px;color:var(--gray-l);letter-spacing:.04em;}
 
   /* ── SIDENAV ── */
-  .sidenav{position:fixed;right:28px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1px;z-index:200;opacity:0;pointer-events:none;transition:opacity .4s;}
+  .sidenav{position:fixed;left:28px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1px;z-index:200;opacity:0;pointer-events:none;transition:opacity .4s;}
   .sidenav.visible{opacity:1;pointer-events:all;}
-  .sidenav-item{display:flex;align-items:center;gap:10px;cursor:pointer;padding:5px 0;justify-content:flex-end;}
-  .sidenav-label{font-size:9.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-l);white-space:nowrap;opacity:0;transform:translateX(6px);transition:opacity .18s,transform .18s,color .18s;font-family:var(--font);}
+  .sidenav-hd{font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gray-l);padding:0 0 10px 15px;}
+  .sidenav-item{display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 0;justify-content:flex-start;}
   .sidenav-dot{width:5px;height:5px;border-radius:50%;background:var(--border);flex-shrink:0;transition:background .18s,transform .2s,box-shadow .18s;}
-  .sidenav-item:hover .sidenav-label,.sidenav-item.sn-active .sidenav-label{opacity:1;transform:translateX(0);color:var(--orange);}
-  .sidenav-item:hover .sidenav-dot,.sidenav-item.sn-active .sidenav-dot{background:var(--orange);transform:scale(1.7);box-shadow:0 0 0 3px var(--orange-bg);}
+  .sidenav-label{font-size:9.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-l);white-space:nowrap;transition:color .18s;font-family:var(--font);}
+  .sidenav-item.sn-active .sidenav-dot{background:var(--orange);transform:scale(1.7);box-shadow:0 0 0 3px var(--orange-bg);}
+  .sidenav-item.sn-active .sidenav-label{color:var(--orange);}
+  .sidenav-item:hover:not(.sn-active) .sidenav-dot{background:var(--gray-d);}
+  .sidenav-item:hover:not(.sn-active) .sidenav-label{color:var(--dark);}
   @media(max-width:1220px){.sidenav{display:none;}}
 
   /* ── RESPONSIVE ── */
@@ -1065,17 +1068,18 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
 <!-- ── SIDENAV ── -->
 <nav class="sidenav" id="sidenav" aria-label="Navegación de secciones">
-  <div class="sidenav-item" data-s="s01"><span class="sidenav-label">01 · Resumen</span><span class="sidenav-dot"></span></div>
-  <div class="sidenav-item" data-s="s02"><span class="sidenav-label">02 · Contexto</span><span class="sidenav-dot"></span></div>
-  <div class="sidenav-item" data-s="s03"><span class="sidenav-label">03 · Solución</span><span class="sidenav-dot"></span></div>
-  <div class="sidenav-item" data-s="s04"><span class="sidenav-label">04 · Casos de uso</span><span class="sidenav-dot"></span></div>
-  <div class="sidenav-item" data-s="s05"><span class="sidenav-label">05 · Integración</span><span class="sidenav-dot"></span></div>
-  <div class="sidenav-item" data-s="s06"><span class="sidenav-label">06 · Precio y ROI</span><span class="sidenav-dot"></span></div>
-  <div class="sidenav-item" data-s="s07"><span class="sidenav-label">07 · Requerimientos</span><span class="sidenav-dot"></span></div>
-  <div class="sidenav-item" data-s="s08"><span class="sidenav-label">08 · Términos</span><span class="sidenav-dot"></span></div>
-  <div class="sidenav-item" data-s="s09"><span class="sidenav-label">09 · Comparativa</span><span class="sidenav-dot"></span></div>
-  <div class="sidenav-item" data-s="s10"><span class="sidenav-label">10 · Garantía</span><span class="sidenav-dot"></span></div>
-  <div class="sidenav-item" data-s="s11"><span class="sidenav-label">11 · Sesión</span><span class="sidenav-dot"></span></div>
+  <div class="sidenav-hd">Índice</div>
+  <div class="sidenav-item" data-s="s01"><span class="sidenav-dot"></span><span class="sidenav-label">01 · Resumen</span></div>
+  <div class="sidenav-item" data-s="s02"><span class="sidenav-dot"></span><span class="sidenav-label">02 · Contexto</span></div>
+  <div class="sidenav-item" data-s="s03"><span class="sidenav-dot"></span><span class="sidenav-label">03 · Solución</span></div>
+  <div class="sidenav-item" data-s="s04"><span class="sidenav-dot"></span><span class="sidenav-label">04 · Casos de uso</span></div>
+  <div class="sidenav-item" data-s="s05"><span class="sidenav-dot"></span><span class="sidenav-label">05 · Integración</span></div>
+  <div class="sidenav-item" data-s="s06"><span class="sidenav-dot"></span><span class="sidenav-label">06 · Precio y ROI</span></div>
+  <div class="sidenav-item" data-s="s07"><span class="sidenav-dot"></span><span class="sidenav-label">07 · Requerimientos</span></div>
+  <div class="sidenav-item" data-s="s08"><span class="sidenav-dot"></span><span class="sidenav-label">08 · Términos</span></div>
+  <div class="sidenav-item" data-s="s09"><span class="sidenav-dot"></span><span class="sidenav-label">09 · Comparativa</span></div>
+  <div class="sidenav-item" data-s="s10"><span class="sidenav-dot"></span><span class="sidenav-label">10 · Garantía</span></div>
+  <div class="sidenav-item" data-s="s11"><span class="sidenav-dot"></span><span class="sidenav-label">11 · Sesión</span></div>
 </nav>
 
 </div><!-- /proposal -->
