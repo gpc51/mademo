@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Made OS × Energy Corp. — Sample Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:     #d84200;
+    --orange-h:   #f04900;
+    --orange-bg:  rgba(216,66,0,.08);
+    --orange-bd:  rgba(216,66,0,.28);
+    --black:      #111213;
+    --dark:       #1a1c1e;
+    --gray-d:     #3e4245;
+    --gray:       #636870;
+    --gray-l:     #9ba3ab;
+    --border:     #e4e7ea;
+    --bg:         #f7f8f9;
+    --white:      #ffffff;
+    --gold:       #92650a;
+    --gold-l:     #d4a017;
+    --red:        #c53030;
+    --green:      #2a7a4a;
+    --repsol:     #5B6470;
+    --font:       'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:       'JetBrains Mono','Fira Code',monospace;
+    --r:          6px;
+    --r-lg:       10px;
+    --sh:         0 1px 4px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--font);color:var(--dark);background:var(--bg);font-size:15px;line-height:1.7;}
+
+  /* ═══ PORTADA ═══ */
+  .cover{background:var(--white);min-height:100vh;display:flex;flex-direction:column;padding:48px max(72px,calc((100vw - 960px)/2 + 72px)) 40px;}
+  .cover-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+  .logo img{height:34px;width:auto;display:block;}
+  .logo-inline{display:none;align-items:center;}
+  .logo-mark{display:flex;align-items:center;}
+  .company-badge{background:var(--repsol);color:white;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:var(--r);white-space:nowrap;}
+  .cover-tagline{font-size:10.5px;font-weight:500;letter-spacing:.09em;color:var(--gray);text-transform:uppercase;margin-bottom:36px;}
+  .cover-rule{height:1px;background:var(--border);margin-bottom:52px;}
+  .cover-body{flex:1;display:flex;flex-direction:column;}
+  .cover-eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:20px;}
+  .cover-headline{font-size:52px;font-weight:800;line-height:1.07;color:var(--black);letter-spacing:-.03em;margin-bottom:32px;}
+  .cover-highlight{background:var(--dark);color:rgba(255,255,255,.86);padding:22px 28px;border-radius:var(--r);font-size:15px;line-height:1.68;margin-bottom:52px;}
+  .cover-metrics{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:22px 0;margin-bottom:auto;}
+  .cover-metric{padding:0 24px;border-right:1px solid var(--border);}
+  .cover-metric:first-child{padding-left:0;}
+  .cover-metric:last-child{border-right:none;}
+  .m-label{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.11em;color:var(--orange);margin-bottom:5px;}
+  .m-value{font-size:14px;font-weight:600;color:var(--black);line-height:1.3;}
+  .cover-creds{font-size:12px;color:var(--gray);line-height:1.65;margin-top:40px;}
+  .cover-footer{display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:14px;margin-top:20px;font-size:9.5px;color:var(--gray-l);letter-spacing:.07em;text-transform:uppercase;}
+
+  /* ═══ PÁGINAS ═══ */
+  .page{max-width:960px;margin:0 auto;padding:64px 72px;}
+  .section{margin-bottom:56px;}
+  .s-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;}
+  .s-title{font-size:27px;font-weight:700;color:var(--black);letter-spacing:-.02em;line-height:1.2;margin-bottom:12px;}
+  .s-lead{font-size:15px;color:var(--gray);max-width:640px;margin-bottom:28px;line-height:1.65;}
+  .divider{height:1px;background:var(--border);margin:52px 0;}
+
+  /* Cards */
+  .card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 32px;box-shadow:var(--sh);}
+  .card+.card{margin-top:14px;}
+  .card-title{font-size:13px;font-weight:600;color:var(--black);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+  .card-title svg{width:15px;height:15px;color:var(--orange);}
+
+  /* Exec grid */
+  .exec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;}
+  .exec-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 24px;box-shadow:var(--sh);}
+  .exec-item-label{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gray);margin-bottom:6px;}
+  .exec-item-val{font-size:30px;font-weight:700;color:var(--black);letter-spacing:-.02em;line-height:1;margin-bottom:4px;}
+  .exec-item-sub{font-size:12px;color:var(--gray);line-height:1.5;}
+
+  /* Alerts */
+  .alert{display:flex;gap:12px;border-left:3px solid;border-radius:var(--r);padding:14px 16px;font-size:13px;margin-top:14px;}
+  .alert svg{width:15px;height:15px;flex-shrink:0;margin-top:1px;}
+  .alert-gold{background:#fdf8ec;border-color:var(--gold-l);color:var(--gold);}
+  .alert-gold svg{color:var(--gold-l);}
+  .alert-info{background:var(--bg);border-color:var(--border);color:var(--dark);}
+  .alert-info svg{color:var(--gray-l);}
+  .alert-warn{background:var(--orange-bg);border-color:var(--orange);color:var(--dark);}
+  .alert-warn svg{color:var(--orange);}
+  .alert-red{background:#fff5f5;border-color:#feb2b2;color:#742a2a;}
+  .alert-red svg{color:#fc8181;}
+
+  /* Requirements */
+  .req-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px;}
+  .req-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;}
+  .req-num{width:28px;height:28px;border-radius:50%;background:var(--orange);color:white;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .req-title{font-size:13px;font-weight:600;color:var(--black);margin-bottom:5px;}
+  .req-desc{font-size:12px;color:var(--gray);line-height:1.55;}
+
+  /* Diag grid */
+  .diag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px;}
+  .diag-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 22px;box-shadow:var(--sh);}
+  .diag-icon{width:36px;height:36px;background:var(--orange-bg);border-radius:var(--r);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .diag-icon svg{width:18px;height:18px;color:var(--orange);}
+  .diag-title{font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;line-height:1.3;}
+  .diag-desc{font-size:12px;color:var(--gray);line-height:1.6;}
+  .diag-stat{margin-top:14px;padding:10px 12px;background:var(--bg);border-radius:var(--r);border-left:3px solid var(--orange);}
+  .diag-stat-val{font-size:18px;font-weight:700;color:var(--black);}
+  .diag-stat-lbl{font-size:10.5px;color:var(--gray);margin-top:1px;}
+
+  /* Steps */
+  .steps{display:flex;flex-direction:column;}
+  .step{display:flex;gap:0;}
+  .step-left{display:flex;flex-direction:column;align-items:center;width:44px;flex-shrink:0;}
+  .step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;}
+  .step-line{width:2px;background:var(--border);flex:1;margin:6px auto;min-height:16px;}
+  .step:last-child .step-line{display:none;}
+  .step-body{padding:2px 0 28px 16px;flex:1;}
+  .step-tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--gray-l);margin-bottom:4px;}
+  .step-title{font-size:15px;font-weight:700;color:var(--black);margin-bottom:6px;}
+  .step-desc{font-size:13px;color:var(--gray);line-height:1.6;}
+
+  /* Use case cards */
+  .caso-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:26px 28px;box-shadow:var(--sh);margin-top:14px;display:grid;grid-template-columns:1fr 220px;gap:20px;align-items:start;}
+  .caso-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;}
+  .caso-title{font-size:17px;font-weight:700;color:var(--black);margin-bottom:8px;line-height:1.3;}
+  .caso-desc{font-size:13px;color:var(--gray);line-height:1.65;margin-bottom:12px;}
+  .caso-assets{font-size:11.5px;color:var(--dark);line-height:1.6;}
+  .caso-assets strong{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gray-l);display:block;margin-bottom:3px;}
+  .caso-impact{background:var(--orange-bg);border:1px solid var(--orange-bd);border-radius:var(--r-lg);padding:18px 16px;text-align:center;}
+  .caso-impact-lbl{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--orange);margin-bottom:8px;}
+  .caso-impact-val{font-size:26px;font-weight:800;color:var(--black);line-height:1;letter-spacing:-.02em;margin-bottom:4px;}
+  .caso-impact-sub{font-size:11px;color:var(--gray);line-height:1.45;}
+
+  /* Platform / edge */
+  .edge-wrap{margin-top:20px;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.12);}
+  .edge-wrap img{width:100%;display:block;max-height:300px;object-fit:cover;object-position:center;}
+  .img-caption{font-size:11px;color:var(--gray-l);margin-top:8px;text-align:center;font-style:italic;}
+
+  /* Hardware */
+  .hw-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;}
+  .hw-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:24px 26px;position:relative;}
+  .hw-card.featured{border-color:var(--orange);}
+  .hw-badge{position:absolute;top:-12px;left:20px;background:var(--orange);color:white;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 12px;border-radius:20px;}
+  .hw-title{font-size:15px;font-weight:700;color:var(--black);margin-bottom:4px;margin-top:8px;}
+  .hw-sub{font-size:12px;color:var(--gray);margin-bottom:16px;line-height:1.5;}
+  .spec-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;}
+  .spec-row:last-of-type{border-bottom:none;}
+  .spec-key{color:var(--gray);}
+  .spec-val{font-weight:600;color:var(--black);font-family:var(--mono);font-size:11px;}
+  .hw-ideal{margin-top:14px;padding:10px 12px;border-radius:var(--r);background:var(--orange-bg);font-size:12px;color:var(--dark);border-left:3px solid var(--orange);}
+  .hw-ideal strong{display:block;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--orange);margin-bottom:3px;}
+
+  /* Features */
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px;}
+  .feat{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 22px;}
+  .feat-icon{width:34px;height:34px;background:var(--orange-bg);border-radius:var(--r);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .feat-icon svg{width:17px;height:17px;color:var(--orange);}
+  .feat-title{font-size:13px;font-weight:600;color:var(--black);margin-bottom:5px;}
+  .feat-desc{font-size:12px;color:var(--gray);line-height:1.55;}
+
+  /* Terms */
+  .terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .terms-col{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 26px;box-shadow:var(--sh);}
+  .terms-col-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:16px;display:flex;align-items:center;gap:7px;}
+  .terms-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;font-size:13px;color:var(--dark);line-height:1.55;}
+  .terms-item:last-child{margin-bottom:0;}
+  .terms-check{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px;}
+  .check-green{background:var(--bg);border:1px solid var(--border);color:var(--gray-d);}
+  .check-orange{background:var(--orange-bg);border:1px solid var(--orange-bd);color:var(--orange);}
+
+  /* Cost table */
+  .cost-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .cost-table th{background:var(--bg);color:var(--black);font-weight:600;font-size:11px;letter-spacing:.04em;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
+  .cost-table td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  .cost-table tr:last-child td{border-bottom:none;}
+
+  /* ROI */
+  .roi-hero{background:var(--bg);border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:var(--r-lg);padding:22px 26px;margin-bottom:14px;}
+  .roi-hero-label{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-bottom:6px;}
+  .roi-hero-val{font-size:36px;font-weight:800;color:var(--black);line-height:1;letter-spacing:-.02em;margin-bottom:4px;}
+  .roi-hero-sub{font-size:13px;color:var(--gray);}
+  .roi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .roi-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px;box-shadow:var(--sh);}
+  .roi-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--gray);margin-bottom:5px;}
+  .roi-val{font-size:20px;font-weight:700;color:var(--black);line-height:1;margin-bottom:2px;}
+  .roi-delta{font-size:11px;color:var(--orange);font-weight:500;}
+
+  /* Pricing */
+  .pricing-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 32px;box-shadow:var(--sh);position:relative;overflow:hidden;margin-top:24px;}
+  .pricing-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--orange);}
+  .pricing-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .pricing-table th{background:var(--bg);color:var(--black);font-weight:600;font-size:11px;letter-spacing:.03em;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
+  .pricing-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  .pricing-table tr:last-child td{border-bottom:none;}
+  .price-val{font-weight:700;color:var(--black);}
+  .price-note{font-size:11px;color:var(--gray);}
+
+  /* Comparison */
+  .comp-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .comp-table th{padding:10px 14px;text-align:left;font-size:12px;font-weight:600;}
+  .comp-table th:first-child{background:var(--bg);color:var(--gray);border-bottom:2px solid var(--border);}
+  .comp-table th:nth-child(2){background:#fff5f5;color:var(--red);border-bottom:2px solid #fed7d7;}
+  .comp-table th:nth-child(3){background:#fff8f5;color:var(--orange);border-bottom:2px solid var(--orange-bd);}
+  .comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);}
+  .comp-table tr:last-child td{border-bottom:none;}
+  .comp-table td:nth-child(3){font-weight:500;color:var(--black);background:rgba(216,66,0,.025);}
+
+  /* Guarantee */
+  .guarantee{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;background:var(--white);position:relative;}
+  .guarantee::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--orange);}
+  .guarantee-grid{display:grid;grid-template-columns:1fr 1fr;padding:44px 40px 36px;gap:0;}
+  .g-statement{padding-right:36px;border-right:1px solid var(--border);}
+  .g-label{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+  .g-label svg{width:14px;height:14px;}
+  .guarantee h3{font-size:20px;font-weight:800;line-height:1.4;color:var(--black);letter-spacing:-.02em;margin:0;}
+  .guarantee h3 em{color:var(--orange);font-style:normal;}
+  .g-items{display:flex;flex-direction:column;padding-left:36px;}
+  .g-item{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--dark);line-height:1.65;padding:16px 0;border-bottom:1px solid var(--border);}
+  .g-item:last-child{border-bottom:none;padding-bottom:0;}
+  .g-check{width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:1px;background:var(--orange-bg);border:1px solid var(--orange-bd);display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:10px;font-weight:800;}
+  .g-faqs{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);background:var(--bg);}
+  .g-faq{padding:22px 26px;border-right:1px solid var(--border);font-size:13px;color:var(--gray);line-height:1.65;}
+  .g-faq:last-child{border-right:none;}
+  .g-faq-q{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--orange);margin-bottom:5px;}
+
+  /* CTA */
+  .cta-block{background:var(--dark);border-radius:var(--r-lg);padding:38px 44px;display:flex;gap:40px;align-items:center;justify-content:space-between;color:white;position:relative;overflow:hidden;}
+  .cta-block::after{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--orange);}
+  .cta-left{max-width:480px;}
+  .cta-tag{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--orange);margin-bottom:10px;}
+  .cta-block h3{font-size:20px;font-weight:700;line-height:1.3;letter-spacing:-.01em;margin-bottom:10px;}
+  .cta-block p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.65;}
+  .cta-right{flex-shrink:0;text-align:center;}
+  .cta-btn{display:block;background:var(--orange);color:white;text-decoration:none;padding:14px 28px;border-radius:var(--r);font-weight:700;font-size:14px;box-shadow:0 4px 14px rgba(216,66,0,.3);margin-bottom:10px;text-align:center;}
+  .cta-btn:hover{background:var(--orange-h);}
+  .cta-sub{font-size:11px;color:rgba(255,255,255,.35);}
+
+  /* Signature */
+  .sig{display:flex;align-items:center;gap:16px;margin-top:28px;}
+  .sig-av{width:90px;height:90px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;color:white;font-size:16px;font-weight:700;flex-shrink:0;}
+  .sig-name{font-size:15px;font-weight:600;color:var(--black);}
+  .sig-role{font-size:13px;color:var(--gray);}
+  .sig-contact{font-size:12px;color:var(--orange);margin-top:2px;}
+
+  /* Footer */
+  .doc-footer{background:var(--dark);color:rgba(255,255,255,.35);text-align:center;padding:22px 32px;font-size:11px;letter-spacing:.04em;}
+  .doc-footer strong{color:rgba(255,255,255,.5);}
+
+
+  /* ── SIDENAV DESKTOP ── */
+  .sidenav{position:fixed;left:28px;top:50%;transform:translateY(-50%);z-index:200;opacity:0;pointer-events:none;transition:opacity .4s;}
+  .sidenav.visible{opacity:1;pointer-events:all;}
+  .sidenav-hd{font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gray-l);margin-bottom:10px;}
+  .sidenav-list{display:flex;flex-direction:column;gap:1px;}
+  .sidenav-item{display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 0;}
+  .sidenav-dot{width:5px;height:5px;border-radius:50%;background:var(--border);flex-shrink:0;transition:background .18s,transform .2s,box-shadow .18s;}
+  .sidenav-label{font-size:9.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-l);white-space:nowrap;transition:color .18s;font-family:var(--font);}
+  .sidenav-item.sn-active .sidenav-dot{background:var(--orange);transform:scale(1.7);box-shadow:0 0 0 3px var(--orange-bg);}
+  .sidenav-item.sn-active .sidenav-label{color:var(--orange);}
+  .sidenav-item:hover:not(.sn-active) .sidenav-dot{background:var(--gray-d);}
+  .sidenav-item:hover:not(.sn-active) .sidenav-label{color:var(--dark);}
+  @media(max-width:1220px){.sidenav{display:none;}}
+  /* ── SIDENAV MOBILE FAB + SHEET ── */
+  .sn-fab{display:none;position:fixed;bottom:24px;right:20px;z-index:300;background:var(--dark);color:white;border:none;border-radius:24px;padding:10px 18px;font-size:12px;font-weight:600;font-family:var(--font);letter-spacing:.05em;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.22);align-items:center;gap:8px;transition:background .15s;}
+  .sn-fab:hover{background:var(--gray-d);}
+  @media(max-width:1220px){.sn-fab{display:flex;}}
+  .sn-sheet{display:none;position:fixed;inset:0;z-index:400;}
+  .sn-sheet.open{display:block;}
+  .sn-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.45);}
+  .sn-panel{position:absolute;bottom:0;left:0;right:0;background:var(--white);border-radius:16px 16px 0 0;padding:24px 24px 48px;max-height:82vh;overflow-y:auto;}
+  .sn-panel-hd{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+  .sn-panel-close{background:none;border:none;cursor:pointer;color:var(--gray-l);font-size:20px;line-height:1;padding:0;}
+  .sn-sheet-item{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+  .sn-sheet-item:last-child{border-bottom:none;}
+  .sn-sheet-num{font-size:10px;font-weight:700;color:var(--gray-l);width:18px;flex-shrink:0;letter-spacing:.04em;}
+  .sn-sheet-lbl{font-size:14px;color:var(--dark);font-weight:500;}
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:720px){
+    .cover{padding:24px 20px 28px;}
+    .cover-header{margin-bottom:16px !important;gap:12px;}
+    .cover-tagline{margin-bottom:0 !important;margin-top:8px !important;font-size:10px;}
+    .company-badge{font-size:10px;padding:7px 14px;letter-spacing:.06em;}
+    .cover-rule{margin-bottom:30px;}
+    .cover-headline{font-size:27px;margin-bottom:20px;}
+    .cover-highlight{font-size:14px;padding:16px 18px;margin-bottom:28px;}
+    .cover-metrics{grid-template-columns:1fr 1fr;padding:14px 0;}
+    .cover-metric{padding:10px 10px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .cover-metric:first-child{padding-left:0;}
+    .cover-metric:nth-child(even){border-right:none;}
+    .cover-metric:nth-child(3),.cover-metric:nth-child(4){border-bottom:none;}
+    .cover-creds{margin-top:22px;}
+    .cover-footer{flex-direction:column;gap:3px;}
+    .page{padding:32px 20px;}
+    .divider{margin:32px 0;}
+    .section{margin-bottom:36px;}
+    .s-title{font-size:21px;}
+    .s-lead{font-size:14px;margin-bottom:20px;}
+    .card{padding:18px 16px;}
+    .exec-grid,.req-grid,.feat-grid,.hw-grid,.terms-grid,.diag-grid{grid-template-columns:1fr;}
+    .roi-grid{grid-template-columns:1fr 1fr;}
+    .roi-hero-val{font-size:28px;}
+    .cost-table,.comp-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    .cost-table{min-width:480px;}
+    .comp-table{min-width:500px;font-size:12px;}
+    .pricing-wrap{padding:22px 18px;}
+    .pricing-table{display:block;width:100%;}
+    .pricing-table thead{display:none;}
+    .pricing-table tbody,.pricing-table tr{display:block;}
+    .pricing-table td{display:block;padding:2px 0;border:none;}
+    .pricing-table tr{padding:12px 0;border-bottom:1px solid var(--border);}
+    .pricing-table tr:last-child{border-bottom:none;}
+    .pricing-table .price-val{font-size:15px;padding:3px 0;}
+    .pricing-table .price-note{padding:0;}
+    .caso-card{grid-template-columns:1fr;}
+    .caso-impact{text-align:left;}
+    .guarantee-grid{grid-template-columns:1fr;padding:28px 22px 22px;}
+    .g-statement{padding-right:0;border-right:none;border-bottom:1px solid var(--border);padding-bottom:22px;}
+    .guarantee h3{font-size:17px;}
+    .g-items{padding-left:0;padding-top:4px;}
+    .g-faqs{grid-template-columns:1fr;}
+    .g-faq{border-right:none;border-bottom:1px solid var(--border);padding:18px 22px;}
+    .g-faq:last-child{border-bottom:none;}
+    .cta-block{flex-direction:column;gap:20px;padding:28px 22px;}
+    .cta-right{width:100%;}
+    .cta-btn{width:100%;text-align:center;}
+    .pin-card{padding:32px 22px;}
+  }
+  @media(max-width:480px){
+    .cover-headline{font-size:22px;}
+    .cover-metrics{grid-template-columns:1fr;}
+    .cover-metric{border-right:none;padding:10px 0;}
+    .cover-metric:nth-child(even){padding-left:0;}
+    .cover-metric:nth-child(3){border-bottom:1px solid var(--border);}
+    .cover-metric:nth-child(4){border-bottom:none;}
+    .roi-grid{grid-template-columns:1fr;}
+    .exec-item-val{font-size:24px;}
+  }
+  @media print{
+    body{background:white;}
+    .cover{min-height:auto;padding:32px 48px;}
+    .page{padding:40px 48px;}
+    .divider{margin:36px 0;}
+  }
+
+  /* ── REDACTED VALUES ── */
+  .exec-item-val,
+  [data-eid="cover-m3-value"],
+  [data-eid="cover-m4-value"],
+  .diag-stat-val,
+  .caso-impact-val,
+  .roi-hero-val,
+  .roi-val,
+  td.price-val,
+  .rx {
+    filter: blur(6px);
+    user-select: none;
+    cursor: help;
+    transition: filter .3s ease;
+  }
+  .exec-item-val:hover,
+  [data-eid="cover-m3-value"]:hover,
+  [data-eid="cover-m4-value"]:hover,
+  .diag-stat-val:hover,
+  .caso-impact-val:hover,
+  .roi-hero-val:hover,
+  .roi-val:hover,
+  td.price-val:hover,
+  .rx:hover { filter: blur(3px); }
+  .rx { display:inline-block; background:rgba(0,0,0,.04); border-radius:3px; padding:0 2px; }
+</style>
+</head>
+<body>
+
+<div id="sample-banner" style="background:#1a1c1e;color:rgba(255,255,255,.75);border-bottom:1px solid rgba(255,255,255,.08)"><strong>Anonymized Sample</strong> · Client identity and financial data redacted · Hover values to partially reveal structure · <a href="https://madeos.ai" target="_blank" style="color:rgba(255,255,255,.5)">madeos.ai</a></div>
+
+<!-- ══ PROPUESTA ══ -->
+<div id="proposal">
+
+<!-- ══════════════ PORTADA ══════════════ -->
+<div class="cover">
+  <div class="cover-header" style="align-items:flex-start;margin-bottom:28px;">
+    <div>
+      <div class="logo" style="margin-top:0;">
+        <img src="../assets/logo.svg" alt="Made" height="34"
+             onerror="this.style.display='none';document.querySelector('.logo-inline').style.display='flex'">
+        <div class="logo-inline">
+          <svg height="34" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+            <path d="M27.3,13.0 V21.8 L9.0,39.0 H0 Z" fill="#d84200"/>
+            <path d="M39.6,9.8 V39.0 H13.3 Z" fill="#d84200"/>
+            <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
+          </svg>
+        </div>
+      </div>
+      <div class="cover-tagline" style="margin-bottom:0;margin-top:8px;" data-eid="cover-tagline">Operational intelligence for a world-class complex refinery</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+      <svg width="148" height="40" viewBox="0 0 148 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;border-radius:5px"><rect width="148" height="40" rx="5" fill="#e4e7ea"/><circle cx="21" cy="14" r="5" fill="#c8cdd3"/><rect x="11" y="22" width="20" height="2.5" rx="1" fill="#c8cdd3"/><rect x="11" y="27" width="14" height="2.5" rx="1" fill="#dde0e3"/><text x="38" y="13.5" font-size="7.5" font-family="Inter,-apple-system,sans-serif" font-weight="500" fill="#9ba3ab" letter-spacing="0.1em">CLIENT COMPANY</text><text x="38" y="28" font-size="11.5" font-family="Inter,-apple-system,sans-serif" font-weight="700" fill="#5B6470" letter-spacing="0.07em">ENERGY CORP.</text></svg>
+      <span style="font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--repsol);">Energy Corp.</span>
+    </div>
+  </div>
+  <div class="cover-rule"></div>
+
+  <div class="cover-body">
+    <div class="cover-eyebrow" data-eid="cover-eyebrow">Commercial Proposal · Confidential</div>
+
+    <h1 class="cover-headline" data-eid="cover-headline">Zero unplanned downtime at critical assets of a world-class complex refinery.</h1>
+
+    <div class="cover-highlight" data-eid="cover-highlight">
+      We turn the refinery's process signals into predictive intelligence: degradation detected weeks before it becomes a failure, alerts with actionable intervention windows, direct prescription to the maintenance team. From the first avoided event, the program generates positive, verifiable ROI.
+    </div>
+
+    <div class="cover-metrics">
+      <div class="cover-metric">
+        <div class="m-label" data-eid="cover-m1-label">Program</div>
+        <div class="m-value" data-eid="cover-m1-value">Complex Refinery</div>
+      </div>
+      <div class="cover-metric">
+        <div class="m-label" data-eid="cover-m2-label">Start</div>
+        <div class="m-value" data-eid="cover-m2-value">90-day Pilot</div>
+      </div>
+      <div class="cover-metric">
+        <div class="m-label" data-eid="cover-m3-label">Pilot Investment</div>
+        <div class="m-value" data-eid="cover-m3-value">$80K–$90K USD</div>
+      </div>
+      <div class="cover-metric">
+        <div class="m-label" data-eid="cover-m4-label">Estimated ROI</div>
+        <div class="m-value" data-eid="cover-m4-value">4,500% – 7,500%</div>
+      </div>
+    </div>
+
+    <p class="cover-creds" data-eid="cover-creds">
+      <strong style="color:var(--dark)">Made</strong> is a Mexican industrial AI company backed by NVIDIA Inception, Founders Inc, and Startup Chile, recognized by MIT Technology Review Innovators Under 35 LATAM 2025.
+    </p>
+
+    <div class="cover-footer">
+      <span><a href="https://www.madeos.ai" target="_blank" style="color:inherit;text-decoration:none;">MADEOS.AI</a> · CONFIDENTIAL</span>
+      <span>April 2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CONTENIDO ══════════════ -->
+<div class="page">
+
+  <!-- ── 01 RESUMEN EJECUTIVO ── -->
+  <div class="section" id="s01">
+    <div class="s-label">01. Executive Summary</div>
+    <div class="s-title" data-eid="exec-title">In a refinery of this complexity, 80% of process asset incidents are predictable weeks before they occur. Made OS detects them.</div>
+    <p class="s-lead" data-eid="exec-lead">World-class refineries have established continuous predictive monitoring as the operational standard. With significant annual revenue, a dominant share of national refining capacity, and a growing market, each day of continuous operation represents between <span class="rx">$770K</span> and <span class="rx">$1.1M</span> in refining margin at current rates. Detecting progressive degradation before it becomes a failure is not a competitive advantage: it is the standard that defines global benchmark operators.<br><span style="font-size:12px;color:var(--gray-l)">Sources: Operator — Management Report Q3 2025 · Annual Report 2025 · Operator FY2025 Results · National Regulator 2025 · McKinsey · Energies Media 2025</span></p>
+
+    <div class="exec-grid">
+      <div class="exec-item">
+        <div class="exec-item-label" data-eid="exec-kpi1-label">Annual Revenue · Client Refinery</div>
+        <div class="exec-item-val" data-eid="exec-kpi1-val">$4,069M</div>
+        <div class="exec-item-sub" data-eid="exec-kpi1-sub">USD · FY2024 audited · largest refinery in Peru · 50%+ of national refining capacity</div>
+      </div>
+      <div class="exec-item">
+        <div class="exec-item-label" data-eid="exec-kpi2-label">Processing Capacity</div>
+        <div class="exec-item-val" data-eid="exec-kpi2-val">117,000</div>
+        <div class="exec-item-sub" data-eid="exec-kpi2-sub">barrels per day · integrated complex refinery with CDU, FCC, and hydrotreating units</div>
+      </div>
+      <div class="exec-item">
+        <div class="exec-item-label" data-eid="exec-kpi3-label">At-risk value · major shutdown day</div>
+        <div class="exec-item-val" data-eid="exec-kpi3-val">$900K–$1.1M</div>
+        <div class="exec-item-sub" data-eid="exec-kpi3-sub">per day · client operating margin × capacity · FY2025 · Energies Media 2025</div>
+      </div>
+      <div class="exec-item">
+        <div class="exec-item-label" data-eid="exec-kpi4-label">EBITDA recovery · FY2025</div>
+        <div class="exec-item-val" data-eid="exec-kpi4-val">$156.8M</div>
+        <div class="exec-item-sub" data-eid="exec-kpi4-sub">USD · strong multi-year EBITDA recovery · operational momentum that each day of continuity consolidates · Annual Report 2025</div>
+      </div>
+    </div>
+
+    <div class="alert alert-gold" style="margin-top:20px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2l1.5 4.5H14l-3.5 2.5 1.5 4.5L8 11l-4 2.5 1.5-4.5L2 6.5h4.5z"/></svg>
+      <div>The refinery's EBITDA showed a dramatic multi-year recovery. Over that same period, critical assets accumulated an additional year of continuous operation under the same process conditions. The margin improvement does not change the degradation profile of the infrastructure.</div>
+    </div>
+
+    <div class="card" style="margin-top:14px;border-left:4px solid var(--orange);">
+      <div class="card-title" style="margin-bottom:10px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+        Made's value proposition for Energy Corp.
+      </div>
+      <p style="font-size:14px;color:var(--dark);line-height:1.7;margin:0">We bring the refinery's critical assets to a state of continuous, loss-free operation. Made OS connects to existing sensors, learns the nominal behavior of each asset, and detects progressive degradation weeks before it becomes a failure. It prescribes concrete actions to the maintenance team with actionable intervention windows. From the first avoided event, the program generates positive, verifiable ROI.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 02 CONTEXTO OPERACIONAL ── -->
+  <div class="section" id="s02">
+    <div class="s-label">02. Client Refinery Context</div>
+    <div class="s-title" data-eid="diag-title">Three value levers. Any one of them justifies the program.</div>
+    <p class="s-lead" data-eid="diag-lead">The refinery concentrates in a single site the critical infrastructure, operating margin, and optimization opportunity that define the highest possible return from an operational intelligence program.</p>
+
+    <div class="diag-grid">
+      <div class="diag-card">
+        <div class="diag-icon">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 2v7M9 13v3M5 5.5L3 7.5M13 5.5l2 2M3.5 12l1.5-1.5M13 10.5l2 2"/><circle cx="9" cy="9" r="3"/></svg>
+        </div>
+        <div class="diag-title" data-eid="diag-c1-title">High-complexity infrastructure assets in continuous operation</div>
+        <div class="diag-desc" data-eid="diag-c1-desc">Marine transfer systems, terminal assets, CDU, FCC: assets with decades of service under continuous and demanding operating conditions. Predictive visibility into their degradation state is the operational standard of global benchmark refineries.</div>
+        <div class="diag-stat">
+          <div class="diag-stat-val">117,000 bbl/day</div>
+          <div class="diag-stat-lbl">bbl/day of throughput that predictive monitoring protects</div>
+        </div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-icon">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="2,13 6,8 10,11 16,4"/><path d="M14 4h2v2"/></svg>
+        </div>
+        <div class="diag-title" data-eid="diag-c2-title">Operational reliability as a direct margin lever</div>
+        <div class="diag-desc" data-eid="diag-c2-desc">EBITDA showed a dramatic multi-year recovery. Each day of continuous operation represents between <span class="rx">$770K</span> and <span class="rx">$1.1M</span> in margin at current rates. Predictive maintenance reduces unplanned downtime by 30–50%: in this context, protecting continuity means protecting a recovery that took years to materialize.</div>
+        <div class="diag-stat">
+          <div class="diag-stat-val">30–50%</div>
+          <div class="diag-stat-lbl">reduction in unplanned downtime · industry benchmark with predictive AI</div>
+        </div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-icon">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="14" height="10" rx="2"/><path d="M6 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M9 9v2M9 13v.5"/></svg>
+        </div>
+        <div class="diag-title" data-eid="diag-c3-title">Refining margin optimization as a direct value lever</div>
+        <div class="diag-desc" data-eid="diag-c3-desc">Multiple crude sources and unit configurations create a direct margin improvement lever. With significant revenue, a 0.1% yield improvement equals <span class="rx">$4.1M+</span> in additional revenue per year.</div>
+        <div class="diag-stat">
+          <div class="diag-stat-val">$4.1M</div>
+          <div class="diag-stat-lbl">per 0.1% yield improvement · complex refinery benchmark</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 03 SOLUCIÓN MADE OS ── -->
+  <div class="section" id="s03">
+    <div class="s-label">03. Made OS Solution</div>
+    <div class="s-title" data-eid="solucion-title">Energy Corp. + Made OS</div>
+    <p class="s-lead" data-eid="solucion-lead">Made OS is a multi-agent intelligence layer that connects to existing sensors and control systems. Integration in under 30 days, without halting operations. Permanently read-only: Made never writes to PLCs or SCADA.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-left">
+          <div class="step-dot" style="background:var(--black)">01</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-tag" data-eid="solucion-step1-tag">Days 1–30</div>
+          <div class="step-title" data-eid="solucion-step1-title">Integration and connection to critical assets</div>
+          <div class="step-desc" data-eid="solucion-step1-desc">Priority assets are identified: marine transfer infrastructure, terminal assets, CDU and FCC units, process compressors, critical pumps, sulfur recovery system, and heat exchangers. Made OS connects to existing sensors (temperature, differential pressure, vibration, flow) via OPC-UA or plant API. By day 30, the refinery is visible in real time. Every signal has context, timestamp, and full traceability.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-dot" style="background:var(--gray)">02</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-tag" data-eid="solucion-step2-tag">From implementation</div>
+          <div class="step-title" data-eid="solucion-step2-title">Continuous analysis and baseline construction</div>
+          <div class="step-desc" data-eid="solucion-step2-desc">Made OS learns the nominal behavior of each asset under different operating conditions: throughput, charge temperature, crude composition, cycle state. The AI agent classifies anomalies into criticality levels (Class A: major incident risk · Class B: operational degradation · Class C: informational alert). The first degradation patterns appear within the first weeks of operation.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-dot" style="background:var(--orange)">03</div>
+        </div>
+        <div class="step-body">
+          <div class="step-tag" data-eid="solucion-step3-tag">From day 90 onwards</div>
+          <div class="step-title" data-eid="solucion-step3-title">Continuous prescription toward zero incidents</div>
+          <div class="step-desc" data-eid="solucion-step3-desc">Early detection of accelerated corrosion, out-of-range vibration, thermal degradation, heat exchanger fouling, and differential pressure deviations in lines. Made OS prescribes preventive actions to the maintenance team with actionable time windows, before progressive degradation becomes a failure. The conversational agent answers operational queries in real time. Objective: no integrity incidents, no unplanned downtime.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l3 2"/></svg></div>
+        <div class="feat-title" data-eid="solucion-feat1-title">Real-time detection</div>
+        <div class="feat-desc">24/7 continuous analysis of process signals. Alerts with intervention windows of hours to weeks before the event. No retrospective alerts.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3l6 3v5l-6 3-6-3V6z"/></svg></div>
+        <div class="feat-title" data-eid="solucion-feat2-title">Read-only, always</div>
+        <div class="feat-desc">Made OS does not write or modify parameters in PLCs, DCS, or SCADA. Zero risk of operational interference. If Made is unavailable, operations continue exactly as before.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h12M3 9h9M3 12h6"/></svg></div>
+        <div class="feat-title" data-eid="solucion-feat3-title">Client alert channel</div>
+        <div class="feat-desc">WebApp, email, WhatsApp, or any endpoint defined by the client's IT/OT. Bidirectional conversational agent. Automatic executive reports for operations management.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 04 CASOS DE USO ── -->
+  <div class="section" id="s04">
+    <div class="s-label">04. Priority Use Cases</div>
+    <div class="s-title" data-eid="casos-title">Three cases · ordered by financial impact</div>
+    <p class="s-lead" data-eid="casos-lead">The program starts with Cases 1 and 2 on the highest-criticality assets. Case 3 activates in year two, built on the already-trained model.</p>
+
+    <div class="caso-card">
+      <div>
+        <div class="caso-label">Case 01 · Highest continuity value</div>
+        <div class="caso-title" data-eid="caso1-title">Critical infrastructure integrity monitoring</div>
+        <div class="caso-desc" data-eid="caso1-desc">Continuous detection of progressive degradation in marine transfer systems, transfer pipelines, and terminal assets. Made OS analyzes differential pressure patterns, temperature, flow rate, and vibration to identify corrosion, micro-cracks, and seal anomalies weeks in advance. Refineries and offshore facilities using this approach report reductions of over 85% in unanticipated events in transfer infrastructure.</div>
+        <div class="caso-assets" data-eid="caso1-assets">
+          <strong>Monitored assets</strong>
+          Marine Transfer System · Terminal Assets · Transfer Lines · Isolation Valves · Discharge Manifolds
+        </div>
+        <div class="caso-assets" style="margin-top:8px">
+          <strong>Analyzed signals</strong>
+          Differential pressure · Wall temperature · Vibration · Ultrasonic corrosion rate (if available) · Volumetric flow rate
+        </div>
+      </div>
+      <div class="caso-impact">
+        <div class="caso-impact-lbl">Protected continuity</div>
+        <div class="caso-impact-val" data-eid="caso1-impact">$18.7M+</div>
+        <div class="caso-impact-sub">USD / year protected · lost revenue <span class="rx">$900K/day</span> × reception shutdowns · regulatory exposure for integrity incidents · environmental and reputational remediation costs · IHS Markit · Wood Mackenzie benchmark</div>
+      </div>
+    </div>
+
+    <div class="caso-card">
+      <div>
+        <div class="caso-label">Case 02 · High operational impact</div>
+        <div class="caso-title" data-eid="caso2-title">Predictive maintenance of critical process assets</div>
+        <div class="caso-desc" data-eid="caso2-desc">In a complex refinery, units operating outside their design window announce it weeks in advance through their signals. Made OS learns the nominal behavior of CDU, FCC, and compressors under different load conditions, crude compositions, and temperatures. It detects heat exchanger fouling, compressor imbalance, bearing wear, and decreasing efficiency in distillation units before they cause downtime.</div>
+        <div class="caso-assets" data-eid="caso2-assets">
+          <strong>Monitored assets</strong>
+          CDU units (crude distillation) · FCC (catalytic cracking) · Process compressors · Critical centrifugal pumps · Heat exchangers · SRU (sulfur recovery)
+        </div>
+        <div class="caso-assets" style="margin-top:8px">
+          <strong>Typical detections</strong>
+          Heat exchanger fouling · Anomalous compressor vibration · CDU efficiency degradation · High-pressure pump load imbalance
+        </div>
+      </div>
+      <div class="caso-impact">
+        <div class="caso-impact-lbl">Operational savings</div>
+        <div class="caso-impact-val" data-eid="caso2-impact">$2.7M–$4M</div>
+        <div class="caso-impact-sub">USD / year · 30% reduction in unplanned downtime · 12–18 avoided days × <span class="rx">client margin/day</span> · FY2025</div>
+      </div>
+    </div>
+
+    <div class="caso-card">
+      <div>
+        <div class="caso-label">Case 03 · Year 2 · Built on the trained model</div>
+        <div class="caso-title" data-eid="caso3-title">Refining margin optimization</div>
+        <div class="caso-desc" data-eid="caso3-desc">Once Made OS has operated 12 months on the refinery's actual units, the model accumulates yield performance behavior under different crude compositions and load configurations. That operational database — which does not exist before year 1 — is what enables the next layer: yield deviation detection and scheduling recommendations with direct margin impact. The scope, candidate assets, and conditions for this case are defined jointly at the close of year 1, with real data as the only valid reference.</div>
+        <div class="caso-assets" data-eid="caso3-assets">
+          <strong>Quantified potential · subject to Year 1 scope</strong>
+          A 0.1% margin increase on significant revenue = <span class="rx">$4.1M+</span> additional/year. The combination of yield monitoring and blend deviation detection typically delivers 0.15%–0.3% improvement in a complex refinery with a model trained on real operations.
+        </div>
+      </div>
+      <div class="caso-impact">
+        <div class="caso-impact-lbl">Margin improvement</div>
+        <div class="caso-impact-val" data-eid="caso3-impact">$6M–$12M</div>
+        <div class="caso-impact-sub">USD / year · estimated · subject to scope defined in Year 1 · applicable only on model trained on real operations</div>
+      </div>
+    </div>
+
+    <div class="alert alert-info" style="margin-top:6px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 7v4M8 5.5v.5"/></svg>
+      <div><strong>Combined operational value of all 3 cases:</strong> significant USD value in reliability, efficiency, and margin optimization, against a total investment in Year 1. Any of the three cases, independently, generates positive return before month 3.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 05 MODALIDADES DE INTEGRACIÓN ── -->
+  <div class="section" id="s05">
+    <div class="s-label">05. Integration Modalities</div>
+    <div class="s-title" data-eid="integracion-title">Two implementation paths</div>
+    <p class="s-lead" data-eid="integracion-lead">Made OS adapts to the client's existing IT/OT infrastructure. In the initial technical session we determine which is most appropriate for each candidate asset, with the IT and operations team.</p>
+
+    <div class="hw-grid">
+      <div class="hw-card featured">
+        <div class="hw-badge">Recommended for process assets</div>
+        <div class="hw-title" data-eid="integracion-hw1-title">Edge AI Hardware</div>
+        <div class="hw-sub" data-eid="integracion-hw1-sub">Dedicated device installed in DIN rail panel by the Made team. Ideal for high-speed assets, ATEX classified zones, and environments where the client IT/OT does not permit continuous outbound connectivity.</div>
+
+        <div class="edge-wrap img-zoom" onclick="openModal('../assets/edge-device.jpg','Made Edge: Industrial AI device installed in DIN rail panel')">
+          <img src="../assets/edge-device.jpg" alt="Made Edge: Industrial AI device installed in DIN rail panel" loading="lazy">
+        </div>
+        <p class="img-caption">Made Edge installed in DIN rail panel with industrial connectivity</p>
+
+        <div style="margin-top:16px">
+          <div class="spec-row"><span class="spec-key">Platform</span><span class="spec-val">NVIDIA Jetson Orin Nano Super</span></div>
+          <div class="spec-row"><span class="spec-key">On-device AI</span><span class="spec-val">67 INT8 TOPS</span></div>
+          <div class="spec-row"><span class="spec-key">GPU</span><span class="spec-val">1024 CUDA · 32 tensor cores</span></div>
+          <div class="spec-row"><span class="spec-key">Memory</span><span class="spec-val">8 GB LPDDR5 · 102 GB/s</span></div>
+          <div class="spec-row"><span class="spec-key">Storage</span><span class="spec-val">512 GB NVMe</span></div>
+          <div class="spec-row"><span class="spec-key">Protection</span><span class="spec-val">IP67 · NEMA 4X</span></div>
+          <div class="spec-row"><span class="spec-key">OT Security</span><span class="spec-val">IEC 62443 · TLS 1.3 · Air-gap ready</span></div>
+          <div class="spec-row"><span class="spec-key">ATEX zones</span><span class="spec-val">Ex enclosure evaluated jointly</span></div>
+        </div>
+        <div class="hw-ideal">
+          <strong>Ideal for</strong>
+          Process compressors, FCC, assets in ATEX/IEC 60079 zones, and environments where the client IT requires local processing without permanent cloud connectivity.
+        </div>
+      </div>
+
+      <div class="hw-card">
+        <div class="hw-title" style="margin-top:0" data-eid="integracion-hw2-title">Software + API</div>
+        <div class="hw-sub" data-eid="integracion-hw2-sub">Installation on an existing server or industrial PC on-site. No additional hardware. Maximum control for the client's IT and OT team. Integrable with the existing data infrastructure.</div>
+
+        <div class="edge-wrap img-zoom" onclick="openModal('../assets/platform-screenshot.png','Made OS: Web platform with sensor analysis and conversational agent')">
+          <img src="../assets/platform-screenshot.png" alt="Made OS: Platform view, sensors and conversational agent" loading="lazy">
+        </div>
+        <p class="img-caption">Made OS · Web platform with sensor analysis and conversational agent</p>
+
+        <div style="margin-top:16px">
+          <div class="spec-row"><span class="spec-key">Compatible OS</span><span class="spec-val">Ubuntu · Debian · RHEL · Windows</span></div>
+          <div class="spec-row"><span class="spec-key">Minimum CPU</span><span class="spec-val">8 cores</span></div>
+          <div class="spec-row"><span class="spec-key">Minimum RAM</span><span class="spec-val">8 GB</span></div>
+          <div class="spec-row"><span class="spec-key">Minimum disk</span><span class="spec-val">200 GB</span></div>
+          <div class="spec-row"><span class="spec-key">Protocol</span><span class="spec-val">OPC-UA Client (on-premise)</span></div>
+          <div class="spec-row"><span class="spec-key">Cloud connectivity</span><span class="spec-val">WSS (WebSocket sobre SSL)</span></div>
+          <div class="spec-row"><span class="spec-key">OPC-UA signals</span><span class="spec-val">Unlimited volume in program</span></div>
+        </div>
+        <div class="hw-ideal">
+          <strong>Ideal for</strong>
+          Assets with available server infrastructure and network connectivity. Allows the client's IT team to maintain full control of software and data within the existing OT security perimeter.
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h10v10H4z"/><path d="M4 8h10M8 4v10"/></svg></div>
+        <div class="feat-title" data-eid="integracion-feat1-title">Multiprotocol</div>
+        <div class="feat-desc">Modbus RTU/TCP, OPC-UA, PROFIBUS, 4–20 mA signals. Compatible with Honeywell, ABB, and Yokogawa DCS typical in regional refineries.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3l6 3v5l-6 3-6-3V6z"/></svg></div>
+        <div class="feat-title" data-eid="integracion-feat2-title">Read-only, always</div>
+        <div class="feat-desc">Does not write or modify parameters in DCS, PLC, or SCADA. Zero risk of process interference. If Made is unavailable, the plant operates without changes.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="14" height="14" rx="2"/><path d="M6 10l2 2 4-4"/></svg></div>
+        <div class="feat-title" data-eid="integracion-feat3-title">IEC 62443 · OT Security</div>
+        <div class="feat-desc">Zero-trust architecture with TLS 1.3. Compatible with IT/OT network segmentation. Air-gap option for maximum-criticality assets.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 06 PRECIO Y ROI ── -->
+  <div class="section" id="s06">
+    <div class="s-label">06. Pricing and Return on Investment</div>
+
+    <div class="pricing-wrap">
+      <div class="card-title" style="margin-bottom:14px;font-size:12px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M5 7h6M5 10h4"/></svg>
+        Phased investment model · CAPEX + annual license
+      </div>
+      <table class="pricing-table">
+        <thead><tr><th>Item</th><th>Amount</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Phase 0 · Validation Pilot (90 days)</strong><br><span style="font-size:11px;color:var(--gray)">Marine terminal + CDU + Transfer asset · 3 critical assets</span></td>
+            <td class="price-val">$80K–$90K USD</td>
+            <td class="price-note">One-time · non-recurring · credited to Year 1</td>
+          </tr>
+          <tr>
+            <td><strong>Success fee · Avoided Class A Event</strong></td>
+            <td class="price-val">$10K–$20K / event</td>
+            <td class="price-note">Cap: ~$50K/month · jointly audited definition</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 1 Implementation · Refinery Core</strong><br><span style="font-size:11px;color:var(--gray)">Integration, edge hardware, technical onboarding · all critical assets</span></td>
+            <td class="price-val">$160K–$200K USD</td>
+            <td class="price-note">One-time · CAPEX · enters investment budget</td>
+          </tr>
+          <tr>
+            <td><strong>Made OS License · Refinery (Year 1)</strong><br><span style="font-size:11px;color:var(--gray)">Full monitoring · unlimited signals · direct support from the founding team</span></td>
+            <td class="price-val">$260K–$300K/year</td>
+            <td class="price-note">Annual · includes updates and support</td>
+          </tr>
+          <tr>
+            <td><strong>Total estimated Year 1</strong><br><span style="font-size:11px;color:var(--gray)">Implementation + license · pilot credited</span></td>
+            <td class="price-val">~$440K–$480K USD</td>
+            <td class="price-note">All-inclusive · no external integrators</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 2 · E&amp;P + Distribution expansion (Year 2+)</strong><br><span style="font-size:11px;color:var(--gray)">E&amp;P assets + regional distribution network</span></td>
+            <td class="price-val">$370K–$450K/year</td>
+            <td class="price-note">Expansion bundle · preferential terms</td>
+          </tr>
+          <tr>
+            <td><strong>Estimated ROI Phase 1</strong></td>
+            <td class="price-val" style="color:var(--orange)">4,500% – 7,500%</td>
+            <td class="price-note">Estimated · operational savings + infrastructure continuity</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert alert-gold" style="margin-top:16px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2l1.5 4.5H14l-3.5 2.5 1.5 4.5L8 11l-4 2.5 1.5-4.5L2 6.5h4.5z"/></svg>
+      <div>A major unplanned shutdown during an EBITDA recovery interrupts more than the day's margin: it interrupts the narrative to the group. With a significant EBITDA recovery consolidated in the recent fiscal year, the cost of a preventable incident is structural, not merely operational.</div>
+    </div>
+
+    <div class="s-title" style="margin-top:28px" data-eid="roi-title">With just the first avoided process shutdown, Made OS pays for itself.</div>
+
+    <div class="roi-hero">
+      <div class="roi-hero-label" data-eid="roi-hero-label">Estimated operational value · Year 1 · Cases 1 and 2 · base scenario</div>
+      <div class="roi-hero-val" data-eid="roi-hero-val">$21.4M – $22.7M USD</div>
+      <div class="roi-hero-sub" data-eid="roi-hero-sub">Protected infrastructure continuity · operational savings · total investment: Year 1</div>
+    </div>
+    <div class="roi-grid">
+      <div class="roi-item">
+        <div class="roi-lbl" data-eid="roi-card1-lbl">Protected continuity value</div>
+        <div class="roi-val" data-eid="roi-card1-val">$18.7M+</div>
+        <div class="roi-delta" data-eid="roi-card1-delta">per year · continuous monitoring of critical infrastructure</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-lbl" data-eid="roi-card2-lbl">Savings in unplanned downtime</div>
+        <div class="roi-val" data-eid="roi-card2-val">$2.7M–$4M</div>
+        <div class="roi-delta" data-eid="roi-card2-delta">30% reduction · 12–18 avoided days × client margin/day</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-lbl" data-eid="roi-card3-lbl">Program payback</div>
+        <div class="roi-val" data-eid="roi-card3-val">6–10 wks.</div>
+        <div class="roi-delta" data-eid="roi-card3-delta">first avoided Class A event · investment recovered</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-lbl" data-eid="roi-card4-lbl">Cost if we don't deliver</div>
+        <div class="roi-val" data-eid="roi-card4-val">$0</div>
+        <div class="roi-delta" data-eid="roi-card4-delta">90-day extension at no license cost</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="card-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
+        ROI calculation basis · publicly verifiable data
+      </div>
+      <table class="cost-table">
+        <thead>
+          <tr><th>Metric</th><th>Value</th><th>Source</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cost of major incident at a complex refinery · global benchmark</td>
+            <td style="font-weight:700">$200M–$400M+ USD</td>
+            <td style="font-size:11px;color:var(--gray)">Industry benchmarks O&amp;G · IHS Markit · Wood Mackenzie</td>
+          </tr>
+          <tr>
+            <td>Shutdown cost · 100K+ bpd refinery · client FY2025 margin</td>
+            <td style="font-weight:700"><span class="rx">$770K–$1.1M/day</span></td>
+            <td style="font-size:11px;color:var(--gray)"><span class="rx">$X.X/bbl</span> client FY2025 × <span class="rx">100K+</span> bpd · Energies Media 2025</td>
+          </tr>
+          <tr>
+            <td>Industrial cost of major shutdown at refinery</td>
+            <td style="font-weight:700">up to $12M/day</td>
+            <td style="font-size:11px;color:var(--gray)">MaxGrip · McKinsey refinery benchmark 2024</td>
+          </tr>
+          <tr>
+            <td>Downtime reduction with predictive AI</td>
+            <td style="font-weight:700;color:var(--green)">30%–50%</td>
+            <td style="font-size:11px;color:var(--gray)">McKinsey · ResearchGate 150+ refineries</td>
+          </tr>
+          <tr>
+            <td>Documented ROI · predictive maintenance with AI · O&amp;G</td>
+            <td style="font-weight:700;color:var(--green)">10:1–30:1</td>
+            <td style="font-size:11px;color:var(--gray)">McKinsey 2025 · DOE · leading organizations · 12–18 months</td>
+          </tr>
+          <tr>
+            <td>Annual reliability losses · large refinery</td>
+            <td style="font-weight:700">$20M–$50M/year</td>
+            <td style="font-size:11px;color:var(--gray)">Energies Media 2025 · mid/large refinery benchmark</td>
+          </tr>
+          <tr>
+            <td>Early detection lead time with predictive AI</td>
+            <td style="font-weight:700;color:var(--green)">2–6 weeks</td>
+            <td style="font-size:11px;color:var(--gray)">Typical window before event · 150+ refinery benchmark · McKinsey 2025</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="font-size:11px;color:var(--gray-l);margin-top:10px">ROI calculations are conservative estimates based on publicly verifiable data. Exact per-asset cost and downtime baseline are calculated with real refinery data in the initial technical session.</div>
+    </div>
+
+    <div class="alert alert-warn" style="margin-top:16px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8l2 2 4-4"/></svg>
+      <div>
+        <strong>Definition of "Avoided Critical Event"</strong><br>
+        <strong>Class A · Avoided integrity incident:</strong> alert issued with ≥72 hours of lead time, parameter out of range ≥15% of the baseline established in the first 30 days, intervention documented in CMMS with work order number, and an independent technical arbitrator (designated at program start) confirms the counterfactual. <em>Generates success fee.</em><br>
+        <strong>Class B · Avoided process shutdown:</strong> major unit process shutdown avoided through documented predictive intervention. <em>Generates success fee.</em><br>
+        <strong>Class C · Validated useful alert:</strong> correct detection that feeds the model. <em>No fee.</em><br>
+        <em style="font-size:12px">Baseline: first 30 days · dispute window: 10 business days · independent technical arbitrator designated at program start.</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 07 REQUERIMIENTOS ── -->
+  <div class="section" id="s07">
+    <div class="s-label">07. Program Requirements</div>
+    <p class="s-lead" data-eid="reqs-lead">Made OS works on existing infrastructure. These three requirements determine whether a candidate asset qualifies for the program and which integration type applies.</p>
+    <div class="req-grid">
+      <div class="req-item">
+        <div class="req-num">1</div>
+        <div class="req-title" data-eid="reqs-item1-title">Assets with available signals</div>
+        <div class="req-desc" data-eid="reqs-item1-desc">At least one critical asset (CDU, FCC, marine terminal, compressor, or piping system) with temperature, pressure, or flow sensors already in operation. Made does not install instrumentation from scratch. If the asset already has signals, the program can begin.</div>
+      </div>
+      <div class="req-item">
+        <div class="req-num">2</div>
+        <div class="req-title" data-eid="reqs-item2-title">Coordinated OT + HSE + IT access</div>
+        <div class="req-desc" data-eid="reqs-item2-desc">An Operations Manager or Maintenance Director with access to process data and authority to define the program's KPIs. Coordination with the IT/OT team for signal integration and with HSE for integrity assets. A 90-minute initial technical session with these three profiles is sufficient to get started.</div>
+      </div>
+      <div class="req-item">
+        <div class="req-num">3</div>
+        <div class="req-title" data-eid="reqs-item3-title">Results validation commitment</div>
+        <div class="req-desc" data-eid="reqs-item3-desc">At the end of the program, a 90-minute session with operations management to audit results against the initial baseline. Performance data and the ROI narrative belong to both parties. The final executive report is in audited format, ready to present to management.</div>
+      </div>
+    </div>
+    <div class="alert alert-info" style="margin-top:8px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 7v4M8 5.5v.5"/></svg>
+      <span><strong>Technical note · ATEX and IEC 60079 zones:</strong> The refinery operates with assets in potentially explosive atmospheres (Class I, Division 1 and 2 zones per NEC / ATEX Zone 1-2 per IEC 60079). Made's Edge AI hardware is IP67/NEMA 4X baseline. For assets in classified ATEX zones, we jointly evaluate the certified Ex enclosure before start; no equipment enters a classified zone without correct specification.</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 08 TÉRMINOS COMERCIALES ── -->
+  <div class="section" id="s08">
+    <div class="s-label">08. Commercial Terms</div>
+    <div class="s-title" data-eid="terminos-title">What each party contributes and receives</div>
+    <p class="s-lead" data-eid="terminos-lead">Shared-risk collaboration model. Made assumes the technical and results risk. The client captures the operational value and ROI.</p>
+    <div class="terms-grid">
+      <div class="terms-col">
+        <div class="terms-col-title" style="color:var(--dark)">Energy Corp. receives</div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>24/7 continuous monitoring of critical assets: marine transfer infrastructure, terminal assets, CDU, FCC, compressors, pumps, and heat exchangers.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Edge AI Hardware with IP67 protection and NEMA 4X certification. ATEX enclosure jointly evaluated for classified zones.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Unlimited OPC-UA signal volume throughout the entire program at no additional cost.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Complete technical onboarding: integration to existing signals, model calibration, and plant team training.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Direct support from Made's founding team throughout the entire program.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Access to Made OS with all updates during the program at no additional cost.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Executive report with jointly audited metrics at close, in a format ready to present to operations management.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Trained models and data history are the client's property and remain in their systems.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span>Preferential expansion plan to E&amp;P assets and regional distribution upon program completion.</span></div>
+      </div>
+      <div class="terms-col">
+        <div class="terms-col-title" style="color:var(--dark)">Made receives</div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span>Read-only access to real process data during the program.</span></div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span>Technical collaboration from the plant team (IT, OT, HSE, maintenance) to calibrate models to the refinery's real operations.</span></div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span>Operational counterpart with authority to define and validate the program's success KPIs.</span></div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span>Closing results session with operations and maintenance management at program end.</span></div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span>Base payment at start plus success fees for audited Class A and B events per the agreed definition.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 09 COMPARATIVA ── -->
+  <div class="section" id="s09">
+    <div class="s-label">09. Made OS vs. Traditional APM</div>
+    <div class="s-title" data-eid="comp-title">A different category · at 1/10 the price</div>
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>AspenTech / Emerson / Honeywell APM</th>
+          <th>Made OS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Implementation</td><td>12–24 months · requires external consulting</td><td>10–30 days · Made team direct</td></tr>
+        <tr><td>Month 6</td><td>Still in configuration and integration</td><td>Active intelligence, first documented alerts</td></tr>
+        <tr><td>Year 1 price</td><td>$1.5M–$5M+ (license + integrator + services)</td><td>Approx. $440K–$480K all-inclusive</td></tr>
+        <tr><td>Asset learning</td><td>Manual parameterization by domain expert</td><td>Continuous and automatic per asset</td></tr>
+        <tr><td>Financial risk</td><td>100% client from contract signing</td><td>Shared · no-cost extension if no ROI</td></tr>
+        <tr><td>Operational impact</td><td>May require shutdowns for OT integration</td><td>Read-only · zero process impact</td></tr>
+        <tr><td>LATAM support</td><td>Remote + local distributors</td><td>Direct founding team · same timezone</td></tr>
+        <tr><td>Adaptation to actual asset operations</td><td>Standard product, manual parameterization by external consultant</td><td>Automatically learns the real behavior of each asset</td></tr>
+      </tbody>
+    </table>
+
+    <div class="alert alert-info" style="margin-top:14px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 7v4M8 5.5v.5"/></svg>
+      <div><strong>No external integrators, no hidden CAPEX:</strong> Made arrives with its own technical team, installs, calibrates, and operates the system. The published price covers everything. No third party needs to be hired for Made OS to work.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 10 GARANTÍA ── -->
+  <div class="section" id="s10">
+    <div class="s-label">10. Warranty</div>
+    <div class="s-title" data-eid="garantia-title">Made assumes the technical and results risk</div>
+    <div class="guarantee">
+      <div class="guarantee-grid">
+        <div class="g-statement">
+          <div class="g-label">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1l4.5 1.8v4.2c0 2.8-2 4.5-4.5 5-2.5-.5-4.5-2.2-4.5-5V2.8L7 1z"/></svg>
+            Made OS Commercial Warranty
+          </div>
+          <h3>If at program end Made OS has not demonstrated positive audited ROI, <em>Made extends the program for up to 90 additional days at no license cost.</em></h3>
+        </div>
+        <div class="g-items">
+          <div class="g-item"><div class="g-check">✓</div><span>If the program demonstrates positive ROI, 100% of the base fee paid during the pilot is credited to the Year 1 contract. The client does not pay twice.</span></div>
+          <div class="g-item"><div class="g-check">✓</div><span>Made maintains full operational and analytical support during any warranty extension, with no service degradation.</span></div>
+          <div class="g-item"><div class="g-check">✓</div><span>Trained models and data history are the client's property regardless of program outcome. Delivered in standard exportable format (ONNX / open files): real portability, not just a contractual ownership clause.</span></div>
+          <div class="g-item"><div class="g-check">✓</div><span>Documented SLA before start: Class A ≤15 minutes · Class B ≤2 hours · 24/7/365 availability. Designated technical on-call contact with direct channel, independent of time zone.</span></div>
+        </div>
+      </div>
+      <div class="g-faqs">
+        <div class="g-faq">
+          <div class="g-faq-q">Must the client's IT and OT teams approve the connection?</div>
+          Made works directly with the client's IT, OT, and industrial security teams. If we cannot connect within 30 days without altering any operation, the program does not start and nothing is charged.
+        </div>
+        <div class="g-faq" data-eid="garantia-faq1-ans">
+          <div class="g-faq-q">Does Made OS replace the DCS, CMMS, or existing APM systems?</div>
+          No. Made operates in read-only mode on top of the existing control infrastructure. It does not modify parameters, does not interfere with the process, and does not compete with any tool already in use. It works on top of what already exists.
+        </div>
+        <div class="g-faq">
+          <div class="g-faq-q">How long before the first useful alerts?</div>
+          The first detected anomalies appear in weeks 2–4, once Made OS establishes the nominal baseline for each asset. Progressive degradation patterns consolidate by day 60.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 11 SESIÓN INICIAL ── -->
+  <div class="section" id="s11">
+    <div class="s-label">11. Opening Session</div>
+    <p class="s-lead" data-eid="sesion-lead">A technical session with Made's founding team to assess the refinery's instrumentation status, select priority assets, and build the one-page program plan. No contractual commitment. No prior consulting required.</p>
+    <div class="cta-block">
+      <div class="cta-left">
+        <div class="cta-tag" data-eid="sesion-cta-tag">Zero Downtime Program</div>
+        <h3>Request your technical evaluation session</h3>
+        <p>45-minute session · Remote · Suggested participants: Operations Manager + Maintenance Manager + IT/OT · Made attendees: Gerardo Peña (CEO) + Ramiro Pantoja (CTO). Deliverable: candidate asset map + recommended integration type + one-page pilot plan. Once candidate assets are confirmed, the pilot starts in under 30 business days.</p>
+      </div>
+      <div class="cta-right">
+        <a href="https://cal.com/madeos.ai/demo" class="cta-btn" id="main-cta">Schedule technical session →</a>
+        <div class="cta-sub" data-eid="sesion-cta-sub">cal.com/madeos.ai/demo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="sig">
+    <div class="sig-av" style="padding:0;overflow:hidden;"><img src="../assets/gpc.png" alt="Gerardo Peña" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+    <div>
+      <div class="sig-name" data-eid="sig-name">Gerardo Peña</div>
+      <div class="sig-role" data-eid="sig-role">CEO, Made OS · MIT Innovator Under 35 LATAM 2025</div>
+      <div class="sig-contact" data-eid="sig-contact">ger@madeos.ai · madeos.ai · NVIDIA Inception · Founders Inc · Startup Chile BIG 10</div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<div class="doc-footer" data-eid="doc-footer">
+  <strong>MADE OS</strong> × ENERGY CORP. · MAD-DEMO-01 · April 2026
+</div>
+
+<!-- ── SIDENAV DESKTOP ── -->
+<nav class="sidenav" id="sidenav" aria-label="Section index">
+  <div class="sidenav-hd">Index</div>
+  <div class="sidenav-list">
+    <div class="sidenav-item" data-s="s01"><span class="sidenav-dot"></span><span class="sidenav-label">01 · Summary</span></div>
+    <div class="sidenav-item" data-s="s02"><span class="sidenav-dot"></span><span class="sidenav-label">02 · Context</span></div>
+    <div class="sidenav-item" data-s="s03"><span class="sidenav-dot"></span><span class="sidenav-label">03 · Solution</span></div>
+    <div class="sidenav-item" data-s="s04"><span class="sidenav-dot"></span><span class="sidenav-label">04 · Use cases</span></div>
+    <div class="sidenav-item" data-s="s05"><span class="sidenav-dot"></span><span class="sidenav-label">05 · Integration</span></div>
+    <div class="sidenav-item" data-s="s06"><span class="sidenav-dot"></span><span class="sidenav-label">06 · Pricing &amp; ROI</span></div>
+    <div class="sidenav-item" data-s="s07"><span class="sidenav-dot"></span><span class="sidenav-label">07 · Requirements</span></div>
+    <div class="sidenav-item" data-s="s08"><span class="sidenav-dot"></span><span class="sidenav-label">08 · Terms</span></div>
+    <div class="sidenav-item" data-s="s09"><span class="sidenav-dot"></span><span class="sidenav-label">09 · Comparison</span></div>
+    <div class="sidenav-item" data-s="s10"><span class="sidenav-dot"></span><span class="sidenav-label">10 · Warranty</span></div>
+    <div class="sidenav-item" data-s="s11"><span class="sidenav-dot"></span><span class="sidenav-label">11 · Session</span></div>
+  </div>
+</nav>
+
+<!-- ── SIDENAV MOBILE ── -->
+<button class="sn-fab" id="sn-fab" aria-label="Open index">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="1" y1="3" x2="13" y2="3"/><line x1="1" y1="7" x2="13" y2="7"/><line x1="1" y1="11" x2="13" y2="11"/></svg>
+  Index
+</button>
+<div class="sn-sheet" id="sn-sheet">
+  <div class="sn-backdrop" id="sn-backdrop"></div>
+  <div class="sn-panel">
+    <div class="sn-panel-hd">Index <button class="sn-panel-close" id="sn-close">×</button></div>
+    <div class="sn-sheet-item" data-s="s01"><span class="sn-sheet-num">01</span><span class="sn-sheet-lbl">Executive Summary</span></div>
+    <div class="sn-sheet-item" data-s="s02"><span class="sn-sheet-num">02</span><span class="sn-sheet-lbl">Context</span></div>
+    <div class="sn-sheet-item" data-s="s03"><span class="sn-sheet-num">03</span><span class="sn-sheet-lbl">Made OS Solution</span></div>
+    <div class="sn-sheet-item" data-s="s04"><span class="sn-sheet-num">04</span><span class="sn-sheet-lbl">Use Cases</span></div>
+    <div class="sn-sheet-item" data-s="s05"><span class="sn-sheet-num">05</span><span class="sn-sheet-lbl">Integration Modalities</span></div>
+    <div class="sn-sheet-item" data-s="s06"><span class="sn-sheet-num">06</span><span class="sn-sheet-lbl">Pricing &amp; ROI</span></div>
+    <div class="sn-sheet-item" data-s="s07"><span class="sn-sheet-num">07</span><span class="sn-sheet-lbl">Requirements</span></div>
+    <div class="sn-sheet-item" data-s="s08"><span class="sn-sheet-num">08</span><span class="sn-sheet-lbl">Commercial Terms</span></div>
+    <div class="sn-sheet-item" data-s="s09"><span class="sn-sheet-num">09</span><span class="sn-sheet-lbl">APM Comparison</span></div>
+    <div class="sn-sheet-item" data-s="s10"><span class="sn-sheet-num">10</span><span class="sn-sheet-lbl">Warranty</span></div>
+    <div class="sn-sheet-item" data-s="s11"><span class="sn-sheet-num">11</span><span class="sn-sheet-lbl">Opening Session</span></div>
+  </div>
+</div>
+
+</div><!-- /proposal -->
+
+<!-- ══ IMAGE MODAL ══ -->
+<div id="img-modal" aria-modal="true" role="dialog" aria-label="Imagen ampliada">
+  <div id="img-modal-backdrop" onclick="closeModal()"></div>
+  <div id="img-modal-box">
+    <img id="img-modal-img" src="" alt="">
+    <p id="img-modal-cap"></p>
+    <button id="img-modal-close" onclick="closeModal()" aria-label="Cerrar">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+try { history.scrollRestoration = 'manual'; } catch(e) {}
+
+/* ── Sidenav ── */
+function _initSideNav() {
+  var IDS = ['s01','s02','s03','s04','s05','s06','s07','s08','s09','s10','s11'];
+  function scrollTo(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  var nav = document.getElementById('sidenav');
+  if (nav) {
+    nav.classList.add('visible');
+    var items = nav.querySelectorAll('.sidenav-item');
+    items.forEach(function(item) {
+      item.addEventListener('click', function() { scrollTo(item.dataset.s); });
+    });
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        items.forEach(function(item) {
+          item.classList.toggle('sn-active', item.dataset.s === entry.target.id);
+        });
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -55% 0px' });
+    IDS.forEach(function(id) { var el = document.getElementById(id); if (el) obs.observe(el); });
+  }
+  var fab = document.getElementById('sn-fab');
+  var sheet = document.getElementById('sn-sheet');
+  var backdrop = document.getElementById('sn-backdrop');
+  var closeBtn = document.getElementById('sn-close');
+  function openSheet() { sheet.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeSheet() { sheet.classList.remove('open'); document.body.style.overflow = ''; }
+  if (fab) fab.addEventListener('click', openSheet);
+  if (backdrop) backdrop.addEventListener('click', closeSheet);
+  if (closeBtn) closeBtn.addEventListener('click', closeSheet);
+  if (sheet) sheet.querySelectorAll('.sn-sheet-item').forEach(function(item) {
+    item.addEventListener('click', function() {
+      closeSheet(); setTimeout(function() { scrollTo(item.dataset.s); }, 120);
+    });
+  });
+}
+
+/* ── Image modal ── */
+function openModal(src, caption) {
+  var m = document.getElementById('img-modal');
+  document.getElementById('img-modal-img').src = src;
+  document.getElementById('img-modal-img').alt = caption || '';
+  document.getElementById('img-modal-cap').textContent = caption || '';
+  m.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('img-modal').classList.remove('is-open');
+  document.body.style.overflow = '';
+  setTimeout(function() { document.getElementById('img-modal-img').src = ''; }, 300);
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+/* ── Init ── */
+(function() { _initSideNav(); })();
+</script>
+
+<style>
+/* ── Image modal ── */
+.img-zoom{cursor:zoom-in;}
+.img-zoom:hover img{opacity:.92;}
+.img-zoom img{transition:opacity .15s;}
+#img-modal{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s ease;}
+#img-modal.is-open{opacity:1;pointer-events:all;}
+#img-modal-backdrop{position:absolute;inset:0;background:rgba(13,14,15,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+#img-modal-box{position:relative;z-index:1;max-width:min(92vw,1080px);max-height:90vh;display:flex;flex-direction:column;align-items:center;gap:12px;transform:scale(.96);transition:transform .28s cubic-bezier(.34,1.4,.64,1);}
+#img-modal.is-open #img-modal-box{transform:scale(1);}
+#img-modal-img{max-width:100%;max-height:80vh;border-radius:8px;box-shadow:0 24px 64px rgba(0,0,0,.6),0 4px 16px rgba(0,0,0,.4);display:block;}
+#img-modal-cap{font-size:12px;color:rgba(255,255,255,.45);font-family:'Inter',-apple-system,sans-serif;letter-spacing:.03em;text-align:center;}
+#img-modal-close{position:fixed;top:20px;right:24px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,transform .15s;}
+#img-modal-close:hover{background:rgba(255,255,255,.2);transform:scale(1.08);}
+
+</style>
+
+</body>
+</html>
