@@ -1275,8 +1275,12 @@ function showProposal(asAdmin) {
   requestAnimationFrame(function() {
     requestAnimationFrame(function() { window.scrollTo(0, 0); });
   });
-  _initTracking(PROPOSAL_ID);
-  if (isAdmin) { _assignIds(); _restoreEdits(); _initAdminBar(); }
+  if (isAdmin) {
+    try { posthog.opt_out_capturing(); } catch(e) {}
+    _assignIds(); _restoreEdits(); _initAdminBar();
+  } else {
+    _initTracking(PROPOSAL_ID);
+  }
 }
 
 /* ── Stable element IDs ── */
