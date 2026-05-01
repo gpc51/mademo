@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Made OS × Concha y Toro — Confidencial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:    #d84200;
+    --orange-h:  #f04900;
+    --orange-bg: rgba(216,66,0,.08);
+    --orange-bd: rgba(216,66,0,.28);
+    --black:     #111213;
+    --dark:      #1a1c1e;
+    --gray-d:    #3e4245;
+    --gray:      #636870;
+    --gray-l:    #9ba3ab;
+    --border:    #e4e7ea;
+    --bg:        #f7f8f9;
+    --white:     #ffffff;
+    --red:       #c53030;
+    --green:     #1a7f37;
+    --green-bg:  rgba(26,127,55,.08);
+    --font:      'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono:      'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
+    --r-sm:      6px;
+    --r-md:      10px;
+    --r-lg:      14px;
+    --sh:        0 1px 4px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font); background: var(--bg); color: var(--dark); line-height: 1.6; }
+
+  /* ── PROPOSAL ── */
+  #proposal { display: none; max-width: 860px; margin: 0 auto; padding: 0 0 80px; }
+  .page    { padding: 0 40px; }
+  .divider { height: 1px; background: var(--border); margin: 0 40px; }
+
+  /* ── COVER ── */
+  .cover { background: var(--black); padding: 40px 40px 44px; position: relative; overflow: hidden; }
+  .cover::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 60% at 85% 25%, rgba(216,66,0,.2) 0%, transparent 65%); pointer-events: none; }
+  .cover-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 52px; }
+  .cover-logo   { display: flex; align-items: center; gap: 10px; }
+  .cover-logo-sep { font-size: 16px; color: rgba(255,255,255,.25); font-weight: 300; }
+  .cover-logo-client { font-size: 13px; font-weight: 700; color: rgba(255,255,255,.85); letter-spacing: .04em; text-transform: uppercase; }
+  .cover-badge { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); border: 1px solid rgba(255,255,255,.1); padding: 4px 12px; border-radius: 20px; }
+  .cover-eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
+  .cover-headline { font-size: 38px; font-weight: 800; color: #fff; letter-spacing: -.03em; line-height: 1.08; margin-bottom: 16px; }
+  .cover-headline em { font-style: normal; color: var(--orange); }
+  .cover-sub { font-size: 15px; color: rgba(255,255,255,.55); line-height: 1.65; max-width: 520px; margin-bottom: 48px; }
+  .cover-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border-top: 1px solid rgba(255,255,255,.1); padding-top: 28px; }
+  .m-item { padding-right: 24px; }
+  .m-item + .m-item { padding-left: 24px; border-left: 1px solid rgba(255,255,255,.1); }
+  .m-label { font-size: 9.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 5px; }
+  .m-value { font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -.02em; line-height: 1; margin-bottom: 3px; }
+  .m-sub   { font-size: 10.5px; color: rgba(255,255,255,.35); font-weight: 500; }
+
+  /* ── SECTION ── */
+  .section { padding: 44px 0; }
+  .s-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+  .s-title { font-size: 26px; font-weight: 800; color: var(--black); letter-spacing: -.02em; line-height: 1.2; margin-bottom: 16px; }
+  .s-lead  { font-size: 15px; color: var(--gray-d); line-height: 1.75; margin-bottom: 24px; max-width: 680px; }
+
+  /* ── EXEC GRID ── */
+  .exec-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-bottom: 24px; }
+  .exec-item { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 20px 22px; box-shadow: var(--sh); }
+  .exec-item-label { font-size: 10px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--gray-l); margin-bottom: 5px; }
+  .exec-item-val   { font-size: 28px; font-weight: 800; color: var(--black); letter-spacing: -.02em; line-height: 1; margin-bottom: 4px; }
+  .exec-item-sub   { font-size: 12px; color: var(--orange); font-weight: 600; }
+  .exec-item-note  { font-size: 11.5px; color: var(--gray); margin-top: 6px; line-height: 1.5; }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box { background: var(--orange-bg); border: 1px solid var(--orange-bd); border-radius: var(--r-lg); padding: 20px 24px; margin-bottom: 20px; }
+  .highlight-box p { font-size: 14px; color: var(--dark); line-height: 1.7; }
+  .highlight-box strong { color: var(--orange); }
+
+  /* ── ECOSYSTEM ── */
+  .eco-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-bottom: 24px; }
+  .eco-item { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 20px 22px; box-shadow: var(--sh); }
+  .eco-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--green); background: var(--green-bg); padding: 3px 10px; border-radius: 20px; width: fit-content; margin-bottom: 10px; }
+  .eco-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); }
+  .eco-title { font-size: 14px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+  .eco-desc  { font-size: 12.5px; color: var(--gray); line-height: 1.6; }
+  .eco-tag   { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; background: var(--bg); color: var(--gray-d); border: 1px solid var(--border); padding: 2px 8px; border-radius: 4px; margin-top: 8px; }
+
+  /* ── COMP TABLE ── */
+  .comp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .comp-table th { padding: 10px 14px; text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; background: var(--bg); color: var(--gray-l); border-bottom: 2px solid var(--border); }
+  .comp-table th:nth-child(2) { background: rgba(37,99,235,.04); color: #2563eb; }
+  .comp-table th:last-child   { background: var(--orange-bg); color: var(--orange); }
+  .comp-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--dark); vertical-align: middle; }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table td:first-child { font-weight: 600; color: var(--gray-d); }
+  .chk  { color: var(--green);  font-size: 15px; font-weight: 700; }
+  .cross{ color: var(--gray-l); font-size: 15px; font-weight: 700; }
+  .comp-table .made-col { background: rgba(216,66,0,.03); }
+
+  /* ── ASSET CARDS ── */
+  .asset-grid { display: flex; flex-direction: column; gap: 22px; }
+  .asset-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--sh); }
+  .asset-header { display: flex; align-items: flex-start; justify-content: space-between; padding: 20px 24px 0; gap: 16px; flex-wrap: wrap; }
+  .asset-num  { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--orange); flex-shrink: 0; padding-top: 3px; }
+  .asset-name { font-size: 17px; font-weight: 700; color: var(--black); flex: 1; line-height: 1.3; }
+  .asset-risk { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; flex-shrink: 0; }
+  .risk-critical { background: rgba(197,48,48,.1); color: var(--red); }
+  .risk-high     { background: rgba(216,66,0,.1);  color: var(--orange); }
+  .asset-body { padding: 14px 24px 22px; }
+  .asset-desc { font-size: 13.5px; color: var(--gray-d); line-height: 1.7; margin-bottom: 14px; }
+  .asset-season { display: flex; gap: 8px; align-items: flex-start; padding: 12px 14px; background: rgba(216,66,0,.05); border-radius: var(--r-md); border-left: 3px solid var(--orange); margin-bottom: 14px; }
+  .asset-season-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .asset-season-text { font-size: 12.5px; color: var(--dark); line-height: 1.6; }
+  .asset-meta { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .asset-meta-item { display: flex; flex-direction: column; gap: 3px; }
+  .asset-meta-lbl { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; color: var(--orange); }
+  .asset-meta-val { font-size: 12.5px; font-weight: 600; color: var(--dark); line-height: 1.4; }
+
+  /* ── INTEGRATION STEPS ── */
+  .int-steps { display: flex; flex-direction: column; gap: 0; }
+  .int-step { display: flex; gap: 18px; }
+  .int-step-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .int-step-dot  { width: 32px; height: 32px; border-radius: 50%; background: var(--orange-bg); border: 2px solid var(--orange); display: flex; align-items: center; justify-content: center; }
+  .int-step-dot span { font-size: 11px; font-weight: 800; color: var(--orange); }
+  .int-step-line { width: 2px; background: var(--border); flex: 1; margin: 4px 0; min-height: 24px; }
+  .int-step:last-child .int-step-line { display: none; }
+  .int-step-content { padding-bottom: 26px; flex: 1; }
+  .int-step-title { font-size: 14px; font-weight: 700; color: var(--black); margin-bottom: 4px; padding-top: 4px; }
+  .int-step-desc  { font-size: 13px; color: var(--gray); line-height: 1.65; }
+  .int-step-tag   { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; background: var(--bg); color: var(--gray-d); border: 1px solid var(--border); padding: 2px 8px; border-radius: 4px; margin-top: 7px; }
+  .int-step-tags  { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 7px; }
+
+  /* ── PRICE TABLE ── */
+  .price-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 20px; }
+  .price-table th { padding: 10px 14px; text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; background: var(--bg); color: var(--gray-l); border-bottom: 2px solid var(--border); }
+  .price-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--dark); vertical-align: top; }
+  .price-table tr:last-child td { border-bottom: none; }
+  .price-val { font-weight: 700; color: var(--black); font-family: var(--mono); font-size: 12.5px; }
+
+  /* ── ROI ── */
+  .roi-hero { background: var(--bg); border: 1px solid var(--border); border-left: 4px solid var(--orange); border-radius: var(--r-lg); padding: 22px 26px; margin-bottom: 14px; }
+  .roi-hero-label { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--gray); margin-bottom: 6px; }
+  .roi-hero-val   { font-size: 36px; font-weight: 800; color: var(--black); line-height: 1; letter-spacing: -.02em; margin-bottom: 4px; }
+  .roi-hero-sub   { font-size: 13px; color: var(--gray); }
+  .roi-grid  { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+  .roi-item  { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 16px 18px; box-shadow: var(--sh); }
+  .roi-lbl   { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--gray); margin-bottom: 5px; }
+  .roi-val   { font-size: 20px; font-weight: 700; color: var(--black); line-height: 1; margin-bottom: 2px; }
+  .roi-delta { font-size: 11px; color: var(--orange); font-weight: 500; }
+
+  /* ── TERMS ── */
+  .terms-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-bottom: 20px; }
+  .term-item { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 18px 20px; box-shadow: var(--sh); }
+  .term-num   { font-size: 28px; font-weight: 800; color: var(--orange); letter-spacing: -.02em; margin-bottom: 2px; line-height: 1; }
+  .term-label { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+  .term-desc  { font-size: 13px; color: var(--gray-d); line-height: 1.6; }
+
+  /* ── GUARANTEE ── */
+  .guarantee { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; margin-bottom: 20px; box-shadow: var(--sh); }
+  .guarantee-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .g-statement { padding: 24px 26px; border-right: 1px solid var(--border); }
+  .g-slas      { padding: 24px 26px; }
+  .g-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gray-l); margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+  .g-label svg { width: 13px; height: 13px; }
+  .g-title { font-size: 18px; font-weight: 800; color: var(--black); letter-spacing: -.01em; margin-bottom: 8px; line-height: 1.3; }
+  .g-desc  { font-size: 13px; color: var(--gray); line-height: 1.7; }
+  .sla-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .sla-item:last-child { border-bottom: none; }
+  .sla-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .sla-a   { background: var(--orange); }
+  .sla-b   { background: #2563eb; }
+  .sla-c   { background: var(--gray-l); }
+  .sla-text { font-size: 13px; color: var(--gray-d); line-height: 1.55; }
+  .sla-text strong { color: var(--black); }
+  .g-faq   { padding: 0 26px 24px; border-top: 1px solid var(--border); }
+  .g-faq-q { font-size: 13px; font-weight: 700; color: var(--black); margin: 16px 0 4px; }
+  .g-faq div { font-size: 13px; color: var(--gray); line-height: 1.65; }
+
+  /* ── ALERT ── */
+  .alert { display: flex; gap: 12px; padding: 14px 16px; border-radius: var(--r-md); border: 1px solid; margin-bottom: 16px; font-size: 13px; line-height: 1.6; }
+  .alert svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-info    { background: rgba(37,99,235,.06); border-color: rgba(37,99,235,.2); color: var(--dark); }
+  .alert-info svg{ color: #2563eb; }
+  .alert-warn    { background: var(--orange-bg); border-color: var(--orange); color: var(--dark); }
+  .alert-warn svg{ color: var(--orange); }
+
+  /* ── CARD ── */
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 22px 24px; box-shadow: var(--sh); }
+  .card-title { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gray); margin-bottom: 14px; display: flex; align-items: center; gap: 7px; }
+  .card-title svg { width: 14px; height: 14px; color: var(--orange); }
+
+  /* ── CTA ── */
+  .cta-block { background: var(--black); border-radius: var(--r-lg); padding: 40px 36px 36px; text-align: center; position: relative; overflow: hidden; margin-top: 8px; }
+  .cta-block::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 70% at 50% 0%, rgba(216,66,0,.22) 0%, transparent 70%); pointer-events: none; }
+  .cta-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
+  .cta-block h3 { font-size: 24px; font-weight: 800; color: #fff; letter-spacing: -.02em; margin-bottom: 10px; line-height: 1.2; }
+  .cta-block p  { font-size: 14px; color: rgba(255,255,255,.5); margin-bottom: 28px; line-height: 1.7; max-width: 440px; margin-left: auto; margin-right: auto; }
+  .cta-btn { display: inline-block; background: var(--orange); color: #fff; padding: 13px 28px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; letter-spacing: .02em; transition: background .15s; border: none; cursor: pointer; font-family: var(--font); }
+  .cta-btn:hover { background: var(--orange-h); }
+  .cta-sub { font-size: 11.5px; color: rgba(255,255,255,.28); margin-top: 12px; }
+  .sig { margin-top: 24px; display: flex; flex-direction: column; gap: 3px; }
+  .sig-name    { font-size: 13px; font-weight: 700; color: rgba(255,255,255,.75); }
+  .sig-role    { font-size: 12px; color: rgba(255,255,255,.38); }
+  .sig-contact { font-size: 12px; color: rgba(255,255,255,.28); }
+
+  /* ── DOC FOOTER ── */
+  .doc-footer { padding: 20px 40px; font-size: 11px; color: var(--gray-l); text-align: center; letter-spacing: .04em; border-top: 1px solid var(--border); }
+
+  /* ── TABLE SCROLL ── */
+  .tbl-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* ── SIDENAV DESKTOP ── */
+  .sidenav{position:fixed;left:28px;top:50%;transform:translateY(-50%);z-index:200;opacity:0;pointer-events:none;transition:opacity .4s;}
+  .sidenav.visible{opacity:1;pointer-events:all;}
+  .sidenav-hd{font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gray-l);margin-bottom:10px;}
+  .sidenav-list{display:flex;flex-direction:column;gap:1px;}
+  .sidenav-item{display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 0;}
+  .sidenav-dot{width:5px;height:5px;border-radius:50%;background:var(--border);flex-shrink:0;transition:background .18s,transform .2s,box-shadow .18s;}
+  .sidenav-label{font-size:9.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-l);white-space:nowrap;transition:color .18s;font-family:var(--font);}
+  .sidenav-item.sn-active .sidenav-dot{background:var(--orange);transform:scale(1.7);box-shadow:0 0 0 3px var(--orange-bg);}
+  .sidenav-item.sn-active .sidenav-label{color:var(--orange);}
+  .sidenav-item:hover:not(.sn-active) .sidenav-dot{background:var(--gray-d);}
+  .sidenav-item:hover:not(.sn-active) .sidenav-label{color:var(--dark);}
+  @media(max-width:1220px){.sidenav{display:none;}}
+  /* ── MOBILE FAB + SHEET ── */
+  .sn-fab{display:none;position:fixed;bottom:24px;right:20px;z-index:300;background:var(--orange);color:#fff;border:none;border-radius:24px;padding:10px 18px;font-size:13px;font-weight:700;letter-spacing:.04em;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.18);align-items:center;gap:8px;}
+  @media(max-width:1220px){.sn-fab{display:flex;}}
+  .sn-sheet{display:none;position:fixed;inset:0;z-index:400;}
+  .sn-sheet.open{display:block;}
+  .sn-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.45);}
+  .sn-panel{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:18px 18px 0 0;padding:24px 20px 32px;max-height:80vh;overflow-y:auto;}
+  .sn-panel-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+  .sn-panel-hd span{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-l);}
+  .sn-panel-close{background:none;border:none;cursor:pointer;padding:4px;color:var(--gray-d);}
+  .sn-sheet-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+  .sn-sheet-item:last-child{border-bottom:none;}
+  .sn-sheet-num{font-size:10px;font-weight:700;color:var(--gray-l);letter-spacing:.08em;min-width:22px;}
+  .sn-sheet-lbl{font-size:14px;font-weight:600;color:var(--dark);}
+
+  /* ── PIN SCREEN ── */
+  #pin-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg); padding: 24px; }
+  .pin-card  { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 44px 48px; width: 100%; max-width: 400px; box-shadow: 0 8px 32px rgba(0,0,0,.08); }
+  .pin-logo  { display: flex; justify-content: center; margin-bottom: 32px; }
+  .pin-title { font-size: 17px; font-weight: 700; color: var(--black); text-align: center; margin-bottom: 4px; letter-spacing: -.01em; }
+  .pin-sub   { font-size: 13px; color: var(--gray); text-align: center; margin-bottom: 28px; line-height: 1.5; }
+  .pin-label { display: block; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--gray); margin-bottom: 7px; }
+  .pin-input { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 7px; font-family: var(--mono); font-size: 16px; letter-spacing: .1em; color: var(--dark); outline: none; transition: border-color .15s, box-shadow .15s; -webkit-appearance: none; }
+  .pin-input:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(216,66,0,.12); }
+  .pin-input.shake { animation: shake .35s ease; border-color: var(--red); }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+  .pin-btn   { width: 100%; padding: 13px; background: var(--orange); color: #fff; border: none; border-radius: 7px; font-family: var(--font); font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 12px; transition: background .15s; -webkit-appearance: none; }
+  .pin-btn:hover { background: var(--orange-h); }
+  .pin-error { display: none; background: #fff5f5; border: 1px solid #fed7d7; color: var(--red); border-radius: 7px; padding: 10px 14px; font-size: 13px; margin-top: 12px; text-align: center; }
+  .pin-footer{ margin-top: 24px; font-size: 11px; color: var(--gray-l); letter-spacing: .04em; text-align: center; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:720px){
+    .page { padding: 0 20px; }
+    .divider { margin: 0 20px; }
+    .cover { padding: 24px 20px 28px; }
+    .cover-header { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 28px; }
+    .cover-headline { font-size: 26px; }
+    .cover-sub { font-size: 13px; margin-bottom: 28px; }
+    .cover-metrics { grid-template-columns: 1fr 1fr; gap: 16px 0; }
+    .m-item + .m-item { border-left: none; padding-left: 0; }
+    .m-item:nth-child(2n) { border-left: 1px solid rgba(255,255,255,.1); padding-left: 16px; }
+    .exec-grid { grid-template-columns: 1fr; }
+    .eco-grid  { grid-template-columns: 1fr; }
+    .terms-grid{ grid-template-columns: 1fr; }
+    .roi-grid  { grid-template-columns: 1fr 1fr; }
+    .guarantee-grid { grid-template-columns: 1fr; }
+    .g-statement { border-right: none; border-bottom: 1px solid var(--border); }
+    .asset-meta { grid-template-columns: 1fr 1fr; }
+    .s-title { font-size: 21px; }
+    .pin-card { padding: 28px 24px; }
+  }
+  @media(max-width:460px){
+    .cover-metrics { grid-template-columns: 1fr; }
+    .m-item + .m-item, .m-item:nth-child(2n) { border-left: none; padding-left: 0; }
+    .roi-grid { grid-template-columns: 1fr; }
+  }
+</style>
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https://us.i.posthog.com',person_profiles:'identified_only',defaults:'2026-01-30',disable_session_recording:true});
+</script>
+</head>
+<body>
+
+<!-- ══ PIN SCREEN ══ -->
+<div id="pin-screen">
+  <div class="pin-card">
+    <div class="pin-logo">
+      <svg height="30" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
+        <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
+        <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#1a1c1e">Made</text>
+      </svg>
+    </div>
+    <div class="pin-title">Acceso restringido</div>
+    <div class="pin-sub">Propuesta comercial confidencial<br>Viña Concha y Toro · MAD-CYT-01</div>
+    <label class="pin-label" for="pin-input">Código de acceso</label>
+    <input id="pin-input" class="pin-input" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="off" placeholder="••••••" />
+    <button class="pin-btn" onclick="doPin()">Ingresar</button>
+    <div class="pin-error" id="pin-error">Código incorrecto. Solicítalo a tu contacto en Made.</div>
+    <div class="pin-footer">Made OS · Confidencial · demo.madeos.ai</div>
+  </div>
+</div>
+
+
+<!-- ══ PROPOSAL ══ -->
+<div id="proposal">
+
+<div class="cover">
+  <div class="page">
+
+    <div class="cover-header">
+      <div class="cover-logo">
+        <svg height="26" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+          <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
+          <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
+          <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#ffffff">Made</text>
+        </svg>
+        <span class="cover-logo-sep">×</span>
+        <span class="cover-logo-client">Concha y Toro</span>
+      </div>
+      <span class="cover-badge">MAD-CYT-01 · Mayo 2026 · Confidencial</span>
+    </div>
+
+    <div class="cover-eyebrow" data-eid="cover-eyebrow">Programa Cero Paros · Vendimia</div>
+    <div class="cover-headline" data-eid="cover-headline">Ustedes ya <em>monitorean</em>.<br>El siguiente paso es <em>anticipar</em>.</div>
+    <div class="cover-sub" data-eid="cover-sub">Concha y Toro tiene el ecosistema digital más avanzado del sector vitivinícola latinoamericano. MT Solutions, Winegrid, SAP IBP, Inria Chile. Lo que no tienen todavía es la capa que convierte esos datos en predicción de falla 2 a 4 semanas antes de que ocurra.</div>
+
+    <div class="cover-metrics">
+      <div class="m-item">
+        <div class="m-label" data-eid="cover-m1-label">Ventas FY2024</div>
+        <div class="m-value" data-eid="cover-m1-val">USD 962M</div>
+        <div class="m-sub" data-eid="cover-m1-sub">+14.5% vs 2023</div>
+      </div>
+      <div class="m-item">
+        <div class="m-label" data-eid="cover-m2-label">EBITDA FY2024</div>
+        <div class="m-value" data-eid="cover-m2-val">USD 152M</div>
+        <div class="m-sub" data-eid="cover-m2-sub">+58.6% · margen 15.8%</div>
+      </div>
+      <div class="m-item">
+        <div class="m-label" data-eid="cover-m3-label">Producción anual</div>
+        <div class="m-value" data-eid="cover-m3-val">33M cajas</div>
+        <div class="m-sub" data-eid="cover-m3-sub">~384 millones de botellas</div>
+      </div>
+      <div class="m-item">
+        <div class="m-label" data-eid="cover-m4-label">ROI estimado</div>
+        <div class="m-value" data-eid="cover-m4-val">5:1–15:1</div>
+        <div class="m-sub" data-eid="cover-m4-sub">por evento crítico evitado</div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /cover -->
+
+<div class="page">
+
+  <!-- ── 01 RESUMEN EJECUTIVO ── -->
+  <div class="section" id="s01">
+    <div class="s-label">01. Resumen ejecutivo</div>
+    <div class="s-title" data-eid="exec-title">El 2024 fue el mejor año de Concha y Toro en una década. El riesgo que puede revertirlo se concentra en 6 semanas al año.</div>
+    <p class="s-lead" data-eid="exec-lead">El EBITDA creció 58.6% hasta USD 152 millones. Los márgenes operativos alcanzaron 12.5%, el nivel más alto desde 2014. El equipo directivo entró a 2025 en modo consolidación. Y sin embargo, la mayor amenaza financiera de la operación no es de mercado: es mecánica. Ocurre entre febrero y abril, cuando los activos críticos de la planta operan 24 horas al día durante 6 a 8 semanas consecutivas sin posibilidad de parar.</p>
+
+    <div class="exec-grid">
+      <div class="exec-item">
+        <div class="exec-item-label" data-eid="exec-item1-label">EBITDA recuperado</div>
+        <div class="exec-item-val" data-eid="exec-item1-val">+58.6%</div>
+        <div class="exec-item-sub" data-eid="exec-item1-sub">FY2024 vs FY2023</div>
+        <div class="exec-item-note" data-eid="exec-item1-note">USD 152M en EBITDA. La mejor recuperación de márgenes en 10 años.</div>
+      </div>
+      <div class="exec-item">
+        <div class="exec-item-label" data-eid="exec-item2-label">Ventana de máximo riesgo</div>
+        <div class="exec-item-val" data-eid="exec-item2-val">6–8 sem.</div>
+        <div class="exec-item-sub" data-eid="exec-item2-sub">Vendimia · febrero–abril</div>
+        <div class="exec-item-note" data-eid="exec-item2-note">Operación 24/7. Activos críticos al 100% de carga. Sin margen de parada planificada.</div>
+      </div>
+      <div class="exec-item">
+        <div class="exec-item-label" data-eid="exec-item3-label">Costo de batch perdido</div>
+        <div class="exec-item-val" data-eid="exec-item3-val">$60K–$500K</div>
+        <div class="exec-item-sub" data-eid="exec-item3-sub">por depósito · según categoría</div>
+        <div class="exec-item-note" data-eid="exec-item3-note">Falla de chiller durante fermentación. La cosecha de esa variedad no se recupera en el año.</div>
+      </div>
+      <div class="exec-item">
+        <div class="exec-item-label" data-eid="exec-item4-label">Costo de parada línea embotellado</div>
+        <div class="exec-item-val" data-eid="exec-item4-val">$20K–$40K</div>
+        <div class="exec-item-sub" data-eid="exec-item4-sub">por hora de parada no planificada</div>
+        <div class="exec-item-note" data-eid="exec-item4-note">Con pedidos de exportación con fecha de embarque fija, cada hora no producida es irrecuperable.</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p data-eid="exec-highlight">Made OS no reemplaza nada de lo que Concha y Toro ya tiene. <strong>Se instala como la capa que convierte sus datos actuales en predicción de falla.</strong> MT Solutions mide OEE y registra cada parada. Winegrid monitorea temperatura en tiempo real. Made OS usa esas señales, más sensores de vibración en activos críticos, para detectar la degradación progresiva semanas antes de que se vuelva falla catastrófica. El resultado: el riesgo de una noche de marzo se convierte en una orden de trabajo planificada dos semanas antes.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 02 SU ECOSISTEMA ── -->
+  <div class="section" id="s02">
+    <div class="s-label">02. Su ecosistema digital actual</div>
+    <div class="s-title" data-eid="eco-title">Más digitalizados que el 95% del sector vitivinícola en LATAM. La brecha que queda no es de datos: es de anticipación.</div>
+    <p class="s-lead" data-eid="eco-lead">Concha y Toro ha construido durante los últimos años una infraestructura digital industrial que ningún competidor en el sector vitivinícola latinoamericano ha replicado. Eso cambia la conversación. No estamos aquí para convencerlos de digitalizar. Estamos aquí porque la siguiente capa ya tiene sustrato donde correr.</p>
+
+    <div class="eco-grid">
+      <div class="eco-item">
+        <div class="eco-badge"><span class="eco-badge-dot"></span>Activo en planta</div>
+        <div class="eco-title">MT Solutions · MES / OEE</div>
+        <div class="eco-desc">Sistema de ejecución de manufactura instalado en las líneas de embotellado. Mide OEE, registra downtime, clasifica causas de parada en tiempo real. El equipo de Carlos López lo opera hace más de 5 años.</div>
+        <span class="eco-tag">Embotellado · Tiempo real</span>
+      </div>
+      <div class="eco-item">
+        <div class="eco-badge"><span class="eco-badge-dot"></span>Activo en planta</div>
+        <div class="eco-title">Winegrid + Parsec · IoT en fermentadores</div>
+        <div class="eco-desc">Densímetros y sensores de temperatura en depósitos de fermentación. Parte del Proyecto Vendimia 5.0 con Inria Chile. Monitoreo pasivo de variables críticas durante la fermentación alcohólica.</div>
+        <span class="eco-tag">Fermentación · IoT</span>
+      </div>
+      <div class="eco-item">
+        <div class="eco-badge"><span class="eco-badge-dot"></span>Activo corporativo</div>
+        <div class="eco-title">SAP IBP + Power Apps + Dataverse</div>
+        <div class="eco-desc">SAP Integrated Business Planning implementado en Bonterra (USA) en 2024. Power Apps y Dataverse activos en operaciones y supply chain bajo liderazgo de Rodrigo Alarcón. Infraestructura Microsoft consolidada.</div>
+        <span class="eco-tag">Supply chain · Operations</span>
+      </div>
+      <div class="eco-item">
+        <div class="eco-badge"><span class="eco-badge-dot"></span>Activo en curso</div>
+        <div class="eco-title">Inria Chile · Proyecto Vendimia 5.0</div>
+        <div class="eco-desc">Contrato de 5 años, inversión CLP 1.500 millones (CyT + Corfo). Modelos predictivos de AI para programación de cosecha, fenología y recepción de uva. Señal clara: la organización es tolerante al riesgo tecnológico.</div>
+        <span class="eco-tag">AI · Harvest · 5 años</span>
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 7v4M8 5.5v.5"/></svg>
+      <div>
+        <strong>Lo que este ecosistema tiene y lo que le falta.</strong> Winegrid monitorea la temperatura del mosto. MT Solutions sabe cuándo paró la línea. Inria predice la cosecha óptima. Ninguno de los tres predice cuándo va a fallar el compresor del chiller a las 3am de un miércoles de marzo. Eso es exactamente el gap que Made OS cierra.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 03 EL GAP ── -->
+  <div class="section" id="s03">
+    <div class="s-label">03. El gap: de monitorear a anticipar</div>
+    <div class="s-title" data-eid="gap-title">MT Solutions registra lo que pasó. Made OS predice lo que va a pasar.</div>
+    <p class="s-lead" data-eid="gap-lead">El OEE mide eficiencia histórica. Es indispensable para operar bien. Pero tiene una limitación estructural: es reactivo. Te dice cuánto tiempo perdiste y por qué. Made OS es la capa prescriptiva que viene después: analiza las señales de vibración, temperatura y corriente de los activos críticos para detectar la degradación progresiva antes de que se vuelva falla. No compite con MT Solutions. Lo complementa.</p>
+
+    <div class="tbl-scroll">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Capacidad</th>
+          <th>MT Solutions MES / OEE</th>
+          <th>Made OS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Registro de paros y duración</td>
+          <td class="chk">✓</td>
+          <td class="chk made-col">✓</td>
+        </tr>
+        <tr>
+          <td>Causa raíz de cada parada</td>
+          <td class="chk">✓</td>
+          <td class="chk made-col">✓</td>
+        </tr>
+        <tr>
+          <td>OEE por línea en tiempo real</td>
+          <td class="chk">✓</td>
+          <td class="chk made-col">✓</td>
+        </tr>
+        <tr>
+          <td>Detección de degradación gradual en activos</td>
+          <td class="cross">✗</td>
+          <td class="chk made-col">✓</td>
+        </tr>
+        <tr>
+          <td>Predicción de falla 14–21 días antes</td>
+          <td class="cross">✗</td>
+          <td class="chk made-col">✓</td>
+        </tr>
+        <tr>
+          <td>Prescripción de intervención con ventana accionable</td>
+          <td class="cross">✗</td>
+          <td class="chk made-col">✓</td>
+        </tr>
+        <tr>
+          <td>Análisis de vibración multi-activo en tiempo real</td>
+          <td class="cross">✗</td>
+          <td class="chk made-col">✓</td>
+        </tr>
+        <tr>
+          <td>Modelo que aprende el patrón nominal de cada activo</td>
+          <td class="cross">✗</td>
+          <td class="chk made-col">✓</td>
+        </tr>
+        <tr>
+          <td>Integración con histórico de OEE para enriquecer el modelo</td>
+          <td class="cross">✗</td>
+          <td class="chk made-col">✓</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p style="font-size:12px;color:var(--gray-l);margin-top:10px;line-height:1.6">Made OS puede ingerir el histórico de paradas de MT Solutions para calibrar el modelo predictivo. Cada parada registrada por MT Solutions se convierte en un punto de entrenamiento para Made OS.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 04 ACTIVOS CRÍTICOS ── -->
+  <div class="section" id="s04">
+    <div class="s-label">04. Los tres activos críticos</div>
+    <div class="s-title" data-eid="assets-title">Tres puntos donde una falla catastrófica destruye más EBITDA en una noche de vendimia del que Made OS cuesta en dos años.</div>
+    <p class="s-lead" data-eid="assets-lead">No todos los activos de la planta tienen el mismo perfil de riesgo. Estos tres combinan alta probabilidad de falla con costo catastrófico durante la ventana de vendimia. Son también los activos con patrones de degradación más predecibles mediante análisis de vibración y temperatura, lo que hace que el ROI de monitoreo predictivo sea inmediato.</p>
+
+    <div class="asset-grid">
+
+      <!-- ACTIVO 01 -->
+      <div class="asset-card">
+        <div class="asset-header">
+          <span class="asset-num">Activo 01</span>
+          <span class="asset-name">Sistema de refrigeración de fermentación (chillers de glicol)</span>
+          <span class="asset-risk risk-critical">Criticidad máxima</span>
+        </div>
+        <div class="asset-body">
+          <p class="asset-desc">La fermentación alcohólica ocurre entre 14°C y 28°C según la variedad. Los chillers de glicol mantienen esa temperatura de forma continua durante todo el proceso. Una desviación sostenida por encima de 30–35°C durante 2 a 4 horas puede producir fermentación atascada, muerte de levaduras o derivación organoléptica irreversible. El vino de esa cosecha no se recupera.</p>
+          <div class="asset-season">
+            <span class="asset-season-icon">⚠</span>
+            <div class="asset-season-text"><strong>Riesgo vendimia:</strong> durante febrero–abril, los chillers operan al 100% de carga las 24 horas, 7 días a la semana. Una falla de compresor a las 3am de un sábado puede tardar 6 a 12 horas en diagnosticarse y resolverse. En ese tiempo, 3 a 5 depósitos de 150.000 a 300.000 litros pueden superar la temperatura crítica.</div>
+          </div>
+          <div class="asset-meta">
+            <div class="asset-meta-item">
+              <span class="asset-meta-lbl">Modo de falla principal</span>
+              <span class="asset-meta-val" data-eid="asset1-failure">Falla de rodamientos en compresor · fuga de glicol · obstrucción de intercambiador</span>
+            </div>
+            <div class="asset-meta-item">
+              <span class="asset-meta-lbl">Costo estimado de falla</span>
+              <span class="asset-meta-val" data-eid="asset1-cost">USD 60K–500K por depósito según categoría (Casillero del Diablo a Don Melchor)</span>
+            </div>
+            <div class="asset-meta-item">
+              <span class="asset-meta-lbl">Cómo Made OS lo detecta</span>
+              <span class="asset-meta-val" data-eid="asset1-detection">Vibración en compresores + temperatura/presión del circuito de glicol · anticipa 14–21 días</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIVO 02 -->
+      <div class="asset-card">
+        <div class="asset-header">
+          <span class="asset-num">Activo 02</span>
+          <span class="asset-name">Líneas de embotellado (llenadora, taponadora, sistema neumático)</span>
+          <span class="asset-risk risk-critical">Criticidad máxima</span>
+        </div>
+        <div class="asset-body">
+          <p class="asset-desc">Con 33 millones de cajas al año, las líneas de embotellado son el único punto de conversión del vino en producto terminado y flujo de caja. Operan a velocidades de 6.000 a 15.000 botellas por hora. Cada hora de parada no planificada es producción que no se recupera porque los contenedores de exportación tienen fecha de carga fija.</p>
+          <div class="asset-season">
+            <span class="asset-season-icon">📊</span>
+            <div class="asset-season-text"><strong>Ventaja de integración:</strong> ustedes ya miden OEE y causas de parada en estas líneas con MT Solutions. El paso siguiente es natural: Made OS ingiere ese histórico de paradas, identifica los patrones de vibración y corriente previos a cada falla, y empieza a predecir la próxima antes de que ocurra. No es un sistema paralelo, es la siguiente capa sobre lo que ya tienen.</div>
+          </div>
+          <div class="asset-meta">
+            <div class="asset-meta-item">
+              <span class="asset-meta-lbl">Modo de falla principal</span>
+              <span class="asset-meta-val" data-eid="asset2-failure">Falla en motor de llenadora · desgaste de válvulas de vacío · compresor neumático de la línea</span>
+            </div>
+            <div class="asset-meta-item">
+              <span class="asset-meta-lbl">Costo estimado de falla</span>
+              <span class="asset-meta-val" data-eid="asset2-cost">USD 20K–40K por hora de parada · USD 160K–320K por parada de 8 horas</span>
+            </div>
+            <div class="asset-meta-item">
+              <span class="asset-meta-lbl">Cómo Made OS lo detecta</span>
+              <span class="asset-meta-val" data-eid="asset2-detection">Vibración en motor de llenadora · corriente en vacío · temperatura de rodamientos · integra histórico MT Solutions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIVO 03 -->
+      <div class="asset-card">
+        <div class="asset-header">
+          <span class="asset-num">Activo 03</span>
+          <span class="asset-name">Compresores de aire industrial</span>
+          <span class="asset-risk risk-high">Criticidad alta · mejor ROI</span>
+        </div>
+        <div class="asset-body">
+          <p class="asset-desc">El aire comprimido alimenta prácticamente todos los sistemas neumáticos de la planta: líneas de embotellado, válvulas de depósitos, prensas neumáticas, limpiezas CIP. Una falla de compresor no paraliza un activo; paraliza múltiples activos en cascada. Durante vendimia, puede comprometer la recepción de uva en un momento donde la fecha de cosecha no es negociable.</p>
+          <div class="asset-season">
+            <span class="asset-season-icon">⚙</span>
+            <div class="asset-season-text"><strong>Mejor ratio costo/beneficio:</strong> los compresores de aire son el activo con mayor ROI en mantenimiento predictivo en cualquier planta industrial. Su patrón de degradación mediante vibración y temperatura es el más predecible y el más estandarizado. El payback de un sensor por compresor, con una sola falla evitada, es típicamente de 2 a 4 meses.</div>
+          </div>
+          <div class="asset-meta">
+            <div class="asset-meta-item">
+              <span class="asset-meta-lbl">Modo de falla principal</span>
+              <span class="asset-meta-val" data-eid="asset3-failure">Falla de rodamientos · sobrecalentamiento · desgaste de válvulas de admisión y descarga</span>
+            </div>
+            <div class="asset-meta-item">
+              <span class="asset-meta-lbl">Costo estimado de falla</span>
+              <span class="asset-meta-val" data-eid="asset3-cost">USD 80K–200K por evento · riesgo de parada en cascada de múltiples líneas simultáneas</span>
+            </div>
+            <div class="asset-meta-item">
+              <span class="asset-meta-lbl">Cómo Made OS lo detecta</span>
+              <span class="asset-meta-val" data-eid="asset3-detection">Vibración en cuerpo del compresor · temperatura de aceite y descarga · presión diferencial · anticipa 7–21 días</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 05 INTEGRACIÓN EN SU STACK ── -->
+  <div class="section" id="s05">
+    <div class="s-label">05. Integración en su stack actual</div>
+    <div class="s-title" data-eid="int-title">Made OS no reemplaza lo que tienen. Se instala como la capa que les falta.</div>
+    <p class="s-lead" data-eid="int-lead">El proceso de integración respeta su infraestructura existente. Sin modificar PLCs. Sin detener líneas. Sin reemplazar MT Solutions, Winegrid o SAP. Made OS se conecta en modo solo-lectura a las señales disponibles y agrega sensores de vibración en los activos específicos que no tienen cobertura aún.</p>
+
+    <div class="int-steps">
+      <div class="int-step">
+        <div class="int-step-left"><div class="int-step-dot"><span>1</span></div><div class="int-step-line"></div></div>
+        <div class="int-step-content">
+          <div class="int-step-title" data-eid="int-step1-title">Auditoría técnica de señales disponibles</div>
+          <div class="int-step-desc" data-eid="int-step1-desc">Revisión con Carlos López y Rodrigo Alarcón de qué señales están ya disponibles en PLCs, Winegrid y MT Solutions, y qué activos necesitan instrumentación adicional. Típicamente 1 sesión de 2–3 horas. Sin costo, sin compromiso.</div>
+          <div class="int-step-tags"><span class="int-step-tag">Días 1–2</span><span class="int-step-tag">Sin costo</span></div>
+        </div>
+      </div>
+      <div class="int-step">
+        <div class="int-step-left"><div class="int-step-dot"><span>2</span></div><div class="int-step-line"></div></div>
+        <div class="int-step-content">
+          <div class="int-step-title" data-eid="int-step2-title">Instalación de sensores en activos críticos</div>
+          <div class="int-step-desc" data-eid="int-step2-desc">Sensores de vibración y temperatura inalámbricos en compresores de chillers, motores de llenadoras y compresores de aire. Instalación no invasiva, sin detener ninguna línea ni activo. Típicamente 1–3 días según la cantidad de activos priorizados.</div>
+          <div class="int-step-tags"><span class="int-step-tag">Días 3–10</span><span class="int-step-tag">Sin parar líneas</span><span class="int-step-tag">Solo-lectura</span></div>
+        </div>
+      </div>
+      <div class="int-step">
+        <div class="int-step-left"><div class="int-step-dot"><span>3</span></div><div class="int-step-line"></div></div>
+        <div class="int-step-content">
+          <div class="int-step-title" data-eid="int-step3-title">Ingestión de datos históricos de MT Solutions</div>
+          <div class="int-step-desc" data-eid="int-step3-desc">Exportación del histórico de paradas y OEE de MT Solutions para alimentar el modelo Made OS desde el inicio. Cada parada registrada por MT Solutions se convierte en un punto de entrenamiento: el modelo aprende qué señales preceden a cada tipo de falla antes de ver una sola en tiempo real.</div>
+          <div class="int-step-tags"><span class="int-step-tag">API MT Solutions</span><span class="int-step-tag">Días 5–14</span></div>
+        </div>
+      </div>
+      <div class="int-step">
+        <div class="int-step-left"><div class="int-step-dot"><span>4</span></div><div class="int-step-line"></div></div>
+        <div class="int-step-content">
+          <div class="int-step-title" data-eid="int-step4-title">Período de baseline</div>
+          <div class="int-step-desc" data-eid="int-step4-desc">30 días de operación normal con el modelo en modo observación. El sistema aprende el patrón nominal de cada activo bajo condiciones reales de operación. Ninguna alerta prescriptiva activa todavía. Las desviaciones se registran sin generar eventos de éxito.</div>
+          <div class="int-step-tags"><span class="int-step-tag">Días 15–45</span><span class="int-step-tag">Sin success fee</span></div>
+        </div>
+      </div>
+      <div class="int-step">
+        <div class="int-step-left"><div class="int-step-dot"><span>5</span></div><div class="int-step-line"></div></div>
+        <div class="int-step-content">
+          <div class="int-step-title" data-eid="int-step5-title">Modelo activo: alertas prescriptivas en producción</div>
+          <div class="int-step-desc" data-eid="int-step5-desc">Desde el día 46, el modelo genera prescripciones accionables con ventana de intervención. Las alertas llegan al canal que el equipo de Rodrigo Alarcón y Carlos López definan: webapp Made OS, Microsoft Teams, correo o integración con el flujo de órdenes de trabajo de su sistema de mantención.</div>
+          <div class="int-step-tags"><span class="int-step-tag">Día 46+</span><span class="int-step-tag">Success fee elegible</span><span class="int-step-tag">Teams / OT / Email</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 06 PRECIO Y ROI ── -->
+  <div class="section" id="s06">
+    <div class="s-label">06. Precio y retorno de inversión</div>
+    <div class="s-title" data-eid="roi-title">La inversión se paga en el primer evento que evita.</div>
+    <p class="s-lead" data-eid="roi-lead">El modelo de precios del Programa Cero Paros es de base mensual más success fee por resultado verificado. Sin licencias de alto CAPEX. Sin integradores externos. La base cubre plataforma, monitoreo 24/7, soporte técnico y acceso completo al equipo de ingeniería de Made.</p>
+
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M5 3V2M11 3V2M2 7h12"/></svg>
+        Estructura de precios · Programa Cero Paros · Vendimia
+      </div>
+      <div class="tbl-scroll">
+      <table class="price-table">
+        <thead>
+          <tr><th>Concepto</th><th>Descripción</th><th>Precio</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Setup inicial</strong></td>
+            <td>Auditoría técnica, instalación de sensores, integración MT Solutions API, configuración de baseline, onboarding del equipo</td>
+            <td><span class="price-val" data-eid="price-setup">$18,500 USD</span></td>
+          </tr>
+          <tr>
+            <td><strong>Base mensual</strong></td>
+            <td>Plataforma Made OS activa en 3 tipos de activos (hasta 12 puntos de monitoreo), soporte técnico, actualizaciones de modelo, alertas 24/7</td>
+            <td><span class="price-val" data-eid="price-base">$12,500 USD/mes</span></td>
+          </tr>
+          <tr>
+            <td><strong>Success fee · Clase A</strong></td>
+            <td>Paro mayor evitado: alerta emitida con anticipación, intervención ejecutada, evidencia en CMMS, contrafactual razonable de que el activo habría causado paro. Cap: 3 eventos por tipo de activo por trimestre.</td>
+            <td><span class="price-val" data-eid="price-sfa">$20,000 USD / evento</span></td>
+          </tr>
+          <tr>
+            <td><strong>Success fee · Clase B</strong></td>
+            <td>Operación degradada evitada: desviación de velocidad, calidad o estabilidad del proceso documentada y evitada mediante prescripción.</td>
+            <td><span class="price-val" data-eid="price-sfb">8% del costo evitado documentado</span></td>
+          </tr>
+          <tr>
+            <td><strong>ROI estimado año 1</strong></td>
+            <td>Con 1 evento Clase A por tipo de activo. Inversión base: $168,500 USD. Valor protegido estimado: $850K–$1.4M.</td>
+            <td><span class="price-val" data-eid="price-roi" style="color:var(--orange)">5:1 – 8:1</span></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <div class="roi-hero">
+      <div class="roi-hero-label" data-eid="roi-hero-label">Valor operacional estimado · año 1 · escenario base (1 evento Clase A por activo)</div>
+      <div class="roi-hero-val" data-eid="roi-hero-val">$850K – $1.4M USD</div>
+      <div class="roi-hero-sub" data-eid="roi-hero-sub">Chillers $200K–$500K protegidos · líneas $160K–$320K/evento · compresores $80K–$200K · inversión total año 1: $168,500 USD</div>
+    </div>
+
+    <div class="roi-grid">
+      <div class="roi-item">
+        <div class="roi-lbl" data-eid="roi-card1-lbl">Inversión total año 1</div>
+        <div class="roi-val" data-eid="roi-card1-val">$168,500</div>
+        <div class="roi-delta" data-eid="roi-card1-delta">setup + base 12 meses · todo incluido</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-lbl" data-eid="roi-card2-lbl">Caso A · Chiller vendimia</div>
+        <div class="roi-val" data-eid="roi-card2-val">$200K–$500K</div>
+        <div class="roi-delta" data-eid="roi-card2-delta">por batch protegido · 1 evento = ROI positivo</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-lbl" data-eid="roi-card3-lbl">Caso B · Línea embotellado</div>
+        <div class="roi-val" data-eid="roi-card3-val">$160K–$320K</div>
+        <div class="roi-delta" data-eid="roi-card3-delta">por parada de 8h evitada</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-lbl" data-eid="roi-card4-lbl">Extensión sin costo</div>
+        <div class="roi-val" data-eid="roi-card4-val">$0</div>
+        <div class="roi-delta" data-eid="roi-card4-delta">si no hay ROI comprobado en mes 3, extensión del piloto sin cargo adicional</div>
+      </div>
+    </div>
+
+    <div class="alert alert-info" style="margin-top:16px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8l2 2 4-4"/></svg>
+      <div>
+        <strong>Definición de "Evento Crítico Evitado"</strong><br>
+        <strong>Clase A: Paro mayor evitado:</strong> alerta emitida con anticipación, intervención ejecutada, evidencia en CMMS/bitácora de mantención, contrafactual razonable de que el activo habría causado paro. <em>Genera success fee.</em><br>
+        <strong>Clase B: Operación degradada evitada:</strong> se evitó pérdida material de velocidad, calidad de producto o estabilidad del proceso. <em>Genera success fee.</em><br>
+        <strong>Clase C: Alerta útil validada:</strong> detección correcta, no genera fee; alimenta aprendizaje del modelo.<br>
+        <em style="font-size:12px">Baseline primeros 30 días · ventana de disputa 10 días hábiles · árbitro técnico independiente designado al inicio del programa.</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 07 TÉRMINOS ── -->
+  <div class="section" id="s07">
+    <div class="s-label">07. Términos del programa</div>
+    <div class="s-title" data-eid="terms-title">Programa Cero Paros · Vendimia 2026</div>
+    <p class="s-lead" data-eid="terms-lead">El programa está diseñado para estar completamente operativo antes del inicio de la vendimia 2026 (febrero). El piloto de 90 días da tiempo suficiente para instalar, establecer baseline y tener el modelo activo con anticipación a la temporada de mayor riesgo.</p>
+
+    <div class="terms-grid">
+      <div class="term-item">
+        <div class="term-num" data-eid="term1-num">90</div>
+        <div class="term-label">días de piloto</div>
+        <div class="term-desc" data-eid="term1-desc">Piloto inicial de 90 días. Sin compromiso de contratación anual al cierre del piloto. La decisión de continuar la toma Concha y Toro con base en resultados verificados.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-num" data-eid="term2-num">30</div>
+        <div class="term-label">días de baseline</div>
+        <div class="term-desc" data-eid="term2-desc">Primeros 30 días en modo observación pura. El modelo aprende el comportamiento nominal de cada activo. No se generan alertas prescriptivas ni success fees durante este período.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-num" data-eid="term3-num">+0</div>
+        <div class="term-label">costo si no hay ROI en 90 días</div>
+        <div class="term-desc" data-eid="term3-desc">Si al término del piloto no hay al menos un Evento Clase A verificado, Made OS extiende el programa sin costo adicional de base mensual hasta el primer evento confirmado.</div>
+      </div>
+      <div class="term-item">
+        <div class="term-num" data-eid="term4-num">30d</div>
+        <div class="term-label">aviso para terminar</div>
+        <div class="term-desc" data-eid="term4-desc">Terminación del programa con 30 días de aviso. Sin penalidades. Sin lock-in. El modelo entrenado en los activos de Concha y Toro es exportable en formato ONNX.</div>
+      </div>
+    </div>
+
+    <div class="alert alert-warn">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L1 14h14L8 2z"/><path d="M8 6v4M8 11.5v.5"/></svg>
+      <div>
+        <strong>Objetivo de inicio: octubre 2026.</strong> Para tener el sistema completamente operativo y el modelo calibrado antes de vendimia 2027 (febrero), el programa debe iniciar a más tardar en octubre 2026. La sesión técnica inicial puede agendarse sin ningún compromiso comercial previo.
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:4px">
+      <div class="card-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l1.5 3 3.5.5-2.5 2.5.5 3.5L8 9l-3 1.5.5-3.5L3 4.5l3.5-.5z"/></svg>
+        Criterios de clasificación · Clase A verificado
+      </div>
+      <p style="font-size:13px;color:var(--gray);line-height:1.65">Para que un evento califique como Clase A: (1) alerta emitida con al menos 72 horas de anticipación a la falla detectada; (2) desviación del activo de al menos 15% respecto al baseline nominal establecido en los primeros 30 días; (3) número de OT de intervención en el sistema de mantención de Concha y Toro. Los tres criterios deben cumplirse. El árbitro técnico se designa al inicio del programa de mutuo acuerdo.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 08 GARANTÍA ── -->
+  <div class="section" id="s08">
+    <div class="s-label">08. Garantía</div>
+    <div class="s-title" data-eid="garantia-title">Made OS asume el riesgo operativo junto con Concha y Toro.</div>
+
+    <div class="guarantee">
+      <div class="guarantee-grid">
+        <div class="g-statement">
+          <div class="g-label">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1l4.5 1.8v4.2c0 2.8-2 4.5-4.5 5-2.5-.5-4.5-2.2-4.5-5V2.8L7 1z"/></svg>
+            Garantía comercial Made OS · Programa Cero Paros
+          </div>
+          <div class="g-title" data-eid="g-title">Si Made OS no genera ROI verificado en 90 días, seguimos sin costo hasta que lo genere.</div>
+          <div class="g-desc" data-eid="g-desc">La garantía es estructural: el modelo de success fee alinea los incentivos de Made con los de Concha y Toro. No cobramos por alertas. Cobramos por eventos evitados verificados. Si el piloto termina sin un Evento Clase A confirmado, Made OS extiende el programa sin costo de base mensual hasta el primer evento verificado. El riesgo de adopción es de Made, no de Concha y Toro.</div>
+        </div>
+        <div class="g-slas">
+          <div class="g-label">Compromisos de respuesta operativa</div>
+          <div class="sla-item">
+            <div class="sla-dot sla-a"></div>
+            <div class="sla-text"><strong>Clase A · Alerta de paro mayor:</strong> primera notificación en canal operativo en menos de 15 minutos de detectada la anomalía. Prescripción completa con contexto en menos de 4 horas.</div>
+          </div>
+          <div class="sla-item">
+            <div class="sla-dot sla-b"></div>
+            <div class="sla-text"><strong>Clase B · Operación degradada:</strong> alerta en menos de 2 horas. Prescripción con ventana de intervención en menos de 24 horas.</div>
+          </div>
+          <div class="sla-item">
+            <div class="sla-dot sla-c"></div>
+            <div class="sla-text"><strong>Portabilidad del modelo:</strong> al término del contrato por cualquier causa, el modelo entrenado en los activos de Concha y Toro se entrega en formato ONNX. Los datos de la planta son de Concha y Toro.</div>
+          </div>
+        </div>
+      </div>
+      <div class="g-faq">
+        <div class="g-faq-q" data-eid="gfaq1-q">¿Qué pasa si un evento es disputado por el equipo de mantención?</div>
+        <div data-eid="gfaq1-a">El árbitro técnico independiente, designado al inicio del programa por mutuo acuerdo, revisa la evidencia en un plazo de 10 días hábiles. La resolución del árbitro es vinculante. No hay pago hasta resolución.</div>
+        <div class="g-faq-q" data-eid="gfaq2-q">¿Made OS modifica alguna lógica de control del PLC?</div>
+        <div data-eid="gfaq2-a">No. Made OS opera en modo solo-lectura en todos los casos. No escribe en PLCs, no modifica parámetros de recetas ni interfiere con ningún sistema de control existente. La infraestructura de MT Solutions, Winegrid y SAP no se modifica.</div>
+        <div class="g-faq-q" data-eid="gfaq3-q">¿Qué sucede con los datos de la planta?</div>
+        <div data-eid="gfaq3-a">Los datos de telemetría industrial de los activos de Concha y Toro son propiedad de Concha y Toro. Made OS no los comparte con terceros. Al término del contrato, todos los datos son devueltos o eliminados según instrucción del cliente, con acta de eliminación certificada.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 09 SESIÓN TÉCNICA INICIAL ── -->
+  <div class="section" id="s09">
+    <div class="s-label">09. Sesión técnica inicial</div>
+
+    <div class="cta-block">
+      <div class="cta-tag" data-eid="cta-tag">Sin compromiso · Sin PowerPoint de ventas</div>
+      <h3 id="main-cta" data-eid="cta-title">La primera conversación es entre ingenieros, no entre comerciales.</h3>
+      <p data-eid="cta-desc">Una sesión técnica de 2 a 3 horas con Carlos López (Automatización Industrial) y Rodrigo Alarcón (TI Operaciones). El objetivo es mapear las señales disponibles en PLCs y activos críticos, revisar el protocolo de integración con la infraestructura existente, y definir los activos candidatos al piloto. Sin contrato previo. Sin presentación de ventas. Solo ingeniería.</p>
+      <a href="mailto:g@madeos.ai?subject=Sesión técnica inicial · Programa Cero Paros Vendimia · Concha y Toro" class="cta-btn">Agendar sesión técnica</a>
+      <div class="cta-sub" data-eid="cta-sub">Formato: presencial (Pirque / Puente Alto) o videoconferencia · Duración: 2–3 horas · Sin compromiso posterior</div>
+      <div class="sig">
+        <div class="sig-name" data-eid="sig-name">Equipo Made OS</div>
+        <div class="sig-role" data-eid="sig-role">Ingeniería de Soluciones Industriales</div>
+        <div class="sig-contact" data-eid="sig-contact">g@madeos.ai · madeos.ai</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="card-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M5 3V2M11 3V2M2 7h12M6 11h4"/></svg>
+        Agenda propuesta para la sesión técnica
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span style="font-size:11px;font-weight:700;color:var(--orange);min-width:60px;padding-top:2px">30 min</span>
+          <div><div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:3px">Inventario de activos y señales disponibles</div><div style="font-size:12.5px;color:var(--gray);line-height:1.6">Mapa de PLCs, sensores existentes (Winegrid, Parsec), accesibilidad a señales de vibración/temperatura/corriente en chillers, llenadoras y compresores.</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span style="font-size:11px;font-weight:700;color:var(--orange);min-width:60px;padding-top:2px">45 min</span>
+          <div><div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:3px">Protocolo de integración con infraestructura existente</div><div style="font-size:12.5px;color:var(--gray);line-height:1.6">Revisión de la integración con MT Solutions API, acceso a datos de Winegrid/Parsec, y punto de integración con Power Platform para el canal de alertas operativas.</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span style="font-size:11px;font-weight:700;color:var(--orange);min-width:60px;padding-top:2px">30 min</span>
+          <div><div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:3px">Definición de activos prioritarios y baseline de éxito</div><div style="font-size:12.5px;color:var(--gray);line-height:1.6">Selección de los 3 a 5 activos candidatos para el piloto. Definición de las métricas de éxito y el árbitro técnico para la clasificación de eventos.</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span style="font-size:11px;font-weight:700;color:var(--orange);min-width:60px;padding-top:2px">15 min</span>
+          <div><div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:3px">Cronograma de inicio antes de vendimia</div><div style="font-size:12.5px;color:var(--gray);line-height:1.6">Fechas de instalación, baseline y primer día de modelo activo con anticipación suficiente para cubrir la vendimia 2027.</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /page -->
+
+<div class="doc-footer" data-eid="doc-footer">
+  <strong>MADE OS</strong> × VIÑA CONCHA Y TORO · MAD-CYT-01 · Mayo 2026 · CONFIDENCIAL
+</div>
+
+</div><!-- /proposal -->
+
+
+<nav class="sidenav" id="sidenav" aria-label="Índice de secciones">
+  <div class="sidenav-hd">Índice</div>
+  <div class="sidenav-list">
+    <div class="sidenav-item" data-s="s01"><span class="sidenav-dot"></span><span class="sidenav-label">01 · Resumen</span></div>
+    <div class="sidenav-item" data-s="s02"><span class="sidenav-dot"></span><span class="sidenav-label">02 · Ecosistema</span></div>
+    <div class="sidenav-item" data-s="s03"><span class="sidenav-dot"></span><span class="sidenav-label">03 · El gap</span></div>
+    <div class="sidenav-item" data-s="s04"><span class="sidenav-dot"></span><span class="sidenav-label">04 · Activos críticos</span></div>
+    <div class="sidenav-item" data-s="s05"><span class="sidenav-dot"></span><span class="sidenav-label">05 · Integración</span></div>
+    <div class="sidenav-item" data-s="s06"><span class="sidenav-dot"></span><span class="sidenav-label">06 · Precio y ROI</span></div>
+    <div class="sidenav-item" data-s="s07"><span class="sidenav-dot"></span><span class="sidenav-label">07 · Términos</span></div>
+    <div class="sidenav-item" data-s="s08"><span class="sidenav-dot"></span><span class="sidenav-label">08 · Garantía</span></div>
+    <div class="sidenav-item" data-s="s09"><span class="sidenav-dot"></span><span class="sidenav-label">09 · Sesión inicial</span></div>
+  </div>
+</nav>
+<button class="sn-fab" id="sn-fab">≡ Índice</button>
+<div class="sn-sheet" id="sn-sheet">
+  <div class="sn-backdrop" id="sn-backdrop"></div>
+  <div class="sn-panel">
+    <div class="sn-panel-hd"><span>Índice</span><button class="sn-panel-close" id="sn-close" aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg></button></div>
+    <div class="sn-sheet-item" data-s="s01"><span class="sn-sheet-num">01</span><span class="sn-sheet-lbl">Resumen ejecutivo</span></div>
+    <div class="sn-sheet-item" data-s="s02"><span class="sn-sheet-num">02</span><span class="sn-sheet-lbl">Ecosistema digital actual</span></div>
+    <div class="sn-sheet-item" data-s="s03"><span class="sn-sheet-num">03</span><span class="sn-sheet-lbl">El gap: monitorear vs anticipar</span></div>
+    <div class="sn-sheet-item" data-s="s04"><span class="sn-sheet-num">04</span><span class="sn-sheet-lbl">Los tres activos críticos</span></div>
+    <div class="sn-sheet-item" data-s="s05"><span class="sn-sheet-num">05</span><span class="sn-sheet-lbl">Integración en su stack</span></div>
+    <div class="sn-sheet-item" data-s="s06"><span class="sn-sheet-num">06</span><span class="sn-sheet-lbl">Precio y ROI</span></div>
+    <div class="sn-sheet-item" data-s="s07"><span class="sn-sheet-num">07</span><span class="sn-sheet-lbl">Términos del programa</span></div>
+    <div class="sn-sheet-item" data-s="s08"><span class="sn-sheet-num">08</span><span class="sn-sheet-lbl">Garantía</span></div>
+    <div class="sn-sheet-item" data-s="s09"><span class="sn-sheet-num">09</span><span class="sn-sheet-lbl">Sesión técnica inicial</span></div>
+  </div>
+</div>
+
+<!-- ══ IMAGE MODAL ══ -->
+<div id="img-modal" aria-modal="true" role="dialog" aria-label="Imagen ampliada" style="display:none;position:fixed;inset:0;z-index:900;align-items:center;justify-content:center;">
+  <div id="img-modal-backdrop" onclick="closeModal()" style="position:absolute;inset:0;background:rgba(0,0,0,.8);"></div>
+  <div id="img-modal-box" style="position:relative;max-width:90vw;max-height:90vh;z-index:1;">
+    <img id="img-modal-img" src="" alt="" style="max-width:100%;max-height:80vh;border-radius:8px;display:block;">
+    <p id="img-modal-cap" style="color:rgba(255,255,255,.6);font-size:12px;text-align:center;margin-top:10px;"></p>
+    <button id="img-modal-close" onclick="closeModal()" aria-label="Cerrar" style="position:absolute;top:-12px;right:-12px;width:32px;height:32px;background:#fff;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      <svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="#1a1c1e" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+try { history.scrollRestoration = 'manual'; } catch(e) {}
+var _PIN     = 'NTU2NjQ0';
+var PSK      = 'mpin_cyt1';
+var ASK      = 'mauth1';
+var SAVE_KEY = 'made_cyt_v1';
+var isAdmin  = false;
+var PROPOSAL_ID = 'cyt';
+var _trackingDone = false;
+var editMode = false;
+var _saveTimer = null;
+var _ftTimer   = null;
+var lastSaved  = null;
+
+var EDIT_SEL = [
+  '.cover-eyebrow','.cover-headline','.cover-sub',
+  '.m-value','.m-label','.m-sub',
+  '.s-title','.s-lead',
+  '.exec-item-label','.exec-item-val','.exec-item-sub','.exec-item-note',
+  '.highlight-box p',
+  '.eco-title','.eco-desc',
+  '.roi-hero-val','.roi-hero-sub','.roi-hero-label',
+  '.roi-lbl','.roi-val','.roi-delta',
+  '.asset-desc','.asset-meta-val','.asset-season-text',
+  '.int-step-title','.int-step-desc',
+  '.price-val',
+  '.term-num','.term-desc',
+  '.g-title','.g-desc','.g-faq-q','.g-faq div',
+  '.cta-tag','.cta-block h3','.cta-block p','.cta-sub',
+  '.sig-name','.sig-role','.sig-contact',
+  '.doc-footer'
+].join(',');
+
+/* ── PIN ── */
+function doPin() {
+  var pin = document.getElementById('pin-input').value.trim();
+  if (atob(_PIN) === pin) {
+    try { sessionStorage.setItem(PSK, '1'); } catch(e) {}
+    try { posthog.capture('proposal_unlocked', { proposal: PROPOSAL_ID, client: 'Concha y Toro' }); } catch(e) {}
+    showProposal(false);
+  } else if (sessionStorage.getItem(ASK) && pin === '') {
+    showProposal(true);
+  } else {
+    try { posthog.capture('pin_failed', { proposal: PROPOSAL_ID }); } catch(e) {}
+    var inp = document.getElementById('pin-input');
+    document.getElementById('pin-error').style.display = 'block';
+    inp.value = ''; inp.classList.remove('shake'); void inp.offsetWidth;
+    inp.classList.add('shake'); inp.focus();
+    setTimeout(function(){ inp.classList.remove('shake'); }, 400);
+  }
+}
+
+/* ── Analytics tracking ── */
+function _initTracking(proposal) {
+  if (_trackingDone) return;
+  _trackingDone = true;
+  try {
+    posthog.capture('proposal_view', {
+      proposal: proposal,
+      client: 'Concha y Toro',
+      referrer: document.referrer || 'direct',
+      screen_w: window.innerWidth,
+      screen_h: window.innerHeight
+    });
+  } catch(e) {}
+}
+
+/* ── Section time ── */
+function _initSectionTime() {
+  var THRESHOLD = 60000;
+  var enteredAt = {};
+  var fired = {};
+  var obs = new IntersectionObserver(function(entries) {
+    var now = Date.now();
+    entries.forEach(function(entry) {
+      var id = entry.target.id;
+      var lbl = entry.target.querySelector('.s-label');
+      var name = lbl ? lbl.textContent.trim() : id;
+      if (entry.isIntersecting) {
+        enteredAt[id] = now;
+      } else if (enteredAt[id] && !fired[id]) {
+        var elapsed = now - enteredAt[id];
+        if (elapsed >= THRESHOLD) {
+          fired[id] = true;
+          try { posthog.capture('section_time', { proposal: PROPOSAL_ID, section: id, section_label: name, seconds: Math.round(elapsed / 1000) }); } catch(e) {}
+        }
+        delete enteredAt[id];
+      }
+    });
+  }, { threshold: 0.4 });
+  ['s01','s02','s03','s04','s05','s06','s07','s08','s09'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
+}
+
+/* ── CTA hover ── */
+function _initCtaHover() {
+  var btn = document.getElementById('main-cta');
+  if (!btn) return;
+  var fired = false;
+  btn.addEventListener('mouseenter', function() {
+    if (fired) return;
+    fired = true;
+    try { posthog.capture('cta_hover', { proposal: PROPOSAL_ID, device: 'desktop' }); } catch(e) {}
+  });
+}
+
+/* ── Side navigation ── */
+function _initSideNav() {
+  var IDS = ['s01','s02','s03','s04','s05','s06','s07','s08','s09'];
+  function scrollTo(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  var nav = document.getElementById('sidenav');
+  if (nav) {
+    nav.classList.add('visible');
+    var items = nav.querySelectorAll('.sidenav-item');
+    items.forEach(function(item) {
+      item.addEventListener('click', function() {
+        scrollTo(item.dataset.s);
+        try { posthog.capture('sidenav_click', { proposal: PROPOSAL_ID, section: item.dataset.s, section_label: item.querySelector('.sidenav-label').textContent.trim(), device: 'desktop' }); } catch(e) {}
+      });
+    });
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        items.forEach(function(item) {
+          item.classList.toggle('sn-active', item.dataset.s === entry.target.id);
+        });
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -55% 0px' });
+    IDS.forEach(function(id) { var el = document.getElementById(id); if (el) obs.observe(el); });
+  }
+  var fab = document.getElementById('sn-fab');
+  var sheet = document.getElementById('sn-sheet');
+  var backdrop = document.getElementById('sn-backdrop');
+  var closeBtn = document.getElementById('sn-close');
+  function openSheet() { sheet.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeSheet() { sheet.classList.remove('open'); document.body.style.overflow = ''; }
+  if (fab) fab.addEventListener('click', openSheet);
+  if (backdrop) backdrop.addEventListener('click', closeSheet);
+  if (closeBtn) closeBtn.addEventListener('click', closeSheet);
+  if (sheet) sheet.querySelectorAll('.sn-sheet-item').forEach(function(item) {
+    item.addEventListener('click', function() {
+      try { posthog.capture('sidenav_click', { proposal: PROPOSAL_ID, section: item.dataset.s, section_label: item.querySelector('.sn-sheet-lbl').textContent.trim(), device: 'mobile' }); } catch(e) {}
+      closeSheet(); setTimeout(function() { scrollTo(item.dataset.s); }, 120);
+    });
+  });
+}
+
+/* ── Show proposal ── */
+function showProposal(asAdmin) {
+  isAdmin = !!asAdmin;
+  document.getElementById('pin-screen').style.display = 'none';
+  document.getElementById('proposal').style.display   = 'block';
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  requestAnimationFrame(function() {
+    window.scrollTo(0, 0);
+    requestAnimationFrame(function() { window.scrollTo(0, 0); });
+  });
+  if (isAdmin) {
+    try { posthog.opt_out_capturing(); } catch(e) {}
+    _assignIds(); _restoreEdits(); _initAdminBar();
+  } else {
+    _initTracking(PROPOSAL_ID);
+    try { posthog.startSessionRecording(); } catch(e) {}
+    _initSectionTime();
+    _initCtaHover();
+  }
+  _initSideNav();
+}
+
+/* ── Stable element IDs ── */
+function _assignIds() {
+  document.querySelectorAll(EDIT_SEL).forEach(function(el, i) {
+    if (!el.dataset.eid) el.dataset.eid = 'e' + i;
+  });
+  document.querySelectorAll('#proposal td,#proposal th').forEach(function(el, i) {
+    if (!el.dataset.eid) el.dataset.eid = 'td' + i;
+  });
+}
+
+/* ── Persist edits ── */
+function _saveEdits() {
+  var data = {};
+  document.querySelectorAll('[data-eid]').forEach(function(el) {
+    data[el.dataset.eid] = el.innerHTML;
+  });
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify(data)); lastSaved = Date.now(); } catch(e) {}
+  var ind = document.getElementById('ab-saved');
+  if (ind) { ind.textContent = 'Guardado'; setTimeout(function(){ ind.textContent = ''; }, 2000); }
+}
+
+function _restoreEdits() {
+  try {
+    var raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    Object.keys(data).forEach(function(eid) {
+      var el = document.querySelector('[data-eid="' + eid + '"]');
+      if (el) el.innerHTML = data[eid];
+    });
+  } catch(e) {}
+}
+
+function _clearEdits() {
+  try { localStorage.removeItem(SAVE_KEY); } catch(e) {}
+  location.reload();
+}
+
+/* ── Admin bar ── */
+function _initAdminBar() {
+  var FT = 'pin-screen';
+  var bar = document.createElement('div');
+  bar.id = 'admin-bar';
+  bar.innerHTML = '<span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)">Admin · MAD-CYT-01</span>'
+    + '<div style="display:flex;gap:8px;align-items:center">'
+    + '<span id="ab-saved" style="font-size:11px;color:rgba(255,255,255,.4);min-width:60px;text-align:right"></span>'
+    + '<button onclick="_toggleEdit()">Editar</button>'
+    + '<button onclick="_saveEdits()">Guardar</button>'
+    + '<button onclick="_clearEdits()">Restaurar</button>'
+    + '</div>';
+  document.body.appendChild(bar);
+  document.querySelectorAll(EDIT_SEL).forEach(function(el) {
+    el.addEventListener('input', function() {
+      clearTimeout(_saveTimer);
+      _saveTimer = setTimeout(_saveEdits, 1200);
+    });
+  });
+  document.addEventListener('keydown', function(e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 's') { e.preventDefault(); _saveEdits(); }
+  });
+}
+
+function _toggleEdit() {
+  editMode = !editMode;
+  document.getElementById('admin-bar').classList.toggle('edit-active', editMode);
+  document.querySelectorAll(EDIT_SEL).forEach(function(el) {
+    el.contentEditable = editMode ? 'true' : 'false';
+  });
+  document.querySelectorAll('#proposal td, #proposal th').forEach(function(el) {
+    el.contentEditable = editMode ? 'true' : 'false';
+  });
+}
+
+/* ── Image modal ── */
+function openModal(src, cap) {
+  var m = document.getElementById('img-modal');
+  document.getElementById('img-modal-img').src = src;
+  document.getElementById('img-modal-cap').textContent = cap || '';
+  m.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('img-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+/* ── Enter key ── */
+document.getElementById('pin-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') { e.preventDefault(); doPin(); }
+});
+document.getElementById('pin-input').addEventListener('input', function() {
+  document.getElementById('pin-error').style.display = 'none';
+});
+
+/* ── Auto-restore session ── */
+(function() {
+  try {
+    if (sessionStorage.getItem(PSK) === '1') { showProposal(false); return; }
+    if (sessionStorage.getItem(ASK)) { showProposal(true); return; }
+  } catch(e) {}
+  document.getElementById('pin-input').focus();
+})();
+
+/* ── Auto-logout ── */
+setTimeout(function() {
+  try { sessionStorage.removeItem(PSK); } catch(e) {}
+}, 120000);
+</script>
+
+<style>
+#admin-bar{position:fixed;bottom:0;left:0;right:0;z-index:500;background:#111213;border-top:1px solid rgba(255,255,255,.1);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+#admin-bar button{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.15);border-radius:5px;padding:6px 14px;font-family:var(--font);font-size:12px;font-weight:600;cursor:pointer;letter-spacing:.04em;}
+#admin-bar button:hover{opacity:.82;}
+#admin-bar.edit-active{border-color:rgba(216,66,0,.5);}
+</style>
+
+</body>
+</html>

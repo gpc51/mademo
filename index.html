@@ -277,7 +277,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="card-meta">
           <div class="cmi"><div class="cmi-label">Inversión</div><div class="cmi-val">~$116K–$138K</div></div>
           <div class="cmi"><div class="cmi-label">ROI est.</div><div class="cmi-val">1,100%–3,500%</div></div>
-          <div class="cmi"><div class="cmi-label">Circuitos</div><div class="cmi-val">Hasta 3</div></div>
+          <div class="cmi"><div class="cmi-label">Activa desde</div><div class="cmi-val">Abr 2026</div></div>
         </div>
       </a>
 
@@ -289,7 +289,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="card-meta">
           <div class="cmi"><div class="cmi-label">Inversión</div><div class="cmi-val">~$37.5K–$52.5K</div></div>
           <div class="cmi"><div class="cmi-label">ROI est.</div><div class="cmi-val">300%–700%</div></div>
-          <div class="cmi"><div class="cmi-label">Líneas</div><div class="cmi-val">Hasta 3</div></div>
+          <div class="cmi"><div class="cmi-label">Activa desde</div><div class="cmi-val">Abr 2026</div></div>
         </div>
       </a>
 
@@ -299,9 +299,9 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="card-industry">Refinación · Petroquímica · Perú</div>
         <div class="card-ref">MAD-REPSOL-01 · Abril 2026</div>
         <div class="card-meta">
-          <div class="cmi"><div class="cmi-label">Piloto</div><div class="cmi-val">90 días</div></div>
-          <div class="cmi"><div class="cmi-label">ROI bench.</div><div class="cmi-val">10:1–30:1</div></div>
-          <div class="cmi"><div class="cmi-label">Activos</div><div class="cmi-val">PLEM · CDU · FCC</div></div>
+          <div class="cmi"><div class="cmi-label">Inversión</div><div class="cmi-val">~$460K año 1</div></div>
+          <div class="cmi"><div class="cmi-label">ROI est.</div><div class="cmi-val">10:1–30:1</div></div>
+          <div class="cmi"><div class="cmi-label">Activa desde</div><div class="cmi-val">Abr 2026</div></div>
         </div>
       </a>
 
@@ -367,16 +367,17 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="card-ref">MAD-LALA-01 · Pipeline</div>
       </div>
 
-      <div class="card" style="opacity:.55;cursor:default;">
-        <div class="card-status status-draft"><span class="status-dot"></span>En preparación</div>
+      <a href="cyt/" class="card">
+        <div class="card-status status-draft" style="background:rgba(37,99,235,.08);color:#2563eb;"><span class="status-dot" style="background:#2563eb"></span>En revisión</div>
         <div class="card-company">Concha y Toro</div>
         <div class="card-industry">Vitivinícola · Embotellado · Chile</div>
-        <div class="card-ref">MAD-CYT-01 · En preparación</div>
+        <div class="card-ref">MAD-CYT-01 · Mayo 2026</div>
         <div class="card-meta">
-          <div class="cmi"><div class="cmi-label">Prioridad</div><div class="cmi-val">Tier 1</div></div>
-          <div class="cmi"><div class="cmi-label">Sector</div><div class="cmi-val">Bebidas / Vino</div></div>
+          <div class="cmi"><div class="cmi-label">Inversión</div><div class="cmi-val">~$168K año 1</div></div>
+          <div class="cmi"><div class="cmi-label">ROI est.</div><div class="cmi-val">5:1–15:1</div></div>
+          <div class="cmi"><div class="cmi-label">Activos</div><div class="cmi-val">Chillers · Embot. · Comp.</div></div>
         </div>
-      </div>
+      </a>
 
       <div class="card" style="opacity:.45;cursor:default;">
         <div class="card-status status-draft"><span class="status-dot"></span>Pipeline</div>
@@ -385,6 +386,19 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="card-ref">MAD-BAYER-01 · Pipeline</div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- ── ANALYTICS SECTION ── -->
+  <div class="proposals" style="padding-top:0" id="analytics-section">
+    <div class="proposals-label">Analytics de propuestas</div>
+    <div id="ph-embed-wrap" style="border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--white);">
+      <div id="ph-placeholder" style="padding:32px 28px;display:flex;flex-direction:column;gap:10px;align-items:flex-start;">
+        <div style="font-size:13px;font-weight:700;color:var(--black)">Dashboard PostHog no configurado</div>
+        <div style="font-size:12.5px;color:var(--gray);line-height:1.65;max-width:520px">Para activar: en PostHog, crea un dashboard "Sistema de Propuestas", habilita <strong>Share publicly</strong>, copia la URL de embed y reemplaza el placeholder en <code style="font-family:monospace;font-size:11px;background:var(--bg);padding:1px 5px;border-radius:3px">index.html</code> · atributo <code style="font-family:monospace;font-size:11px;background:var(--bg);padding:1px 5px;border-radius:3px">data-ph-src</code>.</div>
+        <a href="https://us.posthog.com" target="_blank" rel="noopener" style="font-size:12px;font-weight:600;color:var(--orange);text-decoration:none;margin-top:4px">Ir a PostHog &rarr;</a>
+      </div>
+      <iframe id="ph-iframe" data-ph-src="" src="" style="display:none;width:100%;height:700px;border:none;" loading="lazy" title="Analytics de propuestas"></iframe>
     </div>
   </div>
 
@@ -418,6 +432,7 @@ function enterHub(u) {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('hub-screen').style.display   = 'block';
   document.getElementById('hub-user').textContent       = u;
+  _initPhEmbed();
 }
 
 function doLogout() {
@@ -456,6 +471,19 @@ document.getElementById('fu').addEventListener('input', function() {
 document.getElementById('fp').addEventListener('input', function() {
   document.getElementById('lerr').style.display = 'none';
 });
+
+// Activar iframe de PostHog si tiene src configurado
+function _initPhEmbed() {
+  var iframe = document.getElementById('ph-iframe');
+  var placeholder = document.getElementById('ph-placeholder');
+  if (!iframe) return;
+  var src = iframe.getAttribute('data-ph-src');
+  if (src && src.length > 10) {
+    iframe.src = src;
+    iframe.style.display = 'block';
+    if (placeholder) placeholder.style.display = 'none';
+  }
+}
 
 // Restaurar sesión si existe
 (function() {
