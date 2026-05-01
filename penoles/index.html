@@ -1272,7 +1272,11 @@ function showProposal(asAdmin) {
   isAdmin = !!asAdmin;
   document.getElementById('pin-screen').style.display = 'none';
   document.getElementById('proposal').style.display   = 'block';
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
   requestAnimationFrame(function() {
+    window.scrollTo(0, 0);
     requestAnimationFrame(function() { window.scrollTo(0, 0); });
   });
   if (isAdmin) {
