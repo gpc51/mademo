@@ -264,6 +264,16 @@
   .pin-error{background:#fff5f5;border:1px solid #fed7d7;color:var(--red);border-radius:6px;padding:9px 14px;font-size:13px;margin-top:12px;display:none;}
   .pin-footer{margin-top:24px;font-size:11px;color:var(--gray-l);letter-spacing:.04em;}
 
+  /* ── SIDENAV ── */
+  .sidenav{position:fixed;right:28px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1px;z-index:200;opacity:0;pointer-events:none;transition:opacity .4s;}
+  .sidenav.visible{opacity:1;pointer-events:all;}
+  .sidenav-item{display:flex;align-items:center;gap:10px;cursor:pointer;padding:5px 0;justify-content:flex-end;}
+  .sidenav-label{font-size:9.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-l);white-space:nowrap;opacity:0;transform:translateX(6px);transition:opacity .18s,transform .18s,color .18s;font-family:var(--font);}
+  .sidenav-dot{width:5px;height:5px;border-radius:50%;background:var(--border);flex-shrink:0;transition:background .18s,transform .2s,box-shadow .18s;}
+  .sidenav-item:hover .sidenav-label,.sidenav-item.sn-active .sidenav-label{opacity:1;transform:translateX(0);color:var(--orange);}
+  .sidenav-item:hover .sidenav-dot,.sidenav-item.sn-active .sidenav-dot{background:var(--orange);transform:scale(1.7);box-shadow:0 0 0 3px var(--orange-bg);}
+  @media(max-width:1220px){.sidenav{display:none;}}
+
   /* ── RESPONSIVE ── */
   @media(max-width:720px){
     .cover{padding:24px 20px 28px;}
@@ -434,7 +444,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <div class="page">
 
   <!-- ── 01 RESUMEN EJECUTIVO ── -->
-  <div class="section">
+  <div class="section" id="s01">
     <div class="s-label">01. Resumen ejecutivo</div>
     <div class="s-title" data-eid="exec-title">En una refinería de la complejidad de La Pampilla, el 80% de los incidentes en activos de proceso son predecibles semanas antes de que ocurran. Made OS los detecta.</div>
     <p class="s-lead" data-eid="exec-lead">Las refinerías de clase mundial han establecido el monitoreo predictivo continuo como estándar operativo. Con $4,069M en ventas anuales, el 50% de la capacidad nacional de refinación y un mercado que creció 7.7% en 2025, cada día de operación continua representa entre $770,000 y $1.1M en margen de refinación a tasas actuales. Detectar la degradación progresiva antes de que se convierta en falla no es una ventaja: es el estándar que define a los operadores de referencia global.<br><span style="font-size:12px;color:var(--gray-l)">Fuentes: Refinería La Pampilla — Informe de Gerencia 3T2025 · Memoria Anual 2025 · Repsol S.A. FY2025 Results · OSINERGMIN 2025 · McKinsey · Energies Media 2025</span></p>
@@ -479,7 +489,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 02 CONTEXTO OPERACIONAL ── -->
-  <div class="section">
+  <div class="section" id="s02">
     <div class="s-label">02. El contexto de La Pampilla</div>
     <div class="s-title" data-eid="diag-title">Tres palancas de valor. Cualquiera justifica el programa.</div>
     <p class="s-lead" data-eid="diag-lead">La Pampilla concentra en un solo sitio la infraestructura crítica, el margen operativo y la oportunidad de optimización que definen el mayor retorno posible de un programa de inteligencia operacional.</p>
@@ -525,7 +535,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 03 SOLUCIÓN MADE OS ── -->
-  <div class="section">
+  <div class="section" id="s03">
     <div class="s-label">03. Solución Made OS</div>
     <div class="s-title" data-eid="solucion-title">Repsol Perú + Made OS</div>
     <p class="s-lead" data-eid="solucion-lead">Made OS es una capa de inteligencia multi-agente que se conecta a los sensores y sistemas de control existentes. Integración en menos de 30 días, sin detener la operación. Modo solo-lectura permanente: Made nunca escribe en PLCs ni SCADA.</p>
@@ -587,7 +597,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 04 CASOS DE USO ── -->
-  <div class="section">
+  <div class="section" id="s04">
     <div class="s-label">04. Casos de uso prioritarios</div>
     <div class="s-title" data-eid="casos-title">Los tres casos · ordenados por impacto financiero</div>
     <p class="s-lead" data-eid="casos-lead">El programa arranca con los Casos 1 y 2 en los activos de mayor criticidad. El Caso 3 se activa en el segundo año sobre la base del modelo ya entrenado.</p>
@@ -660,7 +670,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 05 MODALIDADES DE INTEGRACIÓN ── -->
-  <div class="section">
+  <div class="section" id="s05">
     <div class="s-label">05. Modalidades de integración</div>
     <div class="s-title" data-eid="integracion-title">Dos caminos de implementación</div>
     <p class="s-lead" data-eid="integracion-lead">Made OS se adapta a la infraestructura existente de IT/OT de Repsol Perú. En la sesión técnica inicial definimos cuál es el más adecuado para cada activo candidato, con el equipo de IT y operaciones.</p>
@@ -739,7 +749,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 06 PRECIO Y ROI ── -->
-  <div class="section">
+  <div class="section" id="s06">
     <div class="s-label">06. Precio y retorno de inversión</div>
 
     <div class="pricing-wrap">
@@ -889,7 +899,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 07 REQUERIMIENTOS ── -->
-  <div class="section">
+  <div class="section" id="s07">
     <div class="s-label">07. Requerimientos del programa</div>
     <p class="s-lead" data-eid="reqs-lead">Made OS trabaja sobre la infraestructura existente. Estos tres requisitos determinan si el activo candidato califica para el programa y qué tipo de integración aplica.</p>
     <div class="req-grid">
@@ -918,7 +928,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 08 TÉRMINOS COMERCIALES ── -->
-  <div class="section">
+  <div class="section" id="s08">
     <div class="s-label">08. Términos comerciales</div>
     <div class="s-title" data-eid="terminos-title">Lo que cada parte aporta y recibe</div>
     <p class="s-lead" data-eid="terminos-lead">Modelo de colaboración con riesgo compartido. Made asume el riesgo técnico y de resultado. Repsol Perú captura el valor operativo y el ROI.</p>
@@ -949,7 +959,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 09 COMPARATIVA ── -->
-  <div class="section">
+  <div class="section" id="s09">
     <div class="s-label">09. Made OS vs. APM tradicional</div>
     <div class="s-title" data-eid="comp-title">Una categoría diferente · a 1/10 del precio</div>
     <table class="comp-table">
@@ -981,7 +991,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 10 GARANTÍA ── -->
-  <div class="section">
+  <div class="section" id="s10">
     <div class="s-label">10. Garantía</div>
     <div class="s-title" data-eid="garantia-title">Made asume el riesgo técnico y de resultado</div>
     <div class="guarantee">
@@ -1020,12 +1030,12 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="divider"></div>
 
   <!-- ── 11 SESIÓN INICIAL ── -->
-  <div class="section">
+  <div class="section" id="s11">
     <div class="s-label">11. Sesión de inicio</div>
     <p class="s-lead" data-eid="sesion-lead">Una sesión técnica con el equipo fundador de Made para evaluar el estado de instrumentación de la refinería, seleccionar los activos prioritarios y construir el plan de programa en una página. Sin compromiso de contratación. Sin consultoría previa.</p>
     <div class="cta-block">
       <div class="cta-left">
-        <div class="cta-tag" data-eid="sesion-cta-tag">Programa Refinería La Pampilla</div>
+        <div class="cta-tag" data-eid="sesion-cta-tag">Programa Cero Paros · La Pampilla</div>
         <h3>Solicite su sesión técnica de evaluación</h3>
         <p>Sesión de 45 minutos · Remota · Participantes sugeridos: Gerente de Operaciones + Jefe de Mantenimiento + IT/OT · Asistentes Made: Gerardo Peña (CEO) + Ramiro Pantoja (CTO). Entregable: mapa de activos candidatos + tipo de integración recomendada + plan de piloto en 1 página. Una vez confirmados los activos candidatos, el piloto inicia en menos de 30 días hábiles.</p>
       </div>
@@ -1052,6 +1062,21 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <div class="doc-footer" data-eid="doc-footer">
   <strong>MADE OS</strong> × REPSOL PERÚ · MAD-REPSOL-01 · Abril 2026 · CONFIDENCIAL
 </div>
+
+<!-- ── SIDENAV ── -->
+<nav class="sidenav" id="sidenav" aria-label="Navegación de secciones">
+  <div class="sidenav-item" data-s="s01"><span class="sidenav-label">01 · Resumen</span><span class="sidenav-dot"></span></div>
+  <div class="sidenav-item" data-s="s02"><span class="sidenav-label">02 · Contexto</span><span class="sidenav-dot"></span></div>
+  <div class="sidenav-item" data-s="s03"><span class="sidenav-label">03 · Solución</span><span class="sidenav-dot"></span></div>
+  <div class="sidenav-item" data-s="s04"><span class="sidenav-label">04 · Casos de uso</span><span class="sidenav-dot"></span></div>
+  <div class="sidenav-item" data-s="s05"><span class="sidenav-label">05 · Integración</span><span class="sidenav-dot"></span></div>
+  <div class="sidenav-item" data-s="s06"><span class="sidenav-label">06 · Precio y ROI</span><span class="sidenav-dot"></span></div>
+  <div class="sidenav-item" data-s="s07"><span class="sidenav-label">07 · Requerimientos</span><span class="sidenav-dot"></span></div>
+  <div class="sidenav-item" data-s="s08"><span class="sidenav-label">08 · Términos</span><span class="sidenav-dot"></span></div>
+  <div class="sidenav-item" data-s="s09"><span class="sidenav-label">09 · Comparativa</span><span class="sidenav-dot"></span></div>
+  <div class="sidenav-item" data-s="s10"><span class="sidenav-label">10 · Garantía</span><span class="sidenav-dot"></span></div>
+  <div class="sidenav-item" data-s="s11"><span class="sidenav-label">11 · Sesión</span><span class="sidenav-dot"></span></div>
+</nav>
 
 </div><!-- /proposal -->
 
@@ -1190,6 +1215,33 @@ function showProposal(asAdmin) {
   } else {
     _initTracking(PROPOSAL_ID);
   }
+  _initSideNav();
+}
+
+/* ── SIDENAV ── */
+function _initSideNav() {
+  var nav = document.getElementById('sidenav');
+  if (!nav) return;
+  nav.classList.add('visible');
+  var items = nav.querySelectorAll('.sidenav-item');
+  items.forEach(function(item) {
+    item.addEventListener('click', function() {
+      var el = document.getElementById(item.dataset.s);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      items.forEach(function(item) {
+        item.classList.toggle('sn-active', item.dataset.s === entry.target.id);
+      });
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -55% 0px' });
+  ['s01','s02','s03','s04','s05','s06','s07','s08','s09','s10','s11'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
 }
 
 /* ── Stable element IDs ── */
