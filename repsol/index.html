@@ -265,17 +265,16 @@
   .pin-footer{margin-top:24px;font-size:11px;color:var(--gray-l);letter-spacing:.04em;}
 
   /* ── SIDENAV DESKTOP ── */
-  .sidenav{position:fixed;left:24px;top:50%;transform:translateY(-50%);z-index:200;opacity:0;pointer-events:none;transition:opacity .4s;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px 14px;box-shadow:0 2px 16px rgba(0,0,0,.07),0 1px 4px rgba(0,0,0,.04);}
+  .sidenav{position:fixed;left:28px;top:50%;transform:translateY(-50%);z-index:200;opacity:0;pointer-events:none;transition:opacity .4s;}
   .sidenav.visible{opacity:1;pointer-events:all;}
-  .sidenav-hd{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);}
-  .sidenav-list{position:relative;display:flex;flex-direction:column;}
-  .sidenav-list::before{content:'';position:absolute;left:3px;top:8px;bottom:8px;width:1px;background:var(--border);}
-  .sidenav-item{display:flex;align-items:center;gap:10px;cursor:pointer;padding:5px 0;position:relative;}
-  .sidenav-dot{width:7px;height:7px;border-radius:50%;background:var(--white);border:1.5px solid var(--border);flex-shrink:0;position:relative;z-index:1;transition:background .18s,border-color .18s,transform .2s,box-shadow .18s;}
-  .sidenav-label{font-size:10px;font-weight:500;letter-spacing:.02em;color:var(--gray-l);white-space:nowrap;transition:color .18s,font-weight .18s;font-family:var(--font);}
-  .sidenav-item.sn-active .sidenav-dot{background:var(--orange);border-color:var(--orange);transform:scale(1.25);box-shadow:0 0 0 3px var(--orange-bg);}
-  .sidenav-item.sn-active .sidenav-label{color:var(--orange);font-weight:600;}
-  .sidenav-item:hover:not(.sn-active) .sidenav-dot{border-color:var(--gray-d);background:var(--bg);}
+  .sidenav-hd{font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gray-l);margin-bottom:10px;}
+  .sidenav-list{display:flex;flex-direction:column;gap:1px;}
+  .sidenav-item{display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 0;}
+  .sidenav-dot{width:5px;height:5px;border-radius:50%;background:var(--border);flex-shrink:0;transition:background .18s,transform .2s,box-shadow .18s;}
+  .sidenav-label{font-size:9.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-l);white-space:nowrap;transition:color .18s;font-family:var(--font);}
+  .sidenav-item.sn-active .sidenav-dot{background:var(--orange);transform:scale(1.7);box-shadow:0 0 0 3px var(--orange-bg);}
+  .sidenav-item.sn-active .sidenav-label{color:var(--orange);}
+  .sidenav-item:hover:not(.sn-active) .sidenav-dot{background:var(--gray-d);}
   .sidenav-item:hover:not(.sn-active) .sidenav-label{color:var(--dark);}
   @media(max-width:1220px){.sidenav{display:none;}}
   /* ── SIDENAV MOBILE FAB + SHEET ── */
