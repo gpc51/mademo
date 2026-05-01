@@ -1263,8 +1263,51 @@ function showProposal(asAdmin) {
   } else {
     _initTracking(PROPOSAL_ID);
     try { posthog.startSessionRecording(); } catch(e) {}
+    _initSectionTime();
+    _initCtaHover();
   }
   _initSideNav();
+}
+
+/* ── SECTION TIME ── */
+function _initSectionTime() {
+  var THRESHOLD = 60000;
+  var enteredAt = {};
+  var fired = {};
+  var obs = new IntersectionObserver(function(entries) {
+    var now = Date.now();
+    entries.forEach(function(entry) {
+      var id = entry.target.id;
+      var lbl = entry.target.querySelector('.s-label');
+      var name = lbl ? lbl.textContent.trim() : id;
+      if (entry.isIntersecting) {
+        enteredAt[id] = now;
+      } else if (enteredAt[id] && !fired[id]) {
+        var elapsed = now - enteredAt[id];
+        if (elapsed >= THRESHOLD) {
+          fired[id] = true;
+          try { posthog.capture('section_time', { proposal: PROPOSAL_ID, section: id, section_label: name, seconds: Math.round(elapsed / 1000) }); } catch(e) {}
+        }
+        delete enteredAt[id];
+      }
+    });
+  }, { threshold: 0.4 });
+  ['s01','s02','s03','s04','s05','s06','s07','s08','s09','s10','s11'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
+}
+
+/* ── CTA HOVER ── */
+function _initCtaHover() {
+  var btn = document.getElementById('main-cta');
+  if (!btn) return;
+  var fired = false;
+  btn.addEventListener('mouseenter', function() {
+    if (fired) return;
+    fired = true;
+    try { posthog.capture('cta_hover', { proposal: PROPOSAL_ID, device: 'desktop' }); } catch(e) {}
+  });
 }
 
 /* ── SIDENAV ── */
