@@ -609,7 +609,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <div class="caso-impact">
         <div class="caso-impact-lbl">Continuidad protegida</div>
         <div class="caso-impact-val" data-eid="caso1-impact">$18.7M+</div>
-        <div class="caso-impact-sub">USD / año en valor operacional y regulatorio protegido · benchmark refinerías complejas de infraestructura marítima</div>
+        <div class="caso-impact-sub">USD / año protegido · lucro cesante $900K/día × paros de recepción · exposición regulatoria OSINERGMIN por incidente de integridad · costos de remediación ambiental y reputacional · benchmark IHS Markit · Wood Mackenzie</div>
       </div>
     </div>
 
@@ -636,18 +636,18 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
     <div class="caso-card">
       <div>
-        <div class="caso-label">Caso 03 · Expansión año 2</div>
+        <div class="caso-label">Caso 03 · Año 2 · Sobre la base del modelo entrenado</div>
         <div class="caso-title" data-eid="caso3-title">Optimización de margen de refinación</div>
-        <div class="caso-desc" data-eid="caso3-desc">En una refinería compleja con múltiples fuentes de crudo importado, la optimización de la mezcla y el scheduling de unidades tiene un impacto directo y medible en el margen de refinación. Made OS aprende el comportamiento de rendimiento bajo diferentes composiciones de crudo (Ecuador, Colombia, Nigeria) y configuraciones de unidades, maximizando el yield de productos de alto valor. Un incremento del 0.1% en margen sobre $4,069M de revenue equivale a más de $4M anuales. El impacto es medible desde el primer ciclo de optimización.</div>
+        <div class="caso-desc" data-eid="caso3-desc">Una vez que Made OS ha operado 12 meses sobre las unidades reales de La Pampilla, el modelo acumula el comportamiento de rendimiento bajo distintas composiciones de crudo (Ecuador, Colombia, Nigeria) y configuraciones de carga. Esa base de datos operativa, que no existe antes del año 1, es la que habilita la siguiente capa: detección de desviaciones de yield y recomendaciones de scheduling con impacto directo en margen. El alcance, los activos candidatos y las condiciones de este caso se definen conjuntamente al cierre del año 1, con datos reales como única referencia válida.</div>
         <div class="caso-assets" data-eid="caso3-assets">
-          <strong>Valor cuantificado</strong>
-          Un incremento del 0.1% en margen sobre $4,069M de revenue = $4.1M adicionales/año. La combinación de blend optimization + yield prediction típicamente entrega 0.15%–0.3% de mejora en margen en refinería compleja.
+          <strong>Potencial cuantificado · sujeto a alcance año 1</strong>
+          Un incremento del 0.1% en margen sobre $4,069M de revenue = $4.1M adicionales/año. La combinación de yield monitoring + detección de desviaciones de blend típicamente entrega 0.15%–0.3% de mejora en refinería compleja con modelo entrenado en operación real.
         </div>
       </div>
       <div class="caso-impact">
         <div class="caso-impact-lbl">Mejora de margen</div>
         <div class="caso-impact-val" data-eid="caso3-impact">$6M–$12M</div>
-        <div class="caso-impact-sub">USD / año estimado · 0.15%–0.3% mejora en margen sobre $4,069M revenue</div>
+        <div class="caso-impact-sub">USD / año · estimado · sujeto a alcance definido en año 1 · aplicable solo sobre modelo entrenado en operación real</div>
       </div>
     </div>
 
@@ -810,7 +810,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <div class="roi-item">
         <div class="roi-lbl" data-eid="roi-card2-lbl">Ahorro en paros no planificados</div>
         <div class="roi-val" data-eid="roi-card2-val">$2.7M–$4M</div>
-        <div class="roi-delta" data-eid="roi-card2-delta">30% reducción · 12–18 días × $750K/día</div>
+        <div class="roi-delta" data-eid="roi-card2-delta">30% reducción · 12–18 días × $900K/día</div>
       </div>
       <div class="roi-item">
         <div class="roi-lbl" data-eid="roi-card3-lbl">Payback del programa</div>
@@ -878,7 +878,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8l2 2 4-4"/></svg>
       <div>
         <strong>Definición de "Evento Crítico Evitado" para Repsol</strong><br>
-        <strong>Clase A · Incidente de integridad evitado:</strong> alerta emitida antes del evento, intervención ejecutada por mantenimiento, evidencia en bitácora, contrafactual razonable de que el activo hubiera generado incidente ambiental o de proceso. <em>Genera success fee de $15,000.</em><br>
+        <strong>Clase A · Incidente de integridad evitado:</strong> alerta emitida con ≥72 horas de anticipación, parámetro fuera de rango ≥15% del baseline establecido en los primeros 30 días, intervención documentada en CMMS con número de orden de trabajo, y árbitro técnico independiente (designado al inicio del programa) confirma contrafactual. <em>Genera success fee de $15,000.</em><br>
         <strong>Clase B · Paro de proceso evitado:</strong> paro mayor de unidad de proceso evitado mediante intervención predictiva documentada. <em>Genera success fee de $15,000.</em><br>
         <strong>Clase C · Alerta útil validada:</strong> detección correcta que alimenta el modelo. <em>No genera fee.</em><br>
         <em style="font-size:12px">Baseline primeros 30 días · ventana de disputa 10 días hábiles · árbitro técnico independiente designado al inicio del programa.</em>
@@ -996,7 +996,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="g-items">
           <div class="g-item"><div class="g-check">✓</div><span>Si el programa demuestra ROI positivo, el 100% del fee base pagado durante el piloto se acredita al contrato del primer año. Repsol no paga dos veces.</span></div>
           <div class="g-item"><div class="g-check">✓</div><span>Made mantiene soporte operativo y analítico completo durante cualquier extensión de garantía, sin degradación del servicio.</span></div>
-          <div class="g-item"><div class="g-check">✓</div><span>Los modelos entrenados y el historial de datos son propiedad de Repsol Perú independientemente del resultado del programa.</span></div>
+          <div class="g-item"><div class="g-check">✓</div><span>Los modelos entrenados y el historial de datos son propiedad de Repsol Perú independientemente del resultado del programa. Entrega en formato estándar exportable (ONNX / archivos abiertos): portabilidad real, no solo cláusula de propiedad.</span></div>
+          <div class="g-item"><div class="g-check">✓</div><span>SLA de respuesta documentado antes del inicio: Clase A ≤15 minutos · Clase B ≤2 horas · disponibilidad 24/7/365. Contacto de guardia técnico designado con canal directo, independiente de zona horaria.</span></div>
         </div>
       </div>
       <div class="g-faqs">
