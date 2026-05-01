@@ -213,7 +213,7 @@
   }
 
   .kanban-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
-  .kanban { display: grid; grid-template-columns: repeat(5, 268px); gap: 10px; min-width: max-content; }
+  .kanban { display: grid; grid-template-columns: repeat(6, 252px); gap: 10px; min-width: max-content; }
 
   .kb-col {
     background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
@@ -260,6 +260,13 @@
   .kb-badge-t3     { background: var(--bg); color: var(--gray-l); border: 1px solid var(--border); }
   .kb-badge-active { background: rgba(22,163,74,.1); color: #15803d; }
   .kb-badge-review { background: var(--orange-bg); color: var(--orange); }
+  .kb-badge-draft  { background: rgba(109,40,217,.08); color: #7c3aed; }
+
+  .kb-col[data-stage="contrato"] { border-top: 3px solid #7c3aed; }
+  .kb-col[data-stage="contrato"] .kb-stage-name { color: #6d28d9; }
+  .kb-contract-field { display: flex; flex-direction: column; gap: 2px; }
+  .kb-contract-label { font-size: 9px; text-transform: uppercase; letter-spacing: .07em; color: var(--gray-l); font-weight: 600; }
+  .kb-contract-val   { font-size: 12px; font-weight: 600; color: var(--dark); }
 
   .kb-arr-label { font-size: 9px; text-transform: uppercase; letter-spacing: .07em; color: var(--gray-l); font-weight: 600; }
   .kb-arr       { font-size: 13px; font-weight: 700; color: var(--dark); margin-top: 2px; }
@@ -364,10 +371,10 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <div class="pipe-divider"></div>
       <div class="pipe-stat">
         <span class="pipe-stat-n">$632K</span>
-        <span class="pipe-stat-l">ARR activo</span>
+        <span class="pipe-stat-l">En propuesta</span>
       </div>
       <div class="pipe-alert-badge">
-        ⚠ Sesión técnica vacía · priorizar agenda con CCA o CMPC
+        ⚠ Sesión técnica vacía · hacer seguimiento a propuestas enviadas
       </div>
     </div>
 
@@ -418,7 +425,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="kb-col" data-stage="calificando">
           <div class="kb-col-head">
             <span class="kb-stage-name">Calificando</span>
-            <span class="kb-count">3</span>
+            <span class="kb-count">4</span>
           </div>
 
           <div class="kb-card kb-card-static">
@@ -444,45 +451,23 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <div class="kb-arr-label">ARR est.</div>
             <div class="kb-arr">~$150K</div>
           </div>
-        </div>
-
-        <!-- 3 · Sesión técnica (vacía) -->
-        <div class="kb-col" data-stage="sesion">
-          <div class="kb-col-head">
-            <span class="kb-stage-name">Sesión técnica</span>
-            <span class="kb-count">0</span>
-          </div>
-          <div class="kb-empty">
-            <div class="kb-empty-icon">⚠</div>
-            <div class="kb-empty-text">Sin deals en esta etapa</div>
-            <div class="kb-empty-alert">Agendar con<br>Coca-Cola Andina o CMPC</div>
-          </div>
-        </div>
-
-        <!-- 4 · Propuesta enviada -->
-        <div class="kb-col" data-stage="propuesta">
-          <div class="kb-col-head">
-            <span class="kb-stage-name">Propuesta enviada</span>
-            <span class="kb-count">1</span>
-          </div>
 
           <a href="cyt/" class="kb-card">
             <div class="kb-company">Concha y Toro</div>
             <div class="kb-industry">Vitivinícola · Embotellado · Chile</div>
             <div class="kb-badges">
               <span class="kb-badge kb-badge-t1">Tier 1</span>
-              <span class="kb-badge kb-badge-review">En revisión</span>
+              <span class="kb-badge kb-badge-draft">En redacción</span>
             </div>
-            <div class="kb-arr-label">Inversión año 1</div>
+            <div class="kb-arr-label">ARR est.</div>
             <div class="kb-arr">~$168K</div>
-            <div class="kb-sub">ROI: 5:1–15:1 · Mayo 2026</div>
           </a>
         </div>
 
-        <!-- 5 · Piloto activo -->
-        <div class="kb-col" data-stage="piloto">
+        <!-- 3 · Propuesta enviada -->
+        <div class="kb-col" data-stage="propuesta">
           <div class="kb-col-head">
-            <span class="kb-stage-name">Piloto activo</span>
+            <span class="kb-stage-name">Propuesta enviada</span>
             <span class="kb-count">3</span>
           </div>
 
@@ -491,7 +476,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <div class="kb-industry">Refinación · Petroquímica · Perú</div>
             <div class="kb-badges">
               <span class="kb-badge kb-badge-t1">Tier 1</span>
-              <span class="kb-badge kb-badge-active">Activo</span>
+              <span class="kb-badge kb-badge-review">Enviada</span>
             </div>
             <div class="kb-arr-label">Inversión año 1</div>
             <div class="kb-arr">~$460K</div>
@@ -503,7 +488,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <div class="kb-industry">Minería · Oro · Plata · México</div>
             <div class="kb-badges">
               <span class="kb-badge kb-badge-t1">Tier 1</span>
-              <span class="kb-badge kb-badge-active">Activo</span>
+              <span class="kb-badge kb-badge-review">Enviada</span>
             </div>
             <div class="kb-arr-label">Inversión año 1</div>
             <div class="kb-arr">~$127K</div>
@@ -515,12 +500,49 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <div class="kb-industry">Masa harina · Molienda · México</div>
             <div class="kb-badges">
               <span class="kb-badge kb-badge-t1">Tier 1</span>
-              <span class="kb-badge kb-badge-active">Activo</span>
+              <span class="kb-badge kb-badge-review">Enviada</span>
             </div>
             <div class="kb-arr-label">Inversión año 1</div>
             <div class="kb-arr">~$45K</div>
             <div class="kb-sub">ROI: 300%–700% · Abr 2026</div>
           </a>
+        </div>
+
+        <!-- 4 · Sesión técnica (vacía) -->
+        <div class="kb-col" data-stage="sesion">
+          <div class="kb-col-head">
+            <span class="kb-stage-name">Sesión técnica</span>
+            <span class="kb-count">0</span>
+          </div>
+          <div class="kb-empty">
+            <div class="kb-empty-icon">⚠</div>
+            <div class="kb-empty-text">Sin deals en esta etapa</div>
+            <div class="kb-empty-alert">Priorizar seguimiento<br>con Repsol, Peñoles o Minsa</div>
+          </div>
+        </div>
+
+        <!-- 5 · Piloto activo -->
+        <div class="kb-col" data-stage="piloto">
+          <div class="kb-col-head">
+            <span class="kb-stage-name">Piloto activo</span>
+            <span class="kb-count">0</span>
+          </div>
+          <div class="kb-empty">
+            <div class="kb-empty-icon">—</div>
+            <div class="kb-empty-text">Sin pilotos activos aún</div>
+          </div>
+        </div>
+
+        <!-- 6 · Contrato anual -->
+        <div class="kb-col" data-stage="contrato">
+          <div class="kb-col-head">
+            <span class="kb-stage-name">Contrato anual</span>
+            <span class="kb-count">0</span>
+          </div>
+          <div class="kb-empty">
+            <div class="kb-empty-icon">—</div>
+            <div class="kb-empty-text">Sin contratos firmados aún</div>
+          </div>
         </div>
 
       </div>
