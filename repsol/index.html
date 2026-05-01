@@ -1279,7 +1279,10 @@ function _initSideNav() {
     nav.classList.add('visible');
     var items = nav.querySelectorAll('.sidenav-item');
     items.forEach(function(item) {
-      item.addEventListener('click', function() { scrollTo(item.dataset.s); });
+      item.addEventListener('click', function() {
+        scrollTo(item.dataset.s);
+        try { posthog.capture('sidenav_click', { proposal: PROPOSAL_ID, section: item.dataset.s, section_label: item.querySelector('.sidenav-label').textContent.trim(), device: 'desktop' }); } catch(e) {}
+      });
     });
     var obs = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
@@ -1302,7 +1305,10 @@ function _initSideNav() {
   if (backdrop) backdrop.addEventListener('click', closeSheet);
   if (closeBtn) closeBtn.addEventListener('click', closeSheet);
   if (sheet) sheet.querySelectorAll('.sn-sheet-item').forEach(function(item) {
-    item.addEventListener('click', function() { closeSheet(); setTimeout(function() { scrollTo(item.dataset.s); }, 120); });
+    item.addEventListener('click', function() {
+      try { posthog.capture('sidenav_click', { proposal: PROPOSAL_ID, section: item.dataset.s, section_label: item.querySelector('.sn-sheet-lbl').textContent.trim(), device: 'mobile' }); } catch(e) {}
+      closeSheet(); setTimeout(function() { scrollTo(item.dataset.s); }, 120);
+    });
   });
 }
 
