@@ -202,12 +202,7 @@
     font-size: 11px; font-weight: 600; color: rgba(255,255,255,.45);
     letter-spacing: .04em;
   }
-  #s1 .deco {
-    position: absolute; right: 0; top: 0; bottom: 0; width: 42%;
-    background: linear-gradient(135deg, var(--o) 0%, #8B2500 100%);
-    clip-path: polygon(18% 0, 100% 0, 100% 100%, 0% 100%);
-    opacity: .10;
-  }
+
 
   /* S3 how-it-works */
   #s3 .flow {
@@ -231,6 +226,66 @@
   }
 
   /* S5 vs ── already styled via .compare */
+
+  /* S1 cover image accent */
+  #s1 .deco-img {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 40%;
+    overflow: hidden; pointer-events: none;
+  }
+  #s1 .deco-img img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center left;
+    opacity: .13; filter: grayscale(20%) contrast(1.1);
+    display: block;
+  }
+  #s1 .deco-img::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--dark2) 0%, transparent 45%);
+    z-index: 1;
+  }
+  #s1 .deco-img::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, var(--dark2) 0%, transparent 15%, transparent 85%, var(--dark2) 100%);
+    z-index: 1;
+  }
+
+  /* S4 implementation */
+  .impl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; margin-top: 18px; }
+  .impl-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden; display: grid;
+    grid-template-rows: 190px 1fr; position: relative;
+  }
+  .impl-card.featured { border-color: var(--o); border-width: 1.5px; }
+  .impl-card-badge {
+    position: absolute; top: 10px; left: 10px; z-index: 2;
+    background: var(--o); color: white;
+    font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 4px;
+  }
+  .impl-card-img { width: 100%; height: 190px; overflow: hidden; background: var(--bg); }
+  .impl-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+  .impl-card-body { padding: 16px 18px; }
+  .impl-card-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+  .impl-card-sub   { font-size: 12px; color: var(--gray); line-height: 1.5; margin-bottom: 10px; }
+  .impl-specs { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+  .impl-spec {
+    font-size: 11.5px; color: var(--dark); font-weight: 500;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .impl-spec::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--o); flex-shrink: 0; }
+  .impl-ideal {
+    background: var(--obg); border-left: 2.5px solid var(--o);
+    border-radius: 0 6px 6px 0; padding: 7px 10px;
+    font-size: 11.5px; color: var(--dark); line-height: 1.5;
+  }
+  .impl-ideal strong { color: var(--o); font-size: 10px; text-transform: uppercase; letter-spacing: .07em; display: block; margin-bottom: 2px; }
+
+  /* S7 CTA signature photo */
+  .cta-sig-img {
+    width: 56px; height: 56px; border-radius: 50%;
+    overflow: hidden; border: 2px solid rgba(255,255,255,.25); flex-shrink: 0;
+  }
+  .cta-sig-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   /* S6 credibility */
   #s6 { background: var(--dark2); }
@@ -285,6 +340,9 @@
     #s3 .arrow { transform: rotate(90deg); }
     #s6 .cred-grid { grid-template-columns: 1fr 1fr; }
     #s7 .contact-row { flex-direction: column; }
+    .impl-grid { grid-template-columns: 1fr; }
+    .impl-card { grid-template-rows: 160px 1fr; }
+    #s1 .deco-img { display: none; }
   }
 </style>
 </head>
@@ -294,7 +352,7 @@
 
   <!-- ══ S1: COVER ══ -->
   <div class="slide dark active" id="s1">
-    <div class="deco"></div>
+    <div class="deco-img"><img src="../assets/edge-device.jpg" alt="" aria-hidden="true"></div>
     <div class="logo-mark" style="margin-bottom:40px">
       <svg viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M27.3,13.0 V21.8 L9.0,39.0 H0 Z" fill="#d84200"/>
@@ -421,6 +479,61 @@
         </div>
       </div>
     </div>
+  </div>
+
+
+  <!-- ══ S4: IMPLEMENTATION ══ -->
+  <div class="slide" id="s_impl">
+    <div class="eyebrow">How we deploy</div>
+    <div class="rule"></div>
+    <h2 class="headline" style="max-width:660px">
+      Two paths. <span class="accent">Same result:</span><br>no unplanned downtime.
+    </h2>
+    <div class="impl-grid">
+
+      <!-- Edge AI Hardware -->
+      <div class="impl-card featured">
+        <div class="impl-card-badge">Recommended · process assets</div>
+        <div class="impl-card-img">
+          <img src="../assets/edge-device.jpg" alt="Made Edge AI Hardware — DIN rail installation">
+        </div>
+        <div class="impl-card-body">
+          <div class="impl-card-title">Edge AI Hardware</div>
+          <div class="impl-card-sub">NVIDIA Jetson device installed in the DIN rail panel by the Made team. Processes everything on-site — no cloud dependency, no data leaving the facility.</div>
+          <div class="impl-specs">
+            <div class="impl-spec">NVIDIA Jetson Orin Nano Super · 67 INT8 TOPS</div>
+            <div class="impl-spec">IP67 · NEMA 4X · ATEX enclosure evaluated jointly</div>
+            <div class="impl-spec">IEC 62443 · TLS 1.3 · Air-gap ready</div>
+          </div>
+          <div class="impl-ideal">
+            <strong>Ideal for</strong>
+            Compressors, FCC, ATEX zones, environments where IT/OT doesn't allow outbound cloud connectivity.
+          </div>
+        </div>
+      </div>
+
+      <!-- Software + API -->
+      <div class="impl-card">
+        <div class="impl-card-img" style="background:var(--dark)">
+          <img src="../assets/platform-screenshot.png" alt="Made OS Platform — web interface with sensor analysis">
+        </div>
+        <div class="impl-card-body">
+          <div class="impl-card-title">Software + API</div>
+          <div class="impl-card-sub">Installed on an existing server or industrial PC on-site. No additional hardware. Client IT maintains full control within their existing OT security perimeter.</div>
+          <div class="impl-specs">
+            <div class="impl-spec">Ubuntu · Debian · RHEL · Windows · 8 cores / 8 GB RAM min.</div>
+            <div class="impl-spec">OPC-UA Client · unlimited signal volume in program</div>
+            <div class="impl-spec">WSS (WebSocket over SSL) · integrable with existing OT data stack</div>
+          </div>
+          <div class="impl-ideal">
+            <strong>Ideal for</strong>
+            Sites with available server infrastructure. IT team maintains full control without any hardware addition.
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <p style="font-size:12px;color:var(--gray-l);margin-top:12px">In the initial technical session we determine the right path per candidate asset with the IT and operations team. Both paths are read-only: Made never writes to PLCs, DCS, or SCADA.</p>
   </div>
 
   <!-- ══ S4: VALUE ══ -->
@@ -570,16 +683,19 @@
       </div>
     </div>
     <div class="contact-row">
-      <div class="contact-card">
+      <div class="contact-card" style="display:flex;gap:14px;align-items:flex-start">
+        <div class="cta-sig-img"><img src="../assets/gpc.png" alt="Gerardo Peña"></div>
+        <div>
         <div class="contact-name">Gerardo Peña</div>
         <div class="contact-role">CEO · MIT Innovator Under 35 LATAM 2025</div>
         <a class="contact-link" href="mailto:ger@madeos.ai">ger@madeos.ai</a>
         <a class="contact-link" href="https://madeos.ai" target="_blank">madeos.ai</a>
+        </div>
       </div>
       <div class="contact-card">
         <div class="contact-name">Ramiro Pantoja</div>
         <div class="contact-role">CTO · Industrial AI Systems</div>
-        <a class="contact-link" href="mailto:ram@madeos.ai">ram@madeos.ai</a>
+        <a class="contact-link" href="mailto:ramiro@madeos.ai">ramiro@madeos.ai</a>
         <a class="contact-link" href="https://cal.com/madeos.ai/demo" target="_blank">cal.com/madeos.ai/demo</a>
       </div>
     </div>
