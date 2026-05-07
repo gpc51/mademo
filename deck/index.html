@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Made OS — Commercial Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --o:   #d84200;
+    --oh:  #f04900;
+    --obg: rgba(216,66,0,.10);
+    --obd: rgba(216,66,0,.30);
+    --dark:  #111213;
+    --dark2: #1a1c1e;
+    --gray:  #636870;
+    --gray-l:#9ba3ab;
+    --border:#e4e7ea;
+    --bg:    #f7f8f9;
+    --white: #ffffff;
+    --green: #16a34a;
+    --font: 'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; font-family: var(--font); }
+
+  /* ── Slide engine ── */
+  .deck { width: 100%; height: 100vh; position: relative; background: var(--dark); }
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: clamp(32px, 5vw, 80px) clamp(32px, 7vw, 120px);
+    opacity: 0; pointer-events: none;
+    transition: opacity .35s ease, transform .35s ease;
+    transform: translateX(40px);
+    background: var(--white);
+    overflow: hidden;
+  }
+  .slide.active    { opacity: 1; pointer-events: all; transform: translateX(0); z-index: 2; }
+  .slide.prev      { opacity: 0; transform: translateX(-40px); z-index: 1; }
+  .slide.dark      { background: var(--dark2); color: var(--white); }
+  .slide.orange    { background: var(--o); color: var(--white); }
+
+  /* ── Nav ── */
+  .nav {
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 16px; z-index: 100;
+    background: rgba(17,18,19,.72); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 40px; padding: 8px 16px;
+  }
+  .nav-btn {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.12);
+    color: rgba(255,255,255,.7); cursor: pointer; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .15s, color .15s;
+  }
+  .nav-btn:hover { background: rgba(255,255,255,.2); color: white; }
+  .nav-dots { display: flex; gap: 6px; align-items: center; }
+  .nav-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,.25); cursor: pointer;
+    transition: background .2s, transform .2s;
+  }
+  .nav-dot.active { background: var(--o); transform: scale(1.5); }
+  .slide-counter {
+    font-size: 11px; font-weight: 500; color: rgba(255,255,255,.35);
+    letter-spacing: .06em; min-width: 28px; text-align: center;
+  }
+
+  /* ── Typography ── */
+  .eyebrow {
+    font-size: clamp(10px, 1.1vw, 12px); font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--o); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+  }
+  .eyebrow.light { color: rgba(255,255,255,.45); }
+  .headline {
+    font-size: clamp(28px, 4.5vw, 64px); font-weight: 800;
+    line-height: 1.05; letter-spacing: -.03em; color: var(--dark); margin-bottom: 20px;
+  }
+  .headline .accent { color: var(--o); }
+  .headline.white { color: var(--white); }
+  .subhead {
+    font-size: clamp(14px, 1.6vw, 20px); color: var(--gray);
+    line-height: 1.6; max-width: 640px; font-weight: 400;
+  }
+  .subhead.white { color: rgba(255,255,255,.55); }
+
+  /* ── Layout helpers ── */
+  .cols { display: grid; gap: 20px; width: 100%; }
+  .cols-2 { grid-template-columns: 1fr 1fr; }
+  .cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  .mt { margin-top: 32px; }
+  .mt-sm { margin-top: 16px; }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 12px; padding: clamp(18px, 2vw, 28px);
+  }
+  .card.dark-card {
+    background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.08);
+  }
+  .card.accent { border-left: 3px solid var(--o); }
+  .card-num {
+    font-size: clamp(28px, 3.5vw, 46px); font-weight: 800;
+    letter-spacing: -.03em; color: var(--dark); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .card-num.orange { color: var(--o); }
+  .card-num.green  { color: var(--green); }
+  .card-num.white  { color: var(--white); }
+  .card-label {
+    font-size: clamp(10px, 1vw, 12px); font-weight: 700;
+    text-transform: uppercase; letter-spacing: .09em;
+    color: var(--gray-l); margin-bottom: 6px;
+  }
+  .card-label.light { color: rgba(255,255,255,.35); }
+  .card-desc {
+    font-size: clamp(11px, 1.1vw, 13px); color: var(--gray); line-height: 1.55;
+    margin-top: 6px;
+  }
+  .card-desc.white { color: rgba(255,255,255,.45); }
+
+  /* ── Steps ── */
+  .step {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: clamp(14px,1.5vw,22px); background: var(--white);
+    border: 1px solid var(--border); border-radius: 12px;
+  }
+  .step-num {
+    width: 36px; height: 36px; flex-shrink: 0;
+    border-radius: 50%; background: var(--o); color: white;
+    font-size: 13px; font-weight: 800; display: flex;
+    align-items: center; justify-content: center;
+  }
+  .step-title { font-size: clamp(13px, 1.3vw, 15px); font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .step-sub   { font-size: clamp(11px, 1vw, 13px); color: var(--gray); line-height: 1.5; }
+  .step-tag   {
+    font-size: 10px; font-weight: 700; letter-spacing: .07em;
+    text-transform: uppercase; color: var(--o);
+    background: var(--obg); border-radius: 4px; padding: 2px 6px;
+    display: inline-block; margin-bottom: 5px;
+  }
+
+  /* ── Compare table ── */
+  .compare { width: 100%; border-collapse: collapse; font-size: clamp(11px, 1.1vw, 13px); }
+  .compare th {
+    text-align: left; padding: 10px 14px;
+    font-size: clamp(10px, 1vw, 12px); font-weight: 700;
+    letter-spacing: .04em; text-transform: uppercase;
+  }
+  .compare th:first-child  { background: var(--bg); color: var(--gray); border-bottom: 2px solid var(--border); }
+  .compare th:nth-child(2) { background: #fff5f5; color: #c53030; border-bottom: 2px solid #fed7d7; }
+  .compare th:nth-child(3) { background: #fff8f5; color: var(--o); border-bottom: 2px solid var(--obd); }
+  .compare td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .compare td:last-child { font-weight: 500; color: var(--dark); background: rgba(216,66,0,.025); }
+  .compare tr:last-child td { border-bottom: none; }
+
+  /* ── Pill tags ── */
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1px solid var(--border); border-radius: 20px;
+    padding: 5px 12px; font-size: 12px; font-weight: 500;
+    color: var(--gray); background: var(--white);
+  }
+  .pill svg { width: 13px; height: 13px; color: var(--o); }
+
+  /* ── Divider line ── */
+  .rule { width: 48px; height: 3px; background: var(--o); border-radius: 2px; margin-bottom: 20px; }
+
+  /* ── Big stat hero ── */
+  .stat-hero {
+    font-size: clamp(48px, 8vw, 110px); font-weight: 900;
+    letter-spacing: -.05em; color: var(--o); line-height: 1;
+  }
+
+  /* ── Logo mark inline ── */
+  .logo-mark svg { height: clamp(28px, 3vw, 38px); width: auto; }
+
+  /* ── CTA slide ── */
+  .cta-pill {
+    background: var(--o); color: white; display: inline-flex;
+    align-items: center; gap: 8px; padding: 14px 28px;
+    border-radius: 8px; font-size: clamp(13px,1.3vw,15px); font-weight: 700;
+    text-decoration: none; margin-top: 28px;
+    box-shadow: 0 4px 20px rgba(216,66,0,.35);
+  }
+
+  /* ── Slide-specific ── */
+  /* S1 cover */
+  #s1 { background: var(--dark2); }
+  #s1 .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  #s1 .badge {
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 6px; padding: 6px 12px;
+    font-size: 11px; font-weight: 600; color: rgba(255,255,255,.45);
+    letter-spacing: .04em;
+  }
+  #s1 .deco {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 42%;
+    background: linear-gradient(135deg, var(--o) 0%, #8B2500 100%);
+    clip-path: polygon(18% 0, 100% 0, 100% 100%, 0% 100%);
+    opacity: .10;
+  }
+
+  /* S3 how-it-works */
+  #s3 .flow {
+    display: flex; align-items: center; gap: 0; margin-top: 28px; width: 100%;
+  }
+  #s3 .flow-node {
+    flex: 1; text-align: center; padding: 16px 10px;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+  }
+  #s3 .flow-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--obg); display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 10px;
+  }
+  #s3 .flow-icon svg { width: 22px; height: 22px; color: var(--o); }
+  #s3 .flow-label { font-size: clamp(12px,1.2vw,14px); font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+  #s3 .flow-sub   { font-size: clamp(10px,0.95vw,11.5px); color: var(--gray); line-height: 1.45; }
+  #s3 .arrow {
+    flex-shrink: 0; width: 36px; display: flex; align-items: center; justify-content: center;
+    color: var(--o); font-size: 18px; font-weight: 300;
+  }
+
+  /* S5 vs ── already styled via .compare */
+
+  /* S6 credibility */
+  #s6 { background: var(--dark2); }
+  #s6 .cred-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 28px; }
+  #s6 .cred-card {
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px; padding: 22px 20px; text-align: center;
+  }
+  #s6 .cred-icon { font-size: 28px; margin-bottom: 10px; line-height: 1; }
+  #s6 .cred-name { font-size: clamp(12px,1.2vw,14px); font-weight: 700; color: white; margin-bottom: 4px; }
+  #s6 .cred-sub  { font-size: 11px; color: rgba(255,255,255,.35); line-height: 1.45; }
+  #s6 .client-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+  #s6 .client-tag {
+    border: 1px solid rgba(255,255,255,.12); border-radius: 6px;
+    padding: 8px 16px; font-size: 12px; font-weight: 600;
+    color: rgba(255,255,255,.5); letter-spacing: .04em;
+  }
+  #s6 .client-tag.active {
+    border-color: rgba(216,66,0,.4); background: rgba(216,66,0,.1);
+    color: rgba(255,160,100,.9);
+  }
+
+  /* S7 CTA */
+  #s7 { background: var(--o); }
+  #s7 .headline { color: var(--white); }
+  #s7 .subhead  { color: rgba(255,255,255,.65); }
+  #s7 .contact-row { display: flex; gap: 20px; margin-top: 32px; flex-wrap: wrap; }
+  #s7 .contact-card {
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+    border-radius: 10px; padding: 18px 22px;
+  }
+  #s7 .contact-name { font-size: 15px; font-weight: 700; color: white; margin-bottom: 2px; }
+  #s7 .contact-role { font-size: 12px; color: rgba(255,255,255,.55); margin-bottom: 8px; }
+  #s7 .contact-link { font-size: 13px; color: rgba(255,255,255,.8); text-decoration: none; display: block; line-height: 1.7; }
+
+  /* ── Print / PDF mode ── */
+  @media print {
+    html, body { overflow: visible; height: auto; }
+    .deck { height: auto; }
+    .slide {
+      position: relative; opacity: 1; pointer-events: all;
+      transform: none; page-break-after: always;
+      height: 100vh; width: 100vw;
+    }
+    .nav { display: none; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .cols-2, .cols-3, .cols-4 { grid-template-columns: 1fr; }
+    #s3 .flow { flex-direction: column; }
+    #s3 .arrow { transform: rotate(90deg); }
+    #s6 .cred-grid { grid-template-columns: 1fr 1fr; }
+    #s7 .contact-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- ══ S1: COVER ══ -->
+  <div class="slide dark active" id="s1">
+    <div class="deco"></div>
+    <div class="logo-mark" style="margin-bottom:40px">
+      <svg viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.3,13.0 V21.8 L9.0,39.0 H0 Z" fill="#d84200"/>
+        <path d="M39.6,9.8 V39.0 H13.3 Z" fill="#d84200"/>
+        <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="rgba(255,255,255,.9)">Made</text>
+      </svg>
+    </div>
+    <div class="eyebrow light">Industrial AI · Predictive Operations</div>
+    <h1 class="headline white" style="max-width:780px">
+      Eliminate unplanned downtime<br>at <span class="accent">critical industrial assets.</span>
+    </h1>
+    <p class="subhead white" style="margin-top:16px;max-width:560px">
+      Made OS connects to existing sensors and detects failures weeks before they happen — without touching a single control system.
+    </p>
+    <div class="badge-row">
+      <span class="badge">NVIDIA Inception</span>
+      <span class="badge">MIT Innovators Under 35 LATAM 2025</span>
+      <span class="badge">Founders Inc</span>
+      <span class="badge">Startup Chile BIG 10</span>
+    </div>
+  </div>
+
+  <!-- ══ S2: THE PROBLEM ══ -->
+  <div class="slide" id="s2">
+    <div class="eyebrow">The problem</div>
+    <div class="rule"></div>
+    <h2 class="headline" style="max-width:700px">
+      <span class="accent">80%</span> of industrial incidents<br>are predictable weeks in advance.
+    </h2>
+    <p class="subhead" style="margin-top:16px">
+      Yet most facilities only find out when the failure has already happened.
+    </p>
+    <div class="cols cols-3 mt">
+      <div class="card accent">
+        <div class="card-label">Cost · major refinery incident</div>
+        <div class="card-num orange">$200M+</div>
+        <div class="card-desc">A single unplanned event can wipe out years of margin in one day.</div>
+      </div>
+      <div class="card accent">
+        <div class="card-label">Downtime cost · 100K+ bpd facility</div>
+        <div class="card-num orange">$900K/day</div>
+        <div class="card-desc">Every day of unplanned shutdown is pure margin destruction at current rates.</div>
+      </div>
+      <div class="card accent">
+        <div class="card-label">Reduction with predictive AI</div>
+        <div class="card-num green">30–50%</div>
+        <div class="card-desc">Industry benchmark across 150+ facilities. McKinsey · ResearchGate.</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--gray-l);margin-top:14px">McKinsey 2025 · IHS Markit · Wood Mackenzie · ResearchGate 150+ facilities</p>
+  </div>
+
+  <!-- ══ S3: WHAT IS MADE OS ══ -->
+  <div class="slide" id="s3">
+    <div class="eyebrow">What we do</div>
+    <div class="rule"></div>
+    <h2 class="headline" style="max-width:680px">
+      A read-only intelligence layer<br>on top of <span class="accent">existing infrastructure.</span>
+    </h2>
+    <div class="flow">
+      <div class="flow-node">
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
+          </svg>
+        </div>
+        <div class="flow-label">Existing sensors</div>
+        <div class="flow-sub">OPC-UA · Modbus · 4–20mA · PROFIBUS. No new instrumentation.</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="flow-node" style="border-color:var(--obd);background:var(--obg)">
+        <div class="flow-icon" style="background:white">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+          </svg>
+        </div>
+        <div class="flow-label" style="color:var(--o)">Made OS</div>
+        <div class="flow-sub">Multi-agent AI. Learns nominal behavior. Detects anomalies. Read-only — zero process risk.</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <div class="flow-label">Early alerts</div>
+        <div class="flow-sub">Class A/B/C anomalies. 2–6 weeks lead time before failure.</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+          </svg>
+        </div>
+        <div class="flow-label">Avoided event</div>
+        <div class="flow-sub">Maintenance team acts. No downtime. Documented, auditable ROI.</div>
+      </div>
+    </div>
+    <div class="cols cols-3" style="margin-top:16px">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-tag">Days 1–30</div>
+          <div class="step-title">Connect</div>
+          <div class="step-sub">We install and integrate to existing signals. Zero process interruption.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-tag">Weeks 2–4</div>
+          <div class="step-title">Learn</div>
+          <div class="step-sub">Made OS builds a nominal baseline per asset, per operating condition.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-tag">From day 30+</div>
+          <div class="step-title">Prescribe</div>
+          <div class="step-sub">Real-time anomaly detection. Actionable alerts with intervention windows.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4: VALUE ══ -->
+  <div class="slide dark" id="s4">
+    <div class="eyebrow light">What you get</div>
+    <div class="rule"></div>
+    <h2 class="headline white" style="max-width:680px">
+      ROI from the <span class="accent">first avoided event.</span>
+    </h2>
+    <p class="subhead white" style="margin-top:16px">Shared-risk model. Made assumes the technical and results risk. If we don't deliver, you don't pay.</p>
+    <div class="cols cols-4 mt">
+      <div class="card dark-card" style="border-top:3px solid var(--o)">
+        <div class="card-label light">Documented ROI</div>
+        <div class="card-num white">10:1–30:1</div>
+        <div class="card-desc white">Industry benchmark. Positive from month 1–3 of operation.</div>
+      </div>
+      <div class="card dark-card" style="border-top:3px solid var(--o)">
+        <div class="card-label light">Downtime reduction</div>
+        <div class="card-num white">30–50%</div>
+        <div class="card-desc white">Fewer unplanned shutdowns, longer MTBF, lower maintenance cost.</div>
+      </div>
+      <div class="card dark-card" style="border-top:3px solid var(--o)">
+        <div class="card-label light">Integration time</div>
+        <div class="card-num white">30 days</div>
+        <div class="card-desc white">vs. 12–24 months for traditional APM. No external consultants needed.</div>
+      </div>
+      <div class="card dark-card" style="border-top:3px solid var(--o)">
+        <div class="card-label light">Risk if no ROI</div>
+        <div class="card-num white">$0</div>
+        <div class="card-desc white">90-day extension at no license cost if positive ROI is not demonstrated.</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:10px">
+      <div class="pill" style="border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.55)">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+        Read-only · zero process risk
+      </div>
+      <div class="pill" style="border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.55)">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+        Trained models stay yours
+      </div>
+      <div class="pill" style="border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.55)">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+        Pilot credited 100% to Year 1
+      </div>
+      <div class="pill" style="border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.55)">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+        ATEX · IEC 62443 · IP67/NEMA 4X
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5: VS. TRADITIONAL APM ══ -->
+  <div class="slide" id="s5">
+    <div class="eyebrow">Made OS vs. Traditional APM</div>
+    <div class="rule"></div>
+    <h2 class="headline" style="max-width:680px">
+      A different category —<br>at <span class="accent">1/10 the price.</span>
+    </h2>
+    <div style="margin-top:24px;width:100%;overflow-x:auto">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>AspenTech / Emerson / Honeywell APM</th>
+            <th>Made OS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Time to value</td><td>12–24 months to configure</td><td>First alerts in weeks 2–4</td></tr>
+          <tr><td>Year 1 investment</td><td>$1.5M–$5M+ (license + integrator + services)</td><td>Approx. $440K–$480K all-inclusive</td></tr>
+          <tr><td>Installation</td><td>Requires external consultants, possible shutdowns</td><td>Made team direct · read-only · zero downtime</td></tr>
+          <tr><td>Asset learning</td><td>Manual parameterization by domain expert</td><td>Automatic per asset, per operating condition</td></tr>
+          <tr><td>Financial risk</td><td>100% client from day one</td><td>Shared risk · no-cost extension if no ROI</td></tr>
+          <tr><td>LATAM support</td><td>Remote + regional distributor</td><td>Founding team direct · same timezone</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card" style="margin-top:16px;background:var(--obg);border-color:var(--obd);border-left:3px solid var(--o)">
+      <strong>No external integrators, no hidden CAPEX.</strong> Made arrives with its own technical team, installs, calibrates, and operates the system. The published price covers everything.
+    </div>
+  </div>
+
+  <!-- ══ S6: CREDIBILITY ══ -->
+  <div class="slide dark" id="s6">
+    <div class="eyebrow light">Who backs us</div>
+    <div class="rule"></div>
+    <h2 class="headline white" style="max-width:620px">
+      Built with the best.<br>Recognized by <span class="accent">the right people.</span>
+    </h2>
+    <div class="cred-grid">
+      <div class="cred-card">
+        <div class="cred-icon">⚡</div>
+        <div class="cred-name">NVIDIA Inception</div>
+        <div class="cred-sub">Deep tech AI program. Access to NVIDIA Jetson, DGX, and enterprise GPU stack.</div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🏆</div>
+        <div class="cred-name">MIT Tech Review</div>
+        <div class="cred-sub">Innovators Under 35 LATAM 2025. Gerardo Peña, CEO — recognized by MIT.</div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🚀</div>
+        <div class="cred-name">Founders Inc</div>
+        <div class="cred-sub">Early-stage investor. Portfolio includes category-defining industrial tech companies.</div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🌎</div>
+        <div class="cred-name">Startup Chile BIG 10</div>
+        <div class="cred-sub">Top 10 program. Backed by CORFO — Chile's national innovation agency.</div>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:10px;margin-top:24px">Active pipeline</p>
+      <div class="client-row">
+        <span class="client-tag active">Energy · Refining</span>
+        <span class="client-tag active">Mining · Processing</span>
+        <span class="client-tag active">Pharma · Manufacturing</span>
+        <span class="client-tag active">Wine · Agri-industry</span>
+        <span class="client-tag">Water · Utilities</span>
+        <span class="client-tag">Cement · Heavy industry</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7: CTA ══ -->
+  <div class="slide orange" id="s7">
+    <div class="eyebrow" style="color:rgba(255,255,255,.55)">Next step</div>
+    <h2 class="headline" style="max-width:680px">
+      45-minute technical session.<br>Walk away with a pilot plan.
+    </h2>
+    <p class="subhead" style="margin-top:16px;max-width:560px">
+      We assess your instrumentation, identify the highest-value candidate assets, and deliver a one-page pilot plan — no consulting required, no commitment.
+    </p>
+    <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:10px">
+      <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.75)">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+        Remote · 45 min
+      </div>
+      <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.75)">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+        No prior consulting required
+      </div>
+      <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.75)">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+        Pilot starts in &lt; 30 business days
+      </div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-card">
+        <div class="contact-name">Gerardo Peña</div>
+        <div class="contact-role">CEO · MIT Innovator Under 35 LATAM 2025</div>
+        <a class="contact-link" href="mailto:ger@madeos.ai">ger@madeos.ai</a>
+        <a class="contact-link" href="https://madeos.ai" target="_blank">madeos.ai</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-name">Ramiro Pantoja</div>
+        <div class="contact-role">CTO · Industrial AI Systems</div>
+        <a class="contact-link" href="mailto:ram@madeos.ai">ram@madeos.ai</a>
+        <a class="contact-link" href="https://cal.com/madeos.ai/demo" target="_blank">cal.com/madeos.ai/demo</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- ── Navigation ── -->
+<nav class="nav" id="nav">
+  <button class="nav-btn" id="prev-btn" aria-label="Previous slide">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 2L4 6l4 4"/></svg>
+  </button>
+  <div class="nav-dots" id="nav-dots"></div>
+  <button class="nav-btn" id="next-btn" aria-label="Next slide">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 2l4 4-4 4"/></svg>
+  </button>
+  <span class="slide-counter" id="counter">1 / 7</span>
+</nav>
+
+<script>
+(function() {
+  var slides = Array.from(document.querySelectorAll('.slide'));
+  var dots   = document.getElementById('nav-dots');
+  var counter = document.getElementById('counter');
+  var current = 0;
+  var total   = slides.length;
+
+  /* Build dots */
+  slides.forEach(function(_, i) {
+    var d = document.createElement('div');
+    d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', function() { goTo(i); });
+    dots.appendChild(d);
+  });
+
+  function goTo(n) {
+    if (n < 0 || n >= total) return;
+    slides[current].classList.remove('active');
+    slides[current].classList.add('prev');
+    var prev = current;
+    current = n;
+    slides[current].classList.remove('prev');
+    slides[current].classList.add('active');
+    setTimeout(function() { slides[prev].classList.remove('prev'); }, 380);
+    dots.querySelectorAll('.nav-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+    counter.textContent = (current + 1) + ' / ' + total;
+  }
+
+  document.getElementById('next-btn').addEventListener('click', function() { goTo(current + 1); });
+  document.getElementById('prev-btn').addEventListener('click', function() { goTo(current - 1); });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); goTo(current - 1); }
+  });
+
+  /* Touch swipe */
+  var tx = 0;
+  document.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend',   function(e) {
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
+  });
+})();
+</script>
+</body>
+</html>
