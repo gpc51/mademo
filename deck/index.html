@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Made OS — Commercial Deck</title>
+<title>Made OS: Commercial Deck</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -26,7 +26,7 @@
   html, body { width: 100%; height: 100%; overflow: hidden; font-family: var(--font); }
 
   /* ── Slide engine ── */
-  .deck { width: 100%; height: 100vh; position: relative; background: var(--dark); }
+  .deck { width: 100%; height: 100vh; position: relative; background: var(--dark); visibility: hidden; }
   .slide {
     position: absolute; inset: 0;
     display: flex; flex-direction: column;
@@ -70,6 +70,18 @@
     font-size: 11px; font-weight: 500; color: rgba(255,255,255,.35);
     letter-spacing: .06em; min-width: 28px; text-align: center;
   }
+  .lang-toggle {
+    display: flex; align-items: center;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+    border-radius: 20px; overflow: hidden; margin-left: 4px;
+  }
+  .lang-btn {
+    padding: 4px 10px; font-size: 10px; font-weight: 700; letter-spacing: .07em;
+    text-transform: uppercase; color: rgba(255,255,255,.4);
+    background: transparent; border: none; cursor: pointer;
+    transition: color .15s, background .15s;
+  }
+  .lang-btn.active { background: var(--o); color: white; }
 
   /* ── Typography ── */
   .eyebrow {
@@ -91,17 +103,17 @@
   .subhead.white { color: rgba(255,255,255,.55); }
 
   /* ── Layout helpers ── */
-  .cols { display: grid; gap: 20px; width: 100%; }
+  .cols { display: grid; gap: 14px; width: 100%; }
   .cols-2 { grid-template-columns: 1fr 1fr; }
   .cols-3 { grid-template-columns: 1fr 1fr 1fr; }
   .cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
-  .mt { margin-top: 32px; }
-  .mt-sm { margin-top: 16px; }
+  .mt { margin-top: 24px; }
+  .mt-sm { margin-top: 12px; }
 
   /* ── Cards ── */
   .card {
     background: var(--bg); border: 1px solid var(--border);
-    border-radius: 12px; padding: clamp(18px, 2vw, 28px);
+    border-radius: 12px; padding: clamp(14px, 1.8vw, 24px);
   }
   .card.dark-card {
     background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.08);
@@ -127,26 +139,54 @@
   }
   .card-desc.white { color: rgba(255,255,255,.45); }
 
-  /* ── Steps ── */
-  .step {
-    display: flex; gap: 16px; align-items: flex-start;
-    padding: clamp(14px,1.5vw,22px); background: var(--white);
-    border: 1px solid var(--border); border-radius: 12px;
+  /* ── Steps (compact strip) ── */
+  .step-strip { display: flex; gap: 8px; width: 100%; margin-top: 10px; }
+  .step-compact {
+    display: flex; gap: 10px; align-items: center;
+    padding: 10px 12px; background: var(--white);
+    border: 1px solid var(--border); border-radius: 10px; flex: 1;
   }
   .step-num {
-    width: 36px; height: 36px; flex-shrink: 0;
+    width: 28px; height: 28px; flex-shrink: 0;
     border-radius: 50%; background: var(--o); color: white;
-    font-size: 13px; font-weight: 800; display: flex;
+    font-size: 11px; font-weight: 800; display: flex;
     align-items: center; justify-content: center;
   }
-  .step-title { font-size: clamp(13px, 1.3vw, 15px); font-weight: 700; color: var(--dark); margin-bottom: 4px; }
-  .step-sub   { font-size: clamp(11px, 1vw, 13px); color: var(--gray); line-height: 1.5; }
+  .step-title { font-size: 13px; font-weight: 700; color: var(--dark); }
   .step-tag   {
-    font-size: 10px; font-weight: 700; letter-spacing: .07em;
+    font-size: 9.5px; font-weight: 700; letter-spacing: .07em;
     text-transform: uppercase; color: var(--o);
-    background: var(--obg); border-radius: 4px; padding: 2px 6px;
-    display: inline-block; margin-bottom: 5px;
+    background: var(--obg); border-radius: 4px; padding: 1px 5px;
+    display: inline-block; margin-bottom: 3px;
   }
+  .step-sub   { font-size: clamp(10px, 0.95vw, 11.5px); color: var(--gray); line-height: 1.4; }
+
+  /* ── Prescription alert cards ── */
+  .rx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; width: 100%; }
+  .rx-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 12px; display: flex; flex-direction: column; gap: 3px;
+  }
+  .rx-card.critical { border-left: 3px solid #c53030; }
+  .rx-card.advisory { border-left: 3px solid var(--o); }
+  .rx-badge {
+    font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    padding: 2px 6px; border-radius: 3px; display: inline-block; width: fit-content; margin-bottom: 2px;
+  }
+  .rx-badge.advisory { background: var(--obg); color: var(--o); }
+  .rx-badge.critical { background: #fff5f5; color: #c53030; }
+  .rx-asset  { font-size: 12px; font-weight: 700; color: var(--dark); }
+  .rx-action { font-size: 11px; color: var(--gray); line-height: 1.4; }
+
+  /* ── Channel pills ── */
+  .channel-pills { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .ch-pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    border: 1px solid var(--border); border-radius: 16px;
+    padding: 3px 10px; font-size: 11px; font-weight: 600;
+    color: var(--dark); background: var(--white);
+  }
+  .ch-pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--o); }
 
   /* ── Compare table ── */
   .compare { width: 100%; border-collapse: collapse; font-size: clamp(11px, 1.1vw, 13px); }
@@ -174,26 +214,29 @@
   /* ── Divider line ── */
   .rule { width: 48px; height: 3px; background: var(--o); border-radius: 2px; margin-bottom: 20px; }
 
-  /* ── Big stat hero ── */
-  .stat-hero {
-    font-size: clamp(48px, 8vw, 110px); font-weight: 900;
-    letter-spacing: -.05em; color: var(--o); line-height: 1;
-  }
-
   /* ── Logo mark inline ── */
   .logo-mark svg { height: clamp(28px, 3vw, 38px); width: auto; }
 
-  /* ── CTA slide ── */
-  .cta-pill {
-    background: var(--o); color: white; display: inline-flex;
-    align-items: center; gap: 8px; padding: 14px 28px;
-    border-radius: 8px; font-size: clamp(13px,1.3vw,15px); font-weight: 700;
-    text-decoration: none; margin-top: 28px;
-    box-shadow: 0 4px 20px rgba(216,66,0,.35);
+  /* ── Value section label ── */
+  .value-section-label {
+    font-size: 9.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+    color: rgba(255,255,255,.28); margin-top: 14px; margin-bottom: 8px; width: 100%;
+    border-top: 1px solid rgba(255,255,255,.07); padding-top: 10px;
   }
+  #s4 .card-num { font-size: clamp(22px, 2.8vw, 38px); }
+  #s4 .card { padding: clamp(12px, 1.4vw, 18px); }
+  #s4 { justify-content: flex-start; padding-top: clamp(28px, 4vw, 56px); }
+
+  /* ── Cred logos ── */
+  .cred-logo {
+    height: 30px; width: auto; max-width: 110px;
+    object-fit: contain; margin-bottom: 12px;
+    filter: brightness(0) invert(1); opacity: .7;
+    display: block; margin-left: auto; margin-right: auto;
+  }
+  #s6 .cred-card:hover .cred-logo { opacity: 1; }
 
   /* ── Slide-specific ── */
-  /* S1 cover */
   #s1 { background: var(--dark2); }
   #s1 .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
   #s1 .badge {
@@ -202,30 +245,6 @@
     font-size: 11px; font-weight: 600; color: rgba(255,255,255,.45);
     letter-spacing: .04em;
   }
-
-
-  /* S3 how-it-works */
-  #s3 .flow {
-    display: flex; align-items: center; gap: 0; margin-top: 28px; width: 100%;
-  }
-  #s3 .flow-node {
-    flex: 1; text-align: center; padding: 16px 10px;
-    background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
-  }
-  #s3 .flow-icon {
-    width: 44px; height: 44px; border-radius: 10px;
-    background: var(--obg); display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 10px;
-  }
-  #s3 .flow-icon svg { width: 22px; height: 22px; color: var(--o); }
-  #s3 .flow-label { font-size: clamp(12px,1.2vw,14px); font-weight: 700; color: var(--dark); margin-bottom: 3px; }
-  #s3 .flow-sub   { font-size: clamp(10px,0.95vw,11.5px); color: var(--gray); line-height: 1.45; }
-  #s3 .arrow {
-    flex-shrink: 0; width: 36px; display: flex; align-items: center; justify-content: center;
-    color: var(--o); font-size: 18px; font-weight: 300;
-  }
-
-  /* S5 vs ── already styled via .compare */
 
   /* S1 cover image accent */
   #s1 .deco-img {
@@ -248,12 +267,34 @@
     z-index: 1;
   }
 
-  /* S4 implementation */
+  /* S3 how-it-works */
+  #s3 { justify-content: flex-start; padding-top: clamp(28px, 4vw, 56px); }
+  #s3 .flow {
+    display: flex; align-items: center; gap: 0; margin-top: 18px; width: 100%;
+  }
+  #s3 .flow-node {
+    flex: 1; text-align: center; padding: 12px 8px;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+  }
+  #s3 .flow-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: var(--obg); display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 8px;
+  }
+  #s3 .flow-icon svg { width: 20px; height: 20px; color: var(--o); }
+  #s3 .flow-label { font-size: clamp(12px,1.2vw,13px); font-weight: 700; color: var(--dark); margin-bottom: 2px; }
+  #s3 .flow-sub   { font-size: clamp(9.5px,0.9vw,11px); color: var(--gray); line-height: 1.4; }
+  #s3 .arrow {
+    flex-shrink: 0; width: 28px; display: flex; align-items: center; justify-content: center;
+    color: var(--o); font-size: 16px; font-weight: 300;
+  }
+
+  /* S_impl */
   .impl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; margin-top: 18px; }
   .impl-card {
     background: var(--white); border: 1px solid var(--border);
     border-radius: 12px; overflow: hidden; display: grid;
-    grid-template-rows: 190px 1fr; position: relative;
+    grid-template-rows: 240px 1fr; position: relative;
   }
   .impl-card.featured { border-color: var(--o); border-width: 1.5px; }
   .impl-card-badge {
@@ -262,30 +303,23 @@
     font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
     padding: 3px 10px; border-radius: 4px;
   }
-  .impl-card-img { width: 100%; height: 190px; overflow: hidden; background: var(--bg); }
+  .impl-card-img { width: 100%; height: 240px; overflow: hidden; background: var(--bg); }
   .impl-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
-  .impl-card-body { padding: 16px 18px; }
-  .impl-card-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
-  .impl-card-sub   { font-size: 12px; color: var(--gray); line-height: 1.5; margin-bottom: 10px; }
-  .impl-specs { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+  .impl-card-body { padding: 14px 16px; }
+  .impl-card-title { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+  .impl-card-sub   { font-size: 11.5px; color: var(--gray); line-height: 1.5; margin-bottom: 8px; }
+  .impl-specs { display: flex; flex-direction: column; gap: 3px; margin-bottom: 8px; }
   .impl-spec {
-    font-size: 11.5px; color: var(--dark); font-weight: 500;
+    font-size: 11px; color: var(--dark); font-weight: 500;
     display: flex; align-items: center; gap: 6px;
   }
   .impl-spec::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--o); flex-shrink: 0; }
   .impl-ideal {
     background: var(--obg); border-left: 2.5px solid var(--o);
-    border-radius: 0 6px 6px 0; padding: 7px 10px;
-    font-size: 11.5px; color: var(--dark); line-height: 1.5;
+    border-radius: 0 6px 6px 0; padding: 6px 10px;
+    font-size: 11px; color: var(--dark); line-height: 1.5;
   }
-  .impl-ideal strong { color: var(--o); font-size: 10px; text-transform: uppercase; letter-spacing: .07em; display: block; margin-bottom: 2px; }
-
-  /* S7 CTA signature photo */
-  .cta-sig-img {
-    width: 56px; height: 56px; border-radius: 50%;
-    overflow: hidden; border: 2px solid rgba(255,255,255,.25); flex-shrink: 0;
-  }
-  .cta-sig-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .impl-ideal strong { color: var(--o); font-size: 9.5px; text-transform: uppercase; letter-spacing: .07em; display: block; margin-bottom: 2px; }
 
   /* S6 credibility */
   #s6 { background: var(--dark2); }
@@ -293,8 +327,9 @@
   #s6 .cred-card {
     background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
     border-radius: 12px; padding: 22px 20px; text-align: center;
+    transition: border-color .2s;
   }
-  #s6 .cred-icon { font-size: 28px; margin-bottom: 10px; line-height: 1; }
+  #s6 .cred-card:hover { border-color: rgba(255,255,255,.18); }
   #s6 .cred-name { font-size: clamp(12px,1.2vw,14px); font-weight: 700; color: white; margin-bottom: 4px; }
   #s6 .cred-sub  { font-size: 11px; color: rgba(255,255,255,.35); line-height: 1.45; }
   #s6 .client-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
@@ -310,21 +345,37 @@
 
   /* S7 CTA */
   #s7 { background: var(--o); }
-  #s7 .headline { color: var(--white); }
-  #s7 .subhead  { color: rgba(255,255,255,.65); }
-  #s7 .contact-row { display: flex; gap: 20px; margin-top: 32px; flex-wrap: wrap; }
+  .cta-sig-img {
+    width: 56px; height: 56px; border-radius: 50%;
+    overflow: hidden; border: 2px solid rgba(255,255,255,.25); flex-shrink: 0;
+  }
+  .cta-sig-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .coipsa-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+    border-radius: 20px; padding: 5px 14px;
+    font-size: 11px; font-weight: 600; color: rgba(255,255,255,.7);
+    letter-spacing: .03em; margin-bottom: 14px;
+  }
+  .coipsa-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.6); }
+  #s7 .contact-row { display: flex; gap: 20px; margin-top: 24px; flex-wrap: wrap; }
   #s7 .contact-card {
     background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
-    border-radius: 10px; padding: 18px 22px;
+    border-radius: 10px; padding: 16px 20px;
   }
   #s7 .contact-name { font-size: 15px; font-weight: 700; color: white; margin-bottom: 2px; }
   #s7 .contact-role { font-size: 12px; color: rgba(255,255,255,.55); margin-bottom: 8px; }
   #s7 .contact-link { font-size: 13px; color: rgba(255,255,255,.8); text-decoration: none; display: block; line-height: 1.7; }
+  #s7 .contact-link.cta-link {
+    color: white; font-weight: 700; font-size: 13px;
+    background: rgba(255,255,255,.15); border-radius: 6px;
+    padding: 6px 12px; display: inline-block; margin-top: 6px; text-decoration: none;
+  }
 
   /* ── Print / PDF mode ── */
   @media print {
     html, body { overflow: visible; height: auto; }
-    .deck { height: auto; }
+    .deck { height: auto; visibility: visible !important; }
     .slide {
       position: relative; opacity: 1; pointer-events: all;
       transform: none; page-break-after: always;
@@ -341,8 +392,11 @@
     #s6 .cred-grid { grid-template-columns: 1fr 1fr; }
     #s7 .contact-row { flex-direction: column; }
     .impl-grid { grid-template-columns: 1fr; }
-    .impl-card { grid-template-rows: 160px 1fr; }
+    .impl-card { grid-template-rows: 180px 1fr; }
+    .impl-card-img { height: 180px; }
     #s1 .deco-img { display: none; }
+    .rx-grid { grid-template-columns: 1fr; }
+    .step-strip { flex-direction: column; }
   }
 </style>
 </head>
@@ -360,12 +414,12 @@
         <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="rgba(255,255,255,.9)">Made</text>
       </svg>
     </div>
-    <div class="eyebrow light">Industrial AI · Predictive Operations</div>
-    <h1 class="headline white" style="max-width:780px">
+    <div class="eyebrow light" data-i18n="s1_eyebrow">Industrial AI · Predictive Operations</div>
+    <h1 class="headline white" style="max-width:780px" data-i18n="s1_h1">
       Eliminate unplanned downtime<br>at <span class="accent">critical industrial assets.</span>
     </h1>
-    <p class="subhead white" style="margin-top:16px;max-width:560px">
-      Made OS connects to existing sensors and detects failures weeks before they happen — without touching a single control system.
+    <p class="subhead white" style="margin-top:16px;max-width:560px" data-i18n="s1_sub">
+      Made OS connects to existing sensors and detects failures weeks before they happen, without touching a single control system.
     </p>
     <div class="badge-row">
       <span class="badge">NVIDIA Inception</span>
@@ -377,39 +431,39 @@
 
   <!-- ══ S2: THE PROBLEM ══ -->
   <div class="slide" id="s2">
-    <div class="eyebrow">The problem</div>
+    <div class="eyebrow" data-i18n="s2_eyebrow">The problem</div>
     <div class="rule"></div>
-    <h2 class="headline" style="max-width:700px">
+    <h2 class="headline" style="max-width:700px" data-i18n="s2_h2">
       <span class="accent">80%</span> of industrial incidents<br>are predictable weeks in advance.
     </h2>
-    <p class="subhead" style="margin-top:16px">
+    <p class="subhead" style="margin-top:16px" data-i18n="s2_sub">
       Yet most facilities only find out when the failure has already happened.
     </p>
     <div class="cols cols-3 mt">
       <div class="card accent">
-        <div class="card-label">Cost · major refinery incident</div>
-        <div class="card-num orange">$200M+</div>
-        <div class="card-desc">A single unplanned event can wipe out years of margin in one day.</div>
+        <div class="card-label" data-i18n="s2_c1_label">Avg. cost per hour · unplanned downtime</div>
+        <div class="card-num orange">$260K/hr</div>
+        <div class="card-desc" data-i18n="s2_c1_desc">Average across industrial manufacturing. Every hour of unplanned shutdown is margin destruction.</div>
       </div>
       <div class="card accent">
-        <div class="card-label">Downtime cost · 100K+ bpd facility</div>
-        <div class="card-num orange">$900K/day</div>
-        <div class="card-desc">Every day of unplanned shutdown is pure margin destruction at current rates.</div>
+        <div class="card-label" data-i18n="s2_c2_label">Unplanned downtime hours · per facility / yr</div>
+        <div class="card-num orange">800 hrs</div>
+        <div class="card-desc" data-i18n="s2_c2_desc">Average in continuous operations. Most of these hours are preventable with early detection.</div>
       </div>
       <div class="card accent">
-        <div class="card-label">Reduction with predictive AI</div>
+        <div class="card-label" data-i18n="s2_c3_label">Reduction with predictive AI</div>
         <div class="card-num green">30–50%</div>
-        <div class="card-desc">Industry benchmark across 150+ facilities. McKinsey · ResearchGate.</div>
+        <div class="card-desc" data-i18n="s2_c3_desc">Industry benchmark across 150+ facilities. McKinsey · ResearchGate.</div>
       </div>
     </div>
-    <p style="font-size:12px;color:var(--gray-l);margin-top:14px">McKinsey 2025 · IHS Markit · Wood Mackenzie · ResearchGate 150+ facilities</p>
+    <p style="font-size:12px;color:var(--gray-l);margin-top:14px" data-i18n="s2_source">Aberdeen Research 2023 · LNS Research · Emerson 2024 · McKinsey · ResearchGate 150+ facilities</p>
   </div>
 
   <!-- ══ S3: WHAT IS MADE OS ══ -->
   <div class="slide" id="s3">
-    <div class="eyebrow">What we do</div>
+    <div class="eyebrow" data-i18n="s3_eyebrow">What we do</div>
     <div class="rule"></div>
-    <h2 class="headline" style="max-width:680px">
+    <h2 class="headline" style="max-width:680px" data-i18n="s3_h2">
       A read-only intelligence layer<br>on top of <span class="accent">existing infrastructure.</span>
     </h2>
     <div class="flow">
@@ -419,8 +473,8 @@
             <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
           </svg>
         </div>
-        <div class="flow-label">Existing sensors</div>
-        <div class="flow-sub">OPC-UA · Modbus · 4–20mA · PROFIBUS. No new instrumentation.</div>
+        <div class="flow-label" data-i18n="s3_fn1_label">Existing sensors</div>
+        <div class="flow-sub" data-i18n="s3_fn1_sub">OPC-UA · Modbus · 4–20mA · PROFIBUS. No new instrumentation.</div>
       </div>
       <div class="arrow">→</div>
       <div class="flow-node" style="border-color:var(--obd);background:var(--obg)">
@@ -429,8 +483,8 @@
             <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
           </svg>
         </div>
-        <div class="flow-label" style="color:var(--o)">Made OS</div>
-        <div class="flow-sub">Multi-agent AI. Learns nominal behavior. Detects anomalies. Read-only — zero process risk.</div>
+        <div class="flow-label" style="color:var(--o)" data-i18n="s3_fn2_label">Made OS</div>
+        <div class="flow-sub" data-i18n="s3_fn2_sub">Multi-agent AI. Learns nominal behavior. Detects anomalies. Read-only · zero process risk.</div>
       </div>
       <div class="arrow">→</div>
       <div class="flow-node">
@@ -439,8 +493,8 @@
             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
           </svg>
         </div>
-        <div class="flow-label">Early alerts</div>
-        <div class="flow-sub">Class A/B/C anomalies. 2–6 weeks lead time before failure.</div>
+        <div class="flow-label" data-i18n="s3_fn3_label">Early alerts</div>
+        <div class="flow-sub" data-i18n="s3_fn3_sub">Class A/B/C anomalies. 2–6 weeks lead time before failure.</div>
       </div>
       <div class="arrow">→</div>
       <div class="flow-node">
@@ -449,65 +503,85 @@
             <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
           </svg>
         </div>
-        <div class="flow-label">Avoided event</div>
-        <div class="flow-sub">Maintenance team acts. No downtime. Documented, auditable ROI.</div>
+        <div class="flow-label" data-i18n="s3_fn4_label">Avoided event</div>
+        <div class="flow-sub" data-i18n="s3_fn4_sub">Maintenance team acts. No downtime. Documented, auditable ROI.</div>
       </div>
     </div>
-    <div class="cols cols-3" style="margin-top:16px">
-      <div class="step">
+
+    <!-- Prescription alert cards -->
+    <div class="rx-grid">
+      <div class="rx-card advisory">
+        <span class="rx-badge advisory" data-i18n="s3_rx1_badge">Advisory</span>
+        <div class="rx-asset" data-i18n="s3_rx1_asset">Vibration anomaly · Process compressor</div>
+        <div class="rx-action" data-i18n="s3_rx1_action">Reduce speed 6% and verify mechanical seal before next shift.</div>
+      </div>
+      <div class="rx-card critical">
+        <span class="rx-badge critical" data-i18n="s3_rx2_badge">Critical</span>
+        <div class="rx-asset" data-i18n="s3_rx2_asset">Bearing degradation · Drive motor Line 2</div>
+        <div class="rx-action" data-i18n="s3_rx2_action">Schedule replacement in next maintenance window. Escalate to maintenance team now.</div>
+      </div>
+    </div>
+
+    <!-- Channel pills -->
+    <div class="channel-pills">
+      <span class="ch-pill">WebApp</span>
+      <span class="ch-pill">WhatsApp</span>
+      <span class="ch-pill">SMS</span>
+      <span class="ch-pill">Mail</span>
+    </div>
+
+    <!-- Compact step strip -->
+    <div class="step-strip">
+      <div class="step-compact">
         <div class="step-num">01</div>
         <div>
-          <div class="step-tag">Days 1–30</div>
-          <div class="step-title">Connect</div>
-          <div class="step-sub">We install and integrate to existing signals. Zero process interruption.</div>
+          <div class="step-tag" data-i18n="s3_step1_tag">Days 1–30</div>
+          <div class="step-title" data-i18n="s3_step1_title">Connect</div>
         </div>
       </div>
-      <div class="step">
+      <div class="step-compact">
         <div class="step-num">02</div>
         <div>
-          <div class="step-tag">Weeks 2–4</div>
-          <div class="step-title">Learn</div>
-          <div class="step-sub">Made OS builds a nominal baseline per asset, per operating condition.</div>
+          <div class="step-tag" data-i18n="s3_step2_tag">Weeks 2–4</div>
+          <div class="step-title" data-i18n="s3_step2_title">Learn</div>
         </div>
       </div>
-      <div class="step">
+      <div class="step-compact">
         <div class="step-num">03</div>
         <div>
-          <div class="step-tag">From day 30+</div>
-          <div class="step-title">Prescribe</div>
-          <div class="step-sub">Real-time anomaly detection. Actionable alerts with intervention windows.</div>
+          <div class="step-tag" data-i18n="s3_step3_tag">From day 30+</div>
+          <div class="step-title" data-i18n="s3_step3_title">Prescribe</div>
         </div>
       </div>
     </div>
   </div>
 
-
-  <!-- ══ S4: IMPLEMENTATION ══ -->
+  <!-- ══ S_IMPL: HOW WE DEPLOY ══ -->
   <div class="slide" id="s_impl">
-    <div class="eyebrow">How we deploy</div>
+    <div class="eyebrow" data-i18n="si_eyebrow">How we deploy</div>
     <div class="rule"></div>
-    <h2 class="headline" style="max-width:660px">
+    <h2 class="headline" style="max-width:660px" data-i18n="si_h2">
       Two paths. <span class="accent">Same result:</span><br>no unplanned downtime.
     </h2>
     <div class="impl-grid">
 
       <!-- Edge AI Hardware -->
       <div class="impl-card featured">
-        <div class="impl-card-badge">Recommended · process assets</div>
+        <div class="impl-card-badge" data-i18n="si_c1_badge">Recommended · process assets</div>
         <div class="impl-card-img">
-          <img src="../assets/edge-device.jpg" alt="Made Edge AI Hardware — DIN rail installation">
+          <img src="../assets/edge-device.jpg" alt="Made Edge AI Hardware, DIN rail installation">
         </div>
         <div class="impl-card-body">
-          <div class="impl-card-title">Edge AI Hardware</div>
-          <div class="impl-card-sub">NVIDIA Jetson device installed in the DIN rail panel by the Made team. Processes everything on-site — no cloud dependency, no data leaving the facility.</div>
+          <div class="impl-card-title" data-i18n="si_c1_title">Edge AI Hardware</div>
+          <div class="impl-card-sub" data-i18n="si_c1_sub">NVIDIA Jetson device installed in the DIN rail panel by the Made team. Processes everything on-site; no cloud dependency, no data leaving the facility.</div>
           <div class="impl-specs">
-            <div class="impl-spec">NVIDIA Jetson Orin Nano Super · 67 INT8 TOPS</div>
-            <div class="impl-spec">IP67 · NEMA 4X · ATEX enclosure evaluated jointly</div>
-            <div class="impl-spec">IEC 62443 · TLS 1.3 · Air-gap ready</div>
+            <div class="impl-spec" data-i18n="si_c1_spec1">NVIDIA Jetson Orin Nano Super · 67 INT8 TOPS</div>
+            <div class="impl-spec" data-i18n="si_c1_spec2">IP67 · NEMA 4X · ATEX enclosure evaluated jointly</div>
+            <div class="impl-spec" data-i18n="si_c1_spec3">IEC 62443 · TLS 1.3 · Air-gap ready</div>
           </div>
           <div class="impl-ideal">
-            <strong>Ideal for</strong>
-            Compressors, FCC, ATEX zones, environments where IT/OT doesn't allow outbound cloud connectivity.
+            <strong data-i18n="si_c1_ideal_label">Ideal for</strong>
+            <span data-i18n="si_c1_ideal">Compressors, FCC, ATEX zones, environments where IT/OT doesn't allow outbound cloud connectivity.</span>
           </div>
         </div>
       </div>
@@ -515,188 +589,210 @@
       <!-- Software + API -->
       <div class="impl-card">
         <div class="impl-card-img" style="background:var(--dark)">
-          <img src="../assets/platform-screenshot.png" alt="Made OS Platform — web interface with sensor analysis">
+          <img src="../assets/platform-screenshot.png" alt="Made OS Platform, web interface with sensor analysis">
         </div>
         <div class="impl-card-body">
-          <div class="impl-card-title">Software + API</div>
-          <div class="impl-card-sub">Installed on an existing server or industrial PC on-site. No additional hardware. Client IT maintains full control within their existing OT security perimeter.</div>
+          <div class="impl-card-title" data-i18n="si_c2_title">Software + API</div>
+          <div class="impl-card-sub" data-i18n="si_c2_sub">Installed on an existing server or industrial PC on-site. No additional hardware. Client IT maintains full control within their existing OT security perimeter.</div>
           <div class="impl-specs">
-            <div class="impl-spec">Ubuntu · Debian · RHEL · Windows · 8 cores / 8 GB RAM min.</div>
-            <div class="impl-spec">OPC-UA Client · unlimited signal volume in program</div>
-            <div class="impl-spec">WSS (WebSocket over SSL) · integrable with existing OT data stack</div>
+            <div class="impl-spec" data-i18n="si_c2_spec1">Ubuntu · Debian · RHEL · Windows · 8 cores / 8 GB RAM min.</div>
+            <div class="impl-spec" data-i18n="si_c2_spec2">OPC-UA Client · unlimited signal volume in program</div>
+            <div class="impl-spec" data-i18n="si_c2_spec3">WSS (WebSocket over SSL) · integrable with existing OT data stack</div>
           </div>
           <div class="impl-ideal">
-            <strong>Ideal for</strong>
-            Sites with available server infrastructure. IT team maintains full control without any hardware addition.
+            <strong data-i18n="si_c2_ideal_label">Ideal for</strong>
+            <span data-i18n="si_c2_ideal">Sites with available server infrastructure. IT team maintains full control without any hardware addition.</span>
           </div>
         </div>
       </div>
 
     </div>
-    <p style="font-size:12px;color:var(--gray-l);margin-top:12px">In the initial technical session we determine the right path per candidate asset with the IT and operations team. Both paths are read-only: Made never writes to PLCs, DCS, or SCADA.</p>
+    <p style="font-size:11.5px;color:var(--gray-l);margin-top:10px" data-i18n="si_note">In the initial technical session we determine the right path per candidate asset with the IT and operations team. Both paths are read-only: Made never writes to PLCs, DCS, or SCADA.</p>
   </div>
 
-  <!-- ══ S4: VALUE ══ -->
+  <!-- ══ S4: WHAT YOU GET ══ -->
   <div class="slide dark" id="s4">
-    <div class="eyebrow light">What you get</div>
+    <div class="eyebrow light" data-i18n="s4_eyebrow">What you get</div>
     <div class="rule"></div>
-    <h2 class="headline white" style="max-width:680px">
+    <h2 class="headline white" style="max-width:680px" data-i18n="s4_h2">
       ROI from the <span class="accent">first avoided event.</span>
     </h2>
-    <p class="subhead white" style="margin-top:16px">Shared-risk model. Made assumes the technical and results risk. If we don't deliver, you don't pay.</p>
-    <div class="cols cols-4 mt">
+    <p class="subhead white" style="margin-top:8px" data-i18n="s4_sub">Shared-risk model. Made assumes the technical and results risk. If we don't deliver, you don't pay.</p>
+
+    <!-- Row A: Operational impact -->
+    <div class="value-section-label" data-i18n="s4_ra_label">Operational impact</div>
+    <div class="cols cols-3" style="width:100%">
       <div class="card dark-card" style="border-top:3px solid var(--o)">
-        <div class="card-label light">Documented ROI</div>
-        <div class="card-num white">10:1–30:1</div>
-        <div class="card-desc white">Industry benchmark. Positive from month 1–3 of operation.</div>
+        <div class="card-label light" data-i18n="s4_c1_label">Downtime reduction</div>
+        <div class="card-num white" data-i18n="s4_c1_num">30–50%</div>
+        <div class="card-desc white" data-i18n="s4_c1_desc">Fewer unplanned shutdowns, longer MTBF, lower maintenance cost.</div>
       </div>
       <div class="card dark-card" style="border-top:3px solid var(--o)">
-        <div class="card-label light">Downtime reduction</div>
-        <div class="card-num white">30–50%</div>
-        <div class="card-desc white">Fewer unplanned shutdowns, longer MTBF, lower maintenance cost.</div>
+        <div class="card-label light" data-i18n="s4_c2_label">Documented ROI</div>
+        <div class="card-num white" data-i18n="s4_c2_num">10:1–30:1</div>
+        <div class="card-desc white" data-i18n="s4_c2_desc">Industry benchmark. Positive from month 1–3 of operation.</div>
       </div>
       <div class="card dark-card" style="border-top:3px solid var(--o)">
-        <div class="card-label light">Integration time</div>
-        <div class="card-num white">30 days</div>
-        <div class="card-desc white">vs. 12–24 months for traditional APM. No external consultants needed.</div>
-      </div>
-      <div class="card dark-card" style="border-top:3px solid var(--o)">
-        <div class="card-label light">Risk if no ROI</div>
-        <div class="card-num white">$0</div>
-        <div class="card-desc white">90-day extension at no license cost if positive ROI is not demonstrated.</div>
+        <div class="card-label light" data-i18n="s4_c3_label">Early detection lead time</div>
+        <div class="card-num white" data-i18n="s4_c3_num">2–6 wks</div>
+        <div class="card-desc white" data-i18n="s4_c3_desc">Advance warning window before failure. Time to plan and act.</div>
       </div>
     </div>
-    <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:10px">
-      <div class="pill" style="border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.55)">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
-        Read-only · zero process risk
+
+    <!-- Row B: Commercial model -->
+    <div class="value-section-label" data-i18n="s4_rb_label">Commercial model</div>
+    <div class="cols cols-3" style="width:100%">
+      <div class="card dark-card" style="border-top:2px solid rgba(255,255,255,.15)">
+        <div class="card-label light" data-i18n="s4_c4_label">Integration time</div>
+        <div class="card-num white" data-i18n="s4_c4_num">30 days</div>
+        <div class="card-desc white" data-i18n="s4_c4_desc">vs. 12–24 months for traditional APM. No external consultants.</div>
       </div>
-      <div class="pill" style="border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.55)">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
-        Trained models stay yours
+      <div class="card dark-card" style="border-top:2px solid rgba(255,255,255,.15)">
+        <div class="card-label light" data-i18n="s4_c5_label">Risk if no ROI</div>
+        <div class="card-num white" data-i18n="s4_c5_num">$0</div>
+        <div class="card-desc white" data-i18n="s4_c5_desc">90-day extension at no license cost if positive ROI is not demonstrated.</div>
       </div>
-      <div class="pill" style="border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.55)">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
-        Pilot credited 100% to Year 1
-      </div>
-      <div class="pill" style="border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.55)">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
-        ATEX · IEC 62443 · IP67/NEMA 4X
+      <div class="card dark-card" style="border-top:2px solid rgba(255,255,255,.15)">
+        <div class="card-label light" data-i18n="s4_c6_label">Pilot credited</div>
+        <div class="card-num white" data-i18n="s4_c6_num">100%</div>
+        <div class="card-desc white" data-i18n="s4_c6_desc">Full pilot fee credited to Year 1 subscription.</div>
       </div>
     </div>
   </div>
 
   <!-- ══ S5: VS. TRADITIONAL APM ══ -->
   <div class="slide" id="s5">
-    <div class="eyebrow">Made OS vs. Traditional APM</div>
+    <div class="eyebrow" data-i18n="s5_eyebrow">Made OS vs. Traditional APM</div>
     <div class="rule"></div>
-    <h2 class="headline" style="max-width:680px">
-      A different category —<br>at <span class="accent">1/10 the price.</span>
+    <h2 class="headline" style="max-width:680px" data-i18n="s5_h2">
+      A different category:<br>at <span class="accent">1/10 the price.</span>
     </h2>
     <div style="margin-top:24px;width:100%;overflow-x:auto">
       <table class="compare">
         <thead>
           <tr>
-            <th>Dimension</th>
-            <th>AspenTech / Emerson / Honeywell APM</th>
-            <th>Made OS</th>
+            <th data-i18n="s5_th1">Dimension</th>
+            <th data-i18n="s5_th2">AspenTech / Emerson / Honeywell APM</th>
+            <th data-i18n="s5_th3">Made OS</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Time to value</td><td>12–24 months to configure</td><td>First alerts in weeks 2–4</td></tr>
-          <tr><td>Year 1 investment</td><td>$1.5M–$5M+ (license + integrator + services)</td><td>Approx. $440K–$480K all-inclusive</td></tr>
-          <tr><td>Installation</td><td>Requires external consultants, possible shutdowns</td><td>Made team direct · read-only · zero downtime</td></tr>
-          <tr><td>Asset learning</td><td>Manual parameterization by domain expert</td><td>Automatic per asset, per operating condition</td></tr>
-          <tr><td>Financial risk</td><td>100% client from day one</td><td>Shared risk · no-cost extension if no ROI</td></tr>
-          <tr><td>LATAM support</td><td>Remote + regional distributor</td><td>Founding team direct · same timezone</td></tr>
+          <tr>
+            <td data-i18n="s5_r1c1">Time to value</td>
+            <td data-i18n="s5_r1c2">12–24 months to configure</td>
+            <td data-i18n="s5_r1c3">First alerts in weeks 2–4</td>
+          </tr>
+          <tr>
+            <td data-i18n="s5_r2c1">Year 1 investment</td>
+            <td data-i18n="s5_r2c2">$1.5M–$5M+ (license + integrator + services)</td>
+            <td data-i18n="s5_r2c3">Approx. $440K–$480K all-inclusive</td>
+          </tr>
+          <tr>
+            <td data-i18n="s5_r3c1">Installation</td>
+            <td data-i18n="s5_r3c2">Requires external consultants, possible shutdowns</td>
+            <td data-i18n="s5_r3c3">Made team direct · read-only · zero downtime</td>
+          </tr>
+          <tr>
+            <td data-i18n="s5_r4c1">Asset learning</td>
+            <td data-i18n="s5_r4c2">Manual parameterization by domain expert</td>
+            <td data-i18n="s5_r4c3">Automatic per asset, per operating condition</td>
+          </tr>
+          <tr>
+            <td data-i18n="s5_r5c1">Financial risk</td>
+            <td data-i18n="s5_r5c2">100% client from day one</td>
+            <td data-i18n="s5_r5c3">Shared risk · no-cost extension if no ROI</td>
+          </tr>
+          <tr>
+            <td data-i18n="s5_r6c1">LATAM support</td>
+            <td data-i18n="s5_r6c2">Remote + regional distributor</td>
+            <td data-i18n="s5_r6c3">Founding team direct · same timezone</td>
+          </tr>
         </tbody>
       </table>
     </div>
-    <div class="card" style="margin-top:16px;background:var(--obg);border-color:var(--obd);border-left:3px solid var(--o)">
+    <div class="card" style="margin-top:16px;background:var(--obg);border-color:var(--obd);border-left:3px solid var(--o)" data-i18n="s5_note">
       <strong>No external integrators, no hidden CAPEX.</strong> Made arrives with its own technical team, installs, calibrates, and operates the system. The published price covers everything.
     </div>
   </div>
 
   <!-- ══ S6: CREDIBILITY ══ -->
   <div class="slide dark" id="s6">
-    <div class="eyebrow light">Who backs us</div>
+    <div class="eyebrow light" data-i18n="s6_eyebrow">Who backs us</div>
     <div class="rule"></div>
-    <h2 class="headline white" style="max-width:620px">
+    <h2 class="headline white" style="max-width:620px" data-i18n="s6_h2">
       Built with the best.<br>Recognized by <span class="accent">the right people.</span>
     </h2>
     <div class="cred-grid">
       <div class="cred-card">
-        <div class="cred-icon">⚡</div>
-        <div class="cred-name">NVIDIA Inception</div>
-        <div class="cred-sub">Deep tech AI program. Access to NVIDIA Jetson, DGX, and enterprise GPU stack.</div>
+        <img class="cred-logo" src="../assets/brands/nvidia-inception-program.svg" alt="NVIDIA Inception">
+        <div class="cred-name" data-i18n="s6_c1_name">NVIDIA Inception</div>
+        <div class="cred-sub" data-i18n="s6_c1_sub">Deep tech AI program. Access to NVIDIA Jetson, DGX, and enterprise GPU stack.</div>
       </div>
       <div class="cred-card">
-        <div class="cred-icon">🏆</div>
-        <div class="cred-name">MIT Tech Review</div>
-        <div class="cred-sub">Innovators Under 35 LATAM 2025. Gerardo Peña, CEO — recognized by MIT.</div>
+        <img class="cred-logo" src="../assets/brands/mit-technology-review-logo.svg" alt="MIT Technology Review">
+        <div class="cred-name" data-i18n="s6_c2_name">MIT Tech Review</div>
+        <div class="cred-sub" data-i18n="s6_c2_sub">Innovators Under 35 LATAM 2025. Gerardo Peña, CEO, recognized by MIT.</div>
       </div>
       <div class="cred-card">
-        <div class="cred-icon">🚀</div>
-        <div class="cred-name">Founders Inc</div>
-        <div class="cred-sub">Early-stage investor. Portfolio includes category-defining industrial tech companies.</div>
+        <img class="cred-logo" src="../assets/brands/founders-inc-logo.png" alt="Founders Inc">
+        <div class="cred-name" data-i18n="s6_c3_name">Founders Inc</div>
+        <div class="cred-sub" data-i18n="s6_c3_sub">Early-stage investor. Portfolio includes category-defining industrial tech companies.</div>
       </div>
       <div class="cred-card">
-        <div class="cred-icon">🌎</div>
-        <div class="cred-name">Startup Chile BIG 10</div>
-        <div class="cred-sub">Top 10 program. Backed by CORFO — Chile's national innovation agency.</div>
+        <img class="cred-logo" src="../assets/brands/startup-chile-logo.svg" alt="Startup Chile">
+        <div class="cred-name" data-i18n="s6_c4_name">Startup Chile BIG 10</div>
+        <div class="cred-sub" data-i18n="s6_c4_sub">Top 10 program. Backed by CORFO, Chile's national innovation agency.</div>
       </div>
     </div>
     <div>
-      <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:10px;margin-top:24px">Active pipeline</p>
+      <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:10px;margin-top:24px" data-i18n="s6_pipe_label">Active pipeline</p>
       <div class="client-row">
-        <span class="client-tag active">Energy · Refining</span>
-        <span class="client-tag active">Mining · Processing</span>
-        <span class="client-tag active">Pharma · Manufacturing</span>
-        <span class="client-tag active">Wine · Agri-industry</span>
-        <span class="client-tag">Water · Utilities</span>
-        <span class="client-tag">Cement · Heavy industry</span>
+        <span class="client-tag active" data-i18n="s6_tag1">Energy · Refining</span>
+        <span class="client-tag active" data-i18n="s6_tag2">Mining · Processing</span>
+        <span class="client-tag active" data-i18n="s6_tag3">Pharma · Manufacturing</span>
+        <span class="client-tag active" data-i18n="s6_tag4">Wine · Agri-industry</span>
+        <span class="client-tag" data-i18n="s6_tag5">Water · Utilities</span>
+        <span class="client-tag" data-i18n="s6_tag6">Cement · Heavy industry</span>
       </div>
     </div>
   </div>
 
   <!-- ══ S7: CTA ══ -->
   <div class="slide orange" id="s7">
-    <div class="eyebrow" style="color:rgba(255,255,255,.55)">Next step</div>
-    <h2 class="headline" style="max-width:680px">
-      45-minute technical session.<br>Walk away with a pilot plan.
+    <div class="eyebrow" style="color:rgba(255,255,255,.6)" data-i18n="s7_eyebrow">Siguiente paso · COIPSA</div>
+    <div class="coipsa-badge" data-i18n="s7_badge">COIPSA · Embalaje corrugado · Chile · Múltiples plantas</div>
+    <h2 class="headline" style="max-width:700px;color:white" data-i18n="s7_h2">
+      Cero paros no planificados<br>en las <span class="accent" style="color:rgba(255,255,255,.9)">plantas de COIPSA.</span>
     </h2>
-    <p class="subhead" style="margin-top:16px;max-width:560px">
-      We assess your instrumentation, identify the highest-value candidate assets, and deliver a one-page pilot plan — no consulting required, no commitment.
+    <p class="subhead" style="margin-top:14px;max-width:580px;color:rgba(255,255,255,.65)" data-i18n="s7_sub">
+      Una sesión técnica de 45 min con el equipo fundador. Identificamos los activos candidatos en tu planta, entregamos un plan piloto en una página y arrancamos en menos de 30 días hábiles.
     </p>
-    <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:10px">
-      <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.75)">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
-        Remote · 45 min
+    <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:10px">
+      <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)" data-i18n="s7_pill1">
+        Remoto · 45 min
       </div>
-      <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.75)">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
-        No prior consulting required
+      <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)" data-i18n="s7_pill2">
+        Sin consultoría previa
       </div>
-      <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.75)">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
-        Pilot starts in &lt; 30 business days
+      <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)" data-i18n="s7_pill3">
+        Piloto en menos de 30 días
       </div>
     </div>
     <div class="contact-row">
       <div class="contact-card" style="display:flex;gap:14px;align-items:flex-start">
         <div class="cta-sig-img"><img src="../assets/gpc.png" alt="Gerardo Peña"></div>
         <div>
-        <div class="contact-name">Gerardo Peña</div>
-        <div class="contact-role">CEO · MIT Innovator Under 35 LATAM 2025</div>
-        <a class="contact-link" href="mailto:ger@madeos.ai">ger@madeos.ai</a>
-        <a class="contact-link" href="https://madeos.ai" target="_blank">madeos.ai</a>
+          <div class="contact-name" data-i18n="s7_c1_name">Gerardo Peña</div>
+          <div class="contact-role" data-i18n="s7_c1_role">CEO · MIT Innovador Menores de 35 LATAM 2025</div>
+          <a class="contact-link" href="mailto:ger@madeos.ai">ger@madeos.ai</a>
+          <a class="contact-link" href="https://madeos.ai" target="_blank">madeos.ai</a>
         </div>
       </div>
       <div class="contact-card">
-        <div class="contact-name">Ramiro Pantoja</div>
-        <div class="contact-role">CTO · Industrial AI Systems</div>
+        <div class="contact-name" data-i18n="s7_c2_name">Ramiro Pantoja</div>
+        <div class="contact-role" data-i18n="s7_c2_role">CTO · Sistemas de IA Industrial</div>
         <a class="contact-link" href="mailto:ramiro@madeos.ai">ramiro@madeos.ai</a>
-        <a class="contact-link" href="https://cal.com/madeos.ai/demo" target="_blank">cal.com/madeos.ai/demo</a>
+        <a class="contact-link cta-link" href="https://cal.com/madeos.ai/demo" target="_blank" data-i18n="s7_cta_link">Agendar sesión técnica →</a>
       </div>
     </div>
   </div>
@@ -712,18 +808,240 @@
   <button class="nav-btn" id="next-btn" aria-label="Next slide">
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 2l4 4-4 4"/></svg>
   </button>
-  <span class="slide-counter" id="counter">1 / 7</span>
+  <span class="slide-counter" id="counter">1 / 8</span>
+  <div class="lang-toggle">
+    <button class="lang-btn" id="btn-en">EN</button>
+    <button class="lang-btn active" id="btn-es">ES</button>
+  </div>
 </nav>
 
 <script>
 (function() {
-  var slides = Array.from(document.querySelectorAll('.slide'));
-  var dots   = document.getElementById('nav-dots');
+  /* ── Translations ── */
+  var T = {
+    en: {
+      s1_eyebrow: 'Industrial AI · Predictive Operations',
+      s1_h1: 'Eliminate unplanned downtime<br>at <span class="accent">critical industrial assets.</span>',
+      s1_sub: 'Made OS connects to existing sensors and detects failures weeks before they happen, without touching a single control system.',
+      s2_eyebrow: 'The problem',
+      s2_h2: '<span class="accent">80%</span> of industrial incidents<br>are predictable weeks in advance.',
+      s2_sub: 'Yet most facilities only find out when the failure has already happened.',
+      s2_c1_label: 'Avg. cost per hour · unplanned downtime',
+      s2_c1_desc: 'Average across industrial manufacturing. Every hour of unplanned shutdown is margin destruction.',
+      s2_c2_label: 'Unplanned downtime hours · per facility / yr',
+      s2_c2_desc: 'Average in continuous operations. Most of these hours are preventable with early detection.',
+      s2_c3_label: 'Reduction with predictive AI',
+      s2_c3_desc: 'Industry benchmark across 150+ facilities. McKinsey · ResearchGate.',
+      s2_source: 'Aberdeen Research 2023 · LNS Research · Emerson 2024 · McKinsey · ResearchGate 150+ facilities',
+      s3_eyebrow: 'What we do',
+      s3_h2: 'A read-only intelligence layer<br>on top of <span class="accent">existing infrastructure.</span>',
+      s3_fn1_label: 'Existing sensors',
+      s3_fn1_sub: 'OPC-UA · Modbus · 4–20mA · PROFIBUS. No new instrumentation.',
+      s3_fn2_label: 'Made OS',
+      s3_fn2_sub: 'Multi-agent AI. Learns nominal behavior. Detects anomalies. Read-only · zero process risk.',
+      s3_fn3_label: 'Early alerts',
+      s3_fn3_sub: 'Class A/B/C anomalies. 2–6 weeks lead time before failure.',
+      s3_fn4_label: 'Avoided event',
+      s3_fn4_sub: 'Maintenance team acts. No downtime. Documented, auditable ROI.',
+      s3_rx1_badge: 'Advisory',
+      s3_rx1_asset: 'Vibration anomaly · Process compressor',
+      s3_rx1_action: 'Reduce speed 6% and verify mechanical seal before next shift.',
+      s3_rx2_badge: 'Critical',
+      s3_rx2_asset: 'Bearing degradation · Drive motor Line 2',
+      s3_rx2_action: 'Schedule replacement in next maintenance window. Escalate to maintenance team now.',
+      s3_step1_tag: 'Days 1–30', s3_step1_title: 'Connect',
+      s3_step2_tag: 'Weeks 2–4', s3_step2_title: 'Learn',
+      s3_step3_tag: 'From day 30+', s3_step3_title: 'Prescribe',
+      si_eyebrow: 'How we deploy',
+      si_h2: 'Two paths. <span class="accent">Same result:</span><br>no unplanned downtime.',
+      si_c1_badge: 'Recommended · process assets',
+      si_c1_title: 'Edge AI Hardware',
+      si_c1_sub: 'NVIDIA Jetson device installed in the DIN rail panel by the Made team. Processes everything on-site; no cloud dependency, no data leaving the facility.',
+      si_c1_spec1: 'NVIDIA Jetson Orin Nano Super · 67 INT8 TOPS',
+      si_c1_spec2: 'IP67 · NEMA 4X · ATEX enclosure evaluated jointly',
+      si_c1_spec3: 'IEC 62443 · TLS 1.3 · Air-gap ready',
+      si_c1_ideal_label: 'Ideal for',
+      si_c1_ideal: "Compressors, FCC, ATEX zones, environments where IT/OT doesn't allow outbound cloud connectivity.",
+      si_c2_title: 'Software + API',
+      si_c2_sub: 'Installed on an existing server or industrial PC on-site. No additional hardware. Client IT maintains full control within their existing OT security perimeter.',
+      si_c2_spec1: 'Ubuntu · Debian · RHEL · Windows · 8 cores / 8 GB RAM min.',
+      si_c2_spec2: 'OPC-UA Client · unlimited signal volume in program',
+      si_c2_spec3: 'WSS (WebSocket over SSL) · integrable with existing OT data stack',
+      si_c2_ideal_label: 'Ideal for',
+      si_c2_ideal: 'Sites with available server infrastructure. IT team maintains full control without any hardware addition.',
+      si_note: 'In the initial technical session we determine the right path per candidate asset with the IT and operations team. Both paths are read-only: Made never writes to PLCs, DCS, or SCADA.',
+      s4_eyebrow: 'What you get',
+      s4_h2: 'ROI from the <span class="accent">first avoided event.</span>',
+      s4_sub: "Shared-risk model. Made assumes the technical and results risk. If we don't deliver, you don't pay.",
+      s4_ra_label: 'Operational impact',
+      s4_c1_label: 'Downtime reduction', s4_c1_num: '30–50%',
+      s4_c1_desc: 'Fewer unplanned shutdowns, longer MTBF, lower maintenance cost.',
+      s4_c2_label: 'Documented ROI', s4_c2_num: '10:1–30:1',
+      s4_c2_desc: 'Industry benchmark. Positive from month 1–3 of operation.',
+      s4_c3_label: 'Early detection lead time', s4_c3_num: '2–6 wks',
+      s4_c3_desc: 'Advance warning window before failure. Time to plan and act.',
+      s4_rb_label: 'Commercial model',
+      s4_c4_label: 'Integration time', s4_c4_num: '30 days',
+      s4_c4_desc: 'vs. 12–24 months for traditional APM. No external consultants.',
+      s4_c5_label: 'Risk if no ROI', s4_c5_num: '$0',
+      s4_c5_desc: '90-day extension at no license cost if positive ROI is not demonstrated.',
+      s4_c6_label: 'Pilot credited', s4_c6_num: '100%',
+      s4_c6_desc: 'Full pilot fee credited to Year 1 subscription.',
+      s5_eyebrow: 'Made OS vs. Traditional APM',
+      s5_h2: 'A different category:<br>at <span class="accent">1/10 the price.</span>',
+      s5_th1: 'Dimension', s5_th2: 'AspenTech / Emerson / Honeywell APM', s5_th3: 'Made OS',
+      s5_r1c1: 'Time to value', s5_r1c2: '12–24 months to configure', s5_r1c3: 'First alerts in weeks 2–4',
+      s5_r2c1: 'Year 1 investment', s5_r2c2: '$1.5M–$5M+ (license + integrator + services)', s5_r2c3: 'Approx. $440K–$480K all-inclusive',
+      s5_r3c1: 'Installation', s5_r3c2: 'Requires external consultants, possible shutdowns', s5_r3c3: 'Made team direct · read-only · zero downtime',
+      s5_r4c1: 'Asset learning', s5_r4c2: 'Manual parameterization by domain expert', s5_r4c3: 'Automatic per asset, per operating condition',
+      s5_r5c1: 'Financial risk', s5_r5c2: '100% client from day one', s5_r5c3: 'Shared risk · no-cost extension if no ROI',
+      s5_r6c1: 'LATAM support', s5_r6c2: 'Remote + regional distributor', s5_r6c3: 'Founding team direct · same timezone',
+      s5_note: '<strong>No external integrators, no hidden CAPEX.</strong> Made arrives with its own technical team, installs, calibrates, and operates the system. The published price covers everything.',
+      s6_eyebrow: 'Who backs us',
+      s6_h2: 'Built with the best.<br>Recognized by <span class="accent">the right people.</span>',
+      s6_c1_name: 'NVIDIA Inception', s6_c1_sub: 'Deep tech AI program. Access to NVIDIA Jetson, DGX, and enterprise GPU stack.',
+      s6_c2_name: 'MIT Tech Review', s6_c2_sub: 'Innovators Under 35 LATAM 2025. Gerardo Peña, CEO, recognized by MIT.',
+      s6_c3_name: 'Founders Inc', s6_c3_sub: 'Early-stage investor. Portfolio includes category-defining industrial tech companies.',
+      s6_c4_name: 'Startup Chile BIG 10', s6_c4_sub: "Top 10 program. Backed by CORFO, Chile's national innovation agency.",
+      s6_pipe_label: 'Active pipeline',
+      s6_tag1: 'Energy · Refining', s6_tag2: 'Mining · Processing',
+      s6_tag3: 'Pharma · Manufacturing', s6_tag4: 'Wine · Agri-industry',
+      s6_tag5: 'Water · Utilities', s6_tag6: 'Cement · Heavy industry',
+      s7_eyebrow: 'Next step · COIPSA',
+      s7_badge: 'COIPSA · Corrugated packaging · Chile · Multiple plants',
+      s7_h2: 'Zero unplanned downtime<br>at <span class="accent" style="color:rgba(255,255,255,.9)">COIPSA\'s plants.</span>',
+      s7_sub: 'A 45-min technical session with the founding team. We identify candidate assets at your plant, deliver a one-page pilot plan, and start in under 30 business days.',
+      s7_pill1: 'Remote · 45 min',
+      s7_pill2: 'No prior consulting required',
+      s7_pill3: 'Pilot starts in &lt; 30 business days',
+      s7_c1_name: 'Gerardo Peña', s7_c1_role: 'CEO · MIT Innovator Under 35 LATAM 2025',
+      s7_c2_name: 'Ramiro Pantoja', s7_c2_role: 'CTO · Industrial AI Systems',
+      s7_cta_link: 'Book technical session →'
+    },
+    es: {
+      s1_eyebrow: 'IA Industrial · Operaciones Predictivas',
+      s1_h1: 'Elimina los paros no planificados<br>en <span class="accent">activos industriales críticos.</span>',
+      s1_sub: 'Made OS se conecta a los sensores existentes y detecta fallas semanas antes de que ocurran, sin tocar ningún sistema de control.',
+      s2_eyebrow: 'El problema',
+      s2_h2: 'El <span class="accent">80%</span> de los incidentes industriales<br>son predecibles con semanas de anticipación.',
+      s2_sub: 'Sin embargo, la mayoría de las plantas solo lo descubren cuando la falla ya ocurrió.',
+      s2_c1_label: 'Costo prom. por hora · paro no planificado',
+      s2_c1_desc: 'Promedio en manufactura industrial. Cada hora de paro destruye margen.',
+      s2_c2_label: 'Horas de paro no planificado · por planta / año',
+      s2_c2_desc: 'Promedio en operaciones continuas. La mayoría son prevenibles con detección temprana.',
+      s2_c3_label: 'Reducción con IA predictiva',
+      s2_c3_desc: 'Benchmark en más de 150 instalaciones. McKinsey · ResearchGate.',
+      s2_source: 'Aberdeen Research 2023 · LNS Research · Emerson 2024 · McKinsey · ResearchGate 150+ instalaciones',
+      s3_eyebrow: 'Lo que hacemos',
+      s3_h2: 'Una capa de inteligencia de solo lectura<br>sobre la <span class="accent">infraestructura existente.</span>',
+      s3_fn1_label: 'Sensores existentes',
+      s3_fn1_sub: 'OPC-UA · Modbus · 4–20mA · PROFIBUS. Sin nueva instrumentación.',
+      s3_fn2_label: 'Made OS',
+      s3_fn2_sub: 'IA multi-agente. Aprende el comportamiento nominal. Detecta anomalías. Solo lectura · cero riesgo de proceso.',
+      s3_fn3_label: 'Alertas tempranas',
+      s3_fn3_sub: 'Anomalías clase A/B/C. 2–6 semanas de anticipación antes de la falla.',
+      s3_fn4_label: 'Evento evitado',
+      s3_fn4_sub: 'El equipo de mantenimiento actúa. Sin paro. ROI documentado y auditable.',
+      s3_rx1_badge: 'Aviso',
+      s3_rx1_asset: 'Anomalía de vibración · Compresor de proceso',
+      s3_rx1_action: 'Reducir velocidad 6% y verificar sello mecánico antes del próximo turno.',
+      s3_rx2_badge: 'Crítico',
+      s3_rx2_asset: 'Degradación de rodamiento · Motor de accionamiento Línea 2',
+      s3_rx2_action: 'Programar reemplazo en próxima ventana de mantenimiento. Escalar al equipo ahora.',
+      s3_step1_tag: 'Días 1–30', s3_step1_title: 'Conectar',
+      s3_step2_tag: 'Semanas 2–4', s3_step2_title: 'Aprender',
+      s3_step3_tag: 'Desde el día 30+', s3_step3_title: 'Prescribir',
+      si_eyebrow: 'Cómo desplegamos',
+      si_h2: 'Dos rutas. <span class="accent">El mismo resultado:</span><br>cero paros no planificados.',
+      si_c1_badge: 'Recomendado · activos de proceso',
+      si_c1_title: 'Hardware Edge AI',
+      si_c1_sub: 'Dispositivo NVIDIA Jetson instalado en el panel DIN rail por el equipo de Made. Procesa todo en planta; sin dependencia de nube, sin datos fuera de la instalación.',
+      si_c1_spec1: 'NVIDIA Jetson Orin Nano Super · 67 INT8 TOPS',
+      si_c1_spec2: 'IP67 · NEMA 4X · Recinto ATEX evaluado conjuntamente',
+      si_c1_spec3: 'IEC 62443 · TLS 1.3 · Preparado para air-gap',
+      si_c1_ideal_label: 'Ideal para',
+      si_c1_ideal: 'Compresores, FCC, zonas ATEX, entornos donde IT/OT no permite conectividad saliente a la nube.',
+      si_c2_title: 'Software + API',
+      si_c2_sub: 'Instalado en un servidor o PC industrial existente en planta. Sin hardware adicional. IT del cliente mantiene control total dentro de su perímetro OT.',
+      si_c2_spec1: 'Ubuntu · Debian · RHEL · Windows · 8 núcleos / 8 GB RAM mín.',
+      si_c2_spec2: 'OPC-UA Client · volumen de señales ilimitado en programa',
+      si_c2_spec3: 'WSS (WebSocket sobre SSL) · integrable con stack de datos OT existente',
+      si_c2_ideal_label: 'Ideal para',
+      si_c2_ideal: 'Plantas con infraestructura de servidores disponible. IT mantiene control total sin hardware adicional.',
+      si_note: 'En la sesión técnica inicial determinamos la ruta correcta por activo candidato con el equipo de IT y operaciones. Ambas rutas son de solo lectura: Made nunca escribe en PLCs, DCS o SCADA.',
+      s4_eyebrow: 'Lo que obtienes',
+      s4_h2: 'ROI desde el <span class="accent">primer evento evitado.</span>',
+      s4_sub: 'Modelo de riesgo compartido. Made asume el riesgo técnico y de resultados. Si no entregamos, no pagas.',
+      s4_ra_label: 'Impacto operacional',
+      s4_c1_label: 'Reducción de paros', s4_c1_num: '30–50%',
+      s4_c1_desc: 'Menos paros no planificados, mayor MTBF, menor costo de mantenimiento.',
+      s4_c2_label: 'ROI documentado', s4_c2_num: '10:1–30:1',
+      s4_c2_desc: 'Benchmark de la industria. Positivo desde el mes 1–3 de operación.',
+      s4_c3_label: 'Anticipación de detección', s4_c3_num: '2–6 sem',
+      s4_c3_desc: 'Ventana de alerta anticipada antes de la falla. Tiempo para planificar y actuar.',
+      s4_rb_label: 'Modelo comercial',
+      s4_c4_label: 'Tiempo de integración', s4_c4_num: '30 días',
+      s4_c4_desc: 'vs. 12–24 meses para APM tradicional. Sin consultores externos.',
+      s4_c5_label: 'Riesgo sin ROI', s4_c5_num: '$0',
+      s4_c5_desc: 'Extensión de 90 días sin costo de licencia si no se demuestra ROI positivo.',
+      s4_c6_label: 'Piloto acreditado', s4_c6_num: '100%',
+      s4_c6_desc: 'El total del piloto se acredita a la suscripción del Año 1.',
+      s5_eyebrow: 'Made OS vs. APM Tradicional',
+      s5_h2: 'Una categoría diferente:<br>a <span class="accent">1/10 del precio.</span>',
+      s5_th1: 'Dimensión', s5_th2: 'AspenTech / Emerson / Honeywell APM', s5_th3: 'Made OS',
+      s5_r1c1: 'Tiempo a valor', s5_r1c2: '12–24 meses para configurar', s5_r1c3: 'Primeras alertas en semanas 2–4',
+      s5_r2c1: 'Inversión Año 1', s5_r2c2: '$1.5M–$5M+ (licencia + integrador + servicios)', s5_r2c3: 'Aprox. $440K–$480K todo incluido',
+      s5_r3c1: 'Instalación', s5_r3c2: 'Requiere consultores externos, posibles paros', s5_r3c3: 'Equipo Made directo · solo lectura · cero tiempo muerto',
+      s5_r4c1: 'Aprendizaje de activo', s5_r4c2: 'Parametrización manual por experto de dominio', s5_r4c3: 'Automático por activo y condición operativa',
+      s5_r5c1: 'Riesgo financiero', s5_r5c2: '100% del cliente desde el día uno', s5_r5c3: 'Riesgo compartido · extensión sin costo si no hay ROI',
+      s5_r6c1: 'Soporte LATAM', s5_r6c2: 'Remoto + distribuidor regional', s5_r6c3: 'Equipo fundador directo · misma zona horaria',
+      s5_note: '<strong>Sin integradores externos, sin CAPEX oculto.</strong> Made llega con su propio equipo técnico, instala, calibra y opera el sistema. El precio publicado lo cubre todo.',
+      s6_eyebrow: 'Quiénes nos respaldan',
+      s6_h2: 'Respaldados por los mejores.<br>Reconocidos por <span class="accent">quienes importan.</span>',
+      s6_c1_name: 'NVIDIA Inception', s6_c1_sub: 'Programa de IA deep tech. Acceso a NVIDIA Jetson, DGX y stack GPU empresarial.',
+      s6_c2_name: 'MIT Tech Review', s6_c2_sub: 'Innovadores Menores de 35 LATAM 2025. Gerardo Peña, CEO, reconocido por MIT.',
+      s6_c3_name: 'Founders Inc', s6_c3_sub: 'Inversionista early-stage. Portafolio incluye empresas tech industriales de categoría.',
+      s6_c4_name: 'Startup Chile BIG 10', s6_c4_sub: 'Programa Top 10. Respaldado por CORFO, agencia nacional de innovación de Chile.',
+      s6_pipe_label: 'Pipeline activo',
+      s6_tag1: 'Energía · Refinación', s6_tag2: 'Minería · Procesamiento',
+      s6_tag3: 'Pharma · Manufactura', s6_tag4: 'Vino · Agroindustria',
+      s6_tag5: 'Agua · Utilities', s6_tag6: 'Cemento · Industria pesada',
+      s7_eyebrow: 'Siguiente paso · COIPSA',
+      s7_badge: 'COIPSA · Embalaje corrugado · Chile · Múltiples plantas',
+      s7_h2: 'Cero paros no planificados<br>en las <span class="accent" style="color:rgba(255,255,255,.9)">plantas de COIPSA.</span>',
+      s7_sub: 'Una sesión técnica de 45 min con el equipo fundador. Identificamos los activos candidatos en tu planta, entregamos un plan piloto en una página y arrancamos en menos de 30 días hábiles.',
+      s7_pill1: 'Remoto · 45 min',
+      s7_pill2: 'Sin consultoría previa',
+      s7_pill3: 'Piloto en menos de 30 días',
+      s7_c1_name: 'Gerardo Peña', s7_c1_role: 'CEO · MIT Innovador Menores de 35 LATAM 2025',
+      s7_c2_name: 'Ramiro Pantoja', s7_c2_role: 'CTO · Sistemas de IA Industrial',
+      s7_cta_link: 'Agendar sesión técnica →'
+    }
+  };
+
+  var currentLang = 'es';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (T[lang] && T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+    });
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  }
+
+  document.getElementById('btn-en').addEventListener('click', function() { setLang('en'); });
+  document.getElementById('btn-es').addEventListener('click', function() { setLang('es'); });
+
+  /* ── Slide engine ── */
+  var slides  = Array.from(document.querySelectorAll('.slide'));
+  var dots    = document.getElementById('nav-dots');
   var counter = document.getElementById('counter');
   var current = 0;
   var total   = slides.length;
 
-  /* Build dots */
   slides.forEach(function(_, i) {
     var d = document.createElement('div');
     d.className = 'nav-dot' + (i === 0 ? ' active' : '');
@@ -754,13 +1072,16 @@
     if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); goTo(current - 1); }
   });
 
-  /* Touch swipe */
   var tx = 0;
   document.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
   document.addEventListener('touchend',   function(e) {
     var dx = e.changedTouches[0].clientX - tx;
     if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
   });
+
+  /* Init: apply Spanish translations, then show deck */
+  setLang('es');
+  document.getElementById('deck').style.visibility = 'visible';
 })();
 </script>
 </body>
