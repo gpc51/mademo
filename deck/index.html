@@ -140,44 +140,44 @@
   }
   .card-desc.white { color: rgba(255,255,255,.45); }
 
-  /* ── Steps (compact strip) ── */
-  .step-strip { display: flex; gap: 8px; width: 100%; margin-top: 10px; }
-  .step-compact {
-    display: flex; gap: 10px; align-items: center;
-    padding: 10px 12px; background: var(--white);
-    border: 1px solid var(--border); border-radius: 10px; flex: 1;
+  /* ── S3 hero steps ── */
+  #s3 .s3-hero {
+    display: grid; grid-template-columns: 1fr 248px;
+    gap: 48px; align-items: center; margin-top: 12px;
   }
-  .step-num {
-    width: 28px; height: 28px; flex-shrink: 0;
-    border-radius: 50%; background: var(--o); color: white;
-    font-size: 11px; font-weight: 800; display: flex;
-    align-items: center; justify-content: center;
+  #s3 .s3-body-text {
+    font-size: 13px; color: var(--gray); line-height: 1.7;
+    margin-top: 12px; max-width: 400px;
   }
-  .step-title { font-size: 13px; font-weight: 700; color: var(--dark); }
-  .step-tag   {
-    font-size: 9.5px; font-weight: 700; letter-spacing: .07em;
-    text-transform: uppercase; color: var(--o);
-    background: var(--obg); border-radius: 4px; padding: 1px 5px;
-    display: inline-block; margin-bottom: 3px;
+  #s3 .s3-steps { display: flex; flex-direction: column; gap: 14px; margin-top: 22px; }
+  #s3 .s3-step  { display: flex; gap: 14px; align-items: flex-start; }
+  #s3 .s3-step-num {
+    font-size: 10px; font-weight: 800; color: var(--o); letter-spacing: .1em;
+    min-width: 22px; padding-top: 1px; flex-shrink: 0;
   }
-  .step-sub   { font-size: clamp(10px, 0.95vw, 11.5px); color: var(--gray); line-height: 1.4; }
-
-  /* ── Prescription alert cards ── */
-  .rx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; width: 100%; }
-  .rx-card {
-    background: var(--white); border: 1px solid var(--border); border-radius: 10px;
-    padding: 10px 12px; display: flex; flex-direction: column; gap: 3px;
+  #s3 .s3-step-title { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
+  #s3 .s3-step-sub   { font-size: 11px; color: var(--gray); line-height: 1.5; }
+  /* ── S3 phone column ── */
+  #s3 .s3-phone-col  { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .phone-frame {
+    background: #0d0d0d; border-radius: 38px; padding: 10px 10px 14px;
+    box-shadow: 0 32px 72px rgba(0,0,0,.22),
+                0 0 0 1.5px rgba(255,255,255,.07),
+                inset 0 0 0 1px rgba(255,255,255,.03);
   }
-  .rx-card.critical { border-left: 3px solid #c53030; }
-  .rx-card.advisory { border-left: 3px solid var(--o); }
-  .rx-badge {
-    font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
-    padding: 2px 6px; border-radius: 3px; display: inline-block; width: fit-content; margin-bottom: 2px;
+  .phone-notch {
+    width: 50px; height: 5px; border-radius: 3px;
+    background: #242424; margin: 0 auto 8px;
   }
-  .rx-badge.advisory { background: var(--obg); color: var(--o); }
-  .rx-badge.critical { background: #fff5f5; color: #c53030; }
-  .rx-asset  { font-size: 12px; font-weight: 700; color: var(--dark); }
-  .rx-action { font-size: 11px; color: var(--gray); line-height: 1.4; }
+  .phone-screen { border-radius: 28px; overflow: hidden; }
+  .phone-screen img { width: 100%; display: block; }
+  #s3 .s3-phone-caption {
+    font-size: 10px; color: var(--gray-l); font-style: italic; text-align: center; letter-spacing: .02em;
+  }
+  @media (max-width: 900px) {
+    #s3 .s3-hero { grid-template-columns: 1fr; }
+    #s3 .s3-phone-col { display: none; }
+  }
 
   /* ── Channel pills ── */
   .channel-pills { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
@@ -271,26 +271,7 @@
     z-index: 1;
   }
 
-  /* S3 how-it-works */
-  #s3 .flow {
-    display: flex; align-items: center; gap: 0; margin-top: 18px; width: 100%;
-  }
-  #s3 .flow-node {
-    flex: 1; text-align: center; padding: 12px 8px;
-    background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
-  }
-  #s3 .flow-icon {
-    width: 38px; height: 38px; border-radius: 10px;
-    background: var(--obg); display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 8px;
-  }
-  #s3 .flow-icon svg { width: 20px; height: 20px; color: var(--o); }
-  #s3 .flow-label { font-size: clamp(12px,1.2vw,13px); font-weight: 700; color: var(--dark); margin-bottom: 2px; }
-  #s3 .flow-sub   { font-size: clamp(9.5px,0.9vw,11px); color: var(--gray); line-height: 1.4; }
-  #s3 .arrow {
-    flex-shrink: 0; width: 28px; display: flex; align-items: center; justify-content: center;
-    color: var(--o); font-size: 16px; font-weight: 300;
-  }
+
 
   /* S_impl */
   .impl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; margin-top: 18px; }
@@ -324,17 +305,6 @@
   }
   .impl-ideal strong { color: var(--o); font-size: 9.5px; text-transform: uppercase; letter-spacing: .07em; display: block; margin-bottom: 2px; }
 
-  /* S3 floating gif — anchored to flow row only, rx-grid stays clear */
-  #s3 .flow-container { position: relative; }
-  #s3 .s3-wa-float {
-    position: absolute; right: 0; top: 0; z-index: 6;
-    width: 148px;
-    border-radius: 14px; overflow: hidden;
-    box-shadow: 0 12px 40px rgba(0,0,0,.18), 0 2px 8px rgba(0,0,0,.1);
-    pointer-events: none;
-  }
-  #s3 .s3-wa-float img { width: 100%; display: block; }
-  @media (max-width: 900px) { #s3 .s3-wa-float { display: none; } }
 
   /* S6 credibility */
   #s6 { background: var(--dark2); }
@@ -412,7 +382,6 @@
     .impl-card-img { height: 180px; }
     #s1 .deco-img { display: none; }
     .rx-grid { grid-template-columns: 1fr; }
-    .step-strip { flex-direction: column; }
   }
 </style>
 </head>
@@ -479,104 +448,59 @@
   <div class="slide" id="s3">
     <div class="eyebrow" data-i18n="s3_eyebrow">What we do</div>
     <div class="rule"></div>
-    <h2 class="headline" style="max-width:680px" data-i18n="s3_h2">
-      A read-only intelligence layer<br>on top of <span class="accent">existing infrastructure.</span>
-    </h2>
-    <div class="flow-wrap">
-    <div class="flow-container">
-    <div class="flow">
-      <div class="flow-node">
-        <div class="flow-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="2 12 5 12 7 5 10 19 13 9 16 15 18 12 22 12"/>
-          </svg>
-        </div>
-        <div class="flow-label" data-i18n="s3_fn1_label">Existing sensors</div>
-        <div class="flow-sub" data-i18n="s3_fn1_sub">OPC-UA · Modbus · 4–20mA · PROFIBUS. No new instrumentation.</div>
-      </div>
-      <div class="arrow">→</div>
-      <div class="flow-node" style="border-color:var(--obd);background:var(--obg)">
-        <div class="flow-icon" style="background:white">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="7" y="7" width="10" height="10" rx="1"/>
-            <path d="M7 9H4M7 12H4M7 15H4M17 9h3M17 12h3M17 15h3M9 7V4M12 7V4M15 7V4M9 17v3M12 17v3M15 17v3"/>
-          </svg>
-        </div>
-        <div class="flow-label" style="color:var(--o)" data-i18n="s3_fn2_label">Made OS</div>
-        <div class="flow-sub" data-i18n="s3_fn2_sub">Multi-agent AI. Learns nominal behavior. Detects anomalies. Read-only · zero process risk.</div>
-      </div>
-      <div class="arrow">→</div>
-      <div class="flow-node">
-        <div class="flow-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
-            <circle cx="18" cy="5" r="3" fill="currentColor" stroke="none"/>
-          </svg>
-        </div>
-        <div class="flow-label" data-i18n="s3_fn3_label">Early alerts</div>
-        <div class="flow-sub" data-i18n="s3_fn3_sub">Class A/B/C anomalies. 2–6 weeks lead time before failure.</div>
-      </div>
-      <div class="arrow">→</div>
-      <div class="flow-node">
-        <div class="flow-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
-          </svg>
-        </div>
-        <div class="flow-label" data-i18n="s3_fn4_label">Avoided event</div>
-        <div class="flow-sub" data-i18n="s3_fn4_sub">Maintenance team acts. No downtime. Documented, auditable ROI.</div>
-      </div>
-    </div>
-      <div class="s3-wa-float"><img src="../assets/wa.gif" alt="Made OS WhatsApp alert"></div>
-    </div><!-- /flow-container -->
+    <div class="s3-hero">
 
-    <!-- Prescription alert cards -->
-    <div class="rx-grid" style="margin-top:18px">
-      <div class="rx-card advisory">
-        <span class="rx-badge advisory" data-i18n="s3_rx1_badge">Advisory</span>
-        <div class="rx-asset" data-i18n="s3_rx1_asset">Vibration anomaly · Process compressor</div>
-        <div class="rx-action" data-i18n="s3_rx1_action">Reduce speed 6% and verify mechanical seal before next shift.</div>
-      </div>
-      <div class="rx-card critical">
-        <span class="rx-badge critical" data-i18n="s3_rx2_badge">Critical</span>
-        <div class="rx-asset" data-i18n="s3_rx2_asset">Bearing degradation · Drive motor Line 2</div>
-        <div class="rx-action" data-i18n="s3_rx2_action">Schedule replacement in next maintenance window. Escalate to maintenance team now.</div>
-      </div>
-    </div>
+      <!-- LEFT: copy -->
+      <div class="s3-copy">
+        <h2 class="headline" style="max-width:400px" data-i18n="s3_h2">
+          A read-only intelligence layer<br>on top of <span class="accent">existing infrastructure.</span>
+        </h2>
+        <p class="s3-body-text" data-i18n="s3_body">Made OS connects to existing sensors and detects failure anomalies weeks before they happen. Your team receives a prescription directly in the channels they already use.</p>
 
-    <!-- Channel pills -->
-    <div class="channel-pills">
-      <span class="ch-pill">WebApp</span>
-      <span class="ch-pill">WhatsApp</span>
-      <span class="ch-pill">SMS</span>
-      <span class="ch-pill">Mail</span>
-    </div>
+        <div class="s3-steps">
+          <div class="s3-step">
+            <span class="s3-step-num">01</span>
+            <div>
+              <div class="s3-step-title" data-i18n="s3_step1_title">Connect</div>
+              <div class="s3-step-sub" data-i18n="s3_step1_sub">OPC-UA · Modbus · 4–20mA. Read-only; no changes to existing systems.</div>
+            </div>
+          </div>
+          <div class="s3-step">
+            <span class="s3-step-num">02</span>
+            <div>
+              <div class="s3-step-title" data-i18n="s3_step2_title">Detect</div>
+              <div class="s3-step-sub" data-i18n="s3_step2_sub">Multi-agent AI learns normal behavior per asset. Anomaly flagged 2–6 weeks before failure.</div>
+            </div>
+          </div>
+          <div class="s3-step">
+            <span class="s3-step-num">03</span>
+            <div>
+              <div class="s3-step-title" data-i18n="s3_step3_title">Prescribe</div>
+              <div class="s3-step-sub" data-i18n="s3_step3_sub">Team receives specific action. Maintenance planned. Zero unplanned downtime.</div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Compact step strip -->
-    <div class="step-strip">
-      <div class="step-compact">
-        <div class="step-num">01</div>
-        <div>
-          <div class="step-tag" data-i18n="s3_step1_tag">Days 1–30</div>
-          <div class="step-title" data-i18n="s3_step1_title">Connect</div>
+        <div class="channel-pills" style="margin-top:18px">
+          <span class="ch-pill">WebApp</span>
+          <span class="ch-pill">WhatsApp</span>
+          <span class="ch-pill">SMS</span>
+          <span class="ch-pill">Mail</span>
         </div>
       </div>
-      <div class="step-compact">
-        <div class="step-num">02</div>
-        <div>
-          <div class="step-tag" data-i18n="s3_step2_tag">Weeks 2–4</div>
-          <div class="step-title" data-i18n="s3_step2_title">Learn</div>
+
+      <!-- RIGHT: phone hero -->
+      <div class="s3-phone-col">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="../assets/wa.gif" alt="Made OS WhatsApp alert">
+          </div>
         </div>
+        <div class="s3-phone-caption" data-i18n="s3_phone_caption">Real alert · Pilot month 2</div>
       </div>
-      <div class="step-compact">
-        <div class="step-num">03</div>
-        <div>
-          <div class="step-tag" data-i18n="s3_step3_tag">From day 30+</div>
-          <div class="step-title" data-i18n="s3_step3_title">Prescribe</div>
-        </div>
-      </div>
+
     </div>
-    </div><!-- /flow-wrap -->
   </div>
 
   <!-- ══ S_IMPL: HOW WE DEPLOY ══ -->
@@ -884,23 +808,11 @@
       s2_source: 'Aberdeen Research 2023 · LNS Research · Emerson 2024 · McKinsey · ResearchGate 150+ facilities',
       s3_eyebrow: 'What we do',
       s3_h2: 'A read-only intelligence layer<br>on top of <span class="accent">existing infrastructure.</span>',
-      s3_fn1_label: 'Existing sensors',
-      s3_fn1_sub: 'OPC-UA · Modbus · 4–20mA · PROFIBUS. No new instrumentation.',
-      s3_fn2_label: 'Made OS',
-      s3_fn2_sub: 'Multi-agent AI. Learns nominal behavior. Detects anomalies. Read-only · zero process risk.',
-      s3_fn3_label: 'Early alerts',
-      s3_fn3_sub: 'Class A/B/C anomalies. 2–6 weeks lead time before failure.',
-      s3_fn4_label: 'Avoided event',
-      s3_fn4_sub: 'Maintenance team acts. No downtime. Documented, auditable ROI.',
-      s3_rx1_badge: 'Advisory',
-      s3_rx1_asset: 'Vibration anomaly · Process compressor',
-      s3_rx1_action: 'Reduce speed 6% and verify mechanical seal before next shift.',
-      s3_rx2_badge: 'Critical',
-      s3_rx2_asset: 'Bearing degradation · Drive motor Line 2',
-      s3_rx2_action: 'Schedule replacement in next maintenance window. Escalate to maintenance team now.',
-      s3_step1_tag: 'Days 1–30', s3_step1_title: 'Connect',
-      s3_step2_tag: 'Weeks 2–4', s3_step2_title: 'Learn',
-      s3_step3_tag: 'From day 30+', s3_step3_title: 'Prescribe',
+      s3_body: 'Made OS connects to existing sensors and detects failure anomalies weeks before they happen. Your team receives a prescription directly in the channels they already use.',
+      s3_step1_title: 'Connect', s3_step1_sub: 'OPC-UA · Modbus · 4–20mA. Read-only; no changes to existing systems.',
+      s3_step2_title: 'Detect',  s3_step2_sub: 'Multi-agent AI learns normal behavior per asset. Anomaly flagged 2–6 weeks before failure.',
+      s3_step3_title: 'Prescribe', s3_step3_sub: 'Team receives specific action. Maintenance planned. Zero unplanned downtime.',
+      s3_phone_caption: 'Real alert · Pilot month 2',
       si_eyebrow: 'How we deploy',
       si_h2: 'Two paths. <span class="accent">Same result:</span><br>no unplanned downtime.',
       si_c1_badge: 'Recommended · process assets',
@@ -986,23 +898,11 @@
       s2_source: 'Aberdeen Research 2023 · LNS Research · Emerson 2024 · McKinsey · ResearchGate 150+ instalaciones',
       s3_eyebrow: 'Lo que hacemos',
       s3_h2: 'Una capa de inteligencia de solo lectura<br>sobre la <span class="accent">infraestructura existente.</span>',
-      s3_fn1_label: 'Sensores existentes',
-      s3_fn1_sub: 'OPC-UA · Modbus · 4–20mA · PROFIBUS. Sin nueva instrumentación.',
-      s3_fn2_label: 'Made OS',
-      s3_fn2_sub: 'IA multi-agente. Aprende el comportamiento nominal. Detecta anomalías. Solo lectura · cero riesgo de proceso.',
-      s3_fn3_label: 'Alertas tempranas',
-      s3_fn3_sub: 'Anomalías clase A/B/C. 2–6 semanas de anticipación antes de la falla.',
-      s3_fn4_label: 'Evento evitado',
-      s3_fn4_sub: 'El equipo de mantenimiento actúa. Sin paro. ROI documentado y auditable.',
-      s3_rx1_badge: 'Aviso',
-      s3_rx1_asset: 'Anomalía de vibración · Compresor de proceso',
-      s3_rx1_action: 'Reducir velocidad 6% y verificar sello mecánico antes del próximo turno.',
-      s3_rx2_badge: 'Crítico',
-      s3_rx2_asset: 'Degradación de rodamiento · Motor de accionamiento Línea 2',
-      s3_rx2_action: 'Programar reemplazo en próxima ventana de mantenimiento. Escalar al equipo ahora.',
-      s3_step1_tag: 'Días 1–30', s3_step1_title: 'Conectar',
-      s3_step2_tag: 'Semanas 2–4', s3_step2_title: 'Aprender',
-      s3_step3_tag: 'Desde el día 30+', s3_step3_title: 'Prescribir',
+      s3_body: 'Made OS se conecta a los sensores existentes y detecta anomalías de falla semanas antes de que ocurran. Tu equipo recibe una prescripción directamente en los canales que ya usa.',
+      s3_step1_title: 'Conectar',   s3_step1_sub: 'OPC-UA · Modbus · 4–20mA. Solo lectura; sin cambios a los sistemas existentes.',
+      s3_step2_title: 'Detectar',   s3_step2_sub: 'IA multi-agente aprende el comportamiento normal por activo. Anomalía detectada 2–6 semanas antes de la falla.',
+      s3_step3_title: 'Prescribir', s3_step3_sub: 'El equipo recibe la acción específica. Mantenimiento planificado. Cero paros no planificados.',
+      s3_phone_caption: 'Alerta real · Piloto mes 2',
       si_eyebrow: 'Cómo desplegamos',
       si_h2: 'Dos rutas. <span class="accent">El mismo resultado:</span><br>cero paros no planificados.',
       si_c1_badge: 'Recomendado · activos de proceso',
