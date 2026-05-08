@@ -324,6 +324,24 @@
   }
   .impl-ideal strong { color: var(--o); font-size: 9.5px; text-transform: uppercase; letter-spacing: .07em; display: block; margin-bottom: 2px; }
 
+  /* S3 two-column body */
+  #s3 .s3-body {
+    display: grid; grid-template-columns: 1fr 300px; gap: 24px;
+    margin-top: 14px; align-items: start; flex: 1;
+  }
+  #s3 .s3-right {
+    position: relative; border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--border); background: var(--bg);
+    align-self: stretch; display: flex; align-items: center;
+  }
+  #s3 .s3-right img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  @media (max-width: 900px) {
+    #s3 .s3-body { grid-template-columns: 1fr; }
+    #s3 .s3-right { display: none; }
+  }
+
   /* S6 credibility */
   #s6 { background: var(--dark2); }
   #s6 .cred-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 28px; }
@@ -470,6 +488,8 @@
     <h2 class="headline" style="max-width:680px" data-i18n="s3_h2">
       A read-only intelligence layer<br>on top of <span class="accent">existing infrastructure.</span>
     </h2>
+    <div class="s3-body">
+      <div class="s3-left">
     <div class="flow">
       <div class="flow-node">
         <div class="flow-icon">
@@ -560,6 +580,11 @@
         </div>
       </div>
     </div>
+      </div><!-- /s3-left -->
+      <div class="s3-right">
+        <img src="../assets/wa.gif" alt="Made OS alert notification" loading="lazy">
+      </div>
+    </div><!-- /s3-body -->
   </div>
 
   <!-- ══ S_IMPL: HOW WE DEPLOY ══ -->
