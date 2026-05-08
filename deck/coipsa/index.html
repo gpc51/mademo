@@ -324,10 +324,10 @@
   }
   .impl-ideal strong { color: var(--o); font-size: 9.5px; text-transform: uppercase; letter-spacing: .07em; display: block; margin-bottom: 2px; }
 
-  /* S3 floating gif */
-  #s3 .flow-wrap { position: relative; }
+  /* S3 floating gif — anchored to flow row only, rx-grid stays clear */
+  #s3 .flow-container { position: relative; }
   #s3 .s3-wa-float {
-    position: absolute; right: 0; top: -72px; z-index: 6;
+    position: absolute; right: 0; top: 0; z-index: 6;
     width: 148px;
     border-radius: 14px; overflow: hidden;
     box-shadow: 0 12px 40px rgba(0,0,0,.18), 0 2px 8px rgba(0,0,0,.1);
@@ -482,6 +482,7 @@
       A read-only intelligence layer<br>on top of <span class="accent">existing infrastructure.</span>
     </h2>
     <div class="flow-wrap">
+    <div class="flow-container">
     <div class="flow">
       <div class="flow-node">
         <div class="flow-icon">
@@ -525,9 +526,11 @@
         <div class="flow-sub" data-i18n="s3_fn4_sub">Maintenance team acts. No downtime. Documented, auditable ROI.</div>
       </div>
     </div>
+      <div class="s3-wa-float"><img src="../../assets/wa.gif" alt="Made OS WhatsApp alert"></div>
+    </div><!-- /flow-container -->
 
     <!-- Prescription alert cards -->
-    <div class="rx-grid">
+    <div class="rx-grid" style="margin-top:18px">
       <div class="rx-card advisory">
         <span class="rx-badge advisory" data-i18n="s3_rx1_badge">Advisory</span>
         <div class="rx-asset" data-i18n="s3_rx1_asset">Vibration anomaly · Process compressor</div>
@@ -571,7 +574,6 @@
           <div class="step-title" data-i18n="s3_step3_title">Prescribe</div>
         </div>
       </div>
-      <div class="s3-wa-float"><img src="../../assets/wa.gif" alt="Made OS WhatsApp alert"></div>
     </div>
     </div><!-- /flow-wrap -->
   </div>
