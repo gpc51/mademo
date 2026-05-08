@@ -324,23 +324,17 @@
   }
   .impl-ideal strong { color: var(--o); font-size: 9.5px; text-transform: uppercase; letter-spacing: .07em; display: block; margin-bottom: 2px; }
 
-  /* S3 two-column body */
-  #s3 .s3-body {
-    display: grid; grid-template-columns: 1fr 300px; gap: 24px;
-    margin-top: 14px; align-items: start; flex: 1;
+  /* S3 floating gif */
+  #s3 .flow-wrap { position: relative; }
+  #s3 .s3-wa-float {
+    position: absolute; right: 0; top: -72px; z-index: 6;
+    width: 148px;
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,.18), 0 2px 8px rgba(0,0,0,.1);
+    pointer-events: none;
   }
-  #s3 .s3-right {
-    position: relative; border-radius: 10px; overflow: hidden;
-    border: 1px solid var(--border); background: var(--bg);
-    align-self: stretch; display: flex; align-items: center;
-  }
-  #s3 .s3-right img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
-  @media (max-width: 900px) {
-    #s3 .s3-body { grid-template-columns: 1fr; }
-    #s3 .s3-right { display: none; }
-  }
+  #s3 .s3-wa-float img { width: 100%; display: block; }
+  @media (max-width: 900px) { #s3 .s3-wa-float { display: none; } }
 
   /* S6 credibility */
   #s6 { background: var(--dark2); }
@@ -488,8 +482,7 @@
     <h2 class="headline" style="max-width:680px" data-i18n="s3_h2">
       A read-only intelligence layer<br>on top of <span class="accent">existing infrastructure.</span>
     </h2>
-    <div class="s3-body">
-      <div class="s3-left">
+    <div class="flow-wrap">
     <div class="flow">
       <div class="flow-node">
         <div class="flow-icon">
@@ -579,12 +572,9 @@
           <div class="step-title" data-i18n="s3_step3_title">Prescribe</div>
         </div>
       </div>
+      <div class="s3-wa-float"><img src="../assets/wa.gif" alt="Made OS WhatsApp alert"></div>
     </div>
-      </div><!-- /s3-left -->
-      <div class="s3-right">
-        <img src="../assets/wa.gif" alt="Made OS alert notification" loading="lazy">
-      </div>
-    </div><!-- /s3-body -->
+    </div><!-- /flow-wrap -->
   </div>
 
   <!-- ══ S_IMPL: HOW WE DEPLOY ══ -->
