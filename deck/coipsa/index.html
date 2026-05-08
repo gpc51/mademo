@@ -257,12 +257,12 @@
   }
   #s1 .deco-img img {
     width: 100%; height: 100%; object-fit: cover; object-position: center left;
-    opacity: .13; filter: grayscale(20%) contrast(1.1);
+    opacity: .28; filter: grayscale(10%) contrast(1.15);
     display: block;
   }
   #s1 .deco-img::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to right, var(--dark2) 0%, transparent 45%);
+    background: linear-gradient(to right, var(--dark2) 0%, transparent 55%);
     z-index: 1;
   }
   #s1 .deco-img::before {
@@ -418,7 +418,7 @@
       </svg>
     </div>
     <div class="eyebrow light" data-i18n="s1_eyebrow">Industrial AI · Predictive Operations</div>
-    <h1 class="headline white" style="max-width:780px" data-i18n="s1_h1">
+    <h1 class="headline white" style="max-width:600px" data-i18n="s1_h1">
       Eliminate unplanned downtime<br>at <span class="accent">critical industrial assets.</span>
     </h1>
     <p class="subhead white" style="margin-top:16px;max-width:560px" data-i18n="s1_sub">
@@ -578,7 +578,7 @@
         </div>
         <div class="impl-card-body">
           <div class="impl-card-title" data-i18n="si_c1_title">Edge AI Hardware</div>
-          <div class="impl-card-sub" data-i18n="si_c1_sub">NVIDIA Jetson device installed in the DIN rail panel by the Made team. Processes everything on-site; no cloud dependency, no data leaving the facility.</div>
+          <div class="impl-card-sub" data-i18n="si_c1_sub">NVIDIA Jetson device installed in the DIN rail panel by the Made team. No external connectivity required.</div>
           <div class="impl-specs">
             <div class="impl-spec" data-i18n="si_c1_spec1">NVIDIA Jetson Orin Nano Super · 67 INT8 TOPS</div>
             <div class="impl-spec" data-i18n="si_c1_spec2">IP67 · NEMA 4X · ATEX enclosure evaluated jointly</div>
@@ -611,6 +611,13 @@
         </div>
       </div>
 
+    </div>
+    <div style="margin-top:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <a href="https://cal.com/madeos.ai/demo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--o);color:white;font-size:13px;font-weight:700;padding:10px 20px;border-radius:8px;text-decoration:none">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span data-i18n="si_book_cta">Schedule technical session</span>
+      </a>
+      <span style="font-size:11.5px;color:var(--gray-l)" data-i18n="si_book_note">45 min · remote · founding team direct</span>
     </div>
     <p style="font-size:11.5px;color:var(--gray-l);margin-top:10px" data-i18n="si_note">In the initial technical session we determine the right path per candidate asset with the IT and operations team. Both paths are read-only: Made never writes to PLCs, DCS, or SCADA.</p>
   </div>
@@ -662,6 +669,14 @@
         <div class="card-num white" data-i18n="s4_c6_num">100%</div>
         <div class="card-desc white" data-i18n="s4_c6_desc">Full pilot fee credited to Year 1 subscription.</div>
       </div>
+    </div>
+
+    <div style="margin-top:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <a href="https://demo.madeos.ai/anon/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-size:13px;font-weight:600;padding:10px 18px;border-radius:8px;text-decoration:none">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span data-i18n="s4_proposal_link">View a real client proposal</span>
+      </a>
+      <span style="font-size:11.5px;color:rgba(255,255,255,.35)" data-i18n="s4_proposal_note">Anonymous · actual structure and pricing we deliver to clients</span>
     </div>
   </div>
 
@@ -729,7 +744,7 @@
     </h2>
     <div class="cred-grid">
       <div class="cred-card">
-        <div class="cred-logo-wrap"><img class="cred-logo" src="../../assets/brands/nvidia-inception-program.svg" alt="NVIDIA Inception"></div>
+        <div class="cred-logo-wrap"><img class="cred-logo" src="../../assets/brands/nvidia-logo.svg" alt="NVIDIA" style="height:28px;max-width:140px"><br><img src="../../assets/brands/nvidia-inception-program.svg" alt="NVIDIA Inception Program" style="height:18px;max-width:100px;opacity:.6;filter:brightness(0) invert(1);margin-top:6px"></div>
         <div class="cred-name" data-i18n="s6_c1_name">NVIDIA Inception</div>
         <div class="cred-sub" data-i18n="s6_c1_sub">Deep tech AI program. Access to NVIDIA Jetson, DGX, and enterprise GPU stack.</div>
       </div>
@@ -784,7 +799,18 @@
         Piloto en menos de 30 días
       </div>
     </div>
-    <div class="contact-row">
+    <div style="margin-top:20px;display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+      <iframe width="280" height="158" src="https://www.youtube.com/embed/XLfD6TMc3l8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:8px;flex-shrink:0;border:1.5px solid rgba(255,255,255,.2)"></iframe>
+      <div style="display:flex;flex-direction:column;gap:10px;padding-top:4px">
+        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em" data-i18n="s7_demo_label">Live demo</div>
+        <a href="https://cal.com/madeos.ai/demo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:white;color:#111;font-size:14px;font-weight:700;padding:12px 22px;border-radius:8px;text-decoration:none;width:fit-content">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span data-i18n="s7_book_btn">Schedule technical session →</span>
+        </a>
+        <span style="font-size:11px;color:rgba(255,255,255,.45)" data-i18n="s7_book_sub">45 min · remote · founding team</span>
+      </div>
+    </div>
+    <div class="contact-row" style="margin-top:16px">
       <div class="contact-card" style="display:flex;gap:14px;align-items:flex-start">
         <div class="cta-sig-img"><img src="../../assets/gpc.png" alt="Gerardo Peña"></div>
         <div>
@@ -862,7 +888,7 @@
       si_h2: 'Two paths. <span class="accent">Same result:</span><br>no unplanned downtime.',
       si_c1_badge: 'Recommended · process assets',
       si_c1_title: 'Edge AI Hardware',
-      si_c1_sub: 'NVIDIA Jetson device installed in the DIN rail panel by the Made team. Processes everything on-site; no cloud dependency, no data leaving the facility.',
+      si_c1_sub: 'NVIDIA Jetson device installed in the DIN rail panel by the Made team. No external connectivity required.',
       si_c1_spec1: 'NVIDIA Jetson Orin Nano Super · 67 INT8 TOPS',
       si_c1_spec2: 'IP67 · NEMA 4X · ATEX enclosure evaluated jointly',
       si_c1_spec3: 'IEC 62443 · TLS 1.3 · Air-gap ready',
@@ -875,7 +901,9 @@
       si_c2_spec3: 'WSS (WebSocket over SSL) · integrable with existing OT data stack',
       si_c2_ideal_label: 'Ideal for',
       si_c2_ideal: 'Sites with available server infrastructure. IT team maintains full control without any hardware addition.',
-      si_note: 'In the initial technical session we determine the right path per candidate asset with the IT and operations team. Both paths are read-only: Made never writes to PLCs, DCS, or SCADA.',
+      si_book_cta: 'Schedule technical session',
+    si_book_note: '45 min · remote · founding team direct',
+    si_note: 'In the initial technical session we determine the right path per candidate asset with the IT and operations team. Both paths are read-only: Made never writes to PLCs, DCS, or SCADA.',
       s4_eyebrow: 'What you get',
       s4_h2: 'ROI from the <span class="accent">first avoided event.</span>',
       s4_sub: "Shared-risk model. Made assumes the technical and results risk. If we don't deliver, you don't pay.",
@@ -893,7 +921,9 @@
       s4_c5_desc: '90-day extension at no license cost if positive ROI is not demonstrated.',
       s4_c6_label: 'Pilot credited', s4_c6_num: '100%',
       s4_c6_desc: 'Full pilot fee credited to Year 1 subscription.',
-      s5_eyebrow: 'Made OS vs. Traditional APM',
+      s4_proposal_link: 'View a real client proposal',
+    s4_proposal_note: 'Anonymous · actual structure and pricing we deliver to clients',
+    s5_eyebrow: 'Made OS vs. Traditional APM',
       s5_h2: 'A different category:<br>at <span class="accent">1/10 the price.</span>',
       s5_th1: 'Dimension', s5_th2: 'AspenTech / Emerson / Honeywell APM', s5_th3: 'Made OS',
       s5_r1c1: 'Time to value', s5_r1c2: '12–24 months to configure', s5_r1c3: 'First alerts in weeks 2–4',
@@ -961,7 +991,7 @@
       si_h2: 'Dos rutas. <span class="accent">El mismo resultado:</span><br>cero paros no planificados.',
       si_c1_badge: 'Recomendado · activos de proceso',
       si_c1_title: 'Hardware Edge AI',
-      si_c1_sub: 'Dispositivo NVIDIA Jetson instalado en el panel DIN rail por el equipo de Made. Procesa todo en planta; sin dependencia de nube, sin datos fuera de la instalación.',
+      si_c1_sub: 'Dispositivo NVIDIA Jetson instalado en el panel DIN rail por el equipo de Made. Sin conectividad externa requerida.',
       si_c1_spec1: 'NVIDIA Jetson Orin Nano Super · 67 INT8 TOPS',
       si_c1_spec2: 'IP67 · NEMA 4X · Recinto ATEX evaluado conjuntamente',
       si_c1_spec3: 'IEC 62443 · TLS 1.3 · Preparado para air-gap',
@@ -974,7 +1004,9 @@
       si_c2_spec3: 'WSS (WebSocket sobre SSL) · integrable con stack de datos OT existente',
       si_c2_ideal_label: 'Ideal para',
       si_c2_ideal: 'Plantas con infraestructura de servidores disponible. IT mantiene control total sin hardware adicional.',
-      si_note: 'En la sesión técnica inicial determinamos la ruta correcta por activo candidato con el equipo de IT y operaciones. Ambas rutas son de solo lectura: Made nunca escribe en PLCs, DCS o SCADA.',
+      si_book_cta: 'Agendar sesión técnica',
+    si_book_note: '45 min · remoto · equipo fundador directo',
+    si_note: 'En la sesión técnica inicial determinamos la ruta correcta por activo candidato con el equipo de IT y operaciones. Ambas rutas son de solo lectura: Made nunca escribe en PLCs, DCS o SCADA.',
       s4_eyebrow: 'Lo que obtienes',
       s4_h2: 'ROI desde el <span class="accent">primer evento evitado.</span>',
       s4_sub: 'Modelo de riesgo compartido. Made asume el riesgo técnico y de resultados. Si no entregamos, no pagas.',
@@ -1021,7 +1053,10 @@
       s7_pill3: 'Piloto en menos de 30 días',
       s7_c1_name: 'Gerardo Peña', s7_c1_role: 'CEO · MIT Innovador Menores de 35 LATAM 2025',
       s7_c2_name: 'Ramiro Pantoja', s7_c2_role: 'CTO · Sistemas de IA Industrial',
-      s7_cta_link: 'Agendar sesión técnica →'
+      s7_demo_label: 'Demo en vivo',
+    s7_book_btn: 'Agendar sesión técnica →',
+    s7_book_sub: '45 min · remoto · equipo fundador',
+    s7_cta_link: 'Agendar sesión técnica →'
     }
   };
 
