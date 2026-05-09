@@ -106,28 +106,32 @@
     grid-template-columns:repeat(4,1fr);
     border-top:1px solid var(--border);
     border-bottom:1px solid var(--border);
-    padding:22px 0;
+    padding:18px 0;
     margin-bottom:auto;
   }
   .cover-metric{
-    padding:0 24px;
+    padding:0 14px;
     border-right:1px solid var(--border);
+    min-width:0;
   }
   .cover-metric:first-child{padding-left:0;}
-  .cover-metric:last-child{border-right:none;}
+  .cover-metric:last-child{border-right:none;padding-right:0;}
   .m-label{
-    font-size:9.5px;
+    font-size:9px;
     font-weight:700;
     text-transform:uppercase;
-    letter-spacing:.11em;
+    letter-spacing:.10em;
     color:var(--orange);
-    margin-bottom:5px;
+    margin-bottom:6px;
+    white-space:nowrap;
   }
   .m-value{
-    font-size:14px;
-    font-weight:600;
+    font-size:12.5px;
+    font-weight:700;
     color:var(--black);
-    line-height:1.3;
+    line-height:1.25;
+    letter-spacing:-.005em;
+    white-space:nowrap;
   }
   .cover-creds{
     font-size:12px;
@@ -686,7 +690,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <div class="cover-metrics">
       <div class="cover-metric">
         <div class="m-label" data-eid="cover-m1-label">Programa</div>
-        <div class="m-value" data-eid="cover-m1-value">Preventivo · Equipo Móvil Mina</div>
+        <div class="m-value" data-eid="cover-m1-value">Mantenimiento Preventivo Equipo Móvil</div>
       </div>
       <div class="cover-metric">
         <div class="m-label" data-eid="cover-m2-label">Duración</div>
@@ -1144,7 +1148,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <p class="s-lead" data-eid="sesion-lead">Una sesión técnica con el equipo fundador de Made para evaluar qué clase de activo móvil de Peñoles califica para Fase 1 (acarreo, carga o barrenación), validar la integración con la telemetría OEM existente, y dejar pre-acordada la transición a Fase 2 (equipo de relaves).</p>
     <div class="cta-block">
       <div class="cta-left">
-        <div class="cta-tag" data-eid="sesion-cta-tag">Programa Preventivo · Equipo Móvil Mina</div>
+        <div class="cta-tag" data-eid="sesion-cta-tag">Programa Mantenimiento Preventivo Equipo Móvil</div>
         <h3>Solicite su acceso al programa</h3>
         <p>Sesión técnica de 30 minutos · Remota · Asistentes: Gerardo Peña (CEO) + Ramiro Pantoja (CTO). Objetivo: calificación técnica + plan de programa en 1 página. Una vez aprobado, el programa inicia en menos de 10 días hábiles.</p>
       </div>
