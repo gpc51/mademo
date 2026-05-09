@@ -38,7 +38,8 @@
     background: var(--white);
     overflow: hidden;
   }
-  #s1, #s7 { justify-content: center; padding-top: clamp(32px, 5vw, 60px); }
+  #s1 { justify-content: center; padding-top: clamp(32px, 5vw, 60px); }
+  #s7 { justify-content: flex-start; }
   .slide.active    { opacity: 1; pointer-events: all; transform: translateX(0); z-index: 2; }
   .slide.prev      { opacity: 0; transform: translateX(-40px); z-index: 1; }
   .slide.dark      { background: var(--dark2); color: var(--white); }
@@ -380,6 +381,33 @@
     color: white; font-weight: 700; font-size: 13px;
     background: rgba(255,255,255,.15); border-radius: 6px;
     padding: 6px 12px; display: inline-block; margin-top: 6px; text-decoration: none;
+  }
+
+  /* S7 two-column CTA */
+  #s7 .s7-body {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 72px);
+    flex: 1; min-height: 0; align-items: center; width: 100%;
+  }
+  #s7 .s7-left { display: flex; flex-direction: column; justify-content: center; }
+  #s7 .s7-right { display: flex; flex-direction: column; gap: 16px; }
+  #s7 .s7-video {
+    width: 100%; aspect-ratio: 16/9;
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 28px 72px rgba(0,0,0,.32), 0 0 0 1.5px rgba(255,255,255,.15);
+  }
+  #s7 .s7-video iframe { width: 100%; height: 100%; display: block; border: none; }
+  #s7 .s7-book-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: white; color: #111; font-size: 15px; font-weight: 700;
+    padding: 15px 24px; border-radius: 10px; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,.18); transition: opacity .15s;
+    letter-spacing: -.01em;
+  }
+  #s7 .s7-book-btn:hover { opacity: .88; }
+  @media (max-width: 900px) {
+    #s7 .s7-body { grid-template-columns: 1fr; }
+    #s7 .s7-right { display: none; }
   }
 
   /* ── Print / PDF mode ── */
@@ -748,55 +776,55 @@
 
   <!-- ══ S7: CTA ══ -->
   <div class="slide orange" id="s7">
-    <div class="eyebrow" style="color:rgba(255,255,255,.6)" data-i18n="s7_eyebrow">Next step</div>
-    <div class="rule" style="background:rgba(255,255,255,.35)"></div>
-    <h2 class="headline" style="max-width:700px;color:white" data-i18n="s7_h2">
-      45-minute session.<br>Walk away with a <span class="accent" style="color:rgba(255,255,255,.9)">pilot plan.</span>
-    </h2>
-    <p class="subhead" style="margin-top:14px;max-width:580px;color:rgba(255,255,255,.65)" data-i18n="s7_sub">
-      We assess your instrumentation, identify the highest-value candidate assets, and deliver a one-page pilot plan; no consulting required, no commitment.
-    </p>
-    <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:10px">
-      <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)" data-i18n="s7_pill1">
-        Remoto · 45 min
-      </div>
-      <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)" data-i18n="s7_pill2">
-        Sin consultoría previa
-      </div>
-      <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)" data-i18n="s7_pill3">
-        Piloto en menos de 30 días
-      </div>
-    </div>
-    <div style="margin-top:20px;display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
-      <iframe width="280" height="158" src="https://www.youtube.com/embed/XLfD6TMc3l8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:8px;flex-shrink:0;border:1.5px solid rgba(255,255,255,.2)"></iframe>
-      <div style="display:flex;flex-direction:column;gap:10px;padding-top:4px">
-        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em" data-i18n="s7_demo_label">Live demo</div>
-        <a href="https://cal.com/madeos.ai/demo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:white;color:#111;font-size:14px;font-weight:700;padding:12px 22px;border-radius:8px;text-decoration:none;width:fit-content">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          <span data-i18n="s7_book_btn">Schedule technical session →</span>
-        </a>
-        <span style="font-size:11px;color:rgba(255,255,255,.45)" data-i18n="s7_book_sub">45 min · remote · founding team</span>
-      </div>
-    </div>
-    <div class="contact-row" style="margin-top:16px">
-      <div class="contact-card" style="display:flex;gap:14px;align-items:flex-start">
-        <div class="cta-sig-img"><img src="../assets/gpc.png" alt="Gerardo Peña"></div>
-        <div>
-          <div class="contact-name" data-i18n="s7_c1_name">Gerardo Peña</div>
-          <div class="contact-role" data-i18n="s7_c1_role">CEO · MIT Innovador Menores de 35 LATAM 2025</div>
-          <a class="contact-link" href="mailto:ger@madeos.ai">ger@madeos.ai</a>
-          <a class="contact-link" href="https://madeos.ai" target="_blank">madeos.ai</a>
+    <div class="s7-body">
+
+      <!-- LEFT: copy + contacts -->
+      <div class="s7-left">
+        <div class="eyebrow" style="color:rgba(255,255,255,.6)" data-i18n="s7_eyebrow">Next step</div>
+        <div class="rule" style="background:rgba(255,255,255,.35)"></div>
+        <h2 class="headline" style="color:white" data-i18n="s7_h2">
+          45-minute session.<br>Walk away with a <span class="accent" style="color:rgba(255,255,255,.9)">pilot plan.</span>
+        </h2>
+        <p class="subhead" style="margin-top:12px;color:rgba(255,255,255,.65)" data-i18n="s7_sub">
+          We assess your instrumentation, identify the highest-value candidate assets, and deliver a one-page pilot plan; no consulting required, no commitment.
+        </p>
+        <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:8px">
+          <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)" data-i18n="s7_pill1">Remoto · 45 min</div>
+          <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)" data-i18n="s7_pill2">Sin consultoría previa</div>
+          <div class="pill" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)" data-i18n="s7_pill3">Piloto en menos de 30 días</div>
+        </div>
+        <div class="contact-row" style="margin-top:20px">
+          <div class="contact-card" style="display:flex;gap:14px;align-items:flex-start">
+            <div class="cta-sig-img"><img src="../assets/gpc.png" alt="Gerardo Peña"></div>
+            <div>
+              <div class="contact-name" data-i18n="s7_c1_name">Gerardo Peña</div>
+              <div class="contact-role" data-i18n="s7_c1_role">CEO · MIT Innovador Menores de 35 LATAM 2025</div>
+              <a class="contact-link" href="mailto:ger@madeos.ai">ger@madeos.ai</a>
+              <a class="contact-link" href="https://madeos.ai" target="_blank">madeos.ai</a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-name" data-i18n="s7_c2_name">Ramiro Pantoja</div>
+            <div class="contact-role" data-i18n="s7_c2_role">CTO · Sistemas de IA Industrial</div>
+            <a class="contact-link" href="mailto:ramiro@madeos.ai">ramiro@madeos.ai</a>
+          </div>
         </div>
       </div>
-      <div class="contact-card">
-        <div class="contact-name" data-i18n="s7_c2_name">Ramiro Pantoja</div>
-        <div class="contact-role" data-i18n="s7_c2_role">CTO · Sistemas de IA Industrial</div>
-        <a class="contact-link" href="mailto:ramiro@madeos.ai">ramiro@madeos.ai</a>
-        <a class="contact-link cta-link" href="https://cal.com/madeos.ai/demo" target="_blank" data-i18n="s7_cta_link">Agendar sesión técnica →</a>
+
+      <!-- RIGHT: video hero + booking CTA -->
+      <div class="s7-right">
+        <div class="s7-video">
+          <iframe src="https://www.youtube.com/embed/XLfD6TMc3l8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <a href="https://cal.com/madeos.ai/demo" target="_blank" rel="noopener" class="s7-book-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span data-i18n="s7_book_btn">Schedule technical session →</span>
+        </a>
+        <span style="font-size:11px;color:rgba(255,255,255,.45);text-align:center" data-i18n="s7_book_sub">45 min · remote · founding team</span>
       </div>
+
     </div>
   </div>
-
 </div><!-- /deck -->
 
 <!-- ── Navigation ── -->
