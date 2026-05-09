@@ -368,7 +368,7 @@
     letter-spacing: .03em; margin-bottom: 14px;
   }
   .client-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.6); }
-  #s7 .contact-row { display: flex; gap: 20px; margin-top: 24px; flex-wrap: wrap; }
+  #s7 .contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
   #s7 .contact-card {
     background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
     border-radius: 10px; padding: 16px 20px;
@@ -427,7 +427,7 @@
     #s3 .flow { flex-direction: column; }
     #s3 .arrow { transform: rotate(90deg); }
     #s6 .cred-grid { grid-template-columns: 1fr 1fr; }
-    #s7 .contact-row { flex-direction: column; }
+    #s7 .contact-row { grid-template-columns: 1fr; }
     .impl-grid { grid-template-columns: 1fr; }
     .impl-card { grid-template-rows: 180px 1fr; }
     .impl-card-img { height: 180px; }
@@ -807,7 +807,7 @@
             <div class="cta-sig-img"><img src="../../assets/Ramiro.png" alt="Ramiro Pantoja"></div>
             <div>
               <div class="contact-name" data-i18n="s7_c2_name">Ramiro Pantoja</div>
-              <div class="contact-role" data-i18n="s7_c2_role">CTO · Sistemas de IA Industrial</div>
+              <div class="contact-role" data-i18n="s7_c2_role">CTO</div>
               <a class="contact-link" href="mailto:ramiro@madeos.ai">ramiro@madeos.ai</a>
             </div>
           </div>
@@ -940,7 +940,7 @@
       s7_pill2: 'No prior consulting required',
       s7_pill3: 'Pilot starts in &lt; 30 business days',
       s7_c1_name: 'Gerardo Peña', s7_c1_role: 'CEO · MIT Innovator Under 35 LATAM 2025',
-      s7_c2_name: 'Ramiro Pantoja', s7_c2_role: 'CTO · Industrial AI Systems',
+      s7_c2_name: 'Ramiro Pantoja', s7_c2_role: 'CTO',
       s7_cta_link: 'Book technical session →',
       s7_web_cta: 'madeos.ai'
     },
@@ -1031,7 +1031,7 @@
       s7_pill2: 'Sin consultoría previa',
       s7_pill3: 'Piloto en menos de 30 días',
       s7_c1_name: 'Gerardo Peña', s7_c1_role: 'CEO · MIT Innovador Menores de 35 LATAM 2025',
-      s7_c2_name: 'Ramiro Pantoja', s7_c2_role: 'CTO · Sistemas de IA Industrial',
+      s7_c2_name: 'Ramiro Pantoja', s7_c2_role: 'CTO',
       s7_demo_label: 'Demo en vivo',
     s7_book_btn: 'Agendar sesión técnica →',
     s7_book_sub: '45 min · remoto · equipo fundador',
