@@ -104,13 +104,14 @@
   .cover-metrics{
     display:grid;
     grid-template-columns:repeat(4,1fr);
+    align-items:start;
     border-top:1px solid var(--border);
     border-bottom:1px solid var(--border);
-    padding:18px 0;
+    padding:20px 0;
     margin-bottom:auto;
   }
   .cover-metric{
-    padding:0 14px;
+    padding:0 16px;
     border-right:1px solid var(--border);
     min-width:0;
   }
@@ -126,12 +127,12 @@
     white-space:nowrap;
   }
   .m-value{
-    font-size:12.5px;
+    font-size:13px;
     font-weight:700;
     color:var(--black);
-    line-height:1.25;
+    line-height:1.35;
     letter-spacing:-.005em;
-    white-space:nowrap;
+    min-height:36px;
   }
   .cover-creds{
     font-size:12px;
@@ -690,7 +691,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <div class="cover-metrics">
       <div class="cover-metric">
         <div class="m-label" data-eid="cover-m1-label">Programa</div>
-        <div class="m-value" data-eid="cover-m1-value">Mantenimiento Preventivo Equipo Móvil</div>
+        <div class="m-value" data-eid="cover-m1-value">Mantenimiento Preventivo<br>Equipo Móvil</div>
       </div>
       <div class="cover-metric">
         <div class="m-label" data-eid="cover-m2-label">Duración</div>
