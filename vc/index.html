@@ -75,7 +75,7 @@
       linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px);
     background-size: auto, auto, 28px 28px, 84px 84px, 84px 84px;
   }
-  .slide.cover  { background: var(--bg-1); justify-content: center; }
+  .slide.cover  { background-color: var(--bg-1); justify-content: center; }
 
   /* ── Nav ── */
   .nav {
@@ -292,7 +292,7 @@
   }
 
   /* ── Ask slide ── */
-  .ask-slide { background: var(--bg-1) !important; }
+  .ask-slide { background-color: var(--bg-1) !important; }
   .ask-raise {
     font-size: clamp(48px, 7vw, 96px); font-weight: 900;
     letter-spacing: -.05em; color: var(--o); line-height: 1;
@@ -362,11 +362,26 @@
   }
 
   /* ── Print ── */
+  @page { size: 1920px 1080px; margin: 0; }
   @media print {
-    html, body { overflow: visible; height: auto; background: var(--bg-1); }
+    html, body {
+      overflow: visible; height: auto;
+      background: var(--bg-1);
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    #pin-screen, .nav { display: none !important; }
     .deck { height: auto; visibility: visible !important; }
-    .slide { position: relative; opacity: 1; pointer-events: all; transform: none; page-break-after: always; height: 100vh; width: 100vw; }
-    .nav { display: none; }
+    .slide {
+      position: relative; opacity: 1 !important; pointer-events: all;
+      transform: none !important;
+      page-break-after: always; break-after: page;
+      width: 1920px; height: 1080px;
+      overflow: hidden;
+    }
+    .slide.prev, .slide.active { opacity: 1 !important; transform: none !important; }
+    .slide:last-child { page-break-after: auto; break-after: auto; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
   }
 
   /* ── Mobile ── */
@@ -1075,8 +1090,19 @@ function doPin() {
   }
 }
 try {
-  if (sessionStorage.getItem('mvc_pin_ok') === '1') {
+  var _qs = new URLSearchParams(window.location.search);
+  var _urlPin = _qs.get('pin');
+  if (_urlPin && _urlPin === atob(_PIN)) {
+    sessionStorage.setItem('mvc_pin_ok', '1');
+  }
+  if (sessionStorage.getItem('mvc_pin_ok') === '1' || _urlPin === atob(_PIN)) {
     document.getElementById('pin-screen').style.display = 'none';
+    if (_qs.get('print') === '1') {
+      // Activar layout de print y disparar print después de cargar
+      window.addEventListener('load', function(){
+        setTimeout(function(){ window.print(); }, 800);
+      });
+    }
   } else {
     document.getElementById('pin-input').focus();
   }
