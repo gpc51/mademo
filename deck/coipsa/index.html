@@ -169,6 +169,19 @@
   #s3 .s3-copy .channel-pills {
     margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--border);
   }
+  #s3 .s3-alliance {
+    margin-top: 20px;
+    padding: 10px 14px;
+    background: var(--obg);
+    border-left: 2px solid var(--o);
+    border-radius: 0 4px 4px 0;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  #s3 .s3-alliance svg { flex-shrink: 0; margin-top: 2px; color: var(--o); }
+  #s3 .s3-alliance .s3-all-text {
+    font-size: clamp(11px, 1vw, 12.5px); color: var(--gray); line-height: 1.55;
+  }
+  #s3 .s3-alliance .s3-all-text strong { color: var(--dark); font-weight: 700; }
   /* ── S3 phone column ── */
   #s3 .s3-phone-col {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -537,6 +550,11 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           </div>
         </div>
 
+        <div class="s3-alliance">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3-3m0 0l-3 3m3-3v8"/></svg>
+          <div class="s3-all-text" data-i18n="s3_partner"><strong>Hardware partner · Chile.</strong> Sensor deployment for assets without instrumentation. Made OS consumes them from the first shift.</div>
+        </div>
+
         <div class="channel-pills">
           <span class="ch-pill">WebApp</span>
           <span class="ch-pill">WhatsApp</span>
@@ -885,6 +903,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       s3_step1_title: 'Connect', s3_step1_sub: 'OPC-UA · Modbus · 4–20mA. Read-only; no changes to existing systems.',
       s3_step2_title: 'Detect',  s3_step2_sub: 'Multi-agent AI learns normal behavior per asset. Anomaly flagged 2–6 weeks before failure.',
       s3_step3_title: 'Prescribe', s3_step3_sub: 'Team receives specific action. Maintenance planned. Zero unplanned downtime.',
+      s3_partner: '<strong>Hardware partner · Chile.</strong> Sensor deployment for assets without instrumentation. Made OS consumes them from the first shift.',
       si_eyebrow: 'How we deploy',
       si_h2: 'Two paths. <span class="accent">Same result:</span><br>no unplanned downtime.',
       si_c1_badge: 'Recommended · process assets',
@@ -983,6 +1002,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       s3_step1_title: 'Conectar',   s3_step1_sub: 'OPC-UA · Modbus · 4–20mA. Solo lectura; sin cambios a los sistemas existentes.',
       s3_step2_title: 'Detectar',   s3_step2_sub: 'IA multi-agente aprende el comportamiento normal por activo. Anomalía detectada 2–6 semanas antes de la falla.',
       s3_step3_title: 'Prescribir', s3_step3_sub: 'El equipo recibe la acción específica. Mantenimiento planificado. Cero paros no planificados.',
+      s3_partner: '<strong>Partner local de hardware · Chile.</strong> Despliegue de sensores en activos sin instrumentación. Made OS los consume desde el primer turno.',
       si_eyebrow: 'Cómo desplegamos',
       si_h2: 'Dos rutas. <span class="accent">El mismo resultado:</span><br>cero paros no planificados.',
       si_c1_badge: 'Recomendado · activos de proceso',
