@@ -119,6 +119,15 @@
   .subhead { font-size: clamp(14px, 1.5vw, 18px); color: var(--tx-1); line-height: 1.6; max-width: 640px; }
   .subhead.white { color: var(--tx-1); }
 
+  /* ── Slide head (unificación vertical) ── */
+  .slide-head {
+    display: flex; flex-direction: column;
+    min-height: clamp(190px, 23vh, 250px);
+    margin-bottom: clamp(20px, 2.8vh, 36px);
+    width: 100%;
+  }
+  .slide-head .subhead { margin-top: clamp(8px, 1vh, 14px); }
+
   /* ── Layout ── */
   .cols { display: grid; gap: 14px; width: 100%; }
   .cols-2 { grid-template-columns: 1fr 1fr; }
@@ -518,12 +527,14 @@
 
   <!-- ══ S2: THE PROBLEM / WHY NOW ══ -->
   <div class="slide dark" id="s2">
+    <div class="slide-head">
     <div class="eyebrow light">The problem</div>
     <div class="rule"></div>
     <h2 class="headline white">
       Industrial AI is ready.<br><span class="accent">Legacy operations aren't.</span>
     </h2>
-    <p class="subhead white" style="margin-top:10px">The capability curve compressed below the long-tail threshold in the past 12–18 months, and it's still compounding. The window opened structurally: incumbents can't price 1/10× without cannibalizing $1B+ in installed APM revenue.</p>
+    <p class="subhead white">The capability curve compressed below the long-tail threshold in the past 12–18 months, and it's still compounding. The window opened structurally: incumbents can't price 1/10× without cannibalizing $1B+ in installed APM revenue.</p>
+    </div>
 
     <div class="wnow-grid">
       <div class="wnow-card">
@@ -547,12 +558,14 @@
 
   <!-- ══ S3: SOLUTION ══ -->
   <div class="slide" id="s3">
+    <div class="slide-head">
     <div class="eyebrow">The solution</div>
     <div class="rule"></div>
     <h2 class="headline" style="max-width:800px">
       Made OS: predictive intelligence without the <span class="accent">enterprise overhead.</span>
     </h2>
-    <p class="subhead" style="margin-top:10px;max-width:620px">Read-only. Deploys in 30 days. Prescribes actions with intervention windows 2–6 weeks before failure.</p>
+    <p class="subhead" style="max-width:620px">Read-only. Deploys in 30 days. Prescribes actions with intervention windows 2–6 weeks before failure.</p>
+    </div>
 
     <div class="flow-row" style="margin-top:22px">
       <div class="flow-node">
@@ -626,11 +639,13 @@
 
   <!-- ══ S4: MARKET ══ -->
   <div class="slide" id="s4">
+    <div class="slide-head">
     <div class="eyebrow">Market opportunity</div>
     <div class="rule"></div>
     <h2 class="headline" style="max-width:800px">
       A $78B market, with <span class="accent">95% still unaddressed.</span>
     </h2>
+    </div>
 
     <div style="display:flex;gap:36px;align-items:center;margin-top:20px;width:100%;flex:1">
 
@@ -694,11 +709,13 @@
 
   <!-- ══ S5: TRACTION ══ -->
   <div class="slide" id="s5">
+    <div class="slide-head">
     <div class="eyebrow">Traction</div>
     <div class="rule"></div>
     <h2 class="headline" style="max-width:680px;text-transform:uppercase;letter-spacing:.04em">
       Implementation Stage
     </h2>
+    </div>
 
     <div class="traction-row">
       <div class="traction-metric">
@@ -774,11 +791,13 @@
 
   <!-- ══ S6: BUSINESS MODEL ══ -->
   <div class="slide" id="s6">
+    <div class="slide-head">
     <div class="eyebrow">Business model · Building the MOAT</div>
     <div class="rule"></div>
     <h2 class="headline" style="max-width:680px">
       The pilot trains the model. <span class="accent">The model retains the client.</span>
     </h2>
+    </div>
 
     <div class="bm-row">
       <div class="bm-tier">
@@ -833,11 +852,13 @@
 
   <!-- ══ S7: COMPETITION ══ -->
   <div class="slide" id="s7">
+    <div class="slide-head">
     <div class="eyebrow">Competition</div>
     <div class="rule"></div>
     <h2 class="headline" style="max-width:680px">
       Not competing with legacy APM.<br><span class="accent">Replacing the absence of it.</span>
     </h2>
+    </div>
 
     <table class="comp-table">
       <thead>
@@ -911,11 +932,13 @@
 
   <!-- ══ S8: TEAM ══ -->
   <div class="slide" id="s8">
+    <div class="slide-head">
     <div class="eyebrow">Team</div>
     <div class="rule"></div>
     <h2 class="headline" style="max-width:680px">
       Two founders. One built hardware at scale. <span class="accent">One built the AI.</span>
     </h2>
+    </div>
 
     <div class="team-row">
       <div class="team-card">
@@ -956,12 +979,14 @@
 
   <!-- ══ S9: THE ASK ══ -->
   <div class="slide dark ask-slide" id="s9">
+    <div class="slide-head">
     <div class="eyebrow light">The ask</div>
     <div class="rule white"></div>
     <h2 class="headline white" style="max-width:700px">
       We move on our own timetable. <span class="accent">Partners earn the round.</span>
     </h2>
     <p class="subhead white" style="max-width:620px">We're not accepting passive capital. Investors who introduce us to 2–3 industrial clients in their network before discussing terms earn preferred participation in the round. We're building the cap table the same way we build the product: by proving value first.</p>
+    </div>
 
     <div class="ask-steps" style="display:flex;align-items:stretch;gap:0;margin-top:28px;width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:6px;overflow:hidden">
       <div style="flex:1;padding:18px 22px;border-right:1px solid rgba(255,255,255,.07)">
