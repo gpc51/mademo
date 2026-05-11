@@ -8,28 +8,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
+    /* ── Brand (única, sin verde) ── */
     --o:    #d84200;
-    --oh:   #f04900;
-    --obg:  rgba(216,66,0,.10);
-    --obd:  rgba(216,66,0,.30);
-    --dark:  #111213;
-    --dark2: #1a1c1e;
-    --dark3: #22252a;
-    --gray:  #636870;
-    --gray-l:#9ba3ab;
-    --border:#e4e7ea;
-    --bg:    #f4f5f6;
-    --white: #ffffff;
-    --green: #16a34a;
-    --greenbg: rgba(22,163,74,.1);
+    --o-h:  #f04900;
+    --o-s:  rgba(216,66,0,.12);
+    --o-l:  rgba(216,66,0,.30);
+
+    /* ── Surfaces (dark-first) ── */
+    --bg-0: #0e0f10;
+    --bg-1: #1a1c1e;
+    --bg-2: rgba(255,255,255,.04);
+    --bg-3: rgba(255,255,255,.07);
+
+    /* ── Lines ── */
+    --ln:   rgba(255,255,255,.08);
+    --ln-s: rgba(255,255,255,.16);
+
+    /* ── Text ── */
+    --tx-0: #ffffff;
+    --tx-1: rgba(255,255,255,.72);
+    --tx-2: rgba(255,255,255,.5);
+    --tx-3: rgba(255,255,255,.32);
+
     --font: 'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
     --slide-top: clamp(44px, 7vh, 88px);
+
+    /* ── Legacy aliases (mapeados a dark, evitan romper inline styles) ── */
+    --dark: var(--tx-0); --dark2: var(--bg-1); --dark3: var(--bg-2);
+    --white: var(--tx-0);
+    --gray: var(--tx-1); --gray-l: var(--tx-2);
+    --border: var(--ln); --bg: var(--bg-2);
+    --green: var(--o); --greenbg: var(--o-s);
+    --obg: var(--o-s); --obd: var(--o-l); --oh: var(--o-h);
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 100%; height: 100%; overflow: hidden; font-family: var(--font); }
+  html, body { width: 100%; height: 100%; overflow: hidden; font-family: var(--font); background: var(--bg-0); }
 
   /* ── Deck engine ── */
-  .deck { width: 100%; height: 100vh; position: relative; background: var(--dark); visibility: hidden; }
+  .deck { width: 100%; height: 100vh; position: relative; background: var(--bg-0); visibility: hidden; }
   .slide {
     position: absolute; inset: 0;
     display: flex; flex-direction: column;
@@ -38,59 +54,60 @@
     opacity: 0; pointer-events: none;
     transition: opacity .44s cubic-bezier(.22,.61,.36,1), transform .44s cubic-bezier(.22,.61,.36,1);
     transform: translateX(18px);
-    background: var(--white);
+    background: var(--bg-1);
+    color: var(--tx-1);
+    background-image: radial-gradient(rgba(255,255,255,.022) 1px, transparent 1px);
+    background-size: 28px 28px;
     overflow: hidden;
   }
   .slide.active { opacity: 1; pointer-events: all; transform: translateX(0); z-index: 2; }
   .slide.prev   { opacity: 0; transform: translateX(-40px); z-index: 1; }
-  .slide.dark   { background: var(--dark2); color: var(--white);
-    background-image: radial-gradient(rgba(255,255,255,.016) 1px, transparent 1px);
-    background-size: 26px 26px; }
-  .slide.cover  { background: var(--dark2); justify-content: center; }
+  .slide.dark   { background: var(--bg-1); color: var(--tx-1); }
+  .slide.cover  { background: var(--bg-1); justify-content: center; }
 
   /* ── Nav ── */
   .nav {
     position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
     display: flex; align-items: center; gap: 16px; z-index: 100;
-    background: rgba(17,18,19,.78); backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(14,15,16,.82); backdrop-filter: blur(14px);
+    border: 1px solid var(--ln);
     border-radius: 40px; padding: 8px 16px;
   }
   .nav-btn {
     width: 32px; height: 32px; border-radius: 50%;
-    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.12);
-    color: rgba(255,255,255,.7); cursor: pointer;
+    background: var(--bg-2); border: 1px solid var(--ln);
+    color: var(--tx-1); cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     transition: background .15s, color .15s;
   }
-  .nav-btn:hover { background: rgba(255,255,255,.2); color: white; }
+  .nav-btn:hover { background: var(--bg-3); color: var(--tx-0); }
   .nav-dots { display: flex; gap: 6px; align-items: center; }
   .nav-dot {
     width: 6px; height: 6px; border-radius: 50%;
-    background: rgba(255,255,255,.25); cursor: pointer;
+    background: var(--tx-3); cursor: pointer;
     transition: background .2s, transform .2s;
   }
   .nav-dot.active { background: var(--o); transform: scale(1.5); }
-  .slide-counter { font-size: 11px; font-weight: 500; color: rgba(255,255,255,.35); letter-spacing: .06em; min-width: 28px; text-align: center; }
+  .slide-counter { font-size: 11px; font-weight: 500; color: var(--tx-3); letter-spacing: .06em; min-width: 28px; text-align: center; font-variant-numeric: tabular-nums; }
 
-  /* ── Type ── */
+  /* ── Type system ── */
   .eyebrow {
     font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
     color: var(--o); margin-bottom: 16px;
   }
-  .eyebrow.light { color: rgba(255,255,255,.45); }
-  .rule { width: 40px; height: 3px; background: var(--o); border-radius: 2px; margin-bottom: 16px; }
-  .rule.white { background: rgba(255,255,255,.35); }
+  .eyebrow.light { color: var(--tx-3); }
+  .rule { width: 36px; height: 2px; background: var(--o); border-radius: 1px; margin-bottom: 18px; }
+  .rule.white { background: var(--o); }
   .headline {
-    font-size: clamp(28px, 4.2vw, 62px); font-weight: 800;
-    line-height: 1.03; letter-spacing: -.045em; color: var(--dark); margin-bottom: 18px;
+    font-size: clamp(28px, 4.2vw, 60px); font-weight: 800;
+    line-height: 1.04; letter-spacing: -.045em; color: var(--tx-0); margin-bottom: 18px;
   }
-  .headline.white { color: var(--white); }
+  .headline.white { color: var(--tx-0); }
   .headline .accent { color: var(--o); }
-  .subhead { font-size: clamp(14px, 1.5vw, 18px); color: var(--gray); line-height: 1.6; max-width: 640px; }
-  .subhead.white { color: rgba(255,255,255,.55); }
+  .subhead { font-size: clamp(14px, 1.5vw, 18px); color: var(--tx-1); line-height: 1.6; max-width: 640px; }
+  .subhead.white { color: var(--tx-1); }
 
-  /* ── Cols ── */
+  /* ── Layout ── */
   .cols { display: grid; gap: 14px; width: 100%; }
   .cols-2 { grid-template-columns: 1fr 1fr; }
   .cols-3 { grid-template-columns: 1fr 1fr 1fr; }
@@ -98,72 +115,75 @@
   .mt { margin-top: 28px; }
   .mt-sm { margin-top: 16px; }
 
-  /* ── Cards ── */
+  /* ── Cards (sistema único) ── */
   .card {
-    background: white; border: 1px solid var(--border);
+    background: var(--bg-2); border: 1px solid var(--ln);
     border-radius: 6px; padding: clamp(14px, 1.8vw, 24px);
   }
-  .card.dark-card { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.08); }
-  .card.accent    { border-left: 3px solid var(--o); }
-  .card.green-accent { border-left: 3px solid var(--green); }
+  .card.dark-card { background: var(--bg-2); border-color: var(--ln); }
+  .card.accent       { border-left: 3px solid var(--o); }
+  .card.green-accent { border-left: 3px solid var(--o); }
   .card-num {
     font-size: clamp(28px, 3.5vw, 48px); font-weight: 800;
     letter-spacing: -.03em; line-height: 1; margin-bottom: 4px;
+    color: var(--tx-0); font-variant-numeric: tabular-nums;
   }
   .card-num.orange { color: var(--o); }
-  .card-num.green  { color: var(--green); }
-  .card-num.white  { color: var(--white); }
-  .card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; color: var(--gray-l); margin-bottom: 6px; }
-  .card-label.light { color: rgba(255,255,255,.35); }
-  .card-desc { font-size: clamp(11px, 1.1vw, 13px); color: var(--gray); line-height: 1.55; margin-top: 6px; }
-  .card-desc.white { color: rgba(255,255,255,.45); }
+  .card-num.green  { color: var(--o); }
+  .card-num.white  { color: var(--tx-0); }
+  .card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; color: var(--tx-3); margin-bottom: 6px; }
+  .card-label.light { color: var(--tx-3); }
+  .card-desc { font-size: clamp(11px, 1.1vw, 13px); color: var(--tx-1); line-height: 1.55; margin-top: 6px; }
+  .card-desc.white { color: var(--tx-1); }
 
   /* ── Stat big ── */
   .stat-row { display: flex; gap: 0; width: 100%; margin-top: 28px; }
   .stat-block {
     flex: 1; padding: 20px 24px;
-    border-right: 1px solid var(--border);
+    border-right: 1px solid var(--ln);
   }
   .stat-block:last-child { border-right: none; }
   .stat-num {
     font-size: clamp(32px, 4.5vw, 60px); font-weight: 900;
     letter-spacing: -.04em; line-height: 1; color: var(--o);
+    font-variant-numeric: tabular-nums;
   }
-  .stat-num.green { color: var(--green); }
-  .stat-label { font-size: 12px; font-weight: 600; color: var(--gray-l); text-transform: uppercase; letter-spacing: .08em; margin-top: 6px; }
-  .stat-note  { font-size: 11px; color: var(--gray-l); margin-top: 4px; line-height: 1.4; }
+  .stat-num.green { color: var(--o); }
+  .stat-label { font-size: 12px; font-weight: 600; color: var(--tx-3); text-transform: uppercase; letter-spacing: .08em; margin-top: 6px; }
+  .stat-note  { font-size: 11px; color: var(--tx-2); margin-top: 4px; line-height: 1.4; }
 
-  /* ── Why now boxes ── */
+  /* ── Why-now cards ── */
   .wnow-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 28px; width: 100%; }
   .wnow-card {
-    background: var(--dark3); border: 1px solid rgba(255,255,255,.055);
+    background: var(--bg-2); border: 1px solid var(--ln);
     border-radius: 6px; padding: 22px 20px;
   }
   .wnow-icon { font-size: 22px; margin-bottom: 10px; line-height: 1; }
-  .wnow-title { font-size: 13px; font-weight: 700; color: white; margin-bottom: 5px; }
-  .wnow-desc  { font-size: 11.5px; color: rgba(255,255,255,.4); line-height: 1.5; }
+  .wnow-title { font-size: 13px; font-weight: 700; color: var(--tx-0); margin-bottom: 5px; }
+  .wnow-desc  { font-size: 11.5px; color: var(--tx-1); line-height: 1.5; }
   .wnow-delta {
     font-size: 30px; font-weight: 900; color: var(--o);
     letter-spacing: -.05em; margin-bottom: 4px; line-height: 1;
+    font-variant-numeric: tabular-nums;
   }
 
-  /* ── How it works flow ── */
+  /* ── Flow ── */
   .flow-row { display: flex; align-items: center; gap: 0; width: 100%; margin-top: 24px; }
   .flow-node {
     flex: 1; text-align: center; padding: 16px 8px;
-    background: white; border: 1px solid var(--border); border-radius: 6px;
+    background: var(--bg-2); border: 1px solid var(--ln); border-radius: 6px;
   }
   .flow-icon {
-    width: 40px; height: 40px; border-radius: 10px;
-    background: var(--obg); display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 8px;
+    background: var(--o-s); display: flex; align-items: center; justify-content: center;
     margin: 0 auto 8px;
   }
   .flow-icon svg { width: 20px; height: 20px; color: var(--o); }
-  .flow-label { font-size: 12px; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
-  .flow-sub   { font-size: 10.5px; color: var(--gray); line-height: 1.4; }
+  .flow-label { font-size: 12px; font-weight: 700; color: var(--tx-0); margin-bottom: 2px; }
+  .flow-sub   { font-size: 10.5px; color: var(--tx-1); line-height: 1.4; }
   .flow-arrow { flex-shrink: 0; width: 28px; text-align: center; color: var(--o); font-size: 16px; }
 
-  /* ── Market tam ── */
+  /* ── TAM rings ── */
   .tam-rings { position: relative; width: 220px; height: 220px; flex-shrink: 0; }
   .tam-ring {
     position: absolute; border-radius: 50%; border: 2px solid;
@@ -172,132 +192,133 @@
   }
   .tam-ring.outer { inset: 0; border-color: rgba(216,66,0,.2); background: rgba(216,66,0,.04); }
   .tam-ring.mid   { inset: 30px; border-color: rgba(216,66,0,.35); background: rgba(216,66,0,.08); }
-  .tam-ring.inner { inset: 65px; border-color: var(--o); background: rgba(216,66,0,.16); }
+  .tam-ring.inner { inset: 65px; border-color: var(--o); background: rgba(216,66,0,.18); }
   .tam-label-outer { position: absolute; top: 4px; left: 50%; transform: translateX(-50%); font-size: 10px; font-weight: 700; color: rgba(216,66,0,.6); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
   .tam-label-mid   { position: absolute; top: 38px; left: 50%; transform: translateX(-50%); font-size: 10px; font-weight: 700; color: rgba(216,66,0,.75); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
   .tam-label-inner { font-size: 11px; font-weight: 800; color: var(--o); line-height: 1.2; }
   .tam-num-outer { position: absolute; bottom: 8px; right: 8px; font-size: 16px; font-weight: 800; color: rgba(216,66,0,.45); }
   .tam-num-mid   { position: absolute; top: 50%; right: -36px; transform: translateY(-50%); font-size: 15px; font-weight: 800; color: rgba(216,66,0,.65); }
 
-  /* ── Traction timeline ── */
+  /* ── Traction ── */
   .traction-row { display: flex; gap: 14px; width: 100%; margin-top: 24px; }
   .traction-metric {
-    flex: 1; background: var(--bg); border: 1px solid var(--border);
-    border-radius: 12px; padding: 18px 20px;
+    flex: 1; background: var(--bg-2); border: 1px solid var(--ln);
+    border-radius: 6px; padding: 18px 20px;
     border-top: 3px solid var(--o);
   }
-  .traction-metric.green-top { border-top-color: var(--green); }
-  .traction-num { font-size: clamp(28px, 3.2vw, 46px); font-weight: 800; letter-spacing: -.04em; color: var(--dark); line-height: 1; }
+  .traction-metric.green-top { border-top-color: var(--o); }
+  .traction-num { font-size: clamp(28px, 3.2vw, 46px); font-weight: 800; letter-spacing: -.04em; color: var(--tx-0); line-height: 1; font-variant-numeric: tabular-nums; }
   .traction-num.orange { color: var(--o); }
-  .traction-num.green  { color: var(--green); }
-  .traction-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--gray-l); margin-bottom: 4px; }
-  .traction-note  { font-size: 11.5px; color: var(--gray); margin-top: 6px; line-height: 1.4; }
+  .traction-num.green  { color: var(--o); }
+  .traction-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--tx-3); margin-bottom: 4px; }
+  .traction-note  { font-size: 11.5px; color: var(--tx-1); margin-top: 6px; line-height: 1.4; }
 
   /* ── Business model ── */
   .bm-row { display: flex; gap: 14px; width: 100%; margin-top: 24px; }
   .bm-tier {
-    flex: 1; background: var(--bg); border: 1px solid var(--border);
-    border-radius: 12px; padding: 20px 22px; position: relative;
+    flex: 1; background: var(--bg-2); border: 1px solid var(--ln);
+    border-radius: 6px; padding: 20px 22px; position: relative;
   }
   .bm-tier.featured { border-color: var(--o); border-width: 1.5px; }
   .bm-badge {
     position: absolute; top: -1px; right: 16px;
-    background: var(--o); color: white;
+    background: var(--o); color: var(--tx-0);
     font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
-    padding: 3px 8px; border-radius: 0 0 6px 6px;
+    padding: 3px 8px; border-radius: 0 0 4px 4px;
   }
-  .bm-phase { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--gray-l); margin-bottom: 4px; }
-  .bm-name  { font-size: 17px; font-weight: 800; color: var(--dark); margin-bottom: 3px; }
-  .bm-price { font-size: 28px; font-weight: 900; color: var(--o); letter-spacing: -.04em; line-height: 1; margin-bottom: 10px; }
-  .bm-price span { font-size: 13px; font-weight: 500; color: var(--gray); }
+  .bm-phase { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--tx-3); margin-bottom: 4px; }
+  .bm-name  { font-size: 17px; font-weight: 800; color: var(--tx-0); margin-bottom: 3px; }
+  .bm-price { font-size: 28px; font-weight: 900; color: var(--o); letter-spacing: -.04em; line-height: 1; margin-bottom: 10px; font-variant-numeric: tabular-nums; }
+  .bm-price span { font-size: 13px; font-weight: 500; color: var(--tx-2); }
   .bm-items { display: flex; flex-direction: column; gap: 5px; }
-  .bm-item  { font-size: 12px; color: var(--gray); display: flex; gap: 7px; align-items: flex-start; line-height: 1.4; }
-  .bm-item::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; font-size: 11px; margin-top: 1px; }
+  .bm-item  { font-size: 12px; color: var(--tx-1); display: flex; gap: 7px; align-items: flex-start; line-height: 1.4; }
+  .bm-item::before { content: '✓'; color: var(--o); font-weight: 700; flex-shrink: 0; font-size: 11px; margin-top: 1px; }
   .bm-upsell {
-    margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border);
-    font-size: 11px; color: var(--gray); font-style: italic;
+    margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--ln);
+    font-size: 11px; color: var(--tx-2); font-style: italic;
   }
 
   /* ── Competitive matrix ── */
-  .comp-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 24px; }
+  .comp-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 24px; background: transparent; }
   .comp-table th {
-    padding: 9px 12px; text-align: left;
+    padding: 10px 12px; text-align: left;
     font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+    background: transparent; border-bottom: 1px solid var(--ln);
   }
-  .comp-table th:first-child { color: var(--gray); background: white; border-bottom: 1px solid var(--border); width: 24%; font-size: 10.5px; }
-  .comp-table th.them { color: var(--gray-l); background: white; border-bottom: 1px solid var(--border); text-align: center; font-weight: 600; }
-  .comp-table th.us   { color: var(--o); background: rgba(216,66,0,.04); border-bottom: 1.5px solid var(--obd); text-align: center; font-weight: 700; }
-  .comp-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; color: var(--gray); font-size: 12.5px; }
-  .comp-table td.us-col { text-align: center; font-weight: 700; color: var(--dark); background: rgba(216,66,0,.03); }
+  .comp-table th:first-child { color: var(--tx-3); width: 24%; font-size: 10.5px; }
+  .comp-table th.them { color: var(--tx-2); text-align: center; font-weight: 600; }
+  .comp-table th.us   { color: var(--o); background: var(--o-s); border-bottom: 1.5px solid var(--o-l); text-align: center; font-weight: 700; }
+  .comp-table td { padding: 10px 12px; border-bottom: 1px solid var(--ln); vertical-align: middle; color: var(--tx-1); font-size: 12.5px; background: transparent; }
+  .comp-table td.us-col { text-align: center; font-weight: 700; color: var(--tx-0); background: var(--o-s); }
   .comp-table td.them-col { text-align: center; }
   .comp-table tr:last-child td { border-bottom: none; }
-  .comp-check { color: var(--green); font-size: 15px; }
-  .comp-x     { color: #e53e3e; font-size: 15px; }
-  .comp-half  { color: #d69e2e; font-size: 13px; }
+  .comp-check { color: var(--tx-0); font-size: 15px; font-weight: 700; }
+  .comp-x     { color: var(--tx-3); font-size: 15px; }
+  .comp-half  { color: var(--tx-2); font-size: 13px; }
 
   /* ── Team ── */
   .team-row { display: flex; gap: 20px; margin-top: 28px; width: 100%; }
   .team-card {
-    flex: 1; background: var(--bg); border: 1px solid var(--border);
-    border-radius: 14px; padding: 22px 24px;
+    flex: 1; background: var(--bg-2); border: 1px solid var(--ln);
+    border-radius: 6px; padding: 22px 24px;
   }
   .team-avatar {
     width: 56px; height: 56px; border-radius: 50%; overflow: hidden;
-    border: 2px solid var(--border); margin-bottom: 14px;
-    background: var(--border);
+    border: 2px solid var(--ln); margin-bottom: 14px;
+    background: var(--bg-3);
   }
   .team-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .team-avatar-initial { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--dark3); font-size: 22px; font-weight: 800; color: rgba(255,255,255,.4); letter-spacing: -.02em; }
-  .team-name  { font-size: 16px; font-weight: 800; color: var(--dark); margin-bottom: 2px; }
+  .team-avatar-initial { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--bg-3); font-size: 22px; font-weight: 800; color: var(--tx-2); letter-spacing: -.02em; }
+  .team-name  { font-size: 16px; font-weight: 800; color: var(--tx-0); margin-bottom: 2px; }
   .team-role  { font-size: 12px; color: var(--o); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
-  .team-bio   { font-size: 12.5px; color: var(--gray); line-height: 1.6; }
+  .team-bio   { font-size: 12.5px; color: var(--tx-1); line-height: 1.6; }
   .team-cred  { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
   .team-badge {
-    font-size: 10px; font-weight: 700; border: 1px solid var(--border);
-    border-radius: 4px; padding: 3px 8px; color: var(--gray); background: white;
+    font-size: 10px; font-weight: 700; border: 1px solid var(--ln);
+    border-radius: 4px; padding: 3px 8px; color: var(--tx-2); background: var(--bg-2);
     letter-spacing: .04em;
   }
 
   /* ── Ask slide ── */
-  .ask-slide { background: var(--dark2) !important; }
+  .ask-slide { background: var(--bg-1) !important; }
   .ask-raise {
     font-size: clamp(48px, 7vw, 96px); font-weight: 900;
     letter-spacing: -.05em; color: var(--o); line-height: 1;
-    margin-bottom: 4px;
+    margin-bottom: 4px; font-variant-numeric: tabular-nums;
   }
-  .ask-round { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 28px; }
+  .ask-round { font-size: 14px; font-weight: 600; color: var(--tx-3); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 28px; }
   .ask-uses { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; margin-top: 28px; }
   .ask-use {
-    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
-    border-radius: 10px; padding: 16px 18px;
+    background: var(--bg-2); border: 1px solid var(--ln);
+    border-radius: 6px; padding: 16px 18px;
   }
-  .ask-use-pct { font-size: 26px; font-weight: 900; color: var(--o); letter-spacing: -.04em; }
-  .ask-use-label { font-size: 13px; font-weight: 700; color: white; margin-bottom: 3px; margin-top: 2px; }
-  .ask-use-desc  { font-size: 11.5px; color: rgba(255,255,255,.35); line-height: 1.4; }
+  .ask-use-pct { font-size: 26px; font-weight: 900; color: var(--o); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+  .ask-use-label { font-size: 13px; font-weight: 700; color: var(--tx-0); margin-bottom: 3px; margin-top: 2px; }
+  .ask-use-desc  { font-size: 11.5px; color: var(--tx-2); line-height: 1.4; }
   .ask-milestones { margin-top: 24px; display: flex; gap: 0; width: 100%; }
   .ask-ms {
-    flex: 1; padding: 14px 18px; border-right: 1px solid rgba(255,255,255,.07);
+    flex: 1; padding: 14px 18px; border-right: 1px solid var(--ln);
   }
   .ask-ms:last-child { border-right: none; }
-  .ask-ms-time { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.25); margin-bottom: 6px; }
-  .ask-ms-goal { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.7); line-height: 1.4; }
+  .ask-ms-time { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--tx-3); margin-bottom: 6px; }
+  .ask-ms-goal { font-size: 13px; font-weight: 600; color: var(--tx-1); line-height: 1.4; }
 
-  /* ── Cover elements ── */
+  /* ── Cover (S1) ── */
   #s1 .cover-logo { margin-bottom: 40px; }
   #s1 .cover-logo svg { height: clamp(30px, 3.2vw, 42px); width: auto; }
   #s1 .cover-tag {
     font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-    color: rgba(255,255,255,.35); margin-bottom: 20px;
+    color: var(--tx-3); margin-bottom: 20px;
   }
   #s1 .cover-sub {
-    font-size: clamp(14px, 1.5vw, 18px); color: rgba(255,255,255,.45);
+    font-size: clamp(14px, 1.5vw, 18px); color: var(--tx-2);
     line-height: 1.6; max-width: 560px; margin-top: 14px; font-weight: 400;
   }
   #s1 .cover-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
   #s1 .cover-badge {
-    border: 1px solid rgba(255,255,255,.1); border-radius: 4px;
+    border: 1px solid var(--ln); border-radius: 4px;
     padding: 5px 11px; font-size: 10.5px; font-weight: 600;
-    color: rgba(255,255,255,.35); letter-spacing: .05em;
+    color: var(--tx-3); letter-spacing: .05em;
   }
   #s1 .cover-deco {
     position: absolute; right: 0; top: 0; bottom: 0; width: 40%;
@@ -305,26 +326,26 @@
   }
   #s1 .cover-deco img {
     width: 100%; height: 100%; object-fit: cover; object-position: center left;
-    opacity: .15; filter: grayscale(15%) contrast(1.15); display: block;
+    opacity: .14; filter: grayscale(20%) contrast(1.1); display: block;
   }
   #s1 .cover-deco::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to right, var(--dark2) 0%, transparent 50%); z-index: 1;
+    background: linear-gradient(to right, var(--bg-1) 0%, transparent 55%); z-index: 1;
   }
   #s1 .cover-deco::before {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to bottom, var(--dark2) 0%, transparent 20%, transparent 80%, var(--dark2) 100%);
+    background: linear-gradient(to bottom, var(--bg-1) 0%, transparent 20%, transparent 80%, var(--bg-1) 100%);
     z-index: 1;
   }
   #s1 .cover-confidential {
     position: absolute; bottom: 32px; right: clamp(40px, 7vw, 120px);
-    font-size: 10px; font-weight: 600; color: rgba(255,255,255,.2);
+    font-size: 10px; font-weight: 600; color: var(--tx-3);
     letter-spacing: .1em; text-transform: uppercase;
   }
 
   /* ── Print ── */
   @media print {
-    html, body { overflow: visible; height: auto; }
+    html, body { overflow: visible; height: auto; background: var(--bg-1); }
     .deck { height: auto; visibility: visible !important; }
     .slide { position: relative; opacity: 1; pointer-events: all; transform: none; page-break-after: always; height: 100vh; width: 100vw; }
     .nav { display: none; }
@@ -342,7 +363,7 @@
     .ask-uses { grid-template-columns: 1fr; }
     .ask-milestones { flex-direction: column; }
     #s9 .ask-steps > div { flex-direction: column !important; }
-    #s9 .ask-steps > div > div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.07); }
+    #s9 .ask-steps > div > div { border-right: none !important; border-bottom: 1px solid var(--ln); }
     .flow-row { flex-direction: column; }
     .flow-arrow { transform: rotate(90deg); }
   }
@@ -404,7 +425,7 @@
       </div>
     </div>
 
-    <div style="margin-top:20px;padding:16px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;max-width:680px">
+    <div style="margin-top:20px;padding:16px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;max-width:680px">
       <p style="font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.6"><strong style="color:rgba(255,255,255,.75);font-weight:700">The institutional gap:</strong> Legacy APM (AspenTech, Emerson, AVEVA) cannot price 1/10× without cannibalizing $1B+ in installed enterprise revenue. The 95% of industrial facilities below the Fortune-500 budget line are structurally unserved. Total addressable downtime cost: <strong style="color:rgba(255,255,255,.75)">$208B/yr</strong>. <span style="font-size:10px;color:rgba(255,255,255,.3)">(Aberdeen Research · Emerson 2024)</span></p>
     </div>
   </div>
@@ -430,7 +451,7 @@
       </div>
       <div class="flow-arrow">→</div>
       <div class="flow-node" style="border-color:var(--obd);background:var(--obg)">
-        <div class="flow-icon" style="background:white">
+        <div class="flow-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <rect x="7" y="7" width="10" height="10" rx="1"/>
             <path d="M7 9H4M7 12H4M7 15H4M17 9h3M17 12h3M17 15h3M9 7V4M12 7V4M15 7V4M9 17v3M12 17v3M15 17v3"/>
@@ -525,7 +546,7 @@
 
       <!-- Segment rows -->
       <div style="flex:1;display:flex;flex-direction:column;gap:12px">
-        <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px">
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:16px">
           <div style="width:10px;height:10px;border-radius:50%;background:rgba(216,66,0,.25);flex-shrink:0"></div>
           <div style="flex:1">
             <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--gray-l);margin-bottom:3px">TAM · Global predictive maintenance</div>
@@ -533,7 +554,7 @@
           </div>
           <div style="font-size:30px;font-weight:900;color:rgba(216,66,0,.35);letter-spacing:-.04em;flex-shrink:0">$78B</div>
         </div>
-        <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px">
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:16px">
           <div style="width:10px;height:10px;border-radius:50%;background:rgba(216,66,0,.45);flex-shrink:0"></div>
           <div style="flex:1">
             <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--gray-l);margin-bottom:3px">SAM · LATAM mid-market industrial facilities</div>
@@ -541,7 +562,7 @@
           </div>
           <div style="font-size:30px;font-weight:900;color:rgba(216,66,0,.55);letter-spacing:-.04em;flex-shrink:0">$14B</div>
         </div>
-        <div style="background:var(--obg);border:1.5px solid var(--obd);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px">
+        <div style="background:var(--obg);border:1.5px solid var(--obd);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:16px">
           <div style="width:10px;height:10px;border-radius:50%;background:var(--o);flex-shrink:0"></div>
           <div style="flex:1">
             <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--o);margin-bottom:3px">SOM · LATAM 4-country predictive maintenance</div>
@@ -604,9 +625,9 @@
         <div class="card-label">Next 6 months</div>
         <div class="card-desc" style="margin-top:6px;font-size:12.5px">
           <div style="display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--green);font-weight:700;flex-shrink:0">→</span><span>Convert 2 pilots to annual contracts (Month 3)</span></div>
-            <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--green);font-weight:700;flex-shrink:0">→</span><span>Launch 4 additional pilots from current pipeline (Month 4–5)</span></div>
-            <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--green);font-weight:700;flex-shrink:0">→</span><span>Path to break-even at 3 annual contracts by Q4 2026</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Convert 2 pilots to annual contracts (Month 3)</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Launch 4 additional pilots from current pipeline (Month 4–5)</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Path to break-even at 3 annual contracts by Q4 2026</span></div>
           </div>
         </div>
       </div>
@@ -821,15 +842,15 @@
     </div>
 
     <div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;width:100%">
-      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:14px 16px">
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:14px 16px">
         <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--o);margin-bottom:7px">Portfolio</div>
         <div style="font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.5">Industrial, manufacturing, or hard-tech portfolio with presence in LATAM or emerging markets.</div>
       </div>
-      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:14px 16px">
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:14px 16px">
         <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--o);margin-bottom:7px">Network</div>
         <div style="font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.5">Enterprise B2B network with access to operations, maintenance, or plant management decision-makers.</div>
       </div>
-      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:14px 16px">
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:14px 16px">
         <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--o);margin-bottom:7px">Mindset</div>
         <div style="font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.5">Comfortable with pre-Series A deep-tech. Patient on enterprise sales cycles. Smart money over fast money.</div>
       </div>
@@ -848,7 +869,7 @@
     <p class="subhead white" style="margin-top:12px;max-width:520px">30-minute call. We share what we're building and where we need help. If there's a fit, we move fast. Intros welcomed.</p>
 
     <div style="display:flex;gap:20px;margin-top:32px;flex-wrap:wrap">
-      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:22px 26px">
+      <div style="background:var(--bg-2);border:1px solid var(--ln);border-radius:6px;padding:22px 26px">
         <div style="display:flex;gap:14px;align-items:flex-start">
           <div style="width:52px;height:52px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.15);flex-shrink:0">
             <img src="../assets/gpc.png" alt="Gerardo Peña" style="width:100%;height:100%;object-fit:cover;display:block">
@@ -861,13 +882,13 @@
           </div>
         </div>
       </div>
-      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:22px 26px">
+      <div style="background:var(--bg-2);border:1px solid var(--ln);border-radius:6px;padding:22px 26px">
         <div style="font-size:15px;font-weight:700;color:white;margin-bottom:2px">Ramiro Pantoja</div>
         <div style="font-size:12px;color:rgba(255,255,255,.45);margin-bottom:10px">CTO · Co-founder</div>
         <a href="mailto:ramiro@madeos.ai" style="font-size:13px;color:rgba(255,255,255,.7);text-decoration:none;display:block;line-height:1.8">ramiro@madeos.ai</a>
         <a href="https://cal.com/madeos.ai/demo" target="_blank" style="font-size:13px;color:white;font-weight:700;background:var(--o);border-radius:6px;padding:7px 14px;display:inline-block;margin-top:8px;text-decoration:none">Book investor call →</a>
       </div>
-      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(37,211,102,.2);border-radius:12px;padding:22px 26px">
+      <div style="background:var(--bg-2);border:1px solid var(--ln);border-radius:6px;padding:22px 26px">
         <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.3);margin-bottom:10px">Live demo</div>
         <div style="font-size:15px;font-weight:700;color:white;margin-bottom:4px">Made AI Agent</div>
         <div style="font-size:12px;color:rgba(255,255,255,.45);line-height:1.55;margin-bottom:14px;max-width:200px">Chat with the same agent our clients use. Ask about an asset, a failure mode, or a proposal.</div>
