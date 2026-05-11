@@ -435,6 +435,11 @@
     .rx-grid { grid-template-columns: 1fr; }
   }
 </style>
+<!-- PostHog -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https://us.i.posthog.com',person_profiles:'identified_only',defaults:'2026-01-30',disable_session_recording:true});
+</script>
 </head>
 <body>
 
@@ -1118,6 +1123,96 @@
     var dx = e.changedTouches[0].clientX - tx;
     if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
   });
+
+
+  /* ── PostHog tracking ───────────────────────────────── */
+  var DECK_ID = 'coipsa';
+  var DECK_CLIENT = 'COIPSA';
+  var visitKey = 'mademo_coipsa_visits';
+  var visitCount = 1;
+  try {
+    visitCount = parseInt(localStorage.getItem(visitKey) || '0') + 1;
+    localStorage.setItem(visitKey, visitCount);
+  } catch(e) {}
+  try {
+    posthog.capture('proposal_viewed', {
+      proposal: DECK_ID, client: DECK_CLIENT, returning: visitCount > 1, visit_count: visitCount
+    });
+  } catch(e) {}
+
+  // Wrap goTo to fire slide_viewed events (only on actual change)
+  var _goTo = goTo;
+  goTo = function(n) {
+    var prev = current;
+    _goTo(n);
+    if (current !== prev) {
+      try {
+        var slideId = slides[current].id || ('slide_' + (current + 1));
+        posthog.capture('slide_viewed', {
+          proposal: DECK_ID, client: DECK_CLIENT,
+          slide_index: current + 1, slide_id: slideId, total_slides: total
+        });
+      } catch(e) {}
+    }
+  };
+
+  // Wrap setLang to fire language_changed
+  var _setLang = setLang;
+  setLang = function(lang) {
+    var prevLang = (typeof currentLang !== 'undefined') ? currentLang : null;
+    _setLang(lang);
+    if (prevLang && prevLang !== lang) {
+      try {
+        posthog.capture('language_changed', {
+          proposal: DECK_ID, client: DECK_CLIENT, from: prevLang, to: lang
+        });
+      } catch(e) {}
+    }
+  };
+
+  // CTA: book session button
+  document.querySelectorAll('.s7-book-btn').forEach(function(el) {
+    el.addEventListener('click', function() {
+      try { posthog.capture('cta_clicked', { proposal: DECK_ID, client: DECK_CLIENT, cta: 'book_session' }); } catch(e) {}
+    });
+  });
+
+  // CTA: email links
+  document.querySelectorAll('a.contact-link[href^="mailto:"]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      try {
+        posthog.capture('cta_clicked', {
+          proposal: DECK_ID, client: DECK_CLIENT,
+          cta: 'email', target: (el.getAttribute('href') || '').replace('mailto:', '')
+        });
+      } catch(e) {}
+    });
+  });
+
+  // time_spent: ping cada 60s sólo si el tab está activo
+  var activeMs = 0, lastTick = Date.now();
+  setInterval(function() {
+    if (document.visibilityState === 'visible') {
+      activeMs += Date.now() - lastTick;
+    }
+    lastTick = Date.now();
+    if (activeMs >= 60000) {
+      try {
+        posthog.capture('time_spent', {
+          proposal: DECK_ID, client: DECK_CLIENT, seconds: Math.round(activeMs / 1000), checkpoint: true
+        });
+      } catch(e) {}
+      activeMs = 0;
+    }
+  }, 10000);
+
+  window.addEventListener('beforeunload', function() {
+    if (activeMs > 5000) {
+      try { posthog.capture('time_spent', { proposal: DECK_ID, client: DECK_CLIENT, seconds: Math.round(activeMs / 1000) }); } catch(e) {}
+    }
+  });
+
+  /* ── /PostHog tracking ─────────────────────────────── */
 
   /* Init: apply Spanish translations, then show deck */
   setLang('es');
