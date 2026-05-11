@@ -531,7 +531,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <span class="s3-step-num">01</span>
             <div>
               <div class="s3-step-title" data-i18n="s3_step1_title">Connect</div>
-              <div class="s3-step-sub" data-i18n="s3_step1_sub">OPC-UA · Modbus · 4–20mA. Read-only; no changes to existing systems.</div>
+              <div class="s3-step-sub" data-i18n="s3_step1_sub">Made consumes the signals the plant already has (OPC-UA, Modbus, 4–20mA). Where sensors aren't yet in place, our hardware partner in Chile deploys them before we start. Read-only; no changes to the PLC.</div>
             </div>
           </div>
           <div class="s3-step">
@@ -552,7 +552,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
         <div class="s3-alliance">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3-3m0 0l-3 3m3-3v8"/></svg>
-          <div class="s3-all-text" data-i18n="s3_partner"><strong>Hardware partner · Chile.</strong> Sensor deployment for assets without instrumentation. Made OS consumes them from the first shift.</div>
+          <div class="s3-all-text" data-i18n="s3_partner"><strong>Hardware partner · Chile.</strong> Partial instrumentation is the norm in LATAM industrial facilities, not the exception. Where a critical asset lacks a sensor, we deploy it before the pilot's first shift.</div>
         </div>
 
         <div class="channel-pills">
@@ -598,6 +598,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <div class="impl-spec" data-i18n="si_c1_spec1">NVIDIA Jetson Orin Nano Super · 67 INT8 TOPS</div>
             <div class="impl-spec" data-i18n="si_c1_spec2">IP67 · NEMA 4X · ATEX enclosure evaluated jointly</div>
             <div class="impl-spec" data-i18n="si_c1_spec3">IEC 62443 · TLS 1.3 · Air-gap ready</div>
+            <div class="impl-spec" data-i18n="si_c1_spec4">−10°C to 60°C · MTBF 50,000+ h · 7+ year operational life</div>
           </div>
           <div class="impl-ideal">
             <strong data-i18n="si_c1_ideal_label">Ideal for</strong>
@@ -618,6 +619,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <div class="impl-spec" data-i18n="si_c2_spec1">Ubuntu · Debian · RHEL · Windows · 8 cores / 8 GB RAM min.</div>
             <div class="impl-spec" data-i18n="si_c2_spec2">OPC-UA Client · unlimited signal volume in program</div>
             <div class="impl-spec" data-i18n="si_c2_spec3">WSS (WebSocket over SSL) · integrable with existing OT data stack</div>
+            <div class="impl-spec" data-i18n="si_c2_spec4">Generates work orders in existing CMMS (SAP PM, Maximo, Fiix)</div>
           </div>
           <div class="impl-ideal">
             <strong data-i18n="si_c2_ideal_label">Ideal for</strong>
@@ -913,10 +915,10 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       s3_eyebrow: 'What we do',
       s3_h2: 'A read-only intelligence layer<br>on top of <span class="accent">existing infrastructure.</span>',
       s3_body: 'Made OS connects to existing sensors and detects failure anomalies weeks before they happen. Your team receives a prescription directly in the channels they already use.',
-      s3_step1_title: 'Connect', s3_step1_sub: 'OPC-UA · Modbus · 4–20mA. Read-only; no changes to existing systems.',
+      s3_step1_title: 'Connect', s3_step1_sub: "Made consumes the signals the plant already has (OPC-UA, Modbus, 4–20mA). Where sensors aren't yet in place, our hardware partner in Chile deploys them before we start. Read-only; no changes to the PLC.",
       s3_step2_title: 'Detect',  s3_step2_sub: 'Multi-agent AI learns normal behavior per asset. Anomaly flagged 2–6 weeks before failure.',
       s3_step3_title: 'Prescribe', s3_step3_sub: 'Team receives specific action. Maintenance planned. Zero unplanned downtime.',
-      s3_partner: '<strong>Hardware partner · Chile.</strong> Sensor deployment for assets without instrumentation. Made OS consumes them from the first shift.',
+      s3_partner: "<strong>Hardware partner · Chile.</strong> Partial instrumentation is the norm in LATAM industrial facilities, not the exception. Where a critical asset lacks a sensor, we deploy it before the pilot's first shift.",
       si_eyebrow: 'How we deploy',
       si_h2: 'Two paths. <span class="accent">Same result:</span><br>no unplanned downtime.',
       si_c1_badge: 'Recommended · process assets',
@@ -925,6 +927,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       si_c1_spec1: 'NVIDIA Jetson Orin Nano Super · 67 INT8 TOPS',
       si_c1_spec2: 'IP67 · NEMA 4X · ATEX enclosure evaluated jointly',
       si_c1_spec3: 'IEC 62443 · TLS 1.3 · Air-gap ready',
+      si_c1_spec4: '−10°C a 60°C · MTBF 50,000+ h · 7+ años vida útil',
       si_c1_ideal_label: 'Ideal for',
       si_c1_ideal: "Compressors, FCC, ATEX zones, environments where IT/OT doesn't allow outbound cloud connectivity.",
       si_c2_title: 'Software + API',
@@ -932,6 +935,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       si_c2_spec1: 'Ubuntu · Debian · RHEL · Windows · 8 cores / 8 GB RAM min.',
       si_c2_spec2: 'OPC-UA Client · unlimited signal volume in program',
       si_c2_spec3: 'WSS (WebSocket over SSL) · integrable with existing OT data stack',
+      si_c2_spec4: 'Genera órdenes de trabajo en CMMS existente (SAP PM, Maximo, Fiix)',
       si_c2_ideal_label: 'Ideal for',
       si_c2_ideal: 'Sites with available server infrastructure. IT team maintains full control without any hardware addition.',
       si_book_cta: 'Schedule technical session',
@@ -1016,10 +1020,10 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       s3_eyebrow: 'Lo que hacemos',
       s3_h2: 'Una capa de inteligencia analítica<br>sobre la <span class="accent">infraestructura existente.</span>',
       s3_body: 'Made OS se conecta a los sensores existentes y detecta anomalías de falla semanas antes de que ocurran. Tu equipo recibe una prescripción directamente en los canales que ya usa.',
-      s3_step1_title: 'Conectar',   s3_step1_sub: 'OPC-UA · Modbus · 4–20mA. Solo lectura; sin cambios a los sistemas existentes.',
+      s3_step1_title: 'Conectar',   s3_step1_sub: 'Made consume las señales que la planta ya tiene (OPC-UA, Modbus, 4–20mA). Donde aún no hay sensores, nuestro partner de hardware en Chile los despliega antes de arrancar. Solo lectura; sin cambios al PLC.',
       s3_step2_title: 'Detectar',   s3_step2_sub: 'IA multi-agente aprende el comportamiento normal por activo. Anomalía detectada 2–6 semanas antes de la falla.',
       s3_step3_title: 'Prescribir', s3_step3_sub: 'El equipo recibe la acción específica. Mantenimiento planificado. Cero paros no planificados.',
-      s3_partner: '<strong>Partner local de hardware · Chile.</strong> Despliegue de sensores en activos sin instrumentación. Made OS los consume desde el primer turno.',
+      s3_partner: '<strong>Partner local de hardware · Chile.</strong> La instrumentación parcial es la norma en plantas industriales de LATAM, no la excepción. Donde un activo crítico no tenga sensor, lo desplegamos antes del primer turno del piloto.',
       si_eyebrow: 'Cómo desplegamos',
       si_h2: 'Dos rutas. <span class="accent">El mismo resultado:</span><br>cero paros no planificados.',
       si_c1_badge: 'Recomendado · activos de proceso',
