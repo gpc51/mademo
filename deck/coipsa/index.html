@@ -761,7 +761,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
   <!-- ══ S6: CREDIBILITY ══ -->
   <div class="slide dark" id="s6">
-    <div class="eyebrow light" data-i18n="s6_eyebrow">Who backs us</div>
+    <div class="eyebrow light" data-i18n="s6_eyebrow">Who backs us · Our guarantee</div>
     <div class="rule"></div>
     <h2 class="headline white" style="max-width:620px" data-i18n="s6_h2">
       The infrastructure behind<br>every <span class="accent">Made guarantee.</span>
@@ -788,9 +788,29 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="cred-sub" data-i18n="s6_c4_sub">Top 10 program. Backed by CORFO, Chile's national innovation agency.</div>
       </div>
     </div>
-    <div style="margin-top:22px;border:1px solid rgba(255,255,255,.1);border-left:2.5px solid var(--o);border-radius:0 8px 8px 0;padding:12px 18px;background:rgba(255,255,255,.03)">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:5px"><span style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--o)">TRL 7 → 8</span><span style="font-size:10px;color:rgba(255,255,255,.3);font-weight:600;letter-spacing:.06em;text-transform:uppercase" data-i18n="s6_trl_title">Validated in live industrial environments</span></div>
-      <div style="font-size:12px;color:rgba(255,255,255,.45);line-height:1.6" data-i18n="s6_trl_sub">Not a lab demo. Made OS is active in industrial plants under continuous operation, with alerts acted on, events avoided, and ROI verified by the client.</div>
+    <!-- Guarantee strip -->
+    <div style="margin-top:22px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-left:3px solid var(--o);border-radius:6px;padding:14px 16px">
+        <div style="font-size:clamp(22px,2.4vw,30px);font-weight:900;color:var(--o);letter-spacing:-.04em;line-height:1;margin-bottom:6px;font-variant-numeric:tabular-nums">$0</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:6px" data-i18n="s6_g1_lbl">If no audited ROI</div>
+        <div style="font-size:11.5px;color:rgba(255,255,255,.65);line-height:1.5" data-i18n="s6_g1_d">Made extends the program 90 additional days at no license cost. Made bears the pilot's financial risk.</div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-left:3px solid var(--o);border-radius:6px;padding:14px 16px">
+        <div style="font-size:clamp(22px,2.4vw,30px);font-weight:900;color:var(--o);letter-spacing:-.04em;line-height:1;margin-bottom:6px;font-variant-numeric:tabular-nums">100%</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:6px" data-i18n="s6_g2_lbl">If ROI is audited</div>
+        <div style="font-size:11.5px;color:rgba(255,255,255,.65);line-height:1.5" data-i18n="s6_g2_d">The pilot fee is credited in full to the Year 1 contract. No double-paying.</div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-left:3px solid var(--o);border-radius:6px;padding:14px 16px">
+        <div style="font-size:clamp(22px,2.4vw,30px);font-weight:900;color:var(--o);letter-spacing:-.04em;line-height:1;margin-bottom:6px" data-i18n="s6_g3_big">Yours</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:6px" data-i18n="s6_g3_lbl">Models &amp; data</div>
+        <div style="font-size:11.5px;color:rgba(255,255,255,.65);line-height:1.5" data-i18n="s6_g3_d">Trained models and operational history are the client's property, independent of program outcome.</div>
+      </div>
+    </div>
+
+    <!-- TRL inline badge (compact) -->
+    <div style="margin-top:14px;display:inline-flex;align-items:center;gap:10px;color:rgba(255,255,255,.4);font-size:10.5px;font-weight:600;letter-spacing:.06em">
+      <span style="background:var(--obg);border:1px solid var(--obd);color:var(--o);padding:3px 8px;border-radius:4px;font-size:10px;font-weight:800;letter-spacing:.1em">TRL 7 → 8</span>
+      <span data-i18n="s6_trl_title" style="text-transform:uppercase">Validated in live industrial environments</span>
     </div>
     <div>
       <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:10px;margin-top:24px" data-i18n="s6_pipe_label">Active pipeline</p>
@@ -958,14 +978,20 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       s5_m2_lbl: 'Knowledge advantage',
       s5_m2_h: 'Models that learn YOUR assets, not generic ones.',
       s5_m2_d: "Made's models train on your specific assets, operating conditions, and shifts. After 3–6 months, the model knows your equipment better than any out-of-the-box product. <strong>The trained models and historical data are your property</strong> and remain yours independently of the contract with Made.",
-      s6_eyebrow: 'Who backs us',
+      s6_eyebrow: 'Who backs us · Our guarantee',
       s6_h2: 'The infrastructure behind<br>every <span class="accent">Made guarantee.</span>',
       s6_c1_name: 'NVIDIA Inception', s6_c1_sub: 'Deep tech AI program. Access to NVIDIA Jetson, DGX, and enterprise GPU stack.',
       s6_c2_name: 'MIT Tech Review', s6_c2_sub: 'Innovators Under 35 LATAM 2025. Gerardo Peña, CEO, recognized by MIT.',
       s6_c3_name: 'Founders Inc', s6_c3_sub: 'Early-stage investor. Portfolio includes category-defining industrial tech companies.',
       s6_c4_name: 'Startup Chile BIG 10', s6_c4_sub: "Top 10 program. Backed by CORFO, Chile's national innovation agency.",
       s6_trl_title: 'Validated in live industrial environments (NASA/DoD readiness scale)',
-      s6_trl_sub: 'Not a lab demo. Made OS is active in industrial plants under continuous operation, with alerts acted on, events avoided, and ROI verified by the client.',
+      s6_g1_lbl: 'If no audited ROI',
+      s6_g1_d: "Made extends the program 90 additional days at no license cost. Made bears the pilot's financial risk.",
+      s6_g2_lbl: 'If ROI is audited',
+      s6_g2_d: 'The pilot fee is credited in full to the Year 1 contract. No double-paying.',
+      s6_g3_big: 'Yours',
+      s6_g3_lbl: 'Models & data',
+      s6_g3_d: "Trained models and operational history are the client's property, independent of program outcome.",
       s6_pipe_label: 'Active pipeline',
       s6_tag1: 'Energy · Refining', s6_tag2: 'Mining · Processing',
       s6_tag3: 'Pharma · Manufacturing', s6_tag4: 'Wine · Agri-industry',
@@ -1055,14 +1081,20 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       s5_m2_lbl: 'Ventaja de conocimiento',
       s5_m2_h: 'Modelos que aprenden SUS activos, no genéricos.',
       s5_m2_d: 'Los modelos de Made se entrenan con sus activos específicos, condiciones operativas y turnos. Después de 3–6 meses, el modelo conoce su equipo mejor que cualquier producto out-of-the-box. <strong>Los modelos entrenados y el histórico de datos son propiedad de su empresa</strong> y permanecen suyos independientemente del contrato con Made.',
-      s6_eyebrow: 'Quiénes nos respaldan',
+      s6_eyebrow: 'Quiénes nos respaldan · Nuestra garantía',
       s6_h2: 'La infraestructura detrás<br>de cada <span class="accent">garantía Made.</span>',
       s6_c1_name: 'NVIDIA Inception', s6_c1_sub: 'Programa de IA deep tech. Acceso a NVIDIA Jetson, DGX y stack GPU empresarial.',
       s6_c2_name: 'MIT Tech Review', s6_c2_sub: 'Innovadores Menores de 35 LATAM 2025. Gerardo Peña, CEO, reconocido por MIT.',
       s6_c3_name: 'Founders Inc', s6_c3_sub: 'Inversionista early-stage. Portafolio incluye empresas tech industriales de categoría.',
       s6_c4_name: 'Startup Chile BIG 10', s6_c4_sub: 'Programa Top 10. Respaldado por CORFO, agencia nacional de innovación de Chile.',
       s6_trl_title: 'Validado en entorno operacional real (escala NASA/DoD)',
-      s6_trl_sub: 'No en laboratorio. Made OS opera activamente en plantas industriales en operación continua, con alertas actuadas, eventos evitados y ROI verificado por el cliente.',
+      s6_g1_lbl: 'Si no hay ROI auditado',
+      s6_g1_d: 'Made extiende el programa 90 días adicionales sin costo de licencia. El riesgo financiero del piloto lo asume Made.',
+      s6_g2_lbl: 'Si hay ROI auditado',
+      s6_g2_d: 'El fee del piloto se acredita íntegramente al contrato del primer año. El cliente no paga dos veces.',
+      s6_g3_big: 'Suyos',
+      s6_g3_lbl: 'Modelos y datos',
+      s6_g3_d: 'Los modelos entrenados y el histórico operativo son propiedad del cliente, independientemente del resultado del programa.',
       s6_pipe_label: 'Pipeline activo',
       s6_tag1: 'Energía · Refinación', s6_tag2: 'Minería · Procesamiento',
       s6_tag3: 'Pharma · Manufactura', s6_tag4: 'Vino · Agroindustria',
