@@ -723,8 +723,17 @@
         </tbody>
       </table>
     </div>
-    <div class="card" style="margin-top:16px;background:var(--obg);border-color:var(--obd);border-left:3px solid var(--o)" data-i18n="s5_note">
-      <strong>No external integrators, no hidden CAPEX.</strong> Made arrives with its own technical team, installs, calibrates, and operates the system. The published price covers everything.
+    <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%">
+      <div style="padding:14px 18px;background:var(--obg);border:1px solid var(--obd);border-left:3px solid var(--o);border-radius:6px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--o);margin-bottom:6px" data-i18n="s5_m1_lbl">Institutional advantage</div>
+        <div style="font-size:14px;font-weight:700;color:var(--dark);line-height:1.35;margin-bottom:6px" data-i18n="s5_m1_h">Why Made can sustain 1/10× pricing.</div>
+        <div style="font-size:12px;color:var(--gray);line-height:1.55" data-i18n="s5_m1_d">Legacy APM vendors (AspenTech, Emerson, AVEVA) have $1B+ of installed revenue with Fortune-500 clients. They cannot price 1/10× without cannibalizing their core business. Made was architected from day one for your tier of operation. The published price is sustainable, not introductory.</div>
+      </div>
+      <div style="padding:14px 18px;background:var(--obg);border:1px solid var(--obd);border-left:3px solid var(--o);border-radius:6px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--o);margin-bottom:6px" data-i18n="s5_m2_lbl">Knowledge advantage</div>
+        <div style="font-size:14px;font-weight:700;color:var(--dark);line-height:1.35;margin-bottom:6px" data-i18n="s5_m2_h">Models that learn YOUR assets, not generic ones.</div>
+        <div style="font-size:12px;color:var(--gray);line-height:1.55" data-i18n="s5_m2_d">Made's models train on your specific assets, operating conditions, and shifts. After 3–6 months, the model knows your equipment better than any out-of-the-box product. <strong>The trained models and historical data are your property</strong> and remain yours independently of the contract with Made.</div>
+      </div>
     </div>
   </div>
 
@@ -919,7 +928,12 @@
       s5_r4c1: 'Asset learning', s5_r4c2: 'Manual parameterization by domain expert', s5_r4c3: 'Automatic per asset, per operating condition',
       s5_r5c1: 'Financial risk', s5_r5c2: '100% client from day one', s5_r5c3: 'Shared risk · no-cost extension if no ROI',
       s5_r6c1: 'LATAM support', s5_r6c2: 'Remote + regional distributor', s5_r6c3: 'Founding team direct · same timezone',
-      s5_note: '<strong>No external integrators, no hidden CAPEX.</strong> Made arrives with its own technical team, installs, calibrates, and operates the system. The published price covers everything.',
+      s5_m1_lbl: 'Institutional advantage',
+      s5_m1_h: 'Why Made can sustain 1/10× pricing.',
+      s5_m1_d: 'Legacy APM vendors (AspenTech, Emerson, AVEVA) have $1B+ of installed revenue with Fortune-500 clients. They cannot price 1/10× without cannibalizing their core business. Made was architected from day one for your tier of operation. The published price is sustainable, not introductory.',
+      s5_m2_lbl: 'Knowledge advantage',
+      s5_m2_h: 'Models that learn YOUR assets, not generic ones.',
+      s5_m2_d: "Made's models train on your specific assets, operating conditions, and shifts. After 3–6 months, the model knows your equipment better than any out-of-the-box product. <strong>The trained models and historical data are your property</strong> and remain yours independently of the contract with Made.",
       s6_eyebrow: 'Who backs us',
       s6_h2: 'The infrastructure behind<br>every <span class="accent">Made guarantee.</span>',
       s6_c1_name: 'NVIDIA Inception', s6_c1_sub: 'Deep tech AI program. Access to NVIDIA Jetson, DGX, and enterprise GPU stack.',
@@ -1009,7 +1023,12 @@
       s5_r4c1: 'Aprendizaje de activo', s5_r4c2: 'Parametrización manual por experto de dominio', s5_r4c3: 'Automático por activo y condición operativa',
       s5_r5c1: 'Riesgo financiero', s5_r5c2: '100% del cliente desde el día uno', s5_r5c3: 'Riesgo compartido · extensión sin costo si no hay ROI',
       s5_r6c1: 'Soporte LATAM', s5_r6c2: 'Remoto + distribuidor regional', s5_r6c3: 'Equipo fundador directo · misma zona horaria',
-      s5_note: '<strong>Sin integradores externos, sin CAPEX oculto.</strong> Made llega con su propio equipo técnico, instala, calibra y opera el sistema. El precio publicado lo cubre todo.',
+      s5_m1_lbl: 'Ventaja institucional',
+      s5_m1_h: 'Por qué Made sostiene el precio 1/10× sin subirlo.',
+      s5_m1_d: 'Los proveedores APM legacy (AspenTech, Emerson, AVEVA) tienen más de $1B USD de revenue instalado en clientes Fortune-500. No pueden bajar 10× sin canibalizar su negocio actual. Made fue arquitectado desde el día 1 para su escala de operación. El precio publicado es sostenible, no introductorio.',
+      s5_m2_lbl: 'Ventaja de conocimiento',
+      s5_m2_h: 'Modelos que aprenden SUS activos, no genéricos.',
+      s5_m2_d: 'Los modelos de Made se entrenan con sus activos específicos, condiciones operativas y turnos. Después de 3–6 meses, el modelo conoce su equipo mejor que cualquier producto out-of-the-box. <strong>Los modelos entrenados y el histórico de datos son propiedad de su empresa</strong> y permanecen suyos independientemente del contrato con Made.',
       s6_eyebrow: 'Quiénes nos respaldan',
       s6_h2: 'La infraestructura detrás<br>de cada <span class="accent">garantía Made.</span>',
       s6_c1_name: 'NVIDIA Inception', s6_c1_sub: 'Programa de IA deep tech. Acceso a NVIDIA Jetson, DGX y stack GPU empresarial.',
