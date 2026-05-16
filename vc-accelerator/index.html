@@ -30,6 +30,19 @@
     --tx-2: rgba(255,255,255,.5);
     --tx-3: rgba(255,255,255,.32);
 
+    /* ── Design module ── */
+    --sp-1: 4px;
+    --sp-2: 8px;
+    --sp-3: 12px;
+    --sp-4: 16px;
+    --sp-5: 20px;
+    --sp-6: 24px;
+    --sp-7: 32px;
+    --sp-8: 48px;
+    --r-chip: 4px;
+    --r-card: 6px;
+    --grid-gap: 12px;
+
     --font: 'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
     --slide-top: clamp(44px, 7vh, 88px);
 
@@ -562,7 +575,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <p class="subhead" style="max-width:620px">Read-only. Deploys in 30 days. Prescribes actions with intervention windows 2–6 weeks before failure.</p>
     </div>
 
-    <div class="flow-row" style="margin-top:22px">
+    <div class="flow-row" style="margin-top:24px">
       <div class="flow-node">
         <div class="flow-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -624,8 +637,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </div>
     </div>
 
-    <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
-      <a href="https://www.youtube.com/watch?v=XLfD6TMc3l8" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;background:var(--obg);border:1px solid var(--obd);border-radius:6px;padding:7px 14px;font-size:12px;font-weight:600;color:var(--o);text-decoration:none">
+    <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+      <a href="https://www.youtube.com/watch?v=XLfD6TMc3l8" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--obg);border:1px solid var(--obd);border-radius:6px;padding:8px 14px;font-size:12px;font-weight:600;color:var(--o);text-decoration:none">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.4 2.8 12 2.8 12 2.8s-4.4 0-6.8.1C4.6 3 3.3 3 2.2 4.2 1.3 5 1 7 1 7S.7 9.3.7 11.5v2c0 2.3.3 4.5.3 4.5s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.3 22 12 22 12 22s4.4 0 6.8-.2c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.3.3-4.5v-2C23.3 9.3 23 7 23 7zM9.7 15.5V8.4l8.1 3.6-8.1 3.5z"/></svg>
         Watch product demo
       </a>
@@ -695,7 +708,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           </div>
           <div style="font-size:30px;font-weight:900;color:var(--o);letter-spacing:-.04em;flex-shrink:0">$2.8B</div>
         </div>
-        <div style="padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--gray)">
+        <div style="padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--gray)">
           <strong style="color:var(--dark)">Why mid-market, not by geography:</strong> The structural gap is a company-size problem, not a regional one. Industrial facilities below $1B revenue cannot absorb $1.5M–$5M APM deployments, anywhere in the world. LATAM is our first GTM because we have distribution there (JUST Partners + Startup Chile + MIT IU35) and the gap is widest, but the same wedge expands to US mid-market (Founders Inc) and to any geography where NVIDIA Inception or partner ecosystems give us a warm introduction. Made is a global SaaS on a regional ramp.
         </div>
       </div>
@@ -734,7 +747,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="traction-note">Active conversations in final technical session stage across 6 facilities.</div>
       </div>
     </div>
-    <div style="margin-top:14px;background:var(--obg);border:1px solid var(--obd);border-left:3px solid var(--o);border-radius:6px;padding:14px 16px">
+    <div style="margin-top:12px;background:var(--obg);border:1px solid var(--obd);border-left:3px solid var(--o);border-radius:6px;padding:14px 16px">
       <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--o);margin-bottom:8px">Distribution channels in place</div>
       <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px">
         <div style="border-right:1px solid var(--ln);padding-right:10px">
@@ -760,16 +773,16 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </div>
     </div>
 
-    <div class="cols cols-2" style="margin-top:18px">
+    <div class="cols cols-2" style="margin-top:16px">
       <div class="card accent">
         <div class="card-label">Lead client signal</div>
-        <div style="font-size:13px;color:var(--dark);font-weight:600;margin-bottom:6px;margin-top:4px">"The alert came 18 days before the compressor would have failed. Maintenance planned the replacement in the next scheduled stop. Zero unplanned downtime."</div>
+        <div style="font-size:13px;color:var(--dark);font-weight:600;margin-bottom:8px;margin-top:8px">"The alert came 18 days before the compressor would have failed. Maintenance planned the replacement in the next scheduled stop. Zero unplanned downtime."</div>
         <div style="font-size:11px;color:var(--gray-l)">Operations Director, Elevator manufacturer, Mexico · Pilot Month 2</div>
       </div>
       <div class="card" style="background:var(--bg)">
         <div class="card-label">Next 6 months</div>
-        <div class="card-desc" style="margin-top:6px;font-size:12.5px">
-          <div style="display:flex;flex-direction:column;gap:6px">
+        <div class="card-desc" style="margin-top:8px;font-size:12.5px">
+          <div style="display:flex;flex-direction:column;gap:8px">
             <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Convert 2 pilots to annual contracts (Month 3)</span></div>
             <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Launch 4 additional pilots from current pipeline (Month 4–5)</span></div>
             <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Path to break-even at 3 annual contracts by Q4 2026</span></div>
@@ -777,7 +790,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         </div>
       </div>
     </div>
-    <div style="margin-top:10px;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--o);border-radius:8px;padding:11px 16px;display:flex;align-items:center;gap:14px">
+    <div style="margin-top:12px;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--o);border-radius:6px;padding:12px 16px;display:flex;align-items:center;gap:12px">
       <div style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--o);flex-shrink:0">TRL 7 → 8</div>
       <div style="font-size:12px;color:var(--gray);line-height:1.5">System demonstrated in live industrial environments (NASA/DoD readiness scale). Technology risk is resolved. The remaining variable is deployment velocity: that is what capital accelerates.</div>
     </div>
@@ -831,12 +844,12 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           <div class="bm-item">Revenue share on partner resale</div>
         </div>
         <div class="bm-upsell">Activated in Year 2+ with established clients</div>
-        <div style="margin-top:10px;padding:8px 12px;background:var(--obg);border:1px solid var(--obd);border-radius:6px;font-size:11.5px;color:var(--dark);line-height:1.5"><strong style="color:var(--o)">Acquisition strategy:</strong> First 10 API implementations at no cost. 3 already requested and in evaluation.</div>
+        <div style="margin-top:12px;padding:8px 12px;background:var(--obg);border:1px solid var(--obd);border-radius:6px;font-size:11.5px;color:var(--dark);line-height:1.5"><strong style="color:var(--o)">Acquisition strategy:</strong> First 10 API implementations at no cost. 3 already requested and in evaluation.</div>
       </div>
     </div>
 
-    <div style="margin-top:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-      <a href="https://demo.madeos.ai/anon/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--o);color:var(--tx-0);font-size:13px;font-weight:700;text-decoration:none;padding:10px 18px;border-radius:6px;letter-spacing:.01em">
+    <div style="margin-top:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <a href="https://demo.madeos.ai/anon/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--o);color:var(--tx-0);font-size:13px;font-weight:700;text-decoration:none;padding:8px 18px;border-radius:6px;letter-spacing:.01em">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         See a real client proposal
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.9"><polyline points="9 18 15 12 9 6"/></svg>
@@ -911,15 +924,15 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </tbody>
     </table>
 
-    <div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%">
+    <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%">
       <div style="padding:14px 18px;background:var(--bg-2);border:1px solid var(--ln);border-left:3px solid var(--o);border-radius:0 6px 6px 0">
-        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--o);margin-bottom:6px">Institutional moat</div>
-        <div style="font-size:14px;font-weight:700;color:var(--tx-0);line-height:1.35;margin-bottom:6px">Why competition can't follow.</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--o);margin-bottom:8px">Institutional moat</div>
+        <div style="font-size:14px;font-weight:700;color:var(--tx-0);line-height:1.35;margin-bottom:8px">Why competition can't follow.</div>
         <div style="font-size:12px;color:var(--tx-1);line-height:1.55">AspenTech, Honeywell, AVEVA, Emerson can't price 1/10× without cannibalizing $1B+ of installed APM revenue. Whoever moves first loses the current business; whoever doesn't, loses the next one. Pure innovator's dilemma.</div>
       </div>
       <div style="padding:14px 18px;background:var(--bg-2);border:1px solid var(--ln);border-left:3px solid var(--o);border-radius:0 6px 6px 0">
-        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--o);margin-bottom:6px">Data moat</div>
-        <div style="font-size:14px;font-weight:700;color:var(--tx-0);line-height:1.35;margin-bottom:6px">Why customers can't switch.</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--o);margin-bottom:8px">Data moat</div>
+        <div style="font-size:14px;font-weight:700;color:var(--tx-0);line-height:1.35;margin-bottom:8px">Why customers can't switch.</div>
         <div style="font-size:12px;color:var(--tx-1);line-height:1.55">Models trained per-asset, per-operating-condition. After 3–6 months, the model knows the plant better than any out-of-the-box product. Cross-facility dataset is unique and uncopiable. Switching cost = retraining from zero.</div>
       </div>
     </div>
@@ -966,7 +979,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </div>
     </div>
 
-    <div style="margin-top:18px;padding:12px 20px;background:var(--bg);border:1px solid var(--border);border-radius:8px;display:flex;gap:24px;flex-wrap:wrap">
+    <div style="margin-top:16px;padding:12px 20px;background:var(--bg);border:1px solid var(--border);border-radius:6px;display:flex;gap:24px;flex-wrap:wrap">
       <div style="font-size:12px;color:var(--gray)"><strong style="color:var(--dark)">Advisory:</strong> Senior engineers from Apple, Arauco, and Google.</div>
       <div style="font-size:12px;color:var(--gray)"><strong style="color:var(--dark)">Legal &amp; IP:</strong> 2 patents pending: edge model architecture + multi-agent prescription protocol.</div>
     </div>
@@ -985,55 +998,55 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
     <!-- USE OF FUNDS -->
     <div style="margin-top:20px;width:100%">
-      <p style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px">Use of funds &middot; 18-month runway</p>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+      <p style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px">Use of funds &middot; 18-month runway</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
         <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:14px 16px">
           <div style="font-size:22px;font-weight:900;color:var(--o);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">45%</div>
-          <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:white;margin-top:6px;margin-bottom:4px">Engineering &amp; Product</div>
+          <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:white;margin-top:8px;margin-bottom:4px">Engineering &amp; Product</div>
           <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5">Scale model library to 500+ asset types. Harden Edge stack for 10 to 20 concurrent deployments. Foundation models for tailings and process slurry.</div>
         </div>
         <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:14px 16px">
           <div style="font-size:22px;font-weight:900;color:var(--o);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">30%</div>
-          <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:white;margin-top:6px;margin-bottom:4px">GTM &amp; Sales</div>
+          <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:white;margin-top:8px;margin-bottom:4px">GTM &amp; Sales</div>
           <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5">2 enterprise AEs in Mexico + Chile. Channel motion through NVIDIA Inception, Startup Chile, MIT IU35, Founders Inc networks.</div>
         </div>
         <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:14px 16px">
           <div style="font-size:22px;font-weight:900;color:var(--o);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">15%</div>
-          <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:white;margin-top:6px;margin-bottom:4px">Pilot delivery</div>
+          <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:white;margin-top:8px;margin-bottom:4px">Pilot delivery</div>
           <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5">Customer success team to sustain the 13:1 ROI baseline across new accounts. Reference case studies and field calibration.</div>
         </div>
         <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:14px 16px">
           <div style="font-size:22px;font-weight:900;color:var(--o);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">10%</div>
-          <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:white;margin-top:6px;margin-bottom:4px">G&amp;A &amp; runway</div>
+          <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:white;margin-top:8px;margin-bottom:4px">G&amp;A &amp; runway</div>
           <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5">Legal, compliance, infrastructure, operating runway through Q4 2027. Optionality on follow-on timing.</div>
         </div>
       </div>
     </div>
 
     <!-- 12-MONTH MILESTONES -->
-    <div style="margin-top:18px;width:100%">
-      <p style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px">12-month milestones</p>
+    <div style="margin-top:16px;width:100%">
+      <p style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px">12-month milestones</p>
       <div style="display:flex;align-items:stretch;gap:0;width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:6px;overflow:hidden">
         <div style="flex:1;padding:14px 18px;border-right:1px solid rgba(255,255,255,.07)">
           <div style="font-size:20px;font-weight:900;color:white;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">6 to 10</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:6px;line-height:1.5">paying annual contracts &middot; today: 2 active pilots</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.5">paying annual contracts &middot; today: 2 active pilots</div>
         </div>
         <div style="flex:1;padding:14px 18px;border-right:1px solid rgba(255,255,255,.07)">
           <div style="font-size:20px;font-weight:900;color:white;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">$800K to $1.2M</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:6px;line-height:1.5">ARR &middot; today: pre-revenue, $116K documented prevented losses</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.5">ARR &middot; today: pre-revenue, $116K documented prevented losses</div>
         </div>
         <div style="flex:1;padding:14px 18px;border-right:1px solid rgba(255,255,255,.07)">
           <div style="font-size:20px;font-weight:900;color:white;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">3 verticals</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:6px;line-height:1.5">validated and replicated &middot; today: 2 in pilot</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.5">validated and replicated &middot; today: 2 in pilot</div>
         </div>
         <div style="flex:1;padding:14px 18px">
           <div style="font-size:20px;font-weight:900;color:white;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">1st US</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:6px;line-height:1.5">enterprise account closed &middot; expansion via Founders Inc network</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.5">enterprise account closed &middot; expansion via Founders Inc network</div>
         </div>
       </div>
     </div>
 
-    <p style="margin-top:14px;font-size:11px;color:rgba(255,255,255,.25)">Financials and full data room available under NDA. Open to accelerator standardized terms.</p>
+    <p style="margin-top:12px;font-size:11px;color:rgba(255,255,255,.25)">Financials and full data room available under NDA. Open to accelerator standardized terms.</p>
   </div>
 
   <!-- ══ S10: CONTACT ══ -->
@@ -1041,16 +1054,16 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <div class="eyebrow light">Contact</div>
     <div class="rule white"></div>
 
-    <div style="display:grid;grid-template-columns:minmax(300px,360px) 1fr;gap:clamp(36px,5vw,80px);width:100%;flex:1;min-height:0;align-items:center;margin-top:6px">
+    <div style="display:grid;grid-template-columns:minmax(300px,360px) 1fr;gap:clamp(36px,5vw,80px);width:100%;flex:1;min-height:0;align-items:center;margin-top:8px">
 
       <!-- LEFT: tight CTA column -->
-      <div style="display:flex;flex-direction:column;gap:22px;max-width:360px">
+      <div style="display:flex;flex-direction:column;gap:24px;max-width:360px">
         <h2 class="headline white" style="font-size:clamp(32px,3.6vw,52px);line-height:1.02;margin-bottom:0">
           Let's talk.<br><span class="accent">We keep it short.</span>
         </h2>
         <p class="subhead white" style="font-size:14px;line-height:1.55">30-minute call. We share what we're building, where we need help. Intros welcomed.</p>
 
-        <a href="https://cal.com/madeos.ai/demo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:space-between;gap:18px;background:var(--o);color:var(--tx-0);font-size:16px;font-weight:700;text-decoration:none;padding:16px 22px;border-radius:8px;letter-spacing:-.005em;width:100%;transition:background .15s ease">
+        <a href="https://cal.com/madeos.ai/demo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:space-between;gap:16px;background:var(--o);color:var(--tx-0);font-size:16px;font-weight:700;text-decoration:none;padding:16px 22px;border-radius:6px;letter-spacing:-.005em;width:100%;transition:background .15s ease">
           <span style="display:flex;align-items:center;gap:12px">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             Book a 30-minute call
@@ -1058,10 +1071,10 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="9 18 15 12 9 6"/></svg>
         </a>
 
-        <div style="display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:var(--tx-2);line-height:1.6">
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--tx-2);line-height:1.6">
           <a href="mailto:ger@madeos.ai" style="color:var(--tx-1);text-decoration:none;font-weight:500">ger@madeos.ai</a>
           <a href="mailto:ramiro@madeos.ai" style="color:var(--tx-1);text-decoration:none;font-weight:500">ramiro@madeos.ai</a>
-          <a href="https://api.whatsapp.com/send/?phone=15559283918&text=Hi%2C+I%27d+like+to+talk+to+the+Made+agent&type=phone_number&app_absent=0" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;color:var(--tx-2);text-decoration:none;font-size:11.5px;font-weight:500;margin-top:4px">
+          <a href="https://api.whatsapp.com/send/?phone=15559283918&text=Hi%2C+I%27d+like+to+talk+to+the+Made+agent&type=phone_number&app_absent=0" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:var(--tx-2);text-decoration:none;font-size:11.5px;font-weight:500;margin-top:8px">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
             Or chat with our AI agent on WhatsApp
           </a>
@@ -1070,14 +1083,14 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
       <!-- RIGHT: product hero. Fills the column. -->
       <div style="position:relative;width:100%;min-width:0">
-        <div style="position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.10);background:#0a0b0c;box-shadow:0 32px 100px rgba(0,0,0,.6), 0 0 0 1px rgba(216,66,0,.20), 0 0 90px -10px rgba(216,66,0,.22)">
+        <div style="position:relative;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.10);background:#0a0b0c;box-shadow:0 32px 100px rgba(0,0,0,.6), 0 0 0 1px rgba(216,66,0,.20), 0 0 90px -10px rgba(216,66,0,.22)">
           <img src="platform-screenshot.png" alt="Made OS dashboard, live in production" style="display:block;width:100%;height:auto">
-          <div style="position:absolute;top:14px;left:16px;display:inline-flex;align-items:center;gap:7px;background:rgba(14,15,16,.82);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.10);border-radius:5px;padding:5px 10px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tx-0)">
+          <div style="position:absolute;top:14px;left:16px;display:inline-flex;align-items:center;gap:8px;background:rgba(14,15,16,.82);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.10);border-radius:6px;padding:5px 10px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tx-0)">
             <span style="position:relative;width:6px;height:6px"><span style="position:absolute;inset:0;border-radius:50%;background:var(--o);box-shadow:0 0 10px rgba(216,66,0,.8)"></span><span style="position:absolute;inset:-3px;border-radius:50%;border:1.5px solid rgba(216,66,0,.5);animation:livepulse 2.4s ease-out infinite"></span></span>
             Made OS · Live
           </div>
         </div>
-        <p style="margin-top:16px;display:flex;align-items:center;gap:9px;color:var(--tx-2);font-size:12px;letter-spacing:.01em;line-height:1.5">
+        <p style="margin-top:16px;display:flex;align-items:center;gap:8px;color:var(--tx-2);font-size:12px;letter-spacing:.01em;line-height:1.5">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--o);opacity:.85"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <span>The same product running in industrial plants today, every shift.</span>
         </p>
