@@ -261,6 +261,10 @@
   .kb-badge-active { background: rgba(22,163,74,.1); color: #15803d; }
   .kb-badge-review { background: var(--orange-bg); color: var(--orange); }
   .kb-badge-draft  { background: rgba(109,40,217,.08); color: #7c3aed; }
+  .kb-badge-impl    { background: var(--orange-bg); color: var(--orange); }
+  .kb-badge-partner { background: rgba(20,184,166,.10); color: #0f766e; }
+  .kb-badge-live    { background: rgba(22,163,74,.10); color: #15803d; display:inline-flex; align-items:center; gap:5px; }
+  .kb-badge-live::before { content:""; width:6px; height:6px; border-radius:50%; background:#15803d; box-shadow:0 0 0 3px rgba(22,163,74,.15); }
 
   .kb-col[data-stage="contrato"] { border-top: 3px solid #7c3aed; }
   .kb-col[data-stage="contrato"] .kb-stage-name { color: #6d28d9; }
@@ -525,11 +529,31 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="kb-col" data-stage="piloto">
           <div class="kb-col-head">
             <span class="kb-stage-name">Piloto activo</span>
-            <span class="kb-count">0</span>
+            <span class="kb-count">2</span>
           </div>
-          <div class="kb-empty">
-            <div class="kb-empty-icon">—</div>
-            <div class="kb-empty-text">Sin pilotos activos aún</div>
+
+          <a href="https://www.heavenward.cl/" target="_blank" rel="noopener" class="kb-card kb-card-static">
+            <div class="kb-company">HeavenWard</div>
+            <div class="kb-industry">Transporte vertical · Ascensores · Chile/Argentina</div>
+            <div class="kb-badges">
+              <span class="kb-badge kb-badge-t1">Tier 1</span>
+              <span class="kb-badge kb-badge-impl">Agendar sesión de implementación</span>
+            </div>
+            <div class="kb-arr-label">Estado</div>
+            <div class="kb-arr" style="font-size:11.5px;color:var(--gray);font-weight:600">Pre-implementación</div>
+            <div class="kb-sub">ARR comprometida ~$60K · arranque pendiente</div>
+          </a>
+
+          <div class="kb-card kb-card-static">
+            <div class="kb-company">Maderera Mich</div>
+            <div class="kb-industry">Procesamiento de madera · Manufactura · México</div>
+            <div class="kb-badges">
+              <span class="kb-badge kb-badge-partner">Design Partner</span>
+              <span class="kb-badge kb-badge-live">En operación</span>
+            </div>
+            <div class="kb-arr-label">Eventos Clase A · Días activo</div>
+            <div class="kb-arr">3 · 60d</div>
+            <div class="kb-sub">Tarifa Design Partner · evaluación a contrato anual: Q3 2026</div>
           </div>
         </div>
 
