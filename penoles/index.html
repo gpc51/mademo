@@ -729,26 +729,26 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <p class="s-lead" data-eid="exec-lead">La telemetría de la flota subterránea de Peñoles se almacena en servidores on-premise y se expone vía API para tableros nativos, analítica avanzada e integración con sistemas corporativos. El dato ya está. Pero el dato sin prescripción no detiene el paro: solo lo documenta. Made OS es la capa que convierte esa señal en una orden clara de intervención, ruteada al supervisor correcto, en el canal correcto, dentro de la ventana donde aún se puede actuar.<br><span style="font-size:12px;color:var(--gray-l)">McKinsey &amp; Co. · Siemens True Cost of Downtime 2024 · GMG Predictive Maintenance Guideline 2023</span></p>
 
 
-    <p style="font-size:15px;color:var(--dark);line-height:1.7;margin-bottom:18px">El 4T25 cierra con un panorama claro de presión operativa: el rubro <strong>Mantenimiento y Reparaciones aumentó +US$29.3M (+25.9%)</strong> respecto al año anterior, y la producción minera anual cayó en los cinco metales (oro -5.7%, plata -11.6%, plomo -5.0%, zinc -7.6%, cobre -6.2%). En una cartera 100% subterránea (Fresnillo, Saucito, Juanicipio, Tizapa, Sabinas, Velardeña, Capela, Naica/Bismark), cada hora de equipo móvil fuera de rotación, un LHD Cat R1700, un camión subterráneo Sandvik TH540, un jumbo en frente de barrenación, significa toneladas no movidas, margen perdido y, en fallas súbitas de frenos, dirección o hidráulico, exposición de seguridad relevante para los compromisos ICMM de Peñoles.</p>
+    <p style="font-size:15px;color:var(--dark);line-height:1.7;margin-bottom:18px" data-eid="exec-p1">El 4T25 cierra con un panorama claro de presión operativa: el rubro <strong>Mantenimiento y Reparaciones aumentó +US$29.3M (+25.9%)</strong> respecto al año anterior, y la producción minera anual cayó en los cinco metales (oro -5.7%, plata -11.6%, plomo -5.0%, zinc -7.6%, cobre -6.2%). En una cartera 100% subterránea (Fresnillo, Saucito, Juanicipio, Tizapa, Sabinas, Velardeña, Capela, Naica/Bismark), cada hora de equipo móvil fuera de rotación, un LHD Cat R1700, un camión subterráneo Sandvik TH540, un jumbo en frente de barrenación, significa toneladas no movidas, margen perdido y, en fallas súbitas de frenos, dirección o hidráulico, exposición de seguridad relevante para los compromisos ICMM de Peñoles.</p>
 
-    <p style="font-size:15px;color:var(--dark);line-height:1.7;margin-bottom:24px">Made OS no compite con la telemetría existente ni reemplaza los tableros nativos. Se acopla a la API on-premise que Peñoles ya opera, agrega capa de prescripción, prioriza por impacto en la operación específica de la unidad, y dispara la alerta accionable al canal donde el supervisor de mina ya trabaja (WhatsApp, SMS, WebApp). Esa es la brecha que hoy queda abierta entre el tablero nativo y la decisión en turno.</p>
+    <p style="font-size:15px;color:var(--dark);line-height:1.7;margin-bottom:24px" data-eid="exec-p2">Made OS no compite con la telemetría existente ni reemplaza los tableros nativos. Se acopla a la API on-premise que Peñoles ya opera, agrega capa de prescripción, prioriza por impacto en la operación específica de la unidad, y dispara la alerta accionable al canal donde el supervisor de mina ya trabaja (WhatsApp, SMS, WebApp). Esa es la brecha que hoy queda abierta entre el tablero nativo y la decisión en turno.</p>
 
     <div class="card" style="margin-top:6px;margin-bottom:24px;border-left:4px solid var(--orange);background:var(--orange-bg)">
-      <div class="card-title" style="margin-bottom:10px">
+      <div class="card-title" style="margin-bottom:10px" data-eid="entendemos-title">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
         Lo que entendemos de la operación de Peñoles
       </div>
-      <p style="font-size:13.5px;color:var(--dark);line-height:1.65;margin:0">Esta propuesta refleja lo que Peñoles compartió en la sesión de descubrimiento. La cita es textual donde corresponde:</p>
+      <p style="font-size:13.5px;color:var(--dark);line-height:1.65;margin:0" data-eid="entendemos-lead">Esta propuesta refleja lo que Peñoles compartió en la sesión de descubrimiento. La cita es textual donde corresponde:</p>
       <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--dark);line-height:1.6">
-        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">1.</span><span><strong>Telemetría on-premise con API expuesta.</strong> Sus palabras: <em>"una API que nos permite integrar y explotar la información de acuerdo con las necesidades operativas y de negocio"</em>. Sobre esa API se acopla Made OS, no contra ella.</span></div>
-        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">2.</span><span><strong>Infraestructura 100% on-premise, dato crudo en sus servidores.</strong> Sin dependencia de nube OEM ni residencia de datos crudos fuera de Peñoles. Nuestro modo de despliegue se alinea: inferencia local en activo (Edge) o en su data center (Software+API).</span></div>
-        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">3.</span><span><strong>Cartera 100% subterránea.</strong> Sin operaciones open-pit en Peñoles. Toda la flota referenciada en esta propuesta es de mina subterránea: LHDs, jumbos y camiones de acarreo subterráneo.</span></div>
-        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">4.</span><span><strong>Conectividad operativa ya establecida.</strong> WiFi mesh segmentado por zonas operativas en interior mina, Leaky Feeder para voz, LTE privada avanzando en superficie. Made OS se conecta sobre la red existente; no requiere infraestructura adicional.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">1.</span><span data-eid="entendemos-b1"><strong>Telemetría on-premise con API expuesta.</strong> Sus palabras: <em>"una API que nos permite integrar y explotar la información de acuerdo con las necesidades operativas y de negocio"</em>. Sobre esa API se acopla Made OS, no contra ella.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">2.</span><span data-eid="entendemos-b2"><strong>Infraestructura 100% on-premise, dato crudo en sus servidores.</strong> Sin dependencia de nube OEM ni residencia de datos crudos fuera de Peñoles. Nuestro modo de despliegue se alinea: inferencia local en activo (Edge) o en su data center (Software+API).</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">3.</span><span data-eid="entendemos-b3"><strong>Cartera 100% subterránea.</strong> Sin operaciones open-pit en Peñoles. Toda la flota referenciada en esta propuesta es de mina subterránea: LHDs, jumbos y camiones de acarreo subterráneo.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">4.</span><span data-eid="entendemos-b4"><strong>Conectividad operativa ya establecida.</strong> WiFi mesh segmentado por zonas operativas en interior mina, Leaky Feeder para voz, LTE privada avanzando en superficie. Made OS se conecta sobre la red existente; no requiere infraestructura adicional.</span></div>
       </div>
     </div>
 
     <div>
-      <div class="card-title" style="margin-bottom:12px;font-size:12px">
+      <div class="card-title" style="margin-bottom:12px;font-size:12px" data-eid="exec-indicators-title">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
         Indicadores Peñoles 2025 que justifican la apuesta por flota crítica
       </div>
@@ -759,15 +759,15 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="stat-card"><div class="stat-metal" data-eid="exec-stat4-metal">Cobre anual</div><div class="stat-price" data-eid="exec-stat4-price">-6.2%</div><div class="stat-change down" data-eid="exec-stat4-change">vs. 2024</div></div>
         <div class="stat-card"><div class="stat-metal" data-eid="exec-stat5-metal">Mineral procesado 4T25</div><div class="stat-price" data-eid="exec-stat5-price">-14.8%</div><div class="stat-change down" data-eid="exec-stat5-change">8.6 Mton</div></div>
       </div>
-      <div style="font-size:11px;color:var(--gray-l);margin-top:8px">Fuente: Peñoles, Reporte BMV 4T2025 (USD), publicado el 31-oct-2025.</div>
+      <div style="font-size:11px;color:var(--gray-l);margin-top:8px" data-eid="exec-stats-source">Fuente: Peñoles, Reporte BMV 4T2025 (USD), publicado el 31-oct-2025.</div>
     </div>
 
     <div class="card" style="margin-top:24px;border-left:4px solid var(--orange);">
-      <div class="card-title" style="margin-bottom:10px">
+      <div class="card-title" style="margin-bottom:10px" data-eid="exec-value-title">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
         Nuestra propuesta de valor
       </div>
-      <p style="font-size:14px;color:var(--dark);line-height:1.7;margin:0">Programa en dos fases. <strong>Fase 1 (mes 1 al 9): flota subterránea crítica.</strong> LHDs, jumbos de barrenación y camiones de acarreo subterráneo: la prioridad declarada por Peñoles, donde ya existe inversión en mantenimiento preventivo y telemetría operativa. <strong>Fase 2 (mes 9 en adelante): circuito operativo de relaves.</strong> Bombas de pulpa, espesadores, cicloneras y líneas de transporte: el frente subatendido bajo presión GISTM/ICMM, conectado a cada operación. Mismo motor predictivo, dos ventanas de valor secuenciales. ROI desde el primer evento crítico evitado.</p>
+      <p style="font-size:14px;color:var(--dark);line-height:1.7;margin:0" data-eid="exec-value-prop">Programa en dos fases. <strong>Fase 1 (mes 1 al 9): flota subterránea crítica.</strong> LHDs, jumbos de barrenación y camiones de acarreo subterráneo: la prioridad declarada por Peñoles, donde ya existe inversión en mantenimiento preventivo y telemetría operativa. <strong>Fase 2 (mes 9 en adelante): circuito operativo de relaves.</strong> Bombas de pulpa, espesadores, cicloneras y líneas de transporte: el frente subatendido bajo presión GISTM/ICMM, conectado a cada operación. Mismo motor predictivo, dos ventanas de valor secuenciales. ROI desde el primer evento crítico evitado.</p>
     </div>
   </div>
 
@@ -808,8 +808,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         </div>
         <div class="step-body">
           <div class="step-tag" data-eid="solucion-step3-tag">Día 90 al 270 · Cadencia de eventos evitados + transición a Fase 2</div>
-          <div class="step-title">Prescripción accionable en turno y expansión a relaves</div>
-          <div class="step-desc">Made OS deja de "alertar" y pasa a prescribir: qué unidad, qué subsistema, qué ventana de intervención, qué refacción anticipar, qué supervisor recibe la orden y por qué canal. <strong>Meta operativa del programa: 3 a 8 pull-outs no planificados evitados, MTBF de flota crítica al alza, disponibilidad mecánica recuperada.</strong> Al cierre de Fase 1, sesión de transición a Fase 2 con el mismo motor predictivo aplicado al equipo operativo de relaves (bombas de pulpa, espesadores, cicloneras).</div>
+          <div class="step-title" data-eid="solucion-step3-title">Prescripción accionable en turno y expansión a relaves</div>
+          <div class="step-desc" data-eid="solucion-step3-desc">Made OS deja de "alertar" y pasa a prescribir: qué unidad, qué subsistema, qué ventana de intervención, qué refacción anticipar, qué supervisor recibe la orden y por qué canal. <strong>Meta operativa del programa: 3 a 8 pull-outs no planificados evitados, MTBF de flota crítica al alza, disponibilidad mecánica recuperada.</strong> Al cierre de Fase 1, sesión de transición a Fase 2 con el mismo motor predictivo aplicado al equipo operativo de relaves (bombas de pulpa, espesadores, cicloneras).</div>
         </div>
       </div>
     </div>
@@ -863,7 +863,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="edge-wrap img-zoom" onclick="openModal('../assets/edge-device.jpg','Made Edge: Dispositivo IA industrial instalado en tablero DIN rail')">
           <img src="../assets/edge-device.jpg" alt="Made Edge: Dispositivo IA industrial instalado en tablero DIN rail" loading="lazy">
         </div>
-        <p class="img-caption">Made Edge instalado en tablero DIN rail con conectividad industrial</p>
+        <p class="img-caption" data-eid="impl-edge-caption">Made Edge instalado en tablero DIN rail con conectividad industrial</p>
 
         <div style="margin-top:16px">
           <div class="spec-row"><span class="spec-key">Plataforma</span><span class="spec-val">NVIDIA Jetson Orin Nano Super</span></div>
@@ -889,7 +889,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="edge-wrap img-zoom" onclick="openModal('../assets/platform-screenshot.png','Made OS: Plataforma web con análisis de sensores y agente conversacional')">
           <img src="../assets/platform-screenshot.png" alt="Made OS: Vista de plataforma, sensores y agente conversacional" loading="lazy">
         </div>
-        <p class="img-caption">Made OS · Plataforma web con análisis de sensores y agente conversacional</p>
+        <p class="img-caption" data-eid="impl-platform-caption">Made OS · Plataforma web con análisis de sensores y agente conversacional</p>
 
         <div style="margin-top:16px">
         <div class="spec-row"><span class="spec-key">SO compatible</span><span class="spec-val">Ubuntu · Debian · RHEL · Windows</span></div>
@@ -911,17 +911,17 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <div class="feat">
         <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h10v10H4z"/><path d="M4 8h10M8 4v10"/></svg></div>
         <div class="feat-title" data-eid="integracion-feat1-title">Multi-OEM y multiprotocolo</div>
-        <div class="feat-desc">Cat MineStar/VIMS, Komatsu KOMTRAX, Sandvik 365, Epiroc Certiq, Wenco, Modular Mining. También Modbus, OPC-UA y señales 4-20 mA cuando hay retrofit.</div>
+        <div class="feat-desc" data-eid="integracion-feat1-desc">Cat MineStar/VIMS, Komatsu KOMTRAX, Sandvik 365, Epiroc Certiq, Wenco, Modular Mining. También Modbus, OPC-UA y señales 4-20 mA cuando hay retrofit.</div>
       </div>
       <div class="feat">
         <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3l6 3v5l-6 3-6-3V6z"/></svg></div>
-        <div class="feat-title">Solo-lectura, siempre</div>
-        <div class="feat-desc">No escribe en PLC, SCADA, ni en el sistema OEM de la flota. Si Made no está disponible, la operación corre exactamente igual. Cero riesgo de proceso.</div>
+        <div class="feat-title" data-eid="integracion-feat2-title">Solo-lectura, siempre</div>
+        <div class="feat-desc" data-eid="integracion-feat2-desc">No escribe en PLC, SCADA, ni en el sistema OEM de la flota. Si Made no está disponible, la operación corre exactamente igual. Cero riesgo de proceso.</div>
       </div>
       <div class="feat">
         <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h12M3 9h9M3 12h6"/></svg></div>
-        <div class="feat-title">Canal del supervisor de mina</div>
-        <div class="feat-desc">WhatsApp, SMS, WebApp, email o cualquier endpoint que defina la unidad. La prescripción llega al supervisor que ya está en turno, no a un dashboard que nadie revisa a las 03:00 a.m.</div>
+        <div class="feat-title" data-eid="integracion-feat3-title">Canal del supervisor de mina</div>
+        <div class="feat-desc" data-eid="integracion-feat3-desc">WhatsApp, SMS, WebApp, email o cualquier endpoint que defina la unidad. La prescripción llega al supervisor que ya está en turno, no a un dashboard que nadie revisa a las 03:00 a.m.</div>
       </div>
     </div>
 
@@ -1014,7 +1014,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
         Datos utilizados para la proyección del ahorro estimado
       </div>
-      <p style="font-size:12px;color:var(--gray);font-weight:600;margin-bottom:12px">Costo estimado de un evento crítico evitado, por clase de activo móvil</p>
+      <p style="font-size:12px;color:var(--gray);font-weight:600;margin-bottom:12px" data-eid="s05-cost-sub">Costo estimado de un evento crítico evitado, por clase de activo móvil</p>
       <div class="tbl-scroll"><table class="cost-table">
         <thead>
           <tr><th>Clase de activo</th><th>Unidades referencia</th><th>Costo evento mayor (rebuild + downtime)</th><th>Ventana típica de detección</th></tr>
@@ -1065,8 +1065,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <!-- ── 06 PROGRAMA FASE 2 · RELAVES ── -->
   <div class="section" id="s06">
     <div class="s-label">06. Programa Fase 2 · Circuito operativo de relaves</div>
-    <div class="s-title">El mismo motor predictivo, aplicado al frente subatendido</div>
-    <p class="s-lead">Al cierre de Fase 1 (mes 9), la transición a Fase 2 es inmediata. Made OS conserva el motor predictivo y la metodología; cambia la clase de activo. Se aplica al equipo operativo del circuito de relaves de cada unidad de Peñoles: bombas de pulpa centrífugas, espesadores, cicloneras, líneas de transporte de cola. Es la expansión natural del programa, no una reventa.</p>
+    <div class="s-title" data-eid="fase2-title">El mismo motor predictivo, aplicado al frente subatendido</div>
+    <p class="s-lead" data-eid="fase2-lead">Al cierre de Fase 1 (mes 9), la transición a Fase 2 es inmediata. Made OS conserva el motor predictivo y la metodología; cambia la clase de activo. Se aplica al equipo operativo del circuito de relaves de cada unidad de Peñoles: bombas de pulpa centrífugas, espesadores, cicloneras, líneas de transporte de cola. Es la expansión natural del programa, no una reventa.</p>
 
     <div class="cols-2-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;width:100%">
       <div class="card" style="border-left:3px solid var(--orange)">
@@ -1074,14 +1074,14 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v6m0 0l-3-3m3 3l3-3M3 11h10M3 14h10"/></svg>
           Por qué Fase 2, por qué ahora
         </div>
-        <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0">Post-Brumadinho (2019) y Jagersfontein (2022), la <strong>GISTM (Global Industry Standard on Tailings Management)</strong> es estándar regulatorio de hecho. ICMM lo audita. Peñoles es signataria ICMM. Eso convierte el monitoreo del circuito operativo de relaves en gasto obligatorio: presupuesto que ya no es discrecional. Bombas de pulpa Warman/GIW/Metso fallan con frecuencia, abrasión alta, ventana de detección corta, mal instrumentadas. Es el frente donde Made OS más palanca tiene.</p>
+        <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0" data-eid="fase2-whynow">Post-Brumadinho (2019) y Jagersfontein (2022), la <strong>GISTM (Global Industry Standard on Tailings Management)</strong> es estándar regulatorio de hecho. ICMM lo audita. Peñoles es signataria ICMM. Eso convierte el monitoreo del circuito operativo de relaves en gasto obligatorio: presupuesto que ya no es discrecional. Bombas de pulpa Warman/GIW/Metso fallan con frecuencia, abrasión alta, ventana de detección corta, mal instrumentadas. Es el frente donde Made OS más palanca tiene.</p>
       </div>
       <div class="card" style="border-left:3px solid var(--orange)">
         <div class="card-title" style="margin-bottom:10px">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg>
           Scope técnico Fase 2
         </div>
-        <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0">Equipo cubierto: <strong>bombas centrífugas de pulpa</strong> (Warman, GIW, Metso slurry), <strong>espesadores</strong> (Outotec, FLSmidth), <strong>cicloneras</strong> (Krebs, Cavex), <strong>líneas de transporte</strong> de cola. Telemetría existente vía la API on-premise de Peñoles + retrofit Edge solo donde se requiera (firma acústica de sello, vibración de impulsor, temperatura de cojinete).</p>
+        <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0" data-eid="fase2-scope">Equipo cubierto: <strong>bombas centrífugas de pulpa</strong> (Warman, GIW, Metso slurry), <strong>espesadores</strong> (Outotec, FLSmidth), <strong>cicloneras</strong> (Krebs, Cavex), <strong>líneas de transporte</strong> de cola. Telemetría existente vía la API on-premise de Peñoles + retrofit Edge solo donde se requiera (firma acústica de sello, vibración de impulsor, temperatura de cojinete).</p>
       </div>
     </div>
 
@@ -1115,7 +1115,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           </tr>
         </tbody>
       </table>
-      <p style="font-size:11.5px;color:var(--gray-l);margin-top:10px;line-height:1.5">La Fase 2 se activa en el mes 9 con una sesión de transición de 60 minutos. Si Fase 1 no demostró ROI auditado, Peñoles no está obligada a continuar a Fase 2. La estructura de pricing reduce 25% el fee base de Fase 1 reconociendo que el motor predictivo y la integración están en operación.</p>
+      <p style="font-size:11.5px;color:var(--gray-l);margin-top:10px;line-height:1.5" data-eid="fase2-disclaimer">La Fase 2 se activa en el mes 9 con una sesión de transición de 60 minutos. Si Fase 1 no demostró ROI auditado, Peñoles no está obligada a continuar a Fase 2. La estructura de pricing reduce 25% el fee base de Fase 1 reconociendo que el motor predictivo y la integración están en operación.</p>
     </div>
 
     <div class="alert alert-info" style="margin-top:16px">
@@ -1209,15 +1209,15 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </div>
       <div class="g-faqs">
         <div class="g-faq">
-          <div class="g-faq-q">¿IT necesita aprobar la conexión OT?</div>
+          <div class="g-faq-q" data-eid="garantia-faq1-q">¿IT necesita aprobar la conexión OT?</div>
           Made trabaja directamente con IT. Si no se conecta en 10 días sin alterar operaciones, el programa no inicia.
         </div>
         <div class="g-faq" data-eid="garantia-faq1-ans">
-          <div class="g-faq-q">¿Ya tienen CMMS o preventivo instalado?</div>
+          <div class="g-faq-q" data-eid="garantia-faq2-q">¿Ya tienen CMMS o preventivo instalado?</div>
           Made no reemplaza nada. Es una capa de inteligencia que aprende y prescribe encima de lo que ya funciona.
         </div>
         <div class="g-faq">
-          <div class="g-faq-q">¿El presupuesto ya fue asignado este trimestre?</div>
+          <div class="g-faq-q" data-eid="garantia-faq3-q">¿El presupuesto ya fue asignado este trimestre?</div>
           Made ofrece un esquema de inicio flexible. Consulta condiciones con el equipo fundador en la sesión técnica inicial.
         </div>
       </div>
@@ -1235,20 +1235,20 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v6m0 0l-3-3m3 3l3-3M3 11h10M3 14h10"/></svg>
         Próxima sesión técnica · 4 datos a calibrar
       </div>
-      <p style="font-size:13px;color:var(--dark);line-height:1.6;margin-bottom:12px">Antes de cerrar pricing y scope finales necesitamos confirmar 4 puntos con su equipo. Cada uno calibra una dimensión específica del programa:</p>
+      <p style="font-size:13px;color:var(--dark);line-height:1.6;margin-bottom:12px" data-eid="datos-intro">Antes de cerrar pricing y scope finales necesitamos confirmar 4 puntos con su equipo. Cada uno calibra una dimensión específica del programa:</p>
       <div style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--dark);line-height:1.6">
-        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;width:22px;flex-shrink:0">1.</span><span><strong>MTBF histórico por clase de activo (últimos 24 meses).</strong> Calibra los rangos de eventos evitados y el success fee auditable. Mantenimiento o Confiabilidad lo tiene.</span></div>
-        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;width:22px;flex-shrink:0">2.</span><span><strong>Volumen aproximado de telemetría (señales/segundo, política de retención).</strong> Determina si el despliegue Software+API alcanza o si se prefiere Edge en activos de alta frecuencia.</span></div>
-        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;width:22px;flex-shrink:0">3.</span><span><strong>Sistema CMMS específico (SAP PM, Maximo, Infor EAM, otro).</strong> Made OS genera el work order draft que se inyecta a CMMS existente; el equipo de mantenimiento no cambia de sistema de gestión.</span></div>
-        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;width:22px;flex-shrink:0">4.</span><span><strong>Política IT/OT respecto al canal saliente cifrado de orquestación.</strong> Si requiere validación adicional, Made aporta documentación de arquitectura (IEC 62443, TLS 1.3, sólo lectura, alcances de outbound) en la primera sesión.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;width:22px;flex-shrink:0">1.</span><span data-eid="datos-b1"><strong>MTBF histórico por clase de activo (últimos 24 meses).</strong> Calibra los rangos de eventos evitados y el success fee auditable. Mantenimiento o Confiabilidad lo tiene.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;width:22px;flex-shrink:0">2.</span><span data-eid="datos-b2"><strong>Volumen aproximado de telemetría (señales/segundo, política de retención).</strong> Determina si el despliegue Software+API alcanza o si se prefiere Edge en activos de alta frecuencia.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;width:22px;flex-shrink:0">3.</span><span data-eid="datos-b3"><strong>Sistema CMMS específico (SAP PM, Maximo, Infor EAM, otro).</strong> Made OS genera el work order draft que se inyecta a CMMS existente; el equipo de mantenimiento no cambia de sistema de gestión.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;width:22px;flex-shrink:0">4.</span><span data-eid="datos-b4"><strong>Política IT/OT respecto al canal saliente cifrado de orquestación.</strong> Si requiere validación adicional, Made aporta documentación de arquitectura (IEC 62443, TLS 1.3, sólo lectura, alcances de outbound) en la primera sesión.</span></div>
       </div>
     </div>
 
     <div class="cta-block">
       <div class="cta-left">
         <div class="cta-tag" data-eid="sesion-cta-tag">Programa Mantenimiento Preventivo Equipo Móvil</div>
-        <h3>Solicite su acceso al programa</h3>
-        <p>Sesión técnica de 30 minutos · Remota · Asistentes: Gerardo Peña (CEO) + Ramiro Pantoja (CTO). Objetivo: calificación técnica + plan de programa en 1 página. Una vez aprobado, el programa inicia en menos de 10 días hábiles.</p>
+        <h3 data-eid="sesion-cta-h3">Solicite su acceso al programa</h3>
+        <p data-eid="sesion-cta-p">Sesión técnica de 30 minutos · Remota · Asistentes: Gerardo Peña (CEO) + Ramiro Pantoja (CTO). Objetivo: calificación técnica + plan de programa en 1 página. Una vez aprobado, el programa inicia en menos de 10 días hábiles.</p>
       </div>
       <div class="cta-right">
         <a href="https://cal.com/madeos.ai/demo" class="cta-btn">Agendar sesión →</a>
