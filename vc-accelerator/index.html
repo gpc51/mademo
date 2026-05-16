@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Made OS: Investor Deck · Accelerator Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ── Brand (única, sin verde) ── */
+    --o:    #d84200;
+    --o-h:  #f04900;
+    --o-s:  rgba(216,66,0,.12);
+    --o-l:  rgba(216,66,0,.30);
+
+    /* ── Surfaces (dark-first) ── */
+    --bg-0: #0e0f10;
+    --bg-1: #1a1c1e;
+    --bg-2: rgba(255,255,255,.04);
+    --bg-3: rgba(255,255,255,.07);
+
+    /* ── Lines ── */
+    --ln:   rgba(255,255,255,.08);
+    --ln-s: rgba(255,255,255,.16);
+
+    /* ── Text ── */
+    --tx-0: #ffffff;
+    --tx-1: rgba(255,255,255,.72);
+    --tx-2: rgba(255,255,255,.5);
+    --tx-3: rgba(255,255,255,.32);
+
+    --font: 'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --slide-top: clamp(44px, 7vh, 88px);
+
+    /* ── Legacy aliases (mapeados a dark, evitan romper inline styles) ── */
+    --dark: var(--tx-0); --dark2: var(--bg-1); --dark3: var(--bg-2);
+    --white: var(--tx-0);
+    --gray: var(--tx-1); --gray-l: var(--tx-2);
+    --border: var(--ln); --bg: var(--bg-2);
+    --green: var(--o); --greenbg: var(--o-s);
+    --obg: var(--o-s); --obd: var(--o-l); --oh: var(--o-h);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; font-family: var(--font); background: var(--bg-0); }
+
+  /* ── Deck engine ── */
+  .deck { width: 100%; height: 100vh; position: relative; background: var(--bg-0); visibility: hidden; }
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: flex-start; align-items: flex-start;
+    padding: var(--slide-top) clamp(40px, 7vw, 120px) clamp(32px, 4vh, 56px);
+    opacity: 0; pointer-events: none;
+    transition: opacity .44s cubic-bezier(.22,.61,.36,1), transform .44s cubic-bezier(.22,.61,.36,1);
+    transform: translateX(18px);
+    background: var(--bg-1);
+    color: var(--tx-1);
+    background-image:
+      radial-gradient(ellipse at top right, rgba(216,66,0,.04) 0%, transparent 60%),
+      radial-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px);
+    background-size: auto, 28px 28px, 84px 84px, 84px 84px;
+    overflow: hidden;
+  }
+  .slide.active { opacity: 1; pointer-events: all; transform: translateX(0); z-index: 2; }
+  .slide.prev   { opacity: 0; transform: translateX(-40px); z-index: 1; }
+  .slide.dark   { background: var(--bg-1); color: var(--tx-1);
+    background-image:
+      radial-gradient(ellipse at 12% 92%, rgba(216,66,0,.07) 0%, transparent 45%),
+      radial-gradient(ellipse at top right, rgba(216,66,0,.04) 0%, transparent 60%),
+      radial-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px);
+    background-size: auto, auto, 28px 28px, 84px 84px, 84px 84px;
+  }
+  .slide.cover  { background-color: var(--bg-1); justify-content: center; }
+
+  /* ── Nav ── */
+  .nav {
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 16px; z-index: 100;
+    background: rgba(14,15,16,.82); backdrop-filter: blur(14px);
+    border: 1px solid var(--ln);
+    border-radius: 40px; padding: 8px 16px;
+  }
+  .nav-btn {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--bg-2); border: 1px solid var(--ln);
+    color: var(--tx-1); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .15s, color .15s;
+  }
+  .nav-btn:hover { background: var(--bg-3); color: var(--tx-0); }
+  .nav-dots { display: flex; gap: 6px; align-items: center; }
+  .nav-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--tx-3); cursor: pointer;
+    transition: background .2s, transform .2s;
+  }
+  .nav-dot.active { background: var(--o); transform: scale(1.5); }
+  .slide-counter { font-size: 11px; font-weight: 500; color: var(--tx-3); letter-spacing: .06em; min-width: 28px; text-align: center; font-variant-numeric: tabular-nums; }
+
+  /* ── Type system ── */
+  .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--o); margin-bottom: 16px;
+  }
+  .eyebrow.light { color: var(--tx-3); }
+  .rule { width: 36px; height: 2px; background: var(--o); border-radius: 1px; margin-bottom: 18px; }
+  .rule.white { background: var(--o); }
+  .headline {
+    font-size: clamp(28px, 4.2vw, 60px); font-weight: 800;
+    line-height: 1.04; letter-spacing: -.045em; color: var(--tx-0); margin-bottom: 18px;
+  }
+  .headline.white { color: var(--tx-0); }
+  .headline .accent { color: var(--o); }
+  .subhead { font-size: clamp(14px, 1.5vw, 18px); color: var(--tx-1); line-height: 1.6; max-width: 640px; }
+  .subhead.white { color: var(--tx-1); }
+
+  /* ── Slide head (unificación vertical) ── */
+  .slide-head {
+    display: flex; flex-direction: column;
+    min-height: clamp(190px, 23vh, 250px);
+    margin-bottom: clamp(20px, 2.8vh, 36px);
+    width: 100%;
+  }
+  .slide-head .subhead { margin-top: clamp(8px, 1vh, 14px); }
+
+  /* ── Layout ── */
+  .cols { display: grid; gap: 14px; width: 100%; }
+  .cols-2 { grid-template-columns: 1fr 1fr; }
+  .cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  .mt { margin-top: 28px; }
+  .mt-sm { margin-top: 16px; }
+
+  /* ── Cards (sistema único) ── */
+  .card {
+    background: var(--bg-2); border: 1px solid var(--ln);
+    border-radius: 6px; padding: clamp(14px, 1.8vw, 24px);
+  }
+  .card.dark-card { background: var(--bg-2); border-color: var(--ln); }
+  .card.accent       { border-left: 3px solid var(--o); }
+  .card.green-accent { border-left: 3px solid var(--o); }
+  .card-num {
+    font-size: clamp(28px, 3.5vw, 48px); font-weight: 800;
+    letter-spacing: -.03em; line-height: 1; margin-bottom: 4px;
+    color: var(--tx-0); font-variant-numeric: tabular-nums;
+  }
+  .card-num.orange { color: var(--o); }
+  .card-num.green  { color: var(--o); }
+  .card-num.white  { color: var(--tx-0); }
+  .card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; color: var(--tx-3); margin-bottom: 6px; }
+  .card-label.light { color: var(--tx-3); }
+  .card-desc { font-size: clamp(11px, 1.1vw, 13px); color: var(--tx-1); line-height: 1.55; margin-top: 6px; }
+  .card-desc.white { color: var(--tx-1); }
+
+  /* ── Stat big ── */
+  .stat-row { display: flex; gap: 0; width: 100%; margin-top: 28px; }
+  .stat-block {
+    flex: 1; padding: 20px 24px;
+    border-right: 1px solid var(--ln);
+  }
+  .stat-block:last-child { border-right: none; }
+  .stat-num {
+    font-size: clamp(32px, 4.5vw, 60px); font-weight: 900;
+    letter-spacing: -.04em; line-height: 1; color: var(--o);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-num.green { color: var(--o); }
+  .stat-label { font-size: 12px; font-weight: 600; color: var(--tx-3); text-transform: uppercase; letter-spacing: .08em; margin-top: 6px; }
+  .stat-note  { font-size: 11px; color: var(--tx-2); margin-top: 4px; line-height: 1.4; }
+
+  /* ── Why-now cards ── */
+  .wnow-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 28px; width: 100%; }
+  .wnow-card {
+    background: var(--bg-2); border: 1px solid var(--ln);
+    border-radius: 6px; padding: 22px 20px;
+  }
+  .wnow-icon { font-size: 22px; margin-bottom: 10px; line-height: 1; }
+  .wnow-title { font-size: 13px; font-weight: 700; color: var(--tx-0); margin-bottom: 5px; }
+  .wnow-desc  { font-size: 11.5px; color: var(--tx-1); line-height: 1.5; }
+  .wnow-delta {
+    font-size: 30px; font-weight: 900; color: var(--o);
+    letter-spacing: -.05em; margin-bottom: 4px; line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Flow ── */
+  .flow-row { display: flex; align-items: center; gap: 0; width: 100%; margin-top: 24px; }
+  .flow-node {
+    flex: 1; text-align: center; padding: 16px 8px;
+    background: var(--bg-2); border: 1px solid var(--ln); border-radius: 6px;
+  }
+  .flow-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: var(--o-s); display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 8px;
+  }
+  .flow-icon svg { width: 20px; height: 20px; color: var(--o); }
+  .flow-label { font-size: 12px; font-weight: 700; color: var(--tx-0); margin-bottom: 2px; }
+  .flow-sub   { font-size: 10.5px; color: var(--tx-1); line-height: 1.4; }
+  .flow-arrow { flex-shrink: 0; width: 28px; text-align: center; color: var(--o); font-size: 16px; }
+
+  /* ── TAM rings ── */
+  .tam-rings { position: relative; width: 220px; height: 220px; flex-shrink: 0; }
+  .tam-ring {
+    position: absolute; border-radius: 50%; border: 2px solid;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .tam-ring.outer { inset: 0; border-color: rgba(216,66,0,.2); background: rgba(216,66,0,.04); }
+  .tam-ring.mid   { inset: 30px; border-color: rgba(216,66,0,.35); background: rgba(216,66,0,.08); }
+  .tam-ring.inner { inset: 65px; border-color: var(--o); background: rgba(216,66,0,.18); }
+  .tam-label-outer { position: absolute; top: 4px; left: 50%; transform: translateX(-50%); font-size: 10px; font-weight: 700; color: rgba(216,66,0,.6); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .tam-label-mid   { position: absolute; top: 38px; left: 50%; transform: translateX(-50%); font-size: 10px; font-weight: 700; color: rgba(216,66,0,.75); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .tam-label-inner { font-size: 11px; font-weight: 800; color: var(--o); line-height: 1.2; }
+  .tam-num-outer { position: absolute; bottom: 8px; right: 8px; font-size: 16px; font-weight: 800; color: rgba(216,66,0,.45); }
+  .tam-num-mid   { position: absolute; top: 50%; right: -36px; transform: translateY(-50%); font-size: 15px; font-weight: 800; color: rgba(216,66,0,.65); }
+
+  /* ── Traction ── */
+  .traction-row { display: flex; gap: 14px; width: 100%; margin-top: 24px; }
+  .traction-metric {
+    flex: 1; background: var(--bg-2); border: 1px solid var(--ln);
+    border-radius: 6px; padding: 18px 20px;
+    border-top: 3px solid var(--o);
+  }
+  .traction-metric.green-top { border-top-color: var(--o); }
+  .traction-num { font-size: clamp(28px, 3.2vw, 46px); font-weight: 800; letter-spacing: -.04em; color: var(--tx-0); line-height: 1; font-variant-numeric: tabular-nums; }
+  .traction-num.orange { color: var(--o); }
+  .traction-num.green  { color: var(--o); }
+  .traction-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--tx-3); margin-bottom: 4px; }
+  .traction-note  { font-size: 11.5px; color: var(--tx-1); margin-top: 6px; line-height: 1.4; }
+
+  /* ── Business model ── */
+  .bm-row { display: flex; gap: 14px; width: 100%; margin-top: 24px; }
+  .bm-tier {
+    flex: 1; background: var(--bg-2); border: 1px solid var(--ln);
+    border-radius: 6px; padding: 20px 22px; position: relative;
+  }
+  .bm-tier.featured { border-color: var(--o); border-width: 1.5px; }
+  .bm-badge {
+    position: absolute; top: -1px; right: 16px;
+    background: var(--o); color: var(--tx-0);
+    font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 0 0 4px 4px;
+  }
+  .bm-phase { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--tx-3); margin-bottom: 4px; }
+  .bm-name  { font-size: 17px; font-weight: 800; color: var(--tx-0); margin-bottom: 3px; }
+  .bm-price { font-size: 28px; font-weight: 900; color: var(--o); letter-spacing: -.04em; line-height: 1; margin-bottom: 10px; font-variant-numeric: tabular-nums; }
+  .bm-price span { font-size: 13px; font-weight: 500; color: var(--tx-2); }
+  .bm-items { display: flex; flex-direction: column; gap: 5px; }
+  .bm-item  { font-size: 12px; color: var(--tx-1); display: flex; gap: 7px; align-items: flex-start; line-height: 1.4; }
+  .bm-item::before { content: '✓'; color: var(--o); font-weight: 700; flex-shrink: 0; font-size: 11px; margin-top: 1px; }
+  .bm-upsell {
+    margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--ln);
+    font-size: 11px; color: var(--tx-2); font-style: italic;
+  }
+
+  /* ── Competitive matrix ── */
+  .comp-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 24px; background: transparent; }
+  .comp-table th {
+    padding: 10px 12px; text-align: left;
+    font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+    background: transparent; border-bottom: 1px solid var(--ln);
+  }
+  .comp-table th:first-child { color: var(--tx-3); width: 24%; font-size: 10.5px; }
+  .comp-table th.them { color: var(--tx-2); text-align: center; font-weight: 600; }
+  .comp-table th.us   { color: var(--o); background: var(--o-s); border-bottom: 1.5px solid var(--o-l); text-align: center; font-weight: 700; }
+  .comp-table td { padding: 10px 12px; border-bottom: 1px solid var(--ln); vertical-align: middle; color: var(--tx-1); font-size: 12.5px; background: transparent; }
+  .comp-table td.us-col { text-align: center; font-weight: 700; color: var(--tx-0); background: var(--o-s); }
+  .comp-table td.them-col { text-align: center; }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-check { color: var(--tx-0); font-size: 15px; font-weight: 700; }
+  .comp-x     { color: var(--tx-3); font-size: 15px; }
+  .comp-half  { color: var(--tx-2); font-size: 13px; }
+
+  /* ── Team ── */
+  .team-row { display: flex; gap: 20px; margin-top: 28px; width: 100%; }
+  .team-card {
+    flex: 1; background: var(--bg-2); border: 1px solid var(--ln);
+    border-radius: 6px; padding: 22px 24px;
+  }
+  .team-avatar {
+    width: 56px; height: 56px; border-radius: 50%; overflow: hidden;
+    border: 2px solid var(--ln); margin-bottom: 14px;
+    background: var(--bg-3);
+  }
+  .team-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .team-avatar-initial { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--bg-3); font-size: 22px; font-weight: 800; color: var(--tx-2); letter-spacing: -.02em; }
+  .team-name  { font-size: 16px; font-weight: 800; color: var(--tx-0); margin-bottom: 2px; }
+  .team-role  { font-size: 12px; color: var(--o); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+  .team-bio   { font-size: 12.5px; color: var(--tx-1); line-height: 1.6; }
+  .team-cred  { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .team-badge {
+    font-size: 10px; font-weight: 700; border: 1px solid var(--ln);
+    border-radius: 4px; padding: 3px 8px; color: var(--tx-2); background: var(--bg-2);
+    letter-spacing: .04em;
+  }
+
+  /* ── Ask slide ── */
+  .ask-slide { background-color: var(--bg-1) !important; }
+  .ask-raise {
+    font-size: clamp(48px, 7vw, 96px); font-weight: 900;
+    letter-spacing: -.05em; color: var(--o); line-height: 1;
+    margin-bottom: 4px; font-variant-numeric: tabular-nums;
+  }
+  .ask-round { font-size: 14px; font-weight: 600; color: var(--tx-3); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 28px; }
+  .ask-uses { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; margin-top: 28px; }
+  .ask-use {
+    background: var(--bg-2); border: 1px solid var(--ln);
+    border-radius: 6px; padding: 16px 18px;
+  }
+  .ask-use-pct { font-size: 26px; font-weight: 900; color: var(--o); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+  .ask-use-label { font-size: 13px; font-weight: 700; color: var(--tx-0); margin-bottom: 3px; margin-top: 2px; }
+  .ask-use-desc  { font-size: 11.5px; color: var(--tx-2); line-height: 1.4; }
+  .ask-milestones { margin-top: 24px; display: flex; gap: 0; width: 100%; }
+  .ask-ms {
+    flex: 1; padding: 14px 18px; border-right: 1px solid var(--ln);
+  }
+  .ask-ms:last-child { border-right: none; }
+  .ask-ms-time { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--tx-3); margin-bottom: 6px; }
+  .ask-ms-goal { font-size: 13px; font-weight: 600; color: var(--tx-1); line-height: 1.4; }
+
+  /* ── Cover (S1) ── */
+  #s1 .cover-logo { margin-bottom: 40px; position: relative; z-index: 2; }
+  #s1 .cover-logo svg { height: clamp(30px, 3.2vw, 42px); width: auto; }
+  #s1 .cover-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--tx-3); margin-bottom: 20px;
+  }
+  #s1 .cover-sub {
+    font-size: clamp(14px, 1.5vw, 18px); color: var(--tx-2);
+    line-height: 1.6; max-width: 560px; margin-top: 14px; font-weight: 400;
+  }
+  #s1 .cover-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+  #s1 .cover-badge {
+    border: 1px solid var(--ln); border-radius: 4px;
+    padding: 5px 11px; font-size: 10.5px; font-weight: 600;
+    color: var(--tx-3); letter-spacing: .05em;
+  }
+  #s1 .cover-deco {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 48%;
+    overflow: hidden; pointer-events: none;
+  }
+  #s1 .cover-deco img {
+    width: 100%; height: 100%; object-fit: cover; object-position: 40% center;
+    opacity: 1; display: block;
+  }
+  #s1 .cover-confidential {
+    position: absolute; bottom: 32px; right: clamp(40px, 7vw, 120px);
+    font-size: 10px; font-weight: 600; color: var(--tx-3);
+    letter-spacing: .1em; text-transform: uppercase;
+  }
+
+  @keyframes livepulse {
+    0%   { transform: scale(1);   opacity: 1; }
+    100% { transform: scale(2.2); opacity: 0; }
+  }
+
+  /* ── Print ── */
+  @page { size: 1920px 1080px; margin: 0; }
+  @media print {
+    html, body {
+      overflow: visible; height: auto;
+      background: var(--bg-1);
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    #pin-screen, .nav { display: none !important; }
+    .deck { height: auto; visibility: visible !important; }
+    .slide {
+      position: relative; opacity: 1 !important; pointer-events: all;
+      transform: none !important;
+      page-break-after: always; break-after: page;
+      width: 1920px; height: 1080px;
+      overflow: hidden;
+    }
+    .slide.prev, .slide.active { opacity: 1 !important; transform: none !important; }
+    .slide:last-child { page-break-after: auto; break-after: auto; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    .cols-2, .cols-3, .cols-4 { grid-template-columns: 1fr; }
+    .team-row { flex-direction: column; }
+    .bm-row { flex-direction: column; }
+    .stat-row { flex-direction: column; }
+    .traction-row { flex-direction: column; }
+    #s1 .cover-deco { display: none; }
+    .wnow-grid { grid-template-columns: 1fr; }
+    .ask-uses { grid-template-columns: 1fr; }
+    .ask-milestones { flex-direction: column; }
+    #s9 .ask-steps > div { flex-direction: column !important; }
+    #s9 .ask-steps > div > div { border-right: none !important; border-bottom: 1px solid var(--ln); }
+    .flow-row { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+  }
+
+  /* ── PIN GATE ── */
+  #pin-screen {
+    position: fixed; inset: 0; z-index: 9999;
+    min-height: 100vh; width: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 32px 24px; background: var(--bg-0);
+    background-image: radial-gradient(rgba(255,255,255,.022) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .pin-card {
+    background: var(--bg-1);
+    border: 1px solid var(--ln);
+    border-radius: 12px;
+    padding: 40px 44px;
+    width: 100%; max-width: 380px;
+    box-shadow: 0 12px 60px rgba(0,0,0,.45);
+    text-align: center;
+  }
+  .pin-logo { display: flex; justify-content: center; margin-bottom: 28px; }
+  .pin-logo svg { height: 30px; width: auto; }
+  .pin-badge {
+    display: inline-block;
+    background: var(--o-s); border: 1px solid var(--o-l);
+    color: var(--o);
+    font-size: 10px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .pin-title { font-size: 18px; font-weight: 700; color: var(--tx-0); margin-bottom: 6px; letter-spacing: -.02em; }
+  .pin-sub { font-size: 13px; color: var(--tx-2); margin-bottom: 28px; line-height: 1.55; }
+  .pin-input {
+    width: 100%; padding: 14px;
+    border: 1.5px solid var(--ln-s); border-radius: 6px;
+    background: var(--bg-2);
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 22px; font-weight: 700; color: var(--tx-0);
+    text-align: center; letter-spacing: .18em;
+    outline: none; transition: border-color .15s;
+  }
+  .pin-input:focus { border-color: var(--o); box-shadow: 0 0 0 3px rgba(216,66,0,.12); }
+  .pin-input.shake { animation: pin-shake .35s ease; border-color: #e53e3e; }
+  @keyframes pin-shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+  .pin-btn {
+    width: 100%; padding: 12px;
+    background: var(--o); color: var(--tx-0);
+    border: none; border-radius: 6px;
+    font-family: var(--font); font-size: 14px; font-weight: 700;
+    cursor: pointer; margin-top: 12px;
+    transition: background .15s;
+  }
+  .pin-btn:hover { background: var(--o-h); }
+  .pin-btn:disabled { opacity: .6; cursor: default; }
+  .pin-error {
+    background: rgba(229,62,62,.08); border: 1px solid rgba(229,62,62,.3);
+    color: #ff6b6b; border-radius: 6px;
+    padding: 9px 14px; font-size: 13px;
+    margin-top: 12px; display: none;
+  }
+  .pin-footer { margin-top: 24px; font-size: 11px; color: var(--tx-3); letter-spacing: .08em; }
+</style>
+<!-- PostHog -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https://us.i.posthog.com',person_profiles:'always',defaults:'2026-01-30',disable_session_recording:true});
+</script>
+</head>
+<body>
+<!-- ══ PIN GATE ══ -->
+<div id="pin-screen">
+  <div class="pin-card">
+    <div class="pin-logo">
+      <svg viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
+        <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
+        <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="rgba(255,255,255,.92)">Made</text>
+      </svg>
+    </div>
+    <div class="pin-badge">Investor Deck · 2026</div>
+    <div class="pin-title">Confidential</div>
+    <p class="pin-sub">Enter the access code<br>shared by the Made team.</p>
+    <form onsubmit="event.preventDefault(); doPin()">
+      <input id="pin-input" class="pin-input" type="text" inputmode="numeric"
+             pattern="[0-9]*" maxlength="6" placeholder="······" autocomplete="one-time-code" required>
+      <button class="pin-btn" type="submit" id="pin-btn">View deck</button>
+    </form>
+    <div class="pin-error" id="pin-error">Invalid code. Please try again.</div>
+    <div class="pin-footer">MADE OS · CONFIDENTIAL · madeos.ai</div>
+  </div>
+</div>
+
+<div class="deck" id="deck">
+
+  <!-- ══ S1: COVER ══ -->
+  <div class="slide cover" id="s1">
+    <div class="cover-deco"><img src="../assets/edge-device.jpg" alt="" aria-hidden="true"></div>
+    <div class="cover-logo">
+      <svg viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.3,13.0 V21.8 L9.0,39.0 H0 Z" fill="#d84200"/>
+        <path d="M39.6,9.8 V39.0 H13.3 Z" fill="#d84200"/>
+        <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="rgba(255,255,255,.9)">Made</text>
+      </svg>
+    </div>
+    <div class="cover-tag" style="position:relative;z-index:2">Investor Deck · Confidential · 2026</div>
+    <h1 class="headline white" style="max-width:660px;position:relative;z-index:2">
+      The AI that pays for itself<br>the first time it <span class="accent">prevents a shutdown.</span>
+    </h1>
+    <p class="cover-sub" style="position:relative;z-index:2">
+      Industrial predictive intelligence. Deployed in 30 days, with a 90-day ROI guarantee, at 1/10 the cost of legacy APM.
+    </p>
+    <div class="cover-badges" style="position:relative;z-index:2">
+      <span class="cover-badge">NVIDIA Inception</span>
+      <span class="cover-badge">MIT Innovators Under 35 LATAM 2025</span>
+      <span class="cover-badge">Founders Inc</span>
+      <span class="cover-badge">Startup Chile BIG 10</span>
+    </div>
+    <div class="cover-confidential">Confidential · Not for distribution</div>
+  </div>
+
+  <!-- ══ S2: THE PROBLEM / WHY NOW ══ -->
+  <div class="slide dark" id="s2">
+    <div class="slide-head">
+    <div class="eyebrow light">The problem</div>
+    <div class="rule"></div>
+    <h2 class="headline white">
+      Industrial AI is ready.<br><span class="accent">Legacy operations aren't.</span>
+    </h2>
+    <p class="subhead white">The capability curve compressed below the long-tail threshold in the past 12–18 months, and it's still compounding. The window opened structurally: incumbents can't price 1/10× without cannibalizing $1B+ in installed APM revenue.</p>
+    </div>
+
+    <div class="wnow-grid">
+      <div class="wnow-card">
+        <div class="wnow-delta">10×</div>
+        <div class="wnow-title">Industrial AI, shippable</div>
+        <div class="wnow-desc">Open-weight reasoning + time-series foundation models compress a 6–12 month bespoke ML build into a 30-day deploy. Still compounding each quarter.</div>
+      </div>
+      <div class="wnow-card">
+        <div class="wnow-delta">67 TOPS · $250</div>
+        <div class="wnow-title">Edge compute at the asset</div>
+        <div class="wnow-desc">NVIDIA Jetson Orin Nano Super runs local data processing at the asset for low-latency response. Sub-$300 module. Encrypted outbound channel to cloud for AI model orchestration.</div>
+      </div>
+      <div class="wnow-card">
+        <div class="wnow-delta">−80%</div>
+        <div class="wnow-title">IIoT sensor cost</div>
+        <div class="wnow-desc">Industrial sensor cost dropped 80% since 2018. The data was already there; the two forces above turned it actionable.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ S3: SOLUTION ══ -->
+  <div class="slide" id="s3">
+    <div class="slide-head">
+    <div class="eyebrow">The solution</div>
+    <div class="rule"></div>
+    <h2 class="headline" style="max-width:800px">
+      Made OS: predictive intelligence without the <span class="accent">enterprise overhead.</span>
+    </h2>
+    <p class="subhead" style="max-width:620px">Read-only. Deploys in 30 days. Prescribes actions with intervention windows 2–6 weeks before failure.</p>
+    </div>
+
+    <div class="flow-row" style="margin-top:22px">
+      <div class="flow-node">
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="2 12 5 12 7 5 10 19 13 9 16 15 18 12 22 12"/>
+          </svg>
+        </div>
+        <div class="flow-label">Existing sensors</div>
+        <div class="flow-sub">OPC-UA · Modbus · 4–20mA<br>Uses existing plant sensors</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node" style="border-color:var(--obd);background:var(--obg)">
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="7" y="7" width="10" height="10" rx="1"/>
+            <path d="M7 9H4M7 12H4M7 15H4M17 9h3M17 12h3M17 15h3M9 7V4M12 7V4M15 7V4M9 17v3M12 17v3M15 17v3"/>
+          </svg>
+        </div>
+        <div class="flow-label" style="color:var(--o)">Made OS</div>
+        <div class="flow-sub">Multi-agent AI on Jetson edge<br>Learns nominal · detects deviation</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
+            <circle cx="18" cy="5" r="3" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <div class="flow-label">Actionable alert</div>
+        <div class="flow-sub">Class A/B/C prescription<br>2–6 weeks before failure</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="flow-label">Avoided shutdown</div>
+        <div class="flow-sub">Documented ROI<br>Auditable event log</div>
+      </div>
+    </div>
+
+    <div class="cols cols-3" style="margin-top:20px">
+      <div class="card accent">
+        <div class="card-label">Deployment</div>
+        <div class="card-num orange" style="font-size:clamp(22px,2.8vw,36px)">30 days</div>
+        <div class="card-desc">vs. 12–24 months for legacy APM. Made's team installs and calibrates end-to-end.</div>
+      </div>
+      <div class="card accent">
+        <div class="card-label">Risk model</div>
+        <div class="card-num orange" style="font-size:clamp(22px,2.8vw,36px)">$0</div>
+        <div class="card-desc">Client pays nothing if ROI is not demonstrated. 90-day no-cost extension guarantee.</div>
+      </div>
+      <div class="card accent">
+        <div class="card-label">Price vs. Legacy APM</div>
+        <div class="card-num orange" style="font-size:clamp(22px,2.8vw,36px)">1/10×</div>
+        <div class="card-desc">$440K–$480K all-inclusive Year 1 vs. $1.5M–$5M+ for traditional APM.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+      <a href="https://www.youtube.com/watch?v=XLfD6TMc3l8" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;background:var(--obg);border:1px solid var(--obd);border-radius:6px;padding:7px 14px;font-size:12px;font-weight:600;color:var(--o);text-decoration:none">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.4 2.8 12 2.8 12 2.8s-4.4 0-6.8.1C4.6 3 3.3 3 2.2 4.2 1.3 5 1 7 1 7S.7 9.3.7 11.5v2c0 2.3.3 4.5.3 4.5s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.3 22 12 22 12 22s4.4 0 6.8-.2c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.3.3-4.5v-2C23.3 9.3 23 7 23 7zM9.7 15.5V8.4l8.1 3.6-8.1 3.5z"/></svg>
+        Watch product demo
+      </a>
+    </div>
+  </div>
+
+  <!-- ══ S4: MARKET ══ -->
+  <div class="slide" id="s4">
+    <div class="slide-head">
+    <div class="eyebrow">Market opportunity</div>
+    <div class="rule"></div>
+    <h2 class="headline" style="max-width:800px">
+      A $78B market, with <span class="accent">95% still unaddressed.</span>
+    </h2>
+    </div>
+
+    <div style="display:flex;gap:36px;align-items:center;margin-top:20px;width:100%;flex:1">
+
+      <!-- SVG Concentric rings -->
+      <div style="flex-shrink:0">
+        <svg width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- TAM -->
+          <circle cx="130" cy="130" r="122" fill="rgba(216,66,0,.04)" stroke="rgba(216,66,0,.14)" stroke-width="1.5"/>
+          <!-- SAM -->
+          <circle cx="130" cy="130" r="80" fill="rgba(216,66,0,.08)" stroke="rgba(216,66,0,.28)" stroke-width="1.5"/>
+          <!-- SOM -->
+          <circle cx="130" cy="130" r="42" fill="rgba(216,66,0,.18)" stroke="#d84200" stroke-width="2"/>
+          <!-- SOM label -->
+          <text x="130" y="124" text-anchor="middle" font-family="Inter,-apple-system,sans-serif" font-size="9" font-weight="700" letter-spacing="2" fill="#d84200">SOM</text>
+          <text x="130" y="143" text-anchor="middle" font-family="Inter,-apple-system,sans-serif" font-size="16" font-weight="900" fill="#d84200">$2.8B</text>
+          <!-- SAM tick + label -->
+          <line x1="210" y1="130" x2="228" y2="112" stroke="rgba(216,66,0,.3)" stroke-width="1"/>
+          <text x="235" y="107" text-anchor="middle" font-family="Inter,-apple-system,sans-serif" font-size="8" font-weight="700" letter-spacing="1.5" fill="rgba(216,66,0,.55)">SAM</text>
+          <text x="235" y="122" text-anchor="middle" font-family="Inter,-apple-system,sans-serif" font-size="13" font-weight="900" fill="rgba(216,66,0,.55)">$22B</text>
+          <!-- TAM tick + label -->
+          <line x1="130" y1="8" x2="130" y2="20" stroke="rgba(216,66,0,.2)" stroke-width="1"/>
+          <text x="130" y="5" text-anchor="middle" font-family="Inter,-apple-system,sans-serif" font-size="8" font-weight="700" letter-spacing="1.5" fill="rgba(216,66,0,.35)">TAM</text>
+          <!-- CAGR badge -->
+          <rect x="82" y="196" width="96" height="22" rx="4" fill="rgba(216,66,0,.1)" stroke="rgba(216,66,0,.2)" stroke-width="1"/>
+          <text x="130" y="211" text-anchor="middle" font-family="Inter,-apple-system,sans-serif" font-size="10" font-weight="700" fill="rgba(216,66,0,.7)">CAGR 25% · 2030</text>
+        </svg>
+      </div>
+
+      <!-- Segment rows -->
+      <div style="flex:1;display:flex;flex-direction:column;gap:12px">
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:16px">
+          <div style="width:10px;height:10px;border-radius:50%;background:rgba(216,66,0,.25);flex-shrink:0"></div>
+          <div style="flex:1">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--gray-l);margin-bottom:3px">TAM · Global predictive maintenance</div>
+            <div style="font-size:12.5px;color:var(--gray)">All industrial sectors · MarketsandMarkets 2024 · CAGR 25% to 2030</div>
+          </div>
+          <div style="font-size:30px;font-weight:900;color:rgba(216,66,0,.35);letter-spacing:-.04em;flex-shrink:0">$78B</div>
+        </div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:16px">
+          <div style="width:10px;height:10px;border-radius:50%;background:rgba(216,66,0,.45);flex-shrink:0"></div>
+          <div style="flex:1">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--gray-l);margin-bottom:3px">SAM · Global industrial mid-market</div>
+            <div style="font-size:12.5px;color:var(--gray)">Facilities at $50M–$1B revenue, below the Fortune-500 budget line, structurally unserved by legacy APM. ~50,000 facilities globally. Mining, O&amp;G, paper, food &amp; bev, pharma, elevators.</div>
+          </div>
+          <div style="font-size:30px;font-weight:900;color:rgba(216,66,0,.55);letter-spacing:-.04em;flex-shrink:0">$22B</div>
+        </div>
+        <div style="background:var(--obg);border:1.5px solid var(--obd);border-radius:6px;padding:16px 20px;display:flex;align-items:center;gap:16px">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--o);flex-shrink:0"></div>
+          <div style="flex:1">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--o);margin-bottom:3px">SOM · 3-year wedge via existing distribution</div>
+            <div style="font-size:12.5px;color:var(--gray)">500 facilities by Year 3 across LATAM, US and Chile, reached through partner networks already in place (JUST Partners + NVIDIA Inception + MIT IU35 + Founders Inc + Startup Chile). $160K–$480K ARR avg → $80M–$160M ARR.</div>
+          </div>
+          <div style="font-size:30px;font-weight:900;color:var(--o);letter-spacing:-.04em;flex-shrink:0">$2.8B</div>
+        </div>
+        <div style="padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--gray)">
+          <strong style="color:var(--dark)">Why mid-market, not by geography:</strong> The structural gap is a company-size problem, not a regional one. Industrial facilities below $1B revenue cannot absorb $1.5M–$5M APM deployments, anywhere in the world. LATAM is our first GTM because we have distribution there (JUST Partners + Startup Chile + MIT IU35) and the gap is widest, but the same wedge expands to US mid-market (Founders Inc) and to any geography where NVIDIA Inception or partner ecosystems give us a warm introduction. Made is a global SaaS on a regional ramp.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5: TRACTION ══ -->
+  <div class="slide" id="s5">
+    <div class="slide-head">
+    <div class="eyebrow">Traction</div>
+    <div class="rule"></div>
+    <h2 class="headline" style="max-width:680px;text-transform:uppercase;letter-spacing:.04em">
+      Implementation Stage
+    </h2>
+    </div>
+
+    <div class="traction-row">
+      <div class="traction-metric">
+        <div class="traction-label">Active pilots</div>
+        <div class="traction-num orange">2</div>
+        <div class="traction-note">Elevators · Wood processing. Chile & Mexico.</div>
+      </div>
+      <div class="traction-metric">
+        <div class="traction-label">Documented avoided events</div>
+        <div class="traction-num orange">3</div>
+        <div class="traction-note">Alerts acted on before failure. Estimated $116k in prevented losses across pilots.</div>
+      </div>
+      <div class="traction-metric green-top">
+        <div class="traction-label">Average ROI documented</div>
+        <div class="traction-num green">13:1</div>
+        <div class="traction-note">Based on 3 intervention events with complete client-verified cost data.</div>
+      </div>
+      <div class="traction-metric">
+        <div class="traction-label">Pipeline (LOIs + qualified)</div>
+        <div class="traction-num orange">$2.1M</div>
+        <div class="traction-note">Active conversations in final technical session stage across 6 facilities.</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;background:var(--obg);border:1px solid var(--obd);border-left:3px solid var(--o);border-radius:6px;padding:14px 16px">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--o);margin-bottom:8px">Distribution channels in place</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px">
+        <div style="border-right:1px solid var(--ln);padding-right:10px">
+          <div style="font-size:11.5px;font-weight:700;color:var(--dark);margin-bottom:2px"><a href="https://justpartners.cl/" target="_blank" rel="noopener" style="color:var(--dark);text-decoration:none">JUST Partners</a></div>
+          <div style="font-size:10.5px;color:var(--gray);line-height:1.4">24+ Chilean corporates · manufacturing, energy, mining</div>
+        </div>
+        <div style="border-right:1px solid var(--ln);padding-right:10px">
+          <div style="font-size:11.5px;font-weight:700;color:var(--dark);margin-bottom:2px">NVIDIA Inception</div>
+          <div style="font-size:10.5px;color:var(--gray);line-height:1.4">Global · 20K+ portfolio · enterprise warm intros</div>
+        </div>
+        <div style="border-right:1px solid var(--ln);padding-right:10px">
+          <div style="font-size:11.5px;font-weight:700;color:var(--dark);margin-bottom:2px">Founders Inc</div>
+          <div style="font-size:10.5px;color:var(--gray);line-height:1.4">USA · industrial &amp; deep-tech network · Bay Area</div>
+        </div>
+        <div style="border-right:1px solid var(--ln);padding-right:10px">
+          <div style="font-size:11.5px;font-weight:700;color:var(--dark);margin-bottom:2px">Startup Chile BIG 10</div>
+          <div style="font-size:10.5px;color:var(--gray);line-height:1.4">Chile · CORFO · top-decile portfolio access</div>
+        </div>
+        <div>
+          <div style="font-size:11.5px;font-weight:700;color:var(--dark);margin-bottom:2px">MIT IU35 LATAM</div>
+          <div style="font-size:10.5px;color:var(--gray);line-height:1.4">LATAM · alumni network · regional industrial reach</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cols cols-2" style="margin-top:18px">
+      <div class="card accent">
+        <div class="card-label">Lead client signal</div>
+        <div style="font-size:13px;color:var(--dark);font-weight:600;margin-bottom:6px;margin-top:4px">"The alert came 18 days before the compressor would have failed. Maintenance planned the replacement in the next scheduled stop. Zero unplanned downtime."</div>
+        <div style="font-size:11px;color:var(--gray-l)">Operations Director, Elevator manufacturer, Mexico · Pilot Month 2</div>
+      </div>
+      <div class="card" style="background:var(--bg)">
+        <div class="card-label">Next 6 months</div>
+        <div class="card-desc" style="margin-top:6px;font-size:12.5px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Convert 2 pilots to annual contracts (Month 3)</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Launch 4 additional pilots from current pipeline (Month 4–5)</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Path to break-even at 3 annual contracts by Q4 2026</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:10px;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--o);border-radius:8px;padding:11px 16px;display:flex;align-items:center;gap:14px">
+      <div style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--o);flex-shrink:0">TRL 7 → 8</div>
+      <div style="font-size:12px;color:var(--gray);line-height:1.5">System demonstrated in live industrial environments (NASA/DoD readiness scale). Technology risk is resolved. The remaining variable is deployment velocity: that is what capital accelerates.</div>
+    </div>
+    <p style="font-size:11px;color:var(--gray-l);margin-top:12px">Traction data as of Q1 2026. Specific client names available under NDA.</p>
+  </div>
+
+  <!-- ══ S6: BUSINESS MODEL ══ -->
+  <div class="slide" id="s6">
+    <div class="slide-head">
+    <div class="eyebrow">Business model · Building the MOAT</div>
+    <div class="rule"></div>
+    <h2 class="headline" style="max-width:680px">
+      The pilot trains the model. <span class="accent">The model retains the client.</span>
+    </h2>
+    </div>
+
+    <div class="bm-row">
+      <div class="bm-tier">
+        <div class="bm-phase">Phase 1</div>
+        <div class="bm-name">Pilot</div>
+        <div class="bm-price">$40K–$90K <span>/ 90 days</span></div>
+        <div class="bm-items">
+          <div class="bm-item">2–3 monitored assets</div>
+          <div class="bm-item">Edge hardware included</div>
+          <div class="bm-item">Made team installs and calibrates</div>
+          <div class="bm-item">Full ROI report at end of pilot</div>
+        </div>
+        <div class="bm-upsell">100% credited to Year 1 if renewed</div>
+      </div>
+      <div class="bm-tier featured">
+        <div class="bm-badge">Core revenue</div>
+        <div class="bm-phase">Phase 2</div>
+        <div class="bm-name">Annual license</div>
+        <div class="bm-price">$160K–$480K <span>/ yr · per facility</span></div>
+        <div class="bm-items">
+          <div class="bm-item">Unlimited assets in facility</div>
+          <div class="bm-item">Continuous monitoring + alerts</div>
+          <div class="bm-item">Quarterly performance reviews</div>
+          <div class="bm-item">SLA: alert lead time ≥ 14 days or fee waived</div>
+        </div>
+        <div class="bm-upsell">Avg. 2.8 renewals per initial facility (multi-site)</div>
+      </div>
+      <div class="bm-tier">
+        <div class="bm-phase">Phase 3 / Upsell</div>
+        <div class="bm-name">Enterprise API</div>
+        <div class="bm-price">Custom <span>/ per API call volume</span></div>
+        <div class="bm-items">
+          <div class="bm-item">OPC-UA / MQTT data feed integration</div>
+          <div class="bm-item">Made models embedded in client SCADA / DCS</div>
+          <div class="bm-item">White-label available</div>
+          <div class="bm-item">Revenue share on partner resale</div>
+        </div>
+        <div class="bm-upsell">Activated in Year 2+ with established clients</div>
+        <div style="margin-top:10px;padding:8px 12px;background:var(--obg);border:1px solid var(--obd);border-radius:6px;font-size:11.5px;color:var(--dark);line-height:1.5"><strong style="color:var(--o)">Acquisition strategy:</strong> First 10 API implementations at no cost. 3 already requested and in evaluation.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <a href="https://demo.madeos.ai/anon/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--o);color:var(--tx-0);font-size:13px;font-weight:700;text-decoration:none;padding:10px 18px;border-radius:6px;letter-spacing:.01em">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        See a real client proposal
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.9"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <span style="font-size:11.5px;color:var(--tx-2)">Anonymous · actual structure and pricing we send to clients</span>
+    </div>
+  </div>
+
+  <!-- ══ S7: COMPETITION ══ -->
+  <div class="slide" id="s7">
+    <div class="slide-head">
+    <div class="eyebrow">Competition</div>
+    <div class="rule"></div>
+    <h2 class="headline" style="max-width:680px">
+      Not competing with legacy APM.<br><span class="accent">Replacing the absence of it.</span>
+    </h2>
+    </div>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th class="them">AspenTech / Emerson</th>
+          <th class="them">Augury / SparkCognition</th>
+          <th class="them">In-house IT solution</th>
+          <th class="us">Made OS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>LATAM mid-market pricing</td>
+          <td class="them-col"><span class="comp-x">✗</span></td>
+          <td class="them-col"><span class="comp-half">~</span></td>
+          <td class="them-col"><span class="comp-half">~</span></td>
+          <td class="us-col"><span class="comp-check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Deploys in &lt; 30 days</td>
+          <td class="them-col"><span class="comp-x">✗</span></td>
+          <td class="them-col"><span class="comp-half">~</span></td>
+          <td class="them-col"><span class="comp-x">✗</span></td>
+          <td class="us-col"><span class="comp-check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Edge processing at the asset</td>
+          <td class="them-col"><span class="comp-x">✗</span></td>
+          <td class="them-col"><span class="comp-x">✗</span></td>
+          <td class="them-col"><span class="comp-x">✗</span></td>
+          <td class="us-col"><span class="comp-check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Prescriptive alerts (not just anomaly flags)</td>
+          <td class="them-col"><span class="comp-check">✓</span></td>
+          <td class="them-col"><span class="comp-half">~</span></td>
+          <td class="them-col"><span class="comp-x">✗</span></td>
+          <td class="us-col"><span class="comp-check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Results-guaranteed (pay-on-ROI)</td>
+          <td class="them-col"><span class="comp-x">✗</span></td>
+          <td class="them-col"><span class="comp-x">✗</span></td>
+          <td class="them-col"><span class="comp-x">✗</span></td>
+          <td class="us-col"><span class="comp-check">✓</span></td>
+        </tr>
+        <tr>
+          <td>ATEX / IEC 62443 ready</td>
+          <td class="them-col"><span class="comp-check">✓</span></td>
+          <td class="them-col"><span class="comp-x">✗</span></td>
+          <td class="them-col"><span class="comp-x">✗</span></td>
+          <td class="us-col"><span class="comp-check">✓</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%">
+      <div style="padding:14px 18px;background:var(--bg-2);border:1px solid var(--ln);border-left:3px solid var(--o);border-radius:0 6px 6px 0">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--o);margin-bottom:6px">Institutional moat</div>
+        <div style="font-size:14px;font-weight:700;color:var(--tx-0);line-height:1.35;margin-bottom:6px">Why competition can't follow.</div>
+        <div style="font-size:12px;color:var(--tx-1);line-height:1.55">AspenTech, Honeywell, AVEVA, Emerson can't price 1/10× without cannibalizing $1B+ of installed APM revenue. Whoever moves first loses the current business; whoever doesn't, loses the next one. Pure innovator's dilemma.</div>
+      </div>
+      <div style="padding:14px 18px;background:var(--bg-2);border:1px solid var(--ln);border-left:3px solid var(--o);border-radius:0 6px 6px 0">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--o);margin-bottom:6px">Data moat</div>
+        <div style="font-size:14px;font-weight:700;color:var(--tx-0);line-height:1.35;margin-bottom:6px">Why customers can't switch.</div>
+        <div style="font-size:12px;color:var(--tx-1);line-height:1.55">Models trained per-asset, per-operating-condition. After 3–6 months, the model knows the plant better than any out-of-the-box product. Cross-facility dataset is unique and uncopiable. Switching cost = retraining from zero.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S8: TEAM ══ -->
+  <div class="slide" id="s8">
+    <div class="slide-head">
+    <div class="eyebrow">Team</div>
+    <div class="rule"></div>
+    <h2 class="headline" style="max-width:680px">
+      Two founders. One built hardware at scale. <span class="accent">One built the AI.</span>
+    </h2>
+    </div>
+
+    <div class="team-row">
+      <div class="team-card">
+        <div class="team-avatar">
+          <img src="../assets/gpc.png" alt="Gerardo Peña">
+        </div>
+        <div class="team-name">Gerardo Peña</div>
+        <div class="team-role">CEO &amp; Co-founder</div>
+        <div class="team-bio">
+          Entrepreneur and industrial designer. Built R3D, a manufacturing marketplace processing $6M+ in enterprise transactions. Leads product vision, commercial strategy, and operations. MIT Supply Chain Micromaster. MIT Innovators Under 35 LATAM 2025.
+        </div>
+        <div class="team-cred">
+          <span class="team-badge">MIT Innovators Under 35 LATAM 2025</span>
+          <span class="team-badge">NVIDIA Inception Fellow</span>
+          <span class="team-badge">Startup Chile BIG 10</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="../assets/Ramiro.png" alt="Ramiro Pantoja"></div>
+        <div class="team-name">Ramiro Pantoja</div>
+        <div class="team-role">CTO &amp; Co-founder</div>
+        <div class="team-bio">
+          Mechanical engineer turned full stack builder. Six years shipping production AI and embedded systems. Co-founded R3D before Made, where he ran the tech stack as CTO for four years. Architected Made OS's multi-agent edge inference layer processing 10K+ sensor streams in real time. Reads PLC ladder logic and PyTorch the same week.
+        </div>
+        <div class="team-cred">
+          <span class="team-badge">Edge AI Systems</span>
+          <span class="team-badge">OT Security</span>
+          <span class="team-badge">Signal Processing</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;padding:12px 20px;background:var(--bg);border:1px solid var(--border);border-radius:8px;display:flex;gap:24px;flex-wrap:wrap">
+      <div style="font-size:12px;color:var(--gray)"><strong style="color:var(--dark)">Advisory:</strong> Senior engineers from Apple, Arauco, and Google.</div>
+      <div style="font-size:12px;color:var(--gray)"><strong style="color:var(--dark)">Legal &amp; IP:</strong> 2 patents pending: edge model architecture + multi-agent prescription protocol.</div>
+    </div>
+  </div>
+
+  <!-- ══ S9: THE ASK (accelerator-friendly) ══ -->
+  <div class="slide dark ask-slide" id="s9">
+    <div class="slide-head">
+    <div class="eyebrow light">The ask</div>
+    <div class="rule white"></div>
+    <h2 class="headline white" style="max-width:780px">
+      Raising $1.5M pre-seed.<br>Path to <span class="accent">$1M ARR in 12 months.</span>
+    </h2>
+    <p class="subhead white" style="max-width:660px">Technology risk is resolved (TRL 7 to 8). Two active pilots with documented ROI. $2.1M qualified pipeline. Capital accelerates deployment velocity, not category validation.</p>
+    </div>
+
+    <!-- USE OF FUNDS -->
+    <div style="margin-top:20px;width:100%">
+      <p style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px">Use of funds &middot; 18-month runway</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:14px 16px">
+          <div style="font-size:22px;font-weight:900;color:var(--o);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">45%</div>
+          <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:white;margin-top:6px;margin-bottom:4px">Engineering &amp; Product</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5">Scale model library to 500+ asset types. Harden Edge stack for 10 to 20 concurrent deployments. Foundation models for tailings and process slurry.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:14px 16px">
+          <div style="font-size:22px;font-weight:900;color:var(--o);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">30%</div>
+          <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:white;margin-top:6px;margin-bottom:4px">GTM &amp; Sales</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5">2 enterprise AEs in Mexico + Chile. Channel motion through NVIDIA Inception, Startup Chile, MIT IU35, Founders Inc networks.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:14px 16px">
+          <div style="font-size:22px;font-weight:900;color:var(--o);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">15%</div>
+          <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:white;margin-top:6px;margin-bottom:4px">Pilot delivery</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5">Customer success team to sustain the 13:1 ROI baseline across new accounts. Reference case studies and field calibration.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:14px 16px">
+          <div style="font-size:22px;font-weight:900;color:var(--o);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">10%</div>
+          <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:white;margin-top:6px;margin-bottom:4px">G&amp;A &amp; runway</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5">Legal, compliance, infrastructure, operating runway through Q4 2027. Optionality on follow-on timing.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12-MONTH MILESTONES -->
+    <div style="margin-top:18px;width:100%">
+      <p style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px">12-month milestones</p>
+      <div style="display:flex;align-items:stretch;gap:0;width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:6px;overflow:hidden">
+        <div style="flex:1;padding:14px 18px;border-right:1px solid rgba(255,255,255,.07)">
+          <div style="font-size:20px;font-weight:900;color:white;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">6 to 10</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:6px;line-height:1.5">paying annual contracts &middot; today: 2 active pilots</div>
+        </div>
+        <div style="flex:1;padding:14px 18px;border-right:1px solid rgba(255,255,255,.07)">
+          <div style="font-size:20px;font-weight:900;color:white;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">$800K to $1.2M</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:6px;line-height:1.5">ARR &middot; today: pre-revenue, $116K documented prevented losses</div>
+        </div>
+        <div style="flex:1;padding:14px 18px;border-right:1px solid rgba(255,255,255,.07)">
+          <div style="font-size:20px;font-weight:900;color:white;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">3 verticals</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:6px;line-height:1.5">validated and replicated &middot; today: 2 in pilot</div>
+        </div>
+        <div style="flex:1;padding:14px 18px">
+          <div style="font-size:20px;font-weight:900;color:white;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums">1st US</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:6px;line-height:1.5">enterprise account closed &middot; expansion via Founders Inc network</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:14px;font-size:11px;color:rgba(255,255,255,.25)">Financials and full data room available under NDA. Open to accelerator standardized terms.</p>
+  </div>
+
+  <!-- ══ S10: CONTACT ══ -->
+  <div class="slide dark" id="s10">
+    <div class="eyebrow light">Contact</div>
+    <div class="rule white"></div>
+
+    <div style="display:grid;grid-template-columns:minmax(300px,360px) 1fr;gap:clamp(36px,5vw,80px);width:100%;flex:1;min-height:0;align-items:center;margin-top:6px">
+
+      <!-- LEFT: tight CTA column -->
+      <div style="display:flex;flex-direction:column;gap:22px;max-width:360px">
+        <h2 class="headline white" style="font-size:clamp(32px,3.6vw,52px);line-height:1.02;margin-bottom:0">
+          Let's talk.<br><span class="accent">We keep it short.</span>
+        </h2>
+        <p class="subhead white" style="font-size:14px;line-height:1.55">30-minute call. We share what we're building, where we need help. Intros welcomed.</p>
+
+        <a href="https://cal.com/madeos.ai/demo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:space-between;gap:18px;background:var(--o);color:var(--tx-0);font-size:16px;font-weight:700;text-decoration:none;padding:16px 22px;border-radius:8px;letter-spacing:-.005em;width:100%;transition:background .15s ease">
+          <span style="display:flex;align-items:center;gap:12px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Book a 30-minute call
+          </span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:var(--tx-2);line-height:1.6">
+          <a href="mailto:ger@madeos.ai" style="color:var(--tx-1);text-decoration:none;font-weight:500">ger@madeos.ai</a>
+          <a href="mailto:ramiro@madeos.ai" style="color:var(--tx-1);text-decoration:none;font-weight:500">ramiro@madeos.ai</a>
+          <a href="https://api.whatsapp.com/send/?phone=15559283918&text=Hi%2C+I%27d+like+to+talk+to+the+Made+agent&type=phone_number&app_absent=0" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;color:var(--tx-2);text-decoration:none;font-size:11.5px;font-weight:500;margin-top:4px">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+            Or chat with our AI agent on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT: product hero. Fills the column. -->
+      <div style="position:relative;width:100%;min-width:0">
+        <div style="position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.10);background:#0a0b0c;box-shadow:0 32px 100px rgba(0,0,0,.6), 0 0 0 1px rgba(216,66,0,.20), 0 0 90px -10px rgba(216,66,0,.22)">
+          <img src="platform-screenshot.png" alt="Made OS dashboard, live in production" style="display:block;width:100%;height:auto">
+          <div style="position:absolute;top:14px;left:16px;display:inline-flex;align-items:center;gap:7px;background:rgba(14,15,16,.82);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.10);border-radius:5px;padding:5px 10px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tx-0)">
+            <span style="position:relative;width:6px;height:6px"><span style="position:absolute;inset:0;border-radius:50%;background:var(--o);box-shadow:0 0 10px rgba(216,66,0,.8)"></span><span style="position:absolute;inset:-3px;border-radius:50%;border:1.5px solid rgba(216,66,0,.5);animation:livepulse 2.4s ease-out infinite"></span></span>
+            Made OS · Live
+          </div>
+        </div>
+        <p style="margin-top:16px;display:flex;align-items:center;gap:9px;color:var(--tx-2);font-size:12px;letter-spacing:.01em;line-height:1.5">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--o);opacity:.85"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>The same product running in industrial plants today, every shift.</span>
+        </p>
+      </div>
+
+    </div>
+
+    <div style="position:absolute;bottom:clamp(32px,4vh,56px);left:clamp(40px,7vw,120px);right:clamp(40px,7vw,120px);display:flex;justify-content:space-between;align-items:center;z-index:1">
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.2)">NVIDIA Inception</span>
+        <span style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.2)">MIT Innovators U35 LATAM</span>
+        <span style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.2)">Founders Inc</span>
+        <span style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.2)">Startup Chile BIG 10</span>
+      </div>
+      <span style="font-size:10px;color:rgba(255,255,255,.15);letter-spacing:.06em;text-transform:uppercase">Confidential · 2026</span>
+    </div>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- ── Nav ── -->
+<nav class="nav" id="nav">
+  <button class="nav-btn" id="prev-btn" aria-label="Previous slide">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 2L4 6l4 4"/></svg>
+  </button>
+  <div class="nav-dots" id="nav-dots"></div>
+  <button class="nav-btn" id="next-btn" aria-label="Next slide">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 2l4 4-4 4"/></svg>
+  </button>
+  <span class="slide-counter" id="counter">1 / 10</span>
+</nav>
+
+<script>
+
+var _PIN = 'NDUwODYx';
+function doPin() {
+  var pin = document.getElementById('pin-input').value.trim();
+  if (atob(_PIN) === pin) {
+    document.getElementById('pin-screen').style.display = 'none';
+    try { sessionStorage.setItem('mvc_accel_pin_ok', '1'); } catch(e) {}
+    try { posthog.capture('vc_unlocked', { deck: 'vc', via: 'pin_input' }); } catch(e) {}
+  } else {
+    try { posthog.capture('vc_pin_failed', { deck: 'vc' }); } catch(e) {}
+    var inp = document.getElementById('pin-input');
+    document.getElementById('pin-error').style.display = 'block';
+    inp.classList.add('shake');
+    setTimeout(function(){ inp.classList.remove('shake'); }, 400);
+    inp.select();
+  }
+}
+try {
+  var _qs = new URLSearchParams(window.location.search);
+  var _urlPin = _qs.get('pin');
+  if (_urlPin && _urlPin === atob(_PIN)) {
+    sessionStorage.setItem('mvc_accel_pin_ok', '1');
+  }
+  if (sessionStorage.getItem('mvc_accel_pin_ok') === '1' || _urlPin === atob(_PIN)) {
+    document.getElementById('pin-screen').style.display = 'none';
+    try {
+      posthog.capture('vc_unlocked', {
+        deck: 'vc',
+        via: _urlPin === atob(_PIN) ? 'url_param' : 'session_resumed'
+      });
+    } catch(e) {}
+    if (_qs.get('print') === '1') {
+      window.addEventListener('load', function(){ setTimeout(function(){ window.print(); }, 800); });
+    }
+  } else {
+    try { posthog.capture('vc_gate_shown', { deck: 'vc' }); } catch(e) {}
+    document.getElementById('pin-input').focus();
+  }
+} catch(e) {}
+document.getElementById('pin-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') { e.preventDefault(); doPin(); }
+});
+document.getElementById('pin-input').addEventListener('input', function() {
+  document.getElementById('pin-error').style.display = 'none';
+});
+
+(function() {
+  var slides  = Array.from(document.querySelectorAll('.slide'));
+  var dots    = document.getElementById('nav-dots');
+  var counter = document.getElementById('counter');
+  var current = 0;
+  var total   = slides.length;
+
+  slides.forEach(function(_, i) {
+    var d = document.createElement('div');
+    d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', function() { goTo(i); });
+    dots.appendChild(d);
+  });
+
+  function goTo(n) {
+    if (n < 0 || n >= total) return;
+    slides[current].classList.remove('active');
+    slides[current].classList.add('prev');
+    var prev = current;
+    current = n;
+    slides[current].classList.remove('prev');
+    slides[current].classList.add('active');
+    setTimeout(function() { slides[prev].classList.remove('prev'); }, 380);
+    dots.querySelectorAll('.nav-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+    counter.textContent = (current + 1) + ' / ' + total;
+  }
+
+  document.getElementById('next-btn').addEventListener('click', function() { goTo(current + 1); });
+  document.getElementById('prev-btn').addEventListener('click', function() { goTo(current - 1); });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); goTo(current - 1); }
+  });
+
+  var tx = 0;
+  document.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend',   function(e) {
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
+  });
+
+
+  /* ── PostHog tracking ───────────────────────────────── */
+  var DECK_ID = 'vc-accel';
+  var visitKey = 'mademo_vc_accel_visits';
+  var visitCount = 1;
+  try {
+    visitCount = parseInt(localStorage.getItem(visitKey) || '0') + 1;
+    localStorage.setItem(visitKey, visitCount);
+  } catch(e) {}
+  try {
+    posthog.capture('vc_visited', { deck: DECK_ID, returning: visitCount > 1, visit_count: visitCount });
+  } catch(e) {}
+
+  // slide_viewed
+  var _vcGoTo = goTo;
+  goTo = function(n) {
+    var prev = current;
+    _vcGoTo(n);
+    if (current !== prev) {
+      try {
+        var slideId = slides[current].id || ('slide_' + (current + 1));
+        posthog.capture('slide_viewed', { deck: DECK_ID, slide_index: current + 1, slide_id: slideId, total_slides: total });
+      } catch(e) {}
+    }
+  };
+
+  // CTAs: cal.com (book a call), email links, WhatsApp
+  document.querySelectorAll('a[href*="cal.com/madeos.ai/demo"]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      try { posthog.capture('cta_clicked', { deck: DECK_ID, cta: 'book_call' }); } catch(e) {}
+    });
+  });
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      try { posthog.capture('cta_clicked', { deck: DECK_ID, cta: 'email', target: (el.getAttribute('href')||'').replace('mailto:', '') }); } catch(e) {}
+    });
+  });
+  document.querySelectorAll('a[href*="whatsapp.com"]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      try { posthog.capture('cta_clicked', { deck: DECK_ID, cta: 'whatsapp_agent' }); } catch(e) {}
+    });
+  });
+  document.querySelectorAll('a[href*="/anon/"]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      try { posthog.capture('cta_clicked', { deck: DECK_ID, cta: 'see_client_proposal' }); } catch(e) {}
+    });
+  });
+
+  // time_spent
+  var activeMs = 0, lastTick = Date.now();
+  setInterval(function() {
+    if (document.visibilityState === 'visible') activeMs += Date.now() - lastTick;
+    lastTick = Date.now();
+    if (activeMs >= 60000) {
+      try { posthog.capture('time_spent', { deck: DECK_ID, seconds: Math.round(activeMs/1000), checkpoint: true }); } catch(e) {}
+      activeMs = 0;
+    }
+  }, 10000);
+  window.addEventListener('beforeunload', function() {
+    if (activeMs > 5000) try { posthog.capture('time_spent', { deck: DECK_ID, seconds: Math.round(activeMs/1000) }); } catch(e) {}
+  });
+  /* ── /PostHog tracking ─────────────────────────────── */
+
+  slides[0].classList.add('active');
+  document.getElementById('deck').style.visibility = 'visible';
+})();
+</script>
+</body>
+</html>
