@@ -122,6 +122,22 @@
     text-transform: uppercase;
   }
 
+  /* ── Lang toggle ── */
+  .lang-toggle {
+    display: inline-flex; gap: 2px; padding: 2px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+  .lang-btn {
+    background: none; border: none; cursor: pointer;
+    font-family: var(--font); font-size: 10.5px; font-weight: 700;
+    letter-spacing: .05em; color: var(--gray-l);
+    padding: 4px 10px; border-radius: 12px;
+    transition: background .12s, color .12s;
+  }
+  .lang-btn.active { background: var(--white); color: var(--orange); box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  .lang-btn:hover:not(.active) { color: var(--dark); }
+
   /* ── HUB ── */
   #hub-screen { display: none; }
 
@@ -314,23 +330,23 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </svg>
     </div>
 
-    <div class="ltitle">Acceso restringido</div>
-    <div class="lsub">Panel de propuestas comerciales</div>
+    <div class="ltitle" data-i18n="ltitle">Acceso restringido</div>
+    <div class="lsub" data-i18n="lsub">Panel de propuestas comerciales</div>
 
     <div class="lfield">
-      <label for="fu">Usuario</label>
+      <label for="fu" data-i18n="lbl_user">Usuario</label>
       <input id="fu" type="text" autocomplete="username" spellcheck="false"
-             autocorrect="off" autocapitalize="off" placeholder="usuario">
+             autocorrect="off" autocapitalize="off" placeholder="usuario" data-i18n-placeholder="ph_user">
     </div>
     <div class="lfield">
-      <label for="fp">Contraseña</label>
+      <label for="fp" data-i18n="lbl_pass">Contraseña</label>
       <input id="fp" type="password" autocomplete="current-password" placeholder="••••••••">
     </div>
 
-    <button class="lbtn" id="lbtn" onclick="doLogin()">Ingresar</button>
+    <button class="lbtn" id="lbtn" onclick="doLogin()" data-i18n="btn_login">Ingresar</button>
 
-    <div class="lerr" id="lerr">Usuario o contraseña incorrectos</div>
-    <div class="lfooter">Made OS · Confidencial</div>
+    <div class="lerr" id="lerr" data-i18n="err_login">Usuario o contraseña incorrectos</div>
+    <div class="lfooter" data-i18n="lfooter">Made OS · Confidencial</div>
 
   </div>
 </div>
@@ -348,38 +364,40 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     </svg>
     <div class="topbar-right">
       <span class="topbar-user" id="hub-user"></span>
-      <button class="logout-btn" onclick="doLogout()">Cerrar sesión</button>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button class="lang-btn" id="btn-en" type="button">EN</button>
+        <button class="lang-btn active" id="btn-es" type="button">ES</button>
+      </div>
+      <button class="logout-btn" onclick="doLogout()" data-i18n="logout">Cerrar sesión</button>
     </div>
   </div>
 
   <div class="hero">
-    <div class="hero-eyebrow">Sistema de Propuestas</div>
-    <h1>Inteligencia artificial para<br>manufactura sin pérdidas</h1>
-    <p>Propuestas comerciales personalizadas para cada empresa objetivo, con investigación de operaciones, benchmarks financieros y ROI específico al sector.</p>
+    <div class="hero-eyebrow" data-i18n="hero_eyebrow">Sistema de Propuestas</div>
+    <h1 data-i18n="hero_h1">Inteligencia artificial para<br>manufactura sin pérdidas</h1>
+    <p data-i18n="hero_p">Propuestas comerciales personalizadas para cada empresa objetivo, con investigación de operaciones, benchmarks financieros y ROI específico al sector.</p>
   </div>
 
   <!-- ══ PIPELINE B2B KANBAN ══ -->
   <div class="pipe-section">
-    <div class="pipe-section-label">Pipeline · Sistema de Propuestas</div>
+    <div class="pipe-section-label" data-i18n="pipe_section_label">Pipeline · Sistema de Propuestas</div>
 
     <div class="pipe-health">
       <div class="pipe-stat">
         <span class="pipe-stat-n">11</span>
-        <span class="pipe-stat-l">Deals totales</span>
+        <span class="pipe-stat-l" data-i18n="pipe_stat1">Deals totales</span>
       </div>
       <div class="pipe-divider"></div>
       <div class="pipe-stat">
         <span class="pipe-stat-n">~$1.7M</span>
-        <span class="pipe-stat-l">Pipeline total</span>
+        <span class="pipe-stat-l" data-i18n="pipe_stat2">Pipeline total</span>
       </div>
       <div class="pipe-divider"></div>
       <div class="pipe-stat">
         <span class="pipe-stat-n">$632K</span>
-        <span class="pipe-stat-l">En propuesta</span>
+        <span class="pipe-stat-l" data-i18n="pipe_stat3">En propuesta</span>
       </div>
-      <div class="pipe-alert-badge">
-        ⚠ Sesión técnica vacía · hacer seguimiento a propuestas enviadas
-      </div>
+      <div class="pipe-alert-badge" data-i18n="pipe_alert">⚠ Sesión técnica vacía · hacer seguimiento a propuestas enviadas</div>
     </div>
 
     <div class="kanban-wrap">
@@ -388,82 +406,82 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <!-- 1 · Identificado -->
         <div class="kb-col" data-stage="identificado">
           <div class="kb-col-head">
-            <span class="kb-stage-name">Identificado</span>
+            <span class="kb-stage-name" data-i18n="stage_identificado">Identificado</span>
             <span class="kb-count">4</span>
           </div>
 
           <div class="kb-card kb-card-static">
             <div class="kb-company">Lala</div>
-            <div class="kb-industry">Lácteos · Bebidas · México</div>
+            <div class="kb-industry" data-i18n="ind_lala">Lácteos · Bebidas · México</div>
             <div class="kb-badges"><span class="kb-badge kb-badge-t1">Tier 1</span></div>
-            <div class="kb-arr-label">ARR est.</div>
+            <div class="kb-arr-label" data-i18n="label_arr">ARR est.</div>
             <div class="kb-arr">~$150K</div>
           </div>
 
           <div class="kb-card kb-card-static">
             <div class="kb-company">CCU</div>
-            <div class="kb-industry">Cerveza · Bebidas · Chile</div>
+            <div class="kb-industry" data-i18n="ind_ccu">Cerveza · Bebidas · Chile</div>
             <div class="kb-badges"><span class="kb-badge kb-badge-t1">Tier 1</span></div>
-            <div class="kb-arr-label">ARR est.</div>
+            <div class="kb-arr-label" data-i18n="label_arr">ARR est.</div>
             <div class="kb-arr">~$120K</div>
           </div>
 
           <div class="kb-card kb-card-static">
             <div class="kb-company">Carozzi</div>
-            <div class="kb-industry">Pasta · Alimentos · Chile/LATAM</div>
+            <div class="kb-industry" data-i18n="ind_carozzi">Pasta · Alimentos · Chile/LATAM</div>
             <div class="kb-badges"><span class="kb-badge kb-badge-t1">Tier 1</span></div>
-            <div class="kb-arr-label">ARR est.</div>
+            <div class="kb-arr-label" data-i18n="label_arr">ARR est.</div>
             <div class="kb-arr">~$90K</div>
           </div>
 
           <div class="kb-card kb-card-static">
             <div class="kb-company">Bayer</div>
-            <div class="kb-industry">Ciencias de la vida · Global</div>
+            <div class="kb-industry" data-i18n="ind_bayer">Ciencias de la vida · Global</div>
             <div class="kb-badges"><span class="kb-badge kb-badge-t3">Tier 3</span></div>
-            <div class="kb-arr-label">Ciclo estimado</div>
-            <div class="kb-arr" style="font-size:11px;color:var(--gray-l);font-weight:500">9–18 meses</div>
+            <div class="kb-arr-label" data-i18n="label_cycle">Ciclo estimado</div>
+            <div class="kb-arr" style="font-size:11px;color:var(--gray-l);font-weight:500" data-i18n="val_9_18m">9–18 meses</div>
           </div>
         </div>
 
         <!-- 2 · Calificando -->
         <div class="kb-col" data-stage="calificando">
           <div class="kb-col-head">
-            <span class="kb-stage-name">Calificando</span>
+            <span class="kb-stage-name" data-i18n="stage_calificando">Calificando</span>
             <span class="kb-count">4</span>
           </div>
 
           <div class="kb-card kb-card-static">
             <div class="kb-company">Coca-Cola Andina</div>
-            <div class="kb-industry">Embotellado · Bebidas · Multi-país</div>
+            <div class="kb-industry" data-i18n="ind_ccandina">Embotellado · Bebidas · Multi-país</div>
             <div class="kb-badges"><span class="kb-badge kb-badge-t1">Tier 1</span></div>
-            <div class="kb-arr-label">ARR est.</div>
+            <div class="kb-arr-label" data-i18n="label_arr">ARR est.</div>
             <div class="kb-arr">~$200K</div>
           </div>
 
           <div class="kb-card kb-card-static">
             <div class="kb-company">CMPC</div>
-            <div class="kb-industry">Celulosa · Papel · Tissue · Chile</div>
+            <div class="kb-industry" data-i18n="ind_cmpc">Celulosa · Papel · Tissue · Chile</div>
             <div class="kb-badges"><span class="kb-badge kb-badge-t1">Tier 1</span></div>
-            <div class="kb-arr-label">ARR est.</div>
+            <div class="kb-arr-label" data-i18n="label_arr">ARR est.</div>
             <div class="kb-arr">~$180K</div>
           </div>
 
           <div class="kb-card kb-card-static">
             <div class="kb-company">Agrosuper</div>
-            <div class="kb-industry">Avicultura · Porcino · Chile</div>
+            <div class="kb-industry" data-i18n="ind_agrosuper">Avicultura · Porcino · Chile</div>
             <div class="kb-badges"><span class="kb-badge kb-badge-t1">Tier 1</span></div>
-            <div class="kb-arr-label">ARR est.</div>
+            <div class="kb-arr-label" data-i18n="label_arr">ARR est.</div>
             <div class="kb-arr">~$150K</div>
           </div>
 
           <a href="cyt/" class="kb-card">
             <div class="kb-company">Concha y Toro</div>
-            <div class="kb-industry">Vitivinícola · Embotellado · Chile</div>
+            <div class="kb-industry" data-i18n="ind_cyt">Vitivinícola · Embotellado · Chile</div>
             <div class="kb-badges">
               <span class="kb-badge kb-badge-t1">Tier 1</span>
-              <span class="kb-badge kb-badge-draft">En redacción</span>
+              <span class="kb-badge kb-badge-draft" data-i18n="badge_draft">En redacción</span>
             </div>
-            <div class="kb-arr-label">ARR est.</div>
+            <div class="kb-arr-label" data-i18n="label_arr">ARR est.</div>
             <div class="kb-arr">~$168K</div>
           </a>
         </div>
@@ -471,101 +489,101 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <!-- 3 · Propuesta enviada -->
         <div class="kb-col" data-stage="propuesta">
           <div class="kb-col-head">
-            <span class="kb-stage-name">Propuesta enviada</span>
+            <span class="kb-stage-name" data-i18n="stage_propuesta">Propuesta enviada</span>
             <span class="kb-count">3</span>
           </div>
 
           <a href="repsol/" class="kb-card">
             <div class="kb-company">Repsol · La Pampilla</div>
-            <div class="kb-industry">Refinación · Petroquímica · Perú</div>
+            <div class="kb-industry" data-i18n="ind_repsol">Refinación · Petroquímica · Perú</div>
             <div class="kb-badges">
               <span class="kb-badge kb-badge-t1">Tier 1</span>
-              <span class="kb-badge kb-badge-review">Enviada</span>
+              <span class="kb-badge kb-badge-review" data-i18n="badge_sent">Enviada</span>
             </div>
-            <div class="kb-arr-label">Inversión año 1</div>
+            <div class="kb-arr-label" data-i18n="label_y1">Inversión año 1</div>
             <div class="kb-arr">~$460K</div>
-            <div class="kb-sub">ROI: 10:1–30:1 · Abr 2026</div>
+            <div class="kb-sub" data-i18n="sub_repsol">ROI: 10:1–30:1 · Abr 2026</div>
           </a>
 
           <a href="penoles/" class="kb-card">
             <div class="kb-company">Grupo Peñoles</div>
-            <div class="kb-industry">Minería · Oro · Plata · México</div>
+            <div class="kb-industry" data-i18n="ind_penoles">Minería · Oro · Plata · México</div>
             <div class="kb-badges">
               <span class="kb-badge kb-badge-t1">Tier 1</span>
-              <span class="kb-badge kb-badge-review">Enviada</span>
+              <span class="kb-badge kb-badge-review" data-i18n="badge_sent">Enviada</span>
             </div>
-            <div class="kb-arr-label">Inversión año 1</div>
+            <div class="kb-arr-label" data-i18n="label_y1">Inversión año 1</div>
             <div class="kb-arr">~$127K</div>
-            <div class="kb-sub">ROI: 1,100%–3,500% · Abr 2026</div>
+            <div class="kb-sub" data-i18n="sub_penoles">ROI: 1,100%–3,500% · Abr 2026</div>
           </a>
 
           <a href="minsa/" class="kb-card">
             <div class="kb-company">Minsa</div>
-            <div class="kb-industry">Masa harina · Molienda · México</div>
+            <div class="kb-industry" data-i18n="ind_minsa">Masa harina · Molienda · México</div>
             <div class="kb-badges">
               <span class="kb-badge kb-badge-t1">Tier 1</span>
-              <span class="kb-badge kb-badge-review">Enviada</span>
+              <span class="kb-badge kb-badge-review" data-i18n="badge_sent">Enviada</span>
             </div>
-            <div class="kb-arr-label">Inversión año 1</div>
+            <div class="kb-arr-label" data-i18n="label_y1">Inversión año 1</div>
             <div class="kb-arr">~$45K</div>
-            <div class="kb-sub">ROI: 300%–700% · Abr 2026</div>
+            <div class="kb-sub" data-i18n="sub_minsa">ROI: 300%–700% · Abr 2026</div>
           </a>
         </div>
 
         <!-- 4 · Sesión técnica (vacía) -->
         <div class="kb-col" data-stage="sesion">
           <div class="kb-col-head">
-            <span class="kb-stage-name">Sesión técnica</span>
+            <span class="kb-stage-name" data-i18n="stage_sesion">Sesión técnica</span>
             <span class="kb-count">0</span>
           </div>
           <div class="kb-empty">
             <div class="kb-empty-icon">⚠</div>
-            <div class="kb-empty-text">Sin deals en esta etapa</div>
-            <div class="kb-empty-alert">Priorizar seguimiento<br>con Repsol, Peñoles o Minsa</div>
+            <div class="kb-empty-text" data-i18n="empty_sesion_text">Sin deals en esta etapa</div>
+            <div class="kb-empty-alert" data-i18n="empty_sesion_alert">Priorizar seguimiento<br>con Repsol, Peñoles o Minsa</div>
           </div>
         </div>
 
         <!-- 5 · Piloto activo -->
         <div class="kb-col" data-stage="piloto">
           <div class="kb-col-head">
-            <span class="kb-stage-name">Piloto activo</span>
+            <span class="kb-stage-name" data-i18n="stage_piloto">Piloto activo</span>
             <span class="kb-count">2</span>
           </div>
 
           <a href="https://www.heavenward.cl/" target="_blank" rel="noopener" class="kb-card kb-card-static">
             <div class="kb-company">HeavenWard</div>
-            <div class="kb-industry">Transporte vertical · Ascensores · Chile/Argentina</div>
+            <div class="kb-industry" data-i18n="ind_heavenward">Transporte vertical · Ascensores · Chile/Argentina</div>
             <div class="kb-badges">
               <span class="kb-badge kb-badge-t1">Tier 1</span>
-              <span class="kb-badge kb-badge-impl">Agendar sesión de implementación</span>
+              <span class="kb-badge kb-badge-impl" data-i18n="badge_impl">Agendar sesión de implementación</span>
             </div>
-            <div class="kb-arr-label">Estado</div>
-            <div class="kb-arr" style="font-size:11.5px;color:var(--gray);font-weight:600">Pre-implementación</div>
-            <div class="kb-sub">ARR comprometida ~$60K · arranque pendiente</div>
+            <div class="kb-arr-label" data-i18n="label_status">Estado</div>
+            <div class="kb-arr" style="font-size:11.5px;color:var(--gray);font-weight:600" data-i18n="val_pre_impl">Pre-implementación</div>
+            <div class="kb-sub" data-i18n="sub_heavenward">ARR comprometida ~$60K · arranque pendiente</div>
           </a>
 
           <div class="kb-card kb-card-static">
             <div class="kb-company">Maderera Mich</div>
-            <div class="kb-industry">Procesamiento de madera · Manufactura · México</div>
+            <div class="kb-industry" data-i18n="ind_maderera">Procesamiento de madera · Manufactura · México</div>
             <div class="kb-badges">
               <span class="kb-badge kb-badge-partner">Design Partner</span>
-              <span class="kb-badge kb-badge-live">En operación</span>
+              <span class="kb-badge kb-badge-live" data-i18n="badge_live">En operación</span>
             </div>
-            <div class="kb-arr-label">Eventos Clase A · Días activo</div>
+            <div class="kb-arr-label" data-i18n="label_pilot_metrics">Eventos Clase A · Días activo</div>
             <div class="kb-arr">3 · 60d</div>
-            <div class="kb-sub">Tarifa Design Partner · evaluación a contrato anual: Q3 2026</div>
+            <div class="kb-sub" data-i18n="sub_maderera">Tarifa Design Partner · evaluación a contrato anual: Q3 2026</div>
           </div>
         </div>
 
         <!-- 6 · Contrato anual -->
         <div class="kb-col" data-stage="contrato">
           <div class="kb-col-head">
-            <span class="kb-stage-name">Contrato anual</span>
+            <span class="kb-stage-name" data-i18n="stage_contrato">Contrato anual</span>
             <span class="kb-count">0</span>
           </div>
           <div class="kb-empty">
             <div class="kb-empty-icon">·</div>
-            <div class="kb-empty-text">Sin contratos firmados aún</div>
+            <div class="kb-empty-text" data-i18n="empty_contrato_text">Sin contratos firmados aún</div>
           </div>
         </div>
 
@@ -575,25 +593,189 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
   <!-- ── ANALYTICS SECTION ── -->
   <div class="proposals" style="padding-top:0" id="analytics-section">
-    <div class="proposals-label">Analytics de propuestas</div>
+    <div class="proposals-label" data-i18n="analytics_label">Analytics de propuestas</div>
     <div id="ph-embed-wrap" style="border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--white);">
       <div id="ph-placeholder" style="padding:32px 28px;display:flex;flex-direction:column;gap:10px;align-items:flex-start;">
-        <div style="font-size:13px;font-weight:700;color:var(--black)">Cargando analytics...</div>
-        <div style="font-size:12.5px;color:var(--gray);line-height:1.65;max-width:520px">Dashboard de PostHog conectado. Si no carga, verifica que el dashboard sea público en PostHog.</div>
-        <a href="https://us.posthog.com" target="_blank" rel="noopener" style="font-size:12px;font-weight:600;color:var(--orange);text-decoration:none;margin-top:4px">Ir a PostHog &rarr;</a>
+        <div style="font-size:13px;font-weight:700;color:var(--black)" data-i18n="analytics_loading">Cargando analytics...</div>
+        <div style="font-size:12.5px;color:var(--gray);line-height:1.65;max-width:520px" data-i18n="analytics_desc">Dashboard de PostHog conectado. Si no carga, verifica que el dashboard sea público en PostHog.</div>
+        <a href="https://us.posthog.com" target="_blank" rel="noopener" style="font-size:12px;font-weight:600;color:var(--orange);text-decoration:none;margin-top:4px" data-i18n="analytics_link">Ir a PostHog &rarr;</a>
       </div>
       <iframe id="ph-iframe" data-ph-src="https://us.posthog.com/embedded/_uSOqrpnGybtiASB09dLEbl1ePq8PQ" src="" style="display:none;width:100%;height:500px;border:none;" loading="lazy" title="Analytics de propuestas" sandbox="allow-scripts allow-same-origin allow-popups" allowfullscreen></iframe>
     </div>
   </div>
 
   <div class="hub-footer">
-    <span>Made OS · Sistema de Propuestas Comerciales</span>
-    <span>CONFIDENCIAL · demo.madeos.ai</span>
+    <span data-i18n="footer_left">Made OS · Sistema de Propuestas Comerciales</span>
+    <span data-i18n="footer_right">CONFIDENCIAL · demo.madeos.ai</span>
   </div>
 </div>
 
 
 <script>
+/* ── i18n ── */
+var T = {
+  es: {
+    ltitle: 'Acceso restringido',
+    lsub: 'Panel de propuestas comerciales',
+    lbl_user: 'Usuario',
+    lbl_pass: 'Contraseña',
+    ph_user: 'usuario',
+    btn_login: 'Ingresar',
+    err_login: 'Usuario o contraseña incorrectos',
+    lfooter: 'Made OS · Confidencial',
+    logout: 'Cerrar sesión',
+    hero_eyebrow: 'Sistema de Propuestas',
+    hero_h1: 'Inteligencia artificial para<br>manufactura sin pérdidas',
+    hero_p: 'Propuestas comerciales personalizadas para cada empresa objetivo, con investigación de operaciones, benchmarks financieros y ROI específico al sector.',
+    pipe_section_label: 'Pipeline · Sistema de Propuestas',
+    pipe_stat1: 'Deals totales',
+    pipe_stat2: 'Pipeline total',
+    pipe_stat3: 'En propuesta',
+    pipe_alert: '⚠ Sesión técnica vacía · hacer seguimiento a propuestas enviadas',
+    stage_identificado: 'Identificado',
+    stage_calificando: 'Calificando',
+    stage_propuesta: 'Propuesta enviada',
+    stage_sesion: 'Sesión técnica',
+    stage_piloto: 'Piloto activo',
+    stage_contrato: 'Contrato anual',
+    ind_lala: 'Lácteos · Bebidas · México',
+    ind_ccu: 'Cerveza · Bebidas · Chile',
+    ind_carozzi: 'Pasta · Alimentos · Chile/LATAM',
+    ind_bayer: 'Ciencias de la vida · Global',
+    ind_ccandina: 'Embotellado · Bebidas · Multi-país',
+    ind_cmpc: 'Celulosa · Papel · Tissue · Chile',
+    ind_agrosuper: 'Avicultura · Porcino · Chile',
+    ind_cyt: 'Vitivinícola · Embotellado · Chile',
+    ind_repsol: 'Refinación · Petroquímica · Perú',
+    ind_penoles: 'Minería · Oro · Plata · México',
+    ind_minsa: 'Masa harina · Molienda · México',
+    ind_heavenward: 'Transporte vertical · Ascensores · Chile/Argentina',
+    ind_maderera: 'Procesamiento de madera · Manufactura · México',
+    badge_draft: 'En redacción',
+    badge_sent: 'Enviada',
+    badge_impl: 'Agendar sesión de implementación',
+    badge_live: 'En operación',
+    label_arr: 'ARR est.',
+    label_cycle: 'Ciclo estimado',
+    label_y1: 'Inversión año 1',
+    label_status: 'Estado',
+    label_pilot_metrics: 'Eventos Clase A · Días activo',
+    val_9_18m: '9–18 meses',
+    val_pre_impl: 'Pre-implementación',
+    sub_repsol: 'ROI: 10:1–30:1 · Abr 2026',
+    sub_penoles: 'ROI: 1,100%–3,500% · Abr 2026',
+    sub_minsa: 'ROI: 300%–700% · Abr 2026',
+    sub_heavenward: 'ARR comprometida ~$60K · arranque pendiente',
+    sub_maderera: 'Tarifa Design Partner · evaluación a contrato anual: Q3 2026',
+    empty_sesion_text: 'Sin deals en esta etapa',
+    empty_sesion_alert: 'Priorizar seguimiento<br>con Repsol, Peñoles o Minsa',
+    empty_contrato_text: 'Sin contratos firmados aún',
+    analytics_label: 'Analytics de propuestas',
+    analytics_loading: 'Cargando analytics...',
+    analytics_desc: 'Dashboard de PostHog conectado. Si no carga, verifica que el dashboard sea público en PostHog.',
+    analytics_link: 'Ir a PostHog &rarr;',
+    footer_left: 'Made OS · Sistema de Propuestas Comerciales',
+    footer_right: 'CONFIDENCIAL · demo.madeos.ai'
+  },
+  en: {
+    ltitle: 'Restricted access',
+    lsub: 'Commercial proposals dashboard',
+    lbl_user: 'Username',
+    lbl_pass: 'Password',
+    ph_user: 'username',
+    btn_login: 'Sign in',
+    err_login: 'Incorrect username or password',
+    lfooter: 'Made OS · Confidential',
+    logout: 'Sign out',
+    hero_eyebrow: 'Proposal System',
+    hero_h1: 'Artificial intelligence for<br>loss-free manufacturing',
+    hero_p: 'Personalized commercial proposals for each target account, with operations research, financial benchmarks, and sector-specific ROI.',
+    pipe_section_label: 'Pipeline · Proposal System',
+    pipe_stat1: 'Total deals',
+    pipe_stat2: 'Total pipeline',
+    pipe_stat3: 'In proposal',
+    pipe_alert: '⚠ Empty technical session · follow up on sent proposals',
+    stage_identificado: 'Identified',
+    stage_calificando: 'Qualifying',
+    stage_propuesta: 'Proposal sent',
+    stage_sesion: 'Technical session',
+    stage_piloto: 'Active pilot',
+    stage_contrato: 'Annual contract',
+    ind_lala: 'Dairy · Beverages · Mexico',
+    ind_ccu: 'Beer · Beverages · Chile',
+    ind_carozzi: 'Pasta · Food · Chile/LATAM',
+    ind_bayer: 'Life sciences · Global',
+    ind_ccandina: 'Bottling · Beverages · Multi-country',
+    ind_cmpc: 'Pulp · Paper · Tissue · Chile',
+    ind_agrosuper: 'Poultry · Pork · Chile',
+    ind_cyt: 'Winemaking · Bottling · Chile',
+    ind_repsol: 'Refining · Petrochemicals · Peru',
+    ind_penoles: 'Mining · Gold · Silver · Mexico',
+    ind_minsa: 'Corn masa · Milling · Mexico',
+    ind_heavenward: 'Vertical transport · Elevators · Chile/Argentina',
+    ind_maderera: 'Wood processing · Manufacturing · Mexico',
+    badge_draft: 'Drafting',
+    badge_sent: 'Sent',
+    badge_impl: 'Schedule implementation session',
+    badge_live: 'Live',
+    label_arr: 'Est. ARR',
+    label_cycle: 'Estimated cycle',
+    label_y1: 'Year 1 investment',
+    label_status: 'Status',
+    label_pilot_metrics: 'Class A events · Days active',
+    val_9_18m: '9–18 months',
+    val_pre_impl: 'Pre-implementation',
+    sub_repsol: 'ROI: 10:1–30:1 · Apr 2026',
+    sub_penoles: 'ROI: 1,100%–3,500% · Apr 2026',
+    sub_minsa: 'ROI: 300%–700% · Apr 2026',
+    sub_heavenward: 'Committed ARR ~$60K · pending kickoff',
+    sub_maderera: 'Design Partner rate · annual contract evaluation: Q3 2026',
+    empty_sesion_text: 'No deals at this stage',
+    empty_sesion_alert: 'Prioritize follow-up<br>with Repsol, Peñoles or Minsa',
+    empty_contrato_text: 'No signed contracts yet',
+    analytics_label: 'Proposal analytics',
+    analytics_loading: 'Loading analytics...',
+    analytics_desc: 'Connected PostHog dashboard. If it does not load, verify the dashboard is set to public in PostHog.',
+    analytics_link: 'Go to PostHog &rarr;',
+    footer_left: 'Made OS · Commercial Proposal System',
+    footer_right: 'CONFIDENTIAL · demo.madeos.ai'
+  }
+};
+
+var currentLang = 'es';
+try { var stored = localStorage.getItem('mauth1_lang'); if (stored === 'en' || stored === 'es') currentLang = stored; } catch(e) {}
+
+function setLang(lang) {
+  if (!T[lang]) return;
+  currentLang = lang;
+  try { localStorage.setItem('mauth1_lang', lang); } catch(e) {}
+  document.documentElement.lang = lang;
+  // textual / innerHTML elements
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var k = el.getAttribute('data-i18n');
+    if (T[lang][k] !== undefined) el.innerHTML = T[lang][k];
+  });
+  // placeholder elements
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+    var k = el.getAttribute('data-i18n-placeholder');
+    if (T[lang][k] !== undefined) el.setAttribute('placeholder', T[lang][k]);
+  });
+  // toggle button active state
+  var btnEn = document.getElementById('btn-en');
+  var btnEs = document.getElementById('btn-es');
+  if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+  if (btnEs) btnEs.classList.toggle('active', lang === 'es');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var btnEn = document.getElementById('btn-en');
+  var btnEs = document.getElementById('btn-es');
+  if (btnEn) btnEn.addEventListener('click', function() { setLang('en'); });
+  if (btnEs) btnEs.addEventListener('click', function() { setLang('es'); });
+  setLang(currentLang);
+});
+
+
 var SK = 'mauth1';
 
 function _c(u, p) {
