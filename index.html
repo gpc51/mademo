@@ -209,6 +209,27 @@
     display: flex; justify-content: space-between; font-size: 11px; color: var(--gray-l);
   }
 
+  /* ── Follow-up semáforo ── */
+  .kb-fu {
+    display: flex; align-items: center; gap: 6px;
+    margin-top: 8px; padding-top: 8px;
+    border-top: 1px dashed var(--border);
+    font-size: 10px; font-weight: 600; letter-spacing: .02em;
+  }
+  .kb-fu-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .kb-fu-green  { color: #15803d; }
+  .kb-fu-green  .kb-fu-dot { background: #16a34a; box-shadow: 0 0 0 2px rgba(22,163,74,.18); }
+  .kb-fu-amber  { color: #a16207; }
+  .kb-fu-amber  .kb-fu-dot { background: #eab308; box-shadow: 0 0 0 2px rgba(234,179,8,.18); }
+  .kb-fu-orange { color: #c2410c; }
+  .kb-fu-orange .kb-fu-dot { background: #ea580c; box-shadow: 0 0 0 2px rgba(234,88,12,.18); }
+  .kb-fu-red    { color: #b91c1c; }
+  .kb-fu-red    .kb-fu-dot {
+    background: #dc2626; box-shadow: 0 0 0 2px rgba(220,38,38,.20);
+    animation: pulse-red 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse-red { 0%,100% { opacity: 1; } 50% { opacity: .5; } }
+
   /* ── PIPELINE KANBAN ── */
   .pipe-section { padding: 0 64px 72px; }
   .pipe-section-label { font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gray-l); margin-bottom: 20px; }
@@ -395,9 +416,9 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <div class="pipe-divider"></div>
       <div class="pipe-stat">
         <span class="pipe-stat-n">$632K</span>
-        <span class="pipe-stat-l" data-i18n="pipe_stat3">En propuesta</span>
+        <span class="pipe-stat-l" data-i18n="pipe_stat3">En evaluación</span>
       </div>
-      <div class="pipe-alert-badge" data-i18n="pipe_alert">⚠ Sesión técnica vacía · hacer seguimiento a propuestas enviadas</div>
+      <div class="pipe-alert-badge" data-i18n="pipe_alert">⚠ Repsol en estado crítico · 28 días sin contacto</div>
     </div>
 
     <div class="kanban-wrap">
@@ -456,6 +477,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <div class="kb-badges"><span class="kb-badge kb-badge-t1">Tier 1</span></div>
             <div class="kb-arr-label" data-i18n="label_arr">ARR est.</div>
             <div class="kb-arr">~$200K</div>
+            <div class="kb-fu kb-fu-amber"><span class="kb-fu-dot"></span><span data-i18n="fu_ccandina">Hace 14 días · esperando intro</span></div>
           </div>
 
           <div class="kb-card kb-card-static">
@@ -464,6 +486,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <div class="kb-badges"><span class="kb-badge kb-badge-t1">Tier 1</span></div>
             <div class="kb-arr-label" data-i18n="label_arr">ARR est.</div>
             <div class="kb-arr">~$180K</div>
+            <div class="kb-fu kb-fu-orange"><span class="kb-fu-dot"></span><span data-i18n="fu_cmpc">Hace 18 días · reactivar</span></div>
           </div>
 
           <div class="kb-card kb-card-static">
@@ -472,6 +495,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <div class="kb-badges"><span class="kb-badge kb-badge-t1">Tier 1</span></div>
             <div class="kb-arr-label" data-i18n="label_arr">ARR est.</div>
             <div class="kb-arr">~$150K</div>
+            <div class="kb-fu kb-fu-green"><span class="kb-fu-dot"></span><span data-i18n="fu_agrosuper">Hace 5 días · agendar discovery</span></div>
           </div>
 
           <a href="cyt/" class="kb-card">
@@ -483,6 +507,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             </div>
             <div class="kb-arr-label" data-i18n="label_arr">ARR est.</div>
             <div class="kb-arr">~$168K</div>
+            <div class="kb-fu kb-fu-green"><span class="kb-fu-dot"></span><span data-i18n="fu_cyt">Hace 7 días · propuesta en redacción</span></div>
           </a>
         </div>
 
@@ -490,7 +515,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="kb-col" data-stage="propuesta">
           <div class="kb-col-head">
             <span class="kb-stage-name" data-i18n="stage_propuesta">Propuesta enviada</span>
-            <span class="kb-count">3</span>
+            <span class="kb-count">1</span>
           </div>
 
           <a href="repsol/" class="kb-card">
@@ -503,18 +528,29 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <div class="kb-arr-label" data-i18n="label_y1">Inversión año 1</div>
             <div class="kb-arr">~$460K</div>
             <div class="kb-sub" data-i18n="sub_repsol">ROI: 10:1–30:1 · Abr 2026</div>
+            <div class="kb-fu kb-fu-red"><span class="kb-fu-dot"></span><span data-i18n="fu_repsol">Hace 28 días · reactivación crítica</span></div>
           </a>
+
+</div>
+
+        <!-- 4 · Sesión técnica -->
+        <div class="kb-col" data-stage="sesion">
+          <div class="kb-col-head">
+            <span class="kb-stage-name" data-i18n="stage_sesion">Sesión técnica</span>
+            <span class="kb-count">2</span>
+          </div>
 
           <a href="penoles/" class="kb-card">
             <div class="kb-company">Grupo Peñoles</div>
             <div class="kb-industry" data-i18n="ind_penoles">Minería · Oro · Plata · México</div>
             <div class="kb-badges">
               <span class="kb-badge kb-badge-t1">Tier 1</span>
-              <span class="kb-badge kb-badge-review" data-i18n="badge_sent">Enviada</span>
+              <span class="kb-badge kb-badge-review" data-i18n="badge_sent_v4">Enviada v4</span>
             </div>
             <div class="kb-arr-label" data-i18n="label_y1">Inversión año 1</div>
             <div class="kb-arr">~$127K</div>
-            <div class="kb-sub" data-i18n="sub_penoles">ROI: 1,100%–3,500% · Abr 2026</div>
+            <div class="kb-sub" data-i18n="sub_penoles_v2">Q&amp;A operativa cerrada · propuesta v4 enviada</div>
+            <div class="kb-fu kb-fu-green"><span class="kb-fu-dot"></span><span data-i18n="fu_penoles">Hace 3 días · evaluación técnica activa</span></div>
           </a>
 
           <a href="minsa/" class="kb-card">
@@ -526,21 +562,9 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             </div>
             <div class="kb-arr-label" data-i18n="label_y1">Inversión año 1</div>
             <div class="kb-arr">~$45K</div>
-            <div class="kb-sub" data-i18n="sub_minsa">ROI: 300%–700% · Abr 2026</div>
+            <div class="kb-sub" data-i18n="sub_minsa_v2">Follow-up programado · Julio @ Operaciones</div>
+            <div class="kb-fu kb-fu-amber"><span class="kb-fu-dot"></span><span data-i18n="fu_minsa">Hace 14 días · seguimiento debido</span></div>
           </a>
-        </div>
-
-        <!-- 4 · Sesión técnica (vacía) -->
-        <div class="kb-col" data-stage="sesion">
-          <div class="kb-col-head">
-            <span class="kb-stage-name" data-i18n="stage_sesion">Sesión técnica</span>
-            <span class="kb-count">0</span>
-          </div>
-          <div class="kb-empty">
-            <div class="kb-empty-icon">⚠</div>
-            <div class="kb-empty-text" data-i18n="empty_sesion_text">Sin deals en esta etapa</div>
-            <div class="kb-empty-alert" data-i18n="empty_sesion_alert">Priorizar seguimiento<br>con Repsol, Peñoles o Minsa</div>
-          </div>
         </div>
 
         <!-- 5 · Piloto activo -->
@@ -560,6 +584,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <div class="kb-arr-label" data-i18n="label_status">Estado</div>
             <div class="kb-arr" style="font-size:11.5px;color:var(--gray);font-weight:600" data-i18n="val_pre_impl">Pre-implementación</div>
             <div class="kb-sub" data-i18n="sub_heavenward">ARR comprometida ~$60K · arranque pendiente</div>
+            <div class="kb-fu kb-fu-amber"><span class="kb-fu-dot"></span><span data-i18n="fu_heavenward">Hace 10 días · agendar implementación</span></div>
           </a>
 
           <div class="kb-card kb-card-static">
@@ -572,6 +597,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <div class="kb-arr-label" data-i18n="label_pilot_metrics">Eventos Clase A · Días activo</div>
             <div class="kb-arr">3 · 60d</div>
             <div class="kb-sub" data-i18n="sub_maderera">Tarifa Design Partner · evaluación a contrato anual: Q3 2026</div>
+            <div class="kb-fu kb-fu-green"><span class="kb-fu-dot"></span><span data-i18n="fu_maderera">Hace 5 días · piloto operacional</span></div>
           </div>
         </div>
 
@@ -631,7 +657,6 @@ var T = {
     pipe_stat1: 'Deals totales',
     pipe_stat2: 'Pipeline total',
     pipe_stat3: 'En propuesta',
-    pipe_alert: '⚠ Sesión técnica vacía · hacer seguimiento a propuestas enviadas',
     stage_identificado: 'Identificado',
     stage_calificando: 'Calificando',
     stage_propuesta: 'Propuesta enviada',
@@ -667,13 +692,25 @@ var T = {
     sub_minsa: 'ROI: 300%–700% · Abr 2026',
     sub_heavenward: 'ARR comprometida ~$60K · arranque pendiente',
     sub_maderera: 'Tarifa Design Partner · evaluación a contrato anual: Q3 2026',
-    empty_sesion_text: 'Sin deals en esta etapa',
-    empty_sesion_alert: 'Priorizar seguimiento<br>con Repsol, Peñoles o Minsa',
     empty_contrato_text: 'Sin contratos firmados aún',
     analytics_label: 'Analytics de propuestas',
     analytics_loading: 'Cargando analytics...',
     analytics_desc: 'Dashboard de PostHog conectado. Si no carga, verifica que el dashboard sea público en PostHog.',
     analytics_link: 'Ir a PostHog &rarr;',
+    fu_ccandina: 'Hace 14 días · esperando intro',
+    fu_cmpc: 'Hace 18 días · reactivar',
+    fu_agrosuper: 'Hace 5 días · agendar discovery',
+    fu_cyt: 'Hace 7 días · propuesta en redacción',
+    fu_repsol: 'Hace 28 días · reactivación crítica',
+    fu_penoles: 'Hace 3 días · evaluación técnica activa',
+    fu_minsa: 'Hace 14 días · seguimiento debido',
+    fu_heavenward: 'Hace 10 días · agendar implementación',
+    fu_maderera: 'Hace 5 días · piloto operacional',
+    sub_penoles_v2: 'Q&A operativa cerrada · propuesta v4 enviada',
+    sub_minsa_v2: 'Follow-up programado · Julio @ Operaciones',
+    badge_sent_v4: 'Enviada v4',
+    pipe_stat3: 'En evaluación',
+    pipe_alert: '⚠ Repsol en estado crítico · 28 días sin contacto',
     footer_left: 'Made OS · Sistema de Propuestas Comerciales',
     footer_right: 'CONFIDENCIAL · demo.madeos.ai'
   },
@@ -694,7 +731,6 @@ var T = {
     pipe_stat1: 'Total deals',
     pipe_stat2: 'Total pipeline',
     pipe_stat3: 'In proposal',
-    pipe_alert: '⚠ Empty technical session · follow up on sent proposals',
     stage_identificado: 'Identified',
     stage_calificando: 'Qualifying',
     stage_propuesta: 'Proposal sent',
@@ -730,13 +766,25 @@ var T = {
     sub_minsa: 'ROI: 300%–700% · Apr 2026',
     sub_heavenward: 'Committed ARR ~$60K · pending kickoff',
     sub_maderera: 'Design Partner rate · annual contract evaluation: Q3 2026',
-    empty_sesion_text: 'No deals at this stage',
-    empty_sesion_alert: 'Prioritize follow-up<br>with Repsol, Peñoles or Minsa',
     empty_contrato_text: 'No signed contracts yet',
     analytics_label: 'Proposal analytics',
     analytics_loading: 'Loading analytics...',
     analytics_desc: 'Connected PostHog dashboard. If it does not load, verify the dashboard is set to public in PostHog.',
     analytics_link: 'Go to PostHog &rarr;',
+    fu_ccandina: '14 days ago · awaiting intro',
+    fu_cmpc: '18 days ago · reactivate',
+    fu_agrosuper: '5 days ago · schedule discovery',
+    fu_cyt: '7 days ago · proposal drafting',
+    fu_repsol: '28 days ago · critical reactivation',
+    fu_penoles: '3 days ago · technical evaluation active',
+    fu_minsa: '14 days ago · follow-up due',
+    fu_heavenward: '10 days ago · schedule implementation',
+    fu_maderera: '5 days ago · pilot operational',
+    sub_penoles_v2: 'Operational Q&A closed · proposal v4 sent',
+    sub_minsa_v2: 'Follow-up scheduled · Julio @ Operations',
+    badge_sent_v4: 'Sent v4',
+    pipe_stat3: 'In evaluation',
+    pipe_alert: '⚠ Repsol in critical state · 28 days without contact',
     footer_left: 'Made OS · Commercial Proposal System',
     footer_right: 'CONFIDENTIAL · demo.madeos.ai'
   }
