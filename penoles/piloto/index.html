@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Made OS × Grupo Peñoles · Piloto Técnico de Calibración</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:     #d84200;
+    --orange-h:   #f04900;
+    --orange-bg:  rgba(216,66,0,.08);
+    --orange-bd:  rgba(216,66,0,.28);
+    --black:      #111213;
+    --dark:       #1a1c1e;
+    --gray-d:     #3e4245;
+    --gray:       #636870;
+    --gray-l:     #9ba3ab;
+    --border:     #e4e7ea;
+    --bg:         #f7f8f9;
+    --white:      #ffffff;
+    --gold:       #92650a;
+    --gold-l:     #d4a017;
+    --red:        #c53030;
+    --green:      #2a7a4a;
+    --font:       'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:       'JetBrains Mono','Fira Code',monospace;
+    --r:          6px;
+    --r-lg:       10px;
+    --sh:         0 1px 4px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--font);color:var(--dark);background:var(--bg);font-size:15px;line-height:1.7;}
+
+  /* ═══ PORTADA ═══ */
+  .cover{
+    background:var(--white);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    padding:48px max(72px,calc((100vw - 960px)/2 + 72px)) 40px;
+  }
+  .cover-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+  }
+  .logo img{height:34px;width:auto;display:block;}
+
+  /* Fallback inline logo for when SVG font is unavailable */
+  .logo-inline{display:none;align-items:center;}
+  .logo-mark{display:flex;align-items:center;}
+
+  .company-badge{
+    background:var(--orange);
+    color:white;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:10px 22px;
+    border-radius:var(--r);
+    white-space:nowrap;
+  }
+  .cover-tagline{
+    font-size:10.5px;
+    font-weight:500;
+    letter-spacing:.09em;
+    color:var(--gray);
+    text-transform:uppercase;
+    margin-bottom:36px;
+  }
+  .cover-rule{height:1px;background:var(--border);margin-bottom:52px;}
+
+  .cover-body{flex:1;display:flex;flex-direction:column;}
+
+  .cover-eyebrow{
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--orange);
+    margin-bottom:20px;
+  }
+  .cover-headline{
+    font-size:52px;
+    font-weight:800;
+    line-height:1.07;
+    color:var(--black);
+    letter-spacing:-.03em;
+    margin-bottom:32px;
+  }
+  .cover-highlight{
+    background:var(--dark);
+    color:rgba(255,255,255,.86);
+    padding:22px 28px;
+    border-radius:var(--r);
+    font-size:15px;
+    line-height:1.68;
+    margin-bottom:52px;
+  }
+  .cover-metrics{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    align-items:start;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    padding:20px 0;
+    margin-bottom:auto;
+  }
+  .cover-metric{
+    padding:0 16px;
+    border-right:1px solid var(--border);
+    min-width:0;
+  }
+  .cover-metric:first-child{padding-left:0;}
+  .cover-metric:last-child{border-right:none;padding-right:0;}
+  .m-label{
+    font-size:9px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.10em;
+    color:var(--orange);
+    margin-bottom:6px;
+    white-space:nowrap;
+  }
+  .m-value{
+    font-size:13px;
+    font-weight:700;
+    color:var(--black);
+    line-height:1.35;
+    letter-spacing:-.005em;
+    min-height:36px;
+  }
+  .cover-creds{
+    font-size:12px;
+    color:var(--gray);
+    line-height:1.65;
+    margin-top:40px;
+  }
+  .cover-footer{
+    display:flex;
+    justify-content:space-between;
+    border-top:1px solid var(--border);
+    padding-top:14px;
+    margin-top:20px;
+    font-size:9.5px;
+    color:var(--gray-l);
+    letter-spacing:.07em;
+    text-transform:uppercase;
+  }
+
+  /* ═══ PÁGINAS ═══ */
+  .page{max-width:960px;margin:0 auto;padding:64px 72px;}
+  .section{margin-bottom:56px;}
+
+  .s-label{
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--orange);
+    margin-bottom:8px;
+  }
+  .s-title{
+    font-size:27px;
+    font-weight:700;
+    color:var(--black);
+    letter-spacing:-.02em;
+    line-height:1.2;
+    margin-bottom:12px;
+  }
+  .s-lead{
+    font-size:15px;
+    color:var(--gray);
+    max-width:640px;
+    margin-bottom:28px;
+    line-height:1.65;
+  }
+  .divider{height:1px;background:var(--border);margin:52px 0;}
+
+  /* Cards */
+  .card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 32px;box-shadow:var(--sh);}
+  .card+.card{margin-top:14px;}
+  .card-title{font-size:13px;font-weight:600;color:var(--black);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+  .card-title svg{width:15px;height:15px;color:var(--orange);}
+
+  /* Exec grid */
+  .exec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;}
+  .exec-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 24px;box-shadow:var(--sh);}
+  .exec-item-label{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gray);margin-bottom:6px;}
+  .exec-item-val{font-size:30px;font-weight:700;color:var(--black);letter-spacing:-.02em;line-height:1;margin-bottom:4px;}
+  .exec-item-sub{font-size:12px;color:var(--gray);line-height:1.5;}
+
+  /* Stat grid */
+  .stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:8px;}
+  .stat-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 12px;text-align:center;}
+  .stat-metal{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray);margin-bottom:4px;}
+  .stat-price{font-size:17px;font-weight:700;color:var(--black);line-height:1;margin-bottom:2px;}
+  .stat-change{font-size:11px;font-weight:600;}
+  .stat-change.down{color:var(--red);}
+  .stat-change.up{color:var(--green);}
+
+  /* Alerts */
+  .alert{display:flex;gap:12px;border-left:3px solid;border-radius:var(--r);padding:14px 16px;font-size:13px;margin-top:14px;}
+  .alert svg{width:15px;height:15px;flex-shrink:0;margin-top:1px;}
+  .alert-gold{background:#fdf8ec;border-color:var(--gold-l);color:var(--gold);}
+  .alert-gold svg{color:var(--gold-l);}
+  .alert-info{background:var(--bg);border-color:var(--border);color:var(--dark);}
+  .alert-info svg{color:var(--gray-l);}
+  .alert-warn{background:var(--orange-bg);border-color:var(--orange);color:var(--dark);}
+  .alert-warn svg{color:var(--orange);}
+
+  /* Requirements */
+  .req-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px;}
+  .req-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;}
+  .req-num{width:28px;height:28px;border-radius:50%;background:var(--orange);color:white;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .req-title{font-size:13px;font-weight:600;color:var(--black);margin-bottom:5px;}
+  .req-desc{font-size:12px;color:var(--gray);line-height:1.55;}
+
+  /* Steps */
+  .steps{display:flex;flex-direction:column;}
+  .step{display:flex;gap:0;}
+  .step-left{display:flex;flex-direction:column;align-items:center;width:44px;flex-shrink:0;}
+  .step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;}
+  .step-line{width:2px;background:var(--border);flex:1;margin:6px auto;min-height:16px;}
+  .step:last-child .step-line{display:none;}
+  .step-body{padding:2px 0 28px 16px;flex:1;}
+  .step-tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--gray-l);margin-bottom:4px;}
+  .step-title{font-size:15px;font-weight:700;color:var(--black);margin-bottom:6px;}
+  .step-desc{font-size:13px;color:var(--gray);line-height:1.6;}
+
+  /* Platform screenshot */
+  .platform-wrap{
+    margin-top:24px;
+    border:1px solid var(--border);
+    border-radius:var(--r-lg);
+    overflow:hidden;
+    box-shadow:0 4px 24px rgba(0,0,0,.10);
+  }
+  .platform-wrap img{width:100%;display:block;}
+  .img-caption{font-size:11px;color:var(--gray-l);margin-top:8px;text-align:center;font-style:italic;}
+
+  /* Edge device */
+  .edge-wrap{
+    margin-top:20px;
+    border-radius:var(--r-lg);
+    overflow:hidden;
+    box-shadow:0 4px 20px rgba(0,0,0,.12);
+  }
+  .edge-wrap img{width:100%;display:block;max-height:300px;object-fit:cover;object-position:center;}
+
+  /* Hardware */
+  .hw-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;}
+  .hw-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:24px 26px;position:relative;}
+  .hw-card.featured{border-color:var(--orange);}
+  .hw-badge{position:absolute;top:-12px;left:20px;background:var(--orange);color:white;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 12px;border-radius:20px;}
+  .hw-title{font-size:15px;font-weight:700;color:var(--black);margin-bottom:4px;margin-top:8px;}
+  .hw-sub{font-size:12px;color:var(--gray);margin-bottom:16px;line-height:1.5;}
+  .spec-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;}
+  .spec-row:last-of-type{border-bottom:none;}
+  .spec-key{color:var(--gray);}
+  .spec-val{font-weight:600;color:var(--black);font-family:var(--mono);font-size:11px;}
+  .hw-ideal{margin-top:14px;padding:10px 12px;border-radius:var(--r);background:var(--orange-bg);font-size:12px;color:var(--dark);border-left:3px solid var(--orange);}
+  .hw-ideal strong{display:block;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--orange);margin-bottom:3px;}
+
+  /* Features */
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px;}
+  .feat{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 22px;}
+  .feat-icon{width:34px;height:34px;background:var(--orange-bg);border-radius:var(--r);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .feat-icon svg{width:17px;height:17px;color:var(--orange);}
+  .feat-title{font-size:13px;font-weight:600;color:var(--black);margin-bottom:5px;}
+  .feat-desc{font-size:12px;color:var(--gray);line-height:1.55;}
+
+  /* Terms */
+  .terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .terms-col{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 26px;box-shadow:var(--sh);}
+  .terms-col-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:16px;display:flex;align-items:center;gap:7px;}
+  .terms-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;font-size:13px;color:var(--dark);line-height:1.55;}
+  .terms-item:last-child{margin-bottom:0;}
+  .terms-check{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px;}
+  .check-green{background:var(--bg);border:1px solid var(--border);color:var(--gray-d);}
+  .check-orange{background:var(--orange-bg);border:1px solid var(--orange-bd);color:var(--orange);}
+
+  /* Cost table */
+  .cost-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .cost-table th{background:var(--bg);color:var(--black);font-weight:600;font-size:11px;letter-spacing:.04em;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
+  .cost-table td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  .cost-table tr:last-child td{border-bottom:none;}
+  .metal-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;}
+
+  /* ROI */
+  .roi-hero{background:var(--bg);border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:var(--r-lg);padding:22px 26px;margin-bottom:14px;}
+  .roi-hero-label{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-bottom:6px;}
+  .roi-hero-val{font-size:36px;font-weight:800;color:var(--black);line-height:1;letter-spacing:-.02em;margin-bottom:4px;}
+  .roi-hero-sub{font-size:13px;color:var(--gray);}
+  .roi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .roi-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px;box-shadow:var(--sh);}
+  .roi-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--gray);margin-bottom:5px;}
+  .roi-val{font-size:20px;font-weight:700;color:var(--black);line-height:1;margin-bottom:2px;}
+  .roi-delta{font-size:11px;color:var(--orange);font-weight:500;}
+
+  /* Pricing */
+  .pricing-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 32px;box-shadow:var(--sh);position:relative;overflow:hidden;margin-top:24px;}
+  .pricing-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--orange);}
+  .pricing-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .pricing-table th{background:var(--bg);color:var(--black);font-weight:600;font-size:11px;letter-spacing:.03em;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
+  .pricing-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  .pricing-table tr:last-child td{border-bottom:none;}
+  .price-val{font-weight:700;color:var(--black);}
+  .price-note{font-size:11px;color:var(--gray);}
+
+  /* Comparison */
+  .comp-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .comp-table th{padding:10px 14px;text-align:left;font-size:12px;font-weight:600;}
+  .comp-table th:first-child{background:var(--bg);color:var(--gray);border-bottom:2px solid var(--border);}
+  .comp-table th:nth-child(2){background:#fff5f5;color:var(--red);border-bottom:2px solid #fed7d7;}
+  .comp-table th:nth-child(3){background:#fff8f5;color:var(--orange);border-bottom:2px solid var(--orange-bd);}
+  .comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);}
+  .comp-table tr:last-child td{border-bottom:none;}
+  .comp-table td:nth-child(3){font-weight:500;color:var(--black);background:rgba(216,66,0,.025);}
+
+  /* Guarantee */
+  /* ── Guarantee ── */
+  .guarantee{
+    border:1px solid var(--border);
+    border-radius:var(--r-lg);
+    overflow:hidden;
+    background:var(--white);
+    position:relative;
+  }
+  .guarantee::before{
+    content:'';position:absolute;top:0;left:0;right:0;
+    height:4px;background:var(--orange);
+  }
+  .guarantee-grid{
+    display:grid;grid-template-columns:1fr 1fr;
+    padding:44px 40px 36px;gap:0;
+  }
+  .g-statement{
+    padding-right:36px;
+    border-right:1px solid var(--border);
+  }
+  .g-label{
+    font-size:10.5px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--orange);
+    margin-bottom:16px;display:flex;align-items:center;gap:8px;
+  }
+  .g-label svg{width:14px;height:14px;}
+  .guarantee h3{
+    font-size:20px;font-weight:800;line-height:1.4;
+    color:var(--black);letter-spacing:-.02em;margin:0;
+  }
+  .guarantee h3 em{color:var(--orange);font-style:normal;}
+  .g-items{
+    display:flex;flex-direction:column;
+    padding-left:36px;
+  }
+  .g-item{
+    display:flex;gap:12px;align-items:flex-start;
+    font-size:13px;color:var(--dark);line-height:1.65;
+    padding:16px 0;border-bottom:1px solid var(--border);
+  }
+  .g-item:last-child{border-bottom:none;padding-bottom:0;}
+  .g-check{
+    width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:1px;
+    background:var(--orange-bg);border:1px solid var(--orange-bd);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--orange);font-size:10px;font-weight:800;
+  }
+  .g-faqs{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--border);
+    background:var(--bg);
+  }
+  .g-faq{
+    padding:22px 26px;
+    border-right:1px solid var(--border);
+    font-size:13px;color:var(--gray);line-height:1.65;
+  }
+  .g-faq:last-child{border-right:none;}
+  .g-faq-q{
+    font-size:10px;font-weight:700;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--orange);margin-bottom:5px;
+  }
+
+  /* CTA */
+  .cta-block{background:var(--dark);border-radius:var(--r-lg);padding:38px 44px;display:flex;gap:40px;align-items:center;justify-content:space-between;color:white;position:relative;overflow:hidden;}
+  .cta-block::after{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--orange);}
+  .cta-left{max-width:480px;}
+  .cta-tag{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--orange);margin-bottom:10px;}
+  .cta-block h3{font-size:20px;font-weight:700;line-height:1.3;letter-spacing:-.01em;margin-bottom:10px;}
+  .cta-block p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.65;}
+  .cta-right{flex-shrink:0;text-align:center;}
+  .cta-btn{display:block;background:var(--orange);color:white;text-decoration:none;padding:14px 28px;border-radius:var(--r);font-weight:700;font-size:14px;box-shadow:0 4px 14px rgba(216,66,0,.3);margin-bottom:10px;text-align:center;}
+  .cta-btn:hover{background:var(--orange-h);}
+  .cta-sub{font-size:11px;color:rgba(255,255,255,.35);}
+
+  /* Signature */
+  .sig{display:flex;align-items:center;gap:16px;margin-top:28px;}
+  .sig-av{width:90px;height:90px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;color:white;font-size:16px;font-weight:700;flex-shrink:0;}
+  .sig-name{font-size:15px;font-weight:600;color:var(--black);}
+  .sig-role{font-size:13px;color:var(--gray);}
+  .sig-contact{font-size:12px;color:var(--orange);margin-top:2px;}
+
+  /* Footer */
+  .doc-footer{background:var(--dark);color:rgba(255,255,255,.35);text-align:center;padding:22px 32px;font-size:11px;letter-spacing:.04em;}
+  .doc-footer strong{color:rgba(255,255,255,.5);}
+
+  /* ── PIN GATE ── */
+  #pin-screen{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:32px 24px;
+    background:var(--bg);
+  }
+  .pin-card{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:40px 44px;
+    width:100%;
+    max-width:380px;
+    box-shadow:0 4px 24px rgba(0,0,0,.08);
+    text-align:center;
+  }
+  .pin-logo{display:flex;justify-content:center;margin-bottom:28px;}
+  .pin-logo img{height:28px;width:auto;}
+  .pin-badge{
+    display:inline-block;
+    background:var(--orange-bg);
+    border:1px solid var(--orange-bd);
+    color:var(--orange);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    padding:4px 12px;
+    border-radius:20px;
+    margin-bottom:20px;
+  }
+  .pin-title{font-size:17px;font-weight:700;color:var(--black);margin-bottom:6px;letter-spacing:-.02em;}
+  .pin-sub{font-size:13px;color:var(--gray);margin-bottom:28px;line-height:1.55;}
+  .pin-input{
+    width:100%;
+    padding:14px;
+    border:1.5px solid var(--border);
+    border-radius:6px;
+    font-family:var(--mono);
+    font-size:22px;
+    font-weight:700;
+    color:var(--dark);
+    text-align:center;
+    letter-spacing:.18em;
+    outline:none;
+    transition:border-color .15s;
+    background:var(--white);
+  }
+  .pin-input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(216,66,0,.12);}
+  .pin-input.shake{animation:shake .35s ease;border-color:var(--red);}
+  @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+  .pin-btn{
+    width:100%;
+    padding:12px;
+    background:var(--orange);
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-family:var(--font);
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:12px;
+    transition:background .15s;
+  }
+  .pin-btn:hover{background:var(--orange-h);}
+  .pin-btn:disabled{opacity:.6;cursor:default;}
+  .pin-error{
+    background:#fff5f5;
+    border:1px solid #fed7d7;
+    color:var(--red);
+    border-radius:6px;
+    padding:9px 14px;
+    font-size:13px;
+    margin-top:12px;
+    display:none;
+  }
+  .pin-footer{margin-top:24px;font-size:11px;color:var(--gray-l);letter-spacing:.04em;}
+
+  /* ── TABLE SCROLL ── */
+  .tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+
+  /* ── SIDENAV DESKTOP ── */
+  .sidenav{position:fixed;left:28px;top:50%;transform:translateY(-50%);z-index:200;opacity:0;pointer-events:none;transition:opacity .4s;}
+  .sidenav.visible{opacity:1;pointer-events:all;}
+  .sidenav-hd{font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gray-l);margin-bottom:10px;}
+  .sidenav-list{display:flex;flex-direction:column;gap:1px;}
+  .sidenav-item{display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 0;}
+  .sidenav-dot{width:5px;height:5px;border-radius:50%;background:var(--border);flex-shrink:0;transition:background .18s,transform .2s,box-shadow .18s;}
+  .sidenav-label{font-size:9.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-l);white-space:nowrap;transition:color .18s;font-family:var(--font);}
+  .sidenav-item.sn-active .sidenav-dot{background:var(--orange);transform:scale(1.7);box-shadow:0 0 0 3px var(--orange-bg);}
+  .sidenav-item.sn-active .sidenav-label{color:var(--orange);}
+  .sidenav-item:hover:not(.sn-active) .sidenav-dot{background:var(--gray-d);}
+  .sidenav-item:hover:not(.sn-active) .sidenav-label{color:var(--dark);}
+  @media(max-width:1220px){.sidenav{display:none;}}
+  /* ── SIDENAV MOBILE FAB + SHEET ── */
+  .sn-fab{display:none;position:fixed;bottom:24px;right:20px;z-index:300;background:var(--orange);color:#fff;border:none;border-radius:24px;padding:10px 18px;font-size:13px;font-weight:700;letter-spacing:.04em;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.18);align-items:center;gap:8px;}
+  @media(max-width:1220px){.sn-fab{display:flex;}}
+  .sn-sheet{display:none;position:fixed;inset:0;z-index:400;}
+  .sn-sheet.open{display:block;}
+  .sn-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.45);}
+  .sn-panel{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:18px 18px 0 0;padding:24px 20px 32px;max-height:80vh;overflow-y:auto;}
+  .sn-panel-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+  .sn-panel-hd span{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-l);}
+  .sn-panel-close{background:none;border:none;cursor:pointer;padding:4px;color:var(--gray-d);}
+  .sn-sheet-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+  .sn-sheet-item:last-child{border-bottom:none;}
+  .sn-sheet-num{font-size:10px;font-weight:700;color:var(--gray-l);letter-spacing:.08em;min-width:22px;}
+  .sn-sheet-lbl{font-size:14px;font-weight:600;color:var(--dark);}
+
+  /* ── RESPONSIVE ─────────────────────────────── */
+  @media(max-width:720px){
+    /* Cover */
+    .cover{padding:24px 20px 28px;}
+    /* Cover header: two columns in parallel, logos same row, text below each */
+    .cover-header{margin-bottom:16px !important;gap:12px;}
+    .cover-header > div:last-child img{height:44px !important;}
+    .logo{margin-top:5px !important;}
+    .cover-tagline{margin-bottom:0 !important;margin-top:13px !important;font-size:10px;}
+    .company-badge{font-size:10px;padding:7px 14px;letter-spacing:.06em;}
+    .cover-rule{margin-bottom:30px;}
+    .cover-headline{font-size:27px;margin-bottom:20px;}
+    .cover-highlight{font-size:14px;padding:16px 18px;margin-bottom:28px;}
+    /* cover-metrics: 4 items → 2×2 grid with correct borders */
+    .cover-metrics{grid-template-columns:1fr 1fr;padding:14px 0;}
+    .cover-metric{padding:10px 10px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .cover-metric:first-child{padding-left:0;}
+    .cover-metric:nth-child(even){border-right:none;}
+    .cover-metric:nth-child(3),.cover-metric:nth-child(4){border-bottom:none;}
+    .cover-creds{margin-top:22px;}
+    .cover-footer{flex-direction:column;gap:3px;}
+
+    /* Layout */
+    .page{padding:32px 20px;}
+    .divider{margin:32px 0;}
+    .section{margin-bottom:36px;}
+    .s-title{font-size:21px;}
+    .s-lead{font-size:14px;margin-bottom:20px;}
+
+    /* Cards */
+    .card{padding:18px 16px;}
+
+    /* Multi-column grids → single column */
+    .exec-grid,.req-grid,.feat-grid,.hw-grid,.terms-grid{grid-template-columns:1fr;}
+
+    /* Stat grid: 5 items → 2 cols */
+    .stat-grid{grid-template-columns:1fr 1fr;}
+
+    /* ROI grid: 4 items → 2 cols */
+    .roi-grid{grid-template-columns:1fr 1fr;}
+    .roi-hero-val{font-size:28px;}
+
+    /* Tables → horizontal scroll (preserves all data) */
+    .cost-table,.comp-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    .cost-table{min-width:480px;}
+    .comp-table{min-width:500px;font-size:12px;}
+    .pricing-wrap{padding:22px 18px;}
+    /* Pricing table → stacked cards on mobile */
+    .pricing-table{display:block;width:100%;}
+    .pricing-table thead{display:none;}
+    .pricing-table tbody,.pricing-table tr{display:block;}
+    .pricing-table td{display:block;padding:2px 0;border:none;}
+    .pricing-table tr{padding:12px 0;border-bottom:1px solid var(--border);}
+    .pricing-table tr:last-child{border-bottom:none;}
+    .pricing-table .price-val{font-size:15px;padding:3px 0;}
+    .pricing-table .price-note{padding:0;}
+
+    /* Guarantee */
+    .guarantee-grid{grid-template-columns:1fr;padding:28px 22px 22px;}
+    .g-statement{padding-right:0;border-right:none;border-bottom:1px solid var(--border);padding-bottom:22px;}
+    .guarantee h3{font-size:17px;}
+    .g-items{padding-left:0;padding-top:4px;}
+    .g-faqs{grid-template-columns:1fr;}
+    .g-faq{border-right:none;border-bottom:1px solid var(--border);padding:18px 22px;}
+    .g-faq:last-child{border-bottom:none;}
+
+    /* CTA */
+    .cta-block{flex-direction:column;gap:20px;padding:28px 22px;}
+    .cta-right{width:100%;}
+    .cta-btn{width:100%;text-align:center;}
+
+    /* Pin card */
+    .pin-card{padding:32px 22px;}
+  }
+
+  @media(max-width:480px){
+    /* Very small phones */
+    .cover-headline{font-size:22px;}
+    /* cover-metrics → single column */
+    .cover-metrics{grid-template-columns:1fr;}
+    .cover-metric{border-right:none;padding:10px 0;}
+    .cover-metric:nth-child(even){padding-left:0;}
+    .cover-metric:nth-child(3){border-bottom:1px solid var(--border);}
+    .cover-metric:nth-child(4){border-bottom:none;}
+    /* ROI → single column on very small */
+    .roi-grid{grid-template-columns:1fr;}
+    /* Exec numbers smaller */
+    .exec-item-val{font-size:24px;}
+  }
+  @media print{
+    body{background:white;}
+    .cover{min-height:auto;padding:32px 48px;}
+    .page{padding:40px 48px;}
+    .divider{margin:36px 0;}
+  }
+</style>
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https://us.i.posthog.com',person_profiles:'always',defaults:'2026-01-30',disable_session_recording:true});
+</script>
+</head>
+<body>
+
+<!-- ══ PIN GATE ══ -->
+<div id="pin-screen">
+  <div class="pin-card">
+    <div class="pin-logo">
+      <img src="../../assets/logo.svg" alt="Made" height="28"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <svg style="display:none" height="28" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
+        <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
+        <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
+      </svg>
+    </div>
+    <div class="pin-badge">A Grupo Peñoles · Piloto Técnico</div>
+    <div class="pin-title">Propuesta confidencial</div>
+    <p class="pin-sub">Ingresa el código de acceso<br>que te compartió el equipo de Made.</p>
+    <form onsubmit="event.preventDefault(); doPin()">
+      <input id="pin-input" class="pin-input" type="text" inputmode="numeric"
+             pattern="[0-9]*" maxlength="6" placeholder="······" autocomplete="one-time-code" required>
+      <button class="pin-btn" type="submit" id="pin-btn">Ver propuesta</button>
+    </form>
+    <div class="pin-error" id="pin-error">Código incorrecto. Verifica e intenta de nuevo.</div>
+    <div class="pin-footer">MADE OS · CONFIDENCIAL · madeos.ai</div>
+  </div>
+</div>
+
+<!-- ══ PROPUESTA ══ -->
+
+<!-- ══ PROPUESTA ══ -->
+<div id="proposal" style="display:none">
+
+<!-- ══════════════ PORTADA ══════════════ -->
+<div class="cover">
+
+  <div class="cover-header" style="align-items:flex-start;margin-bottom:28px;">
+    <div>
+      <div class="logo" style="margin-top:17px;">
+        <img src="../../assets/logo.svg" alt="Made" height="34"
+             onerror="this.style.display='none';document.querySelector('.logo-inline').style.display='flex'">
+        <div class="logo-inline">
+          <svg height="34" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+            <path d="M27.3,13.0 V21.8 L9.0,39.0 H0 Z" fill="#d84200"/>
+            <path d="M39.6,9.8 V39.0 H13.3 Z" fill="#d84200"/>
+            <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
+          </svg>
+        </div>
+      </div>
+      <div class="cover-tagline" style="margin-bottom:0;margin-top:25px;" data-eid="cover-tagline">Inteligencia artificial para una manufactura sin pérdidas</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+      <img src="logopenoles.png" alt="Grupo Peñoles" height="68" style="display:block;width:auto;">
+      <span style="font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--orange);">A Grupo Peñoles</span>
+    </div>
+  </div>
+  <div class="cover-rule"></div>
+
+  <div class="cover-body">
+    <div class="cover-eyebrow" data-eid="cover-eyebrow">Propuesta de piloto técnico</div>
+
+    <h1 class="cover-headline" data-eid="cover-headline">Piloto técnico de calibración de 90 días en equipo móvil subterráneo de Peñoles, antes del compromiso de programa completo.</h1>
+
+    <div class="cover-highlight" data-eid="cover-highlight">
+      Made OS es una capa prescriptiva sobre la API de telemetría que Peñoles ya opera on-premise. Este documento propone un piloto técnico acotado de 90 días sobre una unidad operativa y una clase de activo, con criterios de éxito pre-acordados y opción de continuación a Programa de Despliegue. Estructura diseñada para que la primera decisión sea pequeña, verificable, y reversible.
+    </div>
+
+    <div class="cover-metrics">
+      <div class="cover-metric">
+        <div class="m-label" data-eid="cover-m1-label">Programa</div>
+        <div class="m-value" data-eid="cover-m1-value">Piloto Técnico de Calibración<br>Equipo Móvil Subterráneo</div>
+      </div>
+      <div class="cover-metric">
+        <div class="m-label" data-eid="cover-m2-label">Duración</div>
+        <div class="m-value" data-eid="cover-m2-value">90 días</div>
+      </div>
+      <div class="cover-metric">
+        <div class="m-label" data-eid="cover-m3-label">Inversión piloto</div>
+        <div class="m-value" data-eid="cover-m3-value">$15K – $25K USD</div>
+      </div>
+      <div class="cover-metric">
+        <div class="m-label" data-eid="cover-m4-label">Punto de equilibrio</div>
+        <div class="m-value" data-eid="cover-m4-value">1 evento evitado</div>
+      </div>
+    </div>
+
+    <p class="cover-creds" data-eid="cover-creds">
+      <strong style="color:var(--dark)">Made</strong> es una empresa Mexicana de inteligencia artificial industrial respaldada por NVIDIA Inception, Founders Inc y Startup Chile, con el reconocimiento del MIT Technology Review Innovators Under 35 LATAM 2025.
+    </p>
+
+    <div class="cover-footer">
+      <span><a href="https://www.madeos.ai" target="_blank" style="color:inherit;text-decoration:none;">MADEOS.AI</a> · CONFIDENCIAL</span>
+      <span>Mayo 2026</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════ CONTENIDO ══════════════ -->
+<div class="page">
+
+  <!-- ── 01 RESUMEN EJECUTIVO ── -->
+  <div class="section" id="s01">
+    <div class="s-label">01. Resumen ejecutivo</div>
+    <div class="s-title" data-eid="exec-title">Una capa prescriptiva sobre la API on-premise que Peñoles ya opera, validada primero en un piloto de 90 días.</div>
+    <p class="s-lead" data-eid="exec-lead">La telemetría de la flota subterránea de Peñoles se almacena on-premise y se expone vía API para tableros nativos, analítica e integración corporativa. El dato ya está. La hipótesis operacional de esta propuesta: convertir esa señal en prescripción accionable (qué activo, qué subsistema, qué ventana, qué supervisor, qué canal) reduce eventos críticos no planificados de manera medible. Antes de comprometer un programa completo, proponemos validar esa hipótesis en un piloto técnico acotado.<br><span style="font-size:12px;color:var(--gray-l)">Referencias: McKinsey &amp; Co. · Siemens True Cost of Downtime 2024 · GMG Predictive Maintenance Guideline 2023</span></p>
+
+    <p style="font-size:15px;color:var(--dark);line-height:1.7;margin-bottom:18px" data-eid="exec-p1">En 2025 la industria minera mexicana enfrentó costos de mantenimiento al alza y retroceso generalizado en producción metálica. En este contexto, el equipo móvil subterráneo concentra el riesgo operativo: cada hora fuera de rotación se traduce en toneladas no movidas y margen perdido. En las cinco unidades mineras directas de Peñoles (Velardeña, Sabinas, Tizapa, Capela, Bismark) más Milpillas (SX-EW), las fallas súbitas en frenos, dirección o sistema hidráulico añaden además una dimensión de seguridad operativa relevante para los compromisos ICMM.</p>
+
+    <p style="font-size:15px;color:var(--dark);line-height:1.7;margin-bottom:24px" data-eid="exec-p2">Made OS está diseñado para acoplarse a la API on-premise de Peñoles sin reemplazar telemetría existente ni tableros nativos, agregar clasificación de riesgo, priorizar por impacto operativo, y emitir prescripciones al canal del supervisor de mina en turno (WhatsApp, SMS, WebApp). Esta propuesta describe primero un piloto técnico de 90 días para validar la hipótesis operacional con datos auditados antes del compromiso de Programa de Despliegue.</p>
+
+    <div class="card" style="margin-top:6px;margin-bottom:24px;border-left:4px solid var(--orange);background:var(--orange-bg)">
+      <div class="card-title" style="margin-bottom:10px" data-eid="entendemos-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+        Lo que entendemos de la operación de Peñoles
+      </div>
+      <p style="font-size:13.5px;color:var(--dark);line-height:1.65;margin:0" data-eid="entendemos-lead">Esta propuesta integra lo que el equipo de Peñoles compartió en el intercambio operativo inicial. La cita es textual donde corresponde:</p>
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--dark);line-height:1.6">
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">1.</span><span data-eid="entendemos-b1"><strong>Telemetría on-premise con API expuesta.</strong> Sus palabras: <em>"una API que nos permite integrar y explotar la información de acuerdo con las necesidades operativas y de negocio"</em>. Sobre esa API se acopla Made OS, no contra ella.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">2.</span><span data-eid="entendemos-b2"><strong>Equipo móvil como prioridad operativa.</strong> Sus palabras: <em>"Equipo móvil (cargadores frontales, equipo de barrenación, equipo de acarreo), para garantizar el mantenimiento preventivo. Ahí están todos nuestros esfuerzos de mantenimiento predictivo y telemetría."</em> El piloto se ancla exactamente en ese frente.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">3.</span><span data-eid="entendemos-b3"><strong>Cartera 100% subterránea.</strong> Cinco unidades directas en subterráneo (Velardeña, Sabinas, Tizapa, Capela, Bismark) más Milpillas como SX-EW. Sin operaciones open-pit en Peñoles directo. El piloto se ejecuta en una unidad y una clase de activo subterráneo.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">4.</span><span data-eid="entendemos-b4"><strong>Volumen de relaves como horizonte estratégico.</strong> Mensaje recibido del champion del CVC del grupo: <em>"los relaves son un problema; si ayudas a reducir volumen de relave es mejor"</em>. La palanca indirecta sobre TSF (vía disponibilidad del circuito) se detalla en S05 como horizonte post-piloto.</span></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card-title" style="margin-bottom:12px;font-size:12px" data-eid="exec-indicators-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
+        Indicadores Peñoles 2025 que contextualizan la hipótesis
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-metal" data-eid="exec-stat1-metal">Mtto. + Reparaciones</div><div class="stat-price" style="color:var(--orange)" data-eid="exec-stat1-price">+25.9%</div><div class="stat-change down" data-eid="exec-stat1-change">+US$29.3M YoY</div></div>
+        <div class="stat-card"><div class="stat-metal" data-eid="exec-stat2-metal">Plata anual</div><div class="stat-price" data-eid="exec-stat2-price">-11.6%</div><div class="stat-change down" data-eid="exec-stat2-change">vs. 2024</div></div>
+        <div class="stat-card"><div class="stat-metal" data-eid="exec-stat3-metal">Zinc anual</div><div class="stat-price" data-eid="exec-stat3-price">-7.6%</div><div class="stat-change down" data-eid="exec-stat3-change">vs. 2024</div></div>
+        <div class="stat-card"><div class="stat-metal" data-eid="exec-stat4-metal">Cobre anual</div><div class="stat-price" data-eid="exec-stat4-price">-6.2%</div><div class="stat-change down" data-eid="exec-stat4-change">vs. 2024</div></div>
+        <div class="stat-card"><div class="stat-metal" data-eid="exec-stat5-metal">Mineral procesado 4T25</div><div class="stat-price" data-eid="exec-stat5-price">-14.8%</div><div class="stat-change down" data-eid="exec-stat5-change">8.6 Mton</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--gray-l);margin-top:8px" data-eid="exec-stats-source">Fuente: Peñoles, Reporte BMV 4T2025 (USD), publicado el 31-oct-2025.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 02 PILOTO TÉCNICO ── -->
+  <div class="section" id="s02">
+    <div class="s-label">02. Piloto Técnico de Calibración · 90 días</div>
+    <div class="s-title" data-eid="piloto-title">90 días para validar la hipótesis operacional. Una unidad, una clase de activo, criterios de éxito pre-acordados.</div>
+    <p class="s-lead" data-eid="piloto-lead">El piloto reduce la primera decisión de Peñoles a un compromiso operacional acotado, sin scope creep ni dependencia de aprobación de Vicepresidencia para iniciar. Si los criterios se cumplen, el Programa de Despliegue arranca con términos pre-acordados. Si no se cumplen, el costo de aprendizaje es contenido y los modelos entrenados quedan en infraestructura Peñoles.</p>
+
+    <div class="exec-grid" style="grid-template-columns:1fr 1fr 1fr;gap:12px">
+      <div class="exec-item">
+        <div class="exec-item-label" data-eid="piloto-scope-lbl">Alcance</div>
+        <div class="exec-item-val" style="font-size:22px" data-eid="piloto-scope-val">1 unidad · 1 clase</div>
+        <div class="exec-item-sub" data-eid="piloto-scope-sub">Una unidad operativa de Peñoles y una clase de activo móvil subterráneo (LHD, jumbo o camión de acarreo), definidas conjuntamente en la sesión técnica inicial.</div>
+      </div>
+      <div class="exec-item">
+        <div class="exec-item-label" data-eid="piloto-duration-lbl">Duración</div>
+        <div class="exec-item-val" style="font-size:22px" data-eid="piloto-duration-val">90 días</div>
+        <div class="exec-item-sub" data-eid="piloto-duration-sub">Tres meses calendario desde la firma. Lectura activa al día 10. Baseline calibrado al día 30. Ventana objetivo de primer Clase A: días 60-90.</div>
+      </div>
+      <div class="exec-item">
+        <div class="exec-item-label" data-eid="piloto-cost-lbl">Inversión</div>
+        <div class="exec-item-val" style="font-size:22px" data-eid="piloto-cost-val">$15K – $25K USD</div>
+        <div class="exec-item-sub" data-eid="piloto-cost-sub">Banda según uso de Edge retrofit. Punto de equilibrio: 1 evento evitado (costo evento $250K-$700K vs. piloto $15K-$25K).</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <div class="card-title" style="margin-bottom:14px;font-size:12px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M5 7h6M5 10h4"/></svg>
+        Estructura comercial del piloto
+      </div>
+      <table class="pricing-table">
+        <thead><tr><th>Concepto</th><th>Monto</th><th>Notas</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Base software · 3 meses</strong></td>
+            <td class="price-val">$6,000 USD</td>
+            <td class="price-note">$2,000/mes × 3 meses · una clase de activo · pago mensual o adelantado</td>
+          </tr>
+          <tr>
+            <td><strong>Edge retrofit (sólo si la clase de activo lo requiere)</strong><br><span style="font-size:11px;color:var(--gray)">IP67 · NEMA 4X · NOM-032-STPS · IECEx M1/M2 según unidad</span></td>
+            <td class="price-val">$8,000 USD</td>
+            <td class="price-note">Pago único · incluye hardware e instalación · opcional</td>
+          </tr>
+          <tr>
+            <td><strong>Success fee del piloto · Evento Clase A</strong></td>
+            <td class="price-val">$3,000 USD / evento</td>
+            <td class="price-note">Cap del piloto: $15,000 USD (máximo 5 eventos) · definición auditada conjunta</td>
+          </tr>
+          <tr>
+            <td><strong>Conector API a feeds OEM + API on-premise Peñoles</strong></td>
+            <td class="price-val">Sin costo</td>
+            <td class="price-note">VIMS · KOMTRAX · Sandvik 365 · Certiq · Wenco · incluidos en el alcance del piloto<sup style="color:var(--orange)">[1]</sup></td>
+          </tr>
+          <tr>
+            <td><strong>Inversión total estimada del piloto</strong></td>
+            <td class="price-val" style="color:var(--orange)">$15K – $25K USD</td>
+            <td class="price-note">Base + Edge (si aplica) + success fees estimados (0-2 eventos en banda esperada)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:11.5px;color:var(--gray-l);margin-top:12px;line-height:1.55" data-eid="piloto-clause-integration"><sup style="color:var(--orange)">[1]</sup> <strong>Alcance de la integración API sin costo.</strong> La conexión a la API on-premise de Peñoles y a los feeds OEM listados se entrega sin costo de implementación exclusivamente dentro del alcance contractual de este piloto técnico: una (1) clase de activo móvil subterráneo en una (1) unidad operativa designada, durante 90 días. Integraciones adicionales a nuevas clases, nuevas unidades, o feeds no contemplados se cotizan por adendum bajo el modelo de pricing vigente. La presente condición no constituye precedente ni obligación tarifaria para programas o renovaciones posteriores.</p>
+    </div>
+
+    <div class="card" style="margin-top:18px;border-left:3px solid var(--orange);background:var(--orange-bg)">
+      <div class="card-title" style="margin-bottom:10px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+        Criterios de éxito del piloto (pre-acordados al inicio)
+      </div>
+      <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0 0 12px 0" data-eid="piloto-kpi-lead">Los siguientes cuatro criterios se acuerdan documentalmente al inicio del piloto. Cumplir los cuatro califica al Programa de Despliegue con términos pre-acordados; incumplir cualquiera abre la conversación sobre alcance, datos o continuidad antes del compromiso completo.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--dark);line-height:1.6">
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">1.</span><span data-eid="piloto-kpi1"><strong>Lectura activa al día 10.</strong> Made OS recibe telemetría en tiempo real de la clase de activo seleccionada, con timestamp, contexto operativo y trazabilidad. Si no se logra, el piloto no inicia y no se factura.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">2.</span><span data-eid="piloto-kpi2"><strong>Baseline calibrado al día 30.</strong> Modelo prescriptivo entrenado con datos por número de serie de al menos 3 activos de la clase, con métricas de calidad documentadas (cobertura de variables, ratio de outliers manejables, ventanas operativas identificadas).</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">3.</span><span data-eid="piloto-kpi3"><strong>Validación operativa de modelo prescriptivo.</strong> Al menos 3 alertas útiles validadas con la contraparte operativa (Clase B o C según definición técnica) durante los 90 días, indicando que el modelo prescriptivo aprende sobre la operación específica de la unidad.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">4.</span><span data-eid="piloto-kpi4"><strong>Al menos 1 Clase A o baseline justificando Despliegue.</strong> Al día 90, una de dos: un evento Clase A documentado (pull-out evitado, criterios técnicos completos en apéndice) o, en su ausencia, un baseline robusto que justifique técnicamente la extensión a Programa de Despliegue.</span></div>
+      </div>
+    </div>
+
+    <div class="alert alert-warn" style="margin-top:14px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+      <span data-eid="piloto-bonus"><strong>Bonus de continuación al Programa de Despliegue.</strong> Si Peñoles continúa al Programa de Despliegue (9-12 meses, 3 clases de activo) al cierre del piloto, el 100% del fee base pagado durante el piloto ($6,000 USD) se acredita al primer trimestre del Despliegue. Peñoles no paga dos veces por la misma capa de software.</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 03 CÓMO FUNCIONA ── -->
+  <div class="section" id="s03">
+    <div class="s-label">03. Cómo funciona</div>
+    <div class="s-title" data-eid="cf-title">Capa prescriptiva sobre la API on-premise. Solo lectura. Cero modificación a SCADA o PLC.</div>
+    <p class="s-lead" data-eid="cf-lead">Made OS está diseñado para acoplarse a la telemetría existente, agregar clasificación de riesgo y prescripción accionable, y entregarla al canal donde el supervisor de mina ya trabaja. Esta sección describe el flujo, la arquitectura OT/IT, y los requerimientos del piloto.</p>
+
+    <!-- Flujo de operación (3 pasos) -->
+    <div class="steps">
+      <div class="step">
+        <div class="step-left">
+          <div class="step-dot" style="background:var(--black)">01</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-tag" data-eid="cf-step1-tag">Día 1 al 10 · Compromiso operativo: lectura activa al día 10</div>
+          <div class="step-title" data-eid="cf-step1-title">Conexión a feeds OEM y API on-premise</div>
+          <div class="step-desc" data-eid="cf-step1-desc">Identificación conjunta de la clase de activo subterráneo candidata. Conexión a la API de telemetría on-premise que Peñoles ya opera, o feed OEM directo (VIMS, KOMTRAX, Sandvik 365, Certiq). Opcionalmente, retrofit Edge donde la telemetría no expone variables críticas. Si la conexión no se logra al día 10, el piloto no inicia y no se factura. Modo solo-lectura.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-dot" style="background:var(--gray)">02</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-tag" data-eid="cf-step2-tag">Día 10 al 30 · Baseline calibrado por número de serie</div>
+          <div class="step-title" data-eid="cf-step2-title">Aprendizaje por activo y refinamiento del modelo</div>
+          <div class="step-desc" data-eid="cf-step2-desc">Cada unidad opera distinto: la mineralogía de Sabinas, los polimetálicos de Tizapa, la ventilación restringida de Capela, los frentes de Velardeña, las condiciones de Bismark. Made OS construye baseline por número de serie del activo y lo refina con cada turno. El modelo prescriptivo se calibra a la operación específica de la unidad, no al promedio del fabricante.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-dot" style="background:var(--orange)">03</div>
+        </div>
+        <div class="step-body">
+          <div class="step-tag" data-eid="cf-step3-tag">Día 30 al 90 · Prescripción accionable en turno</div>
+          <div class="step-title" data-eid="cf-step3-title">Decisión operativa antes del paro</div>
+          <div class="step-desc" data-eid="cf-step3-desc">Made OS deja de "alertar" y pasa a prescribir: qué activo, qué subsistema, qué ventana de intervención, qué refacción anticipar, qué supervisor recibe la orden y por qué canal. Ventana objetivo del primer Clase A: días 60-90, sujeta a la calidad y completitud de la telemetría histórica de Peñoles, validada durante la calibración de baseline. Si no ocurre en esa ventana, el piloto se extiende 90 días sin costo de licencia.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Canales de entrega -->
+    <div class="feat-grid" style="margin-top:24px">
+      <div class="feat">
+        <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h10v10H4z"/><path d="M4 8h10M8 4v10"/></svg></div>
+        <div class="feat-title" data-eid="cf-feat1-title">Multi-OEM y multiprotocolo</div>
+        <div class="feat-desc" data-eid="cf-feat1-desc">Cat MineStar/VIMS, Komatsu KOMTRAX, Sandvik 365, Epiroc Certiq, Wenco, Modular Mining. También Modbus, OPC-UA y señales 4-20 mA cuando hay retrofit.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3l6 3v5l-6 3-6-3V6z"/></svg></div>
+        <div class="feat-title" data-eid="cf-feat2-title">Solo-lectura, siempre</div>
+        <div class="feat-desc" data-eid="cf-feat2-desc">No escribe en PLC, SCADA, ni en el sistema OEM. Si Made no está disponible, la operación corre exactamente igual. Cero riesgo de proceso.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h12M3 9h9M3 12h6"/></svg></div>
+        <div class="feat-title" data-eid="cf-feat3-title">Canal del supervisor de mina</div>
+        <div class="feat-desc" data-eid="cf-feat3-desc">WhatsApp, SMS, WebApp, email o cualquier endpoint que defina la unidad. La prescripción llega al supervisor en turno, no a un dashboard que nadie revisa a las 03:00 a.m.</div>
+      </div>
+    </div>
+
+    <!-- Arquitectura OT/IT (depth expansion) -->
+    <div class="card" style="margin-top:24px;border-left:3px solid var(--dark)">
+      <div class="card-title" style="margin-bottom:10px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M5 8l2 2 4-4"/></svg>
+        Arquitectura OT/IT · puntos validables por seguridad de Peñoles
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--dark);line-height:1.6">
+        <div data-eid="ot-arch1"><strong>Modo de operación.</strong> Capa pasiva de observación; Made OS lee de la API on-premise y de feeds OEM, no escribe en SCADA, PLC ni en sistemas de control. Salida exclusivamente a canales de notificación.</div>
+        <div data-eid="ot-arch2"><strong>Protocolo de ingesta.</strong> OPC UA Client cuando el SCADA de la unidad lo expone; APIs REST/MQTT documentadas para feeds OEM; señales 4-20 mA cuando hay retrofit Edge.</div>
+        <div data-eid="ot-arch3"><strong>Canal saliente cifrado.</strong> TLS 1.3 hacia la capa de orquestación de Made (cloud). Lista de endpoints + puertos documentada para validación de IT/OT antes de habilitar el canal. Bajo política de Peñoles, el dato crudo de telemetría permanece on-premise; lo que sale por TLS son métricas agregadas, vectores de inferencia y alertas.</div>
+        <div data-eid="ot-arch4"><strong>Framework de cumplimiento.</strong> IEC 62443 (zones &amp; conduits), baseline ISA/IEC 62443-3-3 SL-2. El equipo eléctrico de la unidad valida la especificación final del retrofit antes de la instalación.</div>
+        <div data-eid="ot-arch5"><strong>Mecanismo de revocación.</strong> Un comando de IT/OT corta el canal saliente en cualquier momento. Made OS detecta la pérdida de canal y deja de operar; la telemetría de Peñoles continúa intacta porque Made nunca tocó la ruta de control.</div>
+        <div data-eid="ot-arch6"><strong>Propiedad y residencia de datos.</strong> El dato crudo es de Peñoles. El modelo entrenado durante el piloto queda en infraestructura Peñoles. Detalles completos en el apéndice técnico (sección IP / data ownership).</div>
+      </div>
+    </div>
+
+    <!-- Requerimientos del piloto -->
+    <div class="req-grid" style="margin-top:24px">
+      <div class="req-item">
+        <div class="req-num">1</div>
+        <div class="req-title" data-eid="cf-req1-title">Telemetría activa</div>
+        <div class="req-desc" data-eid="cf-req1-desc">API on-premise expuesta (la que Peñoles ya opera) o feed OEM directo (VIMS, KOMTRAX, Sandvik 365, Certiq) para la clase de activo seleccionada.</div>
+      </div>
+      <div class="req-item">
+        <div class="req-num">2</div>
+        <div class="req-title" data-eid="cf-req2-title">Contraparte operativa</div>
+        <div class="req-desc" data-eid="cf-req2-desc">Superintendente de Mantenimiento Mina, Jefe de Flota o Confiabilidad designado, con autoridad para validar criterios de éxito y firmar el reporte de cierre.</div>
+      </div>
+      <div class="req-item">
+        <div class="req-num">3</div>
+        <div class="req-title" data-eid="cf-req3-title">Acceso a baseline</div>
+        <div class="req-desc" data-eid="cf-req3-desc">MTBF histórico de 12-24 meses de la clase candidata; sirve para calibrar la banda de eventos evitados y la definición auditable de success fee.</div>
+      </div>
+    </div>
+
+    <div class="alert alert-info" style="margin-top:16px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 7v4M8 5.5v.5"/></svg>
+      <span><strong>Nota técnica.</strong> Para activos en frente de mina, el retrofit Edge cumple NOM-032-STPS y, donde aplique, especificación intrínseca IECEx Ma/Mb (M1/M2). La especificación final se valida con el equipo eléctrico de la unidad antes de la instalación. Especificaciones completas del Made Edge (Jetson Orin Nano Super · 67 INT8 TOPS · IP67/NEMA 4X) disponibles en el apéndice técnico.</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 04 PRECIO + ROI ── -->
+  <div class="section" id="s04">
+    <div class="s-label">04. Precio del piloto y retorno proyectado</div>
+    <div class="s-title" data-eid="precio-title">Punto de equilibrio en un evento. Mecánica de retorno explícita.</div>
+    <p class="s-lead" data-eid="precio-lead">El pricing del piloto está en la sección 02 (estructura completa). Esta sección presenta el modelo de retorno: el punto de equilibrio operativo, un ejemplo operacional concreto de industria adyacente, y los tres escenarios de retorno proyectado para el Programa de Despliegue post-piloto.</p>
+
+    <!-- Punto de equilibrio anchor -->
+    <div class="roi-hero">
+      <div class="roi-hero-label" data-eid="roi-hero-label">Punto de equilibrio del piloto · 90 días</div>
+      <div class="roi-hero-val" data-eid="roi-hero-val">1 evento evitado</div>
+      <div class="roi-hero-sub" data-eid="roi-hero-sub">Un solo pull-out evitado ($250K-$700K) supera ampliamente la inversión total del piloto ($15K-$25K). La hipótesis del piloto es alcanzar ese umbral en 90 días.</div>
+    </div>
+
+    <!-- Worked example anonimizado -->
+    <div class="card" style="margin-top:16px;border-left:3px solid var(--orange)">
+      <div class="card-title" style="margin-bottom:10px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+        Ejemplo operativo (industria adyacente, dato auditado internamente)
+      </div>
+      <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0" data-eid="worked-example">Operación industrial de manufactura continua de transformación de madera, México, 2025. Activo: rectificadora de cuchillas industrial (rotativo crítico de alta abrasión, análogo técnico al modo de falla de bombas de pulpa). Made OS detectó degradación progresiva de cojinetes con aproximadamente <strong>14 días de ventana</strong> antes de la falla esperada, vía firma acústica y deriva sostenida de vibración RMS. Prescripción emitida con 12 días de margen de intervención. Intervención ejecutada en cambio de turno programado. Costo de paro evitado estimado: <strong>~$180K USD</strong> (lucro cesante 4 días + reemplazo de componente mayor). Detalles del caso disponibles bajo NDA en la sesión técnica. Esta operación es referencia técnica, no minera; la analogía es por modo de falla y arquitectura de detección, no por sector.</p>
+    </div>
+
+    <!-- Tabla 3 escenarios (calibrada al Programa de Despliegue post-piloto) -->
+    <div class="card" style="margin-top:16px">
+      <div class="card-title" style="margin-bottom:14px;font-size:12px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L8 4l6 10H2z"/></svg>
+        Tres escenarios de retorno para el Programa de Despliegue (post-piloto, 9-12 meses · 3 clases)
+      </div>
+      <div class="tbl-scroll"><table class="cost-table">
+        <thead>
+          <tr><th>Escenario</th><th>Eventos Clase A evitados</th><th>Costo promedio evento</th><th>Ahorro bruto</th><th>Inversión total</th><th>ROI</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Conservador</strong><br><span style="font-size:11px;color:var(--gray)">2 pull-outs / 12 meses</span></td>
+            <td>2</td>
+            <td>$250,000</td>
+            <td>$500,000</td>
+            <td>$138,000</td>
+            <td style="font-weight:700">~360%</td>
+          </tr>
+          <tr>
+            <td><strong>Esperado</strong><br><span style="font-size:11px;color:var(--gray)">4 pull-outs / 12 meses · referencia base</span></td>
+            <td>4</td>
+            <td>$300,000</td>
+            <td>$1,200,000</td>
+            <td>$130,000</td>
+            <td style="font-weight:700;color:var(--orange)">~900%</td>
+          </tr>
+          <tr>
+            <td><strong>Optimista</strong><br><span style="font-size:11px;color:var(--gray)">7 pull-outs / 12 meses · flota crítica completa</span></td>
+            <td>7</td>
+            <td>$470,000</td>
+            <td>$3,290,000</td>
+            <td>$116,000</td>
+            <td style="font-weight:700">~2,400%</td>
+          </tr>
+        </tbody>
+      </table></div>
+      <p style="font-size:11.5px;color:var(--gray-l);margin-top:10px;line-height:1.55" data-eid="scenario-note">Bandas calibradas con rangos de referencia GMG (Global Mining Guidelines), Caterpillar Service News, Sandvik aftermarket, Epiroc TCO benchmarks, ICMM operational guidance. Los rangos asumen acceso al histórico de paros de Peñoles durante el piloto; el cómputo definitivo del escenario base se afina al cierre del piloto con datos auditados de los 90 días.</p>
+    </div>
+
+    <!-- ROI cards (4 items, recalibrados) -->
+    <div class="roi-grid" style="margin-top:18px">
+      <div class="roi-item">
+        <div class="roi-lbl" data-eid="roi-card1-lbl">Punto de equilibrio</div>
+        <div class="roi-val" data-eid="roi-card1-val">1 evento</div>
+        <div class="roi-delta" data-eid="roi-card1-delta">$250K ahorro &gt; $25K inversión piloto</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-lbl" data-eid="roi-card2-lbl">Ventana objetivo de 1er Clase A</div>
+        <div class="roi-val" data-eid="roi-card2-val">60-90 días</div>
+        <div class="roi-delta" data-eid="roi-card2-delta">si no ocurre, extensión 90 días sin costo</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-lbl" data-eid="roi-card3-lbl">Banda ROI · Programa de Despliegue</div>
+        <div class="roi-val" data-eid="roi-card3-val">360%–2,400%</div>
+        <div class="roi-delta" data-eid="roi-card3-delta">post-piloto · referencia esperada ~900%</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-lbl" data-eid="roi-card4-lbl">Costo si no cumplimos criterios</div>
+        <div class="roi-val" data-eid="roi-card4-val">$0</div>
+        <div class="roi-delta" data-eid="roi-card4-delta">no facturación + extensión sin costo</div>
+      </div>
+    </div>
+
+    <!-- Clase A ejecutivo (1 línea + anchor link) -->
+    <div class="alert alert-info" style="margin-top:18px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8l2 2 4-4"/></svg>
+      <div data-eid="clase-a-exec">
+        <strong>Definición operativa de "Evento Crítico Evitado" (Clase A · success fee).</strong><br>
+        Made OS cobra success fee únicamente cuando se documenta operativamente un pull-out no planificado evitado, validado conjuntamente por ambas partes. El criterio técnico de validación combina detección documentada con timestamp, prescripción emitida antes de la falla, intervención ejecutada en CMMS con código de causa, evidencia física del modo de falla, y contrafactual de no-mantenimiento preventivo programado. <a href="#s99" style="color:var(--orange);font-weight:600;text-decoration:none;border-bottom:1px solid var(--orange-bd)">Ver criterios técnicos completos en el apéndice ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 05 PROGRAMA DE DESPLIEGUE ── -->
+  <div class="section" id="s05">
+    <div class="s-label">05. Programa de Despliegue · post-piloto</div>
+    <div class="s-title" data-eid="dep-title">Si el piloto cumple criterios, el Programa de Despliegue arranca con términos pre-acordados.</div>
+    <p class="s-lead" data-eid="dep-lead">Esta sección describe la estructura general del Programa de Despliegue que sigue al piloto. Los términos comerciales detallados se confirman al cierre del piloto, basados en datos auditados de los 90 días y validados conjuntamente.</p>
+
+    <div class="cols-2-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;width:100%">
+      <div class="card" style="border-left:3px solid var(--orange)">
+        <div class="card-title" style="margin-bottom:10px">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg>
+          Programa de Despliegue · Equipo móvil crítico
+        </div>
+        <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0 0 8px 0" data-eid="dep-block1">Expansión a tres clases de activo móvil subterráneo (acarreo, carga, barrenación) sobre la misma unidad operativa del piloto, durante 9-12 meses. Banda de inversión total de referencia: <strong>$116K-$138K USD</strong> (base $2,000/mes × 3 clases × 12 meses + Edge retrofit según necesidad + success fees efectivos al ritmo de detección).</p>
+        <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0" data-eid="dep-block1b">El 100% del fee base pagado durante el piloto ($6,000 USD) se acredita al primer trimestre del Despliegue. Términos detallados se cierran en la sesión de transición al día 90 con datos auditados.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--dark)">
+        <div class="card-title" style="margin-bottom:10px">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v6m0 0l-3-3m3 3l3-3M3 11h10M3 14h10"/></svg>
+          Horizonte estratégico · Circuito operativo de relaves
+        </div>
+        <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0 0 8px 0" data-eid="dep-block2">Tras el Despliegue de equipo móvil, expansión natural al circuito operativo de relaves (bombas de pulpa, espesadores, cicloneras, líneas de transporte de cola, bombas de paste backfill). Misma metodología prescriptiva; cambia la clase de activo.</p>
+        <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0" data-eid="dep-block2b">Justificación regulatoria: post-Brumadinho (2019) y Jagersfontein (2022), la GISTM es estándar de hecho; Peñoles es signataria ICMM. El monitoreo del circuito de relaves pasa de gasto discrecional a obligatorio. Pricing detallado se entrega en sesión de transición, no en propuesta inicial.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px;border-left:3px solid var(--orange)">
+      <div class="card-title" style="margin-bottom:10px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M8 2v12"/></svg>
+        Volumen de relaves · palanca indirecta vía disponibilidad
+      </div>
+      <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0 0 10px 0" data-eid="dep-volume-quote"><em style="color:var(--gray)">Mensaje del champion del CVC del grupo: "los relaves son un problema; si ayudas a reducir volumen de relave es mejor."</em></p>
+      <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0" data-eid="dep-volume-mech">Made OS opera como capa pasiva de observación y prescripción; no controla setpoints metalúrgicos ni opera lógica de proceso. La palanca sobre volumen es indirecta, vía disponibilidad y ventana operativa del equipo del circuito: si el espesador opera degradado, su underflow density cae y más agua va a presa; si las cicloneras pierden eficiencia de clasificación, más material útil termina en cola; si la bomba de paste backfill no está disponible, el relleno no regresa a interior mina. Made OS está diseñado para detectar esa degradación temprano y disparar la prescripción antes de que cruce el umbral.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 06 VALIDACIÓN + TRANSPARENCY + CASO INAUGURAL ── -->
+  <div class="section" id="s06">
+    <div class="s-label">06. Validación de plataforma y posicionamiento</div>
+    <div class="s-title" data-eid="val-title">Plataforma probada en industria. Peñoles como caso inaugural de minería Tier 1, declarado abiertamente.</div>
+    <p class="s-lead" data-eid="val-lead">Made OS opera hoy en programas industriales cross-vertical. Peñoles representaría nuestra primera implementación en minería Tier 1. Este posicionamiento define los términos preferenciales que ofrecemos en este piloto; los presentamos explícitamente.</p>
+
+    <div class="cols-2-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;width:100%">
+      <div class="card" style="border-left:3px solid var(--dark)">
+        <div class="card-title" style="margin-bottom:10px">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+          Validación cross-vertical (analogía técnica, no sectorial)
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--dark);line-height:1.6">
+          <div data-eid="val-ref1"><strong>HeavenWard · Tier 1 elevadores industriales, Chile.</strong> Programa de monitoreo prescriptivo en activos de transporte vertical de uso intensivo. Implementación activa.</div>
+          <div data-eid="val-ref2"><strong>Maderera Mich · Design Partner industrial, México.</strong> Despliegue de Made OS en línea de manufactura continua de transformación de madera. Colaboración de diseño de producto y validación de modelo prescriptivo.</div>
+          <div data-eid="val-ref3"><strong>Otras integraciones documentadas.</strong> Pilotos técnicos completados sobre activos rotativos en industrias adyacentes que validan la arquitectura del motor predictivo, el pipeline de prescripción y la integración a sistemas OT vía OPC UA y APIs OEM.</div>
+          <p style="font-size:11.5px;color:var(--gray-l);margin:6px 0 0 0;line-height:1.55" data-eid="val-disclosure">Referencias completas y datos auditados disponibles bajo NDA en la sesión técnica. La selección prioriza la analogía técnica con el caso Peñoles (activos rotativos críticos, telemetría continua, decisión operativa por turno), no la analogía sectorial directa.</p>
+        </div>
+      </div>
+
+      <div class="card" style="border-left:3px solid var(--orange)">
+        <div class="card-title" style="margin-bottom:10px">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+          Honestidad de fase del producto
+        </div>
+        <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0" data-eid="maturity-transparency">Made OS opera hoy en programas industriales cross-vertical (elevadores Tier 1, manufactura continua, pilotos adyacentes). Peñoles representaría nuestra primera implementación en minería Tier 1. Esa condición define los términos preferenciales de este piloto: pricing actual asegurado, prioridad de roadmap, publicación conjunta sujeta a NDA, acceso directo al equipo fundador. No escondemos la fase del producto; la convertimos en propuesta de valor. La estructura de piloto acotado de 90 días existe precisamente para que la primera apuesta de Peñoles sea pequeña, verificable y reversible.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px;border-left:3px solid var(--orange)">
+      <div class="card-title" style="margin-bottom:10px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L2 6l6 4 6-4-6-4zM2 10l6 4 6-4"/></svg>
+        Peñoles como caso inaugural minería Tier 1 · 4 compromisos preferenciales
+      </div>
+      <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0 0 10px 0" data-eid="inaugural-frame">El posicionamiento de Peñoles como cliente inaugural conlleva un conjunto de compromisos explícitos:</p>
+      <div style="display:flex;flex-direction:column;gap:9px;font-size:13px;color:var(--dark);line-height:1.55">
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">›</span><span data-eid="inaugural-b1"><strong>Términos comerciales del piloto y del Despliegue asegurados.</strong> El pricing aquí presentado se garantiza para la totalidad del piloto y para la activación del Programa de Despliegue en las condiciones descritas, sin ajuste unilateral durante el horizonte del programa.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">›</span><span data-eid="inaugural-b2"><strong>Prioridad de roadmap de producto.</strong> Las solicitudes técnicas específicas de Peñoles para activos mineros (modos de falla particulares de jumbos, LHDs, bombas de pulpa) se incorporan al roadmap con prioridad alta sin costo adicional durante piloto y Despliegue.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">›</span><span data-eid="inaugural-b3"><strong>Publicación conjunta de resultados.</strong> Al cierre del piloto y del Despliegue, posibilidad de publicación conjunta de un caso de éxito auditado, sujeto a NDA y aprobación explícita de Peñoles. Made se compromete a no nombrar a Peñoles en materiales públicos sin esta aprobación.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">›</span><span data-eid="inaugural-b4"><strong>Acceso directo al equipo fundador.</strong> Línea directa con Gerardo Peña (CEO) y Ramiro Pantoja (CTO) durante todo el programa, para resolución técnica y de programa fuera del soporte estándar.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 07 GARANTÍAS + MAPA + TÉRMINOS ── -->
+  <div class="section" id="s07">
+    <div class="s-label">07. Garantías, mapa de aprobación y términos</div>
+    <div class="s-title" data-eid="gar-title">Made asume el riesgo operativo. Tres mecanismos.</div>
+
+    <!-- Doble garantía -->
+    <div class="guarantee">
+      <div class="guarantee-grid">
+        <div class="g-statement">
+          <div class="g-label">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1l4.5 1.8v4.2c0 2.8-2 4.5-4.5 5-2.5-.5-4.5-2.2-4.5-5V2.8L7 1z"/></svg>
+            Doble garantía del piloto técnico, 90 días
+          </div>
+          <h3 data-eid="gar-statement">Estructura de riesgo compartido. <em>Si entre el día 60 y 90 no se documenta el primer evento Clase A, o si al cierre del piloto los criterios pre-acordados no se cumplen, Made extiende 90 días adicionales sin costo de licencia.</em></h3>
+        </div>
+        <div class="g-items">
+          <div class="g-item"><div class="g-check">✓</div><span data-eid="gar-item1">Si el piloto demuestra que los criterios se cumplen, el 100% del fee base pagado durante el piloto se acredita al primer trimestre del Programa de Despliegue. Peñoles no paga dos veces.</span></div>
+          <div class="g-item"><div class="g-check">✓</div><span data-eid="gar-item2">Made mantiene soporte operativo y analítico completo durante cualquier extensión de garantía.</span></div>
+          <div class="g-item"><div class="g-check">✓</div><span data-eid="gar-item3">Los modelos entrenados y el historial de datos son propiedad de Peñoles independientemente del resultado del piloto.</span></div>
+        </div>
+      </div>
+      <div class="g-faqs">
+        <div class="g-faq">
+          <div class="g-faq-q" data-eid="gar-faq1-q">¿IT necesita aprobar la conexión OT?</div>
+          Made trabaja directamente con IT. Si no se conecta en 10 días sin alterar operaciones, el piloto no inicia y no se factura.
+        </div>
+        <div class="g-faq">
+          <div class="g-faq-q" data-eid="gar-faq2-q">¿Ya tienen CMMS o preventivo instalado?</div>
+          Made no reemplaza nada. Es una capa de inteligencia que aprende y prescribe encima de lo que ya funciona.
+        </div>
+        <div class="g-faq">
+          <div class="g-faq-q" data-eid="gar-faq3-q">¿El presupuesto ya fue asignado este trimestre?</div>
+          El piloto de $15K-$25K se diseñó para encajar en presupuestos discrecionales de Mantenimiento u Operaciones sin requerir review de Vicepresidencia. Consulta condiciones en la sesión técnica.
+        </div>
+      </div>
+    </div>
+
+    <!-- Mapa de aprobación enterprise -->
+    <div class="card" style="margin-top:24px;border-left:3px solid var(--dark)">
+      <div class="card-title" style="margin-bottom:14px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12v8H2z"/><path d="M5 7h6M5 10h4"/></svg>
+        Cómo trabajamos con organizaciones de tu escala
+      </div>
+      <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0 0 14px 0" data-eid="map-lead">Sugerimos involucrar stakeholders por etapa para alinear internamente la aprobación. El piloto de $15K-$25K está diseñado para encajar en autonomía presupuestal de Mantenimiento u Operaciones sin requerir review ejecutiva, lo cual acelera el inicio. La estructura sugerida:</p>
+      <div class="tbl-scroll"><table class="cost-table">
+        <thead>
+          <tr><th>Etapa</th><th>Stakeholders sugeridos</th><th>Objetivo</th><th>Tiempo típico</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Calificación técnica</strong></td>
+            <td data-eid="map-row1-who">Confiabilidad · Mantenimiento Mina · OT/IT</td>
+            <td data-eid="map-row1-goal">Validar feasibility técnica · definir clase de activo candidata</td>
+            <td data-eid="map-row1-time">Sesión 1 · 30 min remota</td>
+          </tr>
+          <tr>
+            <td><strong>Calibración comercial del piloto</strong></td>
+            <td data-eid="map-row2-who">+ Compras · Finanzas locales</td>
+            <td data-eid="map-row2-goal">Estructura contractual · aprobación presupuestal del piloto</td>
+            <td data-eid="map-row2-time">Sesión 2 · 45 min</td>
+          </tr>
+          <tr>
+            <td><strong>Sign-off de piloto</strong></td>
+            <td data-eid="map-row3-who">Dirección de Operaciones (si requerido)</td>
+            <td data-eid="map-row3-goal">Aprobación final del piloto · arranque en 10 días hábiles</td>
+            <td data-eid="map-row3-time">Sesión 3 · si aplica</td>
+          </tr>
+          <tr>
+            <td><strong>Decisión de Despliegue</strong></td>
+            <td data-eid="map-row4-who">+ Vicepresidencia · post-piloto día 90</td>
+            <td data-eid="map-row4-goal">Aprobación del Programa de Despliegue basado en resultados auditados</td>
+            <td data-eid="map-row4-time">Post día 90</td>
+          </tr>
+        </tbody>
+      </table></div>
+      <p style="font-size:11.5px;color:var(--gray-l);margin-top:10px;line-height:1.55" data-eid="map-note">Esta estructura es referencial; ajustamos a la realidad de procurement y gobernanza de Peñoles en la primera sesión. La intención es facilitar el alineamiento interno, no prescribir un proceso.</p>
+    </div>
+
+    <!-- Términos clave compactos -->
+    <div class="terms-grid" style="margin-top:24px">
+      <div class="terms-col">
+        <div class="terms-col-title" style="color:var(--dark)">Peñoles recibe (en el piloto)</div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span data-eid="terms-l1">Implementación API y/o Edge (según selección) en 1 clase de activo móvil de 1 unidad operativa.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span data-eid="terms-l2">Edge grado minero (IP67/NEMA 4X/NOM-032-STPS, IECEx M1/M2 si aplica) solo si la clase lo requiere.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span data-eid="terms-l3">Onboarding técnico completo: conexión, baseline, calibración de modelo prescriptivo.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span data-eid="terms-l4">Soporte directo del equipo fundador durante los 90 días.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span data-eid="terms-l5">Reporte ejecutivo final con criterios auditados, MTBF, alertas validadas, recomendación operativa.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span data-eid="terms-l6">Modelos entrenados y historial de datos quedan en infraestructura de Peñoles.</span></div>
+        <div class="terms-item"><div class="terms-check check-green">✓</div><span data-eid="terms-l7">Términos pre-acordados para Programa de Despliegue post-piloto si los criterios se cumplen.</span></div>
+      </div>
+      <div class="terms-col">
+        <div class="terms-col-title" style="color:var(--dark)">Made recibe</div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span data-eid="terms-r1">Acceso de solo-lectura a datos reales de producción del activo durante el piloto.</span></div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span data-eid="terms-r2">Colaboración técnica del equipo de planta para calibrar el modelo a la operación específica.</span></div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span data-eid="terms-r3">Contraparte operativa con autoridad para validar criterios de éxito.</span></div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span data-eid="terms-r4">Sesión de cierre y revisión al día 90.</span></div>
+        <div class="terms-item"><div class="terms-check check-orange">→</div><span data-eid="terms-r5">Pago según estructura comercial del piloto descrita en S02.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 08 SESIÓN TÉCNICA · CTA ── -->
+  <div class="section" id="s08">
+    <div class="s-label">08. Sesión técnica inicial</div>
+    <p class="s-lead" data-eid="cta-lead">Una sesión técnica con el equipo fundador de Made para definir la clase de activo candidata, la unidad operativa del piloto, y la integración a la API on-premise. Objetivo: cerrar alcance del piloto en una página y arrancar en menos de 10 días hábiles.</p>
+
+    <div class="card" style="margin-bottom:18px;border-left:3px solid var(--orange);background:var(--orange-bg)">
+      <div class="card-title" style="margin-bottom:12px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v6m0 0l-3-3m3 3l3-3M3 11h10M3 14h10"/></svg>
+        Antes de la sesión · 4 datos a calibrar
+      </div>
+      <p style="font-size:13px;color:var(--dark);line-height:1.6;margin-bottom:12px" data-eid="cta-data-intro">Antes de cerrar pricing y scope del piloto necesitamos confirmar 4 puntos con su equipo. Cada uno calibra una dimensión específica:</p>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--dark);line-height:1.6">
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;width:22px;flex-shrink:0">1.</span><span data-eid="cta-d1"><strong>MTBF histórico por clase de activo (últimos 12-24 meses).</strong> Calibra la banda de eventos evitados y la definición auditable de success fee. Mantenimiento o Confiabilidad lo tiene.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;width:22px;flex-shrink:0">2.</span><span data-eid="cta-d2"><strong>Volumen aproximado de telemetría (señales/segundo, política de retención).</strong> Determina si Software+API alcanza o si conviene Edge en activos de alta frecuencia.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;width:22px;flex-shrink:0">3.</span><span data-eid="cta-d3"><strong>Sistema CMMS específico (SAP PM, Maximo, Infor EAM, otro).</strong> Made OS genera el work order draft que se inyecta a CMMS existente; el equipo de mantenimiento no cambia de sistema.</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;width:22px;flex-shrink:0">4.</span><span data-eid="cta-d4"><strong>Política IT/OT respecto al canal saliente cifrado de orquestación.</strong> Made aporta documentación de arquitectura (IEC 62443, TLS 1.3, sólo lectura, alcances de outbound) en la primera sesión.</span></div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div class="cta-left">
+        <div class="cta-tag" data-eid="cta-tag">Piloto Técnico de Calibración · 90 días · Equipo Móvil Subterráneo</div>
+        <h3 data-eid="cta-h3">Agenda la sesión técnica inicial</h3>
+        <p data-eid="cta-p">Sesión técnica de 30 minutos · Remota · Asistentes: Gerardo Peña (CEO) + Ramiro Pantoja (CTO). Objetivo: calificación técnica + alcance del piloto en una página. Una vez aprobado, el piloto inicia en menos de 10 días hábiles.</p>
+      </div>
+      <div class="cta-right">
+        <a href="https://cal.com/madeos.ai/demo" class="cta-btn">Agendar sesión →</a>
+        <div class="cta-sub" data-eid="cta-sub">cal.com/madeos.ai/demo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 99 APÉNDICE TÉCNICO (colapsable) ── -->
+  <div class="section" id="s99">
+    <div class="s-label">Apéndice técnico</div>
+    <div class="s-title" data-eid="apx-title">Detalles operativos, especificaciones y mecanismos contractuales</div>
+    <p class="s-lead" data-eid="apx-lead">Esta sección contiene los detalles que ingenieros de confiabilidad, OT/IT, procurement y auditores requieren para validación técnica formal. Está plegada por defecto para no romper el flujo de lectura ejecutiva. Cada bloque se imprime expandido en formato PDF/papel.</p>
+
+    <details open style="margin-top:14px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--white);box-shadow:var(--sh)">
+      <summary style="cursor:pointer;padding:16px 24px;font-size:14px;font-weight:700;color:var(--black);user-select:none">
+        A1 · Definición operativa completa de Clase A, B y C (criterios cuantitativos)
+      </summary>
+      <div style="padding:4px 24px 22px 24px;font-size:13px;color:var(--dark);line-height:1.7">
+        <p style="margin:0 0 10px 0"><strong>Clase A · Pull-out no planificado evitado.</strong> Genera success fee cuando se cumplen <strong>los cinco</strong> criterios:</p>
+        <ol style="margin:6px 0 14px 18px;padding:0;font-size:13px;line-height:1.7">
+          <li data-eid="apx-a1-1"><strong>Detección documentada:</strong> drift sostenido de la variable de condición monitoreada (vibración RMS, firma acústica, temperatura, presión) <em>≥2 desviaciones estándar</em> sobre baseline durante al menos <em>30 minutos consecutivos</em>, con timestamp en plataforma Made OS.</li>
+          <li data-eid="apx-a1-2"><strong>Prescripción emitida antes de la falla:</strong> orden de intervención generada por Made OS, registrada con timestamp y canal de entrega (WhatsApp/SMS/WebApp).</li>
+          <li data-eid="apx-a1-3"><strong>Intervención ejecutada:</strong> orden de trabajo en CMMS con código de causa coincidente, ejecutada en taller programado dentro de la ventana de intervención sugerida por Made OS.</li>
+          <li data-eid="apx-a1-4"><strong>Evidencia física del modo de falla:</strong> el componente removido (cojinete, sello, transmisión, etc.) exhibe signos de degradación correspondientes al patrón detectado, documentados mediante foto y/o medición (espesor, holgura, contaminación de aceite).</li>
+          <li data-eid="apx-a1-5"><strong>Contrafactual de no-mantenimiento programado:</strong> el activo no había sido programado en plan de mantenimiento preventivo en una ventana de ±7 días respecto a la prescripción.</li>
+        </ol>
+        <p style="margin:0 0 8px 0" data-eid="apx-a1-b"><strong>Clase B · Disponibilidad mecánica recuperada.</strong> Genera success fee. Degradación detectada y corregida antes de impactar la rotación de turno; aplican criterios 1, 2 y 3.</p>
+        <p style="margin:0 0 12px 0" data-eid="apx-a1-c"><strong>Clase C · Alerta útil validada.</strong> No genera fee. Detección correcta confirmada por inspección, sin intervención inmediata requerida; alimenta el aprendizaje del modelo por número de serie.</p>
+        <p style="margin:0;font-size:12.5px;line-height:1.7" data-eid="apx-a1-baseline"><strong>Baseline y ventana de disputa.</strong> Baseline calibrado durante los primeros 30 días. Ventana de disputa de cualquier evento: 10 días hábiles desde la emisión del reporte mensual.</p>
+      </div>
+    </details>
+
+    <details style="margin-top:10px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--white);box-shadow:var(--sh)">
+      <summary style="cursor:pointer;padding:16px 24px;font-size:14px;font-weight:700;color:var(--black);user-select:none">
+        A2 · Mecanismo de árbitro técnico independiente
+      </summary>
+      <div style="padding:4px 24px 22px 24px;font-size:13px;color:var(--dark);line-height:1.7">
+        <p style="margin:0" data-eid="apx-a2"><strong>Selección del árbitro.</strong> Al inicio del programa, Made y Peñoles seleccionan mutuamente un árbitro de una <em>shortlist conjunta de tres referentes</em> con perfil: ingeniero senior de confiabilidad con certificación CMRP/CRL o equivalente, 15+ años de experiencia en minería subterránea, sin relación contractual vigente con Made ni con Peñoles. Las disputas se revisan en <em>sesión bimestral</em> (no caso a caso), con decisión vinculante únicamente sobre la procedencia de success fees del período. Honorarios del árbitro: 50% Made / 50% Peñoles. Si las partes no acuerdan el árbitro inicial dentro de 30 días, GMG (Global Mining Guidelines Group) actúa como autoridad designante.</p>
+      </div>
+    </details>
+
+    <details style="margin-top:10px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--white);box-shadow:var(--sh)">
+      <summary style="cursor:pointer;padding:16px 24px;font-size:14px;font-weight:700;color:var(--black);user-select:none">
+        A3 · Made OS vs. OEM analytics (MineStar / KOMTRAX / Sandvik 365)
+      </summary>
+      <div style="padding:4px 24px 22px 24px">
+        <div class="tbl-scroll"><table class="comp-table">
+          <thead>
+            <tr><th>Dimensión</th><th>OEM analytics</th><th>Made OS</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Alcance</td><td>Solo flota del mismo OEM, en silos</td><td>Multi-OEM unificado: VIMS + KOMTRAX + Sandvik 365 + Certiq</td></tr>
+            <tr><td>Salida</td><td>Telemetría y diagnóstico</td><td>Prescripción accionable: qué activo, qué hacer, en qué ventana</td></tr>
+            <tr><td>Canal de entrega</td><td>Dashboard del OEM, requiere pull</td><td>WhatsApp / SMS al supervisor de mina en turno</td></tr>
+            <tr><td>Modelo comercial</td><td>Anclado al contrato OEM, sin success fee</td><td>Base mensual + success fee por evento evitado auditado</td></tr>
+            <tr><td>Aprendizaje</td><td>Genérico por modelo de equipo</td><td>Por número de serie y por mina (altitud, ciclo, frente)</td></tr>
+            <tr><td>Riesgo</td><td>100% del cliente</td><td>Compartido, extensión sin costo si no hay ROI</td></tr>
+            <tr><td>Reemplaza al OEM</td><td>No aplica</td><td>No. Made OS se acopla encima.</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </details>
+
+    <details style="margin-top:10px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--white);box-shadow:var(--sh)">
+      <summary style="cursor:pointer;padding:16px 24px;font-size:14px;font-weight:700;color:var(--black);user-select:none">
+        A4 · Especificaciones técnicas del Made Edge (retrofit grado minero)
+      </summary>
+      <div style="padding:4px 24px 22px 24px;font-size:13px;color:var(--dark);line-height:1.7">
+        <div class="spec-row"><span class="spec-key">Plataforma</span><span class="spec-val">NVIDIA Jetson Orin Nano Super</span></div>
+        <div class="spec-row"><span class="spec-key">IA on-device</span><span class="spec-val">67 INT8 TOPS</span></div>
+        <div class="spec-row"><span class="spec-key">GPU</span><span class="spec-val">1024 CUDA · 32 tensor cores</span></div>
+        <div class="spec-row"><span class="spec-key">Memoria</span><span class="spec-val">8 GB LPDDR5 · 102 GB/s</span></div>
+        <div class="spec-row"><span class="spec-key">Almacenamiento</span><span class="spec-val">512 GB NVMe</span></div>
+        <div class="spec-row"><span class="spec-key">Consumo</span><span class="spec-val">7 W - 25 W</span></div>
+        <div class="spec-row"><span class="spec-key">Protección</span><span class="spec-val">IP67 · NEMA 4X</span></div>
+        <div class="spec-row"><span class="spec-key">Seguridad OT</span><span class="spec-val">IEC 62443 · TLS 1.3 · Solo lectura · Salida cifrada</span></div>
+        <div class="spec-row"><span class="spec-key">Normativa mexicana</span><span class="spec-val">NOM-032-STPS · IECEx M1/M2 según unidad</span></div>
+        <p style="margin:14px 0 0 0;font-size:12.5px;color:var(--gray)" data-eid="apx-a4">Edge instalado por equipo Made en tablero DIN rail. Aplica donde la telemetría OEM no expone variables críticas (vibración de transmisión, firma acústica de sello, temperatura de cojinete a frecuencia útil). No reemplaza al OEM; lo complementa.</p>
+      </div>
+    </details>
+
+    <details style="margin-top:10px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--white);box-shadow:var(--sh)">
+      <summary style="cursor:pointer;padding:16px 24px;font-size:14px;font-weight:700;color:var(--black);user-select:none">
+        A5 · Costo estimado de evento crítico por clase de activo móvil
+      </summary>
+      <div style="padding:4px 24px 22px 24px">
+        <div class="tbl-scroll"><table class="cost-table">
+          <thead>
+            <tr><th>Clase de activo</th><th>Unidades referencia</th><th>Costo evento mayor</th><th>Ventana típica de detección</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Acarreo subterráneo</td>
+              <td><span class="metal-dot" style="background:var(--gold-l)"></span>Camiones articulados subterráneos (Cat AD-series, Sandvik TH-series)</td>
+              <td style="font-weight:700;color:var(--gold)">$250,000 - $700,000</td>
+              <td>Transmisión / diferencial: 2-6 semanas</td>
+            </tr>
+            <tr>
+              <td>Carga (LHDs)</td>
+              <td><span class="metal-dot" style="background:#aaa"></span>Cargadores subterráneos (Epiroc Scooptram operando en Velardeña; Cat R-series, Sandvik LH-series)</td>
+              <td style="font-weight:700">$200,000 - $500,000</td>
+              <td>Hidráulico / motor diésel: 1-4 semanas</td>
+            </tr>
+            <tr>
+              <td>Barrenación</td>
+              <td><span class="metal-dot" style="background:#64748b"></span>Jumbos subterráneos (Sandvik DD/DL, Epiroc Boomer/Simba; jumbos documentados en Sabinas)</td>
+              <td style="font-weight:700">$150,000 - $350,000</td>
+              <td>Tren de impacto / hidráulico: 1-3 semanas</td>
+            </tr>
+            <tr>
+              <td>Ventilación y dewatering</td>
+              <td><span class="metal-dot" style="background:#5b8f9b"></span>Ventiladores y bombas centrífugas industriales</td>
+              <td style="font-weight:700">$80,000 - $220,000</td>
+              <td>Sello / impulsor / motor: 5-15 días</td>
+            </tr>
+          </tbody>
+        </table></div>
+        <p style="font-size:11.5px;color:var(--gray-l);margin-top:10px;line-height:1.55" data-eid="apx-a5">Costo de evento mayor = reparación mecánica + lucro cesante por días fuera de rotación. Modelos como referencia genérica; verificación específica del parque equipado de Peñoles en la sesión técnica. Rangos: GMG, Caterpillar Service News, Sandvik aftermarket, Epiroc TCO, ICMM operational guidance.</p>
+      </div>
+    </details>
+
+    <details style="margin-top:10px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--white);box-shadow:var(--sh)">
+      <summary style="cursor:pointer;padding:16px 24px;font-size:14px;font-weight:700;color:var(--black);user-select:none">
+        A6 · Arquitectura de red recomendada y política de canal saliente
+      </summary>
+      <div style="padding:4px 24px 22px 24px;font-size:13px;color:var(--dark);line-height:1.7">
+        <p style="margin:0 0 10px 0" data-eid="apx-a6-1"><strong>Zonificación IEC 62443.</strong> Made OS opera en una zona OT designada (Edge) o en una zona DMZ industrial (Software+API). En ambos modos, la única salida es el canal cifrado TLS 1.3 hacia la capa de orquestación de Made en cloud. No hay conexiones entrantes desde Internet hacia la zona OT de Peñoles.</p>
+        <p style="margin:0 0 10px 0" data-eid="apx-a6-2"><strong>Lista de endpoints + puertos.</strong> Made aporta documentación explícita de IPs/dominios y puertos requeridos para el canal saliente, validable por IT/OT antes de habilitar. Solo egress de la red OT.</p>
+        <p style="margin:0 0 10px 0" data-eid="apx-a6-3"><strong>Lo que sale por TLS.</strong> Métricas agregadas, vectores de inferencia y eventos clasificados. El dato crudo de telemetría permanece on-premise. Volumen típico del canal saliente: 2-20 MB/día por activo, según frecuencia de muestreo.</p>
+        <p style="margin:0" data-eid="apx-a6-4"><strong>Pen-test.</strong> Política de pen-test anual sobre el surface de Made (cloud orchestration layer + canal saliente). Reportes ejecutivos disponibles bajo NDA. Pen-test bajo solicitud de Peñoles a costo compartido.</p>
+      </div>
+    </details>
+
+    <details style="margin-top:10px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--white);box-shadow:var(--sh)">
+      <summary style="cursor:pointer;padding:16px 24px;font-size:14px;font-weight:700;color:var(--black);user-select:none">
+        A7 · Propiedad de datos, IP del modelo y exit clause
+      </summary>
+      <div style="padding:4px 24px 22px 24px;font-size:13px;color:var(--dark);line-height:1.7">
+        <p style="margin:0 0 10px 0" data-eid="apx-a7-1"><strong>Dato crudo.</strong> Propiedad exclusiva de Peñoles. Permanece en servidores de Peñoles en todo momento. Made no replica el dato crudo fuera del perímetro de Peñoles.</p>
+        <p style="margin:0 0 10px 0" data-eid="apx-a7-2"><strong>Modelo entrenado.</strong> El modelo prescriptivo entrenado durante el piloto (y, en su caso, durante el Despliegue) queda alojado en infraestructura de Peñoles. Made conserva derecho de uso para mejorar el modelo de producto general, sujeto a anonimización y aprobación explícita; Peñoles conserva derecho de uso ilimitado del modelo entrenado sobre su operación.</p>
+        <p style="margin:0 0 10px 0" data-eid="apx-a7-3"><strong>Baseline operativo.</strong> Propiedad del cliente que lo generó. Made no usa baselines de Peñoles para servir a competidores.</p>
+        <p style="margin:0" data-eid="apx-a7-4"><strong>Exit clause.</strong> Cualquiera de las partes puede terminar el piloto con 30 días de aviso por escrito; el Despliegue con 60 días de aviso. Made entrega el modelo entrenado y el historial de datos en formato estándar (JSON / Parquet) al cierre, sin costo adicional. Liability cap: monto agregado pagado en los 12 meses previos. Indemnización mutua estándar; sin daños indirectos.</p>
+      </div>
+    </details>
+  </div>
+
+
+  <div class="divider"></div>
+
+  <div class="sig">
+    <div class="sig-av" style="padding:0;overflow:hidden;"><img src="../../assets/gpc.png" alt="Gerardo Peña" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+    <div>
+      <div class="sig-name" data-eid="sig-name">Gerardo Peña</div>
+      <div class="sig-role" data-eid="sig-role">CEO, Made OS · MIT Innovator Under 35 LATAM 2025</div>
+      <div class="sig-contact" data-eid="sig-contact">ger@madeos.ai · madeos.ai · NVIDIA Inception · Founders Inc · Startup Chile BIG 10</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="doc-footer" data-eid="doc-footer">
+  <strong>MADE OS</strong> × GRUPO PEÑOLES · MAD-PENOLES-PILOTO-01 · Mayo 2026 · CONFIDENCIAL
+</div>
+
+</div><!-- /proposal -->
+<nav class="sidenav" id="sidenav" aria-label="Índice de secciones">
+  <div class="sidenav-hd">Índice</div>
+  <div class="sidenav-list">
+    <div class="sidenav-item" data-s="s01"><span class="sidenav-dot"></span><span class="sidenav-label">01 · Resumen</span></div>
+    <div class="sidenav-item" data-s="s02"><span class="sidenav-dot"></span><span class="sidenav-label">02 · Piloto 90 días</span></div>
+    <div class="sidenav-item" data-s="s03"><span class="sidenav-dot"></span><span class="sidenav-label">03 · Cómo funciona</span></div>
+    <div class="sidenav-item" data-s="s04"><span class="sidenav-dot"></span><span class="sidenav-label">04 · Precio + ROI</span></div>
+    <div class="sidenav-item" data-s="s05"><span class="sidenav-dot"></span><span class="sidenav-label">05 · Despliegue</span></div>
+    <div class="sidenav-item" data-s="s06"><span class="sidenav-dot"></span><span class="sidenav-label">06 · Validación</span></div>
+    <div class="sidenav-item" data-s="s07"><span class="sidenav-dot"></span><span class="sidenav-label">07 · Garantía + términos</span></div>
+    <div class="sidenav-item" data-s="s08"><span class="sidenav-dot"></span><span class="sidenav-label">08 · Sesión técnica</span></div>
+    <div class="sidenav-item" data-s="s99"><span class="sidenav-dot"></span><span class="sidenav-label">Apéndice técnico</span></div>
+  </div>
+</nav>
+<button class="sn-fab" id="sn-fab">≡ Índice</button>
+<div class="sn-sheet" id="sn-sheet">
+  <div class="sn-backdrop" id="sn-backdrop"></div>
+  <div class="sn-panel">
+    <div class="sn-panel-hd"><span>Índice</span><button class="sn-panel-close" id="sn-close" aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg></button></div>
+    <div class="sn-sheet-item" data-s="s01"><span class="sn-sheet-num">01</span><span class="sn-sheet-lbl">Resumen ejecutivo</span></div>
+    <div class="sn-sheet-item" data-s="s02"><span class="sn-sheet-num">02</span><span class="sn-sheet-lbl">Piloto Técnico de 90 días</span></div>
+    <div class="sn-sheet-item" data-s="s03"><span class="sn-sheet-num">03</span><span class="sn-sheet-lbl">Cómo funciona</span></div>
+    <div class="sn-sheet-item" data-s="s04"><span class="sn-sheet-num">04</span><span class="sn-sheet-lbl">Precio + ROI</span></div>
+    <div class="sn-sheet-item" data-s="s05"><span class="sn-sheet-num">05</span><span class="sn-sheet-lbl">Programa de Despliegue</span></div>
+    <div class="sn-sheet-item" data-s="s06"><span class="sn-sheet-num">06</span><span class="sn-sheet-lbl">Validación de plataforma</span></div>
+    <div class="sn-sheet-item" data-s="s07"><span class="sn-sheet-num">07</span><span class="sn-sheet-lbl">Garantía + términos</span></div>
+    <div class="sn-sheet-item" data-s="s08"><span class="sn-sheet-num">08</span><span class="sn-sheet-lbl">Sesión técnica</span></div>
+    <div class="sn-sheet-item" data-s="s99"><span class="sn-sheet-num">99</span><span class="sn-sheet-lbl">Apéndice técnico</span></div>
+  </div>
+</div>
+
+<!-- ══ IMAGE MODAL ══ -->
+<div id="img-modal" aria-modal="true" role="dialog" aria-label="Imagen ampliada">
+  <div id="img-modal-backdrop" onclick="closeModal()"></div>
+  <div id="img-modal-box">
+    <img id="img-modal-img" src="" alt="">
+    <p id="img-modal-cap"></p>
+    <button id="img-modal-close" onclick="closeModal()" aria-label="Cerrar">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+try { history.scrollRestoration = 'manual'; } catch(e) {}
+var _PIN = 'NjM4NTk1';
+var PSK  = 'mpin_pen_piloto';
+var ASK  = 'mauth_piloto';
+var SAVE_KEY = 'made_pen_piloto';
+var isAdmin  = false;
+var PROPOSAL_ID = 'penoles-piloto';
+var _trackingDone = false;
+var editMode = false;
+var _saveTimer = null;
+var _ftTimer   = null;
+var lastSaved  = null;
+
+var EDIT_SEL = [
+  '.cover-headline','.cover-highlight','.cover-eyebrow','.company-badge',
+  '.cover-creds','.m-value','.m-label','.cover-tagline',
+  '.s-title','.s-lead',
+  '.exec-item-val','.exec-item-sub','.exec-item-label',
+  '.stat-price','.stat-change','.stat-metal',
+  '.step-title','.step-desc','.step-tag',
+  '.roi-hero-val','.roi-hero-sub','.roi-lbl','.roi-val','.roi-delta','.roi-hero-label',
+  '.req-title','.req-desc',
+  '.hw-title','.hw-sub',
+  '.feat-title','.feat-desc',
+  '.g-faq-q','.g-faq div',
+  '.guarantee h3',
+  '.cta-block h3','.cta-block p','.cta-tag','.cta-sub',
+  '.sig-name','.sig-role','.sig-contact',
+  '.doc-footer'
+].join(',');
+
+/* ── PIN ── */
+function doPin() {
+  var pin = document.getElementById('pin-input').value.trim();
+  if (atob(_PIN) === pin) {
+    try { sessionStorage.setItem(PSK, '1'); } catch(e) {}
+    try { posthog.capture('proposal_unlocked', { proposal: 'penoles-piloto', client: 'Grupo Peñoles' }); } catch(e) {}
+    showProposal(false);
+  } else {
+    try { posthog.capture('pin_failed', { proposal: 'penoles' }); } catch(e) {}
+    var inp = document.getElementById('pin-input');
+    document.getElementById('pin-error').style.display = 'block';
+    inp.value = ''; inp.classList.remove('shake'); void inp.offsetWidth;
+    inp.classList.add('shake'); inp.focus();
+    setTimeout(function(){ inp.classList.remove('shake'); }, 400);
+  }
+}
+
+/* ── Analytics tracking ── */
+function _initTracking(proposal) {
+  if (_trackingDone) return;
+  _trackingDone = true;
+
+  // Visit count (reaperturas por sesión)
+  var vcKey = 'ph_vc_' + proposal;
+  var visitCount = parseInt(localStorage.getItem(vcKey) || '0') + 1;
+  try { localStorage.setItem(vcKey, visitCount); } catch(e) {}
+  try { posthog.capture('proposal_session_start', { proposal: proposal, client: 'Grupo Peñoles', visit_count: visitCount }); } catch(e) {}
+
+  // Secciones leídas (IntersectionObserver)
+  var seenSections = {};
+  var secObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      var lbl = entry.target.querySelector('.s-label');
+      if (!lbl || seenSections[lbl.textContent]) return;
+      seenSections[lbl.textContent] = true;
+      try { posthog.capture('section_viewed', { proposal: proposal, section: lbl.textContent.trim() }); } catch(e) {}
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('#proposal .section').forEach(function(s) { secObs.observe(s); });
+
+  // CTA click
+  var cta = document.querySelector('.cta-btn');
+  if (cta) cta.addEventListener('click', function() {
+    try { posthog.capture('cta_clicked', { proposal: proposal, cta: 'agendar_sesion' }); } catch(e) {}
+  });
+
+  // Scroll depth (25 / 50 / 75 / 100%)
+  var depthReached = {};
+  window.addEventListener('scroll', function() {
+    var pct = Math.round((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100);
+    [25, 50, 75, 100].forEach(function(m) {
+      if (pct >= m && !depthReached[m]) {
+        depthReached[m] = true;
+        try { posthog.capture('scroll_depth', { proposal: proposal, depth: m }); } catch(e) {}
+      }
+    });
+  }, { passive: true });
+
+  // Tiempo activo (tab visible)
+  var activeMs = 0, lastSeen = document.hidden ? null : Date.now();
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      if (lastSeen) { activeMs += Date.now() - lastSeen; lastSeen = null; }
+    } else {
+      lastSeen = Date.now();
+    }
+  });
+  function _flushTime() {
+    if (lastSeen) { activeMs += Date.now() - lastSeen; lastSeen = null; }
+    if (activeMs > 5000) try { posthog.capture('time_spent', { proposal: proposal, seconds: Math.round(activeMs / 1000) }); } catch(e) {}
+  }
+  window.addEventListener('pagehide', _flushTime);
+  // Checkpoint cada 2 minutos para lecturas largas
+  setInterval(function() {
+    if (!document.hidden && lastSeen) {
+      var now = Date.now(); activeMs += now - lastSeen; lastSeen = now;
+      try { posthog.capture('time_spent', { proposal: proposal, seconds: Math.round(activeMs / 1000), checkpoint: true }); } catch(e) {}
+    }
+  }, 120000);
+}
+
+/* ── Show proposal ── */
+function showProposal(asAdmin) {
+  isAdmin = !!asAdmin;
+  document.getElementById('pin-screen').style.display = 'none';
+  document.getElementById('proposal').style.display   = 'block';
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  requestAnimationFrame(function() {
+    window.scrollTo(0, 0);
+    requestAnimationFrame(function() { window.scrollTo(0, 0); });
+  });
+  if (isAdmin) {
+    try { posthog.opt_out_capturing(); } catch(e) {}
+    _assignIds(); _restoreEdits(); _initAdminBar();
+  } else {
+    _initTracking(PROPOSAL_ID);
+    try { posthog.startSessionRecording(); } catch(e) {}
+  }
+  _initSideNav();
+}
+
+/* ── Side navigation ── */
+function _initSideNav() {
+  var IDS = ['s01','s02','s03','s04','s05','s06','s07','s08','s99'];
+  function scrollTo(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  var nav = document.getElementById('sidenav');
+  if (nav) {
+    nav.classList.add('visible');
+    var items = nav.querySelectorAll('.sidenav-item');
+    items.forEach(function(item) {
+      item.addEventListener('click', function() {
+        scrollTo(item.dataset.s);
+        try { posthog.capture('sidenav_click', { proposal: PROPOSAL_ID, section: item.dataset.s, section_label: item.querySelector('.sidenav-label').textContent.trim(), device: 'desktop' }); } catch(e) {}
+      });
+    });
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        items.forEach(function(item) {
+          item.classList.toggle('sn-active', item.dataset.s === entry.target.id);
+        });
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -55% 0px' });
+    IDS.forEach(function(id) { var el = document.getElementById(id); if (el) obs.observe(el); });
+  }
+  var fab = document.getElementById('sn-fab');
+  var sheet = document.getElementById('sn-sheet');
+  var backdrop = document.getElementById('sn-backdrop');
+  var closeBtn = document.getElementById('sn-close');
+  function openSheet() { sheet.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeSheet() { sheet.classList.remove('open'); document.body.style.overflow = ''; }
+  if (fab) fab.addEventListener('click', openSheet);
+  if (backdrop) backdrop.addEventListener('click', closeSheet);
+  if (closeBtn) closeBtn.addEventListener('click', closeSheet);
+  if (sheet) sheet.querySelectorAll('.sn-sheet-item').forEach(function(item) {
+    item.addEventListener('click', function() {
+      try { posthog.capture('sidenav_click', { proposal: PROPOSAL_ID, section: item.dataset.s, section_label: item.querySelector('.sn-sheet-lbl').textContent.trim(), device: 'mobile' }); } catch(e) {}
+      closeSheet(); setTimeout(function() { scrollTo(item.dataset.s); }, 120);
+    });
+  });
+}
+
+/* ── Stable element IDs ── */
+function _assignIds() {
+  document.querySelectorAll(EDIT_SEL).forEach(function(el, i) {
+    if (!el.dataset.eid) el.dataset.eid = 'e' + i;
+  });
+  document.querySelectorAll('#proposal td,#proposal th').forEach(function(el, i) {
+    if (!el.dataset.eid) el.dataset.eid = 'c' + i;
+  });
+}
+
+/* ── Persistence ── */
+function _saveEdits() {
+  var data = { ts: Date.now(), d: {} };
+  document.querySelectorAll('[data-eid]').forEach(function(el) {
+    data.d[el.dataset.eid] = el.innerHTML;
+  });
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify(data)); } catch(e) {}
+  lastSaved = new Date(data.ts);
+  _updateSaveUI();
+}
+
+function _restoreEdits() {
+  try {
+    var raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    Object.keys(data.d).forEach(function(eid) {
+      var el = document.querySelector('[data-eid="' + eid + '"]');
+      if (el) el.innerHTML = data.d[eid];
+    });
+    lastSaved = data.ts ? new Date(data.ts) : null;
+  } catch(e) {}
+}
+
+function _autoSave() {
+  clearTimeout(_saveTimer);
+  _setSaveUI('saving');
+  _saveTimer = setTimeout(_saveEdits, 600);
+}
+
+function _setSaveUI(state) {
+  var lbl = document.getElementById('ab-status');
+  if (!lbl) return;
+  if (state === 'saving') { lbl.textContent = 'Guardando…'; lbl.className = 'ab-saving'; }
+}
+
+function _updateSaveUI() {
+  var lbl = document.getElementById('ab-status');
+  if (!lbl || !lastSaved) return;
+  lbl.textContent = '✓ ' + lastSaved.getHours() + ':' + String(lastSaved.getMinutes()).padStart(2,'0');
+  lbl.className = 'ab-saved';
+}
+
+function saveNow() {
+  _saveEdits();
+  var btn = document.getElementById('ab-save');
+  if (btn) {
+    var prev = btn.innerHTML;
+    btn.textContent = '✓ Guardado';
+    setTimeout(function(){ btn.innerHTML = prev; }, 1600);
+  }
+}
+
+function restoreOriginal() {
+  if (!confirm('¿Restaurar el contenido original?\nSe borrarán todos los cambios guardados en este navegador.')) return;
+  try { localStorage.removeItem(SAVE_KEY); } catch(e) {}
+  location.reload();
+}
+
+/* ── Edit mode ── */
+function toggleEdit() {
+  editMode = !editMode;
+  var all = [].slice.call(document.querySelectorAll(EDIT_SEL))
+    .concat([].slice.call(document.querySelectorAll('#proposal td,#proposal th')));
+  all.forEach(function(el) {
+    el.contentEditable = editMode ? 'true' : 'false';
+    el.classList.toggle('ced', editMode);
+  });
+  if (editMode) {
+    _ensureToolbar();
+    document.addEventListener('input', _onInput, true);
+    document.addEventListener('selectionchange', _onSel);
+  } else {
+    document.removeEventListener('input', _onInput, true);
+    document.removeEventListener('selectionchange', _onSel);
+    _hideToolbar();
+  }
+  _updateAdminBar();
+}
+
+function exitEdit() { if (editMode) toggleEdit(); }
+
+function _onInput(e) { if (e.target && e.target.isContentEditable) _autoSave(); }
+
+/* ── Floating toolbar ── */
+var FT = 'ft-bar';
+
+function _ensureToolbar() {
+  if (document.getElementById(FT)) return;
+  var tb = document.createElement('div');
+  tb.id = FT;
+  tb.innerHTML =
+    '<button class="ft-btn ft-b" data-cmd="bold"        title="Negrita (Ctrl+B)"><b>B</b></button>' +
+    '<button class="ft-btn ft-i" data-cmd="italic"      title="Cursiva (Ctrl+I)"><i>I</i></button>' +
+    '<button class="ft-btn ft-u" data-cmd="underline"   title="Subrayado (Ctrl+U)"><u>U</u></button>' +
+    '<button class="ft-btn ft-s" data-cmd="strikeThrough" title="Tachado"><s>S</s></button>' +
+    '<span class="ft-sep"></span>' +
+    '<button class="ft-btn" data-action="link"   title="Enlace (Ctrl+K)"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 6l-2 2M10 4.5l.5-.5a3.18 3.18 0 0 1 4.5 4.5l-.5.5M4 9.5l-.5.5a3.18 3.18 0 0 1-4.5-4.5l.5-.5"/></svg></button>' +
+    '<button class="ft-btn" data-action="unlink" title="Quitar enlace"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="2" y1="2" x2="12" y2="12"/><path d="M10 4l1-1a3 3 0 0 1 0 4.24M4 10l-1 1a3 3 0 0 1 0-4.24"/></svg></button>' +
+    '<span class="ft-sep"></span>' +
+    '<button class="ft-dot" data-color="#d84200" style="background:#d84200" title="Naranja Made"></button>' +
+    '<button class="ft-dot" data-color="#111213" style="background:#111213" title="Negro"></button>' +
+    '<button class="ft-dot" data-color="#636870" style="background:#636870" title="Gris"></button>' +
+    '<button class="ft-dot" data-color="#2a7a4a" style="background:#2a7a4a" title="Verde"></button>' +
+    '<button class="ft-dot" data-color="#c53030" style="background:#c53030" title="Rojo"></button>' +
+    '<span class="ft-sep"></span>' +
+    '<button class="ft-btn" data-action="clear" title="Quitar formato"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg></button>' +
+    '<span id="ft-arrow"></span>';
+  document.body.appendChild(tb);
+
+  tb.addEventListener('mousedown', function(e) {
+    e.preventDefault();
+    var btn = e.target.closest('.ft-btn');
+    var dot = e.target.closest('.ft-dot');
+    if (btn) {
+      var cmd = btn.dataset.cmd, act = btn.dataset.action;
+      if (cmd) document.execCommand(cmd, false, null);
+      else if (act === 'link')   _doLink();
+      else if (act === 'unlink') document.execCommand('unlink', false, null);
+      else if (act === 'clear')  document.execCommand('removeFormat', false, null);
+      _autoSave(); _refreshBtns();
+    } else if (dot) {
+      document.execCommand('foreColor', false, dot.dataset.color);
+      _autoSave();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!editMode) return;
+    if (e.ctrlKey || e.metaKey) {
+      if (e.key.toLowerCase() === 'k') { e.preventDefault(); _doLink(); }
+      if (e.key.toLowerCase() === 's') { e.preventDefault(); saveNow(); }
+    }
+  });
+}
+
+function _doLink() {
+  var sel = window.getSelection();
+  var txt = sel && !sel.isCollapsed ? sel.toString().substring(0,50) : '';
+  var node = sel && sel.anchorNode;
+  var a = node ? (node.nodeType===1 ? node.closest('a') : node.parentElement && node.parentElement.closest('a')) : null;
+  var url = prompt('URL del enlace' + (txt ? ' para "' + txt + '"' : '') + ':', (a && a.href) || 'https://');
+  if (url !== null && url.trim() && url.trim() !== 'https://') {
+    document.execCommand('createLink', false, url.trim());
+    setTimeout(function() {
+      document.querySelectorAll('[data-eid] a[href]').forEach(function(lnk) {
+        lnk.setAttribute('target','_blank'); lnk.setAttribute('rel','noopener noreferrer');
+      });
+    }, 50);
+    _autoSave();
+  }
+}
+
+function _onSel() {
+  clearTimeout(_ftTimer);
+  _ftTimer = setTimeout(_updateToolbarPos, 55);
+}
+
+function _updateToolbarPos() {
+  if (!editMode) return;
+  var sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !sel.rangeCount) { _hideToolbar(); return; }
+  var range = sel.getRangeAt(0);
+  var node  = range.commonAncestorContainer;
+  var el    = node.nodeType === 3 ? node.parentElement : node;
+  var cur   = el;
+  while (cur && cur !== document.documentElement) {
+    if (cur.isContentEditable) break;
+    cur = cur.parentElement;
+  }
+  if (!cur || !cur.isContentEditable || cur === document.documentElement) { _hideToolbar(); return; }
+
+  var tb = document.getElementById(FT);
+  if (!tb) return;
+  tb.style.visibility = 'hidden'; tb.style.display = 'flex';
+
+  var rect = range.getBoundingClientRect();
+  var tbW  = tb.offsetWidth, tbH = tb.offsetHeight;
+  var sy   = window.scrollY, vw = document.documentElement.clientWidth;
+
+  var idealLeft = rect.left + window.scrollX + (rect.width - tbW) / 2;
+  var left = Math.max(window.scrollX + 8, Math.min(idealLeft, window.scrollX + vw - tbW - 8));
+
+  var selCX = rect.left + window.scrollX + rect.width / 2;
+  var arrow = document.getElementById('ft-arrow');
+  if (arrow) arrow.style.left = Math.max(12, Math.min(selCX - left, tbW - 20)) + 'px';
+
+  var topAbove = rect.top + sy - tbH - 10;
+  var below    = topAbove < sy + 4;
+  var top      = below ? rect.bottom + sy + 10 : topAbove;
+
+  tb.classList.toggle('below', below);
+  tb.style.top  = top + 'px';
+  tb.style.left = left + 'px';
+  tb.style.visibility = 'visible';
+  _refreshBtns();
+}
+
+function _refreshBtns() {
+  var tb = document.getElementById(FT); if (!tb) return;
+  ['bold','italic','underline','strikeThrough'].forEach(function(cmd) {
+    var btn = tb.querySelector('[data-cmd="' + cmd + '"]');
+    if (btn) btn.classList.toggle('active', !!document.queryCommandState(cmd));
+  });
+}
+
+function _hideToolbar() {
+  var tb = document.getElementById(FT);
+  if (tb) tb.style.display = 'none';
+}
+
+/* ── Export HTML ── */
+function downloadHTML() {
+  saveNow();
+  var clone = document.documentElement.cloneNode(true);
+  ['#admin-bar','#'+FT].forEach(function(s){ var el=clone.querySelector(s); if(el) el.remove(); });
+  clone.querySelectorAll('[contenteditable]').forEach(function(el) {
+    el.removeAttribute('contenteditable'); el.classList.remove('ced');
+  });
+  clone.querySelectorAll('[data-eid]').forEach(function(el){ el.removeAttribute('data-eid'); });
+  var html = '<!DOCTYPE html>\n' + clone.outerHTML;
+  var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'penoles-piloto-propuesta.html';
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(a.href); }, 200);
+}
+
+/* ── Admin bar ── */
+function _initAdminBar() {
+  var saved = lastSaved;
+  var bar = document.createElement('div');
+  bar.id = 'admin-bar';
+  bar.innerHTML =
+    '<span id="ab-label">✏ Admin</span>' +
+    '<span id="ab-status" class="' + (saved ? 'ab-saved' : '') + '">' +
+      (saved ? ('✓ ' + saved.getHours() + ':' + String(saved.getMinutes()).padStart(2,'0')) : '') +
+    '</span>' +
+    '<button id="ab-edit"    onclick="toggleEdit()">✏ Editar</button>' +
+    '<button id="ab-save"    onclick="saveNow()"        style="display:none">✓ Guardar</button>' +
+    '<button id="ab-dl"      onclick="downloadHTML()"   style="display:none">⬇ Exportar HTML</button>' +
+    '<button id="ab-restore" onclick="restoreOriginal()" style="display:none" title="Volver al contenido original">↺ Restaurar</button>' +
+    '<button id="ab-close"   onclick="exitEdit()"       style="display:none">Listo</button>';
+  document.body.appendChild(bar);
+}
+
+function _updateAdminBar() {
+  document.getElementById('ab-edit').style.display    = editMode ? 'none' : '';
+  document.getElementById('ab-save').style.display    = editMode ? '' : 'none';
+  document.getElementById('ab-dl').style.display      = editMode ? '' : 'none';
+  document.getElementById('ab-restore').style.display = editMode ? '' : 'none';
+  document.getElementById('ab-close').style.display   = editMode ? '' : 'none';
+  document.getElementById('admin-bar').classList.toggle('edit-active', editMode);
+}
+
+document.getElementById('pin-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') { e.preventDefault(); doPin(); }
+});
+document.getElementById('pin-input').addEventListener('input', function() {
+  document.getElementById('pin-error').style.display = 'none';
+});
+
+/* ── Image modal ── */
+function openModal(src, caption) {
+  var m = document.getElementById('img-modal');
+  var img = document.getElementById('img-modal-img');
+  var cap = document.getElementById('img-modal-cap');
+  img.src = src;
+  img.alt = caption || '';
+  cap.textContent = caption || '';
+  m.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  var m = document.getElementById('img-modal');
+  m.classList.remove('is-open');
+  document.body.style.overflow = '';
+  setTimeout(function() {
+    document.getElementById('img-modal-img').src = '';
+  }, 300);
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ── Bootstrap ── */
+(function() {
+  try {
+    if (sessionStorage.getItem(ASK)) {
+      try { posthog.capture('proposal_viewed', { proposal: 'penoles-piloto', client: 'Grupo Peñoles', returning: true }); } catch(e) {}
+      showProposal(true); return;
+    }
+    if (sessionStorage.getItem(PSK) === '1') {
+      try { posthog.capture('proposal_viewed', { proposal: 'penoles-piloto', client: 'Grupo Peñoles', returning: true }); } catch(e) {}
+      showProposal(false); return;
+    }
+  } catch(e) {}
+  if (!('ontouchstart' in window)) document.getElementById('pin-input').focus();
+})();
+</script>
+
+<style>
+/* ── Image modal ── */
+.img-zoom{cursor:zoom-in;}
+.img-zoom:hover img{opacity:.92;}
+.img-zoom img{transition:opacity .15s;}
+
+#img-modal{
+  position:fixed;inset:0;z-index:10000;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease;
+}
+#img-modal.is-open{opacity:1;pointer-events:all;}
+
+#img-modal-backdrop{
+  position:absolute;inset:0;
+  background:rgba(13,14,15,.88);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+#img-modal-box{
+  position:relative;z-index:1;
+  max-width:min(92vw,1080px);
+  max-height:90vh;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  transform:scale(.96);
+  transition:transform .28s cubic-bezier(.34,1.4,.64,1);
+}
+#img-modal.is-open #img-modal-box{transform:scale(1);}
+
+#img-modal-img{
+  max-width:100%;max-height:80vh;
+  border-radius:8px;
+  box-shadow:0 24px 64px rgba(0,0,0,.6),0 4px 16px rgba(0,0,0,.4);
+  display:block;
+}
+#img-modal-cap{
+  font-size:12px;color:rgba(255,255,255,.45);
+  font-family:'Inter',-apple-system,sans-serif;
+  letter-spacing:.03em;text-align:center;
+}
+#img-modal-close{
+  position:fixed;top:20px;right:24px;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.8);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .15s,transform .15s;
+}
+#img-modal-close:hover{background:rgba(255,255,255,.2);transform:scale(1.08);}
+
+/* ── Admin bar ── */
+#admin-bar{
+  position:fixed; bottom:20px; right:20px;
+  background:#111213; border:1px solid rgba(255,255,255,.1);
+  border-radius:12px; padding:8px 14px;
+  display:flex; align-items:center; gap:8px;
+  z-index:9999; box-shadow:0 4px 24px rgba(0,0,0,.5);
+  font-family:'Inter',sans-serif; transition:border-color .2s;
+}
+#ab-label{
+  font-size:10px; font-weight:700; letter-spacing:.08em;
+  color:rgba(255,255,255,.3); text-transform:uppercase;
+  padding-right:8px; border-right:1px solid rgba(255,255,255,.1);
+  white-space:nowrap;
+}
+#ab-status{ font-size:11px; min-width:52px; white-space:nowrap; }
+.ab-saved  { color:#4ade80; }
+.ab-saving { color:rgba(255,255,255,.35); }
+#admin-bar button{
+  font-size:12px; font-weight:600; padding:6px 12px;
+  border-radius:6px; border:none; cursor:pointer;
+  font-family:'Inter',sans-serif; white-space:nowrap; transition:opacity .15s;
+}
+#admin-bar button:hover{ opacity:.82; }
+#ab-edit    { background:#d84200; color:white; }
+#ab-save    { background:#15803d; color:white; }
+#ab-dl      { background:#1d4ed8; color:white; }
+#ab-restore { background:transparent; color:rgba(255,255,255,.45); border:1px solid rgba(255,255,255,.12)!important; }
+#ab-close   { background:transparent; color:rgba(255,255,255,.5);  border:1px solid rgba(255,255,255,.12)!important; }
+#admin-bar.edit-active{ border-color:rgba(216,66,0,.5); }
+
+/* ── Editable highlight ── */
+.ced{
+  outline:1.5px dashed rgba(216,66,0,.4)!important;
+  outline-offset:2px!important; border-radius:3px!important; cursor:text!important;
+}
+.ced:hover{ outline-color:rgba(216,66,0,.7)!important; }
+.ced:focus{
+  outline:2px solid #d84200!important; outline-offset:2px!important;
+  box-shadow:0 0 0 3px rgba(216,66,0,.12)!important;
+}
+
+/* ── Floating toolbar ── */
+#ft-bar{
+  position:absolute; top:0; left:0; display:none;
+  align-items:center; gap:2px; padding:5px 7px;
+  background:#1e2023; border:1px solid rgba(255,255,255,.12);
+  border-radius:9px;
+  box-shadow:0 6px 24px rgba(0,0,0,.55), 0 1px 6px rgba(0,0,0,.3);
+  z-index:99999; user-select:none; font-family:'Inter',sans-serif; white-space:nowrap;
+}
+.ft-btn{
+  display:flex; align-items:center; justify-content:center;
+  width:29px; height:29px;
+  background:transparent; border:none; border-radius:5px;
+  color:rgba(255,255,255,.65); cursor:pointer; transition:background .1s,color .1s;
+}
+.ft-btn:hover{ background:rgba(255,255,255,.09); color:rgba(255,255,255,.95); }
+.ft-btn.active{ background:rgba(216,66,0,.22); color:#ff8c5a; }
+.ft-b b,.ft-i i,.ft-u u,.ft-s s{
+  font-family:'Inter',-apple-system,sans-serif; font-size:13px; pointer-events:none;
+}
+.ft-sep{
+  width:1px; height:16px; background:rgba(255,255,255,.1); margin:0 2px; flex-shrink:0;
+}
+.ft-dot{
+  width:13px; height:13px; border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.18);
+  cursor:pointer; margin:0 2px; flex-shrink:0;
+  transition:border-color .12s, transform .12s;
+}
+.ft-dot:hover{ border-color:rgba(255,255,255,.8); transform:scale(1.2); }
+#ft-arrow{
+  position:absolute; bottom:-5px; left:50%;
+  width:10px; height:10px; background:#1e2023;
+  border-right:1px solid rgba(255,255,255,.12);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  transform:translateX(-50%) rotate(45deg); pointer-events:none;
+}
+#ft-bar.below #ft-arrow{
+  bottom:auto; top:-5px;
+  border-right:none; border-bottom:none;
+  border-left:1px solid rgba(255,255,255,.12);
+  border-top:1px solid rgba(255,255,255,.12);
+}
+</style>
+
+</body>
+</html>
