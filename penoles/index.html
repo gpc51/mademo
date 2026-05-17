@@ -703,7 +703,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </div>
       <div class="cover-metric">
         <div class="m-label" data-eid="cover-m4-label">ROI estimado</div>
-        <div class="m-value" data-eid="cover-m4-value">800% – 2,400%</div>
+        <div class="m-value" data-eid="cover-m4-value">~900% esperado</div>
       </div>
     </div>
 
@@ -958,7 +958,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           <tr>
             <td><strong>Conector API a feeds OEM</strong></td>
             <td class="price-val">Sin costo</td>
-            <td class="price-note">VIMS · KOMTRAX · Sandvik 365 · Certiq · Wenco · incluidos</td>
+            <td class="price-note">VIMS · KOMTRAX · Sandvik 365 · Certiq · Wenco · incluidos en el alcance de este programa<sup style="color:var(--orange)">[1]</sup></td>
           </tr>
           <tr>
             <td><strong>Edge retrofit grado minero</strong><br><span style="font-size:11px;color:var(--gray)">IP67 · NEMA 4X · NOM-032-STPS · IECEx M1/M2 según unidad</span></td>
@@ -972,40 +972,81 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           </tr>
           <tr>
             <td><strong>ROI estimado del programa</strong></td>
-            <td class="price-val" style="color:var(--orange)">800% – 2,400%</td>
-            <td class="price-note">Conservador, basado en eventos evitados de flota crítica</td>
+            <td class="price-val" style="color:var(--orange)">~900% (esperado)</td>
+            <td class="price-note">Banda razonable 360%–2,400% según escenario · ver tabla de escenarios abajo</td>
           </tr>
         </tbody>
       </table>
+      <p style="font-size:11.5px;color:var(--gray-l);margin-top:12px;line-height:1.55" data-eid="s05-clause-integration"><sup style="color:var(--orange)">[1]</sup> <strong>Alcance de la integración API sin costo:</strong> la conexión a la API on-premise de Peñoles y a los feeds OEM listados (Cat MineStar/VIMS, Komatsu KOMTRAX, Sandvik 365, Epiroc Certiq, Wenco, Modular Mining) se entrega sin costo de implementación exclusivamente dentro del alcance contractual de este programa: hasta tres (3) clases de activo móvil subterráneo en una (1) unidad operativa designada, durante el horizonte de 9 a 12 meses de Fase 1. Integraciones adicionales a nuevas clases de activo, nuevas unidades operativas, o feeds no contemplados en el alcance original, se cotizan por adendum bajo el modelo de pricing vigente en el momento de la solicitud. La presente condición no constituye precedente ni obligación tarifaria para programas o renovaciones posteriores.</p>
     </div>
 
     <div class="s-title" style="margin-top:28px" data-eid="roi-title">Con solo evitar el primer evento crítico, Made OS se paga solo.</div>
 
     <div class="roi-hero">
-      <div class="roi-hero-label" data-eid="roi-hero-label">Ahorro estimado, programa 9–12 meses · 3 clases de activo móvil</div>
-      <div class="roi-hero-val" data-eid="roi-hero-val">$1.0M – $3.3M USD</div>
-      <div class="roi-hero-sub" data-eid="roi-hero-sub">Suma de pull-outs evitados, rebuild aplazado y disponibilidad mecánica recuperada</div>
+      <div class="roi-hero-label" data-eid="roi-hero-label">Escenario esperado · programa 9–12 meses · 3 clases de activo móvil</div>
+      <div class="roi-hero-val" data-eid="roi-hero-val">~$1.2M USD ahorrado</div>
+      <div class="roi-hero-sub" data-eid="roi-hero-sub">4 eventos Clase A evitados · costo promedio $300K · vs. inversión $130K</div>
     </div>
-    <div class="roi-grid">
+
+    <div class="card" style="margin-top:16px">
+      <div class="card-title" style="margin-bottom:14px;font-size:12px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L8 4l6 10H2z"/></svg>
+        Tres escenarios de retorno, mecánica explícita
+      </div>
+      <div class="tbl-scroll"><table class="cost-table">
+        <thead>
+          <tr><th>Escenario</th><th>Eventos Clase A evitados</th><th>Costo promedio evento</th><th>Ahorro bruto</th><th>Inversión total</th><th>ROI</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Conservador</strong><br><span style="font-size:11px;color:var(--gray)">2 pull-outs / 12 meses</span></td>
+            <td>2</td>
+            <td>$250,000</td>
+            <td>$500,000</td>
+            <td>$138,000</td>
+            <td style="font-weight:700">~360%</td>
+          </tr>
+          <tr>
+            <td><strong>Esperado</strong><br><span style="font-size:11px;color:var(--gray)">4 pull-outs / 12 meses · escenario base</span></td>
+            <td>4</td>
+            <td>$300,000</td>
+            <td>$1,200,000</td>
+            <td>$130,000</td>
+            <td style="font-weight:700;color:var(--orange)">~900%</td>
+          </tr>
+          <tr>
+            <td><strong>Optimista</strong><br><span style="font-size:11px;color:var(--gray)">7 pull-outs / 12 meses · flota crítica completa</span></td>
+            <td>7</td>
+            <td>$470,000</td>
+            <td>$3,290,000</td>
+            <td>$116,000</td>
+            <td style="font-weight:700">~2,400%</td>
+          </tr>
+        </tbody>
+      </table></div>
+      <p style="font-size:11.5px;color:var(--gray-l);margin-top:10px;line-height:1.55" data-eid="roi-scenario-note">Costo promedio por escenario calibrado con la tabla de Datos para la proyección (arriba). Inversión total varía según uso de Edge retrofit y success fees efectivos. El escenario Esperado es la referencia para el cómputo del éxito del programa; los escenarios Conservador y Optimista delimitan la banda razonable según volumen de eventos detectados y costo de cada uno en la unidad operativa de Peñoles seleccionada.</p>
+    </div>
+
+    <div class="roi-grid" style="margin-top:18px">
       <div class="roi-item">
-        <div class="roi-lbl" data-eid="roi-card1-lbl">Pull-outs evitados estimados</div>
-        <div class="roi-val" data-eid="roi-card1-val">3–8</div>
-        <div class="roi-delta" data-eid="roi-card1-delta">en 9–12 meses · 3 clases · flota crítica</div>
+        <div class="roi-lbl" data-eid="roi-card1-lbl">Primer Clase A comprometido</div>
+        <div class="roi-val" data-eid="roi-card1-val">60–90 días</div>
+        <div class="roi-delta" data-eid="roi-card1-delta">si no ocurre, extensión 90 días sin costo</div>
       </div>
       <div class="roi-item">
-        <div class="roi-lbl" data-eid="roi-card2-lbl">Primer Clase A comprometido</div>
-        <div class="roi-val" data-eid="roi-card2-val">60–90 días</div>
-        <div class="roi-delta" data-eid="roi-card2-delta">si no ocurre, extensión 90 días sin costo</div>
+        <div class="roi-lbl" data-eid="roi-card2-lbl">Banda de ROI razonable</div>
+        <div class="roi-val" data-eid="roi-card2-val">360% – 2,400%</div>
+        <div class="roi-delta" data-eid="roi-card2-delta">Esperado: 900% (4 eventos)</div>
       </div>
       <div class="roi-item">
-        <div class="roi-lbl" data-eid="roi-card3-lbl">ROI estimado</div>
-        <div class="roi-val" data-eid="roi-card3-val">800%–2,400%</div>
-        <div class="roi-delta" data-eid="roi-card3-delta">sobre inversión total 9–12 meses</div>
+        <div class="roi-lbl" data-eid="roi-card3-lbl">Costo si no cumplimos</div>
+        <div class="roi-val" data-eid="roi-card3-val">$0</div>
+        <div class="roi-delta" data-eid="roi-card3-delta">extensión 90 días sin costo de licencia</div>
       </div>
       <div class="roi-item">
-        <div class="roi-lbl" data-eid="roi-card4-lbl">Costo si no cumplimos</div>
-        <div class="roi-val" data-eid="roi-card4-val">$0</div>
-        <div class="roi-delta" data-eid="roi-card4-delta">extensión 90 días sin costo de licencia</div>
+        <div class="roi-lbl" data-eid="roi-card4-lbl">Punto de equilibrio</div>
+        <div class="roi-val" data-eid="roi-card4-val">1 evento</div>
+        <div class="roi-delta" data-eid="roi-card4-delta">$250K ahorro &gt; $138K inversión</div>
       </div>
     </div>
 
@@ -1049,14 +1090,22 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <div style="font-size:11px;color:var(--gray-l);margin-top:10px" data-eid="s05-cost-source">Costo de evento mayor = reparación mecánica + lucro cesante por días fuera de rotación en operación subterránea. Modelos listados como referencia genérica del tipo de equipo por clase de activo; la verificación específica del parque equipado de Peñoles se realiza en la sesión técnica con histórico de paros. Rangos de referencia: GMG (Global Mining Guidelines), Caterpillar Service News, Sandvik aftermarket, Epiroc TCO benchmarks, ICMM operational guidance. Equipo del circuito de relaves se trata por separado en la Fase 2.</div>
     </div>
 
-    <div class="alert alert-info" style="margin-top:16px">
+    <div class="alert alert-info" style="margin-top:16px" data-eid="clase-a-def">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8l2 2 4-4"/></svg>
       <div>
-        <strong>Definición de "Evento Crítico Evitado"</strong><br>
-        <strong>Clase A: Pull-out no planificado evitado:</strong> alerta emitida antes de la falla, intervención ejecutada en taller programado, evidencia en CMMS / bitácora de mantenimiento, contrafactual razonable de que la unidad habría salido de rotación. <em>Genera success fee.</em><br>
-        <strong>Clase B: Disponibilidad mecánica recuperada:</strong> degradación detectada y corregida antes de impactar la rotación de turno. <em>Genera success fee.</em><br>
-        <strong>Clase C: Alerta útil validada:</strong> detección correcta, no genera fee; alimenta aprendizaje del modelo por número de serie.<br>
-        <em style="font-size:12px">Baseline primeros 30 días · ventana de disputa 10 días hábiles · árbitro técnico independiente designado al inicio del programa.</em>
+        <strong>Definición operativa de "Evento Crítico Evitado" (criterios objetivos)</strong><br>
+        <strong>Clase A · Pull-out no planificado evitado.</strong> Genera success fee cuando se cumplen <strong>los cinco</strong> criterios:
+        <ol style="margin:6px 0 8px 18px;padding:0;font-size:13px;line-height:1.6">
+          <li><strong>Detección documentada:</strong> drift sostenido de la variable de condición monitoreada (vibración RMS, firma acústica, temperatura, presión) <em>≥2 desviaciones estándar</em> sobre baseline durante al menos <em>30 minutos consecutivos</em>, con timestamp en plataforma Made OS.</li>
+          <li><strong>Prescripción emitida antes de la falla:</strong> orden de intervención generada por Made OS, registrada con timestamp y canal de entrega (WhatsApp/SMS/WebApp).</li>
+          <li><strong>Intervención ejecutada:</strong> orden de trabajo en CMMS con código de causa coincidente, ejecutada en taller programado dentro de la ventana de intervención sugerida por Made OS.</li>
+          <li><strong>Evidencia física del modo de falla:</strong> el componente removido (cojinete, sello, transmisión, etc.) exhibe signos de degradación correspondientes al patrón detectado, documentados mediante foto y/o medición (espesor, holgura, contaminación de aceite).</li>
+          <li><strong>Contrafactual de no-mantenimiento programado:</strong> el activo no había sido programado en plan de mantenimiento preventivo en una ventana de ±7 días respecto a la prescripción.</li>
+        </ol>
+        <strong>Clase B · Disponibilidad mecánica recuperada.</strong> Genera success fee. Degradación detectada y corregida antes de impactar la rotación de turno; aplican criterios 1, 2 y 3 anteriores.<br>
+        <strong>Clase C · Alerta útil validada.</strong> No genera fee. Detección correcta confirmada por inspección, sin intervención inmediata requerida; alimenta el aprendizaje del modelo por número de serie.<br>
+        <p style="margin:10px 0 0 0;font-size:12.5px;line-height:1.6"><strong>Baseline y disputas.</strong> Baseline calibrado durante los primeros 30 días del programa. Ventana de disputa de cualquier evento: 10 días hábiles desde la emisión del reporte mensual. Disputas dirimidas por <strong>árbitro técnico independiente</strong> bajo el mecanismo siguiente.</p>
+        <p style="margin:8px 0 0 0;font-size:12.5px;line-height:1.6"><strong>Mecanismo de árbitro técnico.</strong> Al inicio del programa, Made y Peñoles seleccionan mutuamente un árbitro de una <em>shortlist conjunta de tres referentes</em> con perfil: ingeniero senior de confiabilidad con certificación CMRP/CRL o equivalente, 15+ años de experiencia en minería subterránea, sin relación contractual vigente con Made ni con Peñoles. Las disputas se revisan en <em>sesión bimestral</em> (no caso a caso), con decisión vinculante únicamente sobre la procedencia de success fees del período. Honorarios del árbitro: 50% Made / 50% Peñoles. Si las partes no acuerdan el árbitro inicial dentro de 30 días, GMG (Global Mining Guidelines Group) actúa como autoridad designante.</p>
       </div>
     </div>
   </div>
@@ -1065,8 +1114,17 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <!-- ── 06 PROGRAMA FASE 2 · RELAVES ── -->
   <div class="section" id="s06">
     <div class="s-label">06. Programa Fase 2 · Circuito operativo de relaves</div>
-    <div class="s-title" data-eid="fase2-title">El mismo motor predictivo, aplicado al frente subatendido</div>
+    <div class="s-title" data-eid="fase2-title">Disponibilidad del circuito que define cuánto material termina en presa</div>
     <p class="s-lead" data-eid="fase2-lead">Al cierre de Fase 1 (mes 9), la transición a Fase 2 es inmediata. Made OS conserva el motor predictivo y la metodología; cambia la clase de activo. Se aplica al equipo operativo del circuito de relaves de cada unidad de Peñoles: bombas de pulpa centrífugas, espesadores, cicloneras, líneas de transporte de cola. Es la expansión natural del programa, no una reventa.</p>
+
+    <div class="card" style="margin-top:18px;border-left:3px solid var(--orange)">
+      <div class="card-title" style="margin-bottom:10px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M8 2v12"/></svg>
+        Cómo Made OS toca el volumen de relaves (palanca indirecta, vía disponibilidad)
+      </div>
+      <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0 0 10px 0" data-eid="fase2-volume-quote"><em style="color:var(--gray)">Mensaje recibido del equipo de Peñoles: "los relaves son un problema; si ayudas a reducir volumen de relave es mejor."</em></p>
+      <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0" data-eid="fase2-volume-mech">Made OS opera como capa pasiva de observación y prescripción; no controla setpoints metalúrgicos ni opera lógica de proceso. La palanca sobre volumen es indirecta, vía disponibilidad y ventana operativa del equipo del circuito: si el espesador opera degradado, su underflow density cae y más agua va a presa; si las cicloneras pierden eficiencia de clasificación, más material útil termina en cola; si la bomba de paste backfill no está disponible, el relleno no regresa a interior mina. Cada hora que estos activos operan fuera de ventana óptima son toneladas adicionales en la TSF. Made OS detecta la degradación temprano y dispara la prescripción antes de que cruce ese umbral.</p>
+    </div>
 
     <div class="cols-2-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;width:100%">
       <div class="card" style="border-left:3px solid var(--orange)">
@@ -1081,7 +1139,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg>
           Scope técnico Fase 2
         </div>
-        <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0" data-eid="fase2-scope">Equipo cubierto: <strong>bombas centrífugas de pulpa</strong> (Warman, GIW, Metso slurry), <strong>espesadores</strong> (Outotec, FLSmidth), <strong>cicloneras</strong> (Krebs, Cavex), <strong>líneas de transporte</strong> de cola. Telemetría existente vía la API on-premise de Peñoles + retrofit Edge solo donde se requiera (firma acústica de sello, vibración de impulsor, temperatura de cojinete).</p>
+        <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0" data-eid="fase2-scope">Equipo cubierto: <strong>bombas centrífugas de pulpa</strong> (Warman, GIW, Metso slurry), <strong>espesadores</strong> (Outotec, FLSmidth), <strong>cicloneras</strong> (Krebs, Cavex), <strong>líneas de transporte</strong> de cola, <strong>bombas de paste backfill</strong>. Plant SCADA vía OPC UA da el contexto de proceso (flujo, presión, densidad, nivel, temperatura). Edge retrofit es más necesario que en Fase 1 (mix aproximado 40% API / 60% Edge) porque las variables de condición (vibración impulsor, firma acústica de sello, temperatura de cojinete a frecuencia útil) rara vez están en la capa SCADA.</p>
       </div>
     </div>
 
@@ -1118,9 +1176,43 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <p style="font-size:11.5px;color:var(--gray-l);margin-top:10px;line-height:1.5" data-eid="fase2-disclaimer">La Fase 2 se activa en el mes 9 con una sesión de transición de 60 minutos. Si Fase 1 no demostró ROI auditado, Peñoles no está obligada a continuar a Fase 2. La estructura de pricing reduce 25% el fee base de Fase 1 reconociendo que el motor predictivo y la integración están en operación.</p>
     </div>
 
-    <div class="alert alert-info" style="margin-top:16px">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 7v4M8 5.5v.5"/></svg>
-      <span><strong>Posible Fase 3 (Año 2+):</strong> Met-Mex Torreón. Refinación electrolítica y fundición. Equipo continuo (rectificadores, celdas, hornos, calderas). El motor predictivo de Made OS se aplica a procesos continuos con la misma metodología. Mencionado aquí como horizonte de programa, sin compromiso de scope en esta propuesta.</span>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 06.5 VALIDACIÓN DE PLATAFORMA + CASO INAUGURAL ── -->
+  <div class="section" id="s065">
+    <div class="s-label">06.5 · Validación de plataforma y posicionamiento del programa</div>
+    <div class="s-title" data-eid="inaugural-title">Plataforma probada en industria. Peñoles como caso inaugural de minería Tier 1.</div>
+    <p class="s-lead" data-eid="inaugural-lead">Made OS opera hoy sobre activos industriales en programas activos cross-vertical. Peñoles representaría el caso inaugural del producto en minería Tier 1, lo cual define los términos comerciales y de colaboración descritos abajo.</p>
+
+    <div class="cols-2-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;width:100%">
+      <div class="card" style="border-left:3px solid var(--dark)">
+        <div class="card-title" style="margin-bottom:10px">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+          Validación de plataforma cross-vertical
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--dark);line-height:1.6">
+          <div data-eid="val-ref1"><strong>HeavenWard · Tier 1 elevadores industriales, Chile.</strong> Programa de monitoreo prescriptivo en activos de transporte vertical de uso intensivo. Implementación activa.</div>
+          <div data-eid="val-ref2"><strong>Maderera Mich · Design Partner industrial, México.</strong> Despliegue de Made OS en línea de manufactura continua de transformación de madera. Colaboración de diseño de producto y validación de modelo prescriptivo.</div>
+          <div data-eid="val-ref3"><strong>Otras integraciones documentadas.</strong> Pilotos técnicos completados sobre activos rotativos en industrias adyacentes (procesos continuos, manufactura discreta) que validan la arquitectura del motor predictivo, el pipeline de prescripción y la integración a sistemas OT vía OPC UA y APIs OEM.</div>
+          <p style="font-size:11.5px;color:var(--gray-l);margin:6px 0 0 0;line-height:1.55" data-eid="val-disclosure">Referencias completas y datos auditados disponibles bajo NDA en la sesión técnica. La selección de referencias mostradas aquí prioriza la analogía técnica con el caso Peñoles (activos rotativos críticos, telemetría continua, decisión operativa por turno), no la analogía sectorial directa.</p>
+        </div>
+      </div>
+
+      <div class="card" style="border-left:3px solid var(--orange)">
+        <div class="card-title" style="margin-bottom:10px">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L2 6l6 4 6-4-6-4zM2 10l6 4 6-4"/></svg>
+          Peñoles como caso inaugural minería Tier 1
+        </div>
+        <p style="font-size:13px;color:var(--dark);line-height:1.65;margin:0 0 10px 0" data-eid="inaugural-frame">El posicionamiento de Peñoles como cliente inaugural de Made OS en minería Tier 1 conlleva un conjunto de compromisos preferenciales que reflejan la importancia estratégica de la relación:</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:13px;color:var(--dark);line-height:1.55">
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">›</span><span data-eid="inaugural-b1"><strong>Términos comerciales del programa actual asegurados.</strong> El pricing de la presente propuesta (base, success fee, retrofit) se garantiza para la totalidad de Fase 1 y para la activación de Fase 2 en las condiciones descritas, sin ajuste unilateral durante el horizonte del programa.</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">›</span><span data-eid="inaugural-b2"><strong>Prioridad de roadmap de producto.</strong> Las solicitudes técnicas específicas de Peñoles para activos mineros (modos de falla particulares de jumbos, LHDs, bombas de pulpa) se incorporan al roadmap con prioridad alta sin costo adicional durante Fase 1 y Fase 2.</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">›</span><span data-eid="inaugural-b3"><strong>Publicación conjunta de resultados.</strong> Al cierre de Fase 1, posibilidad de publicación conjunta de un caso de éxito auditado, sujeto a NDA y aprobación explícita de Peñoles. Made se compromete a no nombrar a Peñoles en materiales públicos sin esta aprobación.</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">›</span><span data-eid="inaugural-b4"><strong>Acceso directo al equipo fundador.</strong> Línea directa con Gerardo Peña (CEO) y Ramiro Pantoja (CTO) durante todo el programa, para resolución técnica y de programa fuera del soporte estándar.</span></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1271,7 +1363,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 </div>
 
 <div class="doc-footer" data-eid="doc-footer">
-  <strong>MADE OS</strong> × GRUPO PEÑOLES · MAD-PENOLES-05 · Mayo 2026 · CONFIDENCIAL
+  <strong>MADE OS</strong> × GRUPO PEÑOLES · MAD-PENOLES-06 · Mayo 2026 · CONFIDENCIAL
 </div>
 
 </div><!-- /proposal -->
