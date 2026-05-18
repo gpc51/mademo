@@ -728,7 +728,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="section" id="s01">
     <div class="s-label">01. Resumen ejecutivo</div>
     <div class="s-title" data-eid="exec-title">Una capa prescriptiva sobre la API on-premise que Peñoles ya opera, validada primero en un piloto de 90 días.</div>
-    <p class="s-lead" data-eid="exec-lead">La telemetría de la flota subterránea de Peñoles se almacena on-premise y se expone vía API para tableros nativos, analítica e integración corporativa. El dato ya está. La hipótesis operacional de esta propuesta: convertir esa señal en prescripción accionable (qué activo, qué subsistema, qué ventana, qué supervisor, qué canal) reduce eventos críticos no planificados de manera medible. Antes de comprometer un programa completo, proponemos validar esa hipótesis en un piloto técnico acotado.<br><span style="font-size:12px;color:var(--gray-l)">Referencias: McKinsey &amp; Co. · Siemens True Cost of Downtime 2024 · GMG Predictive Maintenance Guideline 2023</span></p>
+    <p class="s-lead" data-eid="exec-lead">La telemetría de la flota subterránea de Peñoles se almacena on-premise y se expone vía API para tableros nativos, analítica e integración corporativa. El dato ya está. La hipótesis operacional de esta propuesta: convertir esa señal en prescripción accionable (qué activo, qué subsistema, qué ventana, qué supervisor, qué canal) reduce eventos críticos no planificados de manera medible. Antes de comprometer un programa completo, proponemos validar esa hipótesis en un piloto técnico acotado.</p>
 
     <p style="font-size:15px;color:var(--dark);line-height:1.7;margin-bottom:18px" data-eid="exec-p1">En 2025 la industria minera mexicana enfrentó costos de mantenimiento al alza y retroceso generalizado en producción metálica. En este contexto, el equipo móvil subterráneo concentra el riesgo operativo: cada hora fuera de rotación se traduce en toneladas no movidas y margen perdido. En las cinco unidades mineras directas de Peñoles (Velardeña, Sabinas, Tizapa, Capela, Bismark) más Milpillas (SX-EW), las fallas súbitas en frenos, dirección o sistema hidráulico añaden además una dimensión de seguridad operativa relevante para los compromisos ICMM.</p>
 
@@ -924,6 +924,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div data-eid="ot-arch4"><strong>Framework de cumplimiento.</strong> IEC 62443 (zones &amp; conduits), baseline ISA/IEC 62443-3-3 SL-2. El equipo eléctrico de la unidad valida la especificación final del retrofit antes de la instalación.</div>
         <div data-eid="ot-arch5"><strong>Mecanismo de revocación.</strong> Un comando de IT/OT corta el canal saliente en cualquier momento. Made OS detecta la pérdida de canal y deja de operar; la telemetría de Peñoles continúa intacta porque Made nunca tocó la ruta de control.</div>
         <div data-eid="ot-arch6"><strong>Propiedad y residencia de datos.</strong> El dato crudo es de Peñoles. El modelo entrenado durante el piloto queda en infraestructura Peñoles. Detalles completos en el apéndice técnico (sección IP / data ownership).</div>
+        <div data-eid="ot-arch7"><strong>Operación cloud requerida para prescripciones.</strong> Made OS requiere conectividad cloud activa para emitir prescripciones (el agente AI con LLM y el análisis histórico viven en la capa cloud de Made). Durante intermitencia, el Edge conserva buffer local (256 GB estándar, ampliable a 1 TB o 2 TB on-demand) para almacenar la señal y sincronizar al reconectar; las prescripciones se reanudan cuando la capa cloud está disponible.</div>
       </div>
     </div>
 
@@ -1391,6 +1392,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         A6 · Arquitectura de red recomendada y política de canal saliente
       </summary>
       <div style="padding:4px 24px 22px 24px;font-size:13px;color:var(--dark);line-height:1.7">
+        <p style="margin:0 0 10px 0" data-eid="apx-a6-0"><strong>División Edge / Cloud.</strong> El Edge (o el Software+API on-prem) captura señal de PLCs y máquinas, ejecuta tareas de visión con AI y modelos especializados por activo on-device para detección de anomalía, y envía telemetría a la capa cloud de Made vía TLS 1.3. La capa cloud corre el agente AI con LLM, procesa los datos recientes contra el histórico, y genera prescripciones, notificaciones y reportes. La operación prescriptiva requiere conectividad cloud activa.</p>
+        <p style="margin:0 0 10px 0" data-eid="apx-a6-buf"><strong>Buffer offline del Edge.</strong> Durante pérdida de conectividad cloud, el Edge almacena la señal en buffer local. Capacidad estándar: 256 GB (ampliable a 1 TB o 2 TB on-demand al inicio del programa). Al reconectar, el Edge sincroniza el buffer completo a la capa cloud y las prescripciones se reanudan. No hay generación de prescripciones nuevas durante el blackout.</p>
         <p style="margin:0 0 10px 0" data-eid="apx-a6-1"><strong>Zonificación IEC 62443.</strong> Made OS opera en una zona OT designada (Edge) o en una zona DMZ industrial (Software+API). En ambos modos, la única salida es el canal cifrado TLS 1.3 hacia la capa de orquestación de Made en cloud. No hay conexiones entrantes desde Internet hacia la zona OT de Peñoles.</p>
         <p style="margin:0 0 10px 0" data-eid="apx-a6-2"><strong>Lista de endpoints + puertos.</strong> Made aporta documentación explícita de IPs/dominios y puertos requeridos para el canal saliente, validable por IT/OT antes de habilitar. Solo egress de la red OT.</p>
         <p style="margin:0 0 10px 0" data-eid="apx-a6-3"><strong>Lo que sale por TLS.</strong> Métricas agregadas, vectores de inferencia y eventos clasificados. El dato crudo de telemetría permanece on-premise. Volumen típico del canal saliente: 2-20 MB/día por activo, según frecuencia de muestreo.</p>
@@ -1407,6 +1410,48 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <p style="margin:0 0 10px 0" data-eid="apx-a7-2"><strong>Modelo entrenado.</strong> El modelo prescriptivo entrenado durante el piloto (y, en su caso, durante el Despliegue) queda alojado en infraestructura de Peñoles. Made conserva derecho de uso para mejorar el modelo de producto general, sujeto a anonimización y aprobación explícita; Peñoles conserva derecho de uso ilimitado del modelo entrenado sobre su operación.</p>
         <p style="margin:0 0 10px 0" data-eid="apx-a7-3"><strong>Baseline operativo.</strong> Propiedad del cliente que lo generó. Made no usa baselines de Peñoles para servir a competidores.</p>
         <p style="margin:0" data-eid="apx-a7-4"><strong>Exit clause.</strong> Cualquiera de las partes puede terminar el piloto con 30 días de aviso por escrito; el Despliegue con 60 días de aviso. Made entrega el modelo entrenado y el historial de datos en formato estándar (JSON / Parquet) al cierre, sin costo adicional. Liability cap: monto agregado pagado en los 12 meses previos. Indemnización mutua estándar; sin daños indirectos.</p>
+      </div>
+    </details>
+
+    <details style="margin-top:10px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--white);box-shadow:var(--sh)">
+      <summary style="cursor:pointer;padding:16px 24px;font-size:14px;font-weight:700;color:var(--black);user-select:none">
+        A8 · Referencias y fuentes
+      </summary>
+      <div style="padding:4px 24px 22px 24px;font-size:13px;color:var(--dark);line-height:1.7">
+        <p style="margin:0 0 12px 0;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange)">Datos financieros y operativos · Peñoles</p>
+        <p style="margin:0 0 14px 0" data-eid="apx-a8-r1">Reporte BMV 4T2025 (USD), publicado 31-oct-2025</p>
+
+        <p style="margin:0 0 12px 0;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange)">Benchmarks de costo de evento y MTBF de equipo móvil</p>
+        <div style="margin:0 0 14px 0" data-eid="apx-a8-r2">
+          <div>GMG (Global Mining Guidelines Group) · Predictive Maintenance Guideline, 2023</div>
+          <div>Caterpillar · Service News, TCO de equipo rotativo subterráneo</div>
+          <div>Sandvik · Aftermarket Studies, costos de rebuild</div>
+          <div>Epiroc · TCO de equipo móvil subterráneo</div>
+          <div>ICMM · Operational Guidance, asset management</div>
+        </div>
+
+        <p style="margin:0 0 12px 0;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange)">Contexto regulatorio (relaves · Fase 2)</p>
+        <div style="margin:0 0 14px 0" data-eid="apx-a8-r3">
+          <div>GISTM · Global Industry Standard on Tailings Management</div>
+          <div>ICMM · Tailings Management Member Commitments</div>
+        </div>
+
+        <p style="margin:0 0 12px 0;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange)">Costo del paro no planificado en industria</p>
+        <div style="margin:0 0 14px 0" data-eid="apx-a8-r4">
+          <div>McKinsey &amp; Co. · Industrial Productivity / Unplanned Downtime</div>
+          <div>Siemens · True Cost of Downtime, 2024</div>
+        </div>
+
+        <p style="margin:0 0 12px 0;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange)">Marco técnico de la integración</p>
+        <div style="margin:0 0 14px 0" data-eid="apx-a8-r5">
+          <div>IEC 62443 · zones and conduits, baseline SL-2</div>
+          <div>NOM-032-STPS · seguridad para minas subterráneas, México</div>
+          <div>IECEx Ma/Mb (M1/M2) · equipo intrínsecamente seguro</div>
+          <div>TLS 1.3 · canal saliente cifrado de orquestación</div>
+        </div>
+
+        <p style="margin:0 0 12px 0;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange)">Documentación pública de Made OS</p>
+        <div data-eid="apx-a8-r6"><a href="https://madeos.ai/docs/getting-started/" target="_blank" rel="noopener noreferrer" style="color:var(--orange);text-decoration:none;border-bottom:1px solid var(--orange-bd)">madeos.ai/docs/getting-started/</a></div>
       </div>
     </details>
   </div>
@@ -1426,7 +1471,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 </div>
 
 <div class="doc-footer" data-eid="doc-footer">
-  <strong>MADE OS</strong> × GRUPO PEÑOLES · MAD-PENOLES-PILOTO-01 · Mayo 2026 · CONFIDENCIAL
+  <strong>MADE OS</strong> × GRUPO PEÑOLES · MAD-PENOLES-PILOTO-V2 · Mayo 2026 · CONFIDENCIAL
 </div>
 
 </div><!-- /proposal -->
