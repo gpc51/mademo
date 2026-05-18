@@ -734,18 +734,135 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
     <p style="font-size:15px;color:var(--dark);line-height:1.7;margin-bottom:24px" data-eid="exec-p2">Made OS está diseñado para acoplarse a la API on-premise de Peñoles sin reemplazar telemetría existente ni tableros nativos, agregar clasificación de riesgo, priorizar por impacto operativo, y emitir prescripciones al canal del supervisor de mina en turno (WhatsApp, SMS, WebApp). Esta propuesta describe primero un piloto técnico de 90 días para validar la hipótesis operacional con datos auditados antes del compromiso de Programa de Despliegue.</p>
 
-    <div class="card" style="margin-top:6px;margin-bottom:24px;border-left:4px solid var(--orange);background:var(--orange-bg)">
-      <div class="card-title" style="margin-bottom:10px" data-eid="entendemos-title">
+    <div class="card" style="margin-top:6px;margin-bottom:14px;border-left:4px solid var(--orange);background:var(--orange-bg)">
+      <div class="card-title" style="margin-bottom:10px" data-eid="recap-title">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
         Lo que entendemos de la operación de Peñoles
       </div>
-      <p style="font-size:13.5px;color:var(--dark);line-height:1.65;margin:0" data-eid="entendemos-lead">Esta propuesta integra lo que el equipo de Peñoles compartió en el intercambio operativo inicial. La cita es textual donde corresponde:</p>
-      <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--dark);line-height:1.6">
-        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">1.</span><span data-eid="entendemos-b1"><strong>Telemetría on-premise con API expuesta.</strong> Sus palabras: <em>"una API que nos permite integrar y explotar la información de acuerdo con las necesidades operativas y de negocio"</em>. Sobre esa API se acopla Made OS, no contra ella.</span></div>
-        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">2.</span><span data-eid="entendemos-b2"><strong>Equipo móvil como prioridad operativa.</strong> Sus palabras: <em>"Equipo móvil (cargadores frontales, equipo de barrenación, equipo de acarreo), para garantizar el mantenimiento preventivo. Ahí están todos nuestros esfuerzos de mantenimiento predictivo y telemetría."</em> El piloto se ancla exactamente en ese frente.</span></div>
-        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">3.</span><span data-eid="entendemos-b3"><strong>Cartera 100% subterránea.</strong> Cinco unidades directas en subterráneo (Velardeña, Sabinas, Tizapa, Capela, Bismark) más Milpillas como SX-EW. Sin operaciones open-pit en Peñoles directo. El piloto se ejecuta en una unidad y una clase de activo subterráneo.</span></div>
-        <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--orange);font-weight:800;flex-shrink:0;width:18px">4.</span><span data-eid="entendemos-b4"><strong>Volumen de relaves como horizonte estratégico.</strong> Mensaje recibido del champion del CVC del grupo: <em>"los relaves son un problema; si ayudas a reducir volumen de relave es mejor"</em>. La palanca indirecta sobre TSF (vía disponibilidad del circuito) se detalla en S05 como horizonte post-piloto.</span></div>
+      <p style="font-size:13px;color:var(--dark);line-height:1.6;margin:0 0 12px 0" data-eid="recap-lead">Recap del discovery: hechos verificados con su voz e implicación operativa para el programa. Cada fila identifica la fuente directa.</p>
+      <div class="tbl-scroll"><table class="cost-table">
+        <thead>
+          <tr><th style="width:30%">Hecho verificado</th><th style="width:50%">Implicación operativa</th><th style="width:20%">Fuente</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-eid="recap-r1-f"><strong>Infraestructura 100% on-premise · datos crudos en sus servidores</strong></td>
+            <td data-eid="recap-r1-i">Made no propone nube OEM. Despliegue alineado: Software+API o Edge envían telemetría a cloud de Made por canal saliente cifrado.</td>
+            <td data-eid="recap-r1-s">Q&amp;A · Peñoles</td>
+          </tr>
+          <tr>
+            <td data-eid="recap-r2-f"><strong>API ya expuesta y operacional</strong> (<em>"para integrar y explotar la información de acuerdo con las necesidades operativas y de negocio"</em>)</td>
+            <td data-eid="recap-r2-i">Cero CAPEX de telemetría. Made se conecta a algo que ya existe en producción. Reduce time-to-value drásticamente.</td>
+            <td data-eid="recap-r2-s">Q&amp;A · Peñoles</td>
+          </tr>
+          <tr>
+            <td data-eid="recap-r3-f"><strong>Reportes nativos y analítica básica ya presentes</strong></td>
+            <td data-eid="recap-r3-i">Made no compite con tableros existentes; se acopla por encima con capa prescriptiva. Anti-sustitución.</td>
+            <td data-eid="recap-r3-s">Q&amp;A · Peñoles</td>
+          </tr>
+          <tr>
+            <td data-eid="recap-r4-f"><strong>Casos de uso ya identificados internamente</strong> (variables operativas, disponibilidad de equipos, desempeño de procesos, alertamiento oportuno)</td>
+            <td data-eid="recap-r4-i">El vocabulario del cliente ya es el de un sistema de monitoreo y alertamiento. Made habla el mismo lenguaje en la primera sesión.</td>
+            <td data-eid="recap-r4-s">Q&amp;A · Peñoles</td>
+          </tr>
+          <tr>
+            <td data-eid="recap-r5-f"><strong>Trabajo conjunto con proveedores OEM</strong></td>
+            <td data-eid="recap-r5-i">Relación contractual establecida con fabricantes. Made se inserta como capa adicional encima del OEM, no como reemplazo.</td>
+            <td data-eid="recap-r5-s">Q&amp;A · Peñoles</td>
+          </tr>
+          <tr>
+            <td data-eid="recap-r6-f"><strong>Conectividad operativa ya cubre la malla:</strong> WiFi mesh segmentado en interior, Leaky Feeder de voz, LTE privada en superficie</td>
+            <td data-eid="recap-r6-i">Made no requiere infraestructura de red adicional. Blackouts serían de zona específica, no sistémicos.</td>
+            <td data-eid="recap-r6-s">Q&amp;A · Peñoles</td>
+          </tr>
+          <tr>
+            <td data-eid="recap-r7-f"><strong>Sin minas open-pit en Peñoles</strong> (<em>"En Peñoles no contamos con minas Open-pit"</em>)</td>
+            <td data-eid="recap-r7-i">Toda la flota referenciada en este programa es subterránea: LHD, jumbo de barrenación, camión articulado subterráneo. Sin equipo de superficie.</td>
+            <td data-eid="recap-r7-s">Q&amp;A · Peñoles</td>
+          </tr>
+          <tr>
+            <td data-eid="recap-r8-f"><strong>Foco declarado: equipo móvil para mantenimiento preventivo</strong> (cargadores frontales, equipo de barrenación, equipo de acarreo)</td>
+            <td data-eid="recap-r8-i">Fase 1 se ancla en flota móvil subterránea, no en relaves ni planta. Coincide con la dirección operativa del cliente.</td>
+            <td data-eid="recap-r8-s">Operadores Peñoles</td>
+          </tr>
+          <tr>
+            <td data-eid="recap-r9-f"><strong>Telemetría ya alimentando esfuerzos predictivos</strong> (<em>"Ahí están todos nuestros esfuerzos de mantenimiento predictivo"</em>)</td>
+            <td data-eid="recap-r9-i">Cliente ya invierte en predictivo. La brecha que cierra Made es prescripción accionable y ruteo a supervisor en turno, no detección de anomalía aislada.</td>
+            <td data-eid="recap-r9-s">Operadores Peñoles</td>
+          </tr>
+          <tr>
+            <td data-eid="recap-r10-f"><strong>Relaves identificados como problema estratégico</strong></td>
+            <td data-eid="recap-r10-i">Champion ejecutivo en el CVC del grupo. Fase 2 tiene sponsor de nivel estratégico, no sólo operativo.</td>
+            <td data-eid="recap-r10-s">CVC champion</td>
+          </tr>
+          <tr>
+            <td data-eid="recap-r11-f"><strong>Reducción de volumen de relave como métrica clave</strong> (<em>"si ayudas a reducir volumen de relave es mejor"</em>)</td>
+            <td data-eid="recap-r11-i">Fase 2 debe enmarcarse vía disponibilidad del circuito de relaves (espesador, ciclonera, paste backfill) que afecta tonelaje a TSF, no como monitoreo aislado de bombas.</td>
+            <td data-eid="recap-r11-s">CVC champion</td>
+          </tr>
+        </tbody>
+      </table></div>
+      <p style="font-size:11px;color:var(--gray-d);margin-top:10px;line-height:1.55" data-eid="recap-sources"><strong>Fuentes del recap:</strong> Q&amp;A formal con Peñoles (octubre 2025) · operadores Peñoles (intercambio informal) · champion del CVC del grupo · Reporte BMV 4T2025 utilizado únicamente para contexto financiero referenciado en otras secciones.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;border-left:3px solid var(--dark)">
+      <div class="card-title" style="margin-bottom:10px" data-eid="gaps-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 7v4M8 5.5v.5"/></svg>
+        Lo que falta calibrar en la sesión técnica
       </div>
+      <p style="font-size:13px;color:var(--dark);line-height:1.6;margin:0 0 12px 0" data-eid="gaps-lead">Datos que el Q&amp;A inicial no cubrió. Conviene cerrarlos en la primera sesión técnica para ajustar pricing, scope y ruta de aprobación con precisión.</p>
+      <div class="tbl-scroll"><table class="cost-table">
+        <thead>
+          <tr><th style="width:30%">Pregunta abierta</th><th style="width:50%">Por qué importa</th><th style="width:20%">Cuándo lo cerramos</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-eid="gap-r1-q"><strong>Lista oficial de unidades operativas y tamaño de flota por unidad</strong></td>
+            <td data-eid="gap-r1-w">Hoy enumero unidades desde fuentes públicas (BMV); tamaño de flota es desconocido. Determina alcance, elección de unidad inicial y volumen de eventos esperado.</td>
+            <td data-eid="gap-r1-c">Sesión técnica inicial</td>
+          </tr>
+          <tr>
+            <td data-eid="gap-r2-q"><strong>Marcas y modelos OEM reales del parque</strong> (Cat / Komatsu / Sandvik / Epiroc)</td>
+            <td data-eid="gap-r2-w">Sin esto no se puede cotizar success fee por evento con precisión ni elegir el feed OEM correcto (VIMS, KOMTRAX, Sandvik 365, Certiq).</td>
+            <td data-eid="gap-r2-c">Sesión técnica inicial</td>
+          </tr>
+          <tr>
+            <td data-eid="gap-r3-q"><strong>MTBF histórico por clase de activo</strong> (12-24 meses)</td>
+            <td data-eid="gap-r3-w">Calibra el ROI proyectado con su dato real y no con benchmarks externos. Mantenimiento o Confiabilidad lo tiene.</td>
+            <td data-eid="gap-r3-c">Sesión técnica inicial</td>
+          </tr>
+          <tr>
+            <td data-eid="gap-r4-q"><strong>Sistema CMMS específico</strong> (SAP PM, Maximo, Infor EAM, otro)</td>
+            <td data-eid="gap-r4-w">Determina cómo Made inyecta el work order draft. Sin esto la prescripción queda fuera del flujo de mantenimiento.</td>
+            <td data-eid="gap-r4-c">Sesión técnica inicial</td>
+          </tr>
+          <tr>
+            <td data-eid="gap-r5-q"><strong>Política IT/OT del canal saliente cifrado</strong></td>
+            <td data-eid="gap-r5-w">Determina ruta de aprobación de seguridad y tiempo de habilitación del canal a la capa cloud de Made.</td>
+            <td data-eid="gap-r5-c">Sesión técnica inicial</td>
+          </tr>
+          <tr>
+            <td data-eid="gap-r6-q"><strong>Frecuencia y costo histórico de pull-outs no planificados</strong> en la unidad candidata</td>
+            <td data-eid="gap-r6-w">Calibra el escenario base de ROI con dato real, en lugar de los rangos GMG / Cat / Sandvik / Epiroc que usamos hoy como referencia.</td>
+            <td data-eid="gap-r6-c">Sesión técnica inicial</td>
+          </tr>
+          <tr>
+            <td data-eid="gap-r7-q"><strong>Champion técnico interno con autoridad</strong> (Confiabilidad o Mantenimiento Mina)</td>
+            <td data-eid="gap-r7-w">Requisito operativo del programa: sin sponsor designado con autoridad para validar KPIs, el programa no puede ejecutarse.</td>
+            <td data-eid="gap-r7-c">Sesión técnica inicial</td>
+          </tr>
+          <tr>
+            <td data-eid="gap-r8-q"><strong>Presupuesto disponible y ciclo de procurement</strong></td>
+            <td data-eid="gap-r8-w">Determina velocidad de cierre y si el ticket inicial encaja en presupuesto discrecional o requiere review ejecutivo.</td>
+            <td data-eid="gap-r8-c">Sesión técnica inicial · seguimiento</td>
+          </tr>
+          <tr>
+            <td data-eid="gap-r9-q"><strong>Volumen de telemetría</strong> (señales por segundo, política de retención)</td>
+            <td data-eid="gap-r9-w">Determina si Software+API alcanza o conviene Edge en activos de alta frecuencia. Calibra capacidad de buffer offline necesaria.</td>
+            <td data-eid="gap-r9-c">Sesión técnica inicial</td>
+          </tr>
+        </tbody>
+      </table></div>
     </div>
 
     <div>
