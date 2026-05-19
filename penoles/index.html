@@ -782,7 +782,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           </tr>
           <tr>
             <td data-eid="recap-r10-f"><strong>Relaves identificados como problema estratégico</strong></td>
-            <td data-eid="recap-r10-i">Champion ejecutivo en el CVC del grupo. Fase 2 tiene sponsor de nivel estratégico, no sólo operativo.</td>
+            <td data-eid="recap-r10-i">Fase 2, nivel estratégico-operativo.</td>
           </tr>
           <tr>
             <td data-eid="recap-r11-f"><strong>Reducción de volumen de relave como métrica clave</strong> (<em>"si ayudas a reducir volumen de relave es mejor"</em>)</td>
@@ -801,53 +801,44 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <p style="font-size:13px;color:var(--dark);line-height:1.6;margin:0 0 12px 0" data-eid="gaps-lead">Datos adicionales necesarios que el Q&amp;A inicial no cubrió.</p>
       <div class="tbl-scroll"><table class="cost-table">
         <thead>
-          <tr><th style="width:30%">Pregunta abierta</th><th style="width:50%">Por qué importa</th><th style="width:20%">Cuándo lo cerramos</th></tr>
+          <tr><th style="width:30%">Pregunta abierta</th><th style="width:70%">Por qué importa</th>
         </thead>
         <tbody>
           <tr>
             <td data-eid="gap-r1-q"><strong>Lista oficial de unidades operativas y tamaño de flota por unidad</strong></td>
             <td data-eid="gap-r1-w">Hoy enumero unidades desde fuentes públicas (BMV); tamaño de flota es desconocido. Determina alcance, elección de unidad inicial y volumen de eventos esperado.</td>
-            <td data-eid="gap-r1-c">Sesión técnica inicial</td>
           </tr>
           <tr>
             <td data-eid="gap-r2-q"><strong>Marcas y modelos OEM reales del parque</strong> (Cat / Komatsu / Sandvik / Epiroc)</td>
             <td data-eid="gap-r2-w">Sin esto no se puede cotizar success fee por evento con precisión ni elegir el feed OEM correcto (VIMS, KOMTRAX, Sandvik 365, Certiq).</td>
-            <td data-eid="gap-r2-c">Sesión técnica inicial</td>
           </tr>
           <tr>
             <td data-eid="gap-r3-q"><strong>MTBF histórico por clase de activo</strong> (12-24 meses)</td>
             <td data-eid="gap-r3-w">Calibra el ROI proyectado con su dato real y no con benchmarks externos. Mantenimiento o Confiabilidad lo tiene.</td>
-            <td data-eid="gap-r3-c">Sesión técnica inicial</td>
           </tr>
           <tr>
             <td data-eid="gap-r4-q"><strong>Sistema CMMS específico</strong> (SAP PM, Maximo, Infor EAM, otro)</td>
             <td data-eid="gap-r4-w">Determina cómo Made inyecta el work order draft. Sin esto la prescripción queda fuera del flujo de mantenimiento.</td>
-            <td data-eid="gap-r4-c">Sesión técnica inicial</td>
           </tr>
           <tr>
             <td data-eid="gap-r5-q"><strong>Política IT/OT del canal saliente cifrado</strong></td>
             <td data-eid="gap-r5-w">Determina ruta de aprobación de seguridad y tiempo de habilitación del canal a la capa cloud de Made.</td>
-            <td data-eid="gap-r5-c">Sesión técnica inicial</td>
           </tr>
           <tr>
             <td data-eid="gap-r6-q"><strong>Frecuencia y costo histórico de pull-outs no planificados</strong> en la unidad candidata</td>
             <td data-eid="gap-r6-w">Calibra el escenario base de ROI con dato real, en lugar de los rangos GMG / Cat / Sandvik / Epiroc que usamos hoy como referencia.</td>
-            <td data-eid="gap-r6-c">Sesión técnica inicial</td>
           </tr>
           <tr>
             <td data-eid="gap-r7-q"><strong>Champion técnico interno con autoridad</strong> (Confiabilidad o Mantenimiento Mina)</td>
             <td data-eid="gap-r7-w">Requisito operativo del programa: sin sponsor designado con autoridad para validar KPIs, el programa no puede ejecutarse.</td>
-            <td data-eid="gap-r7-c">Sesión técnica inicial</td>
           </tr>
           <tr>
             <td data-eid="gap-r8-q"><strong>Presupuesto disponible y ciclo de procurement</strong></td>
             <td data-eid="gap-r8-w">Determina velocidad de cierre y si el ticket inicial encaja en presupuesto discrecional o requiere review ejecutivo.</td>
-            <td data-eid="gap-r8-c">Sesión técnica inicial · seguimiento</td>
           </tr>
           <tr>
             <td data-eid="gap-r9-q"><strong>Volumen de telemetría</strong> (señales por segundo, política de retención)</td>
             <td data-eid="gap-r9-w">Determina si Software+API alcanza o conviene Edge en activos de alta frecuencia. Calibra capacidad de buffer offline necesaria.</td>
-            <td data-eid="gap-r9-c">Sesión técnica inicial</td>
           </tr>
         </tbody>
       </table></div>
@@ -883,7 +874,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="section" id="s02">
     <div class="s-label">02. Solución</div>
     <div class="s-title" data-eid="solucion-title">Capa prescriptiva sobre la API on-premise que Peñoles ya opera</div>
-    <p class="s-lead" data-eid="solucion-lead">Made OS no instala telemetría desde cero ni reemplaza el sistema OEM ni los tableros nativos de Peñoles. Se conecta a la API on-premise que Peñoles ya tiene operando para integrar, agrega clasificación de riesgo, prioriza por impacto, y emite la prescripción al canal del supervisor de mina. Modo solo-lectura. Cero modificación a SCADA, PLC o lógica de control. Integración en menos de 10 días.</p>
+    <p class="s-lead" data-eid="solucion-lead">Made OS no instala telemetría desde cero ni reemplaza el sistema OEM ni los tableros nativos de Peñoles. Se conecta a la API on-premise que Peñoles ya tiene operando para integrar, agrega clasificación de riesgo, prioriza por impacto, y emite la prescripción al canal del supervisor de mina. Modo solo-lectura. Cero modificación a SCADA, PLC o lógica de control.</p>
 
     <div class="steps">
       <div class="step">
@@ -1289,8 +1280,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <!-- ── 06.5 VALIDACIÓN DE PLATAFORMA + CASO INAUGURAL ── -->
   <div class="section" id="s065">
     <div class="s-label">06.5 · Validación de plataforma y posicionamiento del programa</div>
-    <div class="s-title" data-eid="inaugural-title">Plataforma probada en industria. Peñoles como caso inaugural de minería Tier 1.</div>
-    <p class="s-lead" data-eid="inaugural-lead">Made OS opera hoy sobre activos industriales en programas activos cross-vertical. Peñoles representaría el caso inaugural del producto en minería Tier 1, lo cual define los términos comerciales y de colaboración descritos abajo.</p>
+    <div class="s-title" data-eid="inaugural-title">Tecnología probada en la industria.</div>
+    <p class="s-lead" data-eid="inaugural-lead">Made OS opera hoy sobre activos industriales en programas activos cross-vertical. Peñoles representaría el caso inaugural del producto en minería Tier 1, lo cual define los términos comerciales preferenciales y de colaboración descritos abajo.</p>
 
     <div class="cols-2-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;width:100%">
       <div class="card" style="border-left:3px solid var(--dark)">
@@ -1299,6 +1290,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           Validación de plataforma cross-vertical
         </div>
         <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--dark);line-height:1.6">
+          <div data-eid="val-ref1"><strong>Minería · Postulación activa BHP Escondida</strong> Made OS es candidato activo al implementar 3 soluciones de data prescriptiva en la empresa minera de cobre más grande del mundo.</div>
           <div data-eid="val-ref1"><strong>Empresa chilena · Tier 1 elevadores industriales.</strong> Programa de monitoreo prescriptivo en activos de transporte vertical de uso intensivo. Implementación activa.</div>
           <div data-eid="val-ref2"><strong>Empresa mexicana · Design Partner industrial, México.</strong> Despliegue de Made OS en línea de manufactura continua de transformación de madera. Colaboración de diseño de producto y validación de modelo prescriptivo.</div>
           <div data-eid="val-ref3"><strong>Otras integraciones documentadas.</strong> Pilotos técnicos completados sobre activos rotativos en industrias adyacentes (procesos continuos, manufactura discreta) que validan la arquitectura del motor predictivo, el pipeline de prescripción y la integración a sistemas OT vía OPC UA y APIs OEM.</div>
