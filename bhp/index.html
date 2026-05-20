@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Made OS x BHP Escondida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:#d84200; --orange-bg:rgba(216,66,0,.08); --orange-bd:rgba(216,66,0,.28);
+    --black:#111213; --dark:#1a1c1e; --gray:#636870; --gray-l:#9ba3ab;
+    --border:#e4e7ea; --bg:#f7f8f9; --white:#fff; --green:#15803d;
+    --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; --r:6px; --r-lg:10px;
+    --sh:0 1px 4px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--font);color:var(--dark);background:var(--bg);font-size:15px;line-height:1.7;}
+  .cover{background:var(--white);min-height:100vh;display:flex;flex-direction:column;padding:48px max(72px,calc((100vw - 960px)/2 + 72px)) 40px;}
+  .cover-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+  .logo img{height:34px;width:auto;display:block;}
+  .company-badge{background:var(--black);color:white;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:var(--r);white-space:nowrap;}
+  .cover-tagline{font-size:10.5px;font-weight:500;letter-spacing:.09em;color:var(--gray);text-transform:uppercase;margin-bottom:36px;}
+  .cover-rule{height:1px;background:var(--border);margin-bottom:52px;}
+  .cover-body{flex:1;display:flex;flex-direction:column;}
+  .cover-eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:20px;}
+  .cover-headline{font-size:52px;font-weight:800;line-height:1.07;color:var(--black);letter-spacing:-.03em;margin-bottom:32px;}
+  .cover-highlight{background:var(--dark);color:rgba(255,255,255,.86);padding:22px 28px;border-radius:var(--r);font-size:15px;line-height:1.68;margin-bottom:52px;}
+  .cover-metrics{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:22px 0;margin-bottom:auto;}
+  .cover-metric{padding:0 24px;border-right:1px solid var(--border);}
+  .cover-metric:first-child{padding-left:0;}
+  .cover-metric:last-child{border-right:none;}
+  .m-label{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.11em;color:var(--orange);margin-bottom:5px;}
+  .m-value{font-size:14px;font-weight:600;color:var(--black);line-height:1.3;}
+  .cover-creds{font-size:12px;color:var(--gray);line-height:1.65;margin-top:40px;}
+  .cover-footer{display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:14px;margin-top:20px;font-size:9.5px;color:var(--gray-l);letter-spacing:.07em;text-transform:uppercase;}
+  .page{max-width:960px;margin:0 auto;padding:64px 72px;}
+  .section{margin-bottom:56px;}
+  .s-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;}
+  .s-title{font-size:27px;font-weight:700;color:var(--black);letter-spacing:-.02em;line-height:1.2;margin-bottom:12px;}
+  .s-lead{font-size:15px;color:var(--gray);max-width:680px;margin-bottom:28px;line-height:1.65;}
+  .divider{height:1px;background:var(--border);margin:52px 0;}
+  .card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 32px;box-shadow:var(--sh);}
+  .card+.card{margin-top:14px;}
+  .exec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px;}
+  .exec-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 22px;box-shadow:var(--sh);}
+  .exec-item-label{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gray);margin-bottom:6px;}
+  .exec-item-val{font-size:26px;font-weight:800;color:var(--black);letter-spacing:-.02em;line-height:1;margin-bottom:5px;}
+  .exec-item-sub{font-size:12px;color:var(--gray);line-height:1.5;}
+  .challenge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .challenge{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 22px;box-shadow:var(--sh);}
+  .challenge-num{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--orange);text-transform:uppercase;margin-bottom:8px;}
+  .challenge-title{font-size:16px;font-weight:800;color:var(--black);line-height:1.25;margin-bottom:8px;}
+  .challenge-desc{font-size:12.5px;color:var(--gray);line-height:1.62;margin-bottom:14px;}
+  .challenge-meta{border-top:1px solid var(--border);padding-top:12px;font-size:11.5px;color:var(--dark);line-height:1.55;}
+  .challenge-meta strong{display:block;color:var(--orange);font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;}
+  .pricing-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .pricing-table th{background:var(--bg);color:var(--black);font-weight:700;font-size:11px;letter-spacing:.04em;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
+  .pricing-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+  .pricing-table tr:last-child td{border-bottom:none;}
+  .price-val{font-weight:800;color:var(--black);}
+  .alert{border-left:3px solid var(--orange);background:var(--orange-bg);border-radius:var(--r);padding:14px 16px;font-size:13px;color:var(--dark);margin-top:14px;}
+  .steps{display:flex;flex-direction:column;}
+  .step{display:flex;gap:16px;padding-bottom:24px;}
+  .step-dot{width:32px;height:32px;border-radius:50%;background:var(--orange);color:white;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+  .step-title{font-size:15px;font-weight:800;color:var(--black);margin-bottom:5px;}
+  .step-desc{font-size:13px;color:var(--gray);line-height:1.62;}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .list{padding-left:18px;color:var(--gray);font-size:13px;line-height:1.7;}
+  .list li{margin-bottom:7px;}
+  .cta-block{background:var(--black);color:white;border-radius:var(--r-lg);padding:32px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;}
+  .cta-tag{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.58);margin-bottom:8px;}
+  .cta-block h3{font-size:24px;letter-spacing:-.02em;line-height:1.2;margin-bottom:8px;}
+  .cta-block p{color:rgba(255,255,255,.7);font-size:13px;line-height:1.65;max-width:560px;}
+  .cta-btn{display:inline-flex;background:var(--orange);color:white;text-decoration:none;font-size:13px;font-weight:800;padding:12px 18px;border-radius:var(--r);}
+  .sig{display:flex;gap:16px;align-items:center;margin-top:36px;}
+  .sig-av{width:52px;height:52px;border-radius:50%;overflow:hidden;background:var(--border);flex-shrink:0;}
+  .sig-av img{width:100%;height:100%;object-fit:cover;display:block;}
+  .sig-name{font-size:15px;font-weight:800;color:var(--black);}
+  .sig-role,.sig-contact{font-size:12px;color:var(--gray);line-height:1.55;}
+  .doc-footer{max-width:960px;margin:0 auto 48px;padding:18px 72px;border-top:1px solid var(--border);font-size:10px;color:var(--gray-l);letter-spacing:.08em;text-transform:uppercase;}
+  .sidenav{position:fixed;right:24px;top:50%;transform:translateY(-50%);width:164px;background:rgba(255,255,255,.96);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--sh);padding:12px;z-index:20;}
+  .sidenav-hd{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-l);margin-bottom:8px;}
+  .sidenav a{display:block;color:var(--gray);text-decoration:none;font-size:11px;font-weight:600;padding:7px 6px;border-radius:var(--r);}
+  .sidenav a:hover{background:var(--orange-bg);color:var(--orange);}
+  @media(max-width:1100px){.sidenav{display:none;}}
+  @media(max-width:760px){
+    .cover,.page{padding:32px 24px;}
+    .cover-header,.cover-footer{flex-direction:column;align-items:flex-start;gap:14px;}
+    .cover-headline{font-size:38px;}
+    .cover-metrics,.exec-grid,.challenge-grid,.split,.cta-block{grid-template-columns:1fr;}
+    .cover-metric{border-right:none;border-bottom:1px solid var(--border);padding:14px 0;}
+    .cover-metric:last-child{border-bottom:none;}
+    .doc-footer{padding:18px 24px;}
+  }
+</style>
+</head>
+<body>
+<section class="cover">
+  <div class="cover-header">
+    <a href="../" class="logo"><img src="../assets/logo.svg" alt="Made"></a>
+    <div class="company-badge">Open Aster 2026</div>
+  </div>
+  <div class="cover-tagline">Made OS x Just Partners x BHP Escondida</div>
+  <div class="cover-rule"></div>
+  <div class="cover-body">
+    <div class="cover-eyebrow">Postulacion a desafio BHP Escondida</div>
+    <h1 class="cover-headline">IA industrial edge para polvo, incendios y mantenimiento predictivo</h1>
+    <div class="cover-highlight">
+      Propuesta combinada para tres desafios Open Aster 2026: contaminacion por polvo en motores CAEX, prediccion de amagos de incendio y sensorizacion para mantenimiento predictivo en planta concentradora. Made OS aporta la capa de IA edge y alertas prescriptivas; Just Partners aporta ingenieria, integracion en terreno e instrumentacion.
+    </div>
+    <div class="cover-metrics">
+      <div class="cover-metric"><div class="m-label">Piloto combinado</div><div class="m-value">$537K USD</div></div>
+      <div class="cover-metric"><div class="m-label">Revenue ano 1</div><div class="m-value">$5.755M USD</div></div>
+      <div class="cover-metric"><div class="m-label">ARR cierre ano 1</div><div class="m-value">$4.005M USD</div></div>
+      <div class="cover-metric"><div class="m-label">Hardware ano 1</div><div class="m-value">~$1.435M USD</div></div>
+    </div>
+    <div class="cover-creds">
+      Presenta: Gerardo Pena, CEO & Co-founder · g@madeos.ai · Fecha limite: 22 de mayo 2026, 23:59 hrs.
+    </div>
+  </div>
+  <div class="cover-footer">
+    <span>Made SpA · Confidencial</span>
+    <span>BHP Escondida · Open Aster 2026</span>
+  </div>
+</section>
+
+<main class="page">
+  <section class="section" id="s01">
+    <div class="s-label">01. Resumen ejecutivo</div>
+    <h2 class="s-title">Un piloto coordinado para demostrar valor operacional en cinco meses</h2>
+    <p class="s-lead">
+      La propuesta consolida tres dolores de alto impacto en una arquitectura comun: integracion de senales existentes, sensorizacion complementaria cuando sea necesaria, procesamiento local en gateway industrial y entrega de acciones prescriptivas por los canales definidos por BHP.
+    </p>
+    <div class="exec-grid">
+      <div class="exec-item"><div class="exec-item-label">D1 Polvo</div><div class="exec-item-val">$132K</div><div class="exec-item-sub">3 camiones CAEX · 4 meses</div></div>
+      <div class="exec-item"><div class="exec-item-label">D2 Incendios</div><div class="exec-item-val">$185K</div><div class="exec-item-sub">4 camiones · 5 meses · standalone</div></div>
+      <div class="exec-item"><div class="exec-item-label">D3 Sensorizacion</div><div class="exec-item-val">$220K</div><div class="exec-item-sub">6 activos planta · 5 meses</div></div>
+      <div class="exec-item"><div class="exec-item-label">Escala ano 1</div><div class="exec-item-val">$5.755M</div><div class="exec-item-sub">Piloto + expansion neta de acreditacion</div></div>
+    </div>
+    <div class="alert">
+      El piloto se acredita al contrato del primer ano si los resultados son positivos, manteniendo un modelo de riesgo compartido para BHP.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="s02">
+    <div class="s-label">02. Desafios seleccionados</div>
+    <h2 class="s-title">Tres casos, una sola capa de inteligencia operacional</h2>
+    <div class="challenge-grid">
+      <article class="challenge">
+        <div class="challenge-num">Desafio 1</div>
+        <h3 class="challenge-title">Contaminacion por polvo en motores CAEX</h3>
+        <p class="challenge-desc">Monitoreo predictivo no intrusivo para anticipar degradacion por ingreso de particulas antes de dano severo.</p>
+        <div class="challenge-meta"><strong>Alcance piloto</strong>3 camiones · 4 meses · telemetria OEM + sensores complementarios</div>
+      </article>
+      <article class="challenge">
+        <div class="challenge-num">Desafio 2</div>
+        <h3 class="challenge-title">Prediccion de amagos de incendio</h3>
+        <p class="challenge-desc">Correlacion multimodal de comportamiento termico, hidraulico, electrico y operacional con protocolo de alerta por niveles.</p>
+        <div class="challenge-meta"><strong>Alcance piloto</strong>4 camiones · 5 meses · operacion standalone y shadow mode inicial</div>
+      </article>
+      <article class="challenge">
+        <div class="challenge-num">Desafio 3</div>
+        <h3 class="challenge-title">Sensorizacion para mantenimiento predictivo</h3>
+        <p class="challenge-desc">Loop cerrado de sensorizacion, IA prescriptiva y accion de mantenimiento sobre activos criticos de planta concentradora.</p>
+        <div class="challenge-meta"><strong>Alcance piloto</strong>6 activos · 5 meses · edge computing industrial y sensores de condicion</div>
+      </article>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="s03">
+    <div class="s-label">03. Arquitectura de solucion</div>
+    <h2 class="s-title">Edge-first, no intrusiva y compatible con sistemas existentes</h2>
+    <div class="split">
+      <div class="card">
+        <p class="s-lead" style="margin-bottom:16px">Made OS no reemplaza KOMTRAX, MineStar/VIMS, SCADA, PLCs ni protocolos de mantenimiento. Opera como una capa de lectura, analisis y recomendacion.</p>
+        <ul class="list">
+          <li>Gateway industrial NVIDIA Jetson Orin, IP67/NEMA 4X, 67 TOPS.</li>
+          <li>Procesamiento local para operacion critica sin dependencia de conectividad continua.</li>
+          <li>Modelos por activo que aprenden baseline normal por unidad, ruta y condicion operacional.</li>
+          <li>Alertas prescriptivas: activo, subsistema, ventana de intervencion, accion y responsable.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="s-lead" style="margin-bottom:16px">La alianza con Just Partners permite ejecutar el despliegue en faena con soporte local y criterio de ingenieria minera.</p>
+        <ul class="list">
+          <li>Levantamiento tecnico, instrumentacion e integracion en terreno.</li>
+          <li>Instalacion, documentacion y coordinacion operacional con mantenimiento.</li>
+          <li>Compliance local, soporte en faena y gestion con equipos IT/OT.</li>
+          <li>Implementacion coordinada sin modificar logica de control existente.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="s04">
+    <div class="s-label">04. Modelo comercial</div>
+    <h2 class="s-title">Piloto, expansion y ARR esperado al cierre del primer ano</h2>
+    <div class="card">
+      <table class="pricing-table">
+        <thead>
+          <tr><th>Linea</th><th>Alcance</th><th>Piloto</th><th>ARR cierre ano 1</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>D1 Polvo</td><td>50 camiones x $3.500/mes, -5% volumen</td><td class="price-val">$132K</td><td class="price-val">$1.995M</td></tr>
+          <tr><td>D2 Incendios</td><td>Bundle CAEX $500/mes + 30 puntos fijos x $2K/mes</td><td class="price-val">$185K</td><td class="price-val">$984K</td></tr>
+          <tr><td>D3 Sensorizacion</td><td>30 activos x $3K/mes, -5% volumen</td><td class="price-val">$220K</td><td class="price-val">$1.026M</td></tr>
+          <tr><td><strong>Total</strong></td><td>Piloto + escala, neto de acreditacion</td><td class="price-val">$537K</td><td class="price-val">$4.005M</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert">
+      Revenue total ano 1 estimado: <strong>$5.755M USD</strong>. Hardware ano 1 cobro unico no recurrente: <strong>~$1.435M USD</strong>.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="s05">
+    <div class="s-label">05. Plan de ejecucion</div>
+    <h2 class="s-title">Cinco meses para validar, medir y preparar escala</h2>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div><div class="step-title">Semana 0-2 · Kickoff tecnico</div><div class="step-desc">Seleccion de activos, accesos a telemetria disponible, validacion IT/OT y plan de instalacion con BHP y Just Partners.</div></div></div>
+      <div class="step"><div class="step-dot">2</div><div><div class="step-title">Mes 1 · Instalacion y baseline</div><div class="step-desc">Conexion de gateways, sensores complementarios y operacion en shadow mode para aprender comportamiento nominal.</div></div></div>
+      <div class="step"><div class="step-dot">3</div><div><div class="step-title">Meses 2-4 · Alertas prescriptivas</div><div class="step-desc">Activacion gradual de alertas por severidad, registro de acciones, feedback operacional y ajuste de umbrales por activo.</div></div></div>
+      <div class="step"><div class="step-dot">4</div><div><div class="step-title">Mes 5 · Cierre y expansion</div><div class="step-desc">Informe tecnico-economico, decision de escala por flota/familia de activos y plan de despliegue por fases.</div></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="s06">
+    <div class="s-label">06. Siguiente paso</div>
+    <div class="cta-block">
+      <div>
+        <div class="cta-tag">Open Aster 2026 · BHP Escondida</div>
+        <h3>Coordinar sesion tecnica de postulacion</h3>
+        <p>Sesion con Made, Just Partners y contrapartes de BHP para revisar alcance de piloto, activos candidatos, integracion IT/OT, criterios de exito y plan de despliegue por desafio.</p>
+      </div>
+      <a href="https://cal.com/madeos.ai/demo" class="cta-btn">Agendar sesion -></a>
+    </div>
+    <div class="sig">
+      <div class="sig-av"><img src="../assets/gpc.png" alt="Gerardo Pena"></div>
+      <div>
+        <div class="sig-name">Gerardo Pena</div>
+        <div class="sig-role">CEO, Made OS · MIT Innovator Under 35 LATAM 2025</div>
+        <div class="sig-contact">g@madeos.ai · madeos.ai · NVIDIA Inception · Founders Inc · Startup Chile BIG 10</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="doc-footer">
+  <strong>MADE OS</strong> x BHP ESCONDIDA · OPEN ASTER 2026 · MAYO 2026 · CONFIDENCIAL
+</div>
+
+<nav class="sidenav" aria-label="Indice de secciones">
+  <div class="sidenav-hd">Indice</div>
+  <a href="#s01">01 · Resumen</a>
+  <a href="#s02">02 · Desafios</a>
+  <a href="#s03">03 · Solucion</a>
+  <a href="#s04">04 · Comercial</a>
+  <a href="#s05">05 · Ejecucion</a>
+  <a href="#s06">06 · Siguiente paso</a>
+</nav>
+</body>
+</html>
