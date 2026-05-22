@@ -1336,53 +1336,44 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <p style="font-size:13px;color:var(--dark);line-height:1.6;margin:0 0 12px 0" data-eid="gaps-lead">Datos que el Q&amp;A inicial no cubrió. Conviene cerrarlos en la primera sesión técnica para ajustar pricing, scope y ruta de aprobación con precisión.</p>
       <div class="tbl-scroll"><table class="cost-table">
         <thead>
-          <tr><th style="width:30%">Pregunta abierta</th><th style="width:50%">Por qué importa</th><th style="width:20%">Cuándo lo cerramos</th></tr>
+          <tr><th style="width:35%">Pregunta abierta</th><th style="width:65%">Por qué importa</th></tr>
         </thead>
         <tbody>
           <tr>
             <td data-eid="gap-r1-q"><strong>Lista oficial de unidades operativas y tamaño de flota por unidad</strong></td>
             <td data-eid="gap-r1-w">Hoy enumero unidades desde fuentes públicas (BMV); tamaño de flota es desconocido. Determina alcance, elección de unidad inicial y volumen de eventos esperado.</td>
-            <td data-eid="gap-r1-c">Sesión técnica inicial</td>
           </tr>
           <tr>
             <td data-eid="gap-r2-q"><strong>Marcas y modelos OEM reales del parque</strong> (Cat / Komatsu / Sandvik / Epiroc)</td>
             <td data-eid="gap-r2-w">Sin esto no se puede cotizar success fee por evento con precisión ni elegir el feed OEM correcto (VIMS, KOMTRAX, Sandvik 365, Certiq).</td>
-            <td data-eid="gap-r2-c">Sesión técnica inicial</td>
           </tr>
           <tr>
             <td data-eid="gap-r3-q"><strong>MTBF histórico por clase de activo</strong> (12-24 meses)</td>
             <td data-eid="gap-r3-w">Calibra el ROI proyectado con su dato real y no con benchmarks externos. Mantenimiento o Confiabilidad lo tiene.</td>
-            <td data-eid="gap-r3-c">Sesión técnica inicial</td>
           </tr>
           <tr>
             <td data-eid="gap-r4-q"><strong>Sistema CMMS específico</strong> (SAP PM, Maximo, Infor EAM, otro)</td>
             <td data-eid="gap-r4-w">Determina cómo Made inyecta el work order draft. Sin esto la prescripción queda fuera del flujo de mantenimiento.</td>
-            <td data-eid="gap-r4-c">Sesión técnica inicial</td>
           </tr>
           <tr>
             <td data-eid="gap-r5-q"><strong>Política IT/OT del canal saliente cifrado</strong></td>
             <td data-eid="gap-r5-w">Determina ruta de aprobación de seguridad y tiempo de habilitación del canal a la capa cloud de Made.</td>
-            <td data-eid="gap-r5-c">Sesión técnica inicial</td>
           </tr>
           <tr>
             <td data-eid="gap-r6-q"><strong>Frecuencia y costo histórico de pull-outs no planificados</strong> en la unidad candidata</td>
             <td data-eid="gap-r6-w">Calibra el escenario base de ROI con dato real, en lugar de los rangos GMG / Cat / Sandvik / Epiroc que usamos hoy como referencia.</td>
-            <td data-eid="gap-r6-c">Sesión técnica inicial</td>
           </tr>
           <tr>
             <td data-eid="gap-r7-q"><strong>Champion técnico interno con autoridad</strong> (Confiabilidad o Mantenimiento Mina)</td>
             <td data-eid="gap-r7-w">Requisito operativo del programa: sin sponsor designado con autoridad para validar KPIs, el programa no puede ejecutarse.</td>
-            <td data-eid="gap-r7-c">Sesión técnica inicial</td>
           </tr>
           <tr>
             <td data-eid="gap-r8-q"><strong>Presupuesto disponible y ciclo de procurement</strong></td>
             <td data-eid="gap-r8-w">Determina velocidad de cierre y si el ticket inicial encaja en presupuesto discrecional o requiere review ejecutivo.</td>
-            <td data-eid="gap-r8-c">Sesión técnica inicial · seguimiento</td>
           </tr>
           <tr>
             <td data-eid="gap-r9-q"><strong>Volumen de telemetría</strong> (señales por segundo, política de retención)</td>
             <td data-eid="gap-r9-w">Determina si Software+API alcanza o conviene Edge en activos de alta frecuencia. Calibra capacidad de buffer offline necesaria.</td>
-            <td data-eid="gap-r9-c">Sesión técnica inicial</td>
           </tr>
         </tbody>
       </table></div>
