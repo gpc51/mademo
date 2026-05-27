@@ -380,13 +380,13 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </div>
       <div class="m-item">
         <div class="m-label" data-eid="cover-m3-label">Inversión piloto</div>
-        <div class="m-value" data-eid="cover-m3-val">$93,500 USD</div>
-        <div class="m-sub" data-eid="cover-m3-sub">setup + seis meses de base</div>
+        <div class="m-value" data-eid="cover-m3-val">~$18K–$38K USD</div>
+        <div class="m-sub" data-eid="cover-m3-sub">base + hardware/eventos si aplica</div>
       </div>
       <div class="m-item">
-        <div class="m-label" data-eid="cover-m4-label">Escala anual</div>
-        <div class="m-value" data-eid="cover-m4-val">$150K ARR</div>
-        <div class="m-sub" data-eid="cover-m4-sub">escala anual posterior</div>
+        <div class="m-label" data-eid="cover-m4-label">ROI estimado</div>
+        <div class="m-value" data-eid="cover-m4-val">7.7x+</div>
+        <div class="m-sub" data-eid="cover-m4-sub">$293K–$975K/año</div>
       </div>
     </div>
 
@@ -729,29 +729,39 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         </thead>
         <tbody>
           <tr>
-            <td><strong>Setup inicial</strong></td>
-            <td>Diseño de piloto, configuración Made OS, instrumentación inicial, ingesta de datos disponibles, onboarding del equipo y baseline</td>
-            <td><span class="price-val" data-eid="price-setup">$18,500 USD</span></td>
+            <td><strong>Made OS: Precio base</strong></td>
+            <td>Fijo mensual por frente operativo. Piloto con dos frentes: bodega enológica y línea de envasado.</td>
+            <td><span class="price-val" data-eid="price-base">$1,500 USD/mes</span></td>
           </tr>
           <tr>
-            <td><strong>Base mensual</strong></td>
-            <td>Plataforma Made OS activa en un frente de bodega, una línea de envasado y la capa de correlación; soporte técnico, ajustes de modelo y alertas prescriptivas</td>
-            <td><span class="price-val" data-eid="price-base">$12,500 USD/mes</span></td>
+            <td><strong>Capa de correlación bodega-envasado</strong></td>
+            <td>Modelo que cruza señales entre ambos frentes para explicar impacto aguas abajo, priorizar alertas y generar prescripciones accionables.</td>
+            <td><span class="price-val" data-eid="price-corr">Incluida</span></td>
           </tr>
           <tr>
-            <td><strong>Success fee · opcional</strong></td>
+            <td><strong>Integración API / históricos</strong></td>
+            <td>Conexión, exportación o carga controlada de datos disponibles: OEE, paros, calidad, laboratorio, mantenimiento y planificación, dentro del alcance del piloto.</td>
+            <td><span class="price-val" data-eid="price-setup">Sin costo</span></td>
+          </tr>
+          <tr>
+            <td><strong>Gateway Edge / sensorización ligera</strong></td>
+            <td>Solo si las señales existentes no alcanzan. Pago único por frente instrumentado; incluye hardware, instalación y puesta en marcha.</td>
+            <td><span class="price-val" data-eid="price-edge">$5,000 USD</span></td>
+          </tr>
+          <tr>
+            <td><strong>Success fee: Evento Clase A</strong></td>
             <td>Evento evitado documentado: paro mayor, operación degradada o pérdida de calidad evitada con evidencia en mantenimiento, calidad, OEE o bitácora operativa.</td>
-            <td><span class="price-val" data-eid="price-sfa">8% del valor evitado</span></td>
+            <td><span class="price-val" data-eid="price-sfa">$2,500 USD / evento</span><br><span style="font-size:11px;color:var(--gray)">Cap: $10,000/mes</span></td>
           </tr>
           <tr>
-            <td><strong>Piloto industrial 6 meses</strong></td>
-            <td>Setup + seis meses de base. Incluye checkpoint ejecutivo al día 90 y cierre de business case al mes 6. No requiere contratación anual al iniciar.</td>
-            <td><span class="price-val" data-eid="price-sfb">$93,500 USD</span></td>
+            <td><strong>Inversión total estimada (6 meses · 2 frentes)</strong></td>
+            <td>Base de $18K. Rango alto con dos gateways Edge y success fees estimados. Incluye checkpoint ejecutivo al día 90 y cierre de business case al mes 6.</td>
+            <td><span class="price-val" data-eid="price-sfb">~$18K–$38K USD</span></td>
           </tr>
           <tr>
             <td><strong>Escala anual inicial</strong></td>
-            <td>ARR base posterior al piloto: $150,000 USD/año. Inversión año 1 con setup: $168,500 USD, antes de success fee.</td>
-            <td><span class="price-val" data-eid="price-roi" style="color:var(--orange)">ARR $150K</span></td>
+            <td>Base anual posterior al piloto para los dos frentes iniciales. La expansión a más líneas o bodegas se cotiza por frente adicional.</td>
+            <td><span class="price-val" data-eid="price-roi" style="color:var(--orange)">$36K ARR base</span></td>
           </tr>
         </tbody>
       </table>
@@ -767,23 +777,23 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <div class="roi-grid">
       <div class="roi-item">
         <div class="roi-lbl" data-eid="roi-card1-lbl">Inversión piloto</div>
-        <div class="roi-val" data-eid="roi-card1-val">$93.5K</div>
-        <div class="roi-delta" data-eid="roi-card1-delta">setup + 6 meses</div>
+        <div class="roi-val" data-eid="roi-card1-val">$18K–$38K</div>
+        <div class="roi-delta" data-eid="roi-card1-delta">6 meses · 2 frentes</div>
       </div>
       <div class="roi-item">
         <div class="roi-lbl" data-eid="roi-card2-lbl">Recuperación mínima</div>
         <div class="roi-val" data-eid="roi-card2-val">0.03%</div>
-        <div class="roi-delta" data-eid="roi-card2-delta">~$293K/año · 3.1x piloto</div>
+        <div class="roi-delta" data-eid="roi-card2-delta">~$293K/año · 7.7x+ conservador</div>
       </div>
       <div class="roi-item">
         <div class="roi-lbl" data-eid="roi-card3-lbl">Escenario base</div>
         <div class="roi-val" data-eid="roi-card3-val">0.05%</div>
-        <div class="roi-delta" data-eid="roi-card3-delta">~$488K/año · 5.2x piloto</div>
+        <div class="roi-delta" data-eid="roi-card3-delta">~$488K/año · 12.8x+ conservador</div>
       </div>
       <div class="roi-item">
         <div class="roi-lbl" data-eid="roi-card4-lbl">Upside realista</div>
         <div class="roi-val" data-eid="roi-card4-val">0.10%</div>
-        <div class="roi-delta" data-eid="roi-card4-delta">~$975K/año · 10.4x piloto</div>
+        <div class="roi-delta" data-eid="roi-card4-delta">~$975K/año · 25.7x+ conservador</div>
       </div>
     </div>
 
@@ -806,7 +816,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           <tr>
             <td><strong>Pérdida recuperable mínima</strong></td>
             <td>0.03% de ventas</td>
-            <td>~$293K/año; recupera 3.1x la inversión del piloto de 6 meses.</td>
+            <td>~$293K/año; equivale a 7.7x+ contra el rango alto estimado del piloto.</td>
           </tr>
           <tr>
             <td><strong>Drivers medibles</strong></td>
@@ -830,7 +840,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8l2 2 4-4"/></svg>
       <div>
         <strong>Ancla de precio:</strong><br>
-        Una integración industrial tradicional para mapear señales, construir dashboards, modelar eventos y operar un war room suele costar múltiplos del piloto y termina en análisis, no en prescripción diaria. Made concentra el alcance en una bodega, una línea y una capa de correlación con salida accionable para operadores.
+        La tarifa de Concha y Toro queda alineada con los programas fundadores de Made: por frente operativo, no por ARR enterprise. La diferencia frente a Minsa es la capa de correlación bodega-envasado, que se incluye sin cobrarla como tercer frente durante el piloto.
       </div>
     </div>
   </div>
@@ -897,7 +907,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             Garantía comercial Made OS · Piloto dual
           </div>
           <div class="g-title" data-eid="g-title">Si el piloto no produce señales accionables, Made extiende el diagnóstico sin costo.</div>
-          <div class="g-desc" data-eid="g-desc">No se cobra success fee por alertas; se cobra solo por valor evitado y validado. Si al mes 6 no existen alertas accionables ni hipótesis operativas validadas por falta de señal, Made extiende 60 días la capa de diagnóstico y revisión técnica sin costo de plataforma.</div>
+          <div class="g-desc" data-eid="g-desc">No se cobra success fee por alertas; se cobra solo por Evento Clase A validado. Si al mes 6 no existen alertas accionables ni hipótesis operativas validadas por falta de señal, Made extiende 60 días la capa de diagnóstico y revisión técnica sin costo de plataforma.</div>
         </div>
         <div class="g-slas">
           <div class="g-label">Compromisos de respuesta operativa</div>
