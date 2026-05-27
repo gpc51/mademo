@@ -353,7 +353,6 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
       <img src="Logo_Concha_y_Toro.svg" alt="Viña Concha y Toro" height="34" style="display:block;width:auto;">
-      <span style="font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--orange);">A Viña Concha y Toro · MAD-CYT-01</span>
     </div>
   </div>
   <div class="cover-rule"></div>
@@ -406,8 +405,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <!-- ── 01 RESUMEN EJECUTIVO ── -->
   <div class="section" id="s01">
     <div class="s-label">01. Resumen ejecutivo</div>
-    <div class="s-title" data-eid="exec-title">La oportunidad no es digitalizar más. Es conectar lo que bodega, calidad y envasado ya saben por separado.</div>
-    <p class="s-lead" data-eid="exec-lead">La conversación con el CII dejó una corrección importante: la vendimia tensiona las bodegas enológicas, mientras que las plantas de envasado responden a planificación de Operaciones y Supply Chain según mercado. Esa separación no debilita el caso de Made; lo vuelve más preciso. El valor está en correlacionar ambos mundos sin mezclarlos artificialmente: entender cómo las variables de proceso, calidad y disponibilidad de bodega conviven con eficiencia, micro-paros, merma y cumplimiento en envasado.</p>
+    <div class="s-title" data-eid="exec-title">La oportunidad es recuperar pérdida invisible: 0.03% de ventas equivale a ~$293K USD/año.</div>
+    <p class="s-lead" data-eid="exec-lead">La conversación con el CII dejó una corrección importante: la vendimia tensiona las bodegas enológicas, mientras que las plantas de envasado responden a planificación de Operaciones y Supply Chain según mercado. Esa separación no debilita el caso de Made; lo vuelve más preciso. El valor está en correlacionar ambos mundos sin mezclarlos artificialmente y convertir señales dispersas en pérdida recuperable: micro-paros, reproceso, merma, baja velocidad, energía y desviaciones de calidad.</p>
 
     <div class="exec-grid">
       <div class="exec-item">
@@ -429,10 +428,10 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="exec-item-note" data-eid="exec-item3-note">Made no llega a explicar IA. Llega a operacionalizarla en planta, con prescripciones simples para operadores y mantenimiento.</div>
       </div>
       <div class="exec-item">
-        <div class="exec-item-label" data-eid="exec-item4-label">Brecha accionable</div>
-        <div class="exec-item-val" data-eid="exec-item4-val">Bodega↔Env.</div>
-        <div class="exec-item-sub" data-eid="exec-item4-sub">correlación operacional</div>
-        <div class="exec-item-note" data-eid="exec-item4-note">La mayoría de sistemas ve su área. Made aprende relaciones entre proceso, calidad, activos, OEE y cumplimiento.</div>
+        <div class="exec-item-label" data-eid="exec-item4-label">Pérdida mínima</div>
+        <div class="exec-item-val" data-eid="exec-item4-val">$293K</div>
+        <div class="exec-item-sub" data-eid="exec-item4-sub">0.03% de ventas 2024</div>
+        <div class="exec-item-note" data-eid="exec-item4-note">No exige revelar costos internos de paro: usa una sensibilidad conservadora que Finanzas puede validar contra ventas consolidadas.</div>
       </div>
     </div>
 
@@ -831,9 +830,9 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <div class="card" style="margin-top:16px;border-left:4px solid var(--orange);">
       <div class="card-title">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M3 8h10M3 12h6"/></svg>
-        Evidencia comparable y entregable del piloto
+        Mini caso de referencia y entregable del piloto
       </div>
-      <p style="font-size:13px;color:var(--gray);line-height:1.65;margin:0">Made puede revisar en la sesión técnica un ejemplo anonimizado de bitácora de eventos bajo NDA. Para Concha y Toro, el entregable no será una promesa de dashboard: será un registro semanal con señal detectada, prescripción, acción tomada, área responsable, fuente de validación y valor estimado. Ese paquete es el que permite decidir escala sin depender de opiniones.</p>
+      <p style="font-size:13px;color:var(--gray);line-height:1.65;margin:0">Made puede revisar en la sesión técnica una bitácora anonimizada de manufactura continua en México: señales de degradación temprana, prescripción emitida, acción tomada y evidencia operativa usada para clasificar eventos Clase A. Para Concha y Toro, el entregable no será una promesa de dashboard: será un registro semanal con señal detectada, prescripción, acción tomada, área responsable, fuente de validación y valor estimado. Ese paquete permite decidir escala sin depender de opiniones.</p>
     </div>
 
     <div class="alert alert-info" style="margin-top:16px">
@@ -947,12 +946,12 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <div class="cta-block">
       <div class="cta-tag" data-eid="cta-tag">Reactivación segundo semestre · Demo personalizada</div>
       <h3 id="main-cta" data-eid="cta-title">Una demo con datos y preguntas de operación, no una presentación genérica.</h3>
-      <p data-eid="cta-desc">Proponemos una sesión de 45 a 60 minutos con CII, Operaciones, Supply Chain, Calidad y Mantenimiento para validar el mapa bodega-envasado, seleccionar el piloto dual y mostrar cómo Made convertiría señales reales en prescripciones operativas.</p>
+      <p data-eid="cta-desc">Proponemos una sesión de 45 a 60 minutos con CII, Operaciones, Supply Chain, Calidad y Mantenimiento para validar el mapa bodega-envasado, seleccionar el piloto dual y mostrar cómo Made convertiría señales reales en prescripciones operativas. Por Made participan Gerardo Peña Corzo, Founder & CEO, y el responsable técnico de implementación industrial.</p>
       <a href="mailto:g@madeos.ai?subject=Reactivación S2 · Piloto Bodega-Envasado · Concha y Toro" class="cta-btn">Agendar demo personalizada</a>
       <div class="cta-sub" data-eid="cta-sub">Formato: videoconferencia o presencial · Duración: 45–60 min · Sin compromiso comercial previo</div>
       <div class="sig">
-        <div class="sig-name" data-eid="sig-name">Equipo Made OS</div>
-        <div class="sig-role" data-eid="sig-role">Ingeniería de Soluciones Industriales</div>
+        <div class="sig-name" data-eid="sig-name">Gerardo Peña Corzo</div>
+        <div class="sig-role" data-eid="sig-role">Founder & CEO · Made OS</div>
         <div class="sig-contact" data-eid="sig-contact">g@madeos.ai · madeos.ai</div>
       </div>
     </div>
