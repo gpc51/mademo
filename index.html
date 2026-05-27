@@ -468,16 +468,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="kb-col" data-stage="calificando">
           <div class="kb-col-head">
             <span class="kb-stage-name" data-i18n="stage_calificando">Calificando</span>
-            <span class="kb-count">4</span>
-          </div>
-
-          <div class="kb-card kb-card-static">
-            <div class="kb-company">Coca-Cola Andina</div>
-            <div class="kb-industry" data-i18n="ind_ccandina">Embotellado · Bebidas · Multi-país</div>
-            <div class="kb-badges"><span class="kb-badge kb-badge-t1">Tier 1</span></div>
-            <div class="kb-arr-label" data-i18n="label_arr">ARR est.</div>
-            <div class="kb-arr">~$200K</div>
-            <div class="kb-fu kb-fu-amber"><span class="kb-fu-dot"></span><span data-i18n="fu_ccandina">Hace 14 días · esperando intro</span></div>
+            <span class="kb-count">3</span>
           </div>
 
           <div class="kb-card kb-card-static">
@@ -515,8 +506,21 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="kb-col" data-stage="propuesta">
           <div class="kb-col-head">
             <span class="kb-stage-name" data-i18n="stage_propuesta">Propuesta enviada</span>
-            <span class="kb-count">2</span>
+            <span class="kb-count">3</span>
           </div>
+
+          <a href="cca/" class="kb-card">
+            <div class="kb-company">Coca-Cola Andina</div>
+            <div class="kb-industry" data-i18n="ind_ccandina">Embotellado · Bebidas · Multi-país</div>
+            <div class="kb-badges">
+              <span class="kb-badge kb-badge-t1">Tier 1</span>
+              <span class="kb-badge kb-badge-review" data-i18n="badge_sent">Enviada</span>
+            </div>
+            <div class="kb-arr-label" data-i18n="label_arr">ARR est.</div>
+            <div class="kb-arr">~$200K</div>
+            <div class="kb-sub" data-i18n="sub_cca">Piloto 1 línea · Planta Renca · May 2026</div>
+            <div class="kb-fu kb-fu-green"><span class="kb-fu-dot"></span><span data-i18n="fu_cca">Propuesta enviada · agendar sesión 45 min</span></div>
+          </a>
 
           <a href="repsol/" class="kb-card">
             <div class="kb-company">Repsol · La Pampilla</div>
@@ -712,6 +716,8 @@ var T = {
     analytics_loading: 'Cargando analytics...',
     analytics_desc: 'Dashboard de PostHog conectado. Si no carga, verifica que el dashboard sea público en PostHog.',
     analytics_link: 'Ir a PostHog &rarr;',
+    fu_cca: 'Propuesta enviada · agendar sesión 45 min',
+    sub_cca: 'Piloto 1 línea · Planta Renca · May 2026',
     fu_ccandina: 'Hace 14 días · esperando intro',
     fu_cmpc: 'Hace 18 días · reactivar pronto',
     fu_agrosuper: 'Hace 5 días · agendar discovery',
@@ -790,6 +796,8 @@ var T = {
     analytics_loading: 'Loading analytics...',
     analytics_desc: 'Connected PostHog dashboard. If it does not load, verify the dashboard is set to public in PostHog.',
     analytics_link: 'Go to PostHog &rarr;',
+    fu_cca: 'Proposal sent · schedule 45-min session',
+    sub_cca: 'Pilot 1 line · Renca plant · May 2026',
     fu_ccandina: '14 days ago · awaiting intro',
     fu_cmpc: '18 days ago · reactivate soon',
     fu_agrosuper: '5 days ago · schedule discovery',
