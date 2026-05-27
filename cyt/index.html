@@ -42,23 +42,33 @@
   .divider { height: 1px; background: var(--border); margin: 0 40px; }
 
   /* ── COVER ── */
-  .cover { background: var(--black); padding: 40px 40px 44px; position: relative; overflow: hidden; }
-  .cover::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 60% at 85% 25%, rgba(216,66,0,.2) 0%, transparent 65%); pointer-events: none; }
-  .cover-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 52px; }
-  .cover-logo   { display: flex; align-items: center; gap: 10px; }
-  .cover-logo-sep { font-size: 16px; color: rgba(255,255,255,.25); font-weight: 300; }
-  .cover-logo-client { font-size: 13px; font-weight: 700; color: rgba(255,255,255,.85); letter-spacing: .04em; text-transform: uppercase; }
-  .cover-badge { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); border: 1px solid rgba(255,255,255,.1); padding: 4px 12px; border-radius: 20px; }
-  .cover-eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
-  .cover-headline { font-size: 38px; font-weight: 800; color: #fff; letter-spacing: -.03em; line-height: 1.08; margin-bottom: 16px; }
-  .cover-headline em { font-style: normal; color: var(--orange); }
-  .cover-sub { font-size: 15px; color: rgba(255,255,255,.55); line-height: 1.65; max-width: 520px; margin-bottom: 48px; }
-  .cover-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border-top: 1px solid rgba(255,255,255,.1); padding-top: 28px; }
-  .m-item { padding-right: 24px; }
-  .m-item + .m-item { padding-left: 24px; border-left: 1px solid rgba(255,255,255,.1); }
-  .m-label { font-size: 9.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 5px; }
-  .m-value { font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -.02em; line-height: 1; margin-bottom: 3px; }
-  .m-sub   { font-size: 10.5px; color: rgba(255,255,255,.35); font-weight: 500; }
+  .cover{
+    background:var(--white);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    padding:48px max(72px,calc((100vw - 960px)/2 + 72px)) 40px;
+  }
+  .cover-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;}
+  .logo img{height:34px;width:auto;display:block;}
+  .logo-inline{display:none;align-items:center;}
+  .cover-tagline{font-size:10.5px;font-weight:500;letter-spacing:.09em;color:var(--gray);text-transform:uppercase;margin-top:8px;}
+  .company-badge{background:var(--orange);color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:var(--r-sm);white-space:nowrap;}
+  .cover-rule{height:1px;background:var(--border);margin-bottom:52px;}
+  .cover-body{flex:1;display:flex;flex-direction:column;}
+  .cover-eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:20px;}
+  .cover-headline{font-size:52px;font-weight:800;color:var(--black);letter-spacing:-.03em;line-height:1.07;margin-bottom:32px;}
+  .cover-headline em{font-style:normal;color:var(--black);}
+  .cover-highlight{background:var(--dark);color:rgba(255,255,255,.86);padding:22px 28px;border-radius:var(--r-sm);font-size:15px;line-height:1.68;margin-bottom:52px;}
+  .cover-metrics{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:22px 0;margin-bottom:auto;}
+  .m-item{padding:0 24px;border-right:1px solid var(--border);}
+  .m-item:first-child{padding-left:0;}
+  .m-item:last-child{border-right:none;}
+  .m-label{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.11em;color:var(--orange);margin-bottom:5px;}
+  .m-value{font-size:14px;font-weight:600;color:var(--black);line-height:1.3;}
+  .m-sub{font-size:11px;color:var(--gray);font-weight:500;line-height:1.4;margin-top:3px;}
+  .cover-creds{font-size:12px;color:var(--gray);line-height:1.65;margin-top:40px;}
+  .cover-footer{display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:14px;margin-top:20px;font-size:9.5px;color:var(--gray-l);letter-spacing:.07em;text-transform:uppercase;}
 
   /* ── SECTION ── */
   .section { padding: 44px 0; }
@@ -260,13 +270,20 @@
   @media(max-width:720px){
     .page { padding: 0 20px; }
     .divider { margin: 0 20px; }
-    .cover { padding: 24px 20px 28px; }
-    .cover-header { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 28px; }
-    .cover-headline { font-size: 26px; }
-    .cover-sub { font-size: 13px; margin-bottom: 28px; }
-    .cover-metrics { grid-template-columns: 1fr 1fr; gap: 16px 0; }
-    .m-item + .m-item { border-left: none; padding-left: 0; }
-    .m-item:nth-child(2n) { border-left: 1px solid rgba(255,255,255,.1); padding-left: 16px; }
+    .cover { padding: 24px 20px 28px; min-height: auto; }
+    .cover-header { gap: 12px; margin-bottom: 16px; }
+    .cover-tagline { font-size: 10px; }
+    .company-badge { font-size: 10px; padding: 7px 14px; letter-spacing: .06em; }
+    .cover-rule { margin-bottom: 30px; }
+    .cover-headline { font-size: 27px; margin-bottom: 20px; }
+    .cover-highlight { font-size: 14px; padding: 16px 18px; margin-bottom: 28px; }
+    .cover-metrics { grid-template-columns: 1fr 1fr; padding: 14px 0; }
+    .m-item { padding: 10px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .m-item:first-child { padding-left: 0; }
+    .m-item:nth-child(even) { border-right: none; }
+    .m-item:nth-child(3), .m-item:nth-child(4) { border-bottom: none; }
+    .cover-creds { margin-top: 22px; }
+    .cover-footer { flex-direction: column; gap: 3px; }
     .exec-grid { grid-template-columns: 1fr; }
     .eco-grid  { grid-template-columns: 1fr; }
     .terms-grid{ grid-template-columns: 1fr; }
@@ -278,8 +295,11 @@
     .pin-card { padding: 28px 24px; }
   }
   @media(max-width:460px){
+    .cover-headline { font-size: 22px; }
     .cover-metrics { grid-template-columns: 1fr; }
-    .m-item + .m-item, .m-item:nth-child(2n) { border-left: none; padding-left: 0; }
+    .m-item, .m-item:nth-child(even) { border-right: none; padding: 10px 0; }
+    .m-item:nth-child(3) { border-bottom: 1px solid var(--border); }
+    .m-item:nth-child(4) { border-bottom: none; }
     .roi-grid { grid-template-columns: 1fr; }
   }
 </style>
@@ -315,48 +335,69 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <div id="proposal">
 
 <div class="cover">
-  <div class="page">
 
-    <div class="cover-header">
-      <div class="cover-logo">
-        <svg height="26" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
-          <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
-          <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
-          <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#ffffff">Made</text>
-        </svg>
-        <span class="cover-logo-sep">×</span>
-        <span class="cover-logo-client">Concha y Toro</span>
+  <div class="cover-header">
+    <div>
+      <div class="logo">
+        <img src="../assets/logo.svg" alt="Made" height="34"
+             onerror="this.style.display='none';document.querySelector('.logo-inline').style.display='flex'">
+        <div class="logo-inline">
+          <svg height="34" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+            <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
+            <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
+            <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
+          </svg>
+        </div>
       </div>
-      <span class="cover-badge">MAD-CYT-01 · Mayo 2026 · Confidencial</span>
+      <div class="cover-tagline" data-eid="cover-tagline">Inteligencia artificial para una manufactura sin pérdidas</div>
     </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+      <span class="company-badge" data-eid="company-badge">A Viña Concha y Toro</span>
+      <span style="font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--orange);">MAD-CYT-01 · Mayo 2026</span>
+    </div>
+  </div>
+  <div class="cover-rule"></div>
 
-    <div class="cover-eyebrow" data-eid="cover-eyebrow">Programa Bodega-Envasado · Inteligencia operativa</div>
-    <div class="cover-headline" data-eid="cover-headline">Convertir señales dispersas en <em>decisiones operativas</em>.</div>
-    <div class="cover-sub" data-eid="cover-sub">Concha y Toro ya tiene una base poco común: I+D aplicado, analítica vitivinícola, operación vertical integrada y escala global. Made OS se instala encima de esa infraestructura como una capa solo-lectura que correlaciona bodega enológica, calidad, mantenimiento, envasado y planificación para prescribir acciones antes de que una desviación se vuelva pérdida.</div>
+  <div class="cover-body">
+    <div class="cover-eyebrow" data-eid="cover-eyebrow">Propuesta Comercial</div>
+
+    <h1 class="cover-headline" data-eid="cover-headline">Inteligencia operativa para conectar bodega enológica y envasado</h1>
+
+    <div class="cover-highlight" data-eid="cover-highlight">
+      Convertimos señales de bodega, calidad, mantenimiento, envasado y planificación en prescripciones operativas para detectar desviaciones antes de que se conviertan en reproceso, micro-paros, pérdida de eficiencia o riesgo de cumplimiento.
+    </div>
 
     <div class="cover-metrics">
       <div class="m-item">
-        <div class="m-label" data-eid="cover-m1-label">Escala comercial</div>
-        <div class="m-value" data-eid="cover-m1-val">+130</div>
-        <div class="m-sub" data-eid="cover-m1-sub">países destino</div>
+        <div class="m-label" data-eid="cover-m1-label">Programa</div>
+        <div class="m-value" data-eid="cover-m1-val">Piloto Bodega-Envasado</div>
+        <div class="m-sub" data-eid="cover-m1-sub">un frente enológico + una línea</div>
       </div>
       <div class="m-item">
-        <div class="m-label" data-eid="cover-m2-label">Volumen 2024</div>
-        <div class="m-value" data-eid="cover-m2-val">33M</div>
-        <div class="m-sub" data-eid="cover-m2-sub">cajas vendidas globalmente</div>
+        <div class="m-label" data-eid="cover-m2-label">Duración</div>
+        <div class="m-value" data-eid="cover-m2-val">90 días</div>
+        <div class="m-sub" data-eid="cover-m2-sub">30 días de baseline inicial</div>
       </div>
       <div class="m-item">
-        <div class="m-label" data-eid="cover-m3-label">I+D 2025</div>
-        <div class="m-value" data-eid="cover-m3-val">$3.158M</div>
-        <div class="m-sub" data-eid="cover-m3-sub">millones CLP invertidos en CII</div>
+        <div class="m-label" data-eid="cover-m3-label">Inversión piloto</div>
+        <div class="m-value" data-eid="cover-m3-val">$56,000 USD</div>
+        <div class="m-sub" data-eid="cover-m3-sub">setup + tres meses de base</div>
       </div>
       <div class="m-item">
-        <div class="m-label" data-eid="cover-m4-label">Piloto propuesto</div>
-        <div class="m-value" data-eid="cover-m4-val">90d</div>
-        <div class="m-sub" data-eid="cover-m4-sub">bodega + envasado</div>
+        <div class="m-label" data-eid="cover-m4-label">Escala anual</div>
+        <div class="m-value" data-eid="cover-m4-val">$150K ARR</div>
+        <div class="m-sub" data-eid="cover-m4-sub">base posterior al piloto</div>
       </div>
     </div>
 
+    <p class="cover-creds" data-eid="cover-creds">
+      <strong style="color:var(--dark)">Made</strong> es una empresa Mexicana de inteligencia artificial industrial respaldada por NVIDIA Inception, Founders Inc y Startup Chile, con el reconocimiento del MIT Technology Review Innovators Under 35 LATAM 2025.
+    </p>
+
+    <div class="cover-footer">
+      <span><a href="https://www.madeos.ai" target="_blank" style="color:inherit;text-decoration:none;">MADEOS.AI</a> · CONFIDENCIAL</span>
+      <span>Mayo 2026</span>
+    </div>
   </div>
 </div><!-- /cover -->
 
@@ -959,7 +1000,7 @@ var _ftTimer   = null;
 var lastSaved  = null;
 
 var EDIT_SEL = [
-  '.cover-eyebrow','.cover-headline','.cover-sub',
+  '.cover-eyebrow','.cover-headline','.cover-highlight','.cover-creds','.cover-tagline','.company-badge',
   '.m-value','.m-label','.m-sub',
   '.s-title','.s-lead',
   '.exec-item-label','.exec-item-val','.exec-item-sub','.exec-item-note',
