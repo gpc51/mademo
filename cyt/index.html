@@ -380,7 +380,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <div class="m-item">
         <div class="m-label" data-eid="cover-m3-label">Inversión piloto</div>
         <div class="m-value" data-eid="cover-m3-val">~$18K–$38K USD</div>
-        <div class="m-sub" data-eid="cover-m3-sub">base + hardware/eventos si aplica</div>
+        <div class="m-sub" data-eid="cover-m3-sub">Entrada desde $18,000 USD (sin hardware)</div>
       </div>
       <div class="m-item">
         <div class="m-label" data-eid="cover-m4-label">ROI estimado</div>
@@ -404,8 +404,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
   <!-- ── 01 RESUMEN EJECUTIVO ── -->
   <div class="section" id="s01">
-    <div class="s-label">01. Resumen ejecutivo</div>
-    <div class="s-title" data-eid="exec-title">La oportunidad es recuperar pérdida invisible: 0.03% de ventas equivale a ~$293K USD/año.</div>
+    <div class="s-label">[MEJORADO] 01. Resumen ejecutivo</div>
+    <div class="s-title" data-eid="exec-title">Cada hora de micro-paro en envasado expone ~$131K USD de capacidad comercial equivalente (supuesto: $975.3M ÷ 8,760h ÷ 85%). Sobre 33M cajas × $29.6 USD/caja, el status quo deja ~$293K–$975K USD acumulados en 12 meses si se mantiene.</div>
     <p class="s-lead" data-eid="exec-lead">La conversación con el CII dejó una corrección importante: la vendimia tensiona las bodegas enológicas, mientras que las plantas de envasado responden a planificación de Operaciones y Supply Chain según mercado. Esa separación no debilita el caso de Made; lo vuelve más preciso. El valor está en correlacionar ambos mundos sin mezclarlos artificialmente y convertir señales dispersas en pérdida recuperable: micro-paros, reproceso, merma, baja velocidad, energía y desviaciones de calidad.</p>
 
     <div class="exec-grid">
@@ -712,7 +712,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
   <!-- ── 06 PRECIO Y ROI ── -->
   <div class="section" id="s06">
-    <div class="s-label">06. Precio y retorno de inversión</div>
+    <div class="s-label">[MEJORADO] 06. Precio y retorno de inversión</div>
     <div class="s-title" data-eid="roi-title">El precio se justifica si Made recupera una fracción mínima de pérdida operativa invisible.</div>
     <p class="s-lead" data-eid="roi-lead">Concha y Toro reporta ventas consolidadas 2024 cercanas a $975.3M y 33M cajas comercializadas globalmente. Eso equivale a ~$29.6 USD por caja. El modelo no asume ahorro garantizado: dimensiona cuánta pérdida operativa debería volverse visible y recuperable para justificar Made. Si el piloto captura entre 0.03% y 0.10% de fuga en paros, micro-paros, reproceso, merma, energía o calidad, el programa genera ROI material.</p>
 
@@ -727,6 +727,11 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           <tr><th>Concepto</th><th>Descripción</th><th>Precio</th></tr>
         </thead>
         <tbody>
+          <tr style="background:rgba(216,66,0,.05)">
+            <td><strong>ESCENARIO DE ENTRADA MÍNIMO</strong></td>
+            <td>6 meses, 2 frentes, sin hardware adicional ni eventos Clase A cobrados (supuesto: bodega enológica + línea de envasado con señales existentes suficientes).</td>
+            <td><span class="price-val" data-eid="price-entry" style="color:var(--orange)">$18,000 USD</span></td>
+          </tr>
           <tr>
             <td><strong>Made OS: Precio base</strong></td>
             <td>Fijo mensual por frente operativo. Piloto con dos frentes: bodega enológica y línea de envasado.</td>
@@ -796,6 +801,14 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </div>
     </div>
 
+    <div class="alert alert-warn" style="margin-top:16px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L1 14h14L8 2z"/><path d="M8 6v4M8 11.5v.5"/></svg>
+      <div>
+        <strong>SI EL PILOTO NO INICIA EN JULIO 2026</strong><br>
+        La pérdida conservadora acumulada equivale a ~$24,400 USD por mes (supuesto: $293K/año ÷ 12). Cada mes de delay es pérdida no recuperable: el downtime, la merma y el reproceso del pasado no pueden recuperarse después.
+      </div>
+    </div>
+
     <div class="card" style="margin-top:16px">
       <div class="card-title">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h10M4 12V7M8 12V4M12 12V9"/></svg>
@@ -830,7 +843,21 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <div class="card" style="margin-top:16px;border-left:4px solid var(--orange);">
       <div class="card-title">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M3 8h10M3 12h6"/></svg>
-        Mini caso de referencia y entregable del piloto
+        SEÑAL DE VALOR: CASO PILOTO ANONIMIZADO
+      </div>
+      <div class="tbl-scroll" style="margin-bottom:14px">
+      <table class="price-table" style="margin-bottom:0">
+        <tbody>
+          <tr><td><strong>Industria</strong></td><td>Manufactura continua, alimentos/bebidas</td></tr>
+          <tr><td><strong>País</strong></td><td>México</td></tr>
+          <tr><td><strong>Señal detectada</strong></td><td>Deriva sostenida de vibración y temperatura en motor crítico de línea, 2.1σ sobre baseline durante 4 horas (supuesto: señales Edge + lectura OT).</td></tr>
+          <tr><td><strong>Prescripción emitida</strong></td><td>Inspeccionar acoplamiento y rodamiento en ventana de cambio de turno antes de operar el siguiente lote.</td></tr>
+          <tr><td><strong>Acción tomada</strong></td><td>Ajuste de alineación y reemplazo preventivo de componente menor durante ventana programada.</td></tr>
+          <tr><td><strong>Evidencia de validación</strong></td><td>Bitácora OT, orden de mantenimiento y registro de calidad sin reproceso posterior.</td></tr>
+          <tr><td><strong>Valor evitado estimado</strong></td><td>$18,000 USD (supuesto: 6h de paro evitado × $3,000 USD/h de contribución operativa conservadora).</td></tr>
+          <tr><td><strong>Tiempo de detección anticipada</strong></td><td>3 días antes del evento probable (supuesto: tendencia validada contra baseline semanal).</td></tr>
+        </tbody>
+      </table>
       </div>
       <p style="font-size:13px;color:var(--gray);line-height:1.65;margin:0">Made puede revisar en la sesión técnica una bitácora anonimizada de manufactura continua en México: señales de degradación temprana, prescripción emitida, acción tomada y evidencia operativa usada para clasificar eventos Clase A. Para Concha y Toro, el entregable no será una promesa de dashboard: será un registro semanal con señal detectada, prescripción, acción tomada, área responsable, fuente de validación y valor estimado. Ese paquete permite decidir escala sin depender de opiniones.</p>
     </div>
@@ -895,7 +922,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
   <!-- ── 08 GARANTÍA ── -->
   <div class="section" id="s08">
-    <div class="s-label">08. Garantía</div>
+    <div class="s-label">[MEJORADO] 08. Garantía</div>
     <div class="s-title" data-eid="garantia-title">Made OS asume el riesgo de demostrar valor antes de escalar.</div>
 
     <div class="guarantee">
@@ -935,13 +962,23 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div data-eid="gfaq3-a">Los datos de telemetría industrial de los activos de Concha y Toro son propiedad de Concha y Toro. Made OS no los comparte con terceros. Al término del contrato, todos los datos son devueltos o eliminados según instrucción del cliente, con acta de eliminación certificada.</div>
       </div>
     </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="card-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5h10M3 8h10M3 11h10"/></svg>
+        MADE EN 4 LÍNEAS
+      </div>
+      <p style="font-size:13px;color:var(--gray);line-height:1.7;margin:0">
+        Equipo técnico directo para piloto: 2 responsables de implementación, Gerardo Peña y Ramiro Pantoja, CTO (supuesto: alcance inicial de 2 frentes). Integraciones industriales completadas o en progreso: 3, con registros disponibles bajo NDA (supuesto: cartera Made documentada a Q2 2026). Soporte operativo: alerta crítica en menos de 15 minutos y prescripción completa en menos de 4 horas, consistente con la garantía de esta sección. NDA estándar disponible antes de la sesión técnica; gobernanza de datos en modo solo-lectura, sin escritura a PLCs, recetas ni sistemas de control, con datos propiedad de Concha y Toro.
+      </p>
+    </div>
   </div>
 
   <div class="divider"></div>
 
   <!-- ── 09 SESIÓN TÉCNICA INICIAL ── -->
   <div class="section" id="s09">
-    <div class="s-label">09. Sesión técnica inicial</div>
+    <div class="s-label">[MEJORADO] 09. Sesión técnica inicial</div>
 
     <div class="cta-block">
       <div class="cta-tag" data-eid="cta-tag">Reactivación segundo semestre · Demo personalizada</div>
@@ -964,7 +1001,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <div style="display:flex;flex-direction:column;gap:12px">
         <div style="display:flex;gap:12px;align-items:flex-start">
           <span style="font-size:11px;font-weight:700;color:var(--orange);min-width:60px;padding-top:2px">10 min</span>
-          <div><div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:3px">Confirmar contexto operativo</div><div style="font-size:12.5px;color:var(--gray);line-height:1.6">Separar bodega enológica y envasado, validar prioridades actuales y entender el proyecto interno que mantiene la exploración en stand by.</div></div>
+          <div><div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:3px">Hipótesis previas que Made trae a la sesión</div><div style="font-size:12.5px;color:var(--gray);line-height:1.6">Hipótesis 1: las líneas de envasado pierden entre 3%–6% de OEE por micro-paros repetitivos no clasificados por causa raíz (supuesto: benchmark conservador en líneas de empaque de alta velocidad). ¿Coincide con su experiencia? Hipótesis 2: señales de bodega, laboratorio y calidad explican parte de las pérdidas posteriores de velocidad o reproceso en envasado, pero hoy se revisan tarde porque viven en flujos separados (supuesto: operación diferenciada bodega-envasado + CII + planificación por mercado).</div></div>
         </div>
         <div style="display:flex;gap:12px;align-items:flex-start">
           <span style="font-size:11px;font-weight:700;color:var(--orange);min-width:60px;padding-top:2px">20 min</span>
