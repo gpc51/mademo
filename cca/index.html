@@ -408,8 +408,9 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <div class="cover-tagline" style="margin-bottom:0;margin-top:8px;" data-eid="cover-tagline">Inteligencia artificial para una manufactura sin pérdidas</div>
     </div>
     <!-- EDIT-CCA: removed company-badge span, logo alone identifies the client -->
+    <!-- EDIT-CCA-V3: enlarged CcA logo to height 56 for visual parity with Made logo -->
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
-      <img src="logoCCA.png" alt="Coca-Cola Andina" height="34" style="display:block;width:auto;"
+      <img src="logoCCA.png" alt="Coca-Cola Andina" height="56" style="display:block;width:auto;"
            onerror="this.style.display='none'">
     </div>
   </div>
@@ -417,7 +418,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
   <div class="cover-body">
     <div class="cover-eyebrow" data-eid="cover-eyebrow">Propuesta Comercial</div>
-    <h1 class="cover-headline" data-eid="cover-headline">Cero pérdidas en las líneas de embotellado de alta velocidad de Andina</h1>
+    <!-- EDIT-CCA-V3: headline anchored to specific $120K/hr impact number (Corrección 1) -->
+    <h1 class="cover-headline" data-eid="cover-headline">Cada hora de paro en una llenadora Krones de Andina cuesta hasta $120,000 USD. Made OS la detecta antes de que ocurra.</h1>
 
     <div class="cover-highlight" data-eid="cover-highlight">
       Convertimos las señales de las llenadoras, etiquetadoras y sopladoras de PET de Andina en inteligencia operativa continua: anomalías detectadas y riesgo priorizado en tiempo real, antes de que generen un paro que interrumpa la entrega a 69,000 clientes en Chile.
@@ -447,9 +449,10 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <strong style="color:var(--dark)">Made</strong> es una empresa de inteligencia artificial industrial respaldada por NVIDIA Inception, Founders Inc y Startup Chile BIG 10, con el reconocimiento del MIT Technology Review Innovators Under 35 LATAM 2025.
     </p>
 
+    <!-- EDIT-CCA-V3: added explicit proposal validity date (Corrección 10) -->
     <div class="cover-footer">
       <span><a href="https://www.madeos.ai" target="_blank" style="color:inherit;text-decoration:none;">MADEOS.AI</a> · CONFIDENCIAL</span>
-      <span>Mayo 2026</span>
+      <span>Emitida mayo 2026 · Vigencia hasta 30 junio 2026</span>
     </div>
   </div>
 </div>
@@ -532,7 +535,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="step-body">
           <div class="step-tag" data-eid="solucion-step1-tag">Primeros 10 días hábiles</div>
           <div class="step-title" data-eid="solucion-step1-title">Integración no intrusiva</div>
-          <div class="step-desc" data-eid="solucion-step1-desc">Se selecciona la línea candidata en Renca y el tipo de integración: gateway Edge AI instalado en tablero DIN rail o conexión vía OPC-UA al servidor industrial existente. Made OS opera en modo solo-lectura: no escribe ni modifica parámetros en PLCs, DCS ni SCADA. Al día 10, cada señal de vibración, temperatura, presión y corriente tiene contexto, timestamp y trazabilidad completa.</div>
+          <!-- EDIT-CCA-V3: added committed milestone with consequence (Corrección 3) -->
+          <div class="step-desc" data-eid="solucion-step1-desc">Se selecciona la línea candidata en Renca y el tipo de integración: gateway Edge AI instalado en tablero DIN rail o conexión vía OPC-UA al servidor industrial existente. Made OS opera en modo solo-lectura: no escribe ni modifica parámetros en PLCs, DCS ni SCADA.<br><br><strong style="color:var(--dark)">Compromiso: al día 10 hábil, Made OS lee la línea candidata en tiempo real, con señales de vibración, temperatura, presión y corriente con contexto, timestamp y trazabilidad completa. Si la conexión no se logra en ese plazo sin alterar operaciones, el programa no inicia y no se factura ningún concepto hasta que la conexión esté activa.</strong></div>
         </div>
       </div>
       <div class="step">
@@ -543,7 +547,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="step-body">
           <div class="step-tag" data-eid="solucion-step2-tag">Semanas 2–8</div>
           <div class="step-title" data-eid="solucion-step2-title">Baseline y detección activa</div>
-          <div class="step-desc" data-eid="solucion-step2-desc">Made OS establece el comportamiento nominal de cada activo en la línea: rangos normales de vibración en la llenadora, temperatura de operación de rodamientos, ciclos de la sopladora. El agente AI etiqueta eventos por nivel de impacto y aprende los patrones específicos de la operación de Andina en cada turno.</div>
+          <!-- EDIT-CCA-V3: added week-8 baseline deliverable (Corrección 3) -->
+          <div class="step-desc" data-eid="solucion-step2-desc">Made OS establece el comportamiento nominal de cada activo en la línea: rangos normales de vibración en la llenadora, temperatura de operación de rodamientos, ciclos de la sopladora. El agente AI etiqueta eventos por nivel de impacto y aprende los patrones específicos de la operación de Andina en cada turno.<br><br><strong style="color:var(--dark)">Entregable semana 8: reporte de baseline con histograma de variabilidad por activo, primeras hipótesis de degradación detectadas y mapa de señales activas. Este reporte es el punto de entrada para el checkpoint ejecutivo intermedio con el equipo de Andina.</strong></div>
         </div>
       </div>
       <div class="step">
@@ -553,7 +558,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="step-body">
           <div class="step-tag" data-eid="solucion-step3-tag">Desde la semana 8 en adelante</div>
           <div class="step-title" data-eid="solucion-step3-title">Prescripción anticipada</div>
-          <div class="step-desc" data-eid="solucion-step3-desc">Detección activa de degradación progresiva en válvulas de llenado, sellos de la etiquetadora, moldes de la sopladora y sistemas de transporte entre activos. Made OS le dice al operador qué hacer, cuándo y por qué, antes de que el activo genere un paro. El objetivo: en cada ciclo, la línea produce más, pierde menos y decide con mejor información.</div>
+          <!-- EDIT-CCA-V3: added committed first Class A event with consequence (Corrección 3) -->
+          <div class="step-desc" data-eid="solucion-step3-desc">Detección activa de degradación progresiva en válvulas de llenado, sellos de la etiquetadora, moldes de la sopladora y sistemas de transporte entre activos. Made OS le dice al operador qué hacer, cuándo y por qué, antes de que el activo genere un paro.<br><br><strong style="color:var(--dark)">Compromiso: primer evento Clase A documentado entre el día 60 y 90 del programa. Si no ocurre en ese plazo por ausencia de señal o variabilidad insuficiente, Made OS extiende el programa 90 días adicionales sin costo de licencia. El objetivo al mes 6: línea con OEE mediblemente mejor, historial de eventos evitados auditado, y business case en 1 página listo para presentar a dirección.</strong></div>
         </div>
       </div>
     </div>
@@ -758,8 +764,9 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
     <div class="alert alert-gold" style="margin-top:16px">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2l1.5 4.5H14l-3.7 2.7 1.4 4.3L8 11 4.3 13.5l1.4-4.3L2 6.5h4.5z"/></svg>
+      <!-- EDIT-CCA-V3: moved expansion detail to structured Section 06.7 (Corrección 7) -->
       <div>
-        <strong>Potencial de expansión a red completa:</strong> Si el piloto en Renca demuestra ROI, el modelo escala directamente a las 10 plantas y múltiples líneas de Andina. Con 3 plantas en Chile y ~3 líneas por planta, el ARR potencial solo en Chile supera los $162,000 USD anuales. Con expansión a Brasil, Argentina y Paraguay: +$600,000 ARR potencial. Nota: en Q3 2025 Andina arrancó una nueva línea multi-categoría en Brasil (cervezas en lata y longneck, 12M cajas de capacidad instalada) — activo candidato natural para el segundo despliegue.
+        <strong>Potencial de expansión a red completa:</strong> Si el piloto en Renca demuestra ROI, el modelo escala directamente a las 10 plantas y múltiples líneas de Andina, con tarifa preferencial por curva de aprendizaje. Ver Sección 06.7 para la estructura completa de expansión a red Andina.
       </div>
     </div>
 
@@ -771,7 +778,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </div>
       <p style="font-size:13px;color:var(--gray);margin-bottom:14px;line-height:1.6"><strong style="color:var(--black)">Clase A · Paro mayor evitado.</strong> Genera success fee cuando se cumplen <strong>los cinco</strong> criterios:</p>
       <ol style="font-size:13px;color:var(--dark);line-height:1.75;padding-left:18px;display:flex;flex-direction:column;gap:8px;">
-        <li><strong>Detección documentada:</strong> drift sostenido de la variable de condición monitorea (vibración RMS, temperatura de rodamiento, presión de llenado, firma de corriente) ≥2 desviaciones estándar sobre baseline durante al menos 20 minutos consecutivos, con timestamp en plataforma Made OS.</li>
+        <!-- EDIT-CCA-V3: fixed typo monitorea → monitoreada (Corrección 2) -->
+        <li><strong>Detección documentada:</strong> drift sostenido de la variable de condición monitoreada (vibración RMS, temperatura de rodamiento, presión de llenado, firma de corriente) ≥2 desviaciones estándar sobre baseline durante al menos 20 minutos consecutivos, con timestamp en plataforma Made OS.</li>
         <li><strong>Prescripción emitida antes de la falla:</strong> orden de intervención generada por Made OS, registrada con timestamp y canal de entrega (WhatsApp / email / WebApp), anterior al evento de paro.</li>
         <li><strong>Intervención ejecutada:</strong> orden de trabajo en CMMS (SAP PM u otro) con código de causa coincidente, ejecutada en ventana de mantenimiento programado o cambio de turno dentro de la ventana sugerida por Made OS.</li>
         <li><strong>Evidencia física del modo de falla:</strong> el componente inspeccionado o reemplazado (válvula de llenado, sello, rodamiento, molde) presenta signos de degradación correspondientes al patrón detectado, documentados mediante foto, medición o reporte técnico de mantenimiento.</li>
@@ -865,6 +873,83 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
   <div class="divider"></div>
 
+  <!-- EDIT-CCA-V3: new Section 06.5 · Plataforma en operación (Corrección 6) -->
+  <!-- 06.5 PLATAFORMA EN OPERACIÓN -->
+  <div class="section" id="s065">
+    <div class="s-label">06.5. Plataforma en operación</div>
+    <div class="s-title" data-eid="plataforma-title">Tecnología probada en activos industriales de alta criticidad</div>
+    <p class="s-lead" data-eid="plataforma-lead">Made OS opera hoy sobre activos industriales en programas activos cross-vertical. Andina representaría el caso inaugural del producto en embotellado de alta velocidad LATAM, lo cual define los términos comerciales preferenciales descritos en esta propuesta.</p>
+    <div class="tbl-scroll"><table class="cost-table">
+      <thead>
+        <tr><th>Industria</th><th>Tipo de activo</th><th>Relevancia técnica para Andina</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Minería Tier 1 · Chile</strong></td><td>Flota móvil subterránea (LHDs, camiones de acarreo, jumbos)</td><td>Misma arquitectura Edge + prescripción: activos rotativos críticos, telemetría continua, decisión operativa por turno</td></tr>
+        <tr><td><strong>Manufactura continua · México</strong></td><td>Línea de manufactura de proceso continuo (alimentos/bebidas)</td><td>Vertical más análogo al embotellado: señales de vibración + temperatura + corriente, OEE, micro-paros y merma</td></tr>
+        <tr><td><strong>Elevadores industriales Tier 1</strong></td><td>Activos de transporte vertical de uso intensivo</td><td>Validación de arquitectura prescriptiva en ambiente de alta disponibilidad requerida</td></tr>
+        <tr><td><strong>Design Partner industrial · México</strong></td><td>Línea de manufactura discreta</td><td>Colaboración de diseño de producto: modos de falla del motor prescriptivo validados con operadores reales en piso</td></tr>
+      </tbody>
+    </table></div>
+    <div class="alert alert-info" style="margin-top:16px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 7v4M8 5.5v.5"/></svg>
+      <span>Referencias completas y datos auditados disponibles bajo NDA en la sesión técnica. La selección prioriza la analogía técnica con el caso Andina (activos rotativos, telemetría continua, alta velocidad), no la analogía sectorial directa.</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EDIT-CCA-V3: new Section 06.7 · Fase 2 Red Andina completa (Corrección 7) -->
+  <!-- 06.7 FASE 2 RED ANDINA COMPLETA -->
+  <div class="section" id="s067">
+    <div class="s-label">06.7. Fase 2 · Red Andina completa</div>
+    <div class="s-title" data-eid="fase2-title">La Fase 2 se activa cuando Fase 1 demuestra ROI auditado. No antes.</div>
+    <p class="s-lead" data-eid="fase2-lead">El piloto en Renca no es un fin: es el modelo que se replica. Cada planta subsecuente requiere menos tiempo de implementación porque el motor predictivo ya conoce el comportamiento de llenadoras Krones/Sidel, sopladoras de PET y etiquetadoras con glue system. El aprendizaje del frente piloto transfiere directamente a cada nuevo frente.</p>
+
+    <div class="card">
+      <div class="card-title"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>Fase 1 · Mes 1 al 6</div>
+      <p style="font-size:13.5px;color:var(--dark);line-height:1.7;margin:0"><strong>Frente piloto: 1 línea · Planta Renca · Chile.</strong> Activos: llenadora de alta velocidad (Krones/Sidel) + sopladora de PET + etiquetadora. Por qué aquí: Renca es la planta de mayor throughput y densidad de señal de Andina en Chile. Primer evento Clase A comprometido entre día 60 y 90.</p>
+    </div>
+
+    <div class="card" style="margin-top:14px;border-left:4px solid var(--orange)">
+      <div class="card-title"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>Fase 2 · Mes 6 en adelante</div>
+      <p style="font-size:13.5px;color:var(--dark);line-height:1.7;margin:0 0 16px"><strong>Expansión a red completa: Chile → Brasil → Argentina → Paraguay.</strong> La Fase 2 se activa únicamente cuando Fase 1 cumple: al menos 1 evento Clase A documentado y validado por Mantenimiento y Producción de Andina, con business case cerrado en la sesión de cierre del mes 6.</p>
+      <div class="tbl-scroll"><table class="cost-table">
+        <thead><tr><th>Concepto</th><th>Monto</th><th>Notas</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Made OS: Precio base por frente adicional</strong></td><td style="font-weight:700">$1,250 USD/mes</td><td>Reducción del 17% sobre tarifa Fase 1. El motor predictivo para Krones/Sidel ya existe; el costo de implementación por frente nuevo es menor.</td></tr>
+          <tr><td><strong>Success fee: Evento Clase A en frentes nuevos</strong></td><td style="font-weight:700">$3,000 USD/evento</td><td>Cap: $12,000/mes por frente. Misma definición auditada de Fase 1.</td></tr>
+          <tr><td><strong>Edge retrofit frente adicional</strong></td><td style="font-weight:700">$4,500 USD</td><td>Pago único por frente. Reducción sobre Fase 1 por curva de aprendizaje en instalación.</td></tr>
+          <tr><td><strong>Integración OPC-UA planta nueva</strong></td><td style="font-weight:700">Sin costo</td><td>Mismo protocolo; sin integración adicional si la planta usa Siemens S7 o Allen Bradley con OPC-UA activo.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="card-title"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2l1.5 4.5H14l-3.7 2.7 1.4 4.3L8 11 4.3 13.5l1.4-4.3L2 6.5h4.5z"/></svg>Potencial ARR por región</div>
+      <div class="tbl-scroll"><table class="cost-table">
+        <thead><tr><th>Región</th><th>Plantas estimadas</th><th>Líneas por planta</th><th>ARR base estimado</th></tr></thead>
+        <tbody>
+          <tr><td>Chile (Renca + 2 plantas)</td><td>3</td><td>~3 líneas</td><td style="font-weight:700">$135,000 USD/año</td></tr>
+          <tr><td>Brasil (incluyendo línea multi-categoría Q3 2025)</td><td>3</td><td>~3 líneas</td><td style="font-weight:700">$135,000 USD/año</td></tr>
+          <tr><td>Argentina + Paraguay</td><td>4</td><td>~2 líneas</td><td style="font-weight:700">$120,000 USD/año</td></tr>
+          <tr><td style="font-weight:700">Red completa Andina</td><td style="font-weight:700">10 plantas</td><td style="font-weight:700">~25 frentes</td><td style="font-weight:700;color:var(--orange)">~$450,000 ARR base</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="alert alert-gold" style="margin-top:16px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2l1.5 4.5H14l-3.7 2.7 1.4 4.3L8 11 4.3 13.5l1.4-4.3L2 6.5h4.5z"/></svg>
+      <div><strong>Nota sobre Brasil Q3 2025:</strong> Andina arrancó una nueva línea multi-categoría (cervezas en lata y longneck, 12M cajas de capacidad instalada). Es el activo candidato natural para el segundo despliegue: línea nueva, sin historial de fallas, baseline desde cero — condición ideal para Made OS.</div>
+    </div>
+
+    <div class="alert alert-info" style="margin-top:12px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8l2 2 4-4"/></svg>
+      <div><strong>Ventana de transición a Fase 2:</strong> Sesión de 45 minutos al cierre del mes 6. Si Fase 1 no demostró ROI auditado, Andina no tiene ninguna obligación de continuar. Sin penalidades. Sin lock-in.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
   <!-- 07 COMPARATIVA -->
   <div class="section" id="s07">
     <div class="s-label">07. Made OS vs. APM tradicional</div>
@@ -880,13 +965,16 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <tbody>
         <tr><td>Implementación</td><td>6 a 18 meses · integrador externo requerido</td><td>3 a 10 días hábiles sin detener la línea</td></tr>
         <tr><td>Infraestructura</td><td>Cambios en SCADA o historian · puede requerir paros</td><td>Opera sobre infraestructura existente sin modificarla</td></tr>
-        <tr><td>Arquitectura</td><td>Mayormente cloud-dependiente</td><td>Edge-first: procesamiento local sin dependencia de nube</td></tr>
+        <!-- EDIT-CCA-V3: corrected technically imprecise "sin dependencia de nube" claim (Corrección 4) -->
+        <tr><td>Arquitectura</td><td>Mayormente cloud-dependiente</td><td>Edge-first: detección de anomalías on-device. Prescripción completa vía cloud. Buffer local de 256 GB durante intermitencia; sincronización automática al reconectar.</td></tr>
         <tr><td>Costo de entrada</td><td>CAPEX alto + licencias + integrador</td><td>Piloto controlado con inversión acotada y retorno en semanas</td></tr>
         <tr><td>Tipos de señal</td><td>Series de tiempo estructuradas</td><td>Multimodal: vibración, visión, temperatura, proceso</td></tr>
         <tr><td>Detección</td><td>Reactiva o por umbrales fijos</td><td>Continua, en tiempo real, por señal anómala y degradación progresiva</td></tr>
         <tr><td>Riesgo</td><td>100% del cliente</td><td>Compartido · extensión sin costo si no hay ROI demostrable</td></tr>
       </tbody>
     </table></div>
+    <!-- EDIT-CCA-V3: added footnote clarifying edge/cloud split (Corrección 4) -->
+    <p style="font-size:11.5px;color:var(--gray-l);margin-top:12px;line-height:1.6;font-style:italic">La detección de anomalías y el buffer de señales operan on-device en el hardware Edge, sin requerir conectividad activa. La generación de prescripciones accionables (agente AI con contexto operativo) requiere conectividad cloud. Comportamiento en modo offline detallado en el Apéndice Técnico A5.</p>
     <div class="alert alert-info" style="margin-top:16px">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 7v4M8 5.5v.5"/></svg>
       <span>Made no reemplaza los sistemas SCADA o historians de Andina: los complementa, extrayendo inteligencia de señales que ya existen pero que ningún sistema actual procesa con IA prescriptiva.</span>
@@ -906,7 +994,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1l4.5 1.8v4.2c0 2.8-2 4.5-4.5 5-2.5-.5-4.5-2.2-4.5-5V2.8L7 1z"/></svg>
             Garantía comercial Made OS · 6 meses
           </div>
-          <h3>Si al finalizar el programa Made OS no ha demostrado ROI positivo auditado, <em>Made extiende el programa hasta 90 días adicionales sin costo de licencia.</em></h3>
+          <!-- EDIT-CCA-V3: anchored guarantee to first Class A event, not full ROI (Corrección 5) -->
+          <h3>Si al cierre del mes 6 Made OS no ha documentado al menos un evento Clase A validado por las áreas de Mantenimiento y Producción de Andina, <em>Made extiende el programa hasta 90 días adicionales sin costo de plataforma.</em> El objetivo de la extensión es determinar si la ausencia de eventos refleja: (a) ausencia real de pérdida recuperable en el frente piloto —resultado positivo—, (b) señal insuficiente —que se resuelve ampliando instrumentación—, o (c) necesidad de calibrar el modelo con mayor variabilidad operativa.</h3>
         </div>
         <div class="g-items">
           <div class="g-item"><div class="g-check">✓</div><span>Si el programa demuestra ROI positivo, el 100% del fee base pagado durante el piloto se acredita al contrato SaaS del primer año. Andina no paga dos veces.</span></div>
@@ -967,12 +1056,171 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="cta-tag" data-eid="sesion-cta-tag">Programa piloto · 6 meses · 1 frente de embotellado · Planta Renca</div>
         <h3>Solicita la sesión técnica con el equipo de Made</h3>
         <p>45 minutos · Remota o presencial en Renca · Asistentes: Gerardo Peña (CEO) + Ramiro Pantoja (CTO). Objetivo: calificación técnica de la línea candidata + plan del programa en 1 página. Una vez aprobado, el programa inicia en menos de 10 días hábiles.</p>
+        <!-- EDIT-CCA-V3: validity note at CTA (Corrección 10) -->
+        <p style="margin-top:12px;font-size:12px;color:rgba(255,255,255,.4)">Las condiciones comerciales de esta propuesta tienen vigencia hasta el 30 de junio de 2026.</p>
       </div>
       <div class="cta-right">
         <!-- EDIT-CCA: replaced generic cal.com link with personalized mailto (Corrección 6) -->
         <a href="mailto:ger@madeos.ai?subject=Sesi%C3%B3n%20t%C3%A9cnica%20Made%20OS%20%C3%97%20Coca-Cola%20Andina&body=Hola%20Gerardo%2C%0A%0AMe%20interesa%20coordinar%20la%20sesi%C3%B3n%20t%C3%A9cnica%20de%2045%20minutos%20para%20evaluar%20el%20programa%20piloto%20en%20Planta%20Renca.%0A%0A%5BTu%20nombre%20%C2%B7%20Cargo%20%C2%B7%20%C3%81rea%5D" class="cta-btn">Escribir a Gerardo →</a>
         <div class="cta-sub" data-eid="sesion-cta-sub">ger@madeos.ai · respuesta en menos de 24h</div>
       </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EDIT-CCA-V3: new collapsible Technical Appendix A1–A6 (Corrección 8) -->
+  <style>
+  .apx-wrap{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;background:var(--white);box-shadow:var(--sh);}
+  .apx-item{border-bottom:1px solid var(--border);}
+  .apx-item:last-child{border-bottom:none;}
+  .apx-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;padding:16px 22px;font-size:13.5px;font-weight:600;color:var(--black);user-select:none;}
+  .apx-summary:hover{background:var(--bg);}
+  .apx-chev{flex-shrink:0;width:14px;height:14px;transition:transform .2s;color:var(--orange);}
+  .apx-item.open .apx-chev{transform:rotate(90deg);}
+  .apx-body{display:none;padding:2px 22px 22px;font-size:13px;color:var(--dark);line-height:1.7;}
+  .apx-item.open .apx-body{display:block;}
+  .apx-body p{margin-bottom:10px;}
+  .apx-body ul{margin:0 0 12px 18px;}
+  .apx-body li{margin-bottom:5px;}
+  .apx-body h5{font-size:12.5px;font-weight:700;color:var(--black);margin:12px 0 6px;}
+  @media print{.apx-body{display:block !important;}.apx-chev{display:none;}}
+  </style>
+  <div class="section" id="sapx">
+    <div class="s-label">Apéndice técnico</div>
+    <div class="s-title" data-eid="apx-title">Apéndice técnico</div>
+    <p class="s-lead" data-eid="apx-lead">Para IT/OT, Confiabilidad y Procurement. Plegado por defecto; se imprime expandido en PDF.</p>
+
+    <div class="apx-wrap">
+
+      <div class="apx-item">
+        <div class="apx-summary" onclick="this.parentElement.classList.toggle('open')">
+          <span>A1 · Arquitectura Edge + Cloud: roles precisos y flujo de datos</span>
+          <svg class="apx-chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </div>
+        <div class="apx-body">
+          <h5>Edge (dispositivo dedicado on-site, opcional)</h5>
+          <ul>
+            <li>Conexión a PLCs y sensores vía OPC-UA, Modbus RTU/TCP y señales 4–20 mA</li>
+            <li>Recolección de telemetría en tiempo real: vibración RMS, temperatura, presión, corriente, firma acústica</li>
+            <li>Detección de anomalías on-device: modelos especializados por activo (llenadora, sopladora, etiquetadora) ejecutados localmente en el Jetson Orin Nano Super (67 INT8 TOPS)</li>
+            <li>Buffer local 256 GB estándar para operación offline; ampliable a 512 GB on-demand. Sincronización automática al reconectar</li>
+            <li>El Edge NO ejecuta el agente prescriptivo ni el LLM. No genera prescripciones de forma autónoma</li>
+          </ul>
+          <h5>Software + OPC-UA (alternativa sin hardware)</h5>
+          <ul>
+            <li>Conector que corre on-premise sobre infraestructura de servidores existente de Andina</li>
+            <li>Lee de la API OPC-UA del servidor industrial de planta y de feeds directos de PLCs Siemens S7 / Allen Bradley</li>
+            <li>Envía telemetría filtrada a la capa cloud de Made vía WebSocket sobre TLS 1.3 cifrado</li>
+            <li>Mismo límite funcional que el Edge: no ejecuta el agente prescriptivo localmente</li>
+          </ul>
+          <h5>Cloud (capa de orquestación de Made)</h5>
+          <ul>
+            <li>Procesa y almacena telemetría recibida del Edge o Software+OPC-UA</li>
+            <li>Corre el agente AI con LLM: analiza datos recientes contra baseline histórico, genera prescripciones con contexto operativo (qué activo, qué subsistema, qué acción, en qué ventana, qué supervisor)</li>
+            <li>Ruteo de alertas a canales del operador/supervisor: WhatsApp, SMS, WebApp, email</li>
+            <li>Genera reportes ejecutivos mensuales con eventos documentados, impacto económico estimado y evidencia de validación</li>
+          </ul>
+          <h5>Operación cloud requerida para prescripciones</h5>
+          <p style="margin-bottom:0">El valor prescriptivo de Made OS requiere conectividad cloud activa para el agente AI. Durante intermitencia, el Edge mantiene buffer local y sigue detectando anomalías on-device; al reconectar, sincroniza y reanuda prescripciones. Detalle completo en A5.</p>
+        </div>
+      </div>
+
+      <div class="apx-item">
+        <div class="apx-summary" onclick="this.parentElement.classList.toggle('open')">
+          <span>A2 · Compatibilidad con arquitectura Purdue e IEC 62443</span>
+          <svg class="apx-chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </div>
+        <div class="apx-body">
+          <p>Made OS opera sin modificar ningún nivel de la arquitectura Purdue:</p>
+          <div class="tbl-scroll"><table class="cost-table">
+            <thead><tr><th>Nivel Purdue</th><th>Componentes de Andina</th><th>Rol de Made OS</th></tr></thead>
+            <tbody>
+              <tr><td>Nivel 0–1 (field/control)</td><td>PLCs Siemens S7, sensores, actuadores</td><td>Solo-lectura. No escribe. No modifica parámetros.</td></tr>
+              <tr><td>Nivel 2 (supervisory)</td><td>SCADA, DCS, HMI de planta</td><td>Solo-lectura de historiales y eventos. No modifica lógica.</td></tr>
+              <tr><td>Nivel 3 (MES/site ops)</td><td>MES, CMMS (SAP PM u otro)</td><td>Puede recibir draft de OT vía API; Andina define si lo activa.</td></tr>
+              <tr><td>Nivel 4–5 (enterprise/cloud)</td><td>ERP, cloud corporativo</td><td>Canal saliente cifrado TLS 1.3 hacia la capa cloud de Made.</td></tr>
+            </tbody>
+          </table></div>
+          <h5>Cumplimiento IEC 62443</h5>
+          <ul>
+            <li>Comunicación cifrada TLS 1.3 en todo el canal saliente</li>
+            <li>Air-gap ready: el Edge puede operar en red OT aislada con sincronización batch programada hacia DMZ</li>
+            <li>No requiere apertura de puertos entrantes en la red OT</li>
+            <li>Compatible con política de firewall unidireccional (datos salen, nada entra)</li>
+            <li>Pen-test de la interfaz disponible bajo NDA antes del arranque</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="apx-item">
+        <div class="apx-summary" onclick="this.parentElement.classList.toggle('open')">
+          <span>A3 · Propiedad de datos, IP del modelo y exit clause</span>
+          <svg class="apx-chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </div>
+        <div class="apx-body">
+          <ul>
+            <li><strong>Datos de telemetría:</strong> propiedad exclusiva de Coca-Cola Andina. Made OS no los comparte con terceros bajo ninguna circunstancia. Al término del contrato, todos los datos son devueltos o eliminados según instrucción de Andina, con acta de eliminación certificada.</li>
+            <li><strong>Modelos entrenados:</strong> los modelos entrenados sobre datos de Andina (baseline por activo, patrones de degradación específicos de las líneas de Renca) son propiedad de Andina independientemente del resultado del programa. Andina puede exportarlos en formato estándar al cierre.</li>
+            <li><strong>IP del motor prescriptivo:</strong> la arquitectura del agente AI, el pipeline de prescripción y los algoritmos de detección de anomalías son propiedad de Made. Andina recibe el servicio, no el código fuente.</li>
+            <li><strong>Exit clause:</strong> terminación con 30 días de aviso si el contrato escala a anual. Sin penalidades por terminación anticipada en el programa piloto. El modelo entrenado y el historial de eventos quedan con Andina.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="apx-item">
+        <div class="apx-summary" onclick="this.parentElement.classList.toggle('open')">
+          <span>A4 · Protocolo de canal saliente y política de datos en tránsito</span>
+          <svg class="apx-chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </div>
+        <div class="apx-body">
+          <ul>
+            <li>Todo el tráfico entre el Edge/Software+OPC-UA y la capa cloud de Made viaja cifrado TLS 1.3 sobre WebSocket (WSS)</li>
+            <li>El payload contiene exclusivamente: timestamp, identificador de activo (no nombre de operador ni datos personales), valores de señal numéricos, y etiqueta de evento si aplica</li>
+            <li>No se transmiten: recetas de producto, fórmulas, datos de calidad sensibles, información de clientes ni datos personales de empleados</li>
+            <li>El canal saliente es validable y auditable por IT/OT de Andina antes de habilitarse. Made puede proveer un log de muestra del payload cifrado para revisión de seguridad</li>
+            <li>Retención de datos en cloud de Made: 24 meses desde la fecha de captura. Política de purga automática al término del contrato</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="apx-item">
+        <div class="apx-summary" onclick="this.parentElement.classList.toggle('open')">
+          <span>A5 · Resiliencia ante intermitencia de conectividad</span>
+          <svg class="apx-chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </div>
+        <div class="apx-body">
+          <p>Escenario: el Edge pierde conectividad con la capa cloud de Made.</p>
+          <div class="tbl-scroll"><table class="cost-table">
+            <thead><tr><th>Estado</th><th>Comportamiento del Edge</th><th>Impacto en la operación de Andina</th></tr></thead>
+            <tbody>
+              <tr><td>Conectividad activa</td><td>Transmisión en tiempo real; prescripciones en &lt;15 min desde anomalía</td><td>Operación normal del programa</td></tr>
+              <tr><td>Intermitencia (&lt;4h)</td><td>Buffer local activo; detección de anomalías on-device continúa</td><td>No se generan prescripciones hasta reconexión</td></tr>
+              <tr><td>Intermitencia extendida (&gt;4h)</td><td>Buffer 256 GB (ampliable a 512 GB); log completo preservado</td><td>Anomalías detectadas y registradas; prescripciones se generan al reconectar con contexto temporal correcto</td></tr>
+              <tr><td>Reconexión</td><td>Sincronización automática del buffer completo</td><td>Prescripciones retroactivas con timestamp original emitidas en &lt;30 min post-reconexión</td></tr>
+            </tbody>
+          </table></div>
+          <p style="margin-bottom:0">La línea de producción de Andina opera exactamente igual con o sin conectividad de Made OS. La ausencia de conectividad no afecta ni ralentiza ningún proceso de la planta.</p>
+        </div>
+      </div>
+
+      <div class="apx-item">
+        <div class="apx-summary" onclick="this.parentElement.classList.toggle('open')">
+          <span>A6 · Referencias técnicas y fuentes</span>
+          <svg class="apx-chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+        </div>
+        <div class="apx-body">
+          <ul style="margin-bottom:0">
+            <li>McKinsey &amp; Company: "Industry 4.0: Capturing the value of data analytics in manufacturing" (2023)</li>
+            <li>Siemens: "True Cost of Downtime 2024" — benchmark de costo por hora de paro en manufactura de bebidas de alto volumen</li>
+            <li>Aberdeen Research: "Asset Performance Management in High-Speed Packaging Lines" (2023)</li>
+            <li>IEC 62443: Estándar de ciberseguridad para sistemas de automatización y control industrial</li>
+            <li>ISPE (International Society for Pharmaceutical Engineering): referencia para árbitro técnico en disputas de success fee</li>
+            <li>Reporte Q4 2025 Coca-Cola Andina (publicado en bolsa de Santiago): fuente de datos financieros $3.34B ventas, EBITDA $683M, +15.5% utilidades, 945.8M cajas</li>
+          </ul>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -993,24 +1241,36 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 </div><!-- /page -->
 
 <div class="doc-footer" data-eid="doc-footer">
-  <strong>MADE OS</strong> × COCA-COLA ANDINA · Mayo 2026 · CONFIDENCIAL
+  <strong>MADE OS</strong> × COCA-COLA ANDINA · Mayo 2026 · Vigencia hasta 30 junio 2026 · CONFIDENCIAL
 </div>
 
 </div><!-- /proposal -->
 
-<!-- SIDENAV DESKTOP -->
+<!-- EDIT-CCA-V3: added role sublabels, reading guide and 3 new entries (06.5, 06.7, Apéndice) (Corrección 9) -->
+<style>
+  .sidenav-role{display:block;font-size:8px;font-weight:600;letter-spacing:.03em;color:var(--gray-l);text-transform:none;margin-top:2px;line-height:1.3;}
+  .sidenav-item.sn-active .sidenav-role{color:var(--orange);opacity:.7;}
+  .sidenav-guide{font-size:8.5px;color:var(--gray-l);line-height:1.5;margin-bottom:12px;max-width:150px;}
+  .sn-sheet-lbl-wrap{display:flex;flex-direction:column;gap:1px;}
+  .sn-sheet-role{font-size:11px;color:var(--gray);font-weight:500;}
+  .sn-guide{font-size:11.5px;color:var(--gray);line-height:1.55;padding:0 0 16px;border-bottom:1px solid var(--border);margin-bottom:14px;}
+</style>
 <nav class="sidenav" id="sidenav" aria-label="Índice de secciones">
   <div class="sidenav-hd">Índice</div>
+  <div class="sidenav-guide">Lectura ejecutiva ~8 min (01–06). Técnica completa ~18 min.</div>
   <div class="sidenav-list">
-    <div class="sidenav-item" data-s="s01"><span class="sidenav-dot"></span><span class="sidenav-label">01 · Resumen</span></div>
-    <div class="sidenav-item" data-s="s02"><span class="sidenav-dot"></span><span class="sidenav-label">02 · Solución</span></div>
-    <div class="sidenav-item" data-s="s03"><span class="sidenav-dot"></span><span class="sidenav-label">03 · Integración</span></div>
-    <div class="sidenav-item" data-s="s04"><span class="sidenav-dot"></span><span class="sidenav-label">04 · Precio y ROI</span></div>
-    <div class="sidenav-item" data-s="s05"><span class="sidenav-dot"></span><span class="sidenav-label">05 · Requerimientos</span></div>
-    <div class="sidenav-item" data-s="s06"><span class="sidenav-dot"></span><span class="sidenav-label">06 · Términos</span></div>
-    <div class="sidenav-item" data-s="s07"><span class="sidenav-dot"></span><span class="sidenav-label">07 · Comparativa</span></div>
-    <div class="sidenav-item" data-s="s08"><span class="sidenav-dot"></span><span class="sidenav-label">08 · Garantía</span></div>
-    <div class="sidenav-item" data-s="s09"><span class="sidenav-dot"></span><span class="sidenav-label">09 · Sesión inicial</span></div>
+    <div class="sidenav-item" data-s="s01"><span class="sidenav-dot"></span><span class="sidenav-label">01 · Resumen<span class="sidenav-role">Dirección · VP Operaciones</span></span></div>
+    <div class="sidenav-item" data-s="s02"><span class="sidenav-dot"></span><span class="sidenav-label">02 · Solución<span class="sidenav-role">Gerencia de Planta · Producción</span></span></div>
+    <div class="sidenav-item" data-s="s03"><span class="sidenav-dot"></span><span class="sidenav-label">03 · Integración<span class="sidenav-role">IT/OT · Ingeniería</span></span></div>
+    <div class="sidenav-item" data-s="s04"><span class="sidenav-dot"></span><span class="sidenav-label">04 · Precio y ROI<span class="sidenav-role">Finanzas · Dirección</span></span></div>
+    <div class="sidenav-item" data-s="s05"><span class="sidenav-dot"></span><span class="sidenav-label">05 · Requerimientos<span class="sidenav-role">Mantenimiento · IT/OT</span></span></div>
+    <div class="sidenav-item" data-s="s06"><span class="sidenav-dot"></span><span class="sidenav-label">06 · Términos<span class="sidenav-role">Procurement · Dirección</span></span></div>
+    <div class="sidenav-item" data-s="s065"><span class="sidenav-dot"></span><span class="sidenav-label">06.5 · Plataforma<span class="sidenav-role">Dirección · VP Operaciones</span></span></div>
+    <div class="sidenav-item" data-s="s067"><span class="sidenav-dot"></span><span class="sidenav-label">06.7 · Fase 2<span class="sidenav-role">Dirección · Finanzas</span></span></div>
+    <div class="sidenav-item" data-s="s07"><span class="sidenav-dot"></span><span class="sidenav-label">07 · Comparativa<span class="sidenav-role">IT/OT · Mantenimiento</span></span></div>
+    <div class="sidenav-item" data-s="s08"><span class="sidenav-dot"></span><span class="sidenav-label">08 · Garantía<span class="sidenav-role">Procurement · Dirección</span></span></div>
+    <div class="sidenav-item" data-s="s09"><span class="sidenav-dot"></span><span class="sidenav-label">09 · Sesión inicial<span class="sidenav-role">Todos · Siguiente paso</span></span></div>
+    <div class="sidenav-item" data-s="sapx"><span class="sidenav-dot"></span><span class="sidenav-label">Apéndice<span class="sidenav-role">IT/OT · Confiabilidad · Procurement</span></span></div>
   </div>
 </nav>
 <button class="sn-fab" id="sn-fab">≡ Índice</button>
@@ -1018,15 +1278,19 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="sn-backdrop" id="sn-backdrop"></div>
   <div class="sn-panel">
     <div class="sn-panel-hd"><span>Índice</span><button class="sn-panel-close" id="sn-close" aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg></button></div>
-    <div class="sn-sheet-item" data-s="s01"><span class="sn-sheet-num">01</span><span class="sn-sheet-lbl">Resumen ejecutivo</span></div>
-    <div class="sn-sheet-item" data-s="s02"><span class="sn-sheet-num">02</span><span class="sn-sheet-lbl">Andina + Made OS</span></div>
-    <div class="sn-sheet-item" data-s="s03"><span class="sn-sheet-num">03</span><span class="sn-sheet-lbl">Integración</span></div>
-    <div class="sn-sheet-item" data-s="s04"><span class="sn-sheet-num">04</span><span class="sn-sheet-lbl">Precio y ROI</span></div>
-    <div class="sn-sheet-item" data-s="s05"><span class="sn-sheet-num">05</span><span class="sn-sheet-lbl">Requerimientos</span></div>
-    <div class="sn-sheet-item" data-s="s06"><span class="sn-sheet-num">06</span><span class="sn-sheet-lbl">Términos</span></div>
-    <div class="sn-sheet-item" data-s="s07"><span class="sn-sheet-num">07</span><span class="sn-sheet-lbl">Comparativa</span></div>
-    <div class="sn-sheet-item" data-s="s08"><span class="sn-sheet-num">08</span><span class="sn-sheet-lbl">Garantía</span></div>
-    <div class="sn-sheet-item" data-s="s09"><span class="sn-sheet-num">09</span><span class="sn-sheet-lbl">Sesión técnica</span></div>
+    <div class="sn-guide">Guía de lectura: navega directamente a la sección relevante para tu área. Tiempo de lectura ejecutiva ~8 min (secciones 01–06). Lectura técnica completa ~18 min.</div>
+    <div class="sn-sheet-item" data-s="s01"><span class="sn-sheet-num">01</span><span class="sn-sheet-lbl-wrap"><span class="sn-sheet-lbl">Resumen ejecutivo</span><span class="sn-sheet-role">Dirección · VP Operaciones</span></span></div>
+    <div class="sn-sheet-item" data-s="s02"><span class="sn-sheet-num">02</span><span class="sn-sheet-lbl-wrap"><span class="sn-sheet-lbl">Andina + Made OS</span><span class="sn-sheet-role">Gerencia de Planta · Producción</span></span></div>
+    <div class="sn-sheet-item" data-s="s03"><span class="sn-sheet-num">03</span><span class="sn-sheet-lbl-wrap"><span class="sn-sheet-lbl">Integración</span><span class="sn-sheet-role">IT/OT · Ingeniería</span></span></div>
+    <div class="sn-sheet-item" data-s="s04"><span class="sn-sheet-num">04</span><span class="sn-sheet-lbl-wrap"><span class="sn-sheet-lbl">Precio y ROI</span><span class="sn-sheet-role">Finanzas · Dirección</span></span></div>
+    <div class="sn-sheet-item" data-s="s05"><span class="sn-sheet-num">05</span><span class="sn-sheet-lbl-wrap"><span class="sn-sheet-lbl">Requerimientos</span><span class="sn-sheet-role">Mantenimiento · IT/OT</span></span></div>
+    <div class="sn-sheet-item" data-s="s06"><span class="sn-sheet-num">06</span><span class="sn-sheet-lbl-wrap"><span class="sn-sheet-lbl">Términos</span><span class="sn-sheet-role">Procurement · Dirección</span></span></div>
+    <div class="sn-sheet-item" data-s="s065"><span class="sn-sheet-num">06.5</span><span class="sn-sheet-lbl-wrap"><span class="sn-sheet-lbl">Plataforma en operación</span><span class="sn-sheet-role">Dirección · VP Operaciones</span></span></div>
+    <div class="sn-sheet-item" data-s="s067"><span class="sn-sheet-num">06.7</span><span class="sn-sheet-lbl-wrap"><span class="sn-sheet-lbl">Fase 2 · Red completa</span><span class="sn-sheet-role">Dirección · Finanzas</span></span></div>
+    <div class="sn-sheet-item" data-s="s07"><span class="sn-sheet-num">07</span><span class="sn-sheet-lbl-wrap"><span class="sn-sheet-lbl">Comparativa</span><span class="sn-sheet-role">IT/OT · Mantenimiento</span></span></div>
+    <div class="sn-sheet-item" data-s="s08"><span class="sn-sheet-num">08</span><span class="sn-sheet-lbl-wrap"><span class="sn-sheet-lbl">Garantía</span><span class="sn-sheet-role">Procurement · Dirección</span></span></div>
+    <div class="sn-sheet-item" data-s="s09"><span class="sn-sheet-num">09</span><span class="sn-sheet-lbl-wrap"><span class="sn-sheet-lbl">Sesión técnica</span><span class="sn-sheet-role">Todos · Siguiente paso</span></span></div>
+    <div class="sn-sheet-item" data-s="sapx"><span class="sn-sheet-num">A</span><span class="sn-sheet-lbl-wrap"><span class="sn-sheet-lbl">Apéndice técnico</span><span class="sn-sheet-role">IT/OT · Confiabilidad · Procurement</span></span></div>
   </div>
 </div>
 
@@ -1148,7 +1412,7 @@ function showProposal(asAdmin) {
 }
 
 function _initSideNav() {
-  var IDS = ['s01','s02','s03','s04','s05','s06','s07','s08','s09'];
+  var IDS = ['s01','s02','s03','s04','s05','s06','s065','s067','s07','s08','s09','sapx']; // EDIT-CCA-V3: added new section ids
   function scrollTo(id) { var el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   var nav = document.getElementById('sidenav');
   if (nav) {
