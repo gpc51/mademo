@@ -340,6 +340,12 @@
     .divider{margin:36px 0;}
   }
 
+  /* Admin-only sections — hidden in client view, visible in admin mode */
+  .admin-only{display:none;}
+  body.admin-mode .admin-only{display:block;}
+  .admin-badge{display:inline-flex;align-items:center;gap:5px;background:#111213;color:rgba(255,200,100,.85);font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:4px;margin-bottom:10px;border:1px solid rgba(255,200,100,.2);}
+  .admin-only-wrap{border:1px dashed rgba(216,66,0,.35);border-radius:10px;padding:16px;background:rgba(216,66,0,.03);margin-top:20px;}
+
   /* Admin bar */
   #admin-bar{position:fixed;bottom:20px;right:20px;background:#111213;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:8px 14px;display:flex;align-items:center;gap:8px;z-index:9999;box-shadow:0 4px 24px rgba(0,0,0,.5);font-family:'Inter',sans-serif;transition:border-color .2s;}
   #ab-label{font-size:10px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.3);text-transform:uppercase;padding-right:8px;border-right:1px solid rgba(255,255,255,.1);white-space:nowrap;}
@@ -664,12 +670,12 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           <tr>
             <td><strong>Success fee: Evento Clase A</strong><br><span style="font-size:11px;color:var(--gray)">Paro mayor evitado · 5 criterios</span></td>
             <td class="price-val">$2,500 USD / evento</td>
-            <td class="price-note">Cap Fase 0: $9,000/mes · sube a $18,000 en Año 1 (ver Captura Progresiva)</td>
+            <td class="price-note">Cap: $9,000/mes · definición auditada conjunta</td>
           </tr>
           <tr>
             <td><strong>Success fee: Evento Clase B</strong><br><span style="font-size:11px;color:var(--gray)">Operación degradada evitada · criterios 1, 2 y 3</span></td>
             <td class="price-val">$1,000 USD / evento</td>
-            <td class="price-note">Incluido en cap mensual · sube a $1,500 en Año 1</td>
+            <td class="price-note">Incluido en cap mensual</td>
           </tr>
           <tr>
             <td><strong>Integración OPC-UA / API</strong></td>
@@ -689,19 +695,23 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           <tr>
             <td><strong>ROI estimado del programa</strong></td>
             <td class="price-val" style="color:var(--orange)">500% – 1,200%</td>
-            <td class="price-note">Estimado 6 meses · 1 frente · fees más bajos en Fase 0 mejoran el ratio</td>
+            <td class="price-note">Estimado 6 meses · hasta 3 frentes</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- CAPTURA PROGRESIVA: 3-phase pricing escalation block -->
-    <div class="card" style="margin-top:20px;border-top:3px solid var(--orange);padding-top:20px">
+    <!-- CAPTURA PROGRESIVA: admin-only internal pricing escalation block -->
+    <div class="admin-only admin-only-wrap">
+      <div class="admin-badge">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:10px;height:10px"><path d="M7 1l4.5 1.8v4.2c0 2.8-2 4.5-4.5 5-2.5-.5-4.5-2.2-4.5-5V2.8L7 1z"/></svg>
+        Interno · no visible en modo cliente
+      </div>
       <div class="card-title" style="margin-bottom:6px">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12l4-4 3 3 5-7"/></svg>
-        Captura Progresiva: el pricing escala con el valor demostrado
+        Captura Progresiva — pricing post-piloto
       </div>
-      <p style="font-size:13px;color:var(--gray);margin-bottom:16px;line-height:1.6">Andina paga más solo cuando Made demuestra más. Los tres escalones se activan por triggers contractuales definidos desde el inicio del programa, sin renegociación ni firma adicional.</p>
+      <p style="font-size:13px;color:var(--gray);margin-bottom:16px;line-height:1.6">Los escalones se activan por triggers contractuales definidos desde el inicio. No se presentan a Andina en la propuesta: se revelan en la sesión de cierre del mes 6 cuando el ROI ya está demostrado.</p>
       <div class="tbl-scroll">
         <table class="pricing-table">
           <thead>
@@ -738,7 +748,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           </tbody>
         </table>
       </div>
-      <p style="font-size:11.5px;color:var(--gray-l);margin-top:12px;line-height:1.6">En Fase 2, el cap del 15% sobre ahorro verificado significa que Made nunca puede facturar más del 15% del valor que demostró haberle ahorrado a Andina ese mes. A $120,000/hora de costo de paro, ese ratio se mantiene siempre por debajo del 5% del valor real entregado.</p>
+      <p style="font-size:11.5px;color:var(--gray-l);margin-top:12px;line-height:1.6">ARR máximo por fase: Fase 0 ~$168K · Fase 1 ~$822K · Fase 2 ~$2,466K. En Fase 2, el cap del 15% sobre ahorro verificado mantiene el ratio fee/ahorro siempre bajo el 5% del valor entregado.</p>
     </div>
 
     <div class="s-title" style="margin-top:28px" data-eid="roi-title">Con evitar un solo paro de 8 horas, Made OS se paga más de 20 veces.</div>
@@ -746,7 +756,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <div class="roi-hero">
       <div class="roi-hero-label" data-eid="roi-hero-label">Ahorro estimado · programa 6 meses · 1 frente de embotellado · 2–4 eventos evitados</div>
       <div class="roi-hero-val" data-eid="roi-hero-val">$350,000 – $950,000 USD</div>
-      <div class="roi-hero-sub" data-eid="roi-hero-sub">Basado en 2–4 eventos Clase A evitados a $50K–$120K/hora · 4–8 horas por evento · success fees Fase 0 a $2,500/evento</div>
+      <div class="roi-hero-sub" data-eid="roi-hero-sub">Basado en 2–4 eventos Clase A evitados a $50K–$120K/hora · 4–8 horas por evento · success fee $2,500/evento</div>
     </div>
     <div class="roi-grid">
       <div class="roi-item">
@@ -777,7 +787,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
         Umbral mínimo de retorno — antes del upside
       </div>
-      <p style="font-size:13.5px;color:var(--dark);line-height:1.7;margin:0">Con evitar un solo evento Clase A de 4 horas en la llenadora Krones (costo estimado: $200K–$480K USD), el programa piloto completo de 6 meses se paga entre <strong>6x y 15x</strong>. El escenario de ROI 500%–1,200% asume 2 a 4 eventos Clase A en 6 meses con los fees de Fase 0. Si Made detecta un solo evento en todo el programa, Andina ya recupera su inversión con margen. El resto es retorno adicional verificable.</p>
+      <p style="font-size:13.5px;color:var(--dark);line-height:1.7;margin:0">Con evitar un solo evento Clase A de 4 horas en la llenadora Krones (costo estimado: $200K–$480K USD), el programa piloto completo de 6 meses se paga entre <strong>6x y 15x</strong>. El escenario de ROI 500%–1,200% asume 2 a 4 eventos Clase A en 6 meses. Si Made detecta un solo evento en todo el programa, Andina ya recupera su inversión con margen. El resto es retorno adicional verificable.</p>
     </div>
 
     <div class="card" style="margin-top:14px">
@@ -817,7 +827,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2l1.5 4.5H14l-3.7 2.7 1.4 4.3L8 11 4.3 13.5l1.4-4.3L2 6.5h4.5z"/></svg>
       <!-- EDIT-CCA-V3: moved expansion detail to structured Section 06.7 (Corrección 7) -->
       <div>
-        <strong>Potencial de expansión a red completa:</strong> Si el piloto en Renca activa el trigger de Fase 1, el modelo escala directamente a las 10 plantas y múltiples líneas de Andina bajo los términos de Captura Progresiva ya acordados. Ver Sección 06.7 para la estructura completa.
+        <strong>Potencial de expansión a red completa:</strong> Si el piloto en Renca demuestra ROI, el modelo escala directamente a las 10 plantas y múltiples líneas de Andina. El pricing de expansión se define con Andina en la sesión de cierre del mes 6. Ver Sección 06.7.
       </div>
     </div>
 
@@ -915,7 +925,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1l4.5 1.8v4.2c0 2.8-2 4.5-4.5 5-2.5-.5-4.5-2.2-4.5-5V2.8L7 1z"/></svg>
         Compromisos Made hacia Andina
       </div>
-      <div class="terms-item" style="margin-bottom:10px"><div class="terms-check check-orange">›</div><span><strong>Pricing garantizado por fase.</strong> La tarifa base de Fase 0 ($1,500 USD/mes), los success fees ($2,500 Clase A · $1,000 Clase B) y el cap mensual ($9,000) se mantienen sin ajuste unilateral durante los 6 meses del piloto. Los escalones de Fase 1 y Fase 2 se activan exclusivamente por los triggers contractuales definidos en la tabla de Captura Progresiva, no por voluntad unilateral de Made.</span></div>
+      <div class="terms-item" style="margin-bottom:10px"><div class="terms-check check-orange">›</div><span><strong>Pricing garantizado.</strong> La tarifa base de $1,500 USD/mes, los success fees ($2,500 Clase A · $1,000 Clase B) y el cap mensual de $9,000 se mantienen sin ajuste unilateral durante la totalidad del programa piloto. El pricing de expansión se estructura en la sesión de cierre del mes 6, con Andina en pleno control de la decisión.</span></div>
       <div class="terms-item" style="margin-bottom:10px"><div class="terms-check check-orange">›</div><span><strong>Prioridad de roadmap para embotellado Krones/Sidel.</strong> Los modos de falla específicos de llenadoras, sopladoras de PET y etiquetadoras con glue system se incorporan al roadmap de Made con prioridad alta durante el programa, sin costo adicional.</span></div>
       <div class="terms-item" style="margin-bottom:10px"><div class="terms-check check-orange">›</div><span><strong>Acceso directo al equipo fundador.</strong> Línea directa con Gerardo Peña (CEO) y Ramiro Pantoja (CTO) durante todo el programa, fuera del soporte estándar. La implementación en Renca es supervisada por el equipo fundador, no delegada.</span></div>
       <div class="terms-item"><div class="terms-check check-orange">›</div><span><strong>Andina como caso inaugural en embotellado de alta velocidad LATAM.</strong> Los términos comerciales del programa reflejan ese rol: Andina obtiene pricing preferencial y acceso a aprendizajes cross-industria de Made (manufactura, minería, alimentos) aplicables a sus líneas.</span></div>
@@ -963,31 +973,43 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
     <div class="card" style="margin-top:14px;border-left:4px solid var(--orange)">
       <div class="card-title"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>Fase 2 · Mes 6 en adelante</div>
-      <p style="font-size:13.5px;color:var(--dark);line-height:1.7;margin:0 0 16px"><strong>Expansión a red completa: Chile → Brasil → Argentina → Paraguay.</strong> La Fase 2 se activa cuando el Año 1 (Fase 1) documenta al menos $500,000 USD en ahorros verificados, auditados por el árbitro técnico. El modelo entrenado en Renca transfiere directamente a cada frente nuevo: menor tiempo de calibración, mayor precisión desde el primer mes.</p>
-      <div class="tbl-scroll"><table class="cost-table">
-        <thead><tr><th>Concepto</th><th>Monto</th><th>Notas</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Made OS: Base por frente (Fase 1 y Fase 2)</strong></td><td style="font-weight:700">$2,500 USD/mes</td><td>Precio unificado post-piloto. El motor predictivo Krones/Sidel ya está calibrado; el valor entregado justifica la tarifa desde el primer mes en cada frente nuevo.</td></tr>
-          <tr><td><strong>Success fee: Clase A</strong></td><td style="font-weight:700">$3,000 USD/evento</td><td rowspan="2" style="vertical-align:middle">Cap: 15% del ahorro verificado ese mes por frente · piso $9,000 · techo $18,000. Misma definición auditada de Fase 0.</td></tr>
-          <tr><td><strong>Success fee: Clase B</strong></td><td style="font-weight:700">$1,500 USD/evento</td></tr>
-          <tr><td><strong>Gateway Edge frente adicional</strong></td><td style="font-weight:700">$5,000 USD</td><td>Pago único por frente. Mismo hardware grado industrial IP67 · NEMA 4X.</td></tr>
-          <tr><td><strong>Integración OPC-UA planta nueva</strong></td><td style="font-weight:700">Sin costo</td><td>Mismo protocolo; sin integración adicional si la planta usa Siemens S7 o Allen Bradley con OPC-UA activo.</td></tr>
-        </tbody>
-      </table></div>
+      <p style="font-size:13.5px;color:var(--dark);line-height:1.7;margin:0 0 16px"><strong>Expansión a red completa: Chile → Brasil → Argentina → Paraguay.</strong> Si el piloto demuestra ROI, el modelo entrenado en Renca transfiere directamente a cada frente nuevo: menor tiempo de calibración, mayor precisión desde el primer mes. La expansión se diseña con Andina en la sesión de cierre del mes 6.</p>
+      <div class="admin-only admin-only-wrap" style="margin-top:12px">
+        <div class="admin-badge">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:10px;height:10px"><path d="M7 1l4.5 1.8v4.2c0 2.8-2 4.5-4.5 5-2.5-.5-4.5-2.2-4.5-5V2.8L7 1z"/></svg>
+          Interno · pricing post-piloto
+        </div>
+        <div class="tbl-scroll"><table class="cost-table">
+          <thead><tr><th>Concepto</th><th>Monto</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Made OS: Base por frente (OS Año 1 y Fase 2)</strong></td><td style="font-weight:700">$2,500 USD/mes</td><td>Precio post-piloto. Motor predictivo Krones/Sidel ya calibrado.</td></tr>
+            <tr><td><strong>Success fee: Clase A</strong></td><td style="font-weight:700">$3,000 USD/evento</td><td rowspan="2" style="vertical-align:middle">Cap: 15% del ahorro verificado ese mes por frente · piso $9,000 · techo $18,000.</td></tr>
+            <tr><td><strong>Success fee: Clase B</strong></td><td style="font-weight:700">$1,500 USD/evento</td></tr>
+            <tr><td><strong>Gateway Edge frente adicional</strong></td><td style="font-weight:700">$5,000 USD</td><td>Pago único por frente. IP67 · NEMA 4X.</td></tr>
+            <tr><td><strong>Integración OPC-UA planta nueva</strong></td><td style="font-weight:700">Sin costo</td><td>Mismo protocolo Siemens S7 / Allen Bradley.</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <p style="font-size:13px;color:var(--gray);margin-top:14px;line-height:1.6">El pricing de expansión se define en la sesión de cierre del mes 6, basado en el ROI documentado y la curva de aprendizaje del modelo. Andina no tiene ningún compromiso sobre la expansión hasta esa sesión.</p>
     </div>
 
-    <div class="card" style="margin-top:14px">
-      <div class="card-title"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2l1.5 4.5H14l-3.7 2.7 1.4 4.3L8 11 4.3 13.5l1.4-4.3L2 6.5h4.5z"/></svg>Potencial ARR por región · Fase 2 completa</div>
+    <div class="admin-only admin-only-wrap" style="margin-top:14px">
+      <div class="admin-badge">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:10px;height:10px"><path d="M7 1l4.5 1.8v4.2c0 2.8-2 4.5-4.5 5-2.5-.5-4.5-2.2-4.5-5V2.8L7 1z"/></svg>
+        Interno · ARR Made por región
+      </div>
+      <div class="card-title" style="margin-bottom:10px"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2l1.5 4.5H14l-3.7 2.7 1.4 4.3L8 11 4.3 13.5l1.4-4.3L2 6.5h4.5z"/></svg>Potencial ARR por región · Fase 2 completa</div>
       <div class="tbl-scroll"><table class="cost-table">
-        <thead><tr><th>Región</th><th>Frentes</th><th>ARR base SaaS</th><th>ARR success fees est.</th><th style="font-weight:700">ARR total</th></tr></thead>
+        <thead><tr><th>Región</th><th>Frentes</th><th>ARR base OS</th><th>ARR success fees est.</th><th style="font-weight:700">ARR total Made</th></tr></thead>
         <tbody>
           <tr><td>Chile (Renca + 2 plantas)</td><td>9</td><td>$270,000</td><td>~$470,000</td><td style="font-weight:700">~$740,000</td></tr>
           <tr><td>Brasil (incluyendo línea multi-categoría Q3 2025)</td><td>9</td><td>$270,000</td><td>~$470,000</td><td style="font-weight:700">~$740,000</td></tr>
           <tr><td>Argentina + Paraguay</td><td>4 plantas</td><td>$240,000</td><td>~$418,000</td><td style="font-weight:700">~$658,000</td></tr>
           <tr><td>Expansión / nuevas líneas</td><td>4</td><td>$120,000</td><td>~$209,000</td><td style="font-weight:700">~$329,000</td></tr>
+          <tr><td style="font-weight:700">Red completa · 30 frentes</td><td style="font-weight:700">30</td><td style="font-weight:700">$900,000</td><td style="font-weight:700">~$1,566,000</td><td style="font-weight:700;color:var(--orange)">~$2,466,000</td></tr>
         </tbody>
       </table></div>
-      <p style="font-size:11.5px;color:var(--gray-l);margin-top:10px;line-height:1.6">Success fees estimados con Poisson λ=0.55 Clase A × $3,000 + λ=1.8 Clase B × $1,500 por frente/mes ($4,350/frente/mes). Hasta 30 frentes en Fase 2. Los ahorros evitados a esa escala superan los $50M/año: el ratio fee/ahorro se mantiene bajo el 5%.</p>
+      <p style="font-size:11.5px;color:var(--gray-l);margin-top:10px;line-height:1.6">λ=0.55 Clase A × $3,000 + λ=1.8 Clase B × $1,500 = $4,350/frente/mes. Hardware one-time: 30 × $5,000 = $150,000. Los ahorros evitados a esa escala superan $50M/año: ratio fee/ahorro bajo 5%.</p>
     </div>
 
     <div class="alert alert-gold" style="margin-top:16px">
@@ -997,7 +1019,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
     <div class="alert alert-info" style="margin-top:12px">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8l2 2 4-4"/></svg>
-      <div><strong>Ventana de transición:</strong> Sesión de 45 minutos al cierre del mes 6 evalúa el trigger de Fase 1. Si el piloto no documentó al menos 1 evento Clase A validado, Andina no tiene ninguna obligación de continuar. Sin penalidades. Sin lock-in. Si el trigger se activó, la transición a Fase 1 es automática según los términos contractuales ya firmados.</div>
+      <div><strong>Ventana de transición:</strong> Sesión de 45 minutos al cierre del mes 6 para revisar resultados y decidir próximos pasos en conjunto. Si el piloto no documentó al menos 1 evento Clase A validado, Andina no tiene ninguna obligación de continuar. Sin penalidades. Sin lock-in.</div>
     </div>
   </div>
 
@@ -1455,6 +1477,7 @@ function showProposal(asAdmin) {
     requestAnimationFrame(function() { window.scrollTo(0, 0); });
   });
   if (isAdmin) {
+    document.body.classList.add('admin-mode');
     try { posthog.opt_out_capturing(); } catch(e) {}
     _assignIds(); _restoreEdits(); _initAdminBar();
   } else {
