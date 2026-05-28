@@ -407,10 +407,10 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </div>
       <div class="cover-tagline" style="margin-bottom:0;margin-top:8px;" data-eid="cover-tagline">Inteligencia artificial para una manufactura sin pérdidas</div>
     </div>
+    <!-- EDIT-CCA: removed company-badge span, logo alone identifies the client -->
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
       <img src="logoCCA.png" alt="Coca-Cola Andina" height="34" style="display:block;width:auto;"
            onerror="this.style.display='none'">
-      <span class="company-badge" data-eid="company-badge">Coca-Cola Andina</span>
     </div>
   </div>
   <div class="cover-rule"></div>
@@ -436,9 +436,10 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="m-label" data-eid="cover-m3-label">Inversión piloto</div>
         <div class="m-value" data-eid="cover-m3-value">$1,500 USD / mes x frente</div>
       </div>
+      <!-- EDIT-CCA: replaced "Alcance inicial" with ROI metric for stronger cover impact -->
       <div class="cover-metric">
-        <div class="m-label" data-eid="cover-m4-label">Alcance inicial</div>
-        <div class="m-value" data-eid="cover-m4-value">1 línea · Planta Renca</div>
+        <div class="m-label" data-eid="cover-m4-label">ROI estimado · piloto</div>
+        <div class="m-value" data-eid="cover-m4-value">400% – 900%</div>
       </div>
     </div>
 
@@ -713,7 +714,16 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </div>
     </div>
 
-    <div class="card" style="margin-top:20px">
+    <!-- EDIT-CCA: added break-even mínimo anchor block (Corrección 3) -->
+    <div class="card" style="margin-top:20px;border-left:4px solid var(--orange)">
+      <div class="card-title" style="margin-bottom:8px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8l4 4 8-8"/></svg>
+        Umbral mínimo de retorno — antes del upside
+      </div>
+      <p style="font-size:13.5px;color:var(--dark);line-height:1.7;margin:0">Con evitar un solo evento Clase A de 4 horas en la llenadora Krones (costo estimado: $200K–$480K USD), el programa piloto completo de 6 meses se paga entre <strong>6x y 15x</strong>. El escenario de ROI 400%–900% asume 2 a 4 eventos en 6 meses. Si Made detecta un solo evento en todo el programa, Andina ya recupera su inversión con margen. El resto es retorno adicional verificable.</p>
+    </div>
+
+    <div class="card" style="margin-top:14px">
       <div class="card-title">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
         Activos monitoreados y costo de downtime por componente
@@ -753,14 +763,33 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </div>
     </div>
 
-    <div class="alert alert-info" style="margin-top:12px">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8l2 2 4-4"/></svg>
+    <!-- EDIT-CCA: replaced 4-criteria generic definition with 5-criteria auditable standard (derived from Peñoles proposal) -->
+    <div class="card" style="margin-top:16px">
+      <div class="card-title">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8l2 2 4-4"/></svg>
+        Definición operativa de "Evento Crítico Evitado" — criterios objetivos
+      </div>
+      <p style="font-size:13px;color:var(--gray);margin-bottom:14px;line-height:1.6"><strong style="color:var(--black)">Clase A · Paro mayor evitado.</strong> Genera success fee cuando se cumplen <strong>los cinco</strong> criterios:</p>
+      <ol style="font-size:13px;color:var(--dark);line-height:1.75;padding-left:18px;display:flex;flex-direction:column;gap:8px;">
+        <li><strong>Detección documentada:</strong> drift sostenido de la variable de condición monitorea (vibración RMS, temperatura de rodamiento, presión de llenado, firma de corriente) ≥2 desviaciones estándar sobre baseline durante al menos 20 minutos consecutivos, con timestamp en plataforma Made OS.</li>
+        <li><strong>Prescripción emitida antes de la falla:</strong> orden de intervención generada por Made OS, registrada con timestamp y canal de entrega (WhatsApp / email / WebApp), anterior al evento de paro.</li>
+        <li><strong>Intervención ejecutada:</strong> orden de trabajo en CMMS (SAP PM u otro) con código de causa coincidente, ejecutada en ventana de mantenimiento programado o cambio de turno dentro de la ventana sugerida por Made OS.</li>
+        <li><strong>Evidencia física del modo de falla:</strong> el componente inspeccionado o reemplazado (válvula de llenado, sello, rodamiento, molde) presenta signos de degradación correspondientes al patrón detectado, documentados mediante foto, medición o reporte técnico de mantenimiento.</li>
+        <li><strong>Contrafactual de no-mantenimiento programado:</strong> el activo no estaba programado en plan de mantenimiento preventivo en una ventana de ±5 días respecto a la prescripción emitida por Made OS.</li>
+      </ol>
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:13px;color:var(--dark);line-height:1.65">
+        <strong>Clase B · Operación degradada evitada.</strong> Genera success fee. Degradación detectada y corregida antes de impactar velocidad de línea, gramaje o calidad de llenado/etiquetado; aplican criterios 1, 2 y 3 anteriores.<br>
+        <strong>Clase C · Alerta útil validada.</strong> No genera fee. Detección correcta confirmada por inspección sin intervención inmediata requerida; alimenta el aprendizaje del modelo.
+      </div>
+      <p style="font-size:11.5px;color:var(--gray-l);margin-top:12px;line-height:1.6">Baseline calibrado durante los primeros 30 días del programa. Ventana de disputa de cualquier evento: 10 días hábiles desde el reporte mensual. Árbitro técnico independiente designado al inicio del programa (ver mecanismo abajo).</p>
+    </div>
+
+    <!-- EDIT-CCA: added árbitro técnico independiente mechanism (Corrección 2) -->
+    <div class="alert alert-info" style="margin-top:14px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 7v4M8 5.5v.5"/></svg>
       <div>
-        <strong>Definición de "Evento Crítico Evitado"</strong><br>
-        <strong>Clase A: Paro mayor evitado:</strong> alerta emitida antes de la falla, intervención ejecutada, evidencia en bitácora, contrafactual razonable de que el activo habría causado paro de línea. <em>Genera success fee.</em><br>
-        <strong>Clase B: Operación degradada evitada:</strong> se evitó pérdida material de velocidad o calidad de llenado/etiquetado. <em>Genera success fee.</em><br>
-        <strong>Clase C: Alerta útil validada:</strong> detección correcta, no genera fee; alimenta el modelo.<br>
-        <em style="font-size:12px">Baseline primeros 30 días · ventana de disputa 10 días hábiles · árbitro técnico independiente al inicio del programa.</em>
+        <strong>Mecanismo de árbitro técnico independiente</strong><br>
+        Al inicio del programa, Made y Andina seleccionan mutuamente un árbitro de una shortlist conjunta de tres candidatos con perfil: ingeniero senior de confiabilidad con certificación CMRP o equivalente, 10+ años de experiencia en plantas de bebidas o manufactura de alta velocidad, sin relación contractual vigente con Made ni con Andina. Las disputas sobre procedencia de success fees se revisan en sesión mensual (no caso a caso), con decisión vinculante. Honorarios del árbitro: 50% Made / 50% Andina. Si las partes no acuerdan el árbitro inicial dentro de 20 días hábiles del inicio del programa, ISPE o el equivalente técnico que ambas partes acuerden actúa como autoridad designante.
       </div>
     </div>
   </div>
@@ -819,6 +848,18 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="terms-item"><div class="terms-check check-orange">→</div><span>Sesión de cierre de resultados con dirección al finalizar el programa.</span></div>
         <div class="terms-item"><div class="terms-check check-orange">→</div><span>Pago base al inicio y honorarios por éxito conforme a la definición de eventos auditados.</span></div>
       </div>
+    </div>
+
+    <!-- EDIT-CCA: added Compromisos Made → Andina block (Corrección 5) -->
+    <div class="card" style="margin-top:16px;border-left:4px solid var(--orange)">
+      <div class="card-title" style="margin-bottom:14px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1l4.5 1.8v4.2c0 2.8-2 4.5-4.5 5-2.5-.5-4.5-2.2-4.5-5V2.8L7 1z"/></svg>
+        Compromisos Made hacia Andina
+      </div>
+      <div class="terms-item" style="margin-bottom:10px"><div class="terms-check check-orange">›</div><span><strong>Pricing garantizado.</strong> La tarifa base de $1,500 USD/mes por frente y el success fee de $3,000 USD/evento se mantienen sin ajuste unilateral durante la totalidad del programa piloto de 6 meses y para la activación del primer año de contrato SaaS.</span></div>
+      <div class="terms-item" style="margin-bottom:10px"><div class="terms-check check-orange">›</div><span><strong>Prioridad de roadmap para embotellado Krones/Sidel.</strong> Los modos de falla específicos de llenadoras, sopladoras de PET y etiquetadoras con glue system se incorporan al roadmap de Made con prioridad alta durante el programa, sin costo adicional.</span></div>
+      <div class="terms-item" style="margin-bottom:10px"><div class="terms-check check-orange">›</div><span><strong>Acceso directo al equipo fundador.</strong> Línea directa con Gerardo Peña (CEO) y Ramiro Pantoja (CTO) durante todo el programa, fuera del soporte estándar. La implementación en Renca es supervisada por el equipo fundador, no delegada.</span></div>
+      <div class="terms-item"><div class="terms-check check-orange">›</div><span><strong>Andina como caso inaugural en embotellado de alta velocidad LATAM.</strong> Los términos comerciales del programa reflejan ese rol: Andina obtiene pricing preferencial y acceso a aprendizajes cross-industria de Made (manufactura, minería, alimentos) aplicables a sus líneas.</span></div>
     </div>
   </div>
 
@@ -896,6 +937,31 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="section" id="s09">
     <div class="s-label">09. Sesión técnica inicial</div>
     <p class="s-lead" data-eid="sesion-lead">Una sesión de trabajo de 45 minutos con el equipo fundador de Made para evaluar la línea candidata en Renca, confirmar el tipo de integración y definir los criterios de éxito del programa con el equipo de operaciones y mantenimiento de Andina.</p>
+
+    <!-- EDIT-CCA: added calibration questions table before CTA (Corrección 4) -->
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-title" style="margin-bottom:12px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 7v4M8 5.5v.5"/></svg>
+        Lo que falta calibrar en la sesión técnica
+      </div>
+      <p style="font-size:12.5px;color:var(--gray);margin-bottom:14px;line-height:1.6">Los datos del ROI se basan en benchmarks de industria de bebidas de alto volumen. La sesión técnica permite reemplazarlos por los números reales de Andina:</p>
+      <div class="tbl-scroll"><table class="cost-table">
+        <thead>
+          <tr><th>Pregunta abierta</th><th>Por qué importa</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Número de líneas activas en Renca y velocidad real (bph)</strong></td><td>Calibra el costo exacto de downtime por hora para la línea candidata, no el benchmark genérico de $50K–$120K.</td></tr>
+          <tr><td><strong>MTBF histórico de llenadora y sopladora en Renca (12–24 meses)</strong></td><td>Reemplaza el "~20 hrs/año de downtime" con el dato real de Andina. Hace el ROI proyectado irrefutable.</td></tr>
+          <tr><td><strong>CMMS específico</strong> (SAP PM, Maximo, otro)</td><td>Determina cómo Made integra la prescripción al flujo de OTs existente. Sin esto, la alerta queda fuera del proceso de mantenimiento.</td></tr>
+          <tr><td><strong>Protocolo de telemetría activa en PLCs de Renca</strong> (OPC-UA disponible, versión Siemens S7)</td><td>Define si la ruta es Software+OPC-UA o Edge AI. Impacta CAPEX del piloto.</td></tr>
+          <tr><td><strong>Política IT/OT para canal saliente cifrado</strong></td><td>Determina ruta de aprobación de seguridad y tiempo real de habilitación del canal a la capa cloud de Made.</td></tr>
+          <tr><td><strong>Costo histórico de un evento correctivo mayor en llenadora</strong></td><td>El dato real de Andina es más persuasivo ante Finanzas que cualquier benchmark de McKinsey.</td></tr>
+          <tr><td><strong>Champion técnico interno designado</strong> (Gerencia de Mantenimiento o Producción)</td><td>Requisito operativo: sin sponsor con autoridad para validar KPIs, el programa no puede ejecutarse en los tiempos comprometidos.</td></tr>
+          <tr><td><strong>Presupuesto disponible y ciclo de aprobación</strong></td><td>Determina si el ticket de $19K–$31K entra como gasto discrecional de planta o requiere aprobación corporativa. Ajusta la velocidad del cierre.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
     <div class="cta-block">
       <div class="cta-left">
         <div class="cta-tag" data-eid="sesion-cta-tag">Programa piloto · 6 meses · 1 frente de embotellado · Planta Renca</div>
@@ -903,8 +969,9 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <p>45 minutos · Remota o presencial en Renca · Asistentes: Gerardo Peña (CEO) + Ramiro Pantoja (CTO). Objetivo: calificación técnica de la línea candidata + plan del programa en 1 página. Una vez aprobado, el programa inicia en menos de 10 días hábiles.</p>
       </div>
       <div class="cta-right">
-        <a href="https://cal.com/madeos.ai/demo" class="cta-btn">Agendar sesión →</a>
-        <div class="cta-sub" data-eid="sesion-cta-sub">cal.com/madeos.ai/demo</div>
+        <!-- EDIT-CCA: replaced generic cal.com link with personalized mailto (Corrección 6) -->
+        <a href="mailto:ger@madeos.ai?subject=Sesi%C3%B3n%20t%C3%A9cnica%20Made%20OS%20%C3%97%20Coca-Cola%20Andina&body=Hola%20Gerardo%2C%0A%0AMe%20interesa%20coordinar%20la%20sesi%C3%B3n%20t%C3%A9cnica%20de%2045%20minutos%20para%20evaluar%20el%20programa%20piloto%20en%20Planta%20Renca.%0A%0A%5BTu%20nombre%20%C2%B7%20Cargo%20%C2%B7%20%C3%81rea%5D" class="cta-btn">Escribir a Gerardo →</a>
+        <div class="cta-sub" data-eid="sesion-cta-sub">ger@madeos.ai · respuesta en menos de 24h</div>
       </div>
     </div>
   </div>
