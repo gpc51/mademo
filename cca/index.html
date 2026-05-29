@@ -539,7 +539,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           <div class="step-line"></div>
         </div>
         <div class="step-body">
-          <div class="step-tag" data-eid="solucion-step1-tag">Primeros 10 días hábiles</div>
+          <div class="step-tag" data-eid="solucion-step1-tag">1–2 días por línea de llenadora para la modalidad Edge · menos de 1 hora para la modalidad Software + OPC-UA</div>
           <div class="step-title" data-eid="solucion-step1-title">Integración no intrusiva</div>
           <!-- EDIT-CCA-V3: added committed milestone with consequence (Corrección 3) -->
           <div class="step-desc" data-eid="solucion-step1-desc">Se selecciona la línea candidata en Renca y el tipo de integración: gateway Edge AI instalado en tablero DIN rail o conexión vía OPC-UA al servidor industrial existente. Made OS opera en modo solo-lectura: no escribe ni modifica parámetros en PLCs, DCS ni SCADA.<br><br><strong style="color:var(--dark)">Compromiso: al día 10 hábil, Made OS lee la línea candidata en tiempo real, con señales de vibración, temperatura, presión y corriente con contexto, timestamp y trazabilidad completa. Si la conexión no se logra en ese plazo sin alterar operaciones, el programa no inicia y no se factura ningún concepto hasta que la conexión esté activa.</strong></div>
@@ -1181,6 +1181,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <li>Detección de anomalías on-device: modelos especializados por activo (llenadora, sopladora, etiquetadora) ejecutados localmente en el Jetson Orin Nano Super (67 INT8 TOPS)</li>
             <li>Buffer local 256 GB estándar para operación offline; ampliable a 512 GB on-demand. Sincronización automática al reconectar</li>
             <li>El Edge NO ejecuta el agente prescriptivo ni el LLM. No genera prescripciones de forma autónoma</li>
+            <li>Latencia de inferencia local: sub-10ms desde señal hasta anomaly score, sin dependencia de round-trip cloud para la detección</li>
           </ul>
           <h5>Software + OPC-UA (alternativa sin hardware)</h5>
           <ul>
@@ -1250,6 +1251,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         </div>
         <div class="apx-body">
           <ul>
+            <li>Protocolo de campo: OPC UA sobre opc.tcp://{ip_plc}:4840 (puerto estándar IEC 62541; configurable según entorno de red de Andina). La conexión desde MadeIO al PLC es estrictamente entrante al software, saliente desde la perspectiva de la red OT: no se abre ningún puerto entrante en el firewall industrial</li>
             <li>Todo el tráfico entre el Edge/Software+OPC-UA y la capa cloud de Made viaja cifrado TLS 1.3 sobre WebSocket (WSS)</li>
             <li>El payload contiene exclusivamente: timestamp, identificador de activo (no nombre de operador ni datos personales), valores de señal numéricos, y etiqueta de evento si aplica</li>
             <li>No se transmiten: recetas de producto, fórmulas, datos de calidad sensibles, información de clientes ni datos personales de empleados</li>
