@@ -1,5 +1,7 @@
-# Made OS — Modelo de Pricing Value-Based v1.3
+# Made OS — Modelo de Pricing Value-Based v1.4
 
+> **v1.4 (mayo 2026):** corregido tras el caso CyT (Concha y Toro). **Premium es la excepción a la regla de costo/hora:** una cuenta de vino/farma puede tener evento barato por hora pero valor-en-riesgo agregado enorme y alta sofisticación. No se clasifica por costo/hora sino por valor-en-riesgo agregado + posicionamiento. Sus palancas de captura son base por frente + **capa de correlación cross-area** (componente pagado post-piloto, no gratis para siempre) + amplitud, NO el success fee. Añadido el **patrón maestro: la forma del valor decide la palanca de captura** (sección 8).
+>
 > **v1.3 (mayo 2026):** corregido tras el caso Repsol. Añadido el **modo de empaquetado** (línea / activo / sitio) como decisión propia: define la arquitectura de cobro, no solo el tamaño. A escala de sitio integrado (refinería) la base por línea se reemplaza por **licencia anual por sitio + capex de implementación**. Reafirmada la regla B4: Clase A de integridad nunca es fee fijo. Reescrito el clasificador (sección 8) como las 3 preguntas definitivas.
 >
 > **v1.2 (mayo 2026):** corregido tras el caso Minsa. La clasificación familia/tier se hace por **costo real del evento**, no por la etiqueta del vertical. El vertical es solo una pista inicial.
@@ -48,12 +50,14 @@ El pricing se arma cruzando tres decisiones independientes. La primera define **
 |---|---|---|---|
 | Ligera | Manufactura discreta de bajo costo de paro | <$20K/h | base baja, cap $9K |
 | F&B | Bebidas, embotellado, lácteos, cervecería, **molienda de alto costo** | $20K-$120K/h | base media, cap $9K-$18K |
-| Premium | Vino, destilados, farma | valor por lote, no por hora | base alta por frente, cap $10K-$15K |
+| Premium | Vino, destilados, farma | **evento barato por hora, pero valor-en-riesgo agregado alto** | base por frente + capa de correlación cross-area + amplitud; success fee bajo (B1). NO se clasifica por costo/hora |
 | Pesada | Minería, O&G, petroquímica | $50K-$1.5M/h | base modesta (1.3x-2x F&B), la diferenciación real es por cap (5x-6x) y banda de success fee alta |
 
 > **Corrección (caso Minsa, mayo 2026).** Minsa es "molienda", que por etiqueta caería en Ligera. Pero su evento real cuesta $35-60K/hora: economía de F&B, no de Ligera. Clasificarla por la etiqueta del vertical la habría mal-priceado. **Regla: la familia y el tier se asignan por el costo real del evento del activo candidato. El vertical solo sugiere por dónde empezar a buscar ese número.**
 
 > **Corrección (caso Peñoles, mayo 2026).** La familia Pesada NO se diferencia por una base 5x-10x. Peñoles cobra base $2,000 (apenas 1.3x el F&B de $1,500) pero cap $50,000 (5.5x) y success fee $5,000-$6,000. La palanca de valor en activos críticos es el cap y el fee por evento, no la mensualidad fija. La base se mantiene modesta para no inflar el costo recurrente; el valor se captura cuando se evita el evento.
+
+> **Corrección (caso CyT, mayo 2026). Premium es la excepción a la regla de costo/hora.** Concha y Toro es multinacional de $975M con evento barato (~$18K, $3,000/h): por costo/hora caería en Ligera/Tier S, lo cual es absurdo. El valor de una cuenta Premium está en el **valor-en-riesgo agregado a lo largo de un throughput masivo** ($293K-$975K/año), no en la severidad por evento. **Premium se clasifica por valor-en-riesgo agregado + posicionamiento de calidad, NO por costo/hora.** Sus tres palancas de captura: (1) la **capa de correlación cross-area** (ej. bodega-envasado), valor único de Made en operaciones multi-área, hoy regalada en piloto pero componente pagado post-piloto, no tercer frente gratis para siempre; (2) base por frente × amplitud (land 2 frentes, expand a red de bodegas/plantas); (3) modificador multinacional +20% post-descuento de logo fundador. El success fee NO es la palanca: queda en B1 porque los eventos son chicos.
 
 **Eje 2 — Tier (por tamaño/valor de la cuenta dentro de la familia).** S / M / L.
 
@@ -93,9 +97,10 @@ Esta es la corrección de mayor impacto. Hoy el fee es plano ($2,500 Clase A) si
 **Validación contra cartera actual:**
 - Andina: evento $200K-$960K → **B3** ($6,000). Hoy paga $2,500. Subcaptura corregida.
 - Jarritos: evento $80K-$320K → **B2/B3** ($3,000-$6,000). Hoy paga $2,500.
-- Minsa: evento menor → **B1** ($1,500). Hoy sobre-cobraba en proporción.
+- Minsa: evento $35-60K/h × duración → **B2** ($3,000). Hoy cobra $2,500, ligeramente por debajo de B2. Reclasificar a Tier M (base $1,250 → $1,500) y fee a B2.
 - Repsol Clase B (paro de proceso, ~$500K-$2M) → **B3**. Hoy cobra $15,000 fijo: OK, ya está en grado B3.
 - Repsol Clase A (incidente de integridad, $10M-$100M+) → **B4** (2-4% del costo evitado). Hoy cobra $15,000 plano, igual que Clase B: la sub-captura más severa de la cartera. Es el mismo error que relaves en Peñoles, en el contexto de mayor stakes. **Clase A y Clase B nunca deben tener el mismo fee.**
+- CyT (Premium): evento ~$18K → **B1** ($1,500). Hoy cobra $2,500, ligeramente por encima. Pero en Premium el fee NO es la palanca: la captura vive en base + capa de correlación + amplitud. No subir el fee aquí; monetizar la correlación post-piloto.
 
 ---
 
@@ -146,11 +151,11 @@ Dos escenarios distintos, no confundir:
 
 ## 8. El patrón de clasificación: 3 preguntas en orden
 
-Validado contra los tres casos (Minsa, Peñoles, Repsol). Cualquier cuenta se categoriza con estas tres preguntas, **en este orden**. Cada una salió de un caso real.
+Validado contra los cuatro casos (Minsa, Peñoles, Repsol, CyT). Cualquier cuenta se categoriza con estas tres preguntas, **en este orden**. Cada una salió de un caso real.
 
 **Antes de empezar, obtén el número que manda: el costo de paro por hora del activo candidato** (USD/h). Sin ese dato no se clasifica nada.
 
-1. **¿Cuánto cuesta el evento por hora?** (número real, nunca la etiqueta del vertical) → fija **Familia** (Eje 1) y la **Banda de success fee** (sección 3). *Lección Minsa: molienda parecía Ligera, pero su evento de $35-60K/h es economía F&B.*
+1. **¿Cuánto cuesta el evento por hora?** (número real, nunca la etiqueta del vertical) → fija **Familia** (Eje 1) y la **Banda de success fee** (sección 3). *Lección Minsa: molienda parecía Ligera, pero su evento de $35-60K/h es economía F&B.* **Excepción Premium (CyT):** si el evento es barato por hora pero la cuenta es grande/sofisticada (vino, destilados, farma), NO la mandes a Ligera. Clasifica por valor-en-riesgo agregado y posicionamiento; la captura va por base + correlación + amplitud, no por fee.
 
 2. **¿Cuál es la unidad de valor que el cliente compra?** línea → activo → sitio → fija el **modo de empaquetado** (Eje 0) y con él la arquitectura de cobro: base por línea, base por activo, o licencia anual por sitio. Lo decide el tamaño y la integración de la operación. *Lección Repsol: la refinería compra plataforma, no frentes; se cobra licencia/año, no $/línea.*
 
@@ -159,6 +164,19 @@ Validado contra los tres casos (Minsa, Peñoles, Repsol). Cualquier cuenta se ca
 Luego: **Tier S/M/L** dentro de la familia (sección 2) y **modificadores** (sección 7).
 
 → Salen arquitectura de cobro, base, cap, fee y gateway en minutos, todos defendibles.
+
+### Patrón maestro: la forma del valor decide la palanca de captura
+
+La síntesis de los cuatro casos. No todas las cuentas se capturan con la misma palanca. Identifica primero la **forma del valor**, luego jala la palanca que le corresponde:
+
+| Forma del valor de la cuenta | Caso de referencia | Palanca de captura primaria |
+|---|---|---|
+| Severidad alta por evento | Andina, Peñoles Fase 1 | Success fee por banda (B2-B3) |
+| Riesgo catastrófico / integridad | Peñoles relaves, Repsol Clase A | B4 = % del costo evitado |
+| Integración a escala de sitio | Repsol | Licencia anual por sitio + capex |
+| Throughput alto, evento bajo, premium | CyT | Base por frente + capa de correlación + amplitud |
+
+El error transversal en la cartera actual: usar la misma palanca (success fee plano $2,500) para todas las formas de valor. El modelo asigna la palanca correcta a cada forma.
 
 ---
 
