@@ -75,7 +75,7 @@ Anclada a los números ya usados (Minsa $1,250, Jarritos/Andina $1,500 cliente, 
 
 > Nota 1: el $3,000 del Tier L no es nuevo. Ya existía como escalación interna oculta en la barra admin de las propuestas. El modelo solo lo hace explícito y lo asigna por criterio, no por negociación.
 >
-> Nota 2: Minsa cobra hoy $1,250 (tarifa S) pero su evento real es $35-60K/h, lo que la pone en Tier M. Está sub-clasificada un tier. Reclasificarla a M sube base a $1,500, coherente con su economía real.
+> Nota 2: Minsa estaba en tarifa S ($1,250) pero su evento real es $35-60K/h, lo que la pone en Tier M. **Reclasificada y emitida en Tier M:** base $1,500, fee B2. Coherente con su economía real.
 
 ---
 
@@ -97,7 +97,7 @@ Esta es la corrección de mayor impacto. Hoy el fee es plano ($2,500 Clase A) si
 **Validación contra cartera actual:**
 - Andina: evento $200K-$960K → **B3** ($6,000). Hoy paga $2,500. Subcaptura corregida.
 - Jarritos: evento $80K-$320K → **B2/B3** ($3,000-$6,000). Hoy paga $2,500.
-- Minsa: evento $35-60K/h × duración → **B2** ($3,000). Hoy cobra $2,500, ligeramente por debajo de B2. Reclasificar a Tier M (base $1,250 → $1,500) y fee a B2.
+- Minsa: evento $35-60K/h × duración → **B2** ($3,000). **Emitida en Tier M:** base $1,500, Clase A $3,000, Clase B $1,250. Antes cobraba $2,500 plano sin Clase B explícita.
 - Repsol Clase B (paro de proceso, ~$500K-$2M) → **B3**. Hoy cobra $15,000 fijo: OK, ya está en grado B3.
 - Repsol Clase A (incidente de integridad, $10M-$100M+) → **B4** (2-4% del costo evitado). Hoy cobra $15,000 plano, igual que Clase B: la sub-captura más severa de la cartera. Es el mismo error que relaves en Peñoles, en el contexto de mayor stakes. **Clase A y Clase B nunca deben tener el mismo fee.**
 - CyT (Premium): evento ~$18K → **B1** ($1,500). Hoy cobra $2,500, ligeramente por encima. Pero en Premium el fee NO es la palanca: la captura vive en base + capa de correlación + amplitud. No subir el fee aquí; monetizar la correlación post-piloto.
@@ -212,4 +212,4 @@ Hoy son idénticos. Con el modelo:
 3. Decidir si el Tier L usa banda fija B3 o el 3% del costo evitado desde el año 1.
 4. Definir el piso real de costo de servir por línea para fijar el guardrail inferior.
 5. Definir el umbral para pasar de base por línea a licencia por sitio (modo Eje 0): ¿número de líneas/unidades, valor de contrato, o tipo de operación integrada?
-6. Acción concreta Repsol: separar Clase A (B4, % del costo evitado) de Clase B ($15K fija) y revisar el cap $50K/mes al alza para integridad. Hoy ambas clases cobran lo mismo.
+6. ~~Acción concreta Repsol: separar Clase A (B4) de Clase B.~~ **RESUELTO (emitido):** Repsol cobra Clase A integridad a 2-4% del costo evitado (piso $15K, sin cap mensual) y Clase B fija $15K. Las dos clases ya no cobran lo mismo.
