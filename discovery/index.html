@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Made OS · Discovery</title>
+<meta name="description" content="Made detecta señales de falla en activos críticos antes de que impacten la producción. Cuéntanos sobre tu planta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:     #d84200;
+    --orange-h:   #f04900;
+    --orange-bg:  rgba(216,66,0,.08);
+    --orange-bd:  rgba(216,66,0,.28);
+    --black:      #111213;
+    --dark:       #1a1c1e;
+    --gray-d:     #3e4245;
+    --gray:       #636870;
+    --gray-l:     #9ba3ab;
+    --border:     #e4e7ea;
+    --bg:         #f7f8f9;
+    --white:      #ffffff;
+    --red:        #c53030;
+    --green:      #2a7a4a;
+    --font:       'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:       'JetBrains Mono','Fira Code',monospace;
+    --r:          6px;
+    --r-lg:       10px;
+    --sh:         0 1px 4px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--font);color:var(--dark);background:var(--bg);font-size:15px;line-height:1.7;}
+  a{color:inherit;}
+
+  /* ── ANNOUNCEMENT BAR ── */
+  .annc{
+    background:var(--black);color:#fff;
+    font-size:11.5px;font-weight:600;letter-spacing:.05em;
+    text-align:center;padding:9px 20px;
+  }
+  .annc .dot{color:var(--orange);font-weight:800;margin:0 7px;}
+  .annc a{color:var(--orange-h);text-decoration:none;font-weight:700;}
+  .annc a:hover{text-decoration:underline;}
+
+  /* ── NAV ── */
+  .nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(247,248,249,.92);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:1000px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 32px;
+  }
+  .nav-logo{display:flex;align-items:center;gap:0;}
+  .nav-logo img{height:26px;width:auto;display:block;}
+  .nav-right{display:flex;align-items:center;gap:18px;}
+  .nav-domain{font-size:12px;color:var(--gray-l);letter-spacing:.04em;text-transform:uppercase;font-weight:600;}
+  .nav-cta{
+    background:var(--orange);color:#fff;text-decoration:none;
+    font-size:13px;font-weight:700;padding:9px 18px;border-radius:var(--r);
+    white-space:nowrap;transition:background .15s;
+  }
+  .nav-cta:hover{background:var(--orange-h);}
+
+  /* ── LAYOUT ── */
+  .wrap{max-width:1000px;margin:0 auto;padding:0 32px;}
+  .section{padding:64px 0;}
+  .s-label{
+    font-size:11px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--orange);margin-bottom:16px;
+  }
+  .divider{height:1px;background:var(--border);}
+
+  /* ── HERO ── */
+  .hero{padding:72px 0 64px;}
+  .hero-eyebrow{
+    font-size:11px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--orange);margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:46px;font-weight:800;line-height:1.08;
+    letter-spacing:-.03em;color:var(--black);max-width:880px;margin-bottom:24px;
+  }
+  .hero h1 em{color:var(--orange);font-style:normal;}
+  .hero-sub{
+    font-size:17px;color:var(--gray);line-height:1.6;
+    max-width:620px;margin-bottom:32px;
+  }
+  .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px;}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--orange-bd);background:var(--orange-bg);
+    color:var(--orange);font-size:12.5px;font-weight:600;
+    padding:8px 16px;border-radius:30px;
+  }
+  .pill svg{width:14px;height:14px;}
+  .btn-primary{
+    display:inline-block;background:var(--orange);color:#fff;text-decoration:none;
+    font-size:15px;font-weight:700;padding:14px 28px;border-radius:var(--r);
+    box-shadow:0 4px 14px rgba(216,66,0,.28);transition:background .15s;
+  }
+  .btn-primary:hover{background:var(--orange-h);}
+  .hero-note{font-size:12.5px;color:var(--gray-l);margin-top:12px;}
+
+  /* ── FEATURE CARDS ── */
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .feat{
+    background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);
+    padding:26px 26px;position:relative;overflow:hidden;box-shadow:var(--sh);
+  }
+  .feat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange);}
+  .feat-icon{
+    width:38px;height:38px;background:var(--orange-bg);border-radius:var(--r);
+    display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  }
+  .feat-icon svg{width:19px;height:19px;color:var(--orange);}
+  .feat-title{font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px;}
+  .feat-desc{font-size:13.5px;color:var(--gray);line-height:1.6;}
+
+  /* ── CASE CARDS ── */
+  .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .case{
+    background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);
+    padding:24px 24px;box-shadow:var(--sh);display:flex;flex-direction:column;
+  }
+  .case-badge{
+    display:inline-block;align-self:flex-start;
+    border:1px solid var(--orange-bd);color:var(--orange);background:var(--orange-bg);
+    font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    padding:4px 11px;border-radius:20px;margin-bottom:16px;
+  }
+  .case-problem{font-size:13px;color:var(--gray);line-height:1.55;margin-bottom:14px;}
+  .case-result{font-size:13.5px;color:var(--black);font-weight:600;line-height:1.5;
+    border-top:1px solid var(--border);padding-top:14px;margin-top:auto;}
+  .benchmark{
+    margin-top:18px;background:var(--dark);color:rgba(255,255,255,.82);
+    border-radius:var(--r-lg);padding:16px 22px;font-size:13px;line-height:1.55;
+    position:relative;overflow:hidden;
+  }
+  .benchmark::after{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--orange);}
+  .benchmark strong{color:#fff;}
+  .benchmark span{color:rgba(255,255,255,.5);font-size:11.5px;}
+
+  /* ── PILOT STEPS ── */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:8px;}
+  .step{position:relative;padding:0 16px 0 0;}
+  .step-line{position:absolute;top:13px;left:26px;right:-16px;height:2px;background:var(--border);z-index:0;}
+  .step:last-child .step-line{display:none;}
+  .step-dot{
+    width:26px;height:26px;border-radius:50%;background:var(--orange);color:#fff;
+    font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;
+    position:relative;z-index:1;margin-bottom:14px;
+  }
+  .step-week{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-l);margin-bottom:5px;}
+  .step-title{font-size:14.5px;font-weight:700;color:var(--black);margin-bottom:6px;}
+  .step-desc{font-size:12.5px;color:var(--gray);line-height:1.55;}
+  .pilot-pills{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px;}
+
+  /* ── FORM ── */
+  .form-wrap{background:var(--bg);}
+  .form-card{
+    background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);
+    padding:36px 40px;box-shadow:var(--sh);position:relative;overflow:hidden;
+  }
+  .form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--orange);}
+  .form-block{margin-bottom:30px;}
+  .form-block-label{
+    font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--orange);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);
+  }
+  .field{margin-bottom:18px;}
+  .field:last-child{margin-bottom:0;}
+  .field label{display:block;font-size:13px;font-weight:600;color:var(--black);margin-bottom:7px;}
+  .field label .req{color:var(--orange);}
+  .field input[type=text],.field input[type=email],.field select,.field textarea{
+    width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:var(--r);
+    font-family:var(--font);font-size:14px;color:var(--dark);background:var(--white);
+    outline:none;transition:border-color .15s,box-shadow .15s;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{
+    border-color:var(--orange);box-shadow:0 0 0 3px var(--orange-bg);
+  }
+  .field textarea{resize:vertical;min-height:74px;line-height:1.55;}
+  .field .hint{font-size:11.5px;color:var(--gray-l);margin-top:5px;}
+  .opt-list{display:flex;flex-direction:column;gap:9px;}
+  .opt{
+    display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--dark);
+    padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r);cursor:pointer;
+    transition:border-color .15s,background .15s;
+  }
+  .opt:hover{border-color:var(--orange-bd);}
+  .opt input{accent-color:var(--orange);width:16px;height:16px;flex-shrink:0;}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .form-submit{
+    width:100%;background:var(--orange);color:#fff;border:none;border-radius:var(--r);
+    font-family:var(--font);font-size:15px;font-weight:700;padding:15px;cursor:pointer;
+    transition:background .15s;margin-top:8px;
+  }
+  .form-submit:hover{background:var(--orange-h);}
+  .form-submit:disabled{opacity:.6;cursor:default;}
+  .form-priv{font-size:11.5px;color:var(--gray-l);text-align:center;margin-top:12px;line-height:1.5;}
+  .form-err{
+    display:none;background:#fff5f5;border:1px solid #fed7d7;color:var(--red);
+    border-radius:var(--r);padding:11px 14px;font-size:13px;margin-top:12px;
+  }
+  .form-ok{
+    display:none;text-align:center;padding:40px 24px;
+  }
+  .form-ok-icon{
+    width:56px;height:56px;border-radius:50%;background:var(--orange-bg);
+    border:1px solid var(--orange-bd);display:flex;align-items:center;justify-content:center;
+    margin:0 auto 20px;
+  }
+  .form-ok-icon svg{width:28px;height:28px;color:var(--orange);}
+  .form-ok h3{font-size:21px;font-weight:800;color:var(--black);letter-spacing:-.02em;margin-bottom:10px;}
+  .form-ok p{font-size:14px;color:var(--gray);line-height:1.6;max-width:420px;margin:0 auto 14px;}
+  .form-ok .mail{font-size:13px;color:var(--orange);font-weight:600;}
+
+  /* ── FOOTER ── */
+  .footer{background:var(--dark);color:rgba(255,255,255,.4);padding:34px 0;}
+  .footer-inner{
+    max-width:1000px;margin:0 auto;padding:0 32px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  }
+  .footer-brand img{height:24px;width:auto;display:block;margin-bottom:6px;filter:brightness(0) invert(1);opacity:.85;}
+  .footer-brand span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;}
+  .footer-creds{display:flex;flex-wrap:wrap;gap:8px;}
+  .cred{
+    border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.6);
+    font-size:11px;font-weight:600;padding:5px 12px;border-radius:20px;white-space:nowrap;
+  }
+  .footer-mail a{color:var(--orange-h);text-decoration:none;font-size:13px;font-weight:600;}
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:860px){
+    .feat-grid,.case-grid{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr 1fr;gap:24px 16px;}
+    .step-line{display:none;}
+  }
+  @media(max-width:600px){
+    .nav-inner,.wrap,.footer-inner{padding-left:20px;padding-right:20px;}
+    .hero{padding:48px 0 44px;}
+    .hero h1{font-size:31px;}
+    .hero-sub{font-size:15px;}
+    .section{padding:44px 0;}
+    .form-card{padding:24px 20px;}
+    .steps{grid-template-columns:1fr;}
+    .grid-2{grid-template-columns:1fr;}
+    .footer-inner{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https://us.i.posthog.com',person_profiles:'identified_only',defaults:'2026-01-30',disable_session_recording:true});
+</script>
+</head>
+<body>
+
+<!-- ══ ANNOUNCEMENT ══ -->
+<div class="annc">
+  Lanzamiento API · mayo 2026 <span class="dot">·</span> Primeras plantas elegibles sin costo de implementación <span class="dot">·</span> <a href="#form">Solicita tu diagnóstico →</a>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#top" aria-label="Made">
+      <img src="../assets/logo.svg" alt="Made" height="26"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <svg style="display:none" height="26" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
+        <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
+        <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
+      </svg>
+    </a>
+    <div class="nav-right">
+      <span class="nav-domain">madeos.ai</span>
+      <a class="nav-cta" href="#form">Diagnóstico gratuito</a>
+    </div>
+  </div>
+</nav>
+
+<span id="top"></span>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Manufactura sin pérdidas · Sistema operativo industrial</div>
+    <h1>Ninguna falla es aleatoria. <em>Made prescribe la acción exacta antes de que la línea se detenga.</em></h1>
+    <p class="hero-sub">Convertimos la telemetría de tus activos críticos en contexto operativo, eventos clasificados y riesgo priorizado. Mejora tu OEE, predice fallas y previene paros no planificados. Sin modificar tu lógica de control.</p>
+    <div class="pill-row">
+      <span class="pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>
+        Despliegue en días 1 a 10
+      </span>
+      <span class="pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v6h-6"/></svg>
+        ROI positivo desde el primer quarter
+      </span>
+    </div>
+    <a class="btn-primary" href="#form">Solicita tu diagnóstico de planta →</a>
+    <div class="hero-note">Gratis. Responde 7 preguntas en menos de 5 minutos.</div>
+  </div>
+</header>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ══ QUÉ HACE MADE ══ -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-label">Qué hace Made</div>
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 11-13h-7z" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <div class="feat-title">Detección temprana</div>
+        <div class="feat-desc">Identifica anomalías y degradación progresiva en compresores, bombas, motores y líneas de llenado antes de que generen un paro. Anticipa horas o días antes, no segundos.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="12" height="12" rx="1.5"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+        </div>
+        <div class="feat-title">No intrusivo, edge o nube</div>
+        <div class="feat-desc">Se conecta a tus PLCs, sensores y señales en días, sin modificar la lógica de control ni cableado nuevo. Una sola inteligencia, dos rutas: dispositivo edge en planta o software más API en tu propia infraestructura.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="feat-title">Prescriptivo, no solo alertas</div>
+        <div class="feat-desc">No muestra dashboards: le dice al operador qué ajustar, cuánto y cuándo, con el impacto esperado. Entregado por WhatsApp, SMS, correo o WebApp.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ══ RESULTADOS EN CAMPO ══ -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-label">Resultados en campo</div>
+    <div class="case-grid">
+      <div class="case">
+        <span class="case-badge">Embotellado de alta velocidad</span>
+        <div class="case-problem">Paros no planificados en líneas de llenado de alta velocidad sin señal previa.</div>
+        <div class="case-result">Detección de degradación anticipada en llenadora: paro evitado en turno nocturno.</div>
+      </div>
+      <div class="case">
+        <span class="case-badge">Procesamiento de minerales</span>
+        <div class="case-problem">Visibilidad fragmentada entre PLCs, sensores y rondas en campo en activos críticos.</div>
+        <div class="case-result">Correlación multimodal identificó un patrón de falla horas antes del evento, con ventana de intervención.</div>
+      </div>
+      <div class="case">
+        <span class="case-badge">Llenado aséptico</span>
+        <div class="case-problem">Micro-paros normalizados, invisibles en los tableros, acumulando pérdida silenciosa por línea al año.</div>
+        <div class="case-result">Causa raíz en variaciones de proceso entre turnos: menor tasa de rechazo y mejor OEE.</div>
+      </div>
+    </div>
+    <div class="benchmark">
+      <strong>Los micro-paros son invisibles en la mayoría de los tableros: acumulan pérdidas en silencio, turno tras turno, y suelen ser el principal lastre del OEE.</strong> <span>Metodología ISO 22400</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ══ CÓMO FUNCIONA EL PILOTO ══ -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-label">Cómo funciona el piloto</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot">1</div>
+        <div class="step-week">Días 1 a 10</div>
+        <div class="step-title">Despliegue</div>
+        <div class="step-desc">Se conecta a tus PLCs, sensores y señales. La planta sigue operando, sin cableado nuevo.</div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot">2</div>
+        <div class="step-week">Día 10 en adelante</div>
+        <div class="step-title">Motor: baseline</div>
+        <div class="step-desc">Aprende el comportamiento normal del activo: rangos, variabilidad por turno, patrones.</div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot">3</div>
+        <div class="step-week">Día 60 en adelante</div>
+        <div class="step-title">Prescripción activa</div>
+        <div class="step-desc">El agente entrega qué ajustar, cuánto y cuándo, antes de que el evento sea un paro.</div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot">4</div>
+        <div class="step-week">Continuo</div>
+        <div class="step-title">Hacia cero pérdidas</div>
+        <div class="step-desc">La precisión se compone cada ciclo. Medición de impacto en OEE, turno tras turno.</div>
+      </div>
+    </div>
+    <div class="pilot-pills">
+      <span class="pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>
+        Sin modificar la lógica de control ni cableado nuevo
+      </span>
+      <span class="pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>
+        Primeras plantas elegibles sin costo de implementación
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FORMULARIO DISCOVERY ══ -->
+<section class="section form-wrap" id="form">
+  <div class="wrap" style="max-width:760px;">
+    <div class="s-label">Diagnóstico de planta · Gratuito</div>
+    <p class="hero-sub" style="font-size:15px;margin-bottom:28px;">Cuéntanos sobre tu planta. Con estas respuestas personalizamos tu diagnóstico y la propuesta antes de la primera reunión. Toma menos de 5 minutos.</p>
+
+    <div class="form-card">
+      <!--
+        ENTREGA DE RESPUESTAS · Formspree → g@madeos.ai
+        Endpoint conectado. La primera vez que llegue un envío, Formspree pedirá
+        confirmar el correo g@madeos.ai una sola vez para activar el formulario.
+      -->
+      <form id="discovery-form" action="https://formspree.io/f/xvzynalv" method="POST" novalidate>
+
+        <!-- Honeypot anti-spam (oculto; los bots lo llenan, los humanos no) -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
+
+        <!-- BLOQUE A -->
+        <div class="form-block">
+          <div class="form-block-label">Tu operación</div>
+          <div class="field">
+            <label for="industria">Industria <span class="req">*</span></label>
+            <select id="industria" name="Industria" required>
+              <option value="">Selecciona una opción</option>
+              <option>Alimentos y Bebidas</option>
+              <option>Farmacéutica</option>
+              <option>Electrónica / PCB</option>
+              <option>Química / Especialidades</option>
+              <option>Plásticos / Caucho</option>
+              <option>Minería y procesamiento de minerales</option>
+              <option>Metalmecánica</option>
+              <option>Automotriz</option>
+              <option>Empaque</option>
+              <option>Textil / Confección</option>
+              <option>Otra manufactura</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="activos">Líneas o activos críticos <span class="req">*</span></label>
+            <input type="text" id="activos" name="Lineas o activos criticos" required placeholder="Ej. 3 líneas de envasado, 2 compresores">
+          </div>
+          <div class="field">
+            <label for="paros">Paros no planificados <span class="req">*</span></label>
+            <textarea id="paros" name="Paros no planificados" rows="3" required placeholder="¿Cuántos tuvieron el último año y en qué activos ocurrieron con mayor frecuencia?"></textarea>
+          </div>
+        </div>
+
+        <!-- BLOQUE B -->
+        <div class="form-block">
+          <div class="form-block-label">Visibilidad actual</div>
+          <div class="field">
+            <label>Monitoreo actual <span class="req">*</span></label>
+            <div class="opt-list">
+              <label class="opt"><input type="radio" name="Monitoreo actual" value="Sí, tenemos SCADA" required> Sí, tenemos SCADA</label>
+              <label class="opt"><input type="radio" name="Monitoreo actual" value="Solo PLCs"> Solo PLCs</label>
+              <label class="opt"><input type="radio" name="Monitoreo actual" value="No tenemos monitoreo digital"> No tenemos monitoreo digital</label>
+              <label class="opt"><input type="radio" name="Monitoreo actual" value="No sé con certeza"> No sé con certeza</label>
+            </div>
+          </div>
+          <div class="field">
+            <label>¿Cómo detectan un paro hoy?</label>
+            <div class="opt-list">
+              <label class="opt"><input type="checkbox" name="Deteccion de paro" value="Alerta automática del sistema"> Alerta automática del sistema</label>
+              <label class="opt"><input type="checkbox" name="Deteccion de paro" value="Ronda del operador"> Ronda del operador</label>
+              <label class="opt"><input type="checkbox" name="Deteccion de paro" value="El equipo deja de funcionar directamente"> El equipo deja de funcionar directamente</label>
+              <label class="opt"><input type="checkbox" name="Deteccion de paro" value="Otro"> Otro</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOQUE C -->
+        <div class="form-block">
+          <div class="form-block-label">Urgencia y decisión</div>
+          <div class="field">
+            <label for="riesgo">Activo en riesgo ahora</label>
+            <textarea id="riesgo" name="Activo en riesgo" rows="3" placeholder="No es requerido, pero nos ayuda a priorizar."></textarea>
+            <div class="hint">Opcional.</div>
+          </div>
+          <div class="field">
+            <label for="decision">¿Quién decide inversiones en tecnología? <span class="req">*</span></label>
+            <select id="decision" name="Decisor de inversion" required>
+              <option value="">Selecciona una opción</option>
+              <option>Gerente de Planta</option>
+              <option>Director de Operaciones</option>
+              <option>Dirección corporativa</option>
+              <option>Compartido entre áreas</option>
+              <option>Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- BLOQUE D -->
+        <div class="form-block">
+          <div class="form-block-label">Tus datos</div>
+          <div class="grid-2">
+            <div class="field">
+              <label for="nombre">Nombre completo <span class="req">*</span></label>
+              <input type="text" id="nombre" name="Nombre" required>
+            </div>
+            <div class="field">
+              <label for="cargo">Cargo <span class="req">*</span></label>
+              <input type="text" id="cargo" name="Cargo" required>
+            </div>
+            <div class="field">
+              <label for="empresa">Empresa <span class="req">*</span></label>
+              <input type="text" id="empresa" name="Empresa" required>
+            </div>
+            <div class="field">
+              <label for="pais">País <span class="req">*</span></label>
+              <input type="text" id="pais" name="Pais" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="correo">Correo electrónico <span class="req">*</span></label>
+            <input type="email" id="correo" name="Correo" required placeholder="nombre@empresa.com">
+          </div>
+        </div>
+
+        <button type="submit" class="form-submit" id="form-submit-btn">Enviar: nos ponemos en contacto en 24 horas</button>
+        <div class="form-err" id="form-err">Hubo un error al enviar. Intenta de nuevo o escríbenos a <a href="mailto:g@madeos.ai" style="color:var(--red);font-weight:700;">g@madeos.ai</a></div>
+        <p class="form-priv">Tu información es confidencial y solo será usada para personalizar la propuesta de Made.</p>
+      </form>
+
+      <!-- SUCCESS -->
+      <div class="form-ok" id="form-ok">
+        <div class="form-ok-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+        </div>
+        <h3>Recibido. Nos ponemos en contacto pronto.</h3>
+        <p>Gerardo revisará tus respuestas y te escribirá en las próximas 24 horas con una propuesta personalizada para tu planta.</p>
+        <div class="mail">g@madeos.ai</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/logo.svg" alt="Made" height="24"
+           onerror="this.style.display='none'">
+      <span>madeos.ai</span>
+    </div>
+    <div class="footer-creds">
+      <span class="cred">Inversionistas detrás de Airbnb, Stripe y Figma</span>
+      <span class="cred">NVIDIA Inception</span>
+      <span class="cred">MIT Technology Review 2025</span>
+      <span class="cred">Startup Chile</span>
+    </div>
+    <div class="footer-mail">
+      <a href="mailto:g@madeos.ai">g@madeos.ai</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Analytics: vista de la página discovery ──
+  try { posthog.capture('discovery_view', { page: 'discovery' }); } catch(e) {}
+
+  document.querySelectorAll('a[href="#form"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      try { posthog.capture('discovery_cta_clicked', { page: 'discovery' }); } catch(e) {}
+    });
+  });
+
+  // ── Envío del formulario vía Formspree (fetch + estados) ──
+  (function(){
+    var form = document.getElementById('discovery-form');
+    var btn  = document.getElementById('form-submit-btn');
+    var err  = document.getElementById('form-err');
+    var ok   = document.getElementById('form-ok');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      err.style.display = 'none';
+      btn.disabled = true;
+      var original = btn.textContent;
+      btn.textContent = 'Enviando...';
+
+      var data = new FormData(form);
+      var industria = data.get('Industria') || '';
+      var empresa   = data.get('Empresa') || '';
+      data.append('_subject', 'Nuevo discovery: ' + empresa + ' · ' + industria);
+
+      fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+        .then(function(res){
+          if (res.ok) {
+            form.style.display = 'none';
+            ok.style.display = 'block';
+            try { posthog.capture('discovery_submit', { page: 'discovery', industria: industria, empresa: empresa }); } catch(e) {}
+            ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            throw new Error('bad response');
+          }
+        })
+        .catch(function(){
+          err.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = original;
+          try { posthog.capture('discovery_submit_error', { page: 'discovery' }); } catch(e) {}
+        });
+    });
+  })();
+</script>
+
+</body>
+</html>
