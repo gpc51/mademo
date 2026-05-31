@@ -152,6 +152,19 @@
   .benchmark strong{color:#fff;}
   .benchmark span{color:rgba(255,255,255,.5);font-size:11.5px;}
 
+  /* ── LOSS CARDS ── */
+  .s-intro{font-size:17px;color:var(--gray);line-height:1.6;max-width:680px;margin:-6px 0 26px;}
+  .loss-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .loss{
+    background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);
+    padding:24px 24px;box-shadow:var(--sh);display:flex;flex-direction:column;
+  }
+  .loss-stat{font-size:23px;font-weight:800;color:var(--orange);letter-spacing:-.02em;line-height:1.1;margin-bottom:12px;}
+  .loss-title{font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px;}
+  .loss-desc{font-size:13.5px;color:var(--gray);line-height:1.6;}
+  .loss-src{font-size:11px;color:var(--gray-l);font-weight:600;letter-spacing:.04em;
+    text-transform:uppercase;margin-top:14px;}
+
   /* ── PILOT STEPS ── */
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:8px;}
   .step{position:relative;padding:0 16px 0 0;}
@@ -252,7 +265,7 @@
 
   /* ── RESPONSIVE ── */
   @media(max-width:860px){
-    .feat-grid,.case-grid,.integ-grid{grid-template-columns:1fr;}
+    .feat-grid,.case-grid,.integ-grid,.loss-grid{grid-template-columns:1fr;}
     .steps{grid-template-columns:1fr 1fr;gap:24px 16px;}
     .step-line{display:none;}
   }
@@ -308,6 +321,54 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <a class="btn-primary" href="#form">Solicita tu diagnóstico de planta →</a>
   </div>
 </header>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ══ EL TAMAÑO REAL DE LA PÉRDIDA ══ -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-label">El tamaño real de la pérdida</div>
+    <p class="s-intro">El paro no planificado es solo la punta visible. La mayor parte de la pérdida vive entre los PLCs, el SCADA y los reportes post-evento, donde nadie la mide. Made ataca las seis fuentes a la vez.</p>
+    <div class="loss-grid">
+      <div class="loss">
+        <div class="loss-stat">$30K–$250K / hora</div>
+        <div class="loss-title">Paros no planificados</div>
+        <div class="loss-desc">Una falla en un activo crítico detiene la línea. El 42% del downtime nace de fallas de equipo, y un solo sitio puede perder entre $38 y $88 millones al año.</div>
+        <div class="loss-src">Siemens · Aberdeen</div>
+      </div>
+      <div class="loss">
+        <div class="loss-stat">~$780K / línea · año</div>
+        <div class="loss-title">Micro-paros que se normalizan</div>
+        <div class="loss-desc">Detenciones de segundos que nadie registra. Suman cerca de 20 horas por línea al año y erosionan el rendimiento sin aparecer en ningún reporte.</div>
+        <div class="loss-src">Benchmark Made</div>
+      </div>
+      <div class="loss">
+        <div class="loss-stat">Velocidad real &lt; nominal</div>
+        <div class="loss-title">Pérdida de rendimiento</div>
+        <div class="loss-desc">El activo corre por debajo de su capacidad de diseño turno tras turno. La diferencia no se ve, pero se paga en cada unidad que dejaste de producir.</div>
+      </div>
+      <div class="loss">
+        <div class="loss-stat">Producto hecho 2 veces</div>
+        <div class="loss-title">Defectos y mermas de calidad</div>
+        <div class="loss-desc">First-pass yield bajo, reproceso y scrap. Cada unidad fuera de especificación consume material, energía y tiempo de línea que ya no recuperas.</div>
+      </div>
+      <div class="loss">
+        <div class="loss-stat">2%–8% recuperable</div>
+        <div class="loss-title">Pérdida energética invisible</div>
+        <div class="loss-desc">A medida que el activo se degrada, consume más energía para el mismo trabajo. Es una fuga silenciosa que crece hasta que alguien la mide.</div>
+      </div>
+      <div class="loss">
+        <div class="loss-stat">3x–5x más caro</div>
+        <div class="loss-title">Mantenimiento reactivo</div>
+        <div class="loss-desc">Reparar de emergencia cuesta de 3 a 5 veces más que intervenir a tiempo: repuestos urgentes, sobretiempo y daño colateral al activo.</div>
+        <div class="loss-src">US Dept. of Energy</div>
+      </div>
+    </div>
+    <div class="benchmark">
+      <strong>Casi ninguna de estas pérdidas aparece en un tablero.</strong> Made las hace visibles, las clasifica por costo real y prescribe la acción antes de que se conviertan en un paro. Eso es exactamente lo que hace a continuación.
+    </div>
+  </div>
+</section>
 
 <div class="wrap"><div class="divider"></div></div>
 
