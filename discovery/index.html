@@ -128,6 +128,8 @@
 
   /* ── CASE CARDS ── */
   .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .integ-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .integ-name{font-size:16px;font-weight:700;color:var(--black);margin-bottom:8px;}
   .case{
     background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);
     padding:24px 24px;box-shadow:var(--sh);display:flex;flex-direction:column;
@@ -246,21 +248,11 @@
   }
   .footer-brand img{height:24px;width:auto;display:block;margin-bottom:6px;filter:brightness(0) invert(1);opacity:.85;}
   .footer-brand span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;}
-  .footer-creds{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;}
-  .footer-creds-label{
-    font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-    color:rgba(255,255,255,.3);width:100%;margin-bottom:-2px;
-  }
-  .footer-logo{
-    height:22px;width:auto;max-width:150px;display:block;
-    filter:brightness(0) invert(1);opacity:.48;transition:opacity .15s;
-  }
-  .footer-logo:hover{opacity:.85;}
   .footer-mail a{color:var(--orange-h);text-decoration:none;font-size:13px;font-weight:600;}
 
   /* ── RESPONSIVE ── */
   @media(max-width:860px){
-    .feat-grid,.case-grid{grid-template-columns:1fr;}
+    .feat-grid,.case-grid,.integ-grid{grid-template-columns:1fr;}
     .steps{grid-template-columns:1fr 1fr;gap:24px 16px;}
     .step-line{display:none;}
   }
@@ -286,7 +278,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
 <!-- ══ ANNOUNCEMENT ══ -->
 <div class="annc">
-  Lanzamiento API · mayo 2026 <span class="dot">·</span> Primeras plantas elegibles sin costo de implementación <span class="dot">·</span> <a href="#form">Solicita tu diagnóstico →</a>
+  Lanzamiento API · mayo 2026 <span class="dot">·</span> Primeras plantas elegibles sin costo de implementación API <span class="dot">·</span> <a href="#form">Solicita tu diagnóstico →</a>
 </div>
 
 <!-- ══ NAV ══ -->
@@ -301,10 +293,6 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
       </svg>
     </a>
-    <div class="nav-right">
-      <span class="nav-domain">madeos.ai</span>
-      <a class="nav-cta" href="#form">Diagnóstico gratuito</a>
-    </div>
   </div>
 </nav>
 
@@ -317,18 +305,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <p class="hero-lead">Ninguna falla es aleatoria.</p>
     <h1>Made prescribe la acción exacta <em>antes de que la línea se detenga.</em></h1>
     <p class="hero-sub">Convertimos la telemetría de tus activos críticos en contexto operativo, eventos clasificados y riesgo priorizado. Mejora tu OEE, predice fallas y previene paros no planificados. Sin modificar tu lógica de control.</p>
-    <div class="pill-row">
-      <span class="pill">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>
-        Despliegue en días 1 a 10
-      </span>
-      <span class="pill">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v6h-6"/></svg>
-        ROI positivo desde el primer quarter
-      </span>
-    </div>
     <a class="btn-primary" href="#form">Solicita tu diagnóstico de planta →</a>
-    <div class="hero-note">Gratis. Responde unas preguntas rápidas en menos de 5 minutos.</div>
   </div>
 </header>
 
@@ -366,39 +343,10 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
 <div class="wrap"><div class="divider"></div></div>
 
-<!-- ══ RESULTADOS EN CAMPO ══ -->
+<!-- ══ CÓMO FUNCIONA MADE OS ══ -->
 <section class="section">
   <div class="wrap">
-    <div class="s-label">Resultados en campo</div>
-    <div class="case-grid">
-      <div class="case">
-        <span class="case-badge">Embotellado de alta velocidad</span>
-        <div class="case-problem">Paros no planificados en líneas de llenado de alta velocidad sin señal previa.</div>
-        <div class="case-result">Detección de degradación anticipada en llenadora: paro evitado en turno nocturno.</div>
-      </div>
-      <div class="case">
-        <span class="case-badge">Procesamiento de minerales</span>
-        <div class="case-problem">Visibilidad fragmentada entre PLCs, sensores y rondas en campo en activos críticos.</div>
-        <div class="case-result">Correlación multimodal identificó un patrón de falla horas antes del evento, con ventana de intervención.</div>
-      </div>
-      <div class="case">
-        <span class="case-badge">Llenado aséptico</span>
-        <div class="case-problem">Micro-paros normalizados, invisibles en los tableros, acumulando pérdida silenciosa por línea al año.</div>
-        <div class="case-result">Causa raíz en variaciones de proceso entre turnos: menor tasa de rechazo y mejor OEE.</div>
-      </div>
-    </div>
-    <div class="benchmark">
-      <strong>Los micro-paros son invisibles en la mayoría de los tableros: acumulan pérdidas en silencio, turno tras turno, y suelen ser el principal lastre del OEE.</strong> <span>Metodología ISO 22400</span>
-    </div>
-  </div>
-</section>
-
-<div class="wrap"><div class="divider"></div></div>
-
-<!-- ══ CÓMO FUNCIONA EL PILOTO ══ -->
-<section class="section">
-  <div class="wrap">
-    <div class="s-label">Cómo funciona el piloto</div>
+    <div class="s-label">Cómo funciona Made OS</div>
     <div class="steps">
       <div class="step">
         <div class="step-line"></div>
@@ -436,8 +384,34 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </span>
       <span class="pill">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>
-        Primeras plantas elegibles sin costo de implementación
+        Primeras plantas elegibles sin costo de implementación API
       </span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ══ DOS FORMAS DE INTEGRACIÓN ══ -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-label">Dos formas de integración</div>
+    <div class="integ-grid">
+      <div class="case">
+        <span class="case-badge">Edge · Dispositivo en planta</span>
+        <div class="integ-name">NVIDIA Jetson Orin Nano</div>
+        <div class="case-problem">IA dedicada instalada en sitio por Made OS. Inferencia local en el Jetson, hasta 67 TOPS, con respuesta de baja latencia junto a la máquina.</div>
+        <div class="case-result">Ideal para líneas que requieren visión local, cómputo aislado y respuesta determinística en planta.</div>
+      </div>
+      <div class="case">
+        <span class="case-badge">Nube · Software + API</span>
+        <div class="integ-name">Acceso gestionado en la nube</div>
+        <div class="case-problem">Se autoinstala en tu PC o servidor actual y conecta vía OPC UA en menos de una hora. Nube dedicada, WSS en tiempo real y sin límites de tokens.</div>
+        <div class="case-result">Ideal para el camino más rápido a piloto sobre la infraestructura que ya tienes, con escalado elástico de tags OPC UA.</div>
+      </div>
+    </div>
+    <div class="benchmark">
+      <strong>Ambas rutas incluyen la misma inteligencia:</strong> analítica predictiva, alertas de anomalías, agente de IA en Web y WhatsApp, monitoreo del sistema, seguimiento de OEE y cifrado TLS 1.3.
     </div>
   </div>
 </section>
@@ -700,17 +674,6 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <img src="../assets/logo.svg" alt="Made" height="24"
            onerror="this.style.display='none'">
       <span>madeos.ai</span>
-    </div>
-    <div class="footer-creds">
-      <span class="footer-creds-label">Respaldados por</span>
-      <img class="footer-logo" src="../assets/founders-inc-logo.png" alt="Founders, Inc."
-           onerror="this.style.display='none'">
-      <img class="footer-logo" src="../assets/nvidia-inception-logo.svg" alt="NVIDIA Inception"
-           onerror="this.style.display='none'">
-      <img class="footer-logo" src="../assets/mit-technology-review-logo.svg" alt="MIT Technology Review"
-           onerror="this.style.display='none'">
-      <img class="footer-logo" src="../assets/startup-chile-logo.svg" alt="Startup Chile"
-           onerror="this.style.display='none'">
     </div>
     <div class="footer-mail">
       <a href="mailto:g@madeos.ai">g@madeos.ai</a>
