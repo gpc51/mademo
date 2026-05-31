@@ -200,6 +200,19 @@
   .opt:hover{border-color:var(--orange-bd);}
   .opt input{accent-color:var(--orange);width:16px;height:16px;flex-shrink:0;}
   .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .calc-link{
+    display:flex;align-items:center;gap:12px;
+    background:var(--orange-bg);border:1px solid var(--orange-bd);border-radius:var(--r);
+    padding:12px 14px;margin-bottom:18px;text-decoration:none;
+    font-size:13px;color:var(--gray-d);line-height:1.45;transition:background .15s;
+  }
+  .calc-link:hover{background:rgba(216,66,0,.12);}
+  .calc-link strong{color:var(--orange);font-weight:700;}
+  .calc-link-ic{
+    flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--orange);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;
+  }
+  .calc-link-arrow{margin-left:auto;color:var(--orange);font-weight:700;font-size:16px;}
   .form-submit{
     width:100%;background:var(--orange);color:#fff;border:none;border-radius:var(--r);
     font-family:var(--font);font-size:15px;font-weight:700;padding:15px;cursor:pointer;
@@ -233,11 +246,16 @@
   }
   .footer-brand img{height:24px;width:auto;display:block;margin-bottom:6px;filter:brightness(0) invert(1);opacity:.85;}
   .footer-brand span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;}
-  .footer-creds{display:flex;flex-wrap:wrap;gap:8px;}
-  .cred{
-    border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.6);
-    font-size:11px;font-weight:600;padding:5px 12px;border-radius:20px;white-space:nowrap;
+  .footer-creds{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;}
+  .footer-creds-label{
+    font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:rgba(255,255,255,.3);width:100%;margin-bottom:-2px;
   }
+  .footer-logo{
+    height:22px;width:auto;max-width:150px;display:block;
+    filter:brightness(0) invert(1);opacity:.48;transition:opacity .15s;
+  }
+  .footer-logo:hover{opacity:.85;}
   .footer-mail a{color:var(--orange-h);text-decoration:none;font-size:13px;font-weight:600;}
 
   /* ── RESPONSIVE ── */
@@ -444,7 +462,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <!-- BLOQUE A -->
         <div class="form-block">
           <div class="form-block-label">Tu operación</div>
-          <div class="field">
+          <div class="grid-2">
+            <div class="field">
             <label for="industria">Industria <span class="req">*</span></label>
             <select id="industria" name="Industria" required>
               <option value="">Selecciona una opción</option>
@@ -460,6 +479,16 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
               <option>Textil / Confección</option>
               <option>Otra manufactura</option>
             </select>
+            </div>
+            <div class="field">
+              <label for="turnos">Turnos por día <span class="req">*</span></label>
+              <select id="turnos" name="Turnos por dia" required>
+                <option value="">Selecciona una opción</option>
+                <option>1 turno</option>
+                <option>2 turnos</option>
+                <option>3 turnos</option>
+              </select>
+            </div>
           </div>
           <div class="grid-2">
             <div class="field">
@@ -506,6 +535,23 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
               </select>
             </div>
           </div>
+          <div class="field">
+            <label for="fpy">First-pass yield: calidad a la primera</label>
+            <select id="fpy" name="First pass yield">
+              <option value="">Selecciona una opción</option>
+              <option>Más de 99%</option>
+              <option>97% a 99%</option>
+              <option>90% a 97%</option>
+              <option>Menos de 90%</option>
+              <option>No lo medimos hoy</option>
+            </select>
+            <div class="hint">Porcentaje de unidades buenas en el primer paso, sin retrabajo ni rechazo. Opcional.</div>
+          </div>
+          <a class="calc-link" href="https://madeos.ai/#roi" target="_blank" rel="noopener">
+            <span class="calc-link-ic">$</span>
+            <span><strong>¿No conoces tus cifras exactas?</strong> Estima tu pérdida anual con nuestra calculadora ISO 22400.</span>
+            <span class="calc-link-arrow">→</span>
+          </a>
           <div class="field">
             <label for="riesgo">Activo o paro que más les preocupa hoy</label>
             <textarea id="riesgo" name="Activo o paro que mas preocupa" rows="3" placeholder="Ej. la llenadora de la línea 2 nos para sin aviso. Opcional, pero nos ayuda a priorizar tu diagnóstico."></textarea>
@@ -656,10 +702,15 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <span>madeos.ai</span>
     </div>
     <div class="footer-creds">
-      <span class="cred">Inversionistas detrás de Airbnb, Stripe y Figma</span>
-      <span class="cred">NVIDIA Inception</span>
-      <span class="cred">MIT Technology Review 2025</span>
-      <span class="cred">Startup Chile</span>
+      <span class="footer-creds-label">Respaldados por</span>
+      <img class="footer-logo" src="../assets/founders-inc-logo.png" alt="Founders, Inc."
+           onerror="this.style.display='none'">
+      <img class="footer-logo" src="../assets/nvidia-inception-logo.svg" alt="NVIDIA Inception"
+           onerror="this.style.display='none'">
+      <img class="footer-logo" src="../assets/mit-technology-review-logo.svg" alt="MIT Technology Review"
+           onerror="this.style.display='none'">
+      <img class="footer-logo" src="../assets/startup-chile-logo.svg" alt="Startup Chile"
+           onerror="this.style.display='none'">
     </div>
     <div class="footer-mail">
       <a href="mailto:g@madeos.ai">g@madeos.ai</a>
@@ -674,6 +725,12 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   document.querySelectorAll('a[href="#form"]').forEach(function(a){
     a.addEventListener('click', function(){
       try { posthog.capture('discovery_cta_clicked', { page: 'discovery' }); } catch(e) {}
+    });
+  });
+
+  document.querySelectorAll('a.calc-link').forEach(function(a){
+    a.addEventListener('click', function(){
+      try { posthog.capture('discovery_calc_clicked', { page: 'discovery' }); } catch(e) {}
     });
   });
 
