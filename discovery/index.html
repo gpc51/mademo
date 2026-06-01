@@ -245,6 +245,21 @@
   .form-ok p{font-size:14px;color:var(--gray);line-height:1.6;max-width:420px;margin:0 auto 14px;}
   .form-ok .mail{font-size:13px;color:var(--orange);font-weight:600;}
 
+  /* ── MODAL SUCCESS ── */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:1000;align-items:center;justify-content:center;padding:20px;}
+  .modal-overlay.is-open{display:flex;}
+  .modal-card{background:var(--white);border-radius:var(--r-lg);max-width:780px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 24px 72px rgba(0,0,0,.22);display:flex;flex-direction:column;position:relative;}
+  .modal-head{padding:32px 32px 20px;text-align:center;border-bottom:1px solid var(--border);}
+  .modal-check{width:48px;height:48px;border-radius:50%;background:var(--orange-bg);border:1.5px solid var(--orange-bd);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+  .modal-check svg{width:24px;height:24px;color:var(--orange);}
+  .modal-htitle{font-size:21px;font-weight:800;color:var(--black);letter-spacing:-.02em;margin-bottom:9px;}
+  .modal-hsub{font-size:14px;color:var(--gray);line-height:1.65;max-width:460px;margin:0 auto;}
+  .modal-close{position:absolute;top:14px;right:16px;background:none;border:none;cursor:pointer;color:var(--gray);font-size:24px;line-height:1;padding:4px 8px;border-radius:var(--r);transition:color .15s;}
+  .modal-close:hover{color:var(--black);}
+  .modal-cal-wrap{flex:1;}
+  .modal-cal{width:100%;height:640px;border:none;display:block;border-radius:0 0 var(--r-lg) var(--r-lg);}
+  @media(max-width:600px){.modal-cal{height:560px;}.modal-head{padding:24px 20px 16px;}}
+
   /* ── FOOTER ── */
   .footer{background:var(--dark);color:rgba(255,255,255,.4);padding:34px 0;}
   .footer-inner{
@@ -782,6 +797,23 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   </div>
 </section>
 
+<!-- ══ MODAL SUCCESS ══ -->
+<div class="modal-overlay" id="modal-success" role="dialog" aria-modal="true" aria-labelledby="modal-htitle">
+  <div class="modal-card">
+    <button class="modal-close" id="modal-close-btn" aria-label="Cerrar">&times;</button>
+    <div class="modal-head">
+      <div class="modal-check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+      </div>
+      <div class="modal-htitle" id="modal-htitle">Recibimos tu información.</div>
+      <p class="modal-hsub">Agenda tu primera llamada con el equipo de Made: 30 minutos enfocados en tu operación, sin pitch genérico. Elige el horario que mejor te funcione.</p>
+    </div>
+    <div class="modal-cal-wrap">
+      <iframe class="modal-cal" src="https://cal.com/madeos.ai/made-s01?embed=true" title="Agendar primera llamada con Made" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+
 <!-- ══ FOOTER ══ -->
 <footer class="footer">
   <div class="footer-inner">
@@ -851,7 +883,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         .then(function(res){
           if (res.ok) {
             try { posthog.capture('discovery_submit', { page: 'discovery', industria: industria, empresa: empresa }); } catch(e) {}
-            window.location.href = 'https://cal.com/madeos.ai/made-s01';
+            document.getElementById('modal-success').classList.add('is-open');
+            document.body.style.overflow = 'hidden';
           } else {
             throw new Error('bad response');
           }
@@ -862,6 +895,23 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           btn.textContent = original;
           try { posthog.capture('discovery_submit_error', { page: 'discovery' }); } catch(e) {}
         });
+    });
+  })();
+
+  // ── Modal de éxito: cerrar con × o click fuera de la tarjeta ──
+  (function(){
+    var overlay = document.getElementById('modal-success');
+    var closeBtn = document.getElementById('modal-close-btn');
+    function closeModal(){
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (overlay) overlay.addEventListener('click', function(e){
+      if (e.target === overlay) closeModal();
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') closeModal();
     });
   })();
 </script>
