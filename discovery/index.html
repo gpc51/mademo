@@ -218,6 +218,15 @@
   }
   .opt:hover{border-color:var(--orange-bd);}
   .opt input{accent-color:var(--orange);width:16px;height:16px;flex-shrink:0;margin-top:2px;}
+  .disclosure{border:1.5px solid var(--border);border-radius:var(--r);margin-bottom:18px;overflow:hidden;}
+  .disclosure summary{list-style:none;cursor:pointer;padding:13px 15px;font-size:13px;font-weight:600;color:var(--orange);display:flex;align-items:center;gap:9px;user-select:none;transition:background .15s;}
+  .disclosure summary::-webkit-details-marker{display:none;}
+  .disclosure summary::before{content:"+";font-size:16px;font-weight:700;line-height:1;width:13px;text-align:center;}
+  .disclosure[open] summary::before{content:"\2013";}
+  .disclosure summary:hover{background:var(--orange-bg);}
+  .disclosure-body{padding:6px 15px 15px;}
+  .disclosure-body > label{display:block;font-size:13px;font-weight:600;color:var(--black);margin-bottom:10px;}
+  .disclosure-body .hint{font-size:11.5px;color:var(--gray-l);margin-top:7px;}
   .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
   .calc-link{
     display:flex;align-items:center;gap:12px;
@@ -568,32 +577,18 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
               </select>
             </div>
           </div>
-          <div class="grid-2">
-            <div class="field">
-              <label for="fpy">First-pass yield: calidad a la primera</label>
-              <select id="fpy" name="First pass yield">
-                <option value="">Selecciona una opción</option>
-                <option>Más de 99%</option>
-                <option>97% a 99%</option>
-                <option>90% a 97%</option>
-                <option>Menos de 90%</option>
-                <option>No lo medimos hoy</option>
-              </select>
-              <div class="hint">Unidades buenas al primer paso, sin retrabajo. Opcional.</div>
-            </div>
-            <div class="field">
-              <label for="causa">¿Qué causa la mayoría de los paros hoy?</label>
-              <select id="causa" name="Causa principal de paros">
-                <option value="">Selecciona una opción</option>
-                <option>Fallas mecánicas</option>
-                <option>Fallas eléctricas</option>
-                <option>Errores operativos</option>
-                <option>Calidad del proceso</option>
-                <option>Falta de mantenimiento</option>
-                <option>No estamos seguros</option>
-              </select>
-              <div class="hint">Opcional.</div>
-            </div>
+          <div class="field">
+            <label for="causa">¿Qué causa la mayoría de los paros hoy?</label>
+            <select id="causa" name="Causa principal de paros">
+              <option value="">Selecciona una opción</option>
+              <option>Fallas mecánicas</option>
+              <option>Fallas eléctricas</option>
+              <option>Errores operativos</option>
+              <option>Calidad del proceso</option>
+              <option>Falta de mantenimiento</option>
+              <option>No estamos seguros</option>
+            </select>
+            <div class="hint">Opcional.</div>
           </div>
           <a class="calc-link" href="https://madeos.ai/#roi" target="_blank" rel="noopener">
             <span class="calc-link-ic">$</span>
@@ -630,31 +625,46 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
               <label class="opt"><input type="checkbox" name="Deteccion de paro" value="Otro"> Otro</label>
             </div>
           </div>
-          <div class="field">
-            <label>¿Qué activos operan en tu planta?</label>
-            <div class="opt-grid">
-              <label class="opt"><input type="checkbox" name="Activos en planta" value="PLCs industriales"> PLCs industriales</label>
-              <label class="opt"><input type="checkbox" name="Activos en planta" value="Variadores de frecuencia"> Variadores de frecuencia</label>
-              <label class="opt"><input type="checkbox" name="Activos en planta" value="Motores eléctricos"> Motores eléctricos</label>
-              <label class="opt"><input type="checkbox" name="Activos en planta" value="Bombas"> Bombas</label>
-              <label class="opt"><input type="checkbox" name="Activos en planta" value="Compresores"> Compresores</label>
-              <label class="opt"><input type="checkbox" name="Activos en planta" value="CNC"> CNC</label>
-              <label class="opt"><input type="checkbox" name="Activos en planta" value="Robótica"> Robótica</label>
-              <label class="opt"><input type="checkbox" name="Activos en planta" value="Líneas de empaque o envasado"> Líneas de empaque o envasado</label>
-              <label class="opt"><input type="checkbox" name="Activos en planta" value="No estoy seguro"> No estoy seguro</label>
+          <details class="disclosure">
+            <summary>Agregar detalle técnico de activos (opcional)</summary>
+            <div class="disclosure-body">
+              <label>¿Qué activos operan en tu planta?</label>
+              <div class="opt-grid">
+                <label class="opt"><input type="checkbox" name="Activos en planta" value="PLCs industriales"> PLCs industriales</label>
+                <label class="opt"><input type="checkbox" name="Activos en planta" value="Variadores de frecuencia"> Variadores de frecuencia</label>
+                <label class="opt"><input type="checkbox" name="Activos en planta" value="Motores eléctricos"> Motores eléctricos</label>
+                <label class="opt"><input type="checkbox" name="Activos en planta" value="Bombas"> Bombas</label>
+                <label class="opt"><input type="checkbox" name="Activos en planta" value="Compresores"> Compresores</label>
+                <label class="opt"><input type="checkbox" name="Activos en planta" value="CNC"> CNC</label>
+                <label class="opt"><input type="checkbox" name="Activos en planta" value="Robótica"> Robótica</label>
+                <label class="opt"><input type="checkbox" name="Activos en planta" value="Líneas de empaque o envasado"> Líneas de empaque o envasado</label>
+                <label class="opt"><input type="checkbox" name="Activos en planta" value="No estoy seguro"> No estoy seguro</label>
+              </div>
+              <div class="hint">Nos ayuda a estimar el fit técnico de tu planta.</div>
             </div>
-            <div class="hint">Opcional. Nos ayuda a estimar el fit técnico de tu planta.</div>
-          </div>
-          <div class="field">
-            <label for="historico">¿Conservan datos históricos de operación?</label>
-            <select id="historico" name="Datos historicos">
-              <option value="">Selecciona una opción</option>
-              <option>Menos de 30 días</option>
-              <option>1 a 6 meses</option>
-              <option>Más de 6 meses</option>
-              <option>No lo sabemos</option>
-            </select>
-            <div class="hint">Opcional. Acelera el despliegue y el tiempo a primer valor.</div>
+          </details>
+          <div class="grid-2">
+            <div class="field">
+              <label for="protocolo">¿Tus equipos exponen datos por un protocolo estándar?</label>
+              <select id="protocolo" name="Conectividad de equipos">
+                <option value="">Selecciona una opción</option>
+                <option>Sí (OPC-UA, Modbus, MQTT u otro)</option>
+                <option>No</option>
+                <option>No estoy seguro</option>
+              </select>
+              <div class="hint">Opcional. Define qué tan rápido integramos sin tocar tus PLCs.</div>
+            </div>
+            <div class="field">
+              <label for="historico">¿Conservan datos históricos de operación?</label>
+              <select id="historico" name="Datos historicos">
+                <option value="">Selecciona una opción</option>
+                <option>Menos de 30 días</option>
+                <option>1 a 6 meses</option>
+                <option>Más de 6 meses</option>
+                <option>No lo sabemos</option>
+              </select>
+              <div class="hint">Opcional. Acelera el tiempo a primer valor.</div>
+            </div>
           </div>
         </div>
 
@@ -707,8 +717,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
               <input type="text" id="nombre" name="Nombre" required>
             </div>
             <div class="field">
-              <label for="cargo">Cargo <span class="req">*</span></label>
-              <input type="text" id="cargo" name="Cargo" required>
+              <label for="cargo">Cargo</label>
+              <input type="text" id="cargo" name="Cargo">
             </div>
             <div class="field">
               <label for="empresa">Empresa <span class="req">*</span></label>
