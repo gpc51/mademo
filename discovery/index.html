@@ -130,6 +130,7 @@
   .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
   .integ-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
   .integ-name{font-size:16px;font-weight:700;color:var(--black);margin-bottom:8px;}
+  .case-img{width:100%;height:180px;object-fit:cover;border-radius:var(--r);margin-bottom:16px;display:block;border:1px solid var(--border);}
   .case{
     background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);
     padding:24px 24px;box-shadow:var(--sh);display:flex;flex-direction:column;
@@ -154,13 +155,15 @@
 
   /* ── LOSS CARDS ── */
   .s-intro{font-size:17px;color:var(--gray);line-height:1.6;max-width:680px;margin:-6px 0 26px;}
+  .s-head{font-size:29px;font-weight:800;line-height:1.15;letter-spacing:-.025em;color:var(--black);max-width:780px;margin:-4px 0 30px;}
+  .s-head em{color:var(--orange);font-style:normal;}
   .loss-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
   .loss{
     background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);
     padding:24px 24px;box-shadow:var(--sh);display:flex;flex-direction:column;
   }
-  .loss-stat{font-size:23px;font-weight:800;color:var(--orange);letter-spacing:-.02em;line-height:1.1;margin-bottom:12px;}
-  .loss-title{font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px;}
+  .loss-stat{font-size:22px;font-weight:800;color:var(--black);letter-spacing:-.02em;line-height:1.15;margin-bottom:6px;}
+  .loss-title{font-size:14px;font-weight:700;color:var(--orange);margin-bottom:10px;}
   .loss-desc{font-size:13.5px;color:var(--gray);line-height:1.6;}
   .loss-src{font-size:11px;color:var(--gray-l);font-weight:600;letter-spacing:.04em;
     text-transform:uppercase;margin-top:14px;}
@@ -332,35 +335,35 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <p class="s-intro">El paro no planificado es solo la punta visible. Detrás hay seis grandes pérdidas que erosionan tu OEE turno tras turno, casi todas enterradas entre los PLCs, el SCADA y los reportes post-evento, donde nadie las mide.</p>
     <div class="loss-grid">
       <div class="loss">
-        <div class="loss-stat">$30K–$250K / hora</div>
-        <div class="loss-title">Paros no planificados</div>
+        <div class="loss-stat">Paros no planificados</div>
+        <div class="loss-title">$30K–$250K / hora</div>
         <div class="loss-desc">Una falla en un activo crítico detiene la línea. El 42% del downtime nace de fallas de equipo, y un solo sitio puede perder entre $38 y $88 millones al año.</div>
         <div class="loss-src">Siemens · Aberdeen</div>
       </div>
       <div class="loss">
-        <div class="loss-stat">~$780K / línea · año</div>
-        <div class="loss-title">Micro-paros que se normalizan</div>
+        <div class="loss-stat">Micro-paros que se normalizan</div>
+        <div class="loss-title">~$780K / línea · año</div>
         <div class="loss-desc">Detenciones de segundos que nadie registra. Suman cerca de 20 horas por línea al año y erosionan el rendimiento sin aparecer en ningún reporte.</div>
         <div class="loss-src">Benchmark Made</div>
       </div>
       <div class="loss">
-        <div class="loss-stat">Velocidad real &lt; nominal</div>
-        <div class="loss-title">Pérdida de rendimiento</div>
+        <div class="loss-stat">Pérdida de rendimiento</div>
+        <div class="loss-title">Velocidad real &lt; nominal</div>
         <div class="loss-desc">El activo corre por debajo de su capacidad de diseño turno tras turno. La diferencia no se ve, pero se paga en cada unidad que dejaste de producir.</div>
       </div>
       <div class="loss">
-        <div class="loss-stat">Producto hecho 2 veces</div>
-        <div class="loss-title">Defectos y mermas de calidad</div>
+        <div class="loss-stat">Defectos y mermas de calidad</div>
+        <div class="loss-title">Producto hecho 2 veces</div>
         <div class="loss-desc">First-pass yield bajo, reproceso y scrap. Cada unidad fuera de especificación consume material, energía y tiempo de línea que ya no recuperas.</div>
       </div>
       <div class="loss">
-        <div class="loss-stat">2%–8% recuperable</div>
-        <div class="loss-title">Pérdida energética invisible</div>
+        <div class="loss-stat">Pérdida energética invisible</div>
+        <div class="loss-title">2%–8% recuperable</div>
         <div class="loss-desc">A medida que el activo se degrada, consume más energía para el mismo trabajo. Es una fuga silenciosa que crece hasta que alguien la mide.</div>
       </div>
       <div class="loss">
-        <div class="loss-stat">3x–5x más caro</div>
-        <div class="loss-title">Mantenimiento reactivo</div>
+        <div class="loss-stat">Mantenimiento reactivo</div>
+        <div class="loss-title">3x–5x más caro</div>
         <div class="loss-desc">Reparar de emergencia cuesta de 3 a 5 veces más que intervenir a tiempo: repuestos urgentes, sobretiempo y daño colateral al activo.</div>
         <div class="loss-src">US Dept. of Energy</div>
       </div>
@@ -377,6 +380,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <section class="section">
   <div class="wrap">
     <div class="s-label">Qué hace Made</div>
+    <h2 class="s-head">Made no te da otro tablero: te da <em>la acción exacta antes del paro.</em></h2>
     <div class="feat-grid">
       <div class="feat">
         <div class="feat-icon">
@@ -409,6 +413,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <section class="section">
   <div class="wrap">
     <div class="s-label">Cómo funciona Made OS</div>
+    <p class="s-intro">Funciona sobre tu infraestructura actual, incluidas máquinas legacy y controladores de generaciones anteriores. No reemplazamos tu equipo, lo volvemos inteligente.</p>
     <div class="steps">
       <div class="step">
         <div class="step-line"></div>
@@ -439,16 +444,6 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="step-desc">La precisión se compone cada ciclo. Medición de impacto en OEE, turno tras turno.</div>
       </div>
     </div>
-    <div class="pilot-pills">
-      <span class="pill">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>
-        Sin modificar la lógica de control ni cableado nuevo
-      </span>
-      <span class="pill">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>
-        Primeras plantas elegibles sin costo de implementación API
-      </span>
-    </div>
   </div>
 </section>
 
@@ -460,12 +455,14 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <div class="s-label">Dos formas de integración</div>
     <div class="integ-grid">
       <div class="case">
+        <img class="case-img" src="../assets/edge-device.jpg" alt="Made Edge: dispositivo de IA industrial instalado en tablero DIN rail" loading="lazy">
         <span class="case-badge">Edge · Dispositivo en planta</span>
         <div class="integ-name">NVIDIA Jetson Orin Nano</div>
         <div class="case-problem">IA dedicada instalada en sitio por Made OS. Inferencia local en el Jetson, hasta 67 TOPS, con respuesta de baja latencia junto a la máquina.</div>
         <div class="case-result">Ideal para líneas que requieren visión local, cómputo aislado y respuesta determinística en planta.</div>
       </div>
       <div class="case">
+        <img class="case-img" src="../assets/platform-screenshot.png" alt="Made OS: plataforma web con análisis de sensores y agente conversacional" loading="lazy">
         <span class="case-badge">Nube · Software + API</span>
         <div class="integ-name">Acceso gestionado en la nube</div>
         <div class="case-problem">Se autoinstala en tu PC o servidor actual y conecta vía OPC UA en menos de una hora. Nube dedicada, WSS en tiempo real y sin límites de tokens.</div>
@@ -481,7 +478,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <!-- ══ FORMULARIO DISCOVERY ══ -->
 <section class="section form-wrap" id="form">
   <div class="wrap">
-    <div class="s-label">Evaluación de pérdidas operativas · Gratuita</div>
+    <div class="s-label">Evaluación de pérdidas operativas</div>
     <p class="hero-sub" style="font-size:15px;margin-bottom:28px;">Cuéntanos sobre tu planta y recibe una estimación de tus pérdidas, oportunidades de mejora y factibilidad de implementación, personalizada antes de la primera reunión. Toma menos de 5 minutos.</p>
 
     <div class="form-card">
