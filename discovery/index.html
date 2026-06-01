@@ -228,19 +228,7 @@
   .disclosure-body > label{display:block;font-size:13px;font-weight:600;color:var(--black);margin-bottom:10px;}
   .disclosure-body .hint{font-size:11.5px;color:var(--gray-l);margin-top:7px;}
   .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .calc-link{
-    display:flex;align-items:center;gap:12px;
-    background:var(--orange-bg);border:1px solid var(--orange-bd);border-radius:var(--r);
-    padding:12px 14px;margin-bottom:18px;text-decoration:none;
-    font-size:13px;color:var(--gray-d);line-height:1.45;transition:background .15s;
-  }
-  .calc-link:hover{background:rgba(216,66,0,.12);}
-  .calc-link strong{color:var(--orange);font-weight:700;}
-  .calc-link-ic{
-    flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--orange);color:#fff;
-    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;
-  }
-  .calc-link-arrow{margin-left:auto;color:var(--orange);font-weight:700;font-size:16px;}
+  .otro-input{margin-top:9px;}
   .form-submit{
     width:100%;background:var(--orange);color:#fff;border:none;border-radius:var(--r);
     font-family:var(--font);font-size:15px;font-weight:700;padding:15px;cursor:pointer;
@@ -272,6 +260,7 @@
     max-width:1000px;margin:0 auto;padding:0 32px;
     display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
   }
+  .footer-logo{display:inline-flex;flex-direction:column;align-items:flex-start;text-decoration:none;color:inherit;cursor:pointer;}
   .footer-brand img{height:24px;width:auto;display:block;margin-bottom:6px;filter:brightness(0) invert(1);opacity:.85;}
   .footer-brand span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;}
   .footer-mail a{color:var(--orange-h);text-decoration:none;font-size:13px;font-weight:600;}
@@ -304,13 +293,13 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
 <!-- ══ ANNOUNCEMENT ══ -->
 <div class="annc">
-  Lanzamiento API · mayo 2026 <span class="dot">·</span> Primeras plantas elegibles sin costo de implementación API <span class="dot">·</span> <a href="#form">Solicita tu evaluación →</a>
+  Lanzamiento API · mayo 2026 <span class="dot">·</span> Primeras plantas elegibles sin costo de implementación API <span class="dot">·</span> <a href="#form">Solicita tu primera reunión →</a>
 </div>
 
 <!-- ══ NAV ══ -->
 <nav class="nav">
   <div class="nav-inner">
-    <a class="nav-logo" href="#top" aria-label="Made">
+    <a class="nav-logo" href="https://www.madeos.ai" target="_blank" rel="noopener" aria-label="Ir a madeos.ai">
       <img src="../assets/logo.svg" alt="Made" height="26"
            onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
       <svg style="display:none" height="26" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
@@ -331,7 +320,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <p class="hero-lead">Ninguna falla es aleatoria.</p>
     <h1>Made prescribe la acción exacta <em>antes de que la línea se detenga.</em></h1>
     <p class="hero-sub">Convertimos la telemetría de tus activos críticos en contexto operativo, eventos clasificados y riesgo priorizado. Mejora tu OEE, predice fallas y previene paros no planificados. Sin modificar tu lógica de control.</p>
-    <a class="btn-primary" href="#form">Solicita tu evaluación de pérdidas →</a>
+    <a class="btn-primary" href="#form">Solicita tu primera reunión →</a>
   </div>
 </header>
 
@@ -487,8 +476,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <!-- ══ FORMULARIO DISCOVERY ══ -->
 <section class="section form-wrap" id="form">
   <div class="wrap">
-    <div class="s-label">Evaluación de pérdidas operativas</div>
-    <p class="hero-sub" style="font-size:15px;margin-bottom:28px;">Cuéntanos sobre tu planta y recibe una estimación de tus pérdidas, oportunidades de mejora y factibilidad de implementación, personalizada antes de la primera reunión. Toma menos de 5 minutos.</p>
+    <div class="s-label">Antes de la primera reunión</div>
+    <p class="hero-sub" style="font-size:15px;margin-bottom:28px;">Cuéntanos sobre tu planta para ubicar dónde están tus mayores pérdidas y si Made encaja en tu operación. Así llegamos a la primera reunión enfocados en tu caso, con hipótesis concretas en lugar de un pitch genérico. Toma menos de 5 minutos.</p>
 
     <div class="form-card">
       <!--
@@ -590,15 +579,10 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             </select>
             <div class="hint">Opcional.</div>
           </div>
-          <a class="calc-link" href="https://madeos.ai/#roi" target="_blank" rel="noopener">
-            <span class="calc-link-ic">$</span>
-            <span><strong>¿No conoces tus cifras exactas?</strong> Estima tu pérdida anual con nuestra calculadora ISO 22400.</span>
-            <span class="calc-link-arrow">→</span>
-          </a>
           <div class="field">
             <label for="riesgo">¿Qué pasa cuando ese activo falla?</label>
             <textarea id="riesgo" name="Que pasa cuando falla" rows="3" placeholder="Ej. la llenadora se detiene sin aviso y perdemos medio turno mientras la reiniciamos."></textarea>
-            <div class="hint">Opcional, pero nos ayuda a priorizar tu evaluación.</div>
+            <div class="hint">Opcional, pero nos ayuda a priorizar tu caso.</div>
           </div>
         </div>
 
@@ -624,6 +608,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
               <label class="opt"><input type="checkbox" name="Deteccion de paro" value="El equipo deja de funcionar directamente"> El equipo deja de funcionar directamente</label>
               <label class="opt"><input type="checkbox" name="Deteccion de paro" value="Otro"> Otro</label>
             </div>
+            <input type="text" class="otro-input" id="otro-deteccion" name="Deteccion de paro (especificar)" placeholder="Especifica cómo detectan el paro (opcional)" style="display:none;">
           </div>
           <details class="disclosure">
             <summary>Agregar detalle técnico de activos (opcional)</summary>
@@ -693,6 +678,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
                 <option>Estoy explorando para el equipo</option>
                 <option>Otro</option>
               </select>
+              <input type="text" class="otro-input" id="otro-rol" name="Rol (especificar)" placeholder="Especifica tu rol (opcional)" style="display:none;">
             </div>
           </div>
           <div class="field">
@@ -705,6 +691,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
               <option>Compartido entre áreas</option>
               <option>Otro</option>
             </select>
+            <input type="text" class="otro-input" id="otro-decision" name="Decisor (especificar)" placeholder="Especifica quién decide (opcional)" style="display:none;">
           </div>
         </div>
 
@@ -746,6 +733,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
                 <option>España</option>
                 <option>Otro</option>
               </select>
+              <input type="text" class="otro-input" id="otro-pais" name="Pais (especificar)" placeholder="Especifica el país (opcional)" style="display:none;">
             </div>
           </div>
           <div class="grid-2">
@@ -761,9 +749,9 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           </div>
         </div>
 
-        <button type="submit" class="form-submit" id="form-submit-btn">Iniciar mi evaluación de planta</button>
+        <button type="submit" class="form-submit" id="form-submit-btn">Solicitar mi primera reunión</button>
         <div class="form-err" id="form-err">Hubo un error al enviar. Intenta de nuevo o escríbenos a <a href="mailto:g@madeos.ai" style="color:var(--red);font-weight:700;">g@madeos.ai</a></div>
-        <p class="form-priv">Respondemos en menos de 24 horas. Tu información es confidencial y solo será usada para personalizar tu evaluación.</p>
+        <p class="form-priv">Respondemos en menos de 24 horas. Tu información es confidencial y solo se usa para preparar tu reunión.</p>
       </form>
 
       <!-- SUCCESS -->
@@ -772,7 +760,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
         </div>
         <h3>Recibido. Nos ponemos en contacto pronto.</h3>
-        <p>El equipo de Made revisará tu información y te contactará en menos de 24 horas con una evaluación personalizada de tus pérdidas y oportunidades de mejora.</p>
+        <p>El equipo de Made revisará tu información y te contactará en menos de 24 horas para coordinar una primera reunión enfocada en las pérdidas de tu planta.</p>
         <div class="mail">g@madeos.ai</div>
       </div>
     </div>
@@ -783,9 +771,11 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="../assets/logo.svg" alt="Made" height="24"
-           onerror="this.style.display='none'">
-      <span>madeos.ai</span>
+      <a class="footer-logo" href="https://www.madeos.ai" target="_blank" rel="noopener" aria-label="Ir a madeos.ai">
+        <img src="../assets/logo.svg" alt="Made" height="24"
+             onerror="this.style.display='none'">
+        <span>madeos.ai</span>
+      </a>
     </div>
     <div class="footer-mail">
       <a href="mailto:g@madeos.ai">g@madeos.ai</a>
@@ -803,11 +793,23 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     });
   });
 
-  document.querySelectorAll('a.calc-link').forEach(function(a){
-    a.addEventListener('click', function(){
-      try { posthog.capture('discovery_calc_clicked', { page: 'discovery' }); } catch(e) {}
+  // ── Campos "Otro": revelar texto opcional al seleccionarlos ──
+  (function(){
+    function toggle(input, show){
+      if (!input) return;
+      input.style.display = show ? 'block' : 'none';
+      if (!show) input.value = '';
+    }
+    // Selects: mostrar cuando el valor es "Otro"
+    [['rol','otro-rol'],['decision','otro-decision'],['pais','otro-pais']].forEach(function(p){
+      var sel = document.getElementById(p[0]);
+      var inp = document.getElementById(p[1]);
+      if (sel) sel.addEventListener('change', function(){ toggle(inp, sel.value === 'Otro'); });
     });
-  });
+    // Checkbox "Otro" de detección de paro
+    var detOtro = document.querySelector('input[name="Deteccion de paro"][value="Otro"]');
+    if (detOtro) detOtro.addEventListener('change', function(){ toggle(document.getElementById('otro-deteccion'), detOtro.checked); });
+  })();
 
   // ── Envío del formulario vía Formspree (fetch + estados) ──
   (function(){
