@@ -207,6 +207,7 @@
   .field textarea{resize:vertical;min-height:74px;line-height:1.55;}
   .field .hint{font-size:11.5px;color:var(--gray-l);margin-top:5px;}
   .opt-list{display:flex;flex-direction:column;gap:9px;}
+  .opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
   .opt{
     display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--dark);
     padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r);cursor:pointer;
@@ -481,7 +482,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <section class="section form-wrap" id="form">
   <div class="wrap" style="max-width:760px;">
     <div class="s-label">Diagnóstico de planta · Gratuito</div>
-    <p class="hero-sub" style="font-size:15px;margin-bottom:28px;">Cuéntanos sobre tu planta. Con estas respuestas personalizamos tu diagnóstico y la propuesta antes de la primera reunión. Toma menos de 5 minutos.</p>
+    <p class="hero-sub" style="font-size:15px;margin-bottom:28px;">Cuéntanos sobre tu planta y recibe una estimación de tus pérdidas, oportunidades de mejora y factibilidad de implementación, personalizada antes de la primera reunión. Toma menos de 5 minutos.</p>
 
     <div class="form-card">
       <!--
@@ -615,6 +616,21 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
               <label class="opt"><input type="checkbox" name="Deteccion de paro" value="Otro"> Otro</label>
             </div>
           </div>
+          <div class="field">
+            <label>¿Qué activos operan en tu planta?</label>
+            <div class="opt-grid">
+              <label class="opt"><input type="checkbox" name="Activos en planta" value="PLCs industriales"> PLCs industriales</label>
+              <label class="opt"><input type="checkbox" name="Activos en planta" value="Variadores de frecuencia"> Variadores de frecuencia</label>
+              <label class="opt"><input type="checkbox" name="Activos en planta" value="Motores eléctricos"> Motores eléctricos</label>
+              <label class="opt"><input type="checkbox" name="Activos en planta" value="Bombas"> Bombas</label>
+              <label class="opt"><input type="checkbox" name="Activos en planta" value="Compresores"> Compresores</label>
+              <label class="opt"><input type="checkbox" name="Activos en planta" value="CNC"> CNC</label>
+              <label class="opt"><input type="checkbox" name="Activos en planta" value="Robótica"> Robótica</label>
+              <label class="opt"><input type="checkbox" name="Activos en planta" value="Líneas de empaque o envasado"> Líneas de empaque o envasado</label>
+              <label class="opt"><input type="checkbox" name="Activos en planta" value="No estoy seguro"> No estoy seguro</label>
+            </div>
+            <div class="hint">Opcional. Nos ayuda a estimar el fit técnico de tu planta.</div>
+          </div>
         </div>
 
         <!-- BLOQUE D -->
@@ -644,16 +660,30 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
               </select>
             </div>
           </div>
-          <div class="field">
-            <label for="decision">¿Quién decide inversiones en tecnología? <span class="req">*</span></label>
-            <select id="decision" name="Decisor de inversion" required>
-              <option value="">Selecciona una opción</option>
-              <option>Gerente de Planta</option>
-              <option>Director de Operaciones</option>
-              <option>Dirección corporativa</option>
-              <option>Compartido entre áreas</option>
-              <option>Otro</option>
-            </select>
+          <div class="grid-2">
+            <div class="field">
+              <label for="decision">¿Quién decide inversiones en tecnología? <span class="req">*</span></label>
+              <select id="decision" name="Decisor de inversion" required>
+                <option value="">Selecciona una opción</option>
+                <option>Gerente de Planta</option>
+                <option>Director de Operaciones</option>
+                <option>Dirección corporativa</option>
+                <option>Compartido entre áreas</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="area">Área más afectada por los paros hoy</label>
+              <select id="area" name="Area mas afectada">
+                <option value="">Selecciona una opción</option>
+                <option>Producción</option>
+                <option>Mantenimiento</option>
+                <option>Calidad</option>
+                <option>Ingeniería</option>
+                <option>Operaciones</option>
+              </select>
+              <div class="hint">Opcional.</div>
+            </div>
           </div>
         </div>
 
@@ -710,9 +740,9 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           </div>
         </div>
 
-        <button type="submit" class="form-submit" id="form-submit-btn">Enviar: nos ponemos en contacto en 24 horas</button>
+        <button type="submit" class="form-submit" id="form-submit-btn">Recibir mi diagnóstico de planta</button>
         <div class="form-err" id="form-err">Hubo un error al enviar. Intenta de nuevo o escríbenos a <a href="mailto:g@madeos.ai" style="color:var(--red);font-weight:700;">g@madeos.ai</a></div>
-        <p class="form-priv">Tu información es confidencial y solo será usada para personalizar la propuesta de Made.</p>
+        <p class="form-priv">Respondemos en menos de 24 horas. Tu información es confidencial y solo será usada para personalizar tu diagnóstico.</p>
       </form>
 
       <!-- SUCCESS -->
@@ -721,7 +751,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
         </div>
         <h3>Recibido. Nos ponemos en contacto pronto.</h3>
-        <p>Gerardo revisará tus respuestas y te escribirá en las próximas 24 horas con una propuesta personalizada para tu planta.</p>
+        <p>El equipo de Made revisará tu información y te contactará en menos de 24 horas con un diagnóstico personalizado para tu planta.</p>
         <div class="mail">g@madeos.ai</div>
       </div>
     </div>
