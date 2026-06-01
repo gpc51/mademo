@@ -306,7 +306,6 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <p class="hero-lead">Ninguna falla es aleatoria.</p>
     <h1>Made prescribe la acción exacta <em>antes de que la línea se detenga.</em></h1>
     <p class="hero-sub">Convertimos la telemetría de tus activos críticos en contexto operativo, eventos clasificados y riesgo priorizado. Mejora tu OEE, predice fallas y previene paros no planificados. Sin modificar tu lógica de control.</p>
-    <a class="btn-primary" href="#form">Solicita tu primera reunión →</a>
   </div>
 </header>
 
@@ -493,7 +492,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <section class="section form-wrap" id="form">
   <div class="wrap">
     <div class="s-label">Antes de la primera reunión</div>
-    <p class="hero-sub" style="font-size:15px;margin-bottom:28px;">Cuéntanos sobre tu planta para ubicar dónde están tus mayores pérdidas y si Made encaja en tu operación. Así llegamos a la primera reunión enfocados en tu caso, con hipótesis concretas en lugar de un pitch genérico. Toma menos de 5 minutos.</p>
+    <p class="hero-sub" style="font-size:15px;margin-bottom:28px;">Queremos aprender sobre tu empresa para identificar cómo Made OS puede agregar valor en tu operación.</p>
 
     <div class="form-card">
       <!--
@@ -765,7 +764,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           </div>
         </div>
 
-        <button type="submit" class="form-submit" id="form-submit-btn">Solicitar mi primera reunión</button>
+        <button type="submit" class="form-submit" id="form-submit-btn">Enviar</button>
         <div class="form-err" id="form-err">Hubo un error al enviar. Intenta de nuevo o escríbenos a <a href="mailto:g@madeos.ai" style="color:var(--red);font-weight:700;">g@madeos.ai</a></div>
         <p class="form-priv">Respondemos en menos de 24 horas. Tu información es confidencial y solo se usa para preparar tu reunión.</p>
       </form>
@@ -851,10 +850,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
         .then(function(res){
           if (res.ok) {
-            form.style.display = 'none';
-            ok.style.display = 'block';
             try { posthog.capture('discovery_submit', { page: 'discovery', industria: industria, empresa: empresa }); } catch(e) {}
-            ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            window.location.href = 'https://cal.com/madeos.ai/made-s01';
           } else {
             throw new Error('bad response');
           }
