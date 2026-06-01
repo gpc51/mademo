@@ -292,7 +292,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
 <!-- ══ ANNOUNCEMENT ══ -->
 <div class="annc">
-  Lanzamiento API · mayo 2026 <span class="dot">·</span> Primeras plantas elegibles sin costo de implementación API <span class="dot">·</span> <a href="#form">Solicita tu diagnóstico →</a>
+  Lanzamiento API · mayo 2026 <span class="dot">·</span> Primeras plantas elegibles sin costo de implementación API <span class="dot">·</span> <a href="#form">Solicita tu evaluación →</a>
 </div>
 
 <!-- ══ NAV ══ -->
@@ -319,7 +319,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <p class="hero-lead">Ninguna falla es aleatoria.</p>
     <h1>Made prescribe la acción exacta <em>antes de que la línea se detenga.</em></h1>
     <p class="hero-sub">Convertimos la telemetría de tus activos críticos en contexto operativo, eventos clasificados y riesgo priorizado. Mejora tu OEE, predice fallas y previene paros no planificados. Sin modificar tu lógica de control.</p>
-    <a class="btn-primary" href="#form">Solicita tu diagnóstico de planta →</a>
+    <a class="btn-primary" href="#form">Solicita tu evaluación de pérdidas →</a>
   </div>
 </header>
 
@@ -481,7 +481,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <!-- ══ FORMULARIO DISCOVERY ══ -->
 <section class="section form-wrap" id="form">
   <div class="wrap" style="max-width:760px;">
-    <div class="s-label">Diagnóstico de planta · Gratuito</div>
+    <div class="s-label">Evaluación de pérdidas operativas · Gratuita</div>
     <p class="hero-sub" style="font-size:15px;margin-bottom:28px;">Cuéntanos sobre tu planta y recibe una estimación de tus pérdidas, oportunidades de mejora y factibilidad de implementación, personalizada antes de la primera reunión. Toma menos de 5 minutos.</p>
 
     <div class="form-card">
@@ -538,8 +538,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
               </select>
             </div>
             <div class="field">
-              <label for="activos">Líneas o activos críticos <span class="req">*</span></label>
-              <input type="text" id="activos" name="Lineas o activos criticos" required placeholder="Ej. 3 líneas de envasado, 2 compresores">
+              <label for="activos">¿Qué activo o línea genera la mayor pérdida al detenerse? <span class="req">*</span></label>
+              <input type="text" id="activos" name="Activo critico de mayor perdida" required placeholder="Ej. compresor principal, inyectora #4, llenadora 2, línea SMT">
             </div>
           </div>
         </div>
@@ -571,17 +571,32 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
               </select>
             </div>
           </div>
-          <div class="field">
-            <label for="fpy">First-pass yield: calidad a la primera</label>
-            <select id="fpy" name="First pass yield">
-              <option value="">Selecciona una opción</option>
-              <option>Más de 99%</option>
-              <option>97% a 99%</option>
-              <option>90% a 97%</option>
-              <option>Menos de 90%</option>
-              <option>No lo medimos hoy</option>
-            </select>
-            <div class="hint">Porcentaje de unidades buenas en el primer paso, sin retrabajo ni rechazo. Opcional.</div>
+          <div class="grid-2">
+            <div class="field">
+              <label for="fpy">First-pass yield: calidad a la primera</label>
+              <select id="fpy" name="First pass yield">
+                <option value="">Selecciona una opción</option>
+                <option>Más de 99%</option>
+                <option>97% a 99%</option>
+                <option>90% a 97%</option>
+                <option>Menos de 90%</option>
+                <option>No lo medimos hoy</option>
+              </select>
+              <div class="hint">Unidades buenas al primer paso, sin retrabajo. Opcional.</div>
+            </div>
+            <div class="field">
+              <label for="causa">¿Qué causa la mayoría de los paros hoy?</label>
+              <select id="causa" name="Causa principal de paros">
+                <option value="">Selecciona una opción</option>
+                <option>Fallas mecánicas</option>
+                <option>Fallas eléctricas</option>
+                <option>Errores operativos</option>
+                <option>Calidad del proceso</option>
+                <option>Falta de mantenimiento</option>
+                <option>No estamos seguros</option>
+              </select>
+              <div class="hint">Opcional.</div>
+            </div>
           </div>
           <a class="calc-link" href="https://madeos.ai/#roi" target="_blank" rel="noopener">
             <span class="calc-link-ic">$</span>
@@ -589,22 +604,24 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <span class="calc-link-arrow">→</span>
           </a>
           <div class="field">
-            <label for="riesgo">Activo o paro que más les preocupa hoy</label>
-            <textarea id="riesgo" name="Activo o paro que mas preocupa" rows="3" placeholder="Ej. la llenadora de la línea 2 nos para sin aviso. Opcional, pero nos ayuda a priorizar tu diagnóstico."></textarea>
-            <div class="hint">Opcional.</div>
+            <label for="riesgo">¿Qué pasa cuando ese activo falla?</label>
+            <textarea id="riesgo" name="Que pasa cuando falla" rows="3" placeholder="Ej. la llenadora se detiene sin aviso y perdemos medio turno mientras la reiniciamos."></textarea>
+            <div class="hint">Opcional, pero nos ayuda a priorizar tu evaluación.</div>
           </div>
         </div>
 
         <!-- BLOQUE C -->
         <div class="form-block">
-          <div class="form-block-label">Visibilidad actual</div>
+          <div class="form-block-label">Infraestructura y datos</div>
           <div class="field">
-            <label>Monitoreo actual <span class="req">*</span></label>
+            <label>¿Cómo gestionan hoy la información de planta? <span class="req">*</span></label>
             <div class="opt-list">
-              <label class="opt"><input type="radio" name="Monitoreo actual" value="Sí, tenemos SCADA" required> Sí, tenemos SCADA</label>
-              <label class="opt"><input type="radio" name="Monitoreo actual" value="Solo PLCs"> Solo PLCs</label>
-              <label class="opt"><input type="radio" name="Monitoreo actual" value="No tenemos monitoreo digital"> No tenemos monitoreo digital</label>
-              <label class="opt"><input type="radio" name="Monitoreo actual" value="No sé con certeza"> No sé con certeza</label>
+              <label class="opt"><input type="radio" name="Gestion de informacion" value="Plataforma centralizada (SCADA, MES o Historian)" required> Plataforma centralizada (SCADA, MES o Historian)</label>
+              <label class="opt"><input type="radio" name="Gestion de informacion" value="SCADA o HMI por línea"> SCADA o HMI por línea</label>
+              <label class="opt"><input type="radio" name="Gestion de informacion" value="Solo PLCs, sin centralización"> Solo PLCs, sin centralización</label>
+              <label class="opt"><input type="radio" name="Gestion de informacion" value="Reportes manuales u hojas de cálculo"> Reportes manuales u hojas de cálculo</label>
+              <label class="opt"><input type="radio" name="Gestion de informacion" value="No tenemos monitoreo digital"> No tenemos monitoreo digital</label>
+              <label class="opt"><input type="radio" name="Gestion de informacion" value="No sé con certeza"> No sé con certeza</label>
             </div>
           </div>
           <div class="field">
@@ -630,6 +647,17 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
               <label class="opt"><input type="checkbox" name="Activos en planta" value="No estoy seguro"> No estoy seguro</label>
             </div>
             <div class="hint">Opcional. Nos ayuda a estimar el fit técnico de tu planta.</div>
+          </div>
+          <div class="field">
+            <label for="historico">¿Conservan datos históricos de operación?</label>
+            <select id="historico" name="Datos historicos">
+              <option value="">Selecciona una opción</option>
+              <option>Menos de 30 días</option>
+              <option>1 a 6 meses</option>
+              <option>Más de 6 meses</option>
+              <option>No lo sabemos</option>
+            </select>
+            <div class="hint">Opcional. Acelera el despliegue y el tiempo a primer valor.</div>
           </div>
         </div>
 
@@ -660,30 +688,16 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
               </select>
             </div>
           </div>
-          <div class="grid-2">
-            <div class="field">
-              <label for="decision">¿Quién decide inversiones en tecnología? <span class="req">*</span></label>
-              <select id="decision" name="Decisor de inversion" required>
-                <option value="">Selecciona una opción</option>
-                <option>Gerente de Planta</option>
-                <option>Director de Operaciones</option>
-                <option>Dirección corporativa</option>
-                <option>Compartido entre áreas</option>
-                <option>Otro</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="area">Área más afectada por los paros hoy</label>
-              <select id="area" name="Area mas afectada">
-                <option value="">Selecciona una opción</option>
-                <option>Producción</option>
-                <option>Mantenimiento</option>
-                <option>Calidad</option>
-                <option>Ingeniería</option>
-                <option>Operaciones</option>
-              </select>
-              <div class="hint">Opcional.</div>
-            </div>
+          <div class="field">
+            <label for="decision">¿Quién decide inversiones en tecnología? <span class="req">*</span></label>
+            <select id="decision" name="Decisor de inversion" required>
+              <option value="">Selecciona una opción</option>
+              <option>Gerente de Planta</option>
+              <option>Director de Operaciones</option>
+              <option>Dirección corporativa</option>
+              <option>Compartido entre áreas</option>
+              <option>Otro</option>
+            </select>
           </div>
         </div>
 
@@ -740,9 +754,9 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           </div>
         </div>
 
-        <button type="submit" class="form-submit" id="form-submit-btn">Recibir mi diagnóstico de planta</button>
+        <button type="submit" class="form-submit" id="form-submit-btn">Recibir mi evaluación de pérdidas</button>
         <div class="form-err" id="form-err">Hubo un error al enviar. Intenta de nuevo o escríbenos a <a href="mailto:g@madeos.ai" style="color:var(--red);font-weight:700;">g@madeos.ai</a></div>
-        <p class="form-priv">Respondemos en menos de 24 horas. Tu información es confidencial y solo será usada para personalizar tu diagnóstico.</p>
+        <p class="form-priv">Respondemos en menos de 24 horas. Tu información es confidencial y solo será usada para personalizar tu evaluación.</p>
       </form>
 
       <!-- SUCCESS -->
@@ -751,7 +765,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
         </div>
         <h3>Recibido. Nos ponemos en contacto pronto.</h3>
-        <p>El equipo de Made revisará tu información y te contactará en menos de 24 horas con un diagnóstico personalizado para tu planta.</p>
+        <p>El equipo de Made revisará tu información y te contactará en menos de 24 horas con una evaluación personalizada de tus pérdidas y oportunidades de mejora.</p>
         <div class="mail">g@madeos.ai</div>
       </div>
     </div>
