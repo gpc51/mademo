@@ -34,15 +34,6 @@
   body{font-family:var(--font);color:var(--dark);background:var(--bg);font-size:15px;line-height:1.7;}
   a{color:inherit;}
 
-  /* ── ANNOUNCEMENT BAR ── */
-  .annc{
-    background:var(--black);color:#fff;
-    font-size:11.5px;font-weight:600;letter-spacing:.05em;
-    text-align:center;padding:9px 20px;
-  }
-  .annc .dot{color:var(--orange);font-weight:800;margin:0 7px;}
-  .annc a{color:var(--orange-h);text-decoration:none;font-weight:700;}
-  .annc a:hover{text-decoration:underline;}
 
   /* ── NAV ── */
   .nav{
@@ -291,11 +282,6 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 </head>
 <body>
 
-<!-- ══ ANNOUNCEMENT ══ -->
-<div class="annc">
-  Lanzamiento API · mayo 2026 <span class="dot">·</span> Primeras plantas elegibles sin costo de implementación API <span class="dot">·</span> <a href="#form">Solicita tu primera reunión →</a>
-</div>
-
 <!-- ══ NAV ══ -->
 <nav class="nav">
   <div class="nav-inner">
@@ -400,6 +386,36 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         </div>
         <div class="feat-title">Prescriptivo, no solo alertas</div>
         <div class="feat-desc">No muestra dashboards: le dice al operador qué ajustar, cuánto y cuándo, con el impacto esperado. Entregado por WhatsApp, SMS, correo o WebApp.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ══ CASOS DE USO POR SECTOR ══ -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-label">Dónde ya genera valor</div>
+    <p class="s-intro">El mismo motor se adapta al activo crítico de cada sector. Estos son los patrones de pérdida que Made ataca primero.</p>
+    <div class="loss-grid">
+      <div class="loss">
+        <div class="loss-stat">Oil &amp; Gas · Upstream</div>
+        <div class="loss-title">Falla de activo crítico</div>
+        <div class="loss-desc">Compresores y bombas que se degradan sin aviso y detienen producción. Made detecta la anomalía días antes y prescribe la intervención antes del paro.</div>
+        <div class="loss-src">$30K–$250K / hora · Siemens</div>
+      </div>
+      <div class="loss">
+        <div class="loss-stat">Manufactura de bebidas</div>
+        <div class="loss-title">Micro-paros que nadie registra</div>
+        <div class="loss-desc">Detenciones de segundos en líneas de llenado que erosionan el OEE turno tras turno. Made las hace visibles y ataca su causa raíz.</div>
+        <div class="loss-src">~$780K / línea · año · Made</div>
+      </div>
+      <div class="loss">
+        <div class="loss-stat">Vitivinicultura · Premium</div>
+        <div class="loss-title">Desviaciones de proceso</div>
+        <div class="loss-desc">Variaciones entre bodega y envasado que golpean calidad y rendimiento. Made correlaciona señales cross-area y anticipa la desviación antes del lote fuera de especificación.</div>
+        <div class="loss-src">First-pass yield + mermas</div>
       </div>
     </div>
   </div>
