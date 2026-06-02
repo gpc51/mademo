@@ -26,72 +26,78 @@
     --r-lg:       10px;
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  body{font-family:var(--font);color:var(--dark);background:var(--bg);font-size:15px;line-height:1.7;}
+  html,body{height:100dvh;overflow:hidden;}
+  body{
+    font-family:var(--font);color:var(--dark);background:var(--bg);
+    font-size:15px;line-height:1.7;
+    display:flex;flex-direction:column;
+  }
   a{color:inherit;}
 
   /* ── NAV ── */
   .nav{
-    position:sticky;top:0;z-index:100;
+    flex-shrink:0;
     background:rgba(247,248,249,.92);
     backdrop-filter:saturate(180%) blur(10px);
     border-bottom:1px solid var(--border);
   }
   .nav-inner{
     max-width:1000px;margin:0 auto;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:14px 32px;
+    display:flex;align-items:center;
+    padding:13px 32px;
   }
-  .nav-logo{display:flex;align-items:center;gap:0;}
-  .nav-logo img{height:26px;width:auto;display:block;}
-
-  /* ── LAYOUT ── */
-  .wrap{max-width:1000px;margin:0 auto;padding:0 32px;}
+  .nav-logo{display:flex;align-items:center;}
+  .nav-logo img{height:24px;width:auto;display:block;}
 
   /* ── CONFIRM ── */
-  .confirm{padding:64px 0 40px;}
+  .confirm{flex-shrink:0;padding:20px 0 14px;border-bottom:1px solid var(--border);}
+  .confirm-inner{max-width:1000px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:16px;}
   .confirm-check{
-    width:52px;height:52px;border-radius:50%;
+    flex-shrink:0;
+    width:38px;height:38px;border-radius:50%;
     background:var(--orange-bg);border:1.5px solid var(--orange-bd);
     display:flex;align-items:center;justify-content:center;
-    margin-bottom:20px;
   }
-  .confirm-check svg{width:26px;height:26px;color:var(--orange);}
+  .confirm-check svg{width:19px;height:19px;color:var(--orange);}
+  .confirm-text{}
   .confirm-title{
-    font-size:34px;font-weight:800;letter-spacing:-.03em;
-    color:var(--black);margin-bottom:12px;line-height:1.15;
+    font-size:20px;font-weight:800;letter-spacing:-.025em;
+    color:var(--black);line-height:1.2;margin-bottom:3px;
   }
-  .confirm-sub{
-    font-size:17px;color:var(--gray);line-height:1.6;
-    max-width:560px;
-  }
+  .confirm-sub{font-size:13px;color:var(--gray);line-height:1.5;max-width:560px;}
 
   /* ── CAL EMBED ── */
-  .cal-wrap{padding:24px 0 64px;}
-  #cal-booking-embed{
-    min-height:700px;
-    border-radius:var(--r-lg);
-    overflow:hidden;
+  .cal-wrap{
+    flex:1;min-height:0;
+    display:flex;flex-direction:column;
   }
+  .cal-inner{
+    flex:1;min-height:0;
+    max-width:1000px;width:100%;margin:0 auto;padding:0 32px;
+    display:flex;flex-direction:column;
+  }
+  #cal-booking-embed{flex:1;min-height:0;overflow:hidden;}
 
   /* ── FOOTER ── */
-  .footer{background:var(--dark);color:rgba(255,255,255,.4);padding:34px 0;}
+  .footer{flex-shrink:0;background:var(--dark);color:rgba(255,255,255,.4);padding:12px 0;}
   .footer-inner{
     max-width:1000px;margin:0 auto;padding:0 32px;
-    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
   }
-  .footer-logo{display:inline-flex;flex-direction:column;align-items:flex-start;text-decoration:none;color:inherit;cursor:pointer;}
-  .footer-brand img{height:24px;width:auto;display:block;margin-bottom:6px;filter:brightness(0) invert(1);opacity:.85;}
+  .footer-logo{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:inherit;}
+  .footer-brand img{height:20px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.75;}
   .footer-brand span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;}
-  .footer-mail a{color:var(--orange-h);text-decoration:none;font-size:13px;font-weight:600;}
+  .footer-mail a{color:var(--orange-h);text-decoration:none;font-size:12px;font-weight:600;}
 
   /* ── RESPONSIVE ── */
   @media(max-width:600px){
-    .nav-inner,.wrap,.footer-inner{padding-left:20px;padding-right:20px;}
-    .confirm{padding:44px 0 28px;}
-    .confirm-title{font-size:26px;}
-    .confirm-sub{font-size:15px;}
-    .footer-inner{flex-direction:column;align-items:flex-start;}
+    html,body{height:auto;overflow:auto;}
+    .nav-inner,.confirm-inner,.cal-inner,.footer-inner{padding-left:20px;padding-right:20px;}
+    .confirm{padding:16px 0 12px;}
+    .confirm-title{font-size:17px;}
+    .cal-wrap{flex:none;}
+    #cal-booking-embed{min-height:520px;}
+    .footer-inner{flex-direction:column;align-items:flex-start;gap:8px;}
   }
 </style>
 <script>
@@ -105,9 +111,9 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <nav class="nav">
   <div class="nav-inner">
     <a class="nav-logo" href="https://www.madeos.ai" target="_blank" rel="noopener" aria-label="Ir a madeos.ai">
-      <img src="../assets/logo.svg" alt="Made" height="26"
+      <img src="../assets/logo.svg" alt="Made" height="24"
            onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <svg style="display:none" height="26" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+      <svg style="display:none" height="24" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
         <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
         <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
         <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
@@ -118,21 +124,23 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
 <!-- ══ CONFIRMACIÓN ══ -->
 <section class="confirm">
-  <div class="wrap">
+  <div class="confirm-inner">
     <div class="confirm-check">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <circle cx="12" cy="12" r="10"/>
         <path d="M8 12l3 3 5-6"/>
       </svg>
     </div>
-    <h1 class="confirm-title">Gracias. Recibimos tu información.</h1>
-    <p class="confirm-sub">Agenda tu primera llamada con el equipo de Made: 30 minutos enfocados en tu operación. Elige el horario que mejor te funcione.</p>
+    <div class="confirm-text">
+      <div class="confirm-title">Gracias. Recibimos tu información.</div>
+      <p class="confirm-sub">Agenda tu primera llamada con el equipo de Made: 30 minutos enfocados en tu operación y en nuestra solución. Elige el horario que mejor te funcione.</p>
+    </div>
   </div>
 </section>
 
 <!-- ══ CAL.COM EMBED ══ -->
 <div class="cal-wrap">
-  <div class="wrap">
+  <div class="cal-inner">
     <div id="cal-booking-embed"></div>
   </div>
 </div>
@@ -142,7 +150,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="footer-inner">
     <div class="footer-brand">
       <a class="footer-logo" href="https://www.madeos.ai" target="_blank" rel="noopener" aria-label="Ir a madeos.ai">
-        <img src="../assets/logo.svg" alt="Made" height="24"
+        <img src="../assets/logo.svg" alt="Made" height="20"
              onerror="this.style.display='none'">
         <span>madeos.ai</span>
       </a>
