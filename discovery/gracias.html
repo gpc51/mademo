@@ -87,17 +87,21 @@
   .cal-inner{
     flex:1;min-height:0;
     max-width:960px;width:100%;margin:0 auto;
-    overflow:hidden; /* clip el watermark del iframe */
+    overflow:hidden;
     border-radius:var(--r-lg) var(--r-lg) 0 0;
+    position:relative;
   }
   #cal-booking-embed{
     height:100%;
   }
-  /* Empuja el iframe para sacar el watermark de Cal.com del viewport */
-  #cal-booking-embed iframe{
-    height:calc(100% + 90px) !important;
-    max-height:none !important;
-    display:block;
+  /* Overlay sólido que cubre el watermark de Cal.com */
+  .cal-cover{
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:140px;
+    background:var(--cal-dark);
+    z-index:100;
+    pointer-events:auto;
   }
 
   /* ── FOOTER ── */
@@ -172,6 +176,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <div class="cal-wrap">
     <div class="cal-inner">
       <div id="cal-booking-embed"></div>
+      <div class="cal-cover" aria-hidden="true"></div>
     </div>
   </div>
 
