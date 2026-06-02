@@ -160,6 +160,15 @@
     transition: color .15s, border-color .15s;
   }
   .logout-btn:hover { color: var(--dark); border-color: var(--gray-l); }
+  .topbar-discovery {
+    font-size: 12px; font-weight: 600; color: var(--orange);
+    text-decoration: none;
+    border: 1px solid rgba(216,66,0,.28); border-radius: 5px;
+    background: rgba(216,66,0,.06);
+    padding: 5px 12px;
+    transition: background .15s;
+  }
+  .topbar-discovery:hover { background: rgba(216,66,0,.13); }
 
   .hero { padding: 64px 64px 40px; }
   .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
@@ -385,6 +394,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     </svg>
     <div class="topbar-right">
       <span class="topbar-user" id="hub-user"></span>
+      <a href="discovery/" target="_blank" rel="noopener" class="topbar-discovery">Discovery →</a>
       <div class="lang-toggle" role="group" aria-label="Language">
         <button class="lang-btn" id="btn-en" type="button">EN</button>
         <button class="lang-btn active" id="btn-es" type="button">ES</button>
