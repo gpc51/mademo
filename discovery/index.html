@@ -245,16 +245,24 @@
   .form-ok p{font-size:14px;color:var(--gray);line-height:1.6;max-width:420px;margin:0 auto 14px;}
   .form-ok .mail{font-size:13px;color:var(--orange);font-weight:600;}
 
+  /* ── FIRMA FUNDADOR ── */
+  .founder-sig-section{background:var(--bg);border-top:1px solid var(--border);padding:40px 0;}
+  .sig{display:flex;align-items:center;gap:18px;}
+  .sig-av{width:72px;height:72px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--orange);}
+  .sig-av img{width:100%;height:100%;object-fit:cover;display:block;}
+  .sig-name{font-size:15px;font-weight:700;color:var(--black);margin-bottom:2px;}
+  .sig-role{font-size:13px;color:var(--gray);margin-bottom:3px;}
+  .sig-contact{font-size:12px;color:var(--orange);}
+
   /* ── FOOTER ── */
-  .footer{background:var(--dark);color:rgba(255,255,255,.4);padding:34px 0;}
+  .footer{background:var(--dark);color:rgba(255,255,255,.4);padding:28px 0;}
   .footer-inner{
     max-width:1000px;margin:0 auto;padding:0 32px;
-    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    display:flex;align-items:center;gap:24px;flex-wrap:wrap;
   }
   .footer-logo{display:inline-flex;flex-direction:column;align-items:flex-start;text-decoration:none;color:inherit;cursor:pointer;}
-  .footer-brand img{height:24px;width:auto;display:block;margin-bottom:6px;filter:brightness(0) invert(1);opacity:.85;}
-  .footer-brand span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;}
-  .footer-mail a{color:var(--orange-h);text-decoration:none;font-size:13px;font-weight:600;}
+  .footer-brand img{height:22px;width:auto;display:block;margin-bottom:7px;filter:brightness(0) invert(1);opacity:.75;}
+  .footer-brand span{font-size:11px;color:rgba(255,255,255,.38);line-height:1.4;max-width:320px;}
 
   /* ── VIDEO ── */
   .video-section{padding:20px 0 24px;background:var(--bg);}
@@ -269,6 +277,9 @@
   }
   @media(max-width:600px){
     .nav-inner,.wrap,.footer-inner{padding-left:20px;padding-right:20px;}
+    .founder-sig-section{padding:28px 0;}
+    .sig{gap:14px;}
+    .sig-av{width:56px;height:56px;}
     .hero{padding:48px 0 44px;}
     .hero-lead{font-size:17px;}
     .hero h1{font-size:33px;}
@@ -804,18 +815,31 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   </div>
 </section>
 
+<!-- ══ FIRMA FUNDADOR ══ -->
+<section class="founder-sig-section">
+  <div class="wrap">
+    <div class="sig">
+      <div class="sig-av">
+        <img src="../assets/gpc.png" alt="Gerardo Peña">
+      </div>
+      <div>
+        <div class="sig-name">Gerardo Peña</div>
+        <div class="sig-role">CEO, Made OS · MIT Innovator Under 35 LATAM 2025</div>
+        <div class="sig-contact">ger@madeos.ai · madeos.ai · NVIDIA Inception · Founders Inc · Startup Chile BIG 10</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ FOOTER ══ -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
       <a class="footer-logo" href="https://www.madeos.ai" target="_blank" rel="noopener" aria-label="Ir a madeos.ai">
-        <img src="../assets/logo.svg" alt="Made" height="24"
+        <img src="../assets/logo.svg" alt="Made" height="22"
              onerror="this.style.display='none'">
-        <span>madeos.ai</span>
+        <span>Made OS is the operational intelligence layer for physical production.</span>
       </a>
-    </div>
-    <div class="footer-mail">
-      <a href="mailto:g@madeos.ai">g@madeos.ai</a>
     </div>
   </div>
 </footer>
