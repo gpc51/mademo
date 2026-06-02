@@ -67,24 +67,24 @@
   }
   .divider{height:1px;background:var(--border);}
 
+  /* ── NAV TAGLINE ── */
+  .nav-logo-group{display:flex;flex-direction:column;gap:3px;}
+  .nav-tagline{font-size:11px;color:var(--gray);font-weight:500;letter-spacing:.01em;line-height:1.3;}
+
   /* ── HERO ── */
-  .hero{padding:72px 0 64px;}
-  .hero-eyebrow{
-    font-size:11px;font-weight:600;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--orange);margin-bottom:22px;
-  }
+  .hero{padding:32px 0 20px;}
   .hero-lead{
-    font-size:21px;font-weight:600;color:var(--gray);
-    letter-spacing:-.01em;line-height:1.3;margin-bottom:14px;
+    font-size:19px;font-weight:600;color:var(--gray);
+    letter-spacing:-.01em;line-height:1.3;margin-bottom:10px;
   }
   .hero h1{
-    font-size:54px;font-weight:800;line-height:1.05;
-    letter-spacing:-.035em;color:var(--black);max-width:900px;margin-bottom:24px;
+    font-size:46px;font-weight:800;line-height:1.06;
+    letter-spacing:-.035em;color:var(--black);max-width:900px;margin-bottom:14px;
   }
   .hero h1 em{color:var(--orange);font-style:normal;}
   .hero-sub{
-    font-size:17px;color:var(--gray);line-height:1.6;
-    max-width:620px;margin-bottom:32px;
+    font-size:16px;color:var(--gray);line-height:1.6;
+    max-width:620px;margin-bottom:14px;
   }
   .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px;}
   .pill{
@@ -257,7 +257,7 @@
   .footer-mail a{color:var(--orange-h);text-decoration:none;font-size:13px;font-weight:600;}
 
   /* ── VIDEO ── */
-  .video-section{padding:40px 0 44px;background:var(--bg);}
+  .video-section{padding:20px 0 24px;background:var(--bg);}
   .video-ratio{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--r-lg);box-shadow:0 4px 24px rgba(0,0,0,.10);}
   .video-ratio iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;}
 
@@ -290,15 +290,18 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <!-- ══ NAV ══ -->
 <nav class="nav">
   <div class="nav-inner">
-    <a class="nav-logo" href="https://www.madeos.ai" target="_blank" rel="noopener" aria-label="Ir a madeos.ai">
-      <img src="../assets/logo.svg" alt="Made" height="26"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <svg style="display:none" height="26" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
-        <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
-        <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
-        <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
-      </svg>
-    </a>
+    <div class="nav-logo-group">
+      <a class="nav-logo" href="https://www.madeos.ai" target="_blank" rel="noopener" aria-label="Ir a madeos.ai">
+        <img src="../assets/logo.svg" alt="Made" height="26"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <svg style="display:none" height="26" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+          <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
+          <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
+          <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
+        </svg>
+      </a>
+      <span class="nav-tagline">El sistema operativo industrial para una manufactura sin pérdidas</span>
+    </div>
   </div>
 </nav>
 
@@ -307,7 +310,6 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 <!-- ══ HERO ══ -->
 <header class="hero">
   <div class="wrap">
-    <div class="hero-eyebrow">Manufactura sin pérdidas · Sistema operativo industrial</div>
     <p class="hero-lead">Ninguna falla es aleatoria.</p>
     <h1>Made prescribe la acción exacta <em>antes de que la línea se detenga.</em></h1>
     <p class="hero-sub">Convertimos la telemetría de tus activos críticos en contexto operativo, eventos clasificados y riesgo priorizado. Mejora tu OEE, predice fallas y previene paros no planificados. Sin modificar tu lógica de control.</p>
