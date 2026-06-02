@@ -21,6 +21,7 @@
     --border:     #e4e7ea;
     --bg:         #f7f8f9;
     --white:      #ffffff;
+    --cal-dark:   #18181b;
     --font:       'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
     --r:          6px;
     --r-lg:       10px;
@@ -28,18 +29,18 @@
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   html,body{height:100dvh;overflow:hidden;}
   body{
-    font-family:var(--font);color:var(--dark);background:var(--bg);
-    font-size:15px;line-height:1.7;
+    font-family:var(--font);font-size:15px;line-height:1.7;
     display:flex;flex-direction:column;
+    background:var(--bg);
   }
   a{color:inherit;}
 
   /* ── NAV ── */
   .nav{
     flex-shrink:0;
-    background:rgba(247,248,249,.92);
-    backdrop-filter:saturate(180%) blur(10px);
+    background:rgba(247,248,249,.96);
     border-bottom:1px solid var(--border);
+    z-index:10;
   }
   .nav-inner{
     max-width:1000px;margin:0 auto;
@@ -49,55 +50,83 @@
   .nav-logo{display:flex;align-items:center;}
   .nav-logo img{height:24px;width:auto;display:block;}
 
-  /* ── CONFIRM ── */
-  .confirm{flex-shrink:0;padding:20px 0 14px;border-bottom:1px solid var(--border);}
-  .confirm-inner{max-width:1000px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:16px;}
+  /* ── PANEL SUPERIOR (1/3) · claro ── */
+  .page-top{
+    flex:1;
+    display:flex;align-items:center;
+    background:var(--bg);
+    border-bottom:1px solid var(--border);
+  }
+  .confirm-inner{
+    max-width:1000px;margin:0 auto;padding:0 40px;
+    width:100%;
+    display:flex;align-items:center;gap:18px;
+  }
   .confirm-check{
     flex-shrink:0;
-    width:38px;height:38px;border-radius:50%;
+    width:44px;height:44px;border-radius:50%;
     background:var(--orange-bg);border:1.5px solid var(--orange-bd);
     display:flex;align-items:center;justify-content:center;
   }
-  .confirm-check svg{width:19px;height:19px;color:var(--orange);}
-  .confirm-text{}
+  .confirm-check svg{width:22px;height:22px;color:var(--orange);}
   .confirm-title{
-    font-size:20px;font-weight:800;letter-spacing:-.025em;
-    color:var(--black);line-height:1.2;margin-bottom:3px;
+    font-size:21px;font-weight:800;letter-spacing:-.025em;
+    color:var(--black);line-height:1.2;margin-bottom:4px;
   }
-  .confirm-sub{font-size:13px;color:var(--gray);line-height:1.5;max-width:560px;}
+  .confirm-sub{font-size:14px;color:var(--gray);line-height:1.55;max-width:520px;}
+
+  /* ── PANEL INFERIOR (2/3) · oscuro ── */
+  .page-bottom{
+    flex:2;
+    display:flex;flex-direction:column;
+    background:var(--cal-dark);
+    min-height:0;
+  }
 
   /* ── CAL EMBED ── */
   .cal-wrap{
     flex:1;min-height:0;
     display:flex;flex-direction:column;
+    padding:20px 32px 0;
   }
   .cal-inner{
     flex:1;min-height:0;
-    max-width:1000px;width:100%;margin:0 auto;padding:0 32px;
+    max-width:960px;width:100%;margin:0 auto;
     display:flex;flex-direction:column;
   }
-  #cal-booking-embed{flex:1;min-height:0;overflow:hidden;}
+  #cal-booking-embed{
+    flex:1;min-height:0;
+    overflow:hidden;
+    border-radius:var(--r-lg) var(--r-lg) 0 0;
+  }
 
   /* ── FOOTER ── */
-  .footer{flex-shrink:0;background:var(--dark);color:rgba(255,255,255,.4);padding:12px 0;}
+  .footer{
+    flex-shrink:0;
+    background:transparent;
+    color:rgba(255,255,255,.3);
+    padding:12px 0;
+  }
   .footer-inner{
-    max-width:1000px;margin:0 auto;padding:0 32px;
+    max-width:960px;margin:0 auto;padding:0 32px;
     display:flex;align-items:center;justify-content:space-between;gap:24px;
   }
   .footer-logo{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:inherit;}
-  .footer-brand img{height:20px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.75;}
+  .footer-brand img{height:18px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.6;}
   .footer-brand span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;}
   .footer-mail a{color:var(--orange-h);text-decoration:none;font-size:12px;font-weight:600;}
 
   /* ── RESPONSIVE ── */
-  @media(max-width:600px){
+  @media(max-width:700px){
     html,body{height:auto;overflow:auto;}
-    .nav-inner,.confirm-inner,.cal-inner,.footer-inner{padding-left:20px;padding-right:20px;}
-    .confirm{padding:16px 0 12px;}
-    .confirm-title{font-size:17px;}
-    .cal-wrap{flex:none;}
-    #cal-booking-embed{min-height:520px;}
-    .footer-inner{flex-direction:column;align-items:flex-start;gap:8px;}
+    .page-top,.page-bottom{flex:none;}
+    .page-top{padding:24px 0;}
+    .confirm-inner,.cal-wrap,.footer-inner{padding-left:20px;padding-right:20px;}
+    .confirm-title{font-size:18px;}
+    .cal-wrap{padding-top:12px;}
+    #cal-booking-embed{min-height:520px;border-radius:var(--r-lg);}
+    .page-bottom{padding-bottom:0;}
+    .footer-inner{flex-direction:column;align-items:flex-start;gap:6px;}
   }
 </style>
 <script>
@@ -122,8 +151,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   </div>
 </nav>
 
-<!-- ══ CONFIRMACIÓN ══ -->
-<section class="confirm">
+<!-- ══ PANEL SUPERIOR · CONFIRMACIÓN ══ -->
+<div class="page-top">
   <div class="confirm-inner">
     <div class="confirm-check">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -131,35 +160,36 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <path d="M8 12l3 3 5-6"/>
       </svg>
     </div>
-    <div class="confirm-text">
+    <div>
       <div class="confirm-title">Gracias. Recibimos tu información.</div>
       <p class="confirm-sub">Agenda tu primera llamada con el equipo de Made: 30 minutos enfocados en tu operación y en nuestra solución. Elige el horario que mejor te funcione.</p>
     </div>
   </div>
-</section>
-
-<!-- ══ CAL.COM EMBED ══ -->
-<div class="cal-wrap">
-  <div class="cal-inner">
-    <div id="cal-booking-embed"></div>
-  </div>
 </div>
 
-<!-- ══ FOOTER ══ -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a class="footer-logo" href="https://www.madeos.ai" target="_blank" rel="noopener" aria-label="Ir a madeos.ai">
-        <img src="../assets/logo.svg" alt="Made" height="20"
-             onerror="this.style.display='none'">
-        <span>madeos.ai</span>
-      </a>
-    </div>
-    <div class="footer-mail">
-      <a href="mailto:g@madeos.ai">g@madeos.ai</a>
+<!-- ══ PANEL INFERIOR · CAL.COM + FOOTER ══ -->
+<div class="page-bottom">
+  <div class="cal-wrap">
+    <div class="cal-inner">
+      <div id="cal-booking-embed"></div>
     </div>
   </div>
-</footer>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="footer-logo" href="https://www.madeos.ai" target="_blank" rel="noopener" aria-label="Ir a madeos.ai">
+          <img src="../assets/logo.svg" alt="Made" height="18"
+               onerror="this.style.display='none'">
+          <span>madeos.ai</span>
+        </a>
+      </div>
+      <div class="footer-mail">
+        <a href="mailto:g@madeos.ai">g@madeos.ai</a>
+      </div>
+    </div>
+  </footer>
+</div>
 
 <script>
   try { posthog.capture('discovery_gracias_view', { page: 'discovery_gracias' }); } catch(e) {}
