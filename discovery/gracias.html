@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Made OS · Gracias</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:     #d84200;
+    --orange-h:   #f04900;
+    --orange-bg:  rgba(216,66,0,.08);
+    --orange-bd:  rgba(216,66,0,.28);
+    --black:      #111213;
+    --dark:       #1a1c1e;
+    --gray-d:     #3e4245;
+    --gray:       #636870;
+    --gray-l:     #9ba3ab;
+    --border:     #e4e7ea;
+    --bg:         #f7f8f9;
+    --white:      #ffffff;
+    --font:       'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --r:          6px;
+    --r-lg:       10px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--font);color:var(--dark);background:var(--bg);font-size:15px;line-height:1.7;}
+  a{color:inherit;}
+
+  /* ── NAV ── */
+  .nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(247,248,249,.92);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:1000px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 32px;
+  }
+  .nav-logo{display:flex;align-items:center;gap:0;}
+  .nav-logo img{height:26px;width:auto;display:block;}
+
+  /* ── LAYOUT ── */
+  .wrap{max-width:1000px;margin:0 auto;padding:0 32px;}
+
+  /* ── CONFIRM ── */
+  .confirm{padding:64px 0 40px;}
+  .confirm-check{
+    width:52px;height:52px;border-radius:50%;
+    background:var(--orange-bg);border:1.5px solid var(--orange-bd);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:20px;
+  }
+  .confirm-check svg{width:26px;height:26px;color:var(--orange);}
+  .confirm-title{
+    font-size:34px;font-weight:800;letter-spacing:-.03em;
+    color:var(--black);margin-bottom:12px;line-height:1.15;
+  }
+  .confirm-sub{
+    font-size:17px;color:var(--gray);line-height:1.6;
+    max-width:560px;
+  }
+
+  /* ── CAL EMBED ── */
+  .cal-wrap{padding:24px 0 64px;}
+  #cal-booking-embed{
+    min-height:700px;
+    border-radius:var(--r-lg);
+    overflow:hidden;
+  }
+
+  /* ── FOOTER ── */
+  .footer{background:var(--dark);color:rgba(255,255,255,.4);padding:34px 0;}
+  .footer-inner{
+    max-width:1000px;margin:0 auto;padding:0 32px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  }
+  .footer-logo{display:inline-flex;flex-direction:column;align-items:flex-start;text-decoration:none;color:inherit;cursor:pointer;}
+  .footer-brand img{height:24px;width:auto;display:block;margin-bottom:6px;filter:brightness(0) invert(1);opacity:.85;}
+  .footer-brand span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;}
+  .footer-mail a{color:var(--orange-h);text-decoration:none;font-size:13px;font-weight:600;}
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:600px){
+    .nav-inner,.wrap,.footer-inner{padding-left:20px;padding-right:20px;}
+    .confirm{padding:44px 0 28px;}
+    .confirm-title{font-size:26px;}
+    .confirm-sub{font-size:15px;}
+    .footer-inner{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https://us.i.posthog.com',person_profiles:'identified_only',defaults:'2026-01-30',disable_session_recording:true});
+</script>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://www.madeos.ai" target="_blank" rel="noopener" aria-label="Ir a madeos.ai">
+      <img src="../assets/logo.svg" alt="Made" height="26"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <svg style="display:none" height="26" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.3,13 V21.8 L9,39 H0 Z" fill="#d84200"/>
+        <path d="M39.6,9.8 V39 H13.3 Z" fill="#d84200"/>
+        <text x="46" y="39" font-size="36" font-family="Inter,-apple-system,sans-serif" font-weight="800" fill="#3e4245">Made</text>
+      </svg>
+    </a>
+  </div>
+</nav>
+
+<!-- ══ CONFIRMACIÓN ══ -->
+<section class="confirm">
+  <div class="wrap">
+    <div class="confirm-check">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M8 12l3 3 5-6"/>
+      </svg>
+    </div>
+    <h1 class="confirm-title">Gracias. Recibimos tu información.</h1>
+    <p class="confirm-sub">Agenda tu primera llamada con el equipo de Made: 30 minutos enfocados en tu operación. Elige el horario que mejor te funcione.</p>
+  </div>
+</section>
+
+<!-- ══ CAL.COM EMBED ══ -->
+<div class="cal-wrap">
+  <div class="wrap">
+    <div id="cal-booking-embed"></div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="footer-logo" href="https://www.madeos.ai" target="_blank" rel="noopener" aria-label="Ir a madeos.ai">
+        <img src="../assets/logo.svg" alt="Made" height="24"
+             onerror="this.style.display='none'">
+        <span>madeos.ai</span>
+      </a>
+    </div>
+    <div class="footer-mail">
+      <a href="mailto:g@madeos.ai">g@madeos.ai</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  try { posthog.capture('discovery_gracias_view', { page: 'discovery_gracias' }); } catch(e) {}
+</script>
+<script type="text/javascript">
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal; let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {}; cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, [L, api]);
+        } else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init", "made-s01", { origin: "https://cal.com" });
+  Cal.ns["made-s01"]("inline", {
+    elementOrSelector: "#cal-booking-embed",
+    calLink: "madeos.ai/made-s01",
+    config: { "layout": "month_view" }
+  });
+  Cal.ns["made-s01"]("ui", {
+    "styles": { "branding": { "brandColor": "#d84200" } },
+    "hideEventTypeDetails": false,
+    "layout": "month_view"
+  });
+</script>
+
+</body>
+</html>
