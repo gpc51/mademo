@@ -528,12 +528,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <p class="hero-sub" style="font-size:15px;margin-bottom:28px;">Queremos aprender sobre tu empresa para identificar cómo Made OS puede agregar valor en tu operación.</p>
 
     <div class="form-card">
-      <!--
-        ENTREGA DE RESPUESTAS · Formspree → g@madeos.ai
-        Endpoint conectado. La primera vez que llegue un envío, Formspree pedirá
-        confirmar el correo g@madeos.ai una sola vez para activar el formulario.
-      -->
-      <form id="discovery-form" action="https://formspree.io/f/xvzynalv" method="POST" novalidate>
+      <!-- ENTREGA DE RESPUESTAS · POST JSON → API_URL en el script de submit -->
+      <form id="discovery-form" action="#" method="POST" novalidate>
 
         <!-- Honeypot anti-spam (oculto; los bots lo llenan, los humanos no) -->
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
@@ -872,8 +868,10 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     if (detOtro) detOtro.addEventListener('change', function(){ toggle(document.getElementById('otro-deteccion'), detOtro.checked); });
   })();
 
-  // ── Envío del formulario vía Formspree (fetch + estados) ──
+  // ── Envío del formulario → API Made ──
   (function(){
+    var API_URL = 'http://127.0.0.1:3000/api/public/submissions';
+
     var form = document.getElementById('discovery-form');
     var btn  = document.getElementById('form-submit-btn');
     var err  = document.getElementById('form-err');
@@ -888,22 +886,62 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       var original = btn.textContent;
       btn.textContent = 'Enviando...';
 
-      var data = new FormData(form);
-      var industria = data.get('Industria') || '';
-      var empresa   = data.get('Empresa') || '';
-      data.append('_subject', 'Nuevo discovery: ' + empresa + ' · ' + industria);
+      var fd = new FormData(form);
 
-      fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-        .then(function(res){
-          if (res.ok) {
-            try { posthog.capture('discovery_submit', { page: 'discovery', industria: industria, empresa: empresa }); } catch(e) {}
-            window.location.href = 'gracias.html';
-          } else {
-            throw new Error('bad response');
-          }
+      var email   = (fd.get('Correo') || '').trim();
+      var company = (fd.get('Empresa') || '').trim();
+      var industria = (fd.get('Industria') || '').trim();
+
+      var payload = {
+        email:    email,
+        company:  company,
+        language: 'es',
+        type:     'discovery',
+        data: {
+          name:                      (fd.get('Nombre') || '').trim(),
+          job_title:                 (fd.get('Cargo') || '').trim(),
+          country:                   (fd.get('Pais') || '').trim(),
+          country_other:             (fd.get('Pais (especificar)') || '').trim(),
+          phone_whatsapp:            (fd.get('Telefono WhatsApp') || '').trim(),
+          industry:                  industria,
+          shifts_per_day:            (fd.get('Turnos por dia') || '').trim(),
+          operation_size:            (fd.get('Tamano de operacion') || '').trim(),
+          critical_asset:            (fd.get('Activo critico de mayor perdida') || '').trim(),
+          downtime_hours_per_month:  (fd.get('Horas de paro al mes') || '').trim(),
+          cost_per_hour_downtime:    (fd.get('Costo por hora de paro') || '').trim(),
+          main_downtime_cause:       (fd.get('Causa principal de paros') || '').trim(),
+          failure_impact:            (fd.get('Que pasa cuando falla') || '').trim(),
+          data_management:           (fd.get('Gestion de informacion') || '').trim(),
+          downtime_detection:        fd.getAll('Deteccion de paro'),
+          downtime_detection_other:  (fd.get('Deteccion de paro (especificar)') || '').trim(),
+          plant_assets:              fd.getAll('Activos en planta'),
+          equipment_connectivity:    (fd.get('Conectividad de equipos') || '').trim(),
+          historical_data:           (fd.get('Datos historicos') || '').trim(),
+          evaluation_timeline:       (fd.get('Horizonte de evaluacion') || '').trim(),
+          evaluation_role:           (fd.get('Rol en la evaluacion') || '').trim(),
+          evaluation_role_other:     (fd.get('Rol (especificar)') || '').trim(),
+          decision_maker:            (fd.get('Decisor de inversion') || '').trim(),
+          decision_maker_other:      (fd.get('Decisor (especificar)') || '').trim()
+        }
+      };
+
+      fetch(API_URL, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(function(r){ return r.json(); })
+        .then(function(){
+          try { posthog.capture('discovery_submit', { page: 'discovery', industria: industria, empresa: company }); } catch(e) {}
+          window.location.href = 'gracias.html';
         })
-        .catch(function(){
-          err.style.display = 'block';
+        .catch(function(err){
+          console.error(err);
+          document.getElementById('form-err').style.display = 'block';
           btn.disabled = false;
           btn.textContent = original;
           try { posthog.capture('discovery_submit_error', { page: 'discovery' }); } catch(e) {}
