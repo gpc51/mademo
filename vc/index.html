@@ -512,7 +512,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       Industrial predictive intelligence. Deployed in 30 days, with a 90-day ROI guarantee, at 1/10 the cost of legacy APM.
     </p>
     <div class="cover-backed" style="position:relative;z-index:2;margin-top:36px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;max-width:760px">
-      <span style="font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--tx-3);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;flex-shrink:0">Backed by</span>
+      <span style="font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--tx-3);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;flex-shrink:0">Backed &amp; recognized by</span>
       <img src="../assets/brands/nvidia-logo.svg" alt="NVIDIA Inception" style="height:28px;width:auto;max-width:130px;object-fit:contain;opacity:.6;filter:brightness(0) invert(1)" loading="lazy">
       <img src="../assets/brands/mit-technology-review-logo.svg" alt="MIT Technology Review" style="height:40px;width:auto;max-width:72px;object-fit:contain;opacity:.55;filter:brightness(0) invert(1)" loading="lazy">
       <img src="../assets/brands/startup-chile-logo.svg" alt="Startup Chile" style="height:30px;width:auto;max-width:130px;object-fit:contain;opacity:.55;filter:brightness(0) invert(1)" loading="lazy">
@@ -705,15 +705,20 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
   <!-- ══ S5: TRACTION ══ -->
   <div class="slide" id="s5">
-    <div class="slide-head">
+    <div class="slide-head" style="min-height:auto;margin-bottom:16px">
     <div class="eyebrow">Traction</div>
     <div class="rule"></div>
-    <h2 class="headline" style="max-width:680px;text-transform:uppercase;letter-spacing:.04em">
-      Implementation Stage
+    <h2 class="headline" style="max-width:840px;font-size:clamp(26px,3.4vw,46px)">
+      Live in the field. <span class="accent">Preselected by the world's largest copper mine.</span>
     </h2>
     </div>
 
-    <div class="traction-row">
+    <div style="margin-bottom:12px;background:var(--obg);border:1px solid var(--obd);border-left:3px solid var(--o);border-radius:0 6px 6px 0;padding:12px 16px;display:flex;align-items:center;gap:16px;width:100%">
+      <div style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--o);flex-shrink:0;line-height:1.5">Preselected<br>BHP Escondida</div>
+      <div style="font-size:12px;color:var(--tx-1);line-height:1.5">Selected from <strong style="color:var(--tx-0)">600+ companies globally</strong> to solve an operational challenge at <strong style="color:var(--tx-0)">Escondida, the world's largest copper operation</strong>. One of 21 funded-pilot challenges in BHP's Open Aster program, in partnership with JUST Partners. Next phase: field implementation at a world-class mining site.</div>
+    </div>
+
+    <div class="traction-row" style="margin-top:0">
       <div class="traction-metric">
         <div class="traction-label">Active pilots</div>
         <div class="traction-num orange">2</div>
@@ -732,10 +737,10 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <div class="traction-metric">
         <div class="traction-label">Pipeline (LOIs + qualified)</div>
         <div class="traction-num orange">$2.1M</div>
-        <div class="traction-note">Active conversations in final technical session stage across 6 facilities.</div>
+        <div class="traction-note">Active conversations in final technical session stage across 6 facilities, plus BHP Escondida challenge (funded pilot track).</div>
       </div>
     </div>
-    <div style="margin-top:14px;background:var(--obg);border:1px solid var(--obd);border-left:3px solid var(--o);border-radius:6px;padding:14px 16px">
+    <div style="margin-top:12px;background:var(--obg);border:1px solid var(--obd);border-left:3px solid var(--o);border-radius:6px;padding:12px 16px">
       <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--o);margin-bottom:8px">Distribution channels in place</div>
       <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px">
         <div style="border-right:1px solid var(--ln);padding-right:10px">
@@ -761,7 +766,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </div>
     </div>
 
-    <div class="cols cols-2" style="margin-top:18px">
+    <div class="cols cols-2" style="margin-top:12px">
       <div class="card accent">
         <div class="card-label">Lead client signal</div>
         <div style="font-size:13px;color:var(--dark);font-weight:600;margin-bottom:6px;margin-top:4px">"The alert came 18 days before the compressor would have failed. Maintenance planned the replacement in the next scheduled stop. Zero unplanned downtime."</div>
@@ -772,6 +777,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="card-desc" style="margin-top:6px;font-size:12.5px">
           <div style="display:flex;flex-direction:column;gap:6px">
             <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Convert 2 pilots to annual contracts (Month 3)</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>BHP Escondida field pilot scoping (Open Aster program)</span></div>
             <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Launch 4 additional pilots from current pipeline (Month 4–5)</span></div>
             <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Path to break-even at 3 annual contracts by Q4 2026</span></div>
           </div>
@@ -780,9 +786,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     </div>
     <div style="margin-top:10px;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--o);border-radius:8px;padding:11px 16px;display:flex;align-items:center;gap:14px">
       <div style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--o);flex-shrink:0">TRL 7 → 8</div>
-      <div style="font-size:12px;color:var(--gray);line-height:1.5">System demonstrated in live industrial environments (NASA/DoD readiness scale). Technology risk is resolved. The remaining variable is deployment velocity: that is what capital accelerates.</div>
+      <div style="font-size:12px;color:var(--gray);line-height:1.5">System demonstrated in live industrial environments (NASA/DoD readiness scale). Technology risk is resolved. The remaining variable is deployment velocity: that is what capital accelerates. <span style="color:var(--gray-l)">Traction data as of Q1 2026 · client names under NDA.</span></div>
     </div>
-    <p style="font-size:11px;color:var(--gray-l);margin-top:12px">Traction data as of Q1 2026. Specific client names available under NDA.</p>
   </div>
 
   <!-- ══ S6: BUSINESS MODEL ══ -->
