@@ -621,7 +621,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <div class="card accent">
         <div class="card-label">Price vs. Legacy APM</div>
         <div class="card-num orange" style="font-size:clamp(22px,2.8vw,36px)">1/10×</div>
-        <div class="card-desc">$440K–$480K all-inclusive Year 1 vs. $1.5M–$5M+ for traditional APM.</div>
+        <div class="card-desc">Year 1 all-in: $60K for a single-line plant to $460K for a full refinery site, vs. $1.5M–$5M+ for traditional APM.</div>
       </div>
     </div>
 
@@ -720,9 +720,9 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
 
     <div class="traction-row" style="margin-top:0">
       <div class="traction-metric">
-        <div class="traction-label">Active pilots</div>
+        <div class="traction-label">Design-partner pilots</div>
         <div class="traction-num orange">2</div>
-        <div class="traction-note">Elevators · Wood processing. Chile & Mexico.</div>
+        <div class="traction-note">Elevators · Wood processing · Chile &amp; Mexico. Converting to paid annual contracts.</div>
       </div>
       <div class="traction-metric">
         <div class="traction-label">Documented avoided events</div>
@@ -776,7 +776,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         <div class="card-label">Next 6 months</div>
         <div class="card-desc" style="margin-top:6px;font-size:12.5px">
           <div style="display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Convert 2 pilots to annual contracts (Month 3)</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Convert 2 design-partner pilots to paid annual contracts (Month 3)</span></div>
             <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>BHP Escondida field pilot scoping (Open Aster program)</span></div>
             <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Launch 4 additional pilots from current pipeline (Month 4–5)</span></div>
             <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--o);font-weight:700;flex-shrink:0">→</span><span>Path to break-even at 3 annual contracts by Q4 2026</span></div>
@@ -824,7 +824,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
           <div class="bm-item">Quarterly performance reviews</div>
           <div class="bm-item">SLA: alert lead time ≥ 14 days or fee waived</div>
         </div>
-        <div class="bm-upsell">Avg. 2.8 renewals per initial facility (multi-site)</div>
+        <div class="bm-upsell">Multi-site expansion priced into every proposal (Phase 2)</div>
       </div>
       <div class="bm-tier">
         <div class="bm-phase">Phase 3 / Upsell</div>
@@ -849,6 +849,41 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </a>
       <span style="font-size:11.5px;color:var(--tx-2)">Anonymous · actual structure and pricing we send to clients</span>
     </div>
+  </div>
+
+  <!-- ══ S6B: UNIT ECONOMICS ══ -->
+  <div class="slide" id="s6b">
+    <div class="slide-head">
+    <div class="eyebrow">Unit economics</div>
+    <div class="rule"></div>
+    <h2 class="headline" style="max-width:800px">
+      Software margins. <span class="accent">Hardware is a one-time toll.</span>
+    </h2>
+    <p class="subhead" style="max-width:680px">Modeled from current design-partner deployments and live proposal pricing. To be validated through the first paid conversions.</p>
+    </div>
+
+    <div class="cols cols-3">
+      <div class="card">
+        <div class="card-label">Edge hardware · one-time</div>
+        <div class="card-num orange" style="font-size:clamp(22px,2.8vw,36px)">50–75%</div>
+        <div class="card-desc">$5K gateway fee per asset vs. $1.1K–$2.5K landed cost: Jetson module, 2–4 industrial sensors, field install. Under 10% of Year 1 contract value. Never recurring.</div>
+      </div>
+      <div class="card accent">
+        <div class="card-label">Annual license · recurring</div>
+        <div class="card-num orange" style="font-size:clamp(22px,2.8vw,36px)">≈85%</div>
+        <div class="card-desc">Cloud + edge inference runs $5K–$7K per facility per year against a $160K–$480K license, support allocation included. SaaS-grade margin on the recurring layer.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Pilot · 90 days</div>
+        <div class="card-num orange" style="font-size:clamp(22px,2.8vw,36px)">≈80%</div>
+        <div class="card-desc">$40K–$90K pilot vs. ~$7K–$12K hard cost: hardware, 3 months of cloud, field travel. The pilot funds its own deployment, and 100% credits to Year 1 on conversion.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;background:var(--bg-2);border:1px solid var(--ln);border-left:3px solid var(--o);border-radius:0 6px 6px 0;padding:12px 16px;font-size:12px;color:var(--tx-1);line-height:1.55">
+      <strong style="color:var(--tx-0)">Why this stays software-shaped at scale:</strong> hardware and install are one-time, charged at margin, and amortize to noise. The recurring layer is inference and per-asset models, not field labor. Enterprise API tier is deliberately unpriced: first 10 integrations free as an acquisition motion, 3 already in evaluation.
+    </div>
+    <p style="font-size:11px;color:var(--tx-3);margin-top:12px">Assumptions: one gateway per asset · 2–4 sensors per asset at $200–$400 each · cloud $400–$600/mo per facility · founder field time excluded from pilot COGS.</p>
   </div>
 
   <!-- ══ S7: COMPETITION ══ -->
@@ -992,17 +1027,17 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <div style="margin-top:20px;width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-left:3px solid var(--o);border-radius:0 6px 6px 0;padding:12px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
       <span style="font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--o);flex-shrink:0">The cadence so far</span>
       <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.5">
-        <span>R3D: $6M+ manufacturing marketplace</span>
+        <span>On-demand manufacturing marketplace (R3D)</span>
         <span style="color:var(--o);font-weight:700">→</span>
-        <span>Made OS founded</span>
+        <span>Startup Chile BIG 10 · pivot to Made OS</span>
+        <span style="color:var(--o);font-weight:700">→</span>
+        <span>MIT IU35 LATAM 2025</span>
         <span style="color:var(--o);font-weight:700">→</span>
         <span>NVIDIA Inception</span>
         <span style="color:var(--o);font-weight:700">→</span>
-        <span>Startup Chile BIG 10</span>
+        <span>First industrial pilots (CL &amp; MX)</span>
         <span style="color:var(--o);font-weight:700">→</span>
-        <span>First industrial pilots live (CL &amp; MX)</span>
-        <span style="color:var(--o);font-weight:700">→</span>
-        <span>MIT IU35 LATAM 2025</span>
+        <span>Founders Inc</span>
         <span style="color:var(--o);font-weight:700">→</span>
         <span style="color:#fff;font-weight:700">BHP Escondida preselection · 1 of 21 from 600+</span>
       </div>
@@ -1041,7 +1076,24 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       </div>
     </div>
 
-    <p style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.2)">Financials and full data room available under NDA. Intros welcomed.</p>
+    <div style="margin-top:14px;display:flex;align-items:stretch;gap:0;width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:6px;overflow:hidden">
+      <div style="flex:1;padding:13px 18px;border-right:1px solid rgba(255,255,255,.07)">
+        <div style="font-size:10px;font-weight:700;color:var(--o);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">Previously raised</div>
+        <div style="font-size:15px;font-weight:800;color:#fff;letter-spacing:-.01em">$125K</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.45">Non-dilutive grants + angel</div>
+      </div>
+      <div style="flex:1;padding:13px 18px;border-right:1px solid rgba(255,255,255,.07)">
+        <div style="font-size:10px;font-weight:700;color:var(--o);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">Raising</div>
+        <div style="font-size:15px;font-weight:800;color:#fff;letter-spacing:-.01em">$1M pre-seed · SAFE</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.45">18–24 months of runway</div>
+      </div>
+      <div style="flex:1.5;padding:13px 18px">
+        <div style="font-size:10px;font-weight:700;color:var(--o);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">What it buys</div>
+        <div style="font-size:11.5px;color:rgba(255,255,255,.6);line-height:1.5">First 5–10 paying facilities · $0.8M–$2M ARR path · BHP field pilot executed · US beachhead via Founders Inc</div>
+      </div>
+    </div>
+
+    <p style="margin-top:12px;font-size:11px;color:rgba(255,255,255,.2)">Full data room available under NDA. Intros welcomed.</p>
   </div>
 
   <!-- ══ S10: CONTACT ══ -->
@@ -1115,7 +1167,7 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
   <button class="nav-btn" id="next-btn" aria-label="Next slide">
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 2l4 4-4 4"/></svg>
   </button>
-  <span class="slide-counter" id="counter">1 / 10</span>
+  <span class="slide-counter" id="counter">1 / 11</span>
 </nav>
 
 <script>
