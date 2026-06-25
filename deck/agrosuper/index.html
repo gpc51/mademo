@@ -105,6 +105,11 @@
   .cover-title { font-size: clamp(56px, 5.4vw, 86px); max-width: 760px; }
   .headline.tight { max-width: 980px; }
   .headline.mid { font-size: clamp(42px, 5.2vw, 74px); line-height: 1; max-width: 1080px; }
+  .headline.integration-title {
+    max-width: none;
+    white-space: nowrap;
+    font-size: clamp(40px, 4.75vw, 68px);
+  }
   .sub {
     margin-top: 24px; color: var(--muted); font-size: clamp(22px, 2.1vw, 32px);
     line-height: 1.25; font-weight: 500; max-width: 760px;
@@ -553,7 +558,7 @@
   <section class="slide" data-slide="5">
     <div class="topline"><div class="label">04 // INTEGRACIÓN SEGURA</div></div>
     <div class="content">
-      <h2 class="headline mid">Se integra sin tocar su red de control.</h2>
+      <h2 class="headline mid integration-title">Se integra sin tocar su red de control.</h2>
       <div class="diagram-card">
         <!-- Diagrama A, Engine Layer adaptado desde landing MadeOS -->
         <svg viewBox="0 0 1280 520" role="img" aria-label="Engine Layer Made aplicado a integración segura">
