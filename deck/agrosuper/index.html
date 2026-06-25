@@ -125,6 +125,10 @@
     align-items: center;
   }
   .copy-col { min-width: 0; }
+  .cover-only {
+    align-self: center;
+    max-width: 940px;
+  }
   .visual-layout .headline.mid {
     font-size: clamp(44px, 4.5vw, 68px);
     max-width: 740px;
@@ -148,45 +152,14 @@
     pointer-events: none;
     background: radial-gradient(circle at 68% 40%, rgba(216,66,0,.13), transparent 34%);
   }
-  .cover-photo {
-    position: relative;
-    min-height: min(58vh, 560px);
-    overflow: hidden;
-    background: rgba(255,255,255,.02);
-    mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 92%, transparent 100%);
-  }
-  .cover-photo img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    opacity: .84;
-    filter: saturate(.92) contrast(1.04) brightness(.86);
-  }
-  .cover-photo::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
+  .photo-field {
     background:
-      linear-gradient(90deg, rgba(10,10,10,.22), rgba(10,10,10,0) 34%, rgba(10,10,10,.26) 100%),
-      linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,.24) 100%);
+      url("https://www.agrosuper.com/global/wp-content/uploads/2022/06/plantavr.jpg") center / cover no-repeat,
+      #141414;
   }
-  .cover-photo::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    background:
-      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-    background-size: 54px 54px;
-    mix-blend-mode: screen;
-    opacity: .22;
+  .photo-field::after {
+    background: linear-gradient(180deg, rgba(10,10,10,.12), rgba(10,10,10,.44)), rgba(216,66,0,.10);
+    mix-blend-mode: normal;
   }
   .abstract-svg {
     position: relative;
@@ -433,15 +406,10 @@
       </div>
       <div class="agro-lockup"><span>AGROSUPER</span></div>
     </div>
-    <div class="content visual-layout">
-      <div class="copy-col">
-        <div class="label">PHYSICAL AI</div>
-        <h1 class="headline cover-title">Zero-loss<br>progresivo.</h1>
-        <p class="sub mono">Ruta de Innovación de Proveedores · Agrosuper 2026</p>
-      </div>
-      <div class="cover-photo">
-        <img src="https://www.agrosuper.com/global/wp-content/uploads/2022/06/plantavr.jpg" alt="Planta Rosario de Agrosuper">
-      </div>
+    <div class="content cover-only">
+      <div class="label">PHYSICAL AI</div>
+      <h1 class="headline cover-title">Zero-loss<br>progresivo.</h1>
+      <p class="sub mono">Ruta de Innovación de Proveedores · Agrosuper 2026</p>
     </div>
     <div class="footer"><span>Made · Physical AI</span><span class="num">01</span></div>
   </section>
@@ -781,26 +749,7 @@
           <div class="made-mark"><img src="../../assets/logo-white.png" alt="Made"></div>
         </div>
       </div>
-      <div class="visual-field" aria-label="Capacidad Made para Agrosuper">
-        <svg class="abstract-svg" viewBox="0 0 560 390" role="img">
-          <defs>
-            <marker id="capArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#D84200"/></marker>
-          </defs>
-          <rect class="svg-node" x="66" y="82" width="142" height="74" rx="18"/>
-          <text class="svg-label" x="98" y="113">PLC</text>
-          <text class="svg-title" x="98" y="138">lectura</text>
-          <rect class="svg-node-accent" x="218" y="158" width="124" height="86" rx="22"/>
-          <text class="svg-label" x="252" y="192">Made</text>
-          <text class="svg-title" x="250" y="218">edge</text>
-          <rect class="svg-node" x="352" y="82" width="142" height="74" rx="18"/>
-          <text class="svg-label" x="386" y="113">OPERADOR</text>
-          <text class="svg-title" x="386" y="138">acción</text>
-          <path class="svg-accent draw-line" marker-end="url(#capArrow)" d="M208 119 C256 92 302 92 350 119"/>
-          <path class="svg-muted dash-flow" d="M280 244 V306 H422 V168"/>
-          <path class="svg-muted dash-flow" d="M280 244 V306 H138 V168" style="animation-direction:reverse"/>
-          <text class="svg-label" x="142" y="342">leer · anticipar · ejecutar</text>
-        </svg>
-      </div>
+      <div class="visual-field photo-field" role="img" aria-label="Planta Rosario de Agrosuper"></div>
     </div>
     <div class="footer"><span>Capacidad demostrada</span><span class="num">09</span></div>
   </section>
