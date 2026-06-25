@@ -402,7 +402,7 @@
     margin-top: 34px;
     display: flex;
     align-items: center;
-    gap: 22px;
+    gap: 18px;
   }
   .collab-lockup .made-logo {
     width: 154px;
@@ -412,13 +412,17 @@
   .collab-lockup .x {
     font-family: var(--mono);
     color: var(--muted);
-    font-size: 28px;
+    font-size: 24px;
     line-height: 1;
+    transform: translateY(-1px);
   }
   .collab-lockup .agrosuper-logo {
-    width: 238px;
-    height: auto;
+    width: auto;
+    height: 42px;
+    max-width: 176px;
     display: block;
+    object-fit: contain;
+    transform: translateY(1px);
   }
 
   .chrome { position: fixed; z-index: 20; left: 0; right: 0; bottom: 0; pointer-events: none; }
