@@ -343,6 +343,8 @@
   .proof .place { color: var(--accent); font-family: var(--mono); font-size: 14px; letter-spacing: 0; }
   .proof .copy { margin-top: 18px; color: var(--text); font-size: clamp(19px, 1.42vw, 24px); line-height: 1.28; font-weight: 700; }
   .proof .small { margin-top: 14px; color: var(--muted); font-size: clamp(14px, 1vw, 17px); line-height: 1.38; }
+  .team-card .founder-strip { margin-top: 14px; }
+  .team-card .copy { margin-top: 16px; }
   .founder-strip { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .founder-card {
     display: grid;
@@ -375,7 +377,29 @@
   .logo-pill img[alt^="Startup"] { max-height: 28px; filter: grayscale(1) invert(1) brightness(1.35); opacity: .9; }
 
   .closing-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 44px; align-items: center; }
-  .closing-logo { margin-top: 34px; display: flex; align-items: center; gap: 24px; }
+  .collab-lockup {
+    margin-top: 34px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  .collab-lockup .made-logo {
+    width: 154px;
+    height: auto;
+    display: block;
+  }
+  .collab-lockup .x {
+    font-family: var(--mono);
+    color: var(--muted);
+    font-size: 28px;
+    line-height: 1;
+  }
+  .collab-lockup .agrosuper-logo {
+    width: 238px;
+    height: 96px;
+    display: block;
+    background: url("https://www.agrosuper.com/wp-content/uploads/2026/04/cbe87306a3564564a3572b8979adbb79_logo-empresas-agrosuper-blanco-scaled.png") center / contain no-repeat;
+  }
 
   .chrome { position: fixed; z-index: 20; left: 0; right: 0; bottom: 0; pointer-events: none; }
   .progress { height: 3px; width: 100%; background: rgba(255,255,255,.08); }
@@ -404,7 +428,6 @@
       <div class="made-mark" aria-label="Made">
         <img src="../../assets/logo-white.png" alt="Made">
       </div>
-      <div class="agro-lockup"><span>AGROSUPER</span></div>
     </div>
     <div class="content cover-only">
       <div class="label">PHYSICAL AI</div>
@@ -700,7 +723,7 @@
   </section>
 
   <section class="slide" data-slide="8">
-    <div class="topline"><div class="label">07 // PROBADO DONDE MÁS EXIGE LA INDUSTRIA</div></div>
+    <div class="topline"><div class="label">07 // PRUEBA INDUSTRIAL</div></div>
     <div class="content">
       <div class="proof-grid">
         <div class="panel proof">
@@ -710,13 +733,11 @@
         </div>
         <div class="panel proof">
           <div class="place">BHP ESCONDIDA</div>
-          <div class="copy">Seleccionados en su reto de innovación. La mina de cobre más grande del mundo.</div>
+          <div class="copy">La mina de cobre más grande del mundo. Preseleccionados como proveedor para mantenimiento predictivo en vehículos de mina.</div>
           <div class="small">200+ vehículos. 40.500 h de paro al año. Hasta US$1M en pérdidas actuales por evento.</div>
         </div>
-        <div class="panel proof">
+        <div class="panel proof team-card">
           <div class="place">EQUIPO</div>
-          <div class="copy">Gerardo y Ramiro, cofundadores. PhD en IA en el equipo.</div>
-          <div class="small">Alianza con JustPartners para implementaciones físicas, equipo de ingeniería e infraestructura en Chile con más de una década de experiencia.</div>
           <div class="founder-strip">
             <div class="founder-card">
               <img src="../../assets/gpc.png" alt="Gerardo Peña">
@@ -727,26 +748,30 @@
               <div><div class="founder-name">Ramiro</div><div class="founder-role">CTO · arquitectura IA</div></div>
             </div>
           </div>
+          <div class="copy">Gerardo y Ramiro, cofundadores.</div>
+          <div class="small">PhD en IA en el equipo.</div>
+          <div class="small">Alianza con JustPartners para implementaciones físicas, equipo de ingeniería e infraestructura en Chile con más de una década de experiencia.</div>
         </div>
       </div>
       <div class="logo-row">
-        <div class="logo-pill"><img src="../../assets/brands/nvidia-inception-program.svg" alt="NVIDIA Inception"></div>
+        <div class="logo-pill"><img src="../../assets/brands/nvidia-logo.svg" alt="NVIDIA"></div>
         <div class="logo-pill"><img src="../../assets/brands/founders-inc-logo.png" alt="Founders Inc"></div>
         <div class="logo-pill"><img src="../../assets/brands/mit-technology-review-logo.svg" alt="MIT Technology Review TR35"></div>
         <div class="logo-pill"><img src="../../assets/brands/startup-chile-logo.svg" alt="Startup Chile BIG 10"></div>
       </div>
     </div>
-    <div class="footer"><span>NVIDIA Inception · Founders Inc · MIT TR35 · Startup Chile BIG 10</span><span class="num">08</span></div>
+    <div class="footer"><span>NVIDIA · Founders Inc · MIT TR35 · Startup Chile BIG 10</span><span class="num">08</span></div>
   </section>
 
   <section class="slide" data-slide="9">
-    <div class="topline"><div class="label">08 // CAPACIDAD</div></div>
+    <div class="topline"></div>
     <div class="content closing-layout">
       <div>
-        <h2 class="headline mid">Made, Zero-loss progresivo para Agrosuper.</h2>
-        <p class="support">Leemos el proceso, sin tocar un PLC, y entregamos la acción al operador antes de perder producto.</p>
-        <div class="closing-logo">
-          <div class="made-mark"><img src="../../assets/logo-white.png" alt="Made"></div>
+        <h2 class="headline mid">Zero-loss progresivo para Agrosuper.</h2>
+        <div class="collab-lockup" aria-label="Made x Agrosuper">
+          <img class="made-logo" src="../../assets/logo-white.png" alt="Made">
+          <span class="x">x</span>
+          <span class="agrosuper-logo" role="img" aria-label="Empresas Agrosuper"></span>
         </div>
       </div>
       <div class="visual-field photo-field" role="img" aria-label="Planta Rosario de Agrosuper"></div>
