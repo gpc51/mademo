@@ -113,6 +113,11 @@
     margin-top: 18px; color: var(--muted); font-size: clamp(18px, 1.55vw, 24px);
     line-height: 1.35; max-width: 760px;
   }
+  .support.one-line {
+    max-width: none;
+    white-space: nowrap;
+    font-size: clamp(18px, 1.4vw, 22px);
+  }
   .mono { font-family: var(--mono); }
   .accent { color: var(--accent); }
   .muted { color: var(--muted); }
@@ -128,6 +133,12 @@
   .cover-only {
     align-self: center;
     max-width: 940px;
+  }
+  .cover-logo {
+    width: 150px;
+    height: auto;
+    display: block;
+    margin-bottom: 34px;
   }
   .visual-layout .headline.mid {
     font-size: clamp(44px, 4.5vw, 68px);
@@ -210,7 +221,7 @@
   .big-data {
     margin-top: 42px; display: inline-block; border-left: 2px solid var(--accent);
     padding-left: 22px; font-family: var(--mono); color: var(--text);
-    font-size: clamp(26px, 2.5vw, 40px); line-height: 1.15; max-width: 960px;
+    font-size: clamp(20px, 1.65vw, 28px); line-height: 1.25; max-width: 760px;
   }
   .chip-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
   .chip {
@@ -413,6 +424,7 @@
     .roi-shell, .roi-grid-slide { grid-template-columns: 1fr; }
     .headline { font-size: 48px; }
     .headline.mid { font-size: 42px; }
+    .support.one-line { white-space: normal; }
     .bar-wrap { height: 260px; }
     .layer { grid-template-columns: 1fr; gap: 10px; }
     .logo-row { grid-template-columns: 1fr 1fr; }
@@ -424,12 +436,9 @@
 <main class="deck" id="deck">
 
   <section class="slide active" data-slide="1">
-    <div class="topline">
-      <div class="made-mark" aria-label="Made">
-        <img src="../../assets/logo-white.png" alt="Made">
-      </div>
-    </div>
+    <div class="topline"></div>
     <div class="content cover-only">
+      <img class="cover-logo" src="../../assets/logo-white.png" alt="Made">
       <div class="label">PHYSICAL AI</div>
       <h1 class="headline cover-title">Zero-loss<br>progresivo.</h1>
       <p class="sub mono">Ruta de Innovación de Proveedores · Agrosuper 2026</p>
@@ -460,7 +469,6 @@
           <rect class="blink-soft" x="320" y="244" width="34" height="36" rx="8" fill="#D84200" opacity=".34" style="animation-delay:.45s"/>
           <text class="svg-label" x="176" y="312">paro</text>
           <text class="svg-label" x="314" y="312">retrabajo</text>
-          <path class="svg-muted dash-flow" d="M92 338 C176 354 262 318 348 334 S444 354 496 326"/>
         </svg>
       </div>
     </div>
@@ -507,7 +515,7 @@
     <div class="topline"><div class="label">03 // EL COSTO INVISIBLE</div></div>
     <div class="content">
       <h2 class="headline mid">El costo mayor vive fuera del paro visible.</h2>
-      <p class="support">Micro-paros y desviaciones de proceso que se acumulan en cada turno.</p>
+      <p class="support one-line">Micro-paros y desviaciones de proceso que se acumulan en cada turno.</p>
       <div class="bar-wrap" aria-label="Componentes de pérdida">
         <div class="bar-card">
           <div class="bar-track"><div class="bar bar-availability"></div></div>
@@ -523,7 +531,6 @@
         </div>
       </div>
       <div class="visual-note">Desempeño: el mayor componente de pérdida. Invisible en el tablero.</div>
-      <div class="chip-row"><span class="chip active">IP66 · -25 a +70 °C · sin contacto con producto</span></div>
     </div>
     <div class="footer"><span>Agrosuper · ambiente exigente</span><span class="num">04</span></div>
   </section>
@@ -748,7 +755,6 @@
               <div><div class="founder-name">Ramiro</div><div class="founder-role">CTO · arquitectura IA</div></div>
             </div>
           </div>
-          <div class="copy">Gerardo y Ramiro, cofundadores.</div>
           <div class="small">PhD en IA en el equipo.</div>
           <div class="small">Alianza con JustPartners para implementaciones físicas, equipo de ingeniería e infraestructura en Chile con más de una década de experiencia.</div>
         </div>
