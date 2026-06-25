@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Made × Agrosuper · Ruta de Innovación de Proveedores 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0A0A;
+    --panel: #141414;
+    --panel-2: #1A1A1A;
+    --line: #262626;
+    --line-2: #333333;
+    --text: #F5F5F5;
+    --muted: #9CA3AF;
+    --muted-2: #6B7280;
+    --accent: #3DDC97;
+    --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: var(--font); }
+  body { -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision; }
+
+  /* Exportación PDF: imprimir desde el navegador en horizontal, fondos activados, 16:9. */
+  @page { size: 16in 9in; margin: 0; }
+  @media print {
+    html, body { width: 16in; height: 9in; overflow: visible; background: var(--bg); }
+    .deck { height: auto; }
+    .slide { position: relative; display: flex !important; opacity: 1 !important; transform: none !important; page-break-after: always; width: 16in; height: 9in; }
+    .chrome { display: none !important; }
+  }
+
+  .deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: var(--bg); }
+  .slide {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    display: grid; grid-template-rows: auto 1fr auto;
+    padding: clamp(44px, 5.6vw, 76px) clamp(58px, 7.2vw, 112px) clamp(34px, 4vw, 56px);
+    background:
+      radial-gradient(circle at 78% 18%, rgba(61, 220, 151, .06), transparent 34%),
+      linear-gradient(180deg, #0B0B0B 0%, #080808 100%);
+    opacity: 0; transform: translateX(34px); pointer-events: none;
+    transition: opacity .36s ease, transform .36s ease;
+  }
+  .slide.active { opacity: 1; transform: translateX(0); pointer-events: auto; z-index: 2; }
+  .slide.prev { transform: translateX(-34px); z-index: 1; }
+  .slide::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(circle at center, black 0%, transparent 75%);
+  }
+
+  .topline { display: flex; justify-content: space-between; align-items: flex-start; gap: 28px; position: relative; z-index: 1; }
+  .label {
+    font-family: var(--mono); color: var(--muted); font-size: clamp(13px, 1.05vw, 16px);
+    letter-spacing: .08em; text-transform: uppercase; font-weight: 600;
+  }
+  .made-mark { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 22px; letter-spacing: -.02em; }
+  .made-mark svg { width: 31px; height: 22px; }
+  .agro-lockup {
+    display: flex; align-items: center; justify-content: center;
+    min-width: 176px; min-height: 52px;
+    border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px;
+    background: rgba(255,255,255,.025);
+  }
+  .agro-lockup img { width: 142px; height: auto; display: block; }
+  .agro-lockup span {
+    display: block; font-family: var(--mono); color: var(--text); font-size: 16px;
+    letter-spacing: .12em;
+  }
+  .agro-lockup img + span {
+    display: none;
+  }
+
+  .content { position: relative; z-index: 1; align-self: center; width: 100%; }
+  .footer {
+    position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--line); padding-top: 16px; color: var(--muted-2);
+    font-family: var(--mono); font-size: 12px; letter-spacing: .04em;
+  }
+  .footer .num { color: var(--muted); }
+
+  h1, h2, h3, p { margin: 0; }
+  .headline {
+    font-size: clamp(48px, 6.2vw, 92px); line-height: .96; letter-spacing: -.055em;
+    font-weight: 900; max-width: 1060px;
+  }
+  .headline.tight { max-width: 980px; }
+  .headline.mid { font-size: clamp(42px, 5.2vw, 74px); line-height: 1; max-width: 1080px; }
+  .sub {
+    margin-top: 24px; color: var(--muted); font-size: clamp(22px, 2.1vw, 32px);
+    line-height: 1.25; font-weight: 500; max-width: 760px;
+  }
+  .support {
+    margin-top: 18px; color: var(--muted); font-size: clamp(18px, 1.55vw, 24px);
+    line-height: 1.35; max-width: 760px;
+  }
+  .mono { font-family: var(--mono); }
+  .accent { color: var(--accent); }
+  .muted { color: var(--muted); }
+  .rule { height: 1px; background: var(--line); width: 100%; }
+
+  .big-data {
+    margin-top: 42px; display: inline-block; border-left: 2px solid var(--accent);
+    padding-left: 22px; font-family: var(--mono); color: var(--text);
+    font-size: clamp(26px, 2.5vw, 40px); line-height: 1.15; max-width: 960px;
+  }
+  .chip-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+  .chip {
+    font-family: var(--mono); color: var(--muted); border: 1px solid var(--line);
+    background: rgba(255,255,255,.025); border-radius: 999px; padding: 8px 12px;
+    font-size: clamp(11px, .95vw, 14px); letter-spacing: .02em;
+  }
+  .chip.active { color: var(--accent); border-color: rgba(61,220,151,.55); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
+  .panel {
+    background: linear-gradient(180deg, rgba(26,26,26,.95), rgba(20,20,20,.95));
+    border: 1px solid var(--line); border-radius: 18px; padding: 28px; min-height: 210px;
+  }
+  .panel .kicker { font-family: var(--mono); color: var(--muted); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 18px; }
+  .panel .title { font-size: clamp(24px, 2.1vw, 32px); line-height: 1.05; font-weight: 800; letter-spacing: -.025em; }
+  .panel .body { margin-top: 14px; color: var(--muted); font-size: clamp(16px, 1.18vw, 20px); line-height: 1.35; }
+
+  .bar-wrap { margin-top: 44px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: end; height: 330px; }
+  .bar-card { height: 100%; display: grid; grid-template-rows: 1fr auto; gap: 16px; }
+  .bar-track { border: 1px solid var(--line); background: var(--panel); border-radius: 18px; padding: 14px; display: flex; align-items: end; }
+  .bar { width: 100%; height: 18%; background: #2A2A2A; border-radius: 10px; transform-origin: bottom; transform: scaleY(.15); transition: transform 1s ease; }
+  .bar.accentbar { background: var(--accent); box-shadow: 0 0 22px rgba(61,220,151,.22); }
+  .slide.active .bar { transform: scaleY(1); }
+  .bar-availability { height: 43%; }
+  .bar-performance { height: 86%; }
+  .bar-quality { height: 28%; }
+  .bar-label { font-family: var(--mono); color: var(--muted); font-size: 15px; letter-spacing: .03em; }
+  .bar-label.accent { color: var(--accent); }
+  .visual-note { margin-top: 18px; font-family: var(--mono); color: var(--muted); font-size: 14px; }
+
+  .layer-stack { margin-top: 46px; display: grid; gap: 16px; max-width: 1040px; }
+  .layer {
+    display: grid; grid-template-columns: 210px 1fr; gap: 26px; align-items: center;
+    padding: 24px 28px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel);
+  }
+  .layer-name { font-family: var(--mono); color: var(--accent); font-size: 16px; letter-spacing: .04em; }
+  .layer-copy { color: var(--text); font-size: clamp(22px, 2vw, 30px); line-height: 1.18; font-weight: 700; }
+
+  .diagram-card { margin-top: 26px; border: 1px solid var(--line); border-radius: 18px; background: rgba(20,20,20,.7); padding: 20px; }
+  .diagram-card svg { width: 100%; height: auto; display: block; }
+
+  .pilot-card {
+    margin-top: 46px; max-width: 760px; border: 1px solid rgba(61,220,151,.45);
+    background: rgba(20,20,20,.9); border-radius: 22px; padding: 34px;
+  }
+  .pilot-card pre {
+    margin: 0; white-space: pre-wrap; font-family: var(--mono); color: var(--text);
+    font-size: clamp(18px, 1.55vw, 25px); line-height: 1.65;
+  }
+  .risk-line { margin-top: 24px; color: var(--muted); font-size: clamp(18px, 1.45vw, 23px); }
+
+  .proof-grid { margin-top: 34px; display: grid; grid-template-columns: 1.05fr 1.05fr 1.15fr; gap: 18px; }
+  .proof { opacity: .3; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease; }
+  .slide.active .proof { opacity: 1; transform: translateY(0); }
+  .slide.active .proof:nth-child(2) { transition-delay: .12s; }
+  .slide.active .proof:nth-child(3) { transition-delay: .24s; }
+  .proof .place { color: var(--accent); font-family: var(--mono); font-size: 14px; letter-spacing: .04em; }
+  .proof .copy { margin-top: 18px; color: var(--text); font-size: clamp(19px, 1.42vw, 24px); line-height: 1.28; font-weight: 700; }
+  .proof .small { margin-top: 14px; color: var(--muted); font-size: clamp(14px, 1vw, 17px); line-height: 1.38; }
+  .logo-row { margin-top: 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .logo-pill {
+    border: 1px solid var(--line); background: var(--panel); min-height: 58px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center; padding: 12px;
+    color: var(--muted); font-family: var(--mono); font-size: 13px; text-align: center;
+  }
+  .logo-pill img { max-height: 32px; max-width: 150px; filter: grayscale(1) brightness(2.6); opacity: .82; }
+  .logo-pill img[alt^="MIT"] { filter: grayscale(1) invert(1) brightness(1.7); opacity: .72; }
+
+  .closing-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 44px; align-items: center; }
+  .operations-image {
+    min-height: 440px; border: 1px solid var(--line); border-radius: 24px; overflow: hidden;
+    background:
+      linear-gradient(rgba(10,10,10,.52), rgba(10,10,10,.88)),
+      linear-gradient(90deg, rgba(61,220,151,.08) 1px, transparent 1px),
+      linear-gradient(rgba(61,220,151,.08) 1px, transparent 1px),
+      url("https://www.agrosuper.com/global/wp-content/uploads/2022/06/plantavr.jpg") center / cover,
+      linear-gradient(135deg, #161616, #0A0A0A);
+    background-size: auto, 48px 48px, 48px 48px, cover, auto;
+    position: relative;
+  }
+  .operations-image::before {
+    content: ""; position: absolute; inset: 52px 46px 86px;
+    border: 1px solid var(--line-2); border-radius: 18px;
+    background:
+      linear-gradient(90deg, transparent 0 15%, rgba(245,245,245,.08) 15% 16%, transparent 16% 100%),
+      linear-gradient(180deg, transparent 0 50%, rgba(245,245,245,.08) 50% 51%, transparent 51% 100%);
+  }
+  .operations-image::after {
+    content: "OPERACIÓN AGROSUPER · PROCESO CONTINUO"; position: absolute; left: 24px; bottom: 24px;
+    font-family: var(--mono); color: var(--muted); font-size: 13px; letter-spacing: .08em;
+    border: 1px solid var(--line); background: rgba(10,10,10,.7); padding: 8px 10px; border-radius: 999px;
+  }
+  .closing-logo { margin-top: 34px; display: flex; align-items: center; gap: 24px; }
+
+  .chrome { position: fixed; z-index: 20; left: 0; right: 0; bottom: 0; pointer-events: none; }
+  .progress { height: 3px; width: 100%; background: rgba(255,255,255,.08); }
+  .progress span { display: block; height: 100%; width: 11.111%; background: var(--accent); transition: width .25s ease; }
+  .counter { position: fixed; right: 24px; bottom: 18px; font-family: var(--mono); color: var(--muted); font-size: 12px; pointer-events: none; }
+  .hint { position: fixed; left: 24px; bottom: 18px; font-family: var(--mono); color: var(--muted-2); font-size: 12px; pointer-events: none; }
+
+  @media (max-width: 900px) {
+    .slide { padding: 36px 28px 34px; }
+    .grid-2, .grid-3, .proof-grid, .closing-layout { grid-template-columns: 1fr; }
+    .headline { font-size: 48px; }
+    .headline.mid { font-size: 42px; }
+    .bar-wrap { height: 260px; }
+    .layer { grid-template-columns: 1fr; gap: 10px; }
+    .logo-row { grid-template-columns: 1fr 1fr; }
+    .operations-image { min-height: 220px; }
+  }
+</style>
+</head>
+<body>
+<main class="deck" id="deck">
+
+  <section class="slide active" data-slide="1">
+    <div class="topline">
+      <div class="made-mark" aria-label="Made">
+        <svg viewBox="0 0 42 28" fill="none"><path d="M17.2 4.2v7.8L4 25H0l17.2-20.8Z" fill="#3DDC97"/><path d="M26 1.4V25H8.8L26 1.4Z" fill="#3DDC97"/></svg>
+        <span>Made</span>
+      </div>
+      <div class="agro-lockup"><span>AGROSUPER</span></div>
+    </div>
+    <div class="content">
+      <div class="label">PHYSICAL AI</div>
+      <h1 class="headline">Zero-loss progresivo.</h1>
+      <p class="sub mono">Ruta de Innovación de Proveedores · Agrosuper 2026</p>
+    </div>
+    <div class="footer"><span>Made · Physical AI</span><span class="num">01</span></div>
+  </section>
+
+  <section class="slide" data-slide="2">
+    <div class="topline"><div class="label">01 // EL PROBLEMA</div></div>
+    <div class="content">
+      <h2 class="headline mid tight">La producción vive de la continuidad de sus líneas.</h2>
+      <p class="support">Hoy se opera en modo reactivo. La falla se atiende cuando ya ocurrió.</p>
+      <div class="big-data">Un paro no planeado detiene la línea, los tiempos de entrega y el OEE.</div>
+    </div>
+    <div class="footer"><span>Continuidad operacional</span><span class="num">02</span></div>
+  </section>
+
+  <section class="slide" data-slide="3">
+    <div class="topline"><div class="label">02 // EL COSTO INVISIBLE</div></div>
+    <div class="content">
+      <h2 class="headline mid">El costo mayor vive fuera del paro visible.</h2>
+      <p class="support">Micro-paros y desviaciones de proceso que se acumulan en cada turno.</p>
+      <div class="bar-wrap" aria-label="Componentes de pérdida">
+        <div class="bar-card">
+          <div class="bar-track"><div class="bar bar-availability"></div></div>
+          <div class="bar-label">Disponibilidad</div>
+        </div>
+        <div class="bar-card">
+          <div class="bar-track"><div class="bar bar-performance accentbar"></div></div>
+          <div class="bar-label accent">Desempeño</div>
+        </div>
+        <div class="bar-card">
+          <div class="bar-track"><div class="bar bar-quality"></div></div>
+          <div class="bar-label">Calidad</div>
+        </div>
+      </div>
+      <div class="visual-note">Desempeño: el mayor componente de pérdida. Invisible en el tablero.</div>
+      <div class="chip-row"><span class="chip active">IP66 · -25 a +70 °C · sin contacto con producto</span></div>
+    </div>
+    <div class="footer"><span>Agrosuper · ambiente exigente</span><span class="num">03</span></div>
+  </section>
+
+  <section class="slide" data-slide="4">
+    <div class="topline"><div class="label">03 // EL SISTEMA</div></div>
+    <div class="content">
+      <h2 class="headline mid">Detecta. Clasifica. Prescribe la acción.</h2>
+      <div class="layer-stack">
+        <div class="layer"><div class="layer-name">DESPLIEGUE</div><div class="layer-copy">Made se conecta a sus PLCs, sensores y cámaras. Solo lectura.</div></div>
+        <div class="layer"><div class="layer-name">MOTOR</div><div class="layer-copy">Aprende la operación de cada línea. Histórico más tiempo real. Mejora cada ciclo.</div></div>
+        <div class="layer"><div class="layer-name">PRESCRIPCIÓN</div><div class="layer-copy">Entrega al operador la acción: qué ajustar, en qué máquina, cuándo.</div></div>
+      </div>
+    </div>
+    <div class="footer"><span>Made OS</span><span class="num">04</span></div>
+  </section>
+
+  <section class="slide" data-slide="5">
+    <div class="topline"><div class="label">04 // INTEGRACIÓN SEGURA</div></div>
+    <div class="content">
+      <h2 class="headline mid">Se integra sin tocar su red de control.</h2>
+      <div class="diagram-card">
+        <!-- Diagrama A, arquitectura segura OT -->
+        <svg viewBox="0 0 1280 520" role="img" aria-label="Arquitectura segura de integración Made">
+          <defs>
+            <marker id="arrowA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#3DDC97"/></marker>
+            <marker id="arrowGrayA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#5B616B"/></marker>
+          </defs>
+          <rect x="18" y="42" width="520" height="420" rx="18" fill="#111" stroke="#333"/>
+          <line x1="575" y1="34" x2="575" y2="470" stroke="#262626"/>
+          <line x1="890" y1="34" x2="890" y2="470" stroke="#262626"/>
+          <text x="34" y="28" fill="#9CA3AF" font-family="JetBrains Mono" font-size="16">PLANTA · RED OT</text>
+          <text x="612" y="28" fill="#9CA3AF" font-family="JetBrains Mono" font-size="16">LÍMITE DE PLANTA</text>
+          <text x="930" y="28" fill="#9CA3AF" font-family="JetBrains Mono" font-size="16">MADE CLOUD</text>
+
+          <g font-family="Inter" font-size="20" fill="#F5F5F5">
+            <rect x="54" y="88" width="170" height="64" rx="12" fill="#141414" stroke="#262626"/><text x="78" y="127">PLCs</text>
+            <rect x="54" y="178" width="170" height="64" rx="12" fill="#141414" stroke="#262626"/><text x="78" y="217">SCADA</text>
+            <rect x="54" y="268" width="170" height="82" rx="12" fill="#141414" stroke="#262626"/><text x="78" y="305">Sensores</text><text x="78" y="330" fill="#9CA3AF" font-family="JetBrains Mono" font-size="14">y cámaras</text>
+          </g>
+
+          <rect x="330" y="158" width="168" height="112" rx="14" fill="#141414" stroke="#3DDC97"/>
+          <text x="354" y="195" fill="#F5F5F5" font-family="Inter" font-size="20" font-weight="700">MADE EDGE</text>
+          <text x="354" y="221" fill="#9CA3AF" font-family="JetBrains Mono" font-size="13">NVIDIA Jetson</text>
+          <text x="354" y="246" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">inferencia local · buffer</text>
+
+          <path d="M224 120 H300 Q318 120 318 150 V191" fill="none" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowGrayA)"/>
+          <path d="M224 210 H300 Q318 210 318 214 H330" fill="none" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowGrayA)"/>
+          <path d="M224 310 H300 Q318 310 318 270 V238" fill="none" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowGrayA)"/>
+          <text x="250" y="88" fill="#9CA3AF" font-family="JetBrains Mono" font-size="13">A · sobre su red</text>
+          <text x="250" y="376" fill="#9CA3AF" font-family="JetBrains Mono" font-size="13">B · red privada de solo lectura de Made</text>
+          <text x="286" y="145" fill="#3DDC97" font-family="JetBrains Mono" font-size="14">SOLO LECTURA</text>
+
+          <path d="M498 214 H628 Q654 214 654 252 H908" fill="none" stroke="#3DDC97" stroke-width="2.4" marker-end="url(#arrowA)"/>
+          <text x="604" y="198" fill="#3DDC97" font-family="JetBrains Mono" font-size="13">CANAL SALIENTE · TLS 1.3 · solo eventos agregados</text>
+          <text x="604" y="226" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">validable y revocable por TI/OT</text>
+          <text x="608" y="334" fill="#9CA3AF" font-family="JetBrains Mono" font-size="13">Sin acceso entrante</text>
+
+          <rect x="930" y="146" width="210" height="118" rx="14" fill="#141414" stroke="#262626"/>
+          <text x="956" y="184" fill="#F5F5F5" font-family="Inter" font-size="20" font-weight="700">AGENTE</text>
+          <text x="956" y="209" fill="#F5F5F5" font-family="Inter" font-size="20" font-weight="700">PRESCRIPTIVO</text>
+          <text x="956" y="236" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">histórico + tiempo real</text>
+
+          <path d="M1140 205 H1188" fill="none" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowGrayA)"/>
+          <rect x="1190" y="92" width="68" height="42" rx="10" fill="#141414" stroke="#262626"/><text x="1204" y="119" fill="#F5F5F5" font-family="Inter" font-size="14">WebApp</text>
+          <rect x="1190" y="148" width="68" height="42" rx="10" fill="#141414" stroke="#262626"/><text x="1208" y="175" fill="#F5F5F5" font-family="Inter" font-size="14">SMS</text>
+          <rect x="1190" y="204" width="68" height="42" rx="10" fill="#141414" stroke="#262626"/><text x="1202" y="231" fill="#F5F5F5" font-family="Inter" font-size="14">Email</text>
+          <rect x="1190" y="260" width="68" height="42" rx="10" fill="#141414" stroke="#262626"/><text x="1198" y="287" fill="#F5F5F5" font-family="Inter" font-size="13">WhatsApp</text>
+          <text x="1016" y="334" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">WebApp y WhatsApp · bidireccional</text>
+          <text x="1016" y="358" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">SMS y Email · notificación</text>
+          <path d="M1224 302 V392 H1080" fill="none" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowGrayA)"/>
+          <rect x="918" y="374" width="168" height="64" rx="14" fill="#141414" stroke="#3DDC97"/>
+          <text x="946" y="413" fill="#3DDC97" font-family="Inter" font-size="20" font-weight="700">OPERADOR</text>
+          <text x="946" y="435" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">en turno</text>
+        </svg>
+      </div>
+      <div class="chip-row"><span class="chip active">Solo lectura</span><span class="chip">Sin acceso entrante</span><span class="chip">IEC 62443 · TLS 1.3</span><span class="chip">El dato crudo permanece en su planta</span></div>
+    </div>
+    <div class="footer"><span>Arquitectura OT</span><span class="num">05</span></div>
+  </section>
+
+  <section class="slide" data-slide="6">
+    <div class="topline"><div class="label">05 // DE LA SEÑAL A LA ACCIÓN</div></div>
+    <div class="content">
+      <h2 class="headline mid">De error a anticipación.</h2>
+      <div class="diagram-card">
+        <!-- Diagrama B, recorrido de señal a acción -->
+        <svg viewBox="0 0 1280 500" role="img" aria-label="Recorrido Made de la señal a la acción">
+          <defs>
+            <marker id="arrowB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#5B616B"/></marker>
+            <marker id="arrowAccentB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#3DDC97"/></marker>
+          </defs>
+          <g font-family="JetBrains Mono" font-size="12" fill="#9CA3AF">
+            <text x="42" y="60">01</text><text x="214" y="60">02</text><text x="386" y="60">03</text><text x="558" y="60">04</text><text x="730" y="60">05</text><text x="902" y="60">06</text><text x="1074" y="60">07</text>
+          </g>
+          <g>
+            <rect x="30" y="82" width="142" height="140" rx="14" fill="#141414" stroke="#262626"/>
+            <text x="50" y="124" fill="#F5F5F5" font-family="Inter" font-size="17" font-weight="800">DIGITALIZACIÓN</text>
+            <text x="50" y="156" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">sensores estándar</text><text x="50" y="176" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">como servicio</text>
+            <rect x="202" y="82" width="142" height="140" rx="14" fill="#141414" stroke="#262626"/>
+            <text x="214" y="124" fill="#F5F5F5" font-family="Inter" font-size="15" font-weight="800">IMPLEMENTACIÓN</text>
+            <text x="222" y="156" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">API o Edge</text>
+            <rect x="374" y="82" width="142" height="140" rx="14" fill="#141414" stroke="#262626"/>
+            <text x="394" y="124" fill="#F5F5F5" font-family="Inter" font-size="17" font-weight="800">RED</text>
+            <text x="394" y="156" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">sobre su red</text><text x="394" y="176" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">o red privada</text>
+            <rect x="546" y="82" width="142" height="140" rx="14" fill="#141414" stroke="#262626"/>
+            <text x="566" y="124" fill="#F5F5F5" font-family="Inter" font-size="17" font-weight="800">GEMELO DIGITAL</text>
+            <text x="566" y="156" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">histórico más</text><text x="566" y="176" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">tiempo real</text>
+            <rect x="718" y="82" width="142" height="140" rx="14" fill="#141414" stroke="#262626"/>
+            <text x="738" y="124" fill="#F5F5F5" font-family="Inter" font-size="17" font-weight="800">CRITICIDAD</text>
+            <text x="738" y="156" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">scoring de</text><text x="738" y="176" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">confianza</text>
+            <rect x="890" y="82" width="142" height="140" rx="14" fill="#141414" stroke="#3DDC97"/>
+            <text x="910" y="124" fill="#3DDC97" font-family="Inter" font-size="17" font-weight="800">PRESCRIPCIÓN</text>
+            <text x="910" y="156" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">qué ajustar</text><text x="910" y="176" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">cuándo</text>
+            <rect x="1062" y="82" width="170" height="140" rx="14" fill="#141414" stroke="#262626"/>
+            <text x="1082" y="124" fill="#F5F5F5" font-family="Inter" font-size="17" font-weight="800">CANALES</text>
+            <text x="1082" y="156" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">WhatsApp y WebApp</text><text x="1082" y="176" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">SMS y Email</text>
+          </g>
+          <path d="M174 152 H196" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
+          <path d="M346 152 H368" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
+          <path d="M518 152 H540" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
+          <path d="M690 152 H712" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
+          <path d="M862 152 H884" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
+          <path d="M1034 152 H1056" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
+          <path d="M92 350 H1182" stroke="#3DDC97" stroke-width="3" marker-end="url(#arrowAccentB)"/>
+          <text x="92" y="330" fill="#9CA3AF" font-family="JetBrains Mono" font-size="16">ERROR</text>
+          <text x="1016" y="330" fill="#3DDC97" font-family="JetBrains Mono" font-size="16">ANTICIPACIÓN</text>
+        </svg>
+      </div>
+      <p class="support mono">Demo en vivo a continuación.</p>
+    </div>
+    <div class="footer"><span>Pipeline prescriptivo</span><span class="num">06</span></div>
+  </section>
+
+  <section class="slide" data-slide="7">
+    <div class="topline"><div class="label">06 // EL PILOTO</div></div>
+    <div class="content">
+      <h2 class="headline mid">Un piloto Try and Buy se ve así.</h2>
+      <div class="pilot-card">
+        <pre>1 línea · 3 meses · solo lectura
+Semanas 1-2: medimos el baseline real de la línea
+KPIs comprometidos sobre ese baseline
+Un evento crítico documentado antes del paro</pre>
+      </div>
+      <p class="risk-line">Made asume el riesgo técnico sobre baseline real.</p>
+    </div>
+    <div class="footer"><span>Baseline primero</span><span class="num">07</span></div>
+  </section>
+
+  <section class="slide" data-slide="8">
+    <div class="topline"><div class="label">07 // PROBADO DONDE MÁS EXIGE LA INDUSTRIA</div></div>
+    <div class="content">
+      <div class="proof-grid">
+        <div class="panel proof">
+          <div class="place">MORELIA, MÉXICO</div>
+          <div class="copy">Línea de manufactura continua. 99% disponibilidad. 3+ meses operando.</div>
+          <div class="small">$9,000 USD ahorrados al mes por línea de producción con mantenimiento predictivo.</div>
+        </div>
+        <div class="panel proof">
+          <div class="place">BHP ESCONDIDA</div>
+          <div class="copy">Seleccionados en su reto de innovación. La mina de cobre más grande del mundo.</div>
+          <div class="small">200+ vehículos. 40.500 h de paro al año. Hasta US$1M en pérdidas actuales por evento.</div>
+        </div>
+        <div class="panel proof">
+          <div class="place">EQUIPO</div>
+          <div class="copy">Gerardo y Ramiro, cofundadores. PhD en IA en el equipo.</div>
+          <div class="small">Alianza con JustPartners para implementaciones físicas, equipo de ingeniería e infraestructura en Chile con más de una década de experiencia.</div>
+        </div>
+      </div>
+      <div class="logo-row">
+        <div class="logo-pill"><img src="../../assets/brands/nvidia-logo.svg" alt="NVIDIA Inception"></div>
+        <div class="logo-pill"><img src="../../assets/brands/founders-inc-logo.png" alt="Founders Inc"></div>
+        <div class="logo-pill"><img src="../../assets/brands/mit-technology-review-logo.svg" alt="MIT Technology Review TR35"></div>
+        <div class="logo-pill"><img src="../../assets/brands/startup-chile-logo.svg" alt="Startup Chile BIG 10"></div>
+      </div>
+    </div>
+    <div class="footer"><span>NVIDIA Inception · Founders Inc · MIT TR35 · Startup Chile BIG 10</span><span class="num">08</span></div>
+  </section>
+
+  <section class="slide" data-slide="9">
+    <div class="topline"><div class="label">08 // CAPACIDAD</div></div>
+    <div class="content closing-layout">
+      <div>
+        <h2 class="headline mid">Made, Zero-loss progresivo para Agrosuper.</h2>
+        <p class="support">Leemos el proceso, sin tocar un PLC, y entregamos la acción al operador antes de perder producto.</p>
+        <div class="closing-logo">
+          <div class="made-mark"><svg viewBox="0 0 42 28" fill="none"><path d="M17.2 4.2v7.8L4 25H0l17.2-20.8Z" fill="#3DDC97"/><path d="M26 1.4V25H8.8L26 1.4Z" fill="#3DDC97"/></svg><span>Made</span></div>
+        </div>
+      </div>
+      <div class="operations-image" role="img" aria-label="Operación industrial Agrosuper"></div>
+    </div>
+    <div class="footer"><span>Capacidad demostrada</span><span class="num">09</span></div>
+  </section>
+
+</main>
+
+<div class="chrome" aria-hidden="true">
+  <div class="progress"><span id="progress"></span></div>
+  <div class="hint">← → · espacio</div>
+  <div class="counter" id="counter">01 / 09</div>
+</div>
+
+<script>
+(() => {
+  const slides = Array.from(document.querySelectorAll(".slide"));
+  const progress = document.getElementById("progress");
+  const counter = document.getElementById("counter");
+  let index = 0;
+
+  function show(next) {
+    const bounded = Math.max(0, Math.min(slides.length - 1, next));
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === bounded);
+      slide.classList.toggle("prev", i < bounded);
+    });
+    index = bounded;
+    progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+    counter.textContent = `${String(index + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+    history.replaceState(null, "", `#${index + 1}`);
+  }
+
+  function next() { show(index + 1); }
+  function prev() { show(index - 1); }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight" || event.key === " " || event.key === "PageDown") {
+      event.preventDefault();
+      next();
+    }
+    if (event.key === "ArrowLeft" || event.key === "PageUp") {
+      event.preventDefault();
+      prev();
+    }
+    if (event.key === "Home") show(0);
+    if (event.key === "End") show(slides.length - 1);
+  });
+
+  const start = Number(location.hash.replace("#", ""));
+  if (Number.isFinite(start) && start > 0) show(start - 1);
+  else show(0);
+})();
+</script>
+</body>
+</html>
