@@ -4,10 +4,50 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Made × Agrosuper · Ruta de Innovación de Proveedores 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: "Syne";
+    src: url("../../assets/fonts/Syne-Regular_1763914823884.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Syne";
+    src: url("../../assets/fonts/Syne-Medium_1763914823884.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Syne";
+    src: url("../../assets/fonts/Syne-SemiBold_1763914823885.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Syne";
+    src: url("../../assets/fonts/Syne-Bold_1763914823884.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Syne";
+    src: url("../../assets/fonts/Syne-ExtraBold_1763914823884.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Syne";
+    src: url("../../assets/fonts/Syne-ExtraBold_1763914823884.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --bg: #0A0A0A;
     --panel: #141414;
@@ -18,8 +58,8 @@
     --muted: #9CA3AF;
     --muted-2: #6B7280;
     --accent: #D84200;
-    --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --font: "Syne", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: SFMono-Regular, Menlo, Monaco, Consolas, ui-monospace, monospace;
   }
 
   * { box-sizing: border-box; }
@@ -60,10 +100,10 @@
   .topline { display: flex; justify-content: space-between; align-items: flex-start; gap: 28px; position: relative; z-index: 1; }
   .label {
     font-family: var(--mono); color: var(--muted); font-size: clamp(13px, 1.05vw, 16px);
-    letter-spacing: .08em; text-transform: uppercase; font-weight: 600;
+    letter-spacing: 0; text-transform: uppercase; font-weight: 600;
   }
-  .made-mark { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 22px; letter-spacing: -.02em; }
-  .made-mark svg { width: 31px; height: 22px; }
+  .made-mark { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 22px; letter-spacing: 0; }
+  .made-mark img { width: 118px; height: auto; display: block; }
   .agro-lockup {
     display: flex; align-items: center; justify-content: center;
     min-width: 176px; min-height: 52px;
@@ -73,7 +113,7 @@
   .agro-lockup img { width: 142px; height: auto; display: block; }
   .agro-lockup span {
     display: block; font-family: var(--mono); color: var(--text); font-size: 16px;
-    letter-spacing: .12em;
+    letter-spacing: 0;
   }
   .agro-lockup img + span {
     display: none;
@@ -82,16 +122,27 @@
   .content { position: relative; z-index: 1; align-self: center; width: 100%; }
   .footer {
     position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center;
-    border-top: 1px solid var(--line); padding-top: 16px; color: var(--muted-2);
-    font-family: var(--mono); font-size: 12px; letter-spacing: .04em;
+    border-top: 1px solid var(--line); padding: 16px 0 0 94px; color: var(--muted-2);
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0;
+  }
+  .footer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 66px;
+    height: 19px;
+    background: url("../../assets/logo-white.png") left center / contain no-repeat;
+    opacity: .46;
   }
   .footer .num { color: var(--muted); }
 
   h1, h2, h3, p { margin: 0; }
   .headline {
-    font-size: clamp(48px, 6.2vw, 92px); line-height: .96; letter-spacing: -.055em;
+    font-size: clamp(48px, 6.2vw, 92px); line-height: .96; letter-spacing: 0;
     font-weight: 900; max-width: 1060px;
   }
+  .cover-title { font-size: clamp(50px, 4vw, 60px); max-width: 560px; }
   .headline.tight { max-width: 980px; }
   .headline.mid { font-size: clamp(42px, 5.2vw, 74px); line-height: 1; max-width: 1080px; }
   .sub {
@@ -107,6 +158,82 @@
   .muted { color: var(--muted); }
   .rule { height: 1px; background: var(--line); width: 100%; }
 
+  .visual-layout {
+    display: grid;
+    grid-template-columns: minmax(0, .95fr) minmax(420px, .8fr);
+    gap: clamp(42px, 6vw, 96px);
+    align-items: center;
+  }
+  .copy-col { min-width: 0; }
+  .visual-layout .headline.mid {
+    font-size: clamp(40px, 4vw, 56px);
+    max-width: 650px;
+  }
+  .visual-field {
+    position: relative;
+    min-height: 390px;
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    background:
+      linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(26,26,26,.72), rgba(12,12,12,.82));
+    background-size: 54px 54px, 54px 54px, auto;
+    overflow: hidden;
+  }
+  .visual-field::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 68% 40%, rgba(216,66,0,.13), transparent 34%);
+  }
+  .abstract-svg {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 390px;
+    display: block;
+  }
+  .svg-label { font-family: var(--mono); fill: var(--muted); font-size: 13px; }
+  .svg-title { font-family: var(--font); fill: var(--text); font-size: 20px; font-weight: 800; }
+  .svg-track { stroke: #343434; stroke-width: 2.2; fill: none; }
+  .svg-muted { stroke: #5B616B; stroke-width: 2; fill: none; opacity: .82; }
+  .svg-accent { stroke: var(--accent); stroke-width: 2.6; fill: none; }
+  .svg-node { fill: #141414; stroke: #2C2C2C; stroke-width: 1; }
+  .svg-node-accent { fill: #141414; stroke: var(--accent); stroke-width: 1.3; }
+  .svg-pulse {
+    fill: var(--accent);
+    filter: drop-shadow(0 0 10px rgba(216,66,0,.55));
+  }
+  .draw-line {
+    stroke-dasharray: 620;
+    stroke-dashoffset: 620;
+    animation: drawLine 2.8s ease forwards;
+  }
+  .dash-flow {
+    stroke-dasharray: 10 18;
+    animation: dashFlow 6s linear infinite;
+  }
+  .blink-soft { animation: blinkSoft 2.4s ease-in-out infinite; }
+  .float-soft { animation: floatSoft 4.5s ease-in-out infinite; }
+
+  @keyframes drawLine {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes dashFlow {
+    to { stroke-dashoffset: -160; }
+  }
+  @keyframes blinkSoft {
+    0%, 100% { opacity: .28; }
+    45%, 55% { opacity: 1; }
+  }
+  @keyframes floatSoft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
   .big-data {
     margin-top: 42px; display: inline-block; border-left: 2px solid var(--accent);
     padding-left: 22px; font-family: var(--mono); color: var(--text);
@@ -116,7 +243,7 @@
   .chip {
     font-family: var(--mono); color: var(--muted); border: 1px solid var(--line);
     background: rgba(255,255,255,.025); border-radius: 999px; padding: 8px 12px;
-    font-size: clamp(11px, .95vw, 14px); letter-spacing: .02em;
+    font-size: clamp(11px, .95vw, 14px); letter-spacing: 0;
   }
   .chip.active { color: var(--accent); border-color: rgba(216,66,0,.55); }
 
@@ -126,30 +253,57 @@
     background: linear-gradient(180deg, rgba(26,26,26,.95), rgba(20,20,20,.95));
     border: 1px solid var(--line); border-radius: 18px; padding: 28px; min-height: 210px;
   }
-  .panel .kicker { font-family: var(--mono); color: var(--muted); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 18px; }
-  .panel .title { font-size: clamp(24px, 2.1vw, 32px); line-height: 1.05; font-weight: 800; letter-spacing: -.025em; }
+  .panel .kicker { font-family: var(--mono); color: var(--muted); font-size: 13px; letter-spacing: 0; text-transform: uppercase; margin-bottom: 18px; }
+  .panel .title { font-size: clamp(24px, 2.1vw, 32px); line-height: 1.05; font-weight: 800; letter-spacing: 0; }
   .panel .body { margin-top: 14px; color: var(--muted); font-size: clamp(16px, 1.18vw, 20px); line-height: 1.35; }
 
   .bar-wrap { margin-top: 44px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: end; height: 330px; }
   .bar-card { height: 100%; display: grid; grid-template-rows: 1fr auto; gap: 16px; }
-  .bar-track { border: 1px solid var(--line); background: var(--panel); border-radius: 18px; padding: 14px; display: flex; align-items: end; }
+  .bar-track { border: 1px solid var(--line); background: var(--panel); border-radius: 18px; padding: 14px; display: flex; align-items: end; position: relative; overflow: hidden; }
+  .bar-track::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border-top: 1px solid rgba(255,255,255,.04);
+    border-bottom: 1px solid rgba(255,255,255,.04);
+    opacity: .8;
+  }
   .bar { width: 100%; height: 18%; background: #2A2A2A; border-radius: 10px; transform-origin: bottom; transform: scaleY(.15); transition: transform 1s ease; }
   .bar.accentbar { background: var(--accent); box-shadow: 0 0 22px rgba(216,66,0,.22); }
   .slide.active .bar { transform: scaleY(1); }
   .bar-availability { height: 43%; }
   .bar-performance { height: 86%; }
   .bar-quality { height: 28%; }
-  .bar-label { font-family: var(--mono); color: var(--muted); font-size: 15px; letter-spacing: .03em; }
+  .bar-label { font-family: var(--mono); color: var(--muted); font-size: 15px; letter-spacing: 0; }
   .bar-label.accent { color: var(--accent); }
   .visual-note { margin-top: 18px; font-family: var(--mono); color: var(--muted); font-size: 14px; }
+  .bar-card:nth-child(2) .bar-track::after {
+    content: "";
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    top: 25%;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, transparent 0 20px, rgba(216,66,0,.72) 20px 23px, transparent 23px 38px);
+    animation: dashFlow 5s linear infinite;
+  }
 
   .layer-stack { margin-top: 46px; display: grid; gap: 16px; max-width: 1040px; }
   .layer {
     display: grid; grid-template-columns: 210px 1fr; gap: 26px; align-items: center;
     padding: 24px 28px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel);
   }
-  .layer-name { font-family: var(--mono); color: var(--accent); font-size: 16px; letter-spacing: .04em; }
+  .layer-name { font-family: var(--mono); color: var(--accent); font-size: 16px; letter-spacing: 0; }
   .layer-copy { color: var(--text); font-size: clamp(22px, 2vw, 30px); line-height: 1.18; font-weight: 700; }
+  .visual-layout .layer-stack { margin-top: 32px; gap: 12px; }
+  .visual-layout .layer {
+    grid-template-columns: 150px 1fr;
+    gap: 18px;
+    padding: 18px 20px;
+    border-radius: 16px;
+  }
+  .visual-layout .layer-name { font-size: 13px; }
+  .visual-layout .layer-copy { font-size: clamp(16px, 1.28vw, 20px); line-height: 1.25; font-weight: 700; }
 
   .diagram-card { margin-top: 26px; border: 1px solid var(--line); border-radius: 18px; background: rgba(20,20,20,.7); padding: 20px; }
   .diagram-card svg { width: 100%; height: auto; display: block; }
@@ -169,11 +323,11 @@
     padding: 34px; min-height: 330px; display: flex; flex-direction: column; justify-content: space-between;
   }
   .roi-kicker {
-    font-family: var(--mono); color: var(--muted); font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+    font-family: var(--mono); color: var(--muted); font-size: 13px; letter-spacing: 0; text-transform: uppercase;
   }
   .roi-number {
-    font-family: var(--mono); color: var(--accent); font-size: clamp(64px, 7vw, 112px);
-    line-height: .9; font-weight: 800; letter-spacing: -.05em;
+    font-family: var(--mono); color: var(--accent); font-size: clamp(56px, 5.2vw, 86px);
+    line-height: .9; font-weight: 800; letter-spacing: 0; white-space: nowrap;
   }
   .roi-caption { color: var(--text); font-size: clamp(20px, 1.7vw, 28px); line-height: 1.15; font-weight: 800; }
   .roi-grid-slide { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
@@ -182,53 +336,72 @@
     min-height: 150px; display: flex; flex-direction: column; justify-content: space-between;
   }
   .roi-card .value { font-family: var(--mono); color: var(--text); font-size: clamp(24px, 2.35vw, 38px); line-height: 1; font-weight: 800; }
-  .roi-card .name { font-family: var(--mono); color: var(--muted); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+  .roi-card .name { font-family: var(--mono); color: var(--muted); font-size: 12px; letter-spacing: 0; text-transform: uppercase; }
   .roi-card .detail { color: var(--muted); font-size: clamp(14px, 1.05vw, 18px); line-height: 1.35; margin-top: 12px; }
   .roi-card.accented { border-color: rgba(216,66,0,.5); }
   .roi-card.accented .value { color: var(--accent); }
   .roi-note { margin-top: 18px; font-family: var(--mono); color: var(--muted); font-size: 13px; line-height: 1.55; max-width: 1100px; }
+  .roi-meter {
+    margin-top: 24px;
+    height: 9px;
+    border-radius: 999px;
+    background: #2B2B2B;
+    overflow: hidden;
+  }
+  .roi-meter span {
+    display: block;
+    height: 100%;
+    width: 62%;
+    border-radius: inherit;
+    background: var(--accent);
+    animation: meterIn 1.2s ease forwards;
+    transform-origin: left;
+  }
+  @keyframes meterIn {
+    from { transform: scaleX(.08); }
+    to { transform: scaleX(1); }
+  }
 
-  .proof-grid { margin-top: 34px; display: grid; grid-template-columns: 1.05fr 1.05fr 1.15fr; gap: 18px; }
+  .proof-grid { margin-top: 34px; display: grid; grid-template-columns: 1.05fr 1.05fr 1.2fr; gap: 18px; }
   .proof { opacity: .3; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease; }
   .slide.active .proof { opacity: 1; transform: translateY(0); }
   .slide.active .proof:nth-child(2) { transition-delay: .12s; }
   .slide.active .proof:nth-child(3) { transition-delay: .24s; }
-  .proof .place { color: var(--accent); font-family: var(--mono); font-size: 14px; letter-spacing: .04em; }
+  .proof .place { color: var(--accent); font-family: var(--mono); font-size: 14px; letter-spacing: 0; }
   .proof .copy { margin-top: 18px; color: var(--text); font-size: clamp(19px, 1.42vw, 24px); line-height: 1.28; font-weight: 700; }
   .proof .small { margin-top: 14px; color: var(--muted); font-size: clamp(14px, 1vw, 17px); line-height: 1.38; }
+  .founder-strip { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .founder-card {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    gap: 11px;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 10px;
+    background: rgba(255,255,255,.025);
+  }
+  .founder-card img {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(255,255,255,.16);
+  }
+  .founder-name { font-size: 14px; font-weight: 800; color: var(--text); line-height: 1.05; }
+  .founder-role { margin-top: 4px; font-family: var(--mono); font-size: 10.5px; color: var(--muted); line-height: 1.2; }
   .logo-row { margin-top: 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
   .logo-pill {
-    border: 1px solid var(--line); background: var(--panel); min-height: 58px; border-radius: 14px;
+    border: 1px solid var(--line); background: rgba(20,20,20,.72); min-height: 64px; border-radius: 14px;
     display: flex; align-items: center; justify-content: center; padding: 12px;
     color: var(--muted); font-family: var(--mono); font-size: 13px; text-align: center;
   }
-  .logo-pill img { max-height: 32px; max-width: 150px; filter: grayscale(1) brightness(2.6); opacity: .82; }
-  .logo-pill img[alt^="MIT"] { filter: grayscale(1) invert(1) brightness(1.7); opacity: .72; }
+  .logo-pill img { max-height: 35px; max-width: 165px; opacity: .88; }
+  .logo-pill img[alt^="MIT"] { filter: invert(1) grayscale(1) brightness(1.35); opacity: .78; }
+  .logo-pill img[alt^="Founders"] { filter: grayscale(1) brightness(2.2); opacity: .78; }
+  .logo-pill img[alt^="Startup"] { max-height: 28px; filter: grayscale(1) invert(1) brightness(1.35); opacity: .9; }
 
   .closing-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 44px; align-items: center; }
-  .operations-image {
-    min-height: 440px; border: 1px solid var(--line); border-radius: 24px; overflow: hidden;
-    background:
-      linear-gradient(rgba(10,10,10,.52), rgba(10,10,10,.88)),
-      linear-gradient(90deg, rgba(216,66,0,.08) 1px, transparent 1px),
-      linear-gradient(rgba(216,66,0,.08) 1px, transparent 1px),
-      url("https://www.agrosuper.com/global/wp-content/uploads/2022/06/plantavr.jpg") center / cover,
-      linear-gradient(135deg, #161616, #0A0A0A);
-    background-size: auto, 48px 48px, 48px 48px, cover, auto;
-    position: relative;
-  }
-  .operations-image::before {
-    content: ""; position: absolute; inset: 52px 46px 86px;
-    border: 1px solid var(--line-2); border-radius: 18px;
-    background:
-      linear-gradient(90deg, transparent 0 15%, rgba(245,245,245,.08) 15% 16%, transparent 16% 100%),
-      linear-gradient(180deg, transparent 0 50%, rgba(245,245,245,.08) 50% 51%, transparent 51% 100%);
-  }
-  .operations-image::after {
-    content: "OPERACIÓN AGROSUPER · PROCESO CONTINUO"; position: absolute; left: 24px; bottom: 24px;
-    font-family: var(--mono); color: var(--muted); font-size: 13px; letter-spacing: .08em;
-    border: 1px solid var(--line); background: rgba(10,10,10,.7); padding: 8px 10px; border-radius: 999px;
-  }
   .closing-logo { margin-top: 34px; display: flex; align-items: center; gap: 24px; }
 
   .chrome { position: fixed; z-index: 20; left: 0; right: 0; bottom: 0; pointer-events: none; }
@@ -239,14 +412,14 @@
 
   @media (max-width: 900px) {
     .slide { padding: 36px 28px 34px; }
-    .grid-2, .grid-3, .proof-grid, .closing-layout { grid-template-columns: 1fr; }
+    .grid-2, .grid-3, .proof-grid, .closing-layout, .visual-layout { grid-template-columns: 1fr; }
     .roi-shell, .roi-grid-slide { grid-template-columns: 1fr; }
     .headline { font-size: 48px; }
     .headline.mid { font-size: 42px; }
     .bar-wrap { height: 260px; }
     .layer { grid-template-columns: 1fr; gap: 10px; }
     .logo-row { grid-template-columns: 1fr 1fr; }
-    .operations-image { min-height: 220px; }
+    .visual-field, .abstract-svg { min-height: 260px; }
   }
 </style>
 </head>
@@ -256,25 +429,75 @@
   <section class="slide active" data-slide="1">
     <div class="topline">
       <div class="made-mark" aria-label="Made">
-        <svg viewBox="0 0 42 28" fill="none"><path d="M17.2 4.2v7.8L4 25H0l17.2-20.8Z" fill="#D84200"/><path d="M26 1.4V25H8.8L26 1.4Z" fill="#D84200"/></svg>
-        <span>Made</span>
+        <img src="../../assets/logo-white.png" alt="Made">
       </div>
       <div class="agro-lockup"><span>AGROSUPER</span></div>
     </div>
-    <div class="content">
-      <div class="label">PHYSICAL AI</div>
-      <h1 class="headline">Zero-loss progresivo.</h1>
-      <p class="sub mono">Ruta de Innovación de Proveedores · Agrosuper 2026</p>
+    <div class="content visual-layout">
+      <div class="copy-col">
+        <div class="label">PHYSICAL AI</div>
+        <h1 class="headline cover-title">Zero-loss<br>progresivo.</h1>
+        <p class="sub mono">Ruta de Innovación de Proveedores · Agrosuper 2026</p>
+      </div>
+      <div class="visual-field" aria-label="Flujo abstracto de señal a acción">
+        <svg class="abstract-svg" viewBox="0 0 560 390" role="img">
+          <defs>
+            <marker id="heroArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#D84200"/></marker>
+          </defs>
+          <path class="svg-track" d="M94 206 C144 104 260 92 316 160 S424 250 468 134"/>
+          <path class="svg-accent draw-line" marker-end="url(#heroArrow)" d="M94 206 C144 104 260 92 316 160 S424 250 468 134"/>
+          <circle class="svg-pulse" r="7">
+            <animateMotion dur="4.2s" repeatCount="indefinite" path="M94 206 C144 104 260 92 316 160 S424 250 468 134"/>
+          </circle>
+          <g class="float-soft">
+            <rect class="svg-node" x="58" y="168" width="112" height="72" rx="18"/>
+            <text class="svg-label" x="84" y="198">SEÑAL</text>
+            <text class="svg-title" x="84" y="223">PLC</text>
+          </g>
+          <g class="float-soft" style="animation-delay:.35s">
+            <rect class="svg-node-accent" x="208" y="106" width="158" height="82" rx="20"/>
+            <text class="svg-label" x="258" y="137">EDGE</text>
+            <text class="svg-title" x="242" y="164">MadeOS</text>
+          </g>
+          <g class="float-soft" style="animation-delay:.7s">
+            <rect class="svg-node" x="382" y="96" width="116" height="76" rx="18"/>
+            <text class="svg-label" x="410" y="126">ACCIÓN</text>
+            <text class="svg-title" x="414" y="150">Antes</text>
+          </g>
+          <path class="svg-muted dash-flow" d="M126 260 H440"/>
+          <text class="svg-label" x="166" y="304">continuidad operativa como trayectoria</text>
+        </svg>
+      </div>
     </div>
     <div class="footer"><span>Made · Physical AI</span><span class="num">01</span></div>
   </section>
 
   <section class="slide" data-slide="2">
     <div class="topline"><div class="label">01 // EL PROBLEMA</div></div>
-    <div class="content">
-      <h2 class="headline mid tight">La producción vive de la continuidad de sus líneas.</h2>
-      <p class="support">Hoy se opera en modo reactivo. La falla se atiende cuando ya ocurrió.</p>
-      <div class="big-data">Un paro no planeado detiene la línea, los tiempos de entrega y el OEE.</div>
+    <div class="content visual-layout">
+      <div class="copy-col">
+        <h2 class="headline mid tight">La producción vive de la continuidad de sus líneas.</h2>
+        <p class="support">Hoy se opera en modo reactivo. La falla se atiende cuando ya ocurrió.</p>
+        <div class="big-data">Un paro no planeado detiene la línea, los tiempos de entrega y el OEE.</div>
+      </div>
+      <div class="visual-field" aria-label="Continuidad operacional versus interrupciones">
+        <svg class="abstract-svg" viewBox="0 0 560 390" role="img">
+          <text class="svg-label" x="66" y="76">CONTINUIDAD</text>
+          <path class="svg-track" d="M68 124 H492"/>
+          <path class="svg-accent dash-flow" d="M68 124 H492"/>
+          <circle class="svg-pulse" r="7">
+            <animateMotion dur="3.1s" repeatCount="indefinite" path="M68 124 H492"/>
+          </circle>
+
+          <text class="svg-label" x="66" y="214">MODO REACTIVO</text>
+          <path class="svg-muted" d="M68 262 H166 M218 262 H314 M366 262 H492"/>
+          <rect class="blink-soft" x="172" y="244" width="34" height="36" rx="8" fill="#D84200" opacity=".34"/>
+          <rect class="blink-soft" x="320" y="244" width="34" height="36" rx="8" fill="#D84200" opacity=".34" style="animation-delay:.45s"/>
+          <text class="svg-label" x="176" y="312">paro</text>
+          <text class="svg-label" x="314" y="312">retrabajo</text>
+          <path class="svg-muted dash-flow" d="M92 338 C176 354 262 318 348 334 S444 354 496 326"/>
+        </svg>
+      </div>
     </div>
     <div class="footer"><span>Continuidad operacional</span><span class="num">02</span></div>
   </section>
@@ -306,12 +529,35 @@
 
   <section class="slide" data-slide="4">
     <div class="topline"><div class="label">03 // EL SISTEMA</div></div>
-    <div class="content">
-      <h2 class="headline mid">Detecta. Clasifica. Prescribe la acción.</h2>
-      <div class="layer-stack">
-        <div class="layer"><div class="layer-name">DESPLIEGUE</div><div class="layer-copy">Made se conecta a sus PLCs, sensores y cámaras. Solo lectura.</div></div>
-        <div class="layer"><div class="layer-name">MOTOR</div><div class="layer-copy">Aprende la operación de cada línea. Histórico más tiempo real. Mejora cada ciclo.</div></div>
-        <div class="layer"><div class="layer-name">PRESCRIPCIÓN</div><div class="layer-copy">Entrega al operador la acción: qué ajustar, en qué máquina, cuándo.</div></div>
+    <div class="content visual-layout">
+      <div class="copy-col">
+        <h2 class="headline mid">Detecta. Clasifica. Prescribe la acción.</h2>
+        <div class="layer-stack">
+          <div class="layer"><div class="layer-name">DESPLIEGUE</div><div class="layer-copy">Made se conecta a sus PLCs, sensores y cámaras. Solo lectura.</div></div>
+          <div class="layer"><div class="layer-name">MOTOR</div><div class="layer-copy">Aprende la operación de cada línea. Histórico más tiempo real. Mejora cada ciclo.</div></div>
+          <div class="layer"><div class="layer-name">PRESCRIPCIÓN</div><div class="layer-copy">Entrega al operador la acción: qué ajustar, en qué máquina, cuándo.</div></div>
+        </div>
+      </div>
+      <div class="visual-field" aria-label="Tres capas de Made">
+        <svg class="abstract-svg" viewBox="0 0 560 390" role="img">
+          <defs>
+            <marker id="systemArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#D84200"/></marker>
+          </defs>
+          <circle class="svg-muted dash-flow" cx="280" cy="196" r="138"/>
+          <circle class="svg-muted dash-flow" cx="280" cy="196" r="92" style="animation-direction:reverse"/>
+          <rect class="svg-node" x="70" y="154" width="138" height="86" rx="20"/>
+          <text class="svg-label" x="104" y="188">DETECTA</text>
+          <text class="svg-title" x="106" y="214">señal</text>
+          <rect class="svg-node-accent" x="212" y="88" width="136" height="86" rx="20"/>
+          <text class="svg-label" x="236" y="122">CLASIFICA</text>
+          <text class="svg-title" x="242" y="148">riesgo</text>
+          <rect class="svg-node" x="352" y="154" width="138" height="86" rx="20"/>
+          <text class="svg-label" x="382" y="188">PRESCRIBE</text>
+          <text class="svg-title" x="392" y="214">acción</text>
+          <path class="svg-accent draw-line" marker-end="url(#systemArrow)" d="M208 196 H346"/>
+          <circle class="svg-pulse" cx="280" cy="196" r="8"/>
+          <text class="svg-label" x="184" y="310">operación específica de cada línea</text>
+        </svg>
       </div>
     </div>
     <div class="footer"><span>Made OS</span><span class="num">04</span></div>
@@ -332,51 +578,51 @@
             <marker id="arrowA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#D84200"/></marker>
             <marker id="arrowGrayA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#5B616B"/></marker>
           </defs>
-          <text x="38" y="44" fill="#9CA3AF" font-family="JetBrains Mono" font-size="14">PLANTA · RED OT</text>
-          <text x="638" y="44" fill="#9CA3AF" font-family="JetBrains Mono" font-size="14">ENGINE LAYER</text>
-          <text x="1018" y="44" fill="#9CA3AF" font-family="JetBrains Mono" font-size="14">OPERACIÓN</text>
+          <text x="38" y="44" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="14">PLANTA · RED OT</text>
+          <text x="638" y="44" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="14">ENGINE LAYER</text>
+          <text x="1018" y="44" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="14">OPERACIÓN</text>
 
           <rect x="34" y="72" width="1180" height="358" rx="22" fill="#0F0F0F" stroke="#262626"/>
           <path d="M292 92 V410" stroke="#262626"/>
           <path d="M918 92 V410" stroke="#262626"/>
 
           <rect x="68" y="184" width="120" height="78" rx="16" fill="#141414" stroke="#262626"/>
-          <text x="91" y="218" fill="#F5F5F5" font-family="Inter" font-size="18" font-weight="800">Planta</text>
-          <text x="82" y="244" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">producción</text>
+          <text x="91" y="218" fill="#F5F5F5" font-family="Syne" font-size="18" font-weight="800">Planta</text>
+          <text x="82" y="244" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11">producción</text>
 
           <rect x="218" y="120" width="118" height="48" rx="12" fill="#141414" stroke="#262626"/>
-          <text x="241" y="151" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">Máquinas</text>
+          <text x="241" y="151" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12">Máquinas</text>
           <rect x="218" y="201" width="118" height="48" rx="12" fill="#141414" stroke="#262626"/>
-          <text x="241" y="232" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">Sensores</text>
+          <text x="241" y="232" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12">Sensores</text>
           <rect x="218" y="282" width="118" height="48" rx="12" fill="#141414" stroke="#262626"/>
-          <text x="260" y="313" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">PLC</text>
+          <text x="260" y="313" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12">PLC</text>
 
           <rect x="394" y="142" width="138" height="88" rx="16" fill="#141414" stroke="#3B3B3B"/>
-          <text x="435" y="179" fill="#F5F5F5" font-family="Inter" font-size="20" font-weight="800">API</text>
-          <text x="422" y="204" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">solo lectura</text>
+          <text x="435" y="179" fill="#F5F5F5" font-family="Syne" font-size="20" font-weight="800">API</text>
+          <text x="422" y="204" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11">solo lectura</text>
 
           <rect x="394" y="260" width="138" height="94" rx="16" fill="#141414" stroke="#3B3B3B"/>
-          <text x="421" y="296" fill="#F5F5F5" font-family="Inter" font-size="18" font-weight="800">Gateway</text>
-          <text x="420" y="321" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">Machine Vision</text>
-          <text x="430" y="339" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10">edge opcional</text>
+          <text x="421" y="296" fill="#F5F5F5" font-family="Syne" font-size="18" font-weight="800">Gateway</text>
+          <text x="420" y="321" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11">Machine Vision</text>
+          <text x="430" y="339" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10">edge opcional</text>
 
           <rect x="606" y="190" width="144" height="86" rx="18" fill="#141414" stroke="#D84200"/>
-          <text x="639" y="240" fill="#D84200" font-family="Inter" font-size="22" font-weight="900">MadeOS</text>
+          <text x="639" y="240" fill="#D84200" font-family="Syne" font-size="22" font-weight="900">MadeOS</text>
 
           <rect x="816" y="177" width="154" height="112" rx="16" fill="#141414" stroke="#262626"/>
-          <text x="846" y="219" fill="#F5F5F5" font-family="Inter" font-size="17" font-weight="800">Capa</text>
-          <text x="846" y="242" fill="#F5F5F5" font-family="Inter" font-size="17" font-weight="800">prescriptiva</text>
-          <text x="845" y="266" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10">riesgo + acción</text>
+          <text x="846" y="219" fill="#F5F5F5" font-family="Syne" font-size="17" font-weight="800">Capa</text>
+          <text x="846" y="242" fill="#F5F5F5" font-family="Syne" font-size="17" font-weight="800">prescriptiva</text>
+          <text x="845" y="266" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10">riesgo + acción</text>
 
           <rect x="1034" y="130" width="132" height="168" rx="16" fill="#141414" stroke="#262626"/>
-          <text x="1054" y="164" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">NOTIFICACIONES</text>
-          <text x="1065" y="199" fill="#F5F5F5" font-family="Inter" font-size="14">WebApp</text>
-          <text x="1062" y="226" fill="#F5F5F5" font-family="Inter" font-size="14">WhatsApp</text>
-          <text x="1074" y="253" fill="#F5F5F5" font-family="Inter" font-size="14">SMS</text>
-          <text x="1072" y="280" fill="#F5F5F5" font-family="Inter" font-size="14">Email</text>
+          <text x="1054" y="164" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11">NOTIFICACIONES</text>
+          <text x="1065" y="199" fill="#F5F5F5" font-family="Syne" font-size="14">WebApp</text>
+          <text x="1062" y="226" fill="#F5F5F5" font-family="Syne" font-size="14">WhatsApp</text>
+          <text x="1074" y="253" fill="#F5F5F5" font-family="Syne" font-size="14">SMS</text>
+          <text x="1072" y="280" fill="#F5F5F5" font-family="Syne" font-size="14">Email</text>
 
           <rect x="1026" y="334" width="148" height="58" rx="16" fill="#141414" stroke="#D84200"/>
-          <text x="1053" y="369" fill="#D84200" font-family="Inter" font-size="18" font-weight="900">Operadores</text>
+          <text x="1053" y="369" fill="#D84200" font-family="Syne" font-size="18" font-weight="900">Operadores</text>
 
           <path d="M188 223 H214" fill="none" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowGrayA)"/>
           <path d="M336 144 H386" fill="none" stroke="url(#beamA)" stroke-width="2.2" marker-end="url(#arrowA)"/>
@@ -388,9 +634,9 @@
           <path d="M970 233 H1026" fill="none" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowGrayA)"/>
           <path d="M1100 298 V328" fill="none" stroke="#D84200" stroke-width="2.2" marker-end="url(#arrowA)"/>
 
-          <text x="394" y="384" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">Canal saliente · TLS 1.3 · validable por TI/OT</text>
-          <text x="66" y="384" fill="#D84200" font-family="JetBrains Mono" font-size="12">El dato crudo permanece en planta</text>
-          <text x="792" y="384" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">Sin acceso entrante</text>
+          <text x="394" y="384" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12">Canal saliente · TLS 1.3 · validable por TI/OT</text>
+          <text x="66" y="384" fill="#D84200" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12">El dato crudo permanece en planta</text>
+          <text x="792" y="384" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12">Sin acceso entrante</text>
         </svg>
       </div>
       <div class="chip-row"><span class="chip active">Solo lectura</span><span class="chip">Sin acceso entrante</span><span class="chip">IEC 62443 · TLS 1.3</span><span class="chip">El dato crudo permanece en su planta</span></div>
@@ -411,47 +657,47 @@
           </defs>
           <g>
             <rect x="28" y="90" width="148" height="156" rx="16" fill="#141414" stroke="#262626"/>
-            <text x="48" y="122" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">01</text>
-            <text x="48" y="158" fill="#F5F5F5" font-family="Inter" font-size="15" font-weight="800">DIGITALIZACIÓN</text>
-            <text x="48" y="190" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">sensores estándar</text>
-            <text x="48" y="212" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">como servicio</text>
+            <text x="48" y="122" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12">01</text>
+            <text x="48" y="158" fill="#F5F5F5" font-family="Syne" font-size="12.5" font-weight="900">SEÑAL</text>
+            <text x="48" y="190" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5">sensores estándar</text>
+            <text x="48" y="212" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5">como servicio</text>
 
             <rect x="204" y="90" width="148" height="156" rx="16" fill="#141414" stroke="#262626"/>
-            <text x="224" y="122" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">02</text>
-            <text x="224" y="154" fill="#F5F5F5" font-family="Inter" font-size="14" font-weight="800">IMPLEMENTACIÓN</text>
-            <text x="224" y="190" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">API</text>
-            <text x="224" y="212" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">o Edge</text>
+            <text x="224" y="122" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12">02</text>
+            <text x="224" y="154" fill="#F5F5F5" font-family="Syne" font-size="12.5" font-weight="900">API / EDGE</text>
+            <text x="224" y="190" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5">API</text>
+            <text x="224" y="212" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5">o Edge</text>
 
             <rect x="380" y="90" width="148" height="156" rx="16" fill="#141414" stroke="#262626"/>
-            <text x="400" y="122" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">03</text>
-            <text x="400" y="158" fill="#F5F5F5" font-family="Inter" font-size="15" font-weight="800">RED</text>
-            <text x="400" y="190" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">red Agrosuper</text>
-            <text x="400" y="212" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">o red privada</text>
+            <text x="400" y="122" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12">03</text>
+            <text x="400" y="158" fill="#F5F5F5" font-family="Syne" font-size="12.5" font-weight="900">RED</text>
+            <text x="400" y="190" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5">red Agrosuper</text>
+            <text x="400" y="212" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5">o red privada</text>
 
             <rect x="556" y="90" width="148" height="156" rx="16" fill="#141414" stroke="#262626"/>
-            <text x="576" y="122" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">04</text>
-            <text x="576" y="154" fill="#F5F5F5" font-family="Inter" font-size="15" font-weight="800">GEMELO</text>
-            <text x="576" y="176" fill="#F5F5F5" font-family="Inter" font-size="15" font-weight="800">DIGITAL</text>
-            <text x="576" y="208" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">histórico</text>
-            <text x="576" y="230" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">más tiempo real</text>
+            <text x="576" y="122" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12">04</text>
+            <text x="576" y="154" fill="#F5F5F5" font-family="Syne" font-size="12.5" font-weight="900">GEMELO</text>
+            <text x="576" y="176" fill="#F5F5F5" font-family="Syne" font-size="12.5" font-weight="900">DIGITAL</text>
+            <text x="576" y="208" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5">histórico</text>
+            <text x="576" y="230" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5">más tiempo real</text>
 
             <rect x="732" y="90" width="148" height="156" rx="16" fill="#141414" stroke="#262626"/>
-            <text x="752" y="122" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">05</text>
-            <text x="752" y="158" fill="#F5F5F5" font-family="Inter" font-size="15" font-weight="800">CRITICIDAD</text>
-            <text x="752" y="190" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">scoring</text>
-            <text x="752" y="212" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">de confianza</text>
+            <text x="752" y="122" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12">05</text>
+            <text x="752" y="158" fill="#F5F5F5" font-family="Syne" font-size="12.5" font-weight="900">CRITICIDAD</text>
+            <text x="752" y="190" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5">scoring</text>
+            <text x="752" y="212" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5">de confianza</text>
 
             <rect x="908" y="90" width="148" height="156" rx="16" fill="#141414" stroke="#D84200"/>
-            <text x="928" y="122" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">06</text>
-            <text x="928" y="158" fill="#D84200" font-family="Inter" font-size="15" font-weight="800">PRESCRIPCIÓN</text>
-            <text x="928" y="190" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">qué ajustar</text>
-            <text x="928" y="212" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">dónde y cuándo</text>
+            <text x="928" y="122" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12">06</text>
+            <text x="928" y="158" fill="#D84200" font-family="Syne" font-size="12.5" font-weight="900">PRESCRIBE</text>
+            <text x="928" y="190" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5">qué ajustar</text>
+            <text x="928" y="212" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5">dónde y cuándo</text>
 
             <rect x="1084" y="90" width="158" height="156" rx="16" fill="#141414" stroke="#262626"/>
-            <text x="1104" y="122" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">07</text>
-            <text x="1104" y="158" fill="#F5F5F5" font-family="Inter" font-size="15" font-weight="800">CANALES</text>
-            <text x="1104" y="190" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">WhatsApp + WebApp</text>
-            <text x="1104" y="212" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">SMS + Email</text>
+            <text x="1104" y="122" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12">07</text>
+            <text x="1104" y="158" fill="#F5F5F5" font-family="Syne" font-size="12.5" font-weight="900">CANALES</text>
+            <text x="1104" y="190" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5">WhatsApp + WebApp</text>
+            <text x="1104" y="212" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5">SMS + Email</text>
           </g>
           <path d="M178 168 H198" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
           <path d="M354 168 H374" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
@@ -460,8 +706,8 @@
           <path d="M882 168 H902" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
           <path d="M1058 168 H1078" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
           <path d="M92 366 H1182" stroke="#D84200" stroke-width="3" marker-end="url(#arrowAccentB)"/>
-          <text x="92" y="342" fill="#9CA3AF" font-family="JetBrains Mono" font-size="16">ERROR</text>
-          <text x="1008" y="342" fill="#D84200" font-family="JetBrains Mono" font-size="16">ANTICIPACIÓN</text>
+          <text x="92" y="342" fill="#9CA3AF" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="16">ERROR</text>
+          <text x="1008" y="342" fill="#D84200" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="16">ANTICIPACIÓN</text>
         </svg>
       </div>
       <p class="support mono">Demo en vivo a continuación.</p>
@@ -479,6 +725,7 @@
           <div>
             <div class="roi-number">45-60 min</div>
             <div class="roi-caption">de evento crítico evitado cubren el piloto base con Edge.</div>
+            <div class="roi-meter" aria-hidden="true"><span></span></div>
           </div>
           <div class="roi-note">Supuesto: $18K-$45K USD/h de exposición operativa por línea de proteína alta velocidad.</div>
         </div>
@@ -528,10 +775,20 @@
           <div class="place">EQUIPO</div>
           <div class="copy">Gerardo y Ramiro, cofundadores. PhD en IA en el equipo.</div>
           <div class="small">Alianza con JustPartners para implementaciones físicas, equipo de ingeniería e infraestructura en Chile con más de una década de experiencia.</div>
+          <div class="founder-strip">
+            <div class="founder-card">
+              <img src="../../assets/gpc.png" alt="Gerardo Peña">
+              <div><div class="founder-name">Gerardo Peña</div><div class="founder-role">Founder & CEO</div></div>
+            </div>
+            <div class="founder-card">
+              <img src="../../assets/Ramiro.png" alt="Ramiro">
+              <div><div class="founder-name">Ramiro</div><div class="founder-role">CTO · arquitectura IA</div></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="logo-row">
-        <div class="logo-pill"><img src="../../assets/brands/nvidia-logo.svg" alt="NVIDIA Inception"></div>
+        <div class="logo-pill"><img src="../../assets/brands/nvidia-inception-program.svg" alt="NVIDIA Inception"></div>
         <div class="logo-pill"><img src="../../assets/brands/founders-inc-logo.png" alt="Founders Inc"></div>
         <div class="logo-pill"><img src="../../assets/brands/mit-technology-review-logo.svg" alt="MIT Technology Review TR35"></div>
         <div class="logo-pill"><img src="../../assets/brands/startup-chile-logo.svg" alt="Startup Chile BIG 10"></div>
@@ -547,10 +804,29 @@
         <h2 class="headline mid">Made, Zero-loss progresivo para Agrosuper.</h2>
         <p class="support">Leemos el proceso, sin tocar un PLC, y entregamos la acción al operador antes de perder producto.</p>
         <div class="closing-logo">
-          <div class="made-mark"><svg viewBox="0 0 42 28" fill="none"><path d="M17.2 4.2v7.8L4 25H0l17.2-20.8Z" fill="#D84200"/><path d="M26 1.4V25H8.8L26 1.4Z" fill="#D84200"/></svg><span>Made</span></div>
+          <div class="made-mark"><img src="../../assets/logo-white.png" alt="Made"></div>
         </div>
       </div>
-      <div class="operations-image" role="img" aria-label="Operación industrial Agrosuper"></div>
+      <div class="visual-field" aria-label="Capacidad Made para Agrosuper">
+        <svg class="abstract-svg" viewBox="0 0 560 390" role="img">
+          <defs>
+            <marker id="capArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#D84200"/></marker>
+          </defs>
+          <rect class="svg-node" x="66" y="82" width="142" height="74" rx="18"/>
+          <text class="svg-label" x="98" y="113">PLC</text>
+          <text class="svg-title" x="98" y="138">lectura</text>
+          <rect class="svg-node-accent" x="218" y="158" width="124" height="86" rx="22"/>
+          <text class="svg-label" x="252" y="192">Made</text>
+          <text class="svg-title" x="250" y="218">edge</text>
+          <rect class="svg-node" x="352" y="82" width="142" height="74" rx="18"/>
+          <text class="svg-label" x="386" y="113">OPERADOR</text>
+          <text class="svg-title" x="386" y="138">acción</text>
+          <path class="svg-accent draw-line" marker-end="url(#capArrow)" d="M208 119 C256 92 302 92 350 119"/>
+          <path class="svg-muted dash-flow" d="M280 244 V306 H422 V168"/>
+          <path class="svg-muted dash-flow" d="M280 244 V306 H138 V168" style="animation-direction:reverse"/>
+          <text class="svg-label" x="142" y="342">leer · anticipar · ejecutar</text>
+        </svg>
+      </div>
     </div>
     <div class="footer"><span>Capacidad demostrada</span><span class="num">09</span></div>
   </section>
