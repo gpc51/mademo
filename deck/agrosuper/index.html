@@ -17,7 +17,7 @@
     --text: #F5F5F5;
     --muted: #9CA3AF;
     --muted-2: #6B7280;
-    --accent: #3DDC97;
+    --accent: #D84200;
     --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   }
@@ -41,7 +41,7 @@
     display: grid; grid-template-rows: auto 1fr auto;
     padding: clamp(44px, 5.6vw, 76px) clamp(58px, 7.2vw, 112px) clamp(34px, 4vw, 56px);
     background:
-      radial-gradient(circle at 78% 18%, rgba(61, 220, 151, .06), transparent 34%),
+      radial-gradient(circle at 78% 18%, rgba(216,66,0, .06), transparent 34%),
       linear-gradient(180deg, #0B0B0B 0%, #080808 100%);
     opacity: 0; transform: translateX(34px); pointer-events: none;
     transition: opacity .36s ease, transform .36s ease;
@@ -118,7 +118,7 @@
     background: rgba(255,255,255,.025); border-radius: 999px; padding: 8px 12px;
     font-size: clamp(11px, .95vw, 14px); letter-spacing: .02em;
   }
-  .chip.active { color: var(--accent); border-color: rgba(61,220,151,.55); }
+  .chip.active { color: var(--accent); border-color: rgba(216,66,0,.55); }
 
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
@@ -134,7 +134,7 @@
   .bar-card { height: 100%; display: grid; grid-template-rows: 1fr auto; gap: 16px; }
   .bar-track { border: 1px solid var(--line); background: var(--panel); border-radius: 18px; padding: 14px; display: flex; align-items: end; }
   .bar { width: 100%; height: 18%; background: #2A2A2A; border-radius: 10px; transform-origin: bottom; transform: scaleY(.15); transition: transform 1s ease; }
-  .bar.accentbar { background: var(--accent); box-shadow: 0 0 22px rgba(61,220,151,.22); }
+  .bar.accentbar { background: var(--accent); box-shadow: 0 0 22px rgba(216,66,0,.22); }
   .slide.active .bar { transform: scaleY(1); }
   .bar-availability { height: 43%; }
   .bar-performance { height: 86%; }
@@ -155,7 +155,7 @@
   .diagram-card svg { width: 100%; height: auto; display: block; }
 
   .pilot-card {
-    margin-top: 46px; max-width: 760px; border: 1px solid rgba(61,220,151,.45);
+    margin-top: 46px; max-width: 760px; border: 1px solid rgba(216,66,0,.45);
     background: rgba(20,20,20,.9); border-radius: 22px; padding: 34px;
   }
   .pilot-card pre {
@@ -163,6 +163,30 @@
     font-size: clamp(18px, 1.55vw, 25px); line-height: 1.65;
   }
   .risk-line { margin-top: 24px; color: var(--muted); font-size: clamp(18px, 1.45vw, 23px); }
+  .roi-shell { margin-top: 36px; display: grid; grid-template-columns: .95fr 1.05fr; gap: 26px; align-items: stretch; }
+  .roi-hero-card {
+    border: 1px solid rgba(216,66,0,.55); border-radius: 24px; background: rgba(20,20,20,.92);
+    padding: 34px; min-height: 330px; display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .roi-kicker {
+    font-family: var(--mono); color: var(--muted); font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .roi-number {
+    font-family: var(--mono); color: var(--accent); font-size: clamp(64px, 7vw, 112px);
+    line-height: .9; font-weight: 800; letter-spacing: -.05em;
+  }
+  .roi-caption { color: var(--text); font-size: clamp(20px, 1.7vw, 28px); line-height: 1.15; font-weight: 800; }
+  .roi-grid-slide { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .roi-card {
+    border: 1px solid var(--line); border-radius: 18px; background: var(--panel); padding: 22px;
+    min-height: 150px; display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .roi-card .value { font-family: var(--mono); color: var(--text); font-size: clamp(24px, 2.35vw, 38px); line-height: 1; font-weight: 800; }
+  .roi-card .name { font-family: var(--mono); color: var(--muted); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+  .roi-card .detail { color: var(--muted); font-size: clamp(14px, 1.05vw, 18px); line-height: 1.35; margin-top: 12px; }
+  .roi-card.accented { border-color: rgba(216,66,0,.5); }
+  .roi-card.accented .value { color: var(--accent); }
+  .roi-note { margin-top: 18px; font-family: var(--mono); color: var(--muted); font-size: 13px; line-height: 1.55; max-width: 1100px; }
 
   .proof-grid { margin-top: 34px; display: grid; grid-template-columns: 1.05fr 1.05fr 1.15fr; gap: 18px; }
   .proof { opacity: .3; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease; }
@@ -186,8 +210,8 @@
     min-height: 440px; border: 1px solid var(--line); border-radius: 24px; overflow: hidden;
     background:
       linear-gradient(rgba(10,10,10,.52), rgba(10,10,10,.88)),
-      linear-gradient(90deg, rgba(61,220,151,.08) 1px, transparent 1px),
-      linear-gradient(rgba(61,220,151,.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(216,66,0,.08) 1px, transparent 1px),
+      linear-gradient(rgba(216,66,0,.08) 1px, transparent 1px),
       url("https://www.agrosuper.com/global/wp-content/uploads/2022/06/plantavr.jpg") center / cover,
       linear-gradient(135deg, #161616, #0A0A0A);
     background-size: auto, 48px 48px, 48px 48px, cover, auto;
@@ -216,6 +240,7 @@
   @media (max-width: 900px) {
     .slide { padding: 36px 28px 34px; }
     .grid-2, .grid-3, .proof-grid, .closing-layout { grid-template-columns: 1fr; }
+    .roi-shell, .roi-grid-slide { grid-template-columns: 1fr; }
     .headline { font-size: 48px; }
     .headline.mid { font-size: 42px; }
     .bar-wrap { height: 260px; }
@@ -231,7 +256,7 @@
   <section class="slide active" data-slide="1">
     <div class="topline">
       <div class="made-mark" aria-label="Made">
-        <svg viewBox="0 0 42 28" fill="none"><path d="M17.2 4.2v7.8L4 25H0l17.2-20.8Z" fill="#3DDC97"/><path d="M26 1.4V25H8.8L26 1.4Z" fill="#3DDC97"/></svg>
+        <svg viewBox="0 0 42 28" fill="none"><path d="M17.2 4.2v7.8L4 25H0l17.2-20.8Z" fill="#D84200"/><path d="M26 1.4V25H8.8L26 1.4Z" fill="#D84200"/></svg>
         <span>Made</span>
       </div>
       <div class="agro-lockup"><span>AGROSUPER</span></div>
@@ -297,58 +322,75 @@
     <div class="content">
       <h2 class="headline mid">Se integra sin tocar su red de control.</h2>
       <div class="diagram-card">
-        <!-- Diagrama A, arquitectura segura OT -->
-        <svg viewBox="0 0 1280 520" role="img" aria-label="Arquitectura segura de integración Made">
+        <!-- Diagrama A, Engine Layer adaptado desde landing MadeOS -->
+        <svg viewBox="0 0 1280 520" role="img" aria-label="Engine Layer Made aplicado a integración segura">
           <defs>
-            <marker id="arrowA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#3DDC97"/></marker>
+            <linearGradient id="beamA" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#5B616B"/>
+              <stop offset="1" stop-color="#D84200"/>
+            </linearGradient>
+            <marker id="arrowA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#D84200"/></marker>
             <marker id="arrowGrayA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#5B616B"/></marker>
           </defs>
-          <rect x="18" y="42" width="520" height="420" rx="18" fill="#111" stroke="#333"/>
-          <line x1="575" y1="34" x2="575" y2="470" stroke="#262626"/>
-          <line x1="890" y1="34" x2="890" y2="470" stroke="#262626"/>
-          <text x="34" y="28" fill="#9CA3AF" font-family="JetBrains Mono" font-size="16">PLANTA · RED OT</text>
-          <text x="612" y="28" fill="#9CA3AF" font-family="JetBrains Mono" font-size="16">LÍMITE DE PLANTA</text>
-          <text x="930" y="28" fill="#9CA3AF" font-family="JetBrains Mono" font-size="16">MADE CLOUD</text>
+          <text x="38" y="44" fill="#9CA3AF" font-family="JetBrains Mono" font-size="14">PLANTA · RED OT</text>
+          <text x="638" y="44" fill="#9CA3AF" font-family="JetBrains Mono" font-size="14">ENGINE LAYER</text>
+          <text x="1018" y="44" fill="#9CA3AF" font-family="JetBrains Mono" font-size="14">OPERACIÓN</text>
 
-          <g font-family="Inter" font-size="20" fill="#F5F5F5">
-            <rect x="54" y="88" width="170" height="64" rx="12" fill="#141414" stroke="#262626"/><text x="78" y="127">PLCs</text>
-            <rect x="54" y="178" width="170" height="64" rx="12" fill="#141414" stroke="#262626"/><text x="78" y="217">SCADA</text>
-            <rect x="54" y="268" width="170" height="82" rx="12" fill="#141414" stroke="#262626"/><text x="78" y="305">Sensores</text><text x="78" y="330" fill="#9CA3AF" font-family="JetBrains Mono" font-size="14">y cámaras</text>
-          </g>
+          <rect x="34" y="72" width="1180" height="358" rx="22" fill="#0F0F0F" stroke="#262626"/>
+          <path d="M292 92 V410" stroke="#262626"/>
+          <path d="M918 92 V410" stroke="#262626"/>
 
-          <rect x="330" y="158" width="168" height="112" rx="14" fill="#141414" stroke="#3DDC97"/>
-          <text x="354" y="195" fill="#F5F5F5" font-family="Inter" font-size="20" font-weight="700">MADE EDGE</text>
-          <text x="354" y="221" fill="#9CA3AF" font-family="JetBrains Mono" font-size="13">NVIDIA Jetson</text>
-          <text x="354" y="246" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">inferencia local · buffer</text>
+          <rect x="68" y="184" width="120" height="78" rx="16" fill="#141414" stroke="#262626"/>
+          <text x="91" y="218" fill="#F5F5F5" font-family="Inter" font-size="18" font-weight="800">Planta</text>
+          <text x="82" y="244" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">producción</text>
 
-          <path d="M224 120 H300 Q318 120 318 150 V191" fill="none" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowGrayA)"/>
-          <path d="M224 210 H300 Q318 210 318 214 H330" fill="none" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowGrayA)"/>
-          <path d="M224 310 H300 Q318 310 318 270 V238" fill="none" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowGrayA)"/>
-          <text x="250" y="88" fill="#9CA3AF" font-family="JetBrains Mono" font-size="13">A · sobre su red</text>
-          <text x="250" y="376" fill="#9CA3AF" font-family="JetBrains Mono" font-size="13">B · red privada de solo lectura de Made</text>
-          <text x="286" y="145" fill="#3DDC97" font-family="JetBrains Mono" font-size="14">SOLO LECTURA</text>
+          <rect x="218" y="120" width="118" height="48" rx="12" fill="#141414" stroke="#262626"/>
+          <text x="241" y="151" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">Máquinas</text>
+          <rect x="218" y="201" width="118" height="48" rx="12" fill="#141414" stroke="#262626"/>
+          <text x="241" y="232" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">Sensores</text>
+          <rect x="218" y="282" width="118" height="48" rx="12" fill="#141414" stroke="#262626"/>
+          <text x="260" y="313" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">PLC</text>
 
-          <path d="M498 214 H628 Q654 214 654 252 H908" fill="none" stroke="#3DDC97" stroke-width="2.4" marker-end="url(#arrowA)"/>
-          <text x="604" y="198" fill="#3DDC97" font-family="JetBrains Mono" font-size="13">CANAL SALIENTE · TLS 1.3 · solo eventos agregados</text>
-          <text x="604" y="226" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">validable y revocable por TI/OT</text>
-          <text x="608" y="334" fill="#9CA3AF" font-family="JetBrains Mono" font-size="13">Sin acceso entrante</text>
+          <rect x="394" y="142" width="138" height="88" rx="16" fill="#141414" stroke="#3B3B3B"/>
+          <text x="435" y="179" fill="#F5F5F5" font-family="Inter" font-size="20" font-weight="800">API</text>
+          <text x="422" y="204" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">solo lectura</text>
 
-          <rect x="930" y="146" width="210" height="118" rx="14" fill="#141414" stroke="#262626"/>
-          <text x="956" y="184" fill="#F5F5F5" font-family="Inter" font-size="20" font-weight="700">AGENTE</text>
-          <text x="956" y="209" fill="#F5F5F5" font-family="Inter" font-size="20" font-weight="700">PRESCRIPTIVO</text>
-          <text x="956" y="236" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">histórico + tiempo real</text>
+          <rect x="394" y="260" width="138" height="94" rx="16" fill="#141414" stroke="#3B3B3B"/>
+          <text x="421" y="296" fill="#F5F5F5" font-family="Inter" font-size="18" font-weight="800">Gateway</text>
+          <text x="420" y="321" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">Machine Vision</text>
+          <text x="430" y="339" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10">edge opcional</text>
 
-          <path d="M1140 205 H1188" fill="none" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowGrayA)"/>
-          <rect x="1190" y="92" width="68" height="42" rx="10" fill="#141414" stroke="#262626"/><text x="1204" y="119" fill="#F5F5F5" font-family="Inter" font-size="14">WebApp</text>
-          <rect x="1190" y="148" width="68" height="42" rx="10" fill="#141414" stroke="#262626"/><text x="1208" y="175" fill="#F5F5F5" font-family="Inter" font-size="14">SMS</text>
-          <rect x="1190" y="204" width="68" height="42" rx="10" fill="#141414" stroke="#262626"/><text x="1202" y="231" fill="#F5F5F5" font-family="Inter" font-size="14">Email</text>
-          <rect x="1190" y="260" width="68" height="42" rx="10" fill="#141414" stroke="#262626"/><text x="1198" y="287" fill="#F5F5F5" font-family="Inter" font-size="13">WhatsApp</text>
-          <text x="1016" y="334" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">WebApp y WhatsApp · bidireccional</text>
-          <text x="1016" y="358" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">SMS y Email · notificación</text>
-          <path d="M1224 302 V392 H1080" fill="none" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowGrayA)"/>
-          <rect x="918" y="374" width="168" height="64" rx="14" fill="#141414" stroke="#3DDC97"/>
-          <text x="946" y="413" fill="#3DDC97" font-family="Inter" font-size="20" font-weight="700">OPERADOR</text>
-          <text x="946" y="435" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">en turno</text>
+          <rect x="606" y="190" width="144" height="86" rx="18" fill="#141414" stroke="#D84200"/>
+          <text x="639" y="240" fill="#D84200" font-family="Inter" font-size="22" font-weight="900">MadeOS</text>
+
+          <rect x="816" y="177" width="154" height="112" rx="16" fill="#141414" stroke="#262626"/>
+          <text x="846" y="219" fill="#F5F5F5" font-family="Inter" font-size="17" font-weight="800">Capa</text>
+          <text x="846" y="242" fill="#F5F5F5" font-family="Inter" font-size="17" font-weight="800">prescriptiva</text>
+          <text x="845" y="266" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10">riesgo + acción</text>
+
+          <rect x="1034" y="130" width="132" height="168" rx="16" fill="#141414" stroke="#262626"/>
+          <text x="1054" y="164" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">NOTIFICACIONES</text>
+          <text x="1065" y="199" fill="#F5F5F5" font-family="Inter" font-size="14">WebApp</text>
+          <text x="1062" y="226" fill="#F5F5F5" font-family="Inter" font-size="14">WhatsApp</text>
+          <text x="1074" y="253" fill="#F5F5F5" font-family="Inter" font-size="14">SMS</text>
+          <text x="1072" y="280" fill="#F5F5F5" font-family="Inter" font-size="14">Email</text>
+
+          <rect x="1026" y="334" width="148" height="58" rx="16" fill="#141414" stroke="#D84200"/>
+          <text x="1053" y="369" fill="#D84200" font-family="Inter" font-size="18" font-weight="900">Operadores</text>
+
+          <path d="M188 223 H214" fill="none" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowGrayA)"/>
+          <path d="M336 144 H386" fill="none" stroke="url(#beamA)" stroke-width="2.2" marker-end="url(#arrowA)"/>
+          <path d="M336 225 H386" fill="none" stroke="url(#beamA)" stroke-width="2.2" marker-end="url(#arrowA)"/>
+          <path d="M336 306 H386" fill="none" stroke="url(#beamA)" stroke-width="2.2" marker-end="url(#arrowA)"/>
+          <path d="M532 186 C562 186 570 225 600 225" fill="none" stroke="#D84200" stroke-width="2.2" marker-end="url(#arrowA)"/>
+          <path d="M532 307 C562 307 570 242 600 242" fill="none" stroke="#D84200" stroke-width="2.2" marker-end="url(#arrowA)"/>
+          <path d="M750 233 H808" fill="none" stroke="#D84200" stroke-width="2.2" marker-end="url(#arrowA)"/>
+          <path d="M970 233 H1026" fill="none" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowGrayA)"/>
+          <path d="M1100 298 V328" fill="none" stroke="#D84200" stroke-width="2.2" marker-end="url(#arrowA)"/>
+
+          <text x="394" y="384" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">Canal saliente · TLS 1.3 · validable por TI/OT</text>
+          <text x="66" y="384" fill="#D84200" font-family="JetBrains Mono" font-size="12">El dato crudo permanece en planta</text>
+          <text x="792" y="384" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">Sin acceso entrante</text>
         </svg>
       </div>
       <div class="chip-row"><span class="chip active">Solo lectura</span><span class="chip">Sin acceso entrante</span><span class="chip">IEC 62443 · TLS 1.3</span><span class="chip">El dato crudo permanece en su planta</span></div>
@@ -362,46 +404,64 @@
       <h2 class="headline mid">De error a anticipación.</h2>
       <div class="diagram-card">
         <!-- Diagrama B, recorrido de señal a acción -->
-        <svg viewBox="0 0 1280 500" role="img" aria-label="Recorrido Made de la señal a la acción">
+        <svg viewBox="0 0 1280 520" role="img" aria-label="Recorrido Made de la señal a la acción">
           <defs>
             <marker id="arrowB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#5B616B"/></marker>
-            <marker id="arrowAccentB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#3DDC97"/></marker>
+            <marker id="arrowAccentB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#D84200"/></marker>
           </defs>
-          <g font-family="JetBrains Mono" font-size="12" fill="#9CA3AF">
-            <text x="42" y="60">01</text><text x="214" y="60">02</text><text x="386" y="60">03</text><text x="558" y="60">04</text><text x="730" y="60">05</text><text x="902" y="60">06</text><text x="1074" y="60">07</text>
-          </g>
           <g>
-            <rect x="30" y="82" width="142" height="140" rx="14" fill="#141414" stroke="#262626"/>
-            <text x="50" y="124" fill="#F5F5F5" font-family="Inter" font-size="17" font-weight="800">DIGITALIZACIÓN</text>
-            <text x="50" y="156" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">sensores estándar</text><text x="50" y="176" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">como servicio</text>
-            <rect x="202" y="82" width="142" height="140" rx="14" fill="#141414" stroke="#262626"/>
-            <text x="214" y="124" fill="#F5F5F5" font-family="Inter" font-size="15" font-weight="800">IMPLEMENTACIÓN</text>
-            <text x="222" y="156" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">API o Edge</text>
-            <rect x="374" y="82" width="142" height="140" rx="14" fill="#141414" stroke="#262626"/>
-            <text x="394" y="124" fill="#F5F5F5" font-family="Inter" font-size="17" font-weight="800">RED</text>
-            <text x="394" y="156" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">sobre su red</text><text x="394" y="176" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">o red privada</text>
-            <rect x="546" y="82" width="142" height="140" rx="14" fill="#141414" stroke="#262626"/>
-            <text x="566" y="124" fill="#F5F5F5" font-family="Inter" font-size="17" font-weight="800">GEMELO DIGITAL</text>
-            <text x="566" y="156" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">histórico más</text><text x="566" y="176" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">tiempo real</text>
-            <rect x="718" y="82" width="142" height="140" rx="14" fill="#141414" stroke="#262626"/>
-            <text x="738" y="124" fill="#F5F5F5" font-family="Inter" font-size="17" font-weight="800">CRITICIDAD</text>
-            <text x="738" y="156" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">scoring de</text><text x="738" y="176" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">confianza</text>
-            <rect x="890" y="82" width="142" height="140" rx="14" fill="#141414" stroke="#3DDC97"/>
-            <text x="910" y="124" fill="#3DDC97" font-family="Inter" font-size="17" font-weight="800">PRESCRIPCIÓN</text>
-            <text x="910" y="156" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">qué ajustar</text><text x="910" y="176" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">cuándo</text>
-            <rect x="1062" y="82" width="170" height="140" rx="14" fill="#141414" stroke="#262626"/>
-            <text x="1082" y="124" fill="#F5F5F5" font-family="Inter" font-size="17" font-weight="800">CANALES</text>
-            <text x="1082" y="156" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">WhatsApp y WebApp</text><text x="1082" y="176" fill="#9CA3AF" font-family="JetBrains Mono" font-size="11">SMS y Email</text>
+            <rect x="28" y="90" width="148" height="156" rx="16" fill="#141414" stroke="#262626"/>
+            <text x="48" y="122" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">01</text>
+            <text x="48" y="158" fill="#F5F5F5" font-family="Inter" font-size="15" font-weight="800">DIGITALIZACIÓN</text>
+            <text x="48" y="190" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">sensores estándar</text>
+            <text x="48" y="212" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">como servicio</text>
+
+            <rect x="204" y="90" width="148" height="156" rx="16" fill="#141414" stroke="#262626"/>
+            <text x="224" y="122" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">02</text>
+            <text x="224" y="154" fill="#F5F5F5" font-family="Inter" font-size="14" font-weight="800">IMPLEMENTACIÓN</text>
+            <text x="224" y="190" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">API</text>
+            <text x="224" y="212" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">o Edge</text>
+
+            <rect x="380" y="90" width="148" height="156" rx="16" fill="#141414" stroke="#262626"/>
+            <text x="400" y="122" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">03</text>
+            <text x="400" y="158" fill="#F5F5F5" font-family="Inter" font-size="15" font-weight="800">RED</text>
+            <text x="400" y="190" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">red Agrosuper</text>
+            <text x="400" y="212" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">o red privada</text>
+
+            <rect x="556" y="90" width="148" height="156" rx="16" fill="#141414" stroke="#262626"/>
+            <text x="576" y="122" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">04</text>
+            <text x="576" y="154" fill="#F5F5F5" font-family="Inter" font-size="15" font-weight="800">GEMELO</text>
+            <text x="576" y="176" fill="#F5F5F5" font-family="Inter" font-size="15" font-weight="800">DIGITAL</text>
+            <text x="576" y="208" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">histórico</text>
+            <text x="576" y="230" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">más tiempo real</text>
+
+            <rect x="732" y="90" width="148" height="156" rx="16" fill="#141414" stroke="#262626"/>
+            <text x="752" y="122" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">05</text>
+            <text x="752" y="158" fill="#F5F5F5" font-family="Inter" font-size="15" font-weight="800">CRITICIDAD</text>
+            <text x="752" y="190" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">scoring</text>
+            <text x="752" y="212" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">de confianza</text>
+
+            <rect x="908" y="90" width="148" height="156" rx="16" fill="#141414" stroke="#D84200"/>
+            <text x="928" y="122" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">06</text>
+            <text x="928" y="158" fill="#D84200" font-family="Inter" font-size="15" font-weight="800">PRESCRIPCIÓN</text>
+            <text x="928" y="190" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">qué ajustar</text>
+            <text x="928" y="212" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">dónde y cuándo</text>
+
+            <rect x="1084" y="90" width="158" height="156" rx="16" fill="#141414" stroke="#262626"/>
+            <text x="1104" y="122" fill="#9CA3AF" font-family="JetBrains Mono" font-size="12">07</text>
+            <text x="1104" y="158" fill="#F5F5F5" font-family="Inter" font-size="15" font-weight="800">CANALES</text>
+            <text x="1104" y="190" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">WhatsApp + WebApp</text>
+            <text x="1104" y="212" fill="#9CA3AF" font-family="JetBrains Mono" font-size="10.5">SMS + Email</text>
           </g>
-          <path d="M174 152 H196" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
-          <path d="M346 152 H368" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
-          <path d="M518 152 H540" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
-          <path d="M690 152 H712" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
-          <path d="M862 152 H884" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
-          <path d="M1034 152 H1056" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
-          <path d="M92 350 H1182" stroke="#3DDC97" stroke-width="3" marker-end="url(#arrowAccentB)"/>
-          <text x="92" y="330" fill="#9CA3AF" font-family="JetBrains Mono" font-size="16">ERROR</text>
-          <text x="1016" y="330" fill="#3DDC97" font-family="JetBrains Mono" font-size="16">ANTICIPACIÓN</text>
+          <path d="M178 168 H198" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
+          <path d="M354 168 H374" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
+          <path d="M530 168 H550" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
+          <path d="M706 168 H726" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
+          <path d="M882 168 H902" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
+          <path d="M1058 168 H1078" stroke="#5B616B" stroke-width="2" marker-end="url(#arrowB)"/>
+          <path d="M92 366 H1182" stroke="#D84200" stroke-width="3" marker-end="url(#arrowAccentB)"/>
+          <text x="92" y="342" fill="#9CA3AF" font-family="JetBrains Mono" font-size="16">ERROR</text>
+          <text x="1008" y="342" fill="#D84200" font-family="JetBrains Mono" font-size="16">ANTICIPACIÓN</text>
         </svg>
       </div>
       <p class="support mono">Demo en vivo a continuación.</p>
@@ -410,18 +470,44 @@
   </section>
 
   <section class="slide" data-slide="7">
-    <div class="topline"><div class="label">06 // EL PILOTO</div></div>
+    <div class="topline"><div class="label">06 // ROI DEL PILOTO</div></div>
     <div class="content">
-      <h2 class="headline mid">Un piloto Try and Buy se ve así.</h2>
-      <div class="pilot-card">
-        <pre>1 línea · 3 meses · solo lectura
-Semanas 1-2: medimos el baseline real de la línea
-KPIs comprometidos sobre ese baseline
-Un evento crítico documentado antes del paro</pre>
+      <h2 class="headline mid">El piloto se paga con menos de una hora crítica evitada.</h2>
+      <div class="roi-shell">
+        <div class="roi-hero-card">
+          <div class="roi-kicker">Punto de equilibrio por línea</div>
+          <div>
+            <div class="roi-number">45-60 min</div>
+            <div class="roi-caption">de evento crítico evitado cubren el piloto base con Edge.</div>
+          </div>
+          <div class="roi-note">Supuesto: $18K-$45K USD/h de exposición operativa por línea de proteína alta velocidad.</div>
+        </div>
+        <div class="roi-grid-slide">
+          <div class="roi-card">
+            <div class="name">Made OS base</div>
+            <div class="value">$1.5K</div>
+            <div class="detail">USD/mes por línea durante piloto.</div>
+          </div>
+          <div class="roi-card">
+            <div class="name">Piloto base</div>
+            <div class="value">$4.5K</div>
+            <div class="detail">USD por línea, 3 meses, solo lectura.</div>
+          </div>
+          <div class="roi-card">
+            <div class="name">Edge opcional</div>
+            <div class="value">$5K</div>
+            <div class="detail">USD único si se requiere visión o baja latencia local.</div>
+          </div>
+          <div class="roi-card accented">
+            <div class="name">Evento crítico</div>
+            <div class="value">$36K-$90K</div>
+            <div class="detail">USD estimado para 2 h de paro, retención de calidad y reinicio.</div>
+          </div>
+        </div>
       </div>
-      <p class="risk-line">Made asume el riesgo técnico sobre baseline real.</p>
+      <p class="roi-note">Modelo recomendado: por línea de producción. Permite comparar ROI por planta, familia de proceso y criticidad, sin mezclar faena, empaque, frío y despacho.</p>
     </div>
-    <div class="footer"><span>Baseline primero</span><span class="num">07</span></div>
+    <div class="footer"><span>Modelo por línea · ROI granular</span><span class="num">07</span></div>
   </section>
 
   <section class="slide" data-slide="8">
@@ -461,7 +547,7 @@ Un evento crítico documentado antes del paro</pre>
         <h2 class="headline mid">Made, Zero-loss progresivo para Agrosuper.</h2>
         <p class="support">Leemos el proceso, sin tocar un PLC, y entregamos la acción al operador antes de perder producto.</p>
         <div class="closing-logo">
-          <div class="made-mark"><svg viewBox="0 0 42 28" fill="none"><path d="M17.2 4.2v7.8L4 25H0l17.2-20.8Z" fill="#3DDC97"/><path d="M26 1.4V25H8.8L26 1.4Z" fill="#3DDC97"/></svg><span>Made</span></div>
+          <div class="made-mark"><svg viewBox="0 0 42 28" fill="none"><path d="M17.2 4.2v7.8L4 25H0l17.2-20.8Z" fill="#D84200"/><path d="M26 1.4V25H8.8L26 1.4Z" fill="#D84200"/></svg><span>Made</span></div>
         </div>
       </div>
       <div class="operations-image" role="img" aria-label="Operación industrial Agrosuper"></div>
