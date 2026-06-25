@@ -148,6 +148,46 @@
     pointer-events: none;
     background: radial-gradient(circle at 68% 40%, rgba(216,66,0,.13), transparent 34%);
   }
+  .cover-photo {
+    position: relative;
+    min-height: min(58vh, 560px);
+    overflow: hidden;
+    background: rgba(255,255,255,.02);
+    mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 92%, transparent 100%);
+  }
+  .cover-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: .84;
+    filter: saturate(.92) contrast(1.04) brightness(.86);
+  }
+  .cover-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(10,10,10,.22), rgba(10,10,10,0) 34%, rgba(10,10,10,.26) 100%),
+      linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,.24) 100%);
+  }
+  .cover-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 54px 54px;
+    mix-blend-mode: screen;
+    opacity: .22;
+  }
   .abstract-svg {
     position: relative;
     z-index: 1;
@@ -399,34 +439,8 @@
         <h1 class="headline cover-title">Zero-loss<br>progresivo.</h1>
         <p class="sub mono">Ruta de Innovación de Proveedores · Agrosuper 2026</p>
       </div>
-      <div class="visual-field" aria-label="Flujo abstracto de señal a acción">
-        <svg class="abstract-svg" viewBox="0 0 560 390" role="img">
-          <defs>
-            <marker id="heroArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#D84200"/></marker>
-          </defs>
-          <path class="svg-track" d="M94 206 C144 104 260 92 316 160 S424 250 468 134"/>
-          <path class="svg-accent draw-line" marker-end="url(#heroArrow)" d="M94 206 C144 104 260 92 316 160 S424 250 468 134"/>
-          <circle class="svg-pulse" r="7">
-            <animateMotion dur="4.2s" repeatCount="indefinite" path="M94 206 C144 104 260 92 316 160 S424 250 468 134"/>
-          </circle>
-          <g class="float-soft">
-            <rect class="svg-node" x="58" y="168" width="112" height="72" rx="18"/>
-            <text class="svg-label" x="84" y="198">SEÑAL</text>
-            <text class="svg-title" x="84" y="223">PLC</text>
-          </g>
-          <g class="float-soft" style="animation-delay:.35s">
-            <rect class="svg-node-accent" x="208" y="106" width="158" height="82" rx="20"/>
-            <text class="svg-label" x="258" y="137">EDGE</text>
-            <text class="svg-title" x="242" y="164">MadeOS</text>
-          </g>
-          <g class="float-soft" style="animation-delay:.7s">
-            <rect class="svg-node" x="382" y="96" width="116" height="76" rx="18"/>
-            <text class="svg-label" x="410" y="126">ACCIÓN</text>
-            <text class="svg-title" x="414" y="150">Antes</text>
-          </g>
-          <path class="svg-muted dash-flow" d="M126 260 H440"/>
-          <text class="svg-label" x="166" y="304">continuidad operativa como trayectoria</text>
-        </svg>
+      <div class="cover-photo">
+        <img src="https://www.agrosuper.com/global/wp-content/uploads/2022/06/plantavr.jpg" alt="Planta Rosario de Agrosuper">
       </div>
     </div>
     <div class="footer"><span>Made · Physical AI</span><span class="num">01</span></div>
