@@ -518,34 +518,35 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <div class="cover-confidential">Confidential · Not for distribution</div>
   </div>
 
-  <!-- ══ S2: THE PROBLEM / WHY NOW ══ -->
+  <!-- ══ S2: THE PROBLEM ══ -->
   <div class="slide dark" id="s2">
     <div class="slide-head">
     <div class="eyebrow light">The problem</div>
     <div class="rule"></div>
-    <h2 class="headline white">
-      Industrial AI is ready.<br><span class="accent">Legacy operations aren't.</span>
+    <h2 class="headline white" style="max-width:700px">
+      <span class="accent">80%</span> of industrial incidents<br>are predictable weeks in advance.
     </h2>
-    <p class="subhead white">The capability curve compressed below the long-tail threshold in the past 12–18 months, and it's still compounding. The window opened structurally: incumbents can't price 1/10× without cannibalizing $1B+ in installed APM revenue.</p>
+    <p class="subhead white">Yet most facilities only find out when the failure has already happened.</p>
     </div>
 
-    <div class="wnow-grid">
-      <div class="wnow-card">
-        <div class="wnow-delta">10×</div>
-        <div class="wnow-title">Industrial AI, shippable</div>
-        <div class="wnow-desc">Open-weight reasoning + time-series foundation models compress a 6–12 month bespoke ML build into a 30-day deploy. Still compounding each quarter.</div>
+    <div class="cols cols-3" style="margin-top:24px">
+      <div class="card accent">
+        <div class="card-label">Avg. cost per hour · unplanned downtime</div>
+        <div class="card-num orange">$260K/hr</div>
+        <div class="card-desc">Average across industrial manufacturing. Every hour of unplanned shutdown is margin destruction.</div>
       </div>
-      <div class="wnow-card">
-        <div class="wnow-delta">67 TOPS · $250</div>
-        <div class="wnow-title">Edge compute at the asset</div>
-        <div class="wnow-desc">NVIDIA Jetson Orin Nano Super runs local data processing at the asset for low-latency response. Sub-$300 module. Encrypted outbound channel to cloud for AI model orchestration.</div>
+      <div class="card accent">
+        <div class="card-label">Unplanned downtime hours · per facility / yr</div>
+        <div class="card-num orange">800 hrs</div>
+        <div class="card-desc">Average in continuous operations. Most of these hours are preventable with early detection.</div>
       </div>
-      <div class="wnow-card">
-        <div class="wnow-delta">−80%</div>
-        <div class="wnow-title">IIoT sensor cost</div>
-        <div class="wnow-desc">Industrial sensor cost dropped 80% since 2018. The data was already there; the two forces above turned it actionable.</div>
+      <div class="card accent">
+        <div class="card-label">Reduction with predictive AI</div>
+        <div class="card-num orange">30–50%</div>
+        <div class="card-desc">Industry benchmark across 150+ facilities. McKinsey · ResearchGate.</div>
       </div>
     </div>
+    <p style="font-size:11px;color:var(--tx-3);margin-top:14px">Aberdeen Research 2023 · LNS Research · Emerson 2024 · McKinsey · ResearchGate 150+ facilities</p>
 
   </div>
 
@@ -555,9 +556,9 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     <div class="eyebrow">The solution</div>
     <div class="rule"></div>
     <h2 class="headline" style="max-width:800px">
-      Made OS: predictive intelligence without the <span class="accent">enterprise overhead.</span>
+      A read-only intelligence layer<br>on top of <span class="accent">existing infrastructure.</span>
     </h2>
-    <p class="subhead" style="max-width:620px">Read-only. Deploys in 30 days. Prescribes actions with intervention windows 2–6 weeks before failure.</p>
+    <p class="subhead" style="max-width:680px">Made OS connects to existing sensors and detects failure anomalies weeks before they happen. Your team receives a prescription directly in the channels they already use.</p>
     </div>
 
     <div class="flow-row" style="margin-top:22px">
@@ -567,8 +568,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <polyline points="2 12 5 12 7 5 10 19 13 9 16 15 18 12 22 12"/>
           </svg>
         </div>
-        <div class="flow-label">Existing sensors</div>
-        <div class="flow-sub">OPC-UA · Modbus · 4–20mA<br>Uses existing plant sensors</div>
+        <div class="flow-label">Connect</div>
+        <div class="flow-sub">OPC-UA · Modbus · 4–20mA<br>Read-only; no changes to existing systems</div>
       </div>
       <div class="flow-arrow">→</div>
       <div class="flow-node" style="border-color:var(--obd);background:var(--obg)">
@@ -578,8 +579,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <path d="M7 9H4M7 12H4M7 15H4M17 9h3M17 12h3M17 15h3M9 7V4M12 7V4M15 7V4M9 17v3M12 17v3M15 17v3"/>
           </svg>
         </div>
-        <div class="flow-label" style="color:var(--o)">Made OS</div>
-        <div class="flow-sub">Multi-agent AI on Jetson edge<br>Learns nominal · detects deviation</div>
+        <div class="flow-label" style="color:var(--o)">Detect</div>
+        <div class="flow-sub">Multi-agent AI learns normal behavior<br>Anomaly flagged 2–6 weeks before failure</div>
       </div>
       <div class="flow-arrow">→</div>
       <div class="flow-node">
@@ -589,8 +590,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <circle cx="18" cy="5" r="3" fill="currentColor" stroke="none"/>
           </svg>
         </div>
-        <div class="flow-label">Actionable alert</div>
-        <div class="flow-sub">Class A/B/C prescription<br>2–6 weeks before failure</div>
+        <div class="flow-label">Prescribe</div>
+        <div class="flow-sub">Specific action to your team<br>WebApp · WhatsApp · SMS · Mail</div>
       </div>
       <div class="flow-arrow">→</div>
       <div class="flow-node">
@@ -599,8 +600,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
           </svg>
         </div>
-        <div class="flow-label">Avoided shutdown</div>
-        <div class="flow-sub">Documented ROI<br>Auditable event log</div>
+        <div class="flow-label">Zero-loss</div>
+        <div class="flow-sub">Maintenance planned<br>Zero unplanned downtime</div>
       </div>
     </div>
 
@@ -618,15 +619,8 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
       <div class="card accent">
         <div class="card-label">Price vs. Legacy APM</div>
         <div class="card-num orange" style="font-size:clamp(22px,2.8vw,36px)">1/10×</div>
-        <div class="card-desc">Year 1 all-in: $60K for a single-line plant to $460K for a full refinery site, vs. $1.5M–$5M+ for traditional APM.</div>
+        <div class="card-desc">Year 1 all-in: $60K single-line plant to $460K full refinery site, vs. $1.5M–$5M+ for traditional APM.</div>
       </div>
-    </div>
-
-    <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
-      <a href="https://www.youtube.com/watch?v=XLfD6TMc3l8" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;background:var(--obg);border:1px solid var(--obd);border-radius:6px;padding:7px 14px;font-size:12px;font-weight:600;color:var(--o);text-decoration:none">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.4 2.8 12 2.8 12 2.8s-4.4 0-6.8.1C4.6 3 3.3 3 2.2 4.2 1.3 5 1 7 1 7S.7 9.3.7 11.5v2c0 2.3.3 4.5.3 4.5s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.3 22 12 22 12 22s4.4 0 6.8-.2c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.3.3-4.5v-2C23.3 9.3 23 7 23 7zM9.7 15.5V8.4l8.1 3.6-8.1 3.5z"/></svg>
-        Watch product demo
-      </a>
     </div>
   </div>
 
