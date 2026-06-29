@@ -624,6 +624,57 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
     </div>
   </div>
 
+  <!-- ══ S3b: HOW WE DEPLOY ══ -->
+  <div class="slide" id="s3b">
+    <div class="slide-head">
+    <div class="eyebrow">How we deploy</div>
+    <div class="rule"></div>
+    <h2 class="headline" style="max-width:660px">
+      Two paths. <span class="accent">Same result:</span> no unplanned downtime.
+    </h2>
+    </div>
+
+    <div class="cols cols-2" style="margin-top:20px;align-items:stretch;gap:20px;flex:1;min-height:0">
+
+      <!-- Edge AI Hardware -->
+      <div style="background:var(--bg-2);border:1.5px solid var(--obd);border-radius:10px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="position:relative;overflow:hidden;height:160px;flex-shrink:0">
+          <img src="../assets/edge-device.jpg" alt="Made Edge AI Hardware, DIN rail installation" style="width:100%;height:100%;object-fit:cover;display:block">
+          <div style="position:absolute;top:12px;left:12px;background:var(--o);color:white;font-size:9.5px;font-weight:700;letter-spacing:.09em;padding:4px 10px;border-radius:4px;text-transform:uppercase">Recommended · process assets</div>
+        </div>
+        <div style="padding:18px 22px;flex:1;display:flex;flex-direction:column;gap:9px">
+          <div style="font-size:14px;font-weight:700;color:var(--tx-0)">Edge AI Hardware</div>
+          <div style="font-size:12px;color:var(--tx-1);line-height:1.6">NVIDIA Jetson device installed in the DIN rail panel by the Made team. Local inference at the asset; encrypted outbound channel via TLS 1.3.</div>
+          <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid var(--ln);margin-top:2px">
+            <div style="font-size:11px;color:var(--tx-2);padding:5px 0;border-bottom:1px solid var(--ln)">NVIDIA Jetson Orin Nano Super · 67 INT8 TOPS</div>
+            <div style="font-size:11px;color:var(--tx-2);padding:5px 0;border-bottom:1px solid var(--ln)">IP67 · NEMA 4X · IEC 62443 · TLS 1.3 · Read-only</div>
+            <div style="font-size:11px;color:var(--tx-2);padding:5px 0">ATEX enclosure evaluated jointly</div>
+          </div>
+          <div style="font-size:11.5px;color:var(--tx-1);margin-top:2px"><strong style="color:var(--o)">Ideal for:</strong> Compressors, FCC, ATEX zones, high-sampling-rate assets, or critical operations requiring real-time local inference.</div>
+        </div>
+      </div>
+
+      <!-- Software + API -->
+      <div style="background:var(--bg-2);border:1px solid var(--ln);border-radius:10px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="overflow:hidden;height:160px;flex-shrink:0;background:var(--bg-0)">
+          <img src="../assets/platform-screenshot.png" alt="Made OS Platform web interface" style="width:100%;height:100%;object-fit:cover;display:block;opacity:.85">
+        </div>
+        <div style="padding:18px 22px;flex:1;display:flex;flex-direction:column;gap:9px">
+          <div style="font-size:14px;font-weight:700;color:var(--tx-0)">Software + API</div>
+          <div style="font-size:12px;color:var(--tx-1);line-height:1.6">Installed on an existing server or industrial PC on-site. No additional hardware. Client IT maintains full control within their existing OT security perimeter.</div>
+          <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid var(--ln);margin-top:2px">
+            <div style="font-size:11px;color:var(--tx-2);padding:5px 0;border-bottom:1px solid var(--ln)">Ubuntu · Debian · RHEL · Windows · 8 cores / 8 GB RAM min.</div>
+            <div style="font-size:11px;color:var(--tx-2);padding:5px 0;border-bottom:1px solid var(--ln)">OPC-UA Client · unlimited signal volume in program</div>
+            <div style="font-size:11px;color:var(--tx-2);padding:5px 0">WSS (WebSocket over SSL) · integrable with existing OT data stack</div>
+          </div>
+          <div style="font-size:11.5px;color:var(--tx-1);margin-top:2px"><strong style="color:var(--o)">Ideal for:</strong> Sites with available server infrastructure. IT team maintains full control without any hardware addition.</div>
+        </div>
+      </div>
+
+    </div>
+    <p style="font-size:11px;color:var(--tx-3);margin-top:12px">In the initial technical session we determine the right path per candidate asset with the IT and operations team. Both paths are read-only: Made never writes to PLCs, DCS, or SCADA.</p>
+  </div>
+
   <!-- ══ S4: MARKET ══ -->
   <div class="slide" id="s4">
     <div class="slide-head">
@@ -689,6 +740,29 @@ posthog.init('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG',{api_host:'https
         </div>
         <div style="padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--gray)">
           <strong style="color:var(--dark)">Why mid-market, not by geography:</strong> The structural gap is a company-size problem, not a regional one. Industrial facilities below $1B revenue cannot absorb $1.5M–$5M APM deployments, anywhere in the world. LATAM is our first GTM because we have distribution there (JUST Partners + Startup Chile + MIT IU35) and the gap is widest, but the same wedge expands to US mid-market (Founders Inc) and to any geography where NVIDIA Inception or partner ecosystems give us a warm introduction. Made is a global SaaS on a regional ramp.
+        </div>
+      </div>
+    </div>
+
+    <!-- ICP -->
+    <div style="margin-top:18px;width:100%">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--tx-3);margin-bottom:10px">Ideal customer profile</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+        <div style="background:var(--bg-2);border:1px solid var(--ln);border-radius:8px;padding:14px 16px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--o);margin-bottom:7px">Firmographics</div>
+          <div style="font-size:11.5px;color:var(--tx-1);line-height:1.65">Revenue $50M–$1B<br>1–5 industrial sites<br>200–5,000 headcount<br>LATAM first · US expansion</div>
+        </div>
+        <div style="background:var(--bg-2);border:1px solid var(--ln);border-radius:8px;padding:14px 16px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--o);margin-bottom:7px">Qualification signals</div>
+          <div style="font-size:11.5px;color:var(--tx-1);line-height:1.65">≥1 unplanned shutdown/quarter<br>No existing predictive maintenance<br>Legacy APM out of budget<br>Has OT data or can add sensors</div>
+        </div>
+        <div style="background:var(--bg-2);border:1px solid var(--ln);border-radius:8px;padding:14px 16px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--o);margin-bottom:7px">Sectors (active pipeline)</div>
+          <div style="font-size:11.5px;color:var(--tx-1);line-height:1.65">Mining · O&amp;G (refinery)<br>Food &amp; beverage · Agro<br>Elevators · Wood processing<br>Pharma · Paper &amp; pulp</div>
+        </div>
+        <div style="background:var(--bg-2);border:1px solid var(--ln);border-radius:8px;padding:14px 16px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--o);margin-bottom:7px">The deal</div>
+          <div style="font-size:11.5px;color:var(--tx-1);line-height:1.65">Buyer: VP Ops · Maint. Director<br>Cycle: 4–8 weeks to pilot<br>Pilot: $40K–$90K · 90 days<br>ACV: $160K–$480K on conversion</div>
         </div>
       </div>
     </div>
