@@ -111,11 +111,15 @@
     .proposal-outcome b { color: var(--white); }
     .proposal-architecture { margin-top: 18px; color: #8f9ba0; font-size: 14px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
     .architecture-diagram { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 12px; }
-    .architecture-stage { position: relative; min-height: 255px; padding: 24px; border: 1px solid rgba(255,255,255,.22); border-radius: 16px; background: rgba(18,25,29,.66); backdrop-filter: blur(7px); }
+    .architecture-stage { position: relative; min-height: 292px; padding: 22px; border: 1px solid rgba(255,255,255,.22); border-radius: 16px; background: rgba(18,25,29,.66); backdrop-filter: blur(7px); }
     .architecture-stage:not(:last-child)::after { content: "→"; position: absolute; z-index: 3; top: 50%; right: -22px; width: 28px; color: #ff9567; font-size: 24px; font-weight: 800; text-align: center; transform: translateY(-50%); }
     .architecture-stage small { color: #ff9567; font-size: 11px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
-    .architecture-stage h3 { margin: 57px 0 16px; color: var(--white); font-size: clamp(23px, 2.25vw, 34px); }
+    .architecture-stage h3 { margin: 18px 0 16px; color: var(--white); font-size: clamp(23px, 2.25vw, 34px); }
     .architecture-stage p { margin: 0; color: #bac5c9; font-size: 15px; line-height: 1.55; }
+    .architecture-nodes { display: grid; gap: 7px; }
+    .architecture-node { padding: 7px 9px; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: rgba(255,255,255,.045); }
+    .architecture-node b { display: block; color: var(--white); font-size: 12px; line-height: 1.2; }
+    .architecture-node span { display: block; margin-top: 2px; color: #aebbc0; font-size: 10px; line-height: 1.3; }
 
     .cost-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(50px, 8vw, 110px); align-items: center; }
     .zero { font-size: clamp(130px, 20vw, 270px); font-weight: 950; line-height: .7; letter-spacing: -.09em; }
@@ -129,6 +133,12 @@
     .cost-row b { font-size: clamp(23px, 2.4vw, 34px); text-align: right; }
     .return-line { margin-top: 34px; padding-top: 24px; color: rgba(255,255,255,.78); font-size: 20px; }
     .return-line strong { color: var(--white); }
+    .pilot-roi { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.25); }
+    .pilot-roi b { display: block; color: rgba(255,255,255,.7); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+    .pilot-roi span { display: block; margin-top: 5px; color: var(--white); font-size: clamp(22px, 2.25vw, 30px); font-weight: 900; letter-spacing: -.03em; }
+    .cost-sum { display: flex; justify-content: space-between; gap: 22px; align-items: end; margin-top: 26px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.25); }
+    .cost-sum span { color: rgba(255,255,255,.7); font-size: 16px; }
+    .cost-sum b { font-size: clamp(22px, 2.25vw, 30px); text-align: right; }
 
     .gantt { display: grid; grid-template-columns: 1.5fr repeat(5, 1fr); align-items: center; font-size: 15px; }
     .gantt > div { min-height: 55px; display: flex; align-items: center; padding: 10px 13px; border-bottom: 1px solid var(--line); }
@@ -231,32 +241,32 @@
         <span class="kicker">Propuesta</span>
         <h2>Datos operacionales convertidos en decisiones de mantenimiento.</h2>
         <div class="architecture-diagram" aria-label="Arquitectura de la propuesta">
-          <article class="architecture-stage"><small>01 · Unidad</small><h3>CAEX</h3><p>ECU motor<br>VIMS<br>CAN J1939 autorizado</p></article>
-          <article class="architecture-stage"><small>02 · Terreno</small><h3>Edge industrial</h3><p>RevPi Connect 5*<br>Lectura read-only<br>Búfer local</p></article>
-          <article class="architecture-stage"><small>03 · Enlace</small><h3>4G / LTE</h3><p>TLS 1.3<br>Cola y reintentos<br>Canal saliente</p></article>
-          <article class="architecture-stage"><small>04 · Plataforma</small><h3>MadeOS</h3><p>Gemelo digital<br>Riesgo por subsistema<br>Alertas accionables</p></article>
+          <article class="architecture-stage"><small>01 · Unidad</small><h3>CAEX</h3><div class="architecture-nodes"><div class="architecture-node"><b>ECU de motor</b><span>Señales J1939 · SPN · DTC</span></div><div class="architecture-node"><b>VIMS / operación</b><span>Carga · ciclo · condición</span></div><div class="architecture-node"><b>Sensores adicionales</b><span>Variables de contaminación a validar</span></div></div></article>
+          <article class="architecture-stage"><small>02 · Edge</small><h3>Adquisición local</h3><div class="architecture-nodes"><div class="architecture-node"><b>RevPi Connect</b><span>Computación industrial en terreno</span></div><div class="architecture-node"><b>CAN autorizado</b><span>Lectura read-only · aislamiento</span></div><div class="architecture-node"><b>Decodificación + búfer</b><span>Persistencia local · sin pérdida</span></div></div></article>
+          <article class="architecture-stage"><small>03 · Enlace</small><h3>Transporte seguro</h3><div class="architecture-nodes"><div class="architecture-node"><b>Módem 4G / LTE</b><span>Conectividad de faena</span></div><div class="architecture-node"><b>Cola y reintentos</b><span>Entrega diferida ante cobertura</span></div><div class="architecture-node"><b>Canal cifrado</b><span>TLS 1.3 · tráfico saliente</span></div></div></article>
+          <article class="architecture-stage"><small>04 · MadeOS</small><h3>Inteligencia operativa</h3><div class="architecture-nodes"><div class="architecture-node"><b>Ingesta y modelo histórico</b><span>Telemetría · mantenimiento · contexto</span></div><div class="architecture-node"><b>Gemelo y anomalías</b><span>Riesgo por subsistema</span></div><div class="architecture-node"><b>Alerta accionable</b><span>Ventana · evidencia · recomendación</span></div></div></article>
         </div>
-        <p class="proposal-outcome"><b>5–15 camiones</b> · mínimo cinco por modelo seleccionado · 12 semanas de shadow mode.<br><small>*Variante CAN, LTE, protección eléctrica y montaje se validan con BHP y OEM.</small></p>
       </div>
     </section>
 
     <section class="slide orange" id="inversion" data-number="04 / 07">
       <div class="content">
         <span class="kicker">Inversión y retorno</span>
-        <h2>Detectar el riesgo antes del daño protege disponibilidad y valor económico.</h2>
+        <h2>Piloto propuesto: de 3 a 5 unidades por modelo seleccionado.</h2>
         <div class="cost-layout">
-          <div><span class="roi-label">Retorno por unidad</span><div class="roi-value">USD 2,0–2,6k</div><div class="roi-sub">referencia neta por cada hora de paro evitada*</div></div>
+          <div><span class="roi-label">Retorno por unidad</span><div class="roi-value">USD 2,3–3,0k</div><div class="roi-sub" style="font-size:clamp(16px,1.55vw,21px)">referencia neta por cada hora de paro evitada*</div><div class="pilot-roi"><b>ROI estimado del piloto*</b><span>2.300–2.900% · 20 semanas</span></div></div>
           <div>
             <div class="costs">
               <div class="cost-row"><span>Edge industrial RevPi Connect</span><b>USD 855,13</b></div>
               <div class="cost-row"><span>MadeOS · hasta 1 TB</span><b>USD 600/mes</b></div>
               <div class="cost-row"><span>Integración</span></div>
             </div>
+            <div class="cost-sum"><span>Costo tecnológico por unidad</span><b>USD 3,0–3,8k</b></div>
             <div class="return-line"><strong>Retorno:</strong> detención evitada + daño secundario evitado − costo del piloto.</div>
           </div>
         </div>
       </div>
-      <div class="source"><strong>Anexo financiero y nota metodológica.</strong> Escondida reportó USD 5.642bn de EBITDA en HY26: USD 1,278m/h del activo, o USD 6.084 por camión-hora al asignarlo proporcionalmente a 210 unidades. La referencia neta descuenta USD 3,46–4,06k de costo tecnológico directo por unidad (piloto de 5 unidades, cinco meses: edge, sensores y MadeOS). Excluye integración. Es una asignación proporcional, no un costo de downtime ni una pérdida efectiva; el impacto se confirma con producción irrecuperable y órdenes de trabajo BHP.</div>
+      <div class="source"><strong>Anexo financiero y nota metodológica.</strong> Piloto de 9–15 unidades (3–5 por modelo). Costo tecnológico por unidad: edge USD 855,13 + sensores USD 2,0–2,6k + MadeOS prorrateado 20 semanas = USD 3,0–3,8k; excluye integración. Referencia financiera: EBITDA Escondida HY26 = USD 6.084 por camión-hora al asignarlo proporcionalmente a 210 unidades. ROI estimado con 20% de reducción objetivo de downtime: 2.300–2.900% en 20 semanas. Es una asignación proporcional, no un costo de downtime ni un resultado garantizado.</div>
     </section>
 
     <section class="slide white" id="tiempos" data-number="05 / 07">
@@ -277,17 +287,17 @@
 
     <section class="slide dark" id="experiencia" data-number="06 / 07">
       <div class="content">
-        <span class="kicker">Capacidades y presupuesto</span>
-        <h2>Presupuesto tecnológico estimado para el piloto.</h2>
+        <span class="kicker">Capacidades de ejecución</span>
+        <h2>Una ejecución segura, trazable y diseñada para aprender en operación.</h2>
         <div class="experience-layout">
-          <div><div class="budget-value">USD<br>17–55k</div><p class="budget-label">costos directos de tecnología para un piloto de 5–15 unidades.</p></div>
+          <div><div class="budget-value">03</div><p class="budget-label">capas coordinadas para convertir señales de terreno en decisiones de mantenimiento.</p></div>
           <div class="capabilities">
-            <div class="capability"><b>5 unidades · USD 17–20k</b><span>RevPi Connect, sensorización y MadeOS por cinco meses.</span></div>
-            <div class="capability"><b>10 unidades · USD 32–38k</b><span>RevPi Connect, sensorización y MadeOS por cinco meses.</span></div>
-            <div class="capability"><b>15 unidades · USD 46–55k</b><span>RevPi Connect, sensorización y MadeOS por cinco meses.</span></div>
+            <div class="capability"><b>Datos y contexto operacional</b><span>Históricos, telemetría, órdenes de trabajo y diccionario de datos para establecer la línea base.</span></div>
+            <div class="capability"><b>Instrumentación compatible con faena</b><span>Lectura read-only, edge industrial, sensorización complementaria y persistencia local.</span></div>
+            <div class="capability"><b>Gobernanza de validación</b><span>Validación BHP/OEM, ciberseguridad, shadow mode y revisión conjunta de evidencia.</span></div>
           </div>
         </div>
-        <p class="proof-note">Estimación a costo: RevPi base USD 855,13 por unidad; sensorización USD 2,0–2,6k por unidad; MadeOS USD 600/mes. Excluye accesorios de faena del edge, ingeniería Made y viajes, acreditaciones e implementación de Just Partners.</p>
+        <p class="proof-note">Made aporta la plataforma analítica y la arquitectura de datos; Just Partners lidera viajes, acreditaciones e implementación de terreno; BHP habilita datos, unidades y aprobaciones operacionales.</p>
       </div>
     </section>
 
