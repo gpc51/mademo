@@ -139,7 +139,7 @@
     .cost-row b { font-size: clamp(23px, 2.4vw, 34px); text-align: right; }
     .return-line { margin-top: 34px; padding-top: 24px; color: rgba(255,255,255,.78); font-size: 20px; }
     .return-line strong { color: var(--white); }
-    .investment-foot { margin: 26px 0 0; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.25); text-align: center; white-space: nowrap; }
+    .investment-foot { margin: 26px 0 0; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.25); text-align: left; white-space: nowrap; }
     .pilot-roi { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.25); }
     .pilot-roi b { display: block; color: rgba(255,255,255,.7); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
     .pilot-roi span { display: block; margin-top: 5px; color: var(--white); font-size: clamp(35px, 4.1vw, 62px); font-weight: 900; letter-spacing: -.045em; line-height: .95; white-space: nowrap; }
@@ -158,7 +158,7 @@
     .bar.gray { background: #a9b1b3; }
     .milestones { margin-top: 30px; display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
     .milestones b { display: block; color: var(--ink); font-size: 22px; }
-    #tiempos h2 { margin-bottom: 24px; font-size: clamp(34px, 4vw, 58px); }
+    #tiempos h2 { margin-bottom: 24px; font-size: clamp(26px, 2.3vw, 34px); white-space: nowrap; }
     #tiempos .gantt > div { min-height: 43px; padding-block: 6px; }
     #tiempos .milestones { margin-top: 20px; }
 
@@ -194,6 +194,10 @@
     .outcome-item { padding: 13px 0; border-top: 1px solid var(--line); }
     .outcome-item b { display: block; color: var(--ink); font-size: 18px; }
     .outcome-item span { color: var(--muted); font-size: 13px; }
+    #cierre h2 { margin-bottom: 24px; font-size: clamp(36px, 4.2vw, 62px); }
+    #cierre .vision-grid { margin-top: 0; }
+    #cierre .vision-card { min-height: 210px; }
+    #cierre .vision-note { margin-top: 16px; }
 
     .controls { position: fixed; z-index: 50; right: 22px; top: 50%; transform: translateY(-50%); display: grid; gap: 10px; }
     .dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: rgba(100,113,118,.35); cursor: pointer; }
@@ -211,6 +215,7 @@
       .architecture-stage { min-height: auto; }
       .pilot-roi span { white-space: normal; }
       .investment-foot { white-space: normal; }
+      #tiempos h2 { white-space: normal; }
       .architecture-stage:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -24px; transform: translateX(50%); }
       .gantt { grid-template-columns: 1.25fr repeat(5, .7fr); font-size: 11px; }
       .gantt > div { padding: 8px 4px; }
@@ -252,7 +257,7 @@
     <section class="slide" id="analisis" data-number="02 / 07">
       <div class="content">
         <span class="kicker">Análisis</span>
-        <h2>Transformar la información operacional en decisiones que anticipen la detención del motor.</h2>
+        <h2>Transformar la información operacional en decisiones<br>que anticipen la detención del motor.</h2>
         <div class="analysis-layout">
           <div class="analysis-metric"><div class="big-number">40.500</div><p class="big-number-label">horas de detención por fallas de motor durante el último año.</p></div>
           <div class="chain">
@@ -286,19 +291,19 @@
         <span class="kicker">Inversión y retorno</span>
         <h2>Piloto propuesto: de 3 a 5 unidades por modelo seleccionado.</h2>
         <div class="cost-layout">
-          <div><span class="roi-label">Retorno por unidad · por hora evitada</span><div class="roi-value">USD 2,3–3,0k</div><div class="roi-sub" style="font-size:clamp(15px,1.4vw,19px)">valor neto de referencia por una hora de paro evitada*</div><div class="pilot-roi"><b>Retorno neto total estimado del piloto*</b><span>USD 0,78–1,31M · 20 semanas</span></div></div>
+          <div><span class="roi-label">Retorno por unidad · por hora evitada</span><div class="roi-value">USD 2,3k</div><div class="pilot-roi"><b>Retorno neto total del piloto · 20 semanas*</b><span>USD 0,78–1,31M</span></div></div>
           <div>
             <div class="costs">
               <div class="cost-row"><span>Edge industrial RevPi Connect</span><b>USD 855,13</b></div>
               <div class="cost-row"><span>MadeOS · hasta 1 TB</span><b>USD 600/mes</b></div>
               <div class="cost-row"><span>Integración</span></div>
             </div>
-            <div class="cost-sum"><span>Costo tecnológico por unidad</span><b>USD 3,0–3,8k</b></div>
+            <div class="cost-sum"><span>Costo tecnológico por unidad</span><b>USD 3,8k</b></div>
           </div>
         </div>
         <div class="return-line investment-foot"><strong>Retorno:</strong> detención evitada + daño secundario evitado − costo del piloto.</div>
       </div>
-      <div class="source"><strong>Anexo financiero y nota metodológica.</strong> Piloto de 9–15 unidades (3–5 por modelo). Costo tecnológico por unidad: edge USD 855,13 + sensores USD 2,0–2,6k + MadeOS prorrateado 20 semanas = USD 3,0–3,8k; excluye integración. Retorno neto estimado: USD 0,78–1,31M con 20% de reducción objetivo de downtime. Referencia financiera: EBITDA Escondida HY26 = USD 6.084 por camión-hora al asignarlo proporcionalmente a 210 unidades. Es una asignación proporcional, no un costo de downtime ni un resultado garantizado.</div>
+      <div class="source"><strong>Anexo financiero y nota metodológica.</strong> Piloto de 9–15 unidades (3–5 por modelo). Costo tecnológico máximo por unidad: edge USD 855,13 + sensores USD 2,6k + MadeOS prorrateado 20 semanas = USD 3,8k; excluye integración. El retorno neto total del piloto corresponde a las 20 semanas y usa 20% de reducción objetivo de downtime. Referencia financiera: EBITDA Escondida HY26 = USD 6.084 por camión-hora al asignarlo proporcionalmente a 210 unidades. No es un costo de downtime ni un resultado garantizado.</div>
     </section>
 
     <section class="slide white" id="tiempos" data-number="05 / 07">
@@ -337,12 +342,12 @@
       <div class="logos logo-footer"><img src="assets/just-partners.png" alt="Just Partners"><span>×</span><img src="assets/made.png" alt="Made"></div>
       <div class="content">
         <span class="kicker">Visión de impacto</span>
-        <h2>Made convierte el piloto en una capacidad operacional escalable para proteger los 210 motores de Escondida.</h2>
+        <h2>Made convierte 20 semanas de validación en una capacidad predictiva escalable para 210 motores.</h2>
         <div class="vision-grid">
-          <article class="vision-card"><span>Resultado a 20 semanas</span><h3>Decisiones de mantenimiento respaldadas por evidencia</h3><div class="outcome-list"><div class="outcome-item"><b>Anticipación</b><span>Riesgo y ventana antes de la detención.</span></div><div class="outcome-item"><b>Trazabilidad</b><span>Señales históricas y en tiempo real por alerta.</span></div><div class="outcome-item"><b>Acción</b><span>Recomendación validada en shadow mode.</span></div></div></article>
-          <article class="vision-card scale"><span>Potencial de escala · 210 unidades</span><div class="scale-value">USD 48,1–48,2M</div><p>retorno neto anual de referencia si el piloto valida el objetivo de 20% de reducción.</p><div class="scale-roi">Inversión tecnológica: USD 1,0–1,2M · año 1*</div></article>
+          <article class="vision-card"><span>Resultado a 20 semanas</span><h3>BHP valida alertas accionables antes de la falla</h3><p>Riesgo, ventana de intervención, evidencia histórica y recomendación de mantenimiento contrastada en shadow mode.</p></article>
+          <article class="vision-card scale"><span>Retorno neto anual de referencia · 210 unidades</span><div class="scale-value">USD 72,9M</div><p>potencial económico después del costo tecnológico del primer año.</p><div class="scale-roi">Inversión: USD 1,0–1,2M · 30% menos downtime no planificado*</div></article>
         </div>
-        <p class="vision-note">*Referencia de escala: 20% de reducción objetivo sobre 40.500 horas/año; USD 6.084 por camión-hora como asignación financiera proporcional de Escondida. Incluye edge USD 855,13/unidad, sensores USD 2,0–2,6k/unidad y MadeOS USD 175/unidad/mes: costo tecnológico de primer año USD 1,0–1,2M. Excluye integración. No es un costo de downtime BHP ni un resultado garantizado.</p>
+        <p class="vision-note">*Escenario conservador Made para año 1: 30% de reducción objetivo sobre 40.500 horas/año; USD 6.084 por camión-hora como asignación financiera proporcional de Escondida. Incluye edge USD 855,13/unidad, sensores USD 2,0–2,6k/unidad y MadeOS USD 175/unidad/mes. Excluye integración. Proyección condicionada a la validación del piloto.</p>
       </div>
     </section>
   </main>
