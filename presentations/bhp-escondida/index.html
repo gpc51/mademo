@@ -73,6 +73,7 @@
       background-image: linear-gradient(90deg, rgba(18,25,29,.98) 0%, rgba(18,25,29,.88) 51%, rgba(18,25,29,.20) 100%), url("assets/03-propuesta.png");
       background-position: center; background-size: cover;
     }
+    #validacion { background: #ecece7; }
     #inversion {
       background-image: linear-gradient(90deg, rgba(232,71,0,.98) 0%, rgba(232,71,0,.92) 50%, rgba(183,54,0,.64) 100%), url("assets/04-inversion.png");
       background-position: center; background-size: cover;
@@ -84,6 +85,10 @@
     #tiempos .gantt { padding: 9px 20px; border-radius: 20px; background: rgba(255,255,255,.58); box-shadow: 0 18px 50px rgba(24,33,38,.08); backdrop-filter: blur(8px); }
     #experiencia {
       background-image: linear-gradient(90deg, rgba(18,25,29,.98) 0%, rgba(18,25,29,.88) 47%, rgba(18,25,29,.18) 100%), url("assets/06-experiencia.png");
+      background-position: center; background-size: cover;
+    }
+    #evidencia {
+      background-image: linear-gradient(90deg, rgba(12,18,21,.98) 0%, rgba(12,18,21,.90) 48%, rgba(12,18,21,.24) 100%), url("assets/08-evidencia-cnc.jpg");
       background-position: center; background-size: cover;
     }
     #cierre {
@@ -126,6 +131,26 @@
     .architecture-kpi { display: flex; align-items: baseline; gap: 12px; padding: 11px 16px; background: rgba(18,25,29,.82); }
     .architecture-kpi b { color: #ff9567; font-size: clamp(24px, 2.5vw, 34px); line-height: 1; }
     .architecture-kpi span { color: #bac5c9; font-size: 11px; line-height: 1.25; }
+
+    .validation-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 18px; border-block: 1px solid var(--line); }
+    .validation-item { min-height: 280px; padding: 30px 28px 24px; border-right: 1px solid var(--line); }
+    .validation-item:last-child { border-right: 0; }
+    .validation-item small { color: var(--orange); font-size: 11px; font-weight: 950; letter-spacing: .14em; text-transform: uppercase; }
+    .validation-item strong { display: block; margin: 66px 0 14px; color: var(--ink); font-size: clamp(42px, 5vw, 72px); line-height: .92; letter-spacing: -.055em; }
+    .validation-item p { max-width: 240px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.42; }
+    .validation-note { margin: 25px 0 0; color: var(--muted); font-size: 14px; }
+
+    .evidence-layout { display: grid; grid-template-columns: 1.08fr .92fr; gap: clamp(60px, 9vw, 140px); align-items: end; }
+    .evidence-primary strong { display: block; color: var(--orange); font-size: clamp(92px, 13vw, 190px); font-weight: 950; line-height: .78; letter-spacing: -.085em; }
+    .evidence-primary p { max-width: 580px; margin: 30px 0 0; color: #d2dade; font-size: clamp(20px, 2vw, 28px); line-height: 1.35; }
+    .evidence-facts { display: grid; gap: 0; border-top: 1px solid rgba(255,255,255,.2); }
+    .evidence-fact { display: grid; grid-template-columns: 130px 1fr; gap: 24px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,.2); }
+    .evidence-fact b { color: var(--white); font-size: clamp(28px, 3vw, 44px); letter-spacing: -.04em; }
+    .evidence-fact span { color: #aeb9bd; font-size: 15px; line-height: 1.4; }
+    .evidence-note { margin: 24px 0 0; color: #8c9a9f; font-size: 12px; line-height: 1.4; }
+    #evidencia h2 { margin-bottom: 30px; font-size: clamp(38px, 4.25vw, 62px); }
+    #evidencia .evidence-primary strong { font-size: clamp(86px, 11vw, 160px); }
+    #evidencia .evidence-fact { padding-block: 18px; }
 
     .cost-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(50px, 8vw, 110px); align-items: center; }
     .zero { font-size: clamp(130px, 20vw, 270px); font-weight: 950; line-height: .7; letter-spacing: -.09em; }
@@ -209,7 +234,10 @@
     @media (max-width: 760px) {
       .slide { min-height: auto; padding: 86px 28px 70px; }
       .analysis-layout, .cost-layout, .experience-layout { grid-template-columns: 1fr; }
-      .proposal, .close-list, .architecture-diagram, .architecture-kpis, .vision-grid { grid-template-columns: 1fr; }
+      .proposal, .close-list, .architecture-diagram, .architecture-kpis, .validation-grid, .vision-grid { grid-template-columns: 1fr; }
+      .validation-item { min-height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+      .validation-item strong { margin-top: 24px; }
+      .evidence-layout { grid-template-columns: 1fr; }
       .proposal-step { min-height: auto; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.17); }
       .proposal-step h3 { margin-top: 30px; }
       .architecture-stage { min-height: auto; }
@@ -229,7 +257,7 @@
       .challenge-logos { gap: 16px; }
       .challenge-logos .escondida { width: 158px; }
       .challenge-logos .aster { width: 78px; }
-      #portada, #analisis, #propuesta, #inversion, #tiempos, #experiencia, #cierre { background-position: 65% center; }
+      #portada, #analisis, #propuesta, #inversion, #tiempos, #evidencia, #experiencia, #cierre { background-position: 65% center; }
       #analisis .chain, #tiempos .gantt { padding: 10px 14px; }
     }
     @media print {
@@ -241,7 +269,7 @@
 </head>
 <body>
   <main>
-    <section class="slide dark" id="portada" data-number="01 / 07">
+    <section class="slide dark" id="portada" data-number="01 / 09">
       <div class="hero-mark" aria-hidden="true"></div>
       <div class="content">
         <div class="challenge-block">
@@ -254,7 +282,7 @@
       </div>
     </section>
 
-    <section class="slide" id="analisis" data-number="02 / 07">
+    <section class="slide" id="analisis" data-number="02 / 09">
       <div class="content">
         <span class="kicker">Análisis</span>
         <h2>Transformar la información operacional en decisiones<br>que anticipen la detención del motor.</h2>
@@ -271,7 +299,7 @@
       <div class="source">Fuente: desafío OpenAster BHP Escondida, “Contaminación por polvo en motores”, 2026.</div>
     </section>
 
-    <section class="slide dark" id="propuesta" data-number="03 / 07">
+    <section class="slide dark" id="propuesta" data-number="03 / 09">
       <div class="content">
         <span class="kicker">Propuesta</span>
         <h2>Datos operacionales convertidos en decisiones de mantenimiento.</h2>
@@ -286,7 +314,22 @@
       </div>
     </section>
 
-    <section class="slide orange" id="inversion" data-number="04 / 07">
+    <section class="slide" id="validacion" data-number="04 / 09">
+      <div class="content">
+        <span class="kicker">Validación del piloto</span>
+        <h2>El piloto medirá precisión, adopción e impacto contra una línea base acordada.</h2>
+        <div class="validation-grid" aria-label="Criterios propuestos para validar el piloto">
+          <article class="validation-item"><small>Adopción</small><strong>&gt;85%</strong><p>de alertas y recomendaciones atendidas por los operadores.</p></article>
+          <article class="validation-item"><small>Anticipación RUL</small><strong>100%</strong><p>de anticipación y trazabilidad en cada ventana de producción definida.</p></article>
+          <article class="validation-item"><small>Paros no planeados</small><strong>33–50%</strong><p>de reducción estimada frente al histórico de la línea base; promedio reportado: 43%.</p></article>
+          <article class="validation-item"><small>Madurez del modelo</small><strong>65→98%</strong><p>evolución esperada de precisión; falsos positivos de 18% a 2,5%.</p></article>
+        </div>
+        <p class="validation-note">Los umbrales finales, la línea base y las reglas de atribución se acuerdan con BHP antes del inicio del shadow mode.</p>
+      </div>
+      <div class="source">Fuente: Reporte de Validación y Comparativa MadeOS. Los porcentajes de reducción y precisión son metas de validación y madurez; no resultados garantizados para BHP.</div>
+    </section>
+
+    <section class="slide orange" id="inversion" data-number="05 / 09">
       <div class="content">
         <span class="kicker">Inversión y retorno</span>
         <h2>Piloto propuesto: de 3 a 5 unidades por modelo seleccionado.</h2>
@@ -306,7 +349,7 @@
       <div class="source"><strong>Anexo financiero y nota metodológica.</strong> Piloto de 9–15 unidades (3–5 por modelo). Costo tecnológico máximo por unidad: edge USD 855,13 + sensores USD 2,6k + MadeOS prorrateado 20 semanas = USD 3,8k; excluye integración. El retorno neto total del piloto corresponde a las 20 semanas y usa 20% de reducción objetivo de downtime. Referencia financiera: EBITDA Escondida HY26 = USD 6.084 por camión-hora al asignarlo proporcionalmente a 210 unidades. No es un costo de downtime ni un resultado garantizado.</div>
     </section>
 
-    <section class="slide white" id="tiempos" data-number="05 / 07">
+    <section class="slide white" id="tiempos" data-number="06 / 09">
       <div class="content">
         <span class="kicker">Tiempos</span>
         <h2>30 días para conectar, validar y llevar el gemelo digital a producción.</h2>
@@ -325,7 +368,26 @@
       </div>
     </section>
 
-    <section class="slide dark" id="experiencia" data-number="06 / 07">
+    <section class="slide dark" id="evidencia" data-number="07 / 09">
+      <div class="content">
+        <span class="kicker">Evidencia previa</span>
+        <h2>MadeOS ya opera con resultados medibles en un entorno industrial.</h2>
+        <div class="evidence-layout">
+          <div class="evidence-primary"><strong>43%</strong><p>menos paros no planeados observados durante seis meses de operación.</p></div>
+          <div>
+            <div class="evidence-facts">
+              <div class="evidence-fact"><b>&gt;85%</b><span>de alertas y prescripciones atendidas por el personal de piso.</span></div>
+              <div class="evidence-fact"><b>100%</b><span>de las ventanas RUL emitidas con seguimiento preventivo.</span></div>
+              <div class="evidence-fact"><b>1 vs 1,75</b><span>paro registrado frente al valor esperado de la línea base semestral.</span></div>
+            </div>
+            <p class="evidence-note">Caso de manufactura CNC. Esta evidencia demuestra operación y adopción; no se extrapola como resultado garantizado para minería. El piloto BHP validará desempeño bajo condiciones de faena.</p>
+          </div>
+        </div>
+      </div>
+      <div class="source">Fuente: Reporte de Validación y Comparativa MadeOS; periodo observado enero–junio.</div>
+    </section>
+
+    <section class="slide dark" id="experiencia" data-number="08 / 09">
       <div class="content">
         <span class="kicker">Capacidades de ejecución</span>
         <h2>Una ejecución segura, trazable y diseñada para aprender en operación.</h2>
@@ -338,7 +400,7 @@
       </div>
     </section>
 
-    <section class="slide white" id="cierre" data-number="07 / 07">
+    <section class="slide white" id="cierre" data-number="09 / 09">
       <div class="logos logo-footer"><img src="assets/just-partners.png" alt="Just Partners"><span>×</span><img src="assets/made.png" alt="Made"></div>
       <div class="content">
         <span class="kicker">Visión de impacto</span>
