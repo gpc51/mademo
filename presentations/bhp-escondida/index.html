@@ -161,7 +161,7 @@
     .dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: rgba(100,113,118,.35); cursor: pointer; }
     .dot.active { background: var(--orange); transform: scale(1.45); }
     .hint { position: fixed; z-index: 50; right: 24px; bottom: 18px; color: #8a969a; font-size: 11px; }
-    .source { position: absolute; left: clamp(36px, 8vw, 128px); bottom: 24px; color: rgba(100,113,118,.75); font-size: 10px; }
+    .source { position: absolute; left: clamp(36px, 8vw, 128px); right: clamp(36px, 8vw, 128px); bottom: 24px; color: rgba(100,113,118,.75); font-size: 10px; line-height: 1.3; }
     .dark .source, .orange .source { color: rgba(255,255,255,.45); }
 
     @media (max-width: 760px) {
@@ -243,21 +243,20 @@
     <section class="slide orange" id="inversion" data-number="04 / 07">
       <div class="content">
         <span class="kicker">Inversión y retorno</span>
-        <h2>El piloto mide retorno económico por camión antes de escalar.</h2>
+        <h2>Detectar el riesgo antes del daño protege disponibilidad y valor económico.</h2>
         <div class="cost-layout">
-          <div><span class="roi-label">Retorno por unidad</span><div class="roi-value">Dato BHP</div><div class="roi-sub">calculado con detención, reparación y capacidad realmente irrecuperable</div></div>
+          <div><span class="roi-label">Retorno por unidad</span><div class="roi-value">USD 2,0–2,6k</div><div class="roi-sub">referencia neta por cada hora de paro evitada*</div></div>
           <div>
             <div class="costs">
               <div class="cost-row"><span>Edge industrial RevPi Connect</span><b>USD 855,13</b></div>
               <div class="cost-row"><span>MadeOS · hasta 1 TB</span><b>USD 600/mes</b></div>
-              <div class="cost-row"><span>Sensores + integración</span><b>A costo</b></div>
-              <div class="cost-row"><span>Ingeniería Made</span><b>A costo</b></div>
+              <div class="cost-row"><span>Integración</span></div>
             </div>
             <div class="return-line"><strong>Retorno:</strong> detención evitada + daño secundario evitado − costo del piloto.</div>
           </div>
         </div>
       </div>
-      <div class="source">El retorno se valida con BHP: valor neto de hora de detención, toneladas irrecuperables, costos de reparación y reducción observada. No se usa un benchmark externo como costo BHP.</div>
+      <div class="source"><strong>Anexo financiero y nota metodológica.</strong> Escondida reportó USD 5.642bn de EBITDA en HY26: USD 1,278m/h del activo, o USD 6.084 por camión-hora al asignarlo proporcionalmente a 210 unidades. La referencia neta descuenta USD 3,46–4,06k de costo tecnológico directo por unidad (piloto de 5 unidades, cinco meses: edge, sensores y MadeOS). Excluye integración. Es una asignación proporcional, no un costo de downtime ni una pérdida efectiva; el impacto se confirma con producción irrecuperable y órdenes de trabajo BHP.</div>
     </section>
 
     <section class="slide white" id="tiempos" data-number="05 / 07">
