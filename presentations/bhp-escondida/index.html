@@ -152,6 +152,16 @@
     .bar.gray { background: #a9b1b3; }
     .milestones { margin-top: 30px; display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
     .milestones b { display: block; color: var(--ink); font-size: 22px; }
+    .gantt-real { display: grid; grid-template-columns: 2.5fr repeat(30, 1fr); gap: 1px; overflow: hidden; border: 1px solid var(--line); background: var(--line); font-size: 9px; }
+    .gantt-real > div { min-height: 27px; background: rgba(255,255,255,.72); }
+    .gantt-day { display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 8px; font-weight: 900; background: var(--paper) !important; }
+    .gantt-task { display: flex; align-items: center; padding: 5px 10px; color: var(--ink); font-size: 10px; font-weight: 750; line-height: 1.15; }
+    .gantt-real .gantt-head { display: flex; align-items: center; padding: 0 10px; color: var(--muted); font-size: 9px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; background: var(--paper) !important; }
+    .real-bar { position: relative; z-index: 2; display: flex; align-items: center; min-height: 14px !important; margin: 6px 1px; border-radius: 20px; background: var(--blue) !important; }
+    .real-bar.yellow { background: #e8bc36 !important; }
+    .real-bar.green { background: #169c84 !important; }
+    .real-bar.pink { background: #dc8792 !important; }
+    .real-bar::after { content: ""; width: 5px; height: 5px; margin-left: auto; margin-right: 5px; border-radius: 50%; background: rgba(255,255,255,.9); }
 
     .experience-layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(60px, 10vw, 150px); align-items: end; }
     .budget-value { color: var(--orange); font-size: clamp(70px, 9.3vw, 132px); font-weight: 950; line-height: .78; letter-spacing: -.09em; }
@@ -199,6 +209,7 @@
       .investment-foot { white-space: normal; }
       .architecture-stage:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -24px; transform: translateX(50%); }
       .gantt { grid-template-columns: 1.25fr repeat(5, .7fr); font-size: 11px; }
+      .gantt-real { min-width: 980px; }
       .gantt > div { padding: 8px 4px; }
       .milestones { display: grid; grid-template-columns: repeat(2,1fr); gap: 15px; }
       .controls, .hint { display: none; }
@@ -289,16 +300,25 @@
     <section class="slide white" id="tiempos" data-number="05 / 07">
       <div class="content">
         <span class="kicker">Tiempos</span>
-        <h2>20 semanas para probar estabilidad, anticipación y utilidad.</h2>
-        <div class="gantt" aria-label="Cronograma del piloto">
-          <div class="head">Frente</div><div class="head">S1–2</div><div class="head">S3–4</div><div class="head">S5–6</div><div class="head">S7–8</div><div class="head">S9–20</div>
-          <div class="label">Datos y seguridad</div><div><span class="bar"></span></div><div></div><div></div><div></div><div></div>
-          <div class="label">Edge, CAN y lectura</div><div><span class="bar blue"></span></div><div><span class="bar blue"></span></div><div></div><div></div><div></div>
-          <div class="label">Gemelo y entorno de prueba</div><div></div><div></div><div><span class="bar green"></span></div><div></div><div></div>
-          <div class="label">Línea base y aprobación</div><div></div><div></div><div></div><div><span class="bar green"></span></div><div></div>
-          <div class="label">Shadow mode</div><div></div><div></div><div></div><div></div><div><span class="bar gray"></span></div>
+        <h2>30 días para conectar, validar y llevar el gemelo digital a producción.</h2>
+        <div class="gantt-real" aria-label="Cronograma real de implementación de MadeOS">
+          <div class="gantt-head" style="grid-row:1;grid-column:1">Actividad / tarea</div>
+          <div class="gantt-day" style="grid-row:1;grid-column:2">D1</div><div class="gantt-day" style="grid-row:1;grid-column:3">D2</div><div class="gantt-day" style="grid-row:1;grid-column:4">D3</div><div class="gantt-day" style="grid-row:1;grid-column:5">D4</div><div class="gantt-day" style="grid-row:1;grid-column:6">D5</div><div class="gantt-day" style="grid-row:1;grid-column:7">D6</div><div class="gantt-day" style="grid-row:1;grid-column:8">D7</div><div class="gantt-day" style="grid-row:1;grid-column:9">D8</div><div class="gantt-day" style="grid-row:1;grid-column:10">D9</div><div class="gantt-day" style="grid-row:1;grid-column:11">D10</div><div class="gantt-day" style="grid-row:1;grid-column:12">D11</div><div class="gantt-day" style="grid-row:1;grid-column:13">D12</div><div class="gantt-day" style="grid-row:1;grid-column:14">D13</div><div class="gantt-day" style="grid-row:1;grid-column:15">D14</div><div class="gantt-day" style="grid-row:1;grid-column:16">D15</div><div class="gantt-day" style="grid-row:1;grid-column:17">D16</div><div class="gantt-day" style="grid-row:1;grid-column:18">D17</div><div class="gantt-day" style="grid-row:1;grid-column:19">D18</div><div class="gantt-day" style="grid-row:1;grid-column:20">D19</div><div class="gantt-day" style="grid-row:1;grid-column:21">D20</div><div class="gantt-day" style="grid-row:1;grid-column:22">D21</div><div class="gantt-day" style="grid-row:1;grid-column:23">D22</div><div class="gantt-day" style="grid-row:1;grid-column:24">D23</div><div class="gantt-day" style="grid-row:1;grid-column:25">D24</div><div class="gantt-day" style="grid-row:1;grid-column:26">D25</div><div class="gantt-day" style="grid-row:1;grid-column:27">D26</div><div class="gantt-day" style="grid-row:1;grid-column:28">D27</div><div class="gantt-day" style="grid-row:1;grid-column:29">D28</div><div class="gantt-day" style="grid-row:1;grid-column:30">D29</div><div class="gantt-day" style="grid-row:1;grid-column:31">D30</div>
+          <div class="gantt-task" style="grid-row:2;grid-column:1">Red 4G/LTE: router y antena</div><div class="real-bar" style="grid-row:2;grid-column:2 / 5"></div>
+          <div class="gantt-task" style="grid-row:3;grid-column:1">Dispositivos edge: red interna y externa</div><div class="real-bar" style="grid-row:3;grid-column:5 / 9"></div>
+          <div class="gantt-task" style="grid-row:4;grid-column:1">Integración física y lógica CAN</div><div class="real-bar" style="grid-row:4;grid-column:8 / 11"></div>
+          <div class="gantt-task" style="grid-row:5;grid-column:1">Pruebas de flujo de datos en tiempo real</div><div class="real-bar" style="grid-row:5;grid-column:10 / 12"></div>
+          <div class="gantt-task" style="grid-row:6;grid-column:1">Sincronización PI / MadeOS / seguridad</div><div class="real-bar" style="grid-row:6;grid-column:12 / 15"></div>
+          <div class="gantt-task" style="grid-row:7;grid-column:1">Cuenta y plataforma cloud BHP</div><div class="real-bar yellow" style="grid-row:7;grid-column:13 / 15"></div>
+          <div class="gantt-task" style="grid-row:8;grid-column:1">Gemelo digital en entorno de prueba</div><div class="real-bar yellow" style="grid-row:8;grid-column:14 / 17"></div>
+          <div class="gantt-task" style="grid-row:9;grid-column:1">Monitoreo del entorno de prueba</div><div class="real-bar yellow" style="grid-row:9;grid-column:16 / 19"></div>
+          <div class="gantt-task" style="grid-row:10;grid-column:1">Gemelo digital en 5 unidades piloto</div><div class="real-bar yellow" style="grid-row:10;grid-column:18 / 22"></div>
+          <div class="gantt-task" style="grid-row:11;grid-column:1">Evaluación del agente IA</div><div class="real-bar yellow" style="grid-row:11;grid-column:22 / 24"></div>
+          <div class="gantt-task" style="grid-row:12;grid-column:1">Pruebas y aprobación para producción</div><div class="real-bar green" style="grid-row:12;grid-column:23 / 25"></div>
+          <div class="gantt-task" style="grid-row:13;grid-column:1">Despliegue del gemelo digital en producción</div><div class="real-bar green" style="grid-row:13;grid-column:24 / 28"></div>
+          <div class="gantt-task" style="grid-row:14;grid-column:1">Entrenamiento y evaluación modelo RUL</div><div class="real-bar pink" style="grid-row:14;grid-column:2 / 32"></div>
         </div>
-        <div class="milestones"><div><b>S2</b>Fuentes habilitadas</div><div><b>S4</b>Lectura en tiempo real</div><div><b>S6</b>Gemelo en prueba</div><div><b>S8</b>Aprobación operacional</div><div><b>S20</b>Decisión de escala</div></div>
+        <div class="milestones"><div><b>D7</b>Edge conectado</div><div><b>D13</b>Datos y seguridad validados</div><div><b>D20</b>Gemelo en 5 unidades</div><div><b>D23</b>Aprobación preproducción</div><div><b>D26</b>Producción</div></div>
       </div>
     </section>
 
