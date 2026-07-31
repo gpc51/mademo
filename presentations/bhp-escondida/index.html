@@ -135,7 +135,7 @@
     .return-line strong { color: var(--white); }
     .pilot-roi { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.25); }
     .pilot-roi b { display: block; color: rgba(255,255,255,.7); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
-    .pilot-roi span { display: block; margin-top: 5px; color: var(--white); font-size: clamp(22px, 2.25vw, 30px); font-weight: 900; letter-spacing: -.03em; }
+    .pilot-roi span { display: block; margin-top: 5px; color: var(--white); font-size: clamp(35px, 4.1vw, 62px); font-weight: 900; letter-spacing: -.045em; line-height: .95; white-space: nowrap; }
     .cost-sum { display: flex; justify-content: space-between; gap: 22px; align-items: end; margin-top: 26px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.25); }
     .cost-sum span { color: rgba(255,255,255,.7); font-size: 16px; }
     .cost-sum b { font-size: clamp(22px, 2.25vw, 30px); text-align: right; }
@@ -192,6 +192,7 @@
       .proposal-step { min-height: auto; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.17); }
       .proposal-step h3 { margin-top: 30px; }
       .architecture-stage { min-height: auto; }
+      .pilot-roi span { white-space: normal; }
       .architecture-stage:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -24px; transform: translateX(50%); }
       .gantt { grid-template-columns: 1.25fr repeat(5, .7fr); font-size: 11px; }
       .gantt > div { padding: 8px 4px; }
