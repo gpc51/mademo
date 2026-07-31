@@ -110,6 +110,12 @@
     .proposal-outcome { margin-top: 34px; color: #dbe2e4; font-size: clamp(22px, 2.2vw, 30px); }
     .proposal-outcome b { color: var(--white); }
     .proposal-architecture { margin-top: 18px; color: #8f9ba0; font-size: 14px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+    .architecture-diagram { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 12px; }
+    .architecture-stage { position: relative; min-height: 255px; padding: 24px; border: 1px solid rgba(255,255,255,.22); border-radius: 16px; background: rgba(18,25,29,.66); backdrop-filter: blur(7px); }
+    .architecture-stage:not(:last-child)::after { content: "→"; position: absolute; z-index: 3; top: 50%; right: -22px; width: 28px; color: #ff9567; font-size: 24px; font-weight: 800; text-align: center; transform: translateY(-50%); }
+    .architecture-stage small { color: #ff9567; font-size: 11px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    .architecture-stage h3 { margin: 57px 0 16px; color: var(--white); font-size: clamp(23px, 2.25vw, 34px); }
+    .architecture-stage p { margin: 0; color: #bac5c9; font-size: 15px; line-height: 1.55; }
 
     .cost-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(50px, 8vw, 110px); align-items: center; }
     .zero { font-size: clamp(130px, 20vw, 270px); font-weight: 950; line-height: .7; letter-spacing: -.09em; }
@@ -161,9 +167,11 @@
     @media (max-width: 760px) {
       .slide { min-height: auto; padding: 86px 28px 70px; }
       .analysis-layout, .cost-layout, .experience-layout { grid-template-columns: 1fr; }
-      .proposal, .close-list { grid-template-columns: 1fr; }
+      .proposal, .close-list, .architecture-diagram { grid-template-columns: 1fr; }
       .proposal-step { min-height: auto; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.17); }
       .proposal-step h3 { margin-top: 30px; }
+      .architecture-stage { min-height: auto; }
+      .architecture-stage:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -24px; transform: translateX(50%); }
       .gantt { grid-template-columns: 1.25fr repeat(5, .7fr); font-size: 11px; }
       .gantt > div { padding: 8px 4px; }
       .milestones { display: grid; grid-template-columns: repeat(2,1fr); gap: 15px; }
@@ -221,23 +229,23 @@
     <section class="slide dark" id="propuesta" data-number="03 / 07">
       <div class="content">
         <span class="kicker">Propuesta</span>
-        <h2>Una validación basada en datos históricos y sensorización focalizada.</h2>
-        <div class="proposal">
-          <div class="proposal-step"><span>01</span><h3>Reconstruir</h3><p>24–36 meses de historia por activo.</p></div>
-          <div class="proposal-step"><span>02</span><h3>Completar</h3><p>Sensores solo donde falte evidencia.</p></div>
-          <div class="proposal-step"><span>03</span><h3>Validar</h3><p>12 semanas en shadow mode.</p></div>
+        <h2>Datos operacionales convertidos en decisiones de mantenimiento.</h2>
+        <div class="architecture-diagram" aria-label="Arquitectura de la propuesta">
+          <article class="architecture-stage"><small>01 · Unidad</small><h3>CAEX</h3><p>ECU motor<br>VIMS<br>CAN J1939</p></article>
+          <article class="architecture-stage"><small>02 · Terreno</small><h3>Edge</h3><p>Lectura read-only<br>Decodificación<br>Búfer local</p></article>
+          <article class="architecture-stage"><small>03 · Enlace</small><h3>4G / LTE</h3><p>TLS 1.3<br>Cola y reintentos<br>Canal saliente</p></article>
+          <article class="architecture-stage"><small>04 · Plataforma</small><h3>MadeOS</h3><p>Gemelo digital<br>Riesgo por subsistema<br>Alertas accionables</p></article>
         </div>
-        <p class="proposal-outcome"><b>5–15 camiones</b> · mínimo cinco por modelo seleccionado.</p>
-        <p class="proposal-architecture">Fuentes autorizadas → Edge read-only → MadeOS → Gemelo digital → Alertas</p>
+        <p class="proposal-outcome"><b>5–15 camiones</b> · mínimo cinco por modelo seleccionado · 12 semanas de shadow mode.</p>
       </div>
     </section>
 
     <section class="slide orange" id="inversion" data-number="04 / 07">
       <div class="content">
         <span class="kicker">Inversión y retorno</span>
-        <h2>BHP valida la tecnología sin financiar margen de proveedor.</h2>
+        <h2>El piloto mide retorno económico por camión antes de escalar.</h2>
         <div class="cost-layout">
-          <div><span class="roi-label">Impacto por unidad*</span><div class="roi-value">USD 74–131k</div><div class="roi-sub">impacto económico anual estimado por unidad</div></div>
+          <div><span class="roi-label">Valor económico potencial por unidad*</span><div class="roi-value">USD 74–131k</div><div class="roi-sub">impacto anual estimado por unidad</div></div>
           <div>
             <div class="costs">
               <div class="cost-row"><span>Edge base por unidad</span><b>Desde USD 527,59</b></div>
@@ -249,7 +257,7 @@
           </div>
         </div>
       </div>
-      <div class="source">*Escenario de referencia Made: USD 1,48–2,62M para 20 camiones durante 12 meses. El ROI real por unidad se calcula con costos, horas y reducción validados por BHP. <a href="roi-model.html">Abrir modelo ROI</a></div>
+      <div class="source">*Escenario de referencia Made: USD 1,48–2,62M para 20 camiones durante 12 meses. El ROI real por unidad se calcula con costos, horas y reducción validados por BHP.</div>
     </section>
 
     <section class="slide white" id="tiempos" data-number="05 / 07">
