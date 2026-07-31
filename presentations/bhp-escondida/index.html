@@ -166,6 +166,17 @@
     .close-item b { display: block; margin-top: 30px; font-size: clamp(21px, 2.2vw, 31px); line-height: 1.1; }
     .closing-line { margin-top: 46px; color: var(--muted); font-size: clamp(20px, 2.1vw, 29px); }
     .closing-line strong { color: var(--ink); }
+    .vision-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 18px; margin-top: 36px; }
+    .vision-card { min-height: 250px; padding: 28px; border: 1px solid var(--line); background: rgba(255,255,255,.72); }
+    .vision-card > span { color: var(--orange); font-size: 12px; font-weight: 950; letter-spacing: .14em; text-transform: uppercase; }
+    .vision-card h3 { margin: 32px 0 10px; font-size: clamp(28px, 3.1vw, 44px); }
+    .vision-card p { max-width: 470px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.45; }
+    .vision-card.scale { color: var(--white); border-color: transparent; background: var(--ink); }
+    .vision-card.scale > span { color: #ff9567; }
+    .scale-value { margin-top: 18px; color: var(--white); font-size: clamp(55px, 6.3vw, 98px); font-weight: 950; line-height: .9; letter-spacing: -.065em; white-space: nowrap; }
+    .vision-card.scale p { color: #c1cbd0; }
+    .scale-roi { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.2); color: var(--white); font-size: 18px; font-weight: 850; }
+    .vision-note { max-width: 1100px; margin-top: 22px; color: var(--muted); font-size: 11px; line-height: 1.35; }
 
     .controls { position: fixed; z-index: 50; right: 22px; top: 50%; transform: translateY(-50%); display: grid; gap: 10px; }
     .dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: rgba(100,113,118,.35); cursor: pointer; }
@@ -177,7 +188,7 @@
     @media (max-width: 760px) {
       .slide { min-height: auto; padding: 86px 28px 70px; }
       .analysis-layout, .cost-layout, .experience-layout { grid-template-columns: 1fr; }
-      .proposal, .close-list, .architecture-diagram { grid-template-columns: 1fr; }
+      .proposal, .close-list, .architecture-diagram, .vision-grid { grid-template-columns: 1fr; }
       .proposal-step { min-height: auto; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.17); }
       .proposal-step h3 { margin-top: 30px; }
       .architecture-stage { min-height: auto; }
@@ -304,14 +315,13 @@
     <section class="slide white" id="cierre" data-number="07 / 07">
       <div class="logos logo-footer"><img src="assets/just-partners.png" alt="Just Partners"><span>×</span><img src="assets/made.png" alt="Made"></div>
       <div class="content">
-        <span class="kicker">Decisión</span>
-        <h2>Aprobación solicitada: piloto de validación.</h2>
-        <div class="close-list">
-          <div class="close-item"><span>01</span><b>Seleccionar 5–15 unidades</b></div>
-          <div class="close-item"><span>02</span><b>Habilitar históricos y diccionarios</b></div>
-          <div class="close-item"><span>03</span><b>Acordar costos y criterios de éxito</b></div>
+        <span class="kicker">Visión de escala</span>
+        <h2>En 20 semanas, Escondida tendrá la evidencia operacional para anticipar fallas de motor y decidir una escala de 210 unidades.</h2>
+        <div class="vision-grid">
+          <article class="vision-card"><span>Al cierre del piloto</span><h3>9–15 unidades representativas</h3><p>Modelo histórico, telemetría en terreno, variables de contaminación y alertas en shadow mode contrastadas con mantenimiento.</p></article>
+          <article class="vision-card scale"><span>Escala a 210 unidades</span><div class="scale-value">USD 48,1–48,2M</div><p>valor neto de referencia anual después del costo tecnológico de primer año.</p><div class="scale-roi">ROI de referencia: 4.100–4.600% · año 1*</div></article>
         </div>
-        <p class="closing-line"><strong>La evidencia del piloto fundamentará la decisión de escalamiento.</strong></p>
+        <p class="vision-note">*Referencia de escala: 20% de reducción objetivo sobre 40.500 horas/año; USD 6.084 por camión-hora como asignación financiera proporcional de Escondida. Incluye edge USD 855,13/unidad, sensores USD 2,0–2,6k/unidad y MadeOS USD 175/unidad/mes: costo tecnológico de primer año USD 1,0–1,2M. Excluye integración. No es un costo de downtime BHP ni un resultado garantizado.</p>
       </div>
     </section>
   </main>
