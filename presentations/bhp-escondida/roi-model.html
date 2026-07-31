@@ -42,23 +42,23 @@
     <a class="back" href="index.html">← Volver a la presentación</a>
     <span class="eyebrow">Modelo de ROI</span>
     <h1>ROI por unidad con variables validadas por BHP.</h1>
-    <p class="lead">Ajusta las horas, el costo de detención y los costos completos. El resultado calcula beneficio anual, costo por unidad, retorno neto y periodo de recuperación.</p>
+    <p class="lead">Completa los datos aprobados por BHP. El modelo calcula beneficio anual, costo por unidad, retorno neto y periodo de recuperación sin convertir un supuesto externo en costo de Escondida.</p>
     <div class="layout">
       <section class="inputs" aria-label="Variables del modelo">
         <div class="group">
           <h2>Impacto operacional</h2>
           <div class="field-grid">
-            <label>Unidades evaluadas<input id="units" type="number" min="1" step="1" value="20"></label>
-            <label>Horas de detención/año, flota<input id="downtime" type="number" min="0" step="1" value="40500"></label>
-            <label>Costo BHP por hora de detención (USD)<input id="hourCost" type="number" min="0" step="1" value="165"></label>
-            <label>Reducción esperada de horas (%)<input id="reduction" type="number" min="0" max="100" step="1" value="20"></label>
-            <label>Daño y mantenimiento evitado/año, flota (USD)<input id="avoidedCost" type="number" min="0" step="1000" value="0"></label>
+            <label>Unidades evaluadas<input id="units" type="number" min="1" step="1" value="5"></label>
+            <label>Horas de detención/año, cohorte<input id="downtime" type="number" min="0" step="1" placeholder="Dato BHP requerido"></label>
+            <label>Valor neto BHP por hora de detención (USD)<input id="hourCost" type="number" min="0" step="1" placeholder="Dato BHP requerido"></label>
+            <label>Reducción observada o acordada (%)<input id="reduction" type="number" min="0" max="100" step="1" value="0"></label>
+            <label>Reparación y daño evitado/año, cohorte (USD)<input id="avoidedCost" type="number" min="0" step="1000" value="0"></label>
           </div>
         </div>
         <div class="group">
           <h2>Costos del programa</h2>
           <div class="field-grid">
-            <label>Edge base por unidad (USD)<input id="edge" type="number" min="0" step="0.01" value="527.59"></label>
+            <label>Edge RevPi Connect por unidad (USD)<input id="edge" type="number" min="0" step="0.01" value="855.13"></label>
             <label>Sensores por unidad (USD)<input id="sensors" type="number" min="0" step="100" value="2300"></label>
             <label>MadeOS por mes, programa (USD)<input id="platform" type="number" min="0" step="50" value="600"></label>
             <label>Meses de servicio<input id="months" type="number" min="1" step="1" value="12"></label>
@@ -77,17 +77,30 @@
         <p class="formula">ROI neto = (beneficio anual por unidad − costo total por unidad) ÷ costo total por unidad.</p>
       </aside>
     </div>
-    <p class="note">Valores iniciales: 40.500 horas/año confirmadas por el desafío BHP; USD 165/hora derivado del escenario temprano compartido. Sustituir por costo real BHP, reducción observada y costos cerrados antes de utilizar el resultado para una decisión de inversión.</p>
+    <p class="note">Las 40.500 horas del desafío BHP describen el problema global, no la cohorte piloto. El valor neto por hora debe ser aprobado por BHP: toneladas realmente irrecuperables × margen de contribución + reparación y daño secundario evitado − costos variables evitados. RevPi Connect se incorpora a USD 855,13 por unidad; accesorios de faena y costos de terreno se ingresan por separado.</p>
   </main>
   <script>
     const ids = ['units','downtime','hourCost','reduction','avoidedCost','edge','sensors','platform','months','engineering','field'];
     const currency = value => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(value);
     const number = id => Math.max(0, Number(document.getElementById(id).value) || 0);
+    const hasValue = id => {
+      const value = document.getElementById(id).value.trim();
+      return value !== '' && Number(value) >= 0;
+    };
     const update = () => {
       const units = Math.max(1, number('units'));
-      const benefit = ((number('downtime') * number('hourCost') * (number('reduction') / 100)) + number('avoidedCost')) / units;
       const totalCost = (units * (number('edge') + number('sensors'))) + (number('platform') * number('months')) + number('engineering') + number('field');
       const cost = totalCost / units;
+      const ready = hasValue('downtime') && hasValue('hourCost') && number('reduction') > 0;
+      if (!ready) {
+        document.getElementById('benefit').textContent = 'Pendiente';
+        document.getElementById('cost').textContent = currency(cost);
+        document.getElementById('net').textContent = 'Pendiente';
+        document.getElementById('roi').textContent = 'Pendiente';
+        document.getElementById('payback').textContent = 'Pendiente';
+        return;
+      }
+      const benefit = ((number('downtime') * number('hourCost') * (number('reduction') / 100)) + number('avoidedCost')) / units;
       const net = benefit - cost;
       const roi = cost > 0 ? (net / cost) * 100 : 0;
       const payback = benefit > 0 ? (cost / benefit) * 12 : 0;

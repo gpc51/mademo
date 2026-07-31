@@ -231,12 +231,12 @@
         <span class="kicker">Propuesta</span>
         <h2>Datos operacionales convertidos en decisiones de mantenimiento.</h2>
         <div class="architecture-diagram" aria-label="Arquitectura de la propuesta">
-          <article class="architecture-stage"><small>01 · Unidad</small><h3>CAEX</h3><p>ECU motor<br>VIMS<br>CAN J1939</p></article>
-          <article class="architecture-stage"><small>02 · Terreno</small><h3>Edge</h3><p>Lectura read-only<br>Decodificación<br>Búfer local</p></article>
+          <article class="architecture-stage"><small>01 · Unidad</small><h3>CAEX</h3><p>ECU motor<br>VIMS<br>CAN J1939 autorizado</p></article>
+          <article class="architecture-stage"><small>02 · Terreno</small><h3>Edge industrial</h3><p>RevPi Connect 5*<br>Lectura read-only<br>Búfer local</p></article>
           <article class="architecture-stage"><small>03 · Enlace</small><h3>4G / LTE</h3><p>TLS 1.3<br>Cola y reintentos<br>Canal saliente</p></article>
           <article class="architecture-stage"><small>04 · Plataforma</small><h3>MadeOS</h3><p>Gemelo digital<br>Riesgo por subsistema<br>Alertas accionables</p></article>
         </div>
-        <p class="proposal-outcome"><b>5–15 camiones</b> · mínimo cinco por modelo seleccionado · 12 semanas de shadow mode.</p>
+        <p class="proposal-outcome"><b>5–15 camiones</b> · mínimo cinco por modelo seleccionado · 12 semanas de shadow mode.<br><small>*Variante CAN, LTE, protección eléctrica y montaje se validan con BHP y OEM.</small></p>
       </div>
     </section>
 
@@ -245,10 +245,10 @@
         <span class="kicker">Inversión y retorno</span>
         <h2>El piloto mide retorno económico por camión antes de escalar.</h2>
         <div class="cost-layout">
-          <div><span class="roi-label">Valor económico potencial por unidad*</span><div class="roi-value">USD 74–131k</div><div class="roi-sub">impacto anual estimado por unidad</div></div>
+          <div><span class="roi-label">Retorno por unidad</span><div class="roi-value">Dato BHP</div><div class="roi-sub">calculado con detención, reparación y capacidad realmente irrecuperable</div></div>
           <div>
             <div class="costs">
-              <div class="cost-row"><span>Edge base por unidad</span><b>Desde USD 527,59</b></div>
+              <div class="cost-row"><span>Edge industrial RevPi Connect</span><b>USD 855,13</b></div>
               <div class="cost-row"><span>MadeOS · hasta 1 TB</span><b>USD 600/mes</b></div>
               <div class="cost-row"><span>Sensores + integración</span><b>A costo</b></div>
               <div class="cost-row"><span>Ingeniería Made</span><b>A costo</b></div>
@@ -257,7 +257,7 @@
           </div>
         </div>
       </div>
-      <div class="source">*Escenario de referencia Made: USD 1,48–2,62M para 20 camiones durante 12 meses. El ROI real por unidad se calcula con costos, horas y reducción validados por BHP.</div>
+      <div class="source">El retorno se valida con BHP: valor neto de hora de detención, toneladas irrecuperables, costos de reparación y reducción observada. No se usa un benchmark externo como costo BHP.</div>
     </section>
 
     <section class="slide white" id="tiempos" data-number="05 / 07">
@@ -281,14 +281,14 @@
         <span class="kicker">Capacidades y presupuesto</span>
         <h2>Presupuesto tecnológico estimado para el piloto.</h2>
         <div class="experience-layout">
-          <div><div class="budget-value">USD<br>16–50k</div><p class="budget-label">costos directos de tecnología para un piloto de 5–15 unidades.</p></div>
+          <div><div class="budget-value">USD<br>17–55k</div><p class="budget-label">costos directos de tecnología para un piloto de 5–15 unidades.</p></div>
           <div class="capabilities">
-            <div class="capability"><b>5 unidades · USD 16–19k</b><span>Edge base, sensorización y MadeOS por cinco meses.</span></div>
-            <div class="capability"><b>10 unidades · USD 28–34k</b><span>Edge base, sensorización y MadeOS por cinco meses.</span></div>
-            <div class="capability"><b>15 unidades · USD 41–50k</b><span>Edge base, sensorización y MadeOS por cinco meses.</span></div>
+            <div class="capability"><b>5 unidades · USD 17–20k</b><span>RevPi Connect, sensorización y MadeOS por cinco meses.</span></div>
+            <div class="capability"><b>10 unidades · USD 32–38k</b><span>RevPi Connect, sensorización y MadeOS por cinco meses.</span></div>
+            <div class="capability"><b>15 unidades · USD 46–55k</b><span>RevPi Connect, sensorización y MadeOS por cinco meses.</span></div>
           </div>
         </div>
-        <p class="proof-note">Estimación a costo. Excluye ingeniería Made, hardware adicional del edge, y viajes, acreditaciones e implementación de terreno de Just Partners.</p>
+        <p class="proof-note">Estimación a costo: RevPi base USD 855,13 por unidad; sensorización USD 2,0–2,6k por unidad; MadeOS USD 600/mes. Excluye accesorios de faena del edge, ingeniería Made y viajes, acreditaciones e implementación de Just Partners.</p>
       </div>
     </section>
 
