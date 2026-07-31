@@ -91,9 +91,10 @@
       background-position: center; background-size: cover;
     }
 
-    .analysis-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(45px, 8vw, 120px); align-items: end; }
+    .analysis-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(45px, 8vw, 120px); align-items: center; }
+    .analysis-metric { align-self: center; transform: translateY(-12px); }
     .big-number { color: var(--orange); font-size: clamp(86px, 13vw, 190px); font-weight: 950; line-height: .8; letter-spacing: -.08em; }
-    .big-number-label { max-width: 340px; margin-top: 26px; color: var(--muted); font-size: 19px; }
+    .big-number-label { max-width: none; margin-top: 26px; color: var(--muted); font-size: 17px; white-space: nowrap; }
     .chain { display: grid; gap: 0; }
     .chain-step { display: grid; grid-template-columns: 48px 1fr; gap: 20px; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--line); }
     .chain-step:last-child { border-bottom: 0; }
@@ -121,6 +122,10 @@
     .architecture-node b { display: block; color: var(--white); font-size: 12px; line-height: 1.2; }
     .architecture-node span { display: block; margin-top: 2px; color: #aebbc0; font-size: 10px; line-height: 1.3; }
     .proposal-technical-note { margin: 14px 0 0; color: #97a4a9; font-size: 11px; line-height: 1.35; }
+    .architecture-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 14px; background: rgba(255,255,255,.16); }
+    .architecture-kpi { display: flex; align-items: baseline; gap: 12px; padding: 11px 16px; background: rgba(18,25,29,.82); }
+    .architecture-kpi b { color: #ff9567; font-size: clamp(24px, 2.5vw, 34px); line-height: 1; }
+    .architecture-kpi span { color: #bac5c9; font-size: 11px; line-height: 1.25; }
 
     .cost-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(50px, 8vw, 110px); align-items: center; }
     .zero { font-size: clamp(130px, 20vw, 270px); font-weight: 950; line-height: .7; letter-spacing: -.09em; }
@@ -138,9 +143,10 @@
     .pilot-roi { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.25); }
     .pilot-roi b { display: block; color: rgba(255,255,255,.7); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
     .pilot-roi span { display: block; margin-top: 5px; color: var(--white); font-size: clamp(35px, 4.1vw, 62px); font-weight: 900; letter-spacing: -.045em; line-height: .95; white-space: nowrap; }
-    .cost-sum { display: flex; justify-content: space-between; gap: 22px; align-items: end; margin-top: 26px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.25); }
-    .cost-sum span { color: rgba(255,255,255,.7); font-size: 16px; }
-    .cost-sum b { font-size: clamp(22px, 2.25vw, 30px); text-align: right; }
+    .cost-sum { display: flex; justify-content: space-between; gap: 18px; align-items: baseline; margin-top: 26px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.25); white-space: nowrap; }
+    .cost-sum span { color: rgba(255,255,255,.7); font-size: 14px; }
+    .cost-sum b { font-size: clamp(20px, 2vw, 27px); text-align: right; }
+    #inversion h2 { margin-bottom: 30px; font-size: clamp(38px, 4.5vw, 66px); }
 
     .gantt { display: grid; grid-template-columns: 1.5fr repeat(5, 1fr); align-items: center; font-size: 15px; }
     .gantt > div { min-height: 55px; display: flex; align-items: center; padding: 10px 13px; border-bottom: 1px solid var(--line); }
@@ -152,12 +158,16 @@
     .bar.gray { background: #a9b1b3; }
     .milestones { margin-top: 30px; display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
     .milestones b { display: block; color: var(--ink); font-size: 22px; }
+    #tiempos h2 { margin-bottom: 24px; font-size: clamp(34px, 4vw, 58px); }
+    #tiempos .gantt > div { min-height: 43px; padding-block: 6px; }
+    #tiempos .milestones { margin-top: 20px; }
 
     .experience-layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(60px, 10vw, 150px); align-items: end; }
     .budget-value { color: var(--orange); font-size: clamp(70px, 9.3vw, 132px); font-weight: 950; line-height: .78; letter-spacing: -.09em; }
     .execution-mark { color: var(--orange); font-size: clamp(52px, 6.4vw, 92px); font-weight: 950; line-height: .8; letter-spacing: -.08em; }
     .budget-label { max-width: 390px; margin-top: 30px; color: #aeb9bd; font-size: 20px; }
     .capabilities { display: grid; gap: 24px; }
+    .capabilities-wide { width: min(1120px, 100%); justify-self: start; }
     .capability { padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,.18); }
     .capability b { display: block; font-size: clamp(23px, 2.4vw, 33px); }
     .capability span { color: #aeb9bd; }
@@ -180,6 +190,10 @@
     .vision-card.scale p { color: #c1cbd0; }
     .scale-roi { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.2); color: var(--white); font-size: 18px; font-weight: 850; }
     .vision-note { max-width: 1100px; margin-top: 22px; color: var(--muted); font-size: 11px; line-height: 1.35; }
+    .outcome-list { display: grid; gap: 0; margin-top: 24px; }
+    .outcome-item { padding: 13px 0; border-top: 1px solid var(--line); }
+    .outcome-item b { display: block; color: var(--ink); font-size: 18px; }
+    .outcome-item span { color: var(--muted); font-size: 13px; }
 
     .controls { position: fixed; z-index: 50; right: 22px; top: 50%; transform: translateY(-50%); display: grid; gap: 10px; }
     .dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: rgba(100,113,118,.35); cursor: pointer; }
@@ -191,7 +205,7 @@
     @media (max-width: 760px) {
       .slide { min-height: auto; padding: 86px 28px 70px; }
       .analysis-layout, .cost-layout, .experience-layout { grid-template-columns: 1fr; }
-      .proposal, .close-list, .architecture-diagram, .vision-grid { grid-template-columns: 1fr; }
+      .proposal, .close-list, .architecture-diagram, .architecture-kpis, .vision-grid { grid-template-columns: 1fr; }
       .proposal-step { min-height: auto; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.17); }
       .proposal-step h3 { margin-top: 30px; }
       .architecture-stage { min-height: auto; }
@@ -238,9 +252,9 @@
     <section class="slide" id="analisis" data-number="02 / 07">
       <div class="content">
         <span class="kicker">Análisis</span>
-        <h2>La información operacional debe convertirse en decisiones oportunas.</h2>
+        <h2>Transformar la información operacional en decisiones que anticipen la detención del motor.</h2>
         <div class="analysis-layout">
-          <div><div class="big-number">40.500</div><p class="big-number-label">horas de detención por fallas de motor durante el último año.</p></div>
+          <div class="analysis-metric"><div class="big-number">40.500</div><p class="big-number-label">horas de detención por fallas de motor durante el último año.</p></div>
           <div class="chain">
             <div class="chain-step"><span>01</span><div><b>Exposición</b><small>Ruta · carga · polvo</small></div></div>
             <div class="chain-step"><span>02</span><div><b>Degradación</b><small>Admisión · aceite · temperatura</small></div></div>
@@ -262,6 +276,7 @@
           <article class="architecture-stage"><small>03 · Enlace</small><h3>4G / LTE seguro</h3><div class="architecture-nodes"><div class="architecture-node"><b>Módem USB 4G/LTE*</b><span>Conectividad de faena</span></div><div class="architecture-node"><b>JSON @ 1 Hz*</b><span>Cola y reintentos</span></div><div class="architecture-node"><b>TLS 1.3 / IPsec*</b><span>APN privado · tráfico saliente</span></div><div class="architecture-node"><b>HTTPS REST POST</b><span>Entrega de payload cifrado</span></div></div></article>
           <article class="architecture-stage"><small>04 · MadeOS</small><h3>IA de mantenimiento</h3><div class="architecture-nodes"><div class="architecture-node"><b>Ingesta y modelo histórico</b><span>Telemetría · mantenimiento · contexto</span></div><div class="architecture-node"><b>Modelos IA / ML</b><span>Anomalías · RUL · fallas</span></div><div class="architecture-node"><b>Prescripción</b><span>Ventana · evidencia · acción</span></div><div class="architecture-node"><b>Alertas y paneles</b><span>Revisión operacional y mantenimiento</span></div></div></article>
         </div>
+        <div class="architecture-kpis" aria-label="Parámetros técnicos de la arquitectura"><div class="architecture-kpi"><b>24/7</b><span>adquisición continua diseñada en edge*</span></div><div class="architecture-kpi"><b>1 Hz</b><span>cadencia de telemetría de referencia*</span></div><div class="architecture-kpi"><b>TLS 1.3</b><span>transporte cifrado hacia MadeOS*</span></div></div>
         <p class="proposal-technical-note">*Parámetros de bus, interfaces, frecuencia y conectividad tomados como arquitectura de referencia; se validan con BHP y OEM antes de instalación.</p>
       </div>
     </section>
@@ -271,7 +286,7 @@
         <span class="kicker">Inversión y retorno</span>
         <h2>Piloto propuesto: de 3 a 5 unidades por modelo seleccionado.</h2>
         <div class="cost-layout">
-          <div><span class="roi-label">Retorno por unidad</span><div class="roi-value">USD 2,3–3,0k</div><div class="roi-sub" style="font-size:clamp(16px,1.55vw,21px)">referencia neta por cada hora de paro evitada*</div><div class="pilot-roi"><b>Retorno neto estimado del piloto*</b><span>USD 0,78–1,31M · 20 semanas</span></div></div>
+          <div><span class="roi-label">Retorno por unidad · por hora evitada</span><div class="roi-value">USD 2,3–3,0k</div><div class="roi-sub" style="font-size:clamp(15px,1.4vw,19px)">valor neto de referencia por una hora de paro evitada*</div><div class="pilot-roi"><b>Retorno neto total estimado del piloto*</b><span>USD 0,78–1,31M · 20 semanas</span></div></div>
           <div>
             <div class="costs">
               <div class="cost-row"><span>Edge industrial RevPi Connect</span><b>USD 855,13</b></div>
@@ -309,13 +324,10 @@
       <div class="content">
         <span class="kicker">Capacidades de ejecución</span>
         <h2>Una ejecución segura, trazable y diseñada para aprender en operación.</h2>
-        <div class="experience-layout">
-          <div><div class="execution-mark">LECTURA<br>READ-ONLY</div><p class="budget-label">Integración sin escribir ni intervenir los sistemas de control de la unidad.</p></div>
-          <div class="capabilities">
+        <div class="capabilities capabilities-wide">
             <div class="capability"><b>Datos y contexto operacional</b><span>Históricos, telemetría, órdenes de trabajo y diccionario de datos para establecer la línea base.</span></div>
             <div class="capability"><b>Instrumentación compatible con faena</b><span>Lectura read-only, edge industrial, sensorización complementaria y persistencia local.</span></div>
             <div class="capability"><b>Gobernanza de validación</b><span>Validación BHP/OEM, ciberseguridad, shadow mode y revisión conjunta de evidencia.</span></div>
-          </div>
         </div>
         <p class="proof-note">Made aporta la plataforma analítica y la arquitectura de datos; Just Partners lidera viajes, acreditaciones e implementación de terreno; BHP habilita datos, unidades y aprobaciones operacionales.</p>
       </div>
@@ -324,11 +336,11 @@
     <section class="slide white" id="cierre" data-number="07 / 07">
       <div class="logos logo-footer"><img src="assets/just-partners.png" alt="Just Partners"><span>×</span><img src="assets/made.png" alt="Made"></div>
       <div class="content">
-        <span class="kicker">Visión de escala</span>
-        <h2>En 20 semanas, Escondida tendrá la evidencia operacional para anticipar fallas de motor y decidir una escala de 210 unidades.</h2>
+        <span class="kicker">Visión de impacto</span>
+        <h2>Made convierte el piloto en una capacidad operacional escalable para proteger los 210 motores de Escondida.</h2>
         <div class="vision-grid">
-          <article class="vision-card"><span>Al cierre del piloto</span><h3>9–15 unidades representativas</h3><p>Modelo histórico, telemetría en terreno, variables de contaminación y alertas en shadow mode contrastadas con mantenimiento.</p></article>
-          <article class="vision-card scale"><span>Retorno neto de referencia · 210 unidades</span><div class="scale-value">USD 48,1–48,2M</div><p>retorno neto anual de escala, después del costo tecnológico de primer año.</p><div class="scale-roi">Inversión tecnológica: USD 1,0–1,2M · año 1*</div></article>
+          <article class="vision-card"><span>Resultado a 20 semanas</span><h3>Decisiones de mantenimiento respaldadas por evidencia</h3><div class="outcome-list"><div class="outcome-item"><b>Anticipación</b><span>Riesgo y ventana antes de la detención.</span></div><div class="outcome-item"><b>Trazabilidad</b><span>Señales históricas y en tiempo real por alerta.</span></div><div class="outcome-item"><b>Acción</b><span>Recomendación validada en shadow mode.</span></div></div></article>
+          <article class="vision-card scale"><span>Potencial de escala · 210 unidades</span><div class="scale-value">USD 48,1–48,2M</div><p>retorno neto anual de referencia si el piloto valida el objetivo de 20% de reducción.</p><div class="scale-roi">Inversión tecnológica: USD 1,0–1,2M · año 1*</div></article>
         </div>
         <p class="vision-note">*Referencia de escala: 20% de reducción objetivo sobre 40.500 horas/año; USD 6.084 por camión-hora como asignación financiera proporcional de Escondida. Incluye edge USD 855,13/unidad, sensores USD 2,0–2,6k/unidad y MadeOS USD 175/unidad/mes: costo tecnológico de primer año USD 1,0–1,2M. Excluye integración. No es un costo de downtime BHP ni un resultado garantizado.</p>
       </div>
