@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Modelo de ROI por unidad para el piloto BHP × Just Partners × Made.">
+  <title>Modelo ROI por unidad | BHP × Made</title>
+  <style>
+    :root { --ink:#182126; --muted:#667277; --paper:#f4f3ee; --white:#fff; --orange:#e84700; --green:#078b43; --line:#d9dfdd; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    main { width:min(1180px,calc(100% - 48px)); margin:0 auto; padding:68px 0 80px; }
+    a { color:inherit; }
+    .back { color:var(--muted); font-size:14px; text-decoration:none; }
+    .back:hover { color:var(--orange); }
+    .eyebrow { display:block; margin:44px 0 17px; color:var(--orange); font-size:12px; font-weight:900; letter-spacing:.16em; text-transform:uppercase; }
+    h1 { max-width:800px; margin:0 0 16px; font-size:clamp(42px,6vw,76px); line-height:.95; letter-spacing:-.065em; }
+    .lead { max-width:740px; margin:0 0 48px; color:var(--muted); font-size:20px; line-height:1.4; }
+    .layout { display:grid; grid-template-columns:1fr 1fr; gap:54px; align-items:start; }
+    .inputs { display:grid; gap:18px; }
+    .group { padding:22px 0; border-top:1px solid var(--line); }
+    .group h2 { margin:0 0 18px; font-size:20px; letter-spacing:-.025em; }
+    .field-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    label { display:block; color:var(--muted); font-size:13px; font-weight:750; }
+    input { width:100%; margin-top:7px; padding:12px 13px; border:1px solid var(--line); border-radius:10px; color:var(--ink); background:var(--white); font:inherit; font-size:17px; }
+    input:focus { outline:3px solid rgba(232,71,0,.18); border-color:var(--orange); }
+    .results { position:sticky; top:28px; padding:30px; color:var(--white); background:var(--ink); }
+    .results h2 { margin:0 0 24px; color:#fff; font-size:24px; letter-spacing:-.035em; }
+    .result { padding:18px 0; border-top:1px solid rgba(255,255,255,.18); }
+    .result:first-of-type { border-top:0; padding-top:0; }
+    .result span { display:block; color:#b7c2c5; font-size:13px; }
+    .result b { display:block; margin-top:7px; color:#fff; font-size:clamp(30px,3.6vw,47px); line-height:1; letter-spacing:-.05em; }
+    .result.primary b { color:#ff8e60; }
+    .formula { margin-top:22px; color:#aeb9bd; font-size:13px; line-height:1.45; }
+    .note { margin-top:36px; color:var(--muted); font-size:13px; line-height:1.45; }
+    @media (max-width:800px) { main { width:min(100% - 32px,1180px); padding-top:38px; } .layout { grid-template-columns:1fr; gap:28px; } .results { position:static; } }
+    @media (max-width:500px) { .field-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="index.html">← Volver a la presentación</a>
+    <span class="eyebrow">Modelo de ROI</span>
+    <h1>ROI por unidad con variables validadas por BHP.</h1>
+    <p class="lead">Ajusta las horas, el costo de detención y los costos completos. El resultado calcula beneficio anual, costo por unidad, retorno neto y periodo de recuperación.</p>
+    <div class="layout">
+      <section class="inputs" aria-label="Variables del modelo">
+        <div class="group">
+          <h2>Impacto operacional</h2>
+          <div class="field-grid">
+            <label>Unidades evaluadas<input id="units" type="number" min="1" step="1" value="20"></label>
+            <label>Horas de detención/año, flota<input id="downtime" type="number" min="0" step="1" value="40500"></label>
+            <label>Costo BHP por hora de detención (USD)<input id="hourCost" type="number" min="0" step="1" value="165"></label>
+            <label>Reducción esperada de horas (%)<input id="reduction" type="number" min="0" max="100" step="1" value="20"></label>
+            <label>Daño y mantenimiento evitado/año, flota (USD)<input id="avoidedCost" type="number" min="0" step="1000" value="0"></label>
+          </div>
+        </div>
+        <div class="group">
+          <h2>Costos del programa</h2>
+          <div class="field-grid">
+            <label>Edge base por unidad (USD)<input id="edge" type="number" min="0" step="0.01" value="527.59"></label>
+            <label>Sensores por unidad (USD)<input id="sensors" type="number" min="0" step="100" value="2300"></label>
+            <label>MadeOS por mes, programa (USD)<input id="platform" type="number" min="0" step="50" value="600"></label>
+            <label>Meses de servicio<input id="months" type="number" min="1" step="1" value="12"></label>
+            <label>Ingeniería Made, total (USD)<input id="engineering" type="number" min="0" step="1000" value="0"></label>
+            <label>Terreno Just Partners, total (USD)<input id="field" type="number" min="0" step="1000" value="0"></label>
+          </div>
+        </div>
+      </section>
+      <aside class="results" aria-live="polite">
+        <h2>Resultado por unidad</h2>
+        <div class="result"><span>Beneficio anual estimado</span><b id="benefit">—</b></div>
+        <div class="result"><span>Costo total del programa, por unidad</span><b id="cost">—</b></div>
+        <div class="result"><span>Beneficio neto anual</span><b id="net">—</b></div>
+        <div class="result primary"><span>ROI neto</span><b id="roi">—</b></div>
+        <div class="result"><span>Periodo de recuperación</span><b id="payback">—</b></div>
+        <p class="formula">ROI neto = (beneficio anual por unidad − costo total por unidad) ÷ costo total por unidad.</p>
+      </aside>
+    </div>
+    <p class="note">Valores iniciales: 40.500 horas/año confirmadas por el desafío BHP; USD 165/hora derivado del escenario temprano compartido. Sustituir por costo real BHP, reducción observada y costos cerrados antes de utilizar el resultado para una decisión de inversión.</p>
+  </main>
+  <script>
+    const ids = ['units','downtime','hourCost','reduction','avoidedCost','edge','sensors','platform','months','engineering','field'];
+    const currency = value => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(value);
+    const number = id => Math.max(0, Number(document.getElementById(id).value) || 0);
+    const update = () => {
+      const units = Math.max(1, number('units'));
+      const benefit = ((number('downtime') * number('hourCost') * (number('reduction') / 100)) + number('avoidedCost')) / units;
+      const totalCost = (units * (number('edge') + number('sensors'))) + (number('platform') * number('months')) + number('engineering') + number('field');
+      const cost = totalCost / units;
+      const net = benefit - cost;
+      const roi = cost > 0 ? (net / cost) * 100 : 0;
+      const payback = benefit > 0 ? (cost / benefit) * 12 : 0;
+      document.getElementById('benefit').textContent = currency(benefit);
+      document.getElementById('cost').textContent = currency(cost);
+      document.getElementById('net').textContent = currency(net);
+      document.getElementById('roi').textContent = `${new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(roi)}%`;
+      document.getElementById('payback').textContent = payback > 0 ? `${payback.toFixed(1)} meses` : '—';
+    };
+    ids.forEach(id => document.getElementById(id).addEventListener('input', update));
+    update();
+  </script>
+</body>
+</html>

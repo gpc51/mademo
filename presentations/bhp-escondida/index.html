@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Presentación ejecutiva del piloto BHP × Just Partners × Made.">
+  <title>BHP × Just Partners × Made | Piloto predictivo</title>
+  <style>
+    :root {
+      --ink: #182126;
+      --muted: #647176;
+      --paper: #f4f3ee;
+      --white: #fff;
+      --orange: #e84700;
+      --green: #078b43;
+      --blue: #2d4794;
+      --line: rgba(24,33,38,.15);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+    body { margin: 0; color: var(--ink); background: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; letter-spacing: .005em; }
+    button { font: inherit; }
+    .slide {
+      position: relative; min-height: 100vh; min-height: 100svh; overflow: hidden; scroll-snap-align: start;
+      display: grid; align-items: center; padding: clamp(50px, 6vw, 92px) clamp(34px, 4.5vw, 76px); background: var(--paper);
+    }
+    .slide.dark { color: var(--white); background: var(--ink); }
+    .slide.white { background: var(--white); }
+    .slide.orange { color: var(--white); background: var(--orange); }
+    .slide::before { content: attr(data-number); position: absolute; top: 30px; right: 40px; color: var(--muted); font-size: 12px; font-weight: 900; letter-spacing: .14em; }
+    .slide.dark::before, .slide.orange::before { color: rgba(255,255,255,.5); }
+    .content { width: min(1360px, 100%); margin: auto; }
+    .kicker { display: block; margin-bottom: 22px; color: var(--orange); font-size: 12px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+    .dark .kicker, .orange .kicker { color: #ff9567; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 1320px; margin-bottom: 28px; font-size: clamp(54px, 7.2vw, 106px); line-height: 1.05; letter-spacing: -.045em; }
+    h2 { max-width: 1240px; margin-bottom: 46px; font-size: clamp(43px, 5.2vw, 76px); line-height: 1.08; letter-spacing: -.04em; }
+    h3 { font-size: clamp(24px, 2.4vw, 34px); line-height: 1.15; letter-spacing: -.02em; }
+    .lead { max-width: 830px; margin: 0; color: var(--muted); font-size: clamp(20px, 2vw, 28px); line-height: 1.48; }
+    .dark .lead { color: #bac4c8; }
+    .logos { position: absolute; top: 30px; left: clamp(36px, 8vw, 128px); display: flex; align-items: center; gap: 18px; }
+    .logos img:first-child { width: 150px; }
+    .logos img:last-child { width: 105px; }
+    .logos span { color: #aeb6b8; }
+    .dark .logos { padding: 10px 14px; border-radius: 12px; background: rgba(255,255,255,.96); }
+    .logo-footer { top: auto; right: auto; bottom: 34px; left: 50%; transform: translateX(-50%); }
+    .logos-inline { position: static; width: fit-content; margin: 0 0 30px; transform: none; }
+    .challenge-block { position: relative; display: grid; justify-items: start; gap: 14px; margin-bottom: 30px; padding-left: 19px; }
+    .challenge-block::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; border-radius: 3px; background: var(--orange); }
+    .challenge-block .eyebrow { margin: 0; }
+    .challenge-logos { display: flex; align-items: center; gap: 26px; }
+    .challenge-logos img { display: block; object-fit: contain; }
+    .challenge-logos .escondida { width: 228px; height: auto; }
+    .challenge-logos .aster { width: 112px; height: auto; }
+    .hero-mark { position: absolute; right: -6vw; bottom: -24vh; width: 52vw; height: 76vh; border: 1px solid rgba(232,71,0,.5); border-radius: 50%; }
+    .hero-mark::before, .hero-mark::after { content: ""; position: absolute; border: 1px solid rgba(232,71,0,.3); border-radius: inherit; }
+    .hero-mark::before { inset: 9%; }
+    .hero-mark::after { inset: 20%; background: rgba(232,71,0,.08); }
+    .signature { margin-top: 48px; color: #9fa9ad; font-size: 14px; font-weight: 750; }
+
+    /* Visual narrative: each image is intentionally composed with protected copy space. */
+    #portada {
+      background-image: linear-gradient(90deg, rgba(10,15,18,.96) 0%, rgba(10,15,18,.78) 45%, rgba(10,15,18,.14) 100%), url("assets/01-portada.png");
+      background-position: center; background-size: cover;
+    }
+    #portada .hero-mark { opacity: .36; }
+    #analisis {
+      background-image: linear-gradient(90deg, rgba(244,243,238,.97) 0%, rgba(244,243,238,.88) 54%, rgba(244,243,238,.36) 100%), url("assets/02-analisis.png");
+      background-position: center; background-size: cover;
+    }
+    #analisis .chain { padding: 0 24px; border-radius: 20px; background: rgba(255,255,255,.48); box-shadow: 0 18px 50px rgba(24,33,38,.08); backdrop-filter: blur(8px); }
+    #propuesta {
+      background-image: linear-gradient(90deg, rgba(18,25,29,.98) 0%, rgba(18,25,29,.88) 51%, rgba(18,25,29,.20) 100%), url("assets/03-propuesta.png");
+      background-position: center; background-size: cover;
+    }
+    #inversion {
+      background-image: linear-gradient(90deg, rgba(232,71,0,.98) 0%, rgba(232,71,0,.92) 50%, rgba(183,54,0,.64) 100%), url("assets/04-inversion.png");
+      background-position: center; background-size: cover;
+    }
+    #tiempos {
+      background-image: linear-gradient(90deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.91) 58%, rgba(255,255,255,.50) 100%), url("assets/05-tiempos.png");
+      background-position: center; background-size: cover;
+    }
+    #tiempos .gantt { padding: 9px 20px; border-radius: 20px; background: rgba(255,255,255,.58); box-shadow: 0 18px 50px rgba(24,33,38,.08); backdrop-filter: blur(8px); }
+    #experiencia {
+      background-image: linear-gradient(90deg, rgba(18,25,29,.98) 0%, rgba(18,25,29,.88) 47%, rgba(18,25,29,.18) 100%), url("assets/06-experiencia.png");
+      background-position: center; background-size: cover;
+    }
+    #cierre {
+      background-image: linear-gradient(90deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.90) 50%, rgba(255,255,255,.22) 100%), url("assets/07-cierre.png");
+      background-position: center; background-size: cover;
+    }
+
+    .analysis-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(45px, 8vw, 120px); align-items: end; }
+    .big-number { color: var(--orange); font-size: clamp(86px, 13vw, 190px); font-weight: 950; line-height: .8; letter-spacing: -.08em; }
+    .big-number-label { max-width: 340px; margin-top: 26px; color: var(--muted); font-size: 19px; }
+    .chain { display: grid; gap: 0; }
+    .chain-step { display: grid; grid-template-columns: 48px 1fr; gap: 20px; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .chain-step:last-child { border-bottom: 0; }
+    .chain-step span { color: var(--orange); font-size: 12px; font-weight: 950; }
+    .chain-step b { display: block; font-size: clamp(25px, 2.6vw, 38px); letter-spacing: -.035em; }
+    .chain-step small { color: var(--muted); font-size: 15px; }
+
+    .proposal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; border-block: 1px solid rgba(255,255,255,.17); }
+    .proposal-step { min-height: 290px; padding: 32px; border-right: 1px solid rgba(255,255,255,.17); }
+    .proposal-step:last-child { border-right: 0; }
+    .proposal-step span { color: #ff9567; font-size: 12px; font-weight: 950; letter-spacing: .15em; }
+    .proposal-step h3 { margin: 84px 0 12px; font-size: clamp(30px, 3.2vw, 48px); }
+    .proposal-step p { max-width: 260px; color: #aeb9bd; font-size: 17px; }
+    .proposal-outcome { margin-top: 34px; color: #dbe2e4; font-size: clamp(22px, 2.2vw, 30px); }
+    .proposal-outcome b { color: var(--white); }
+    .proposal-architecture { margin-top: 18px; color: #8f9ba0; font-size: 14px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+
+    .cost-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(50px, 8vw, 110px); align-items: center; }
+    .zero { font-size: clamp(130px, 20vw, 270px); font-weight: 950; line-height: .7; letter-spacing: -.09em; }
+    .zero-label { margin-top: 34px; font-size: clamp(24px, 2.6vw, 36px); font-weight: 850; }
+    .roi-label { display: block; margin-bottom: 22px; color: rgba(255,255,255,.72); font-size: 12px; font-weight: 950; letter-spacing: .16em; text-transform: uppercase; }
+    .roi-value { font-size: clamp(64px, 7.4vw, 122px); font-weight: 950; line-height: .9; letter-spacing: -.055em; white-space: nowrap; }
+    .roi-sub { margin-top: 30px; font-size: clamp(21px, 2.25vw, 30px); font-weight: 850; line-height: 1.1; }
+    .costs { display: grid; gap: 19px; }
+    .cost-row { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; padding-bottom: 17px; border-bottom: 1px solid rgba(255,255,255,.25); }
+    .cost-row span { color: rgba(255,255,255,.7); font-size: 17px; }
+    .cost-row b { font-size: clamp(23px, 2.4vw, 34px); text-align: right; }
+    .return-line { margin-top: 34px; padding-top: 24px; color: rgba(255,255,255,.78); font-size: 20px; }
+    .return-line strong { color: var(--white); }
+
+    .gantt { display: grid; grid-template-columns: 1.5fr repeat(5, 1fr); align-items: center; font-size: 15px; }
+    .gantt > div { min-height: 55px; display: flex; align-items: center; padding: 10px 13px; border-bottom: 1px solid var(--line); }
+    .gantt .head { min-height: 42px; color: var(--muted); font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .gantt .label { font-weight: 850; }
+    .bar { width: 100%; height: 12px; border-radius: 20px; background: var(--orange); }
+    .bar.green { background: var(--green); }
+    .bar.blue { background: var(--blue); }
+    .bar.gray { background: #a9b1b3; }
+    .milestones { margin-top: 30px; display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
+    .milestones b { display: block; color: var(--ink); font-size: 22px; }
+
+    .experience-layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(60px, 10vw, 150px); align-items: end; }
+    .budget-value { color: var(--orange); font-size: clamp(70px, 9.3vw, 132px); font-weight: 950; line-height: .78; letter-spacing: -.09em; }
+    .budget-label { max-width: 390px; margin-top: 30px; color: #aeb9bd; font-size: 20px; }
+    .capabilities { display: grid; gap: 24px; }
+    .capability { padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,.18); }
+    .capability b { display: block; font-size: clamp(23px, 2.4vw, 33px); }
+    .capability span { color: #aeb9bd; }
+    .proof-note { margin-top: 25px; color: #7f8d92; font-size: 13px; }
+
+    .close-list { margin-top: 58px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
+    .close-item { padding: 28px; background: var(--paper); }
+    .close-item span { color: var(--orange); font-size: 12px; font-weight: 950; }
+    .close-item b { display: block; margin-top: 30px; font-size: clamp(21px, 2.2vw, 31px); line-height: 1.1; }
+    .closing-line { margin-top: 46px; color: var(--muted); font-size: clamp(20px, 2.1vw, 29px); }
+    .closing-line strong { color: var(--ink); }
+
+    .controls { position: fixed; z-index: 50; right: 22px; top: 50%; transform: translateY(-50%); display: grid; gap: 10px; }
+    .dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: rgba(100,113,118,.35); cursor: pointer; }
+    .dot.active { background: var(--orange); transform: scale(1.45); }
+    .hint { position: fixed; z-index: 50; right: 24px; bottom: 18px; color: #8a969a; font-size: 11px; }
+    .source { position: absolute; left: clamp(36px, 8vw, 128px); bottom: 24px; color: rgba(100,113,118,.75); font-size: 10px; }
+    .dark .source, .orange .source { color: rgba(255,255,255,.45); }
+
+    @media (max-width: 760px) {
+      .slide { min-height: auto; padding: 86px 28px 70px; }
+      .analysis-layout, .cost-layout, .experience-layout { grid-template-columns: 1fr; }
+      .proposal, .close-list { grid-template-columns: 1fr; }
+      .proposal-step { min-height: auto; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.17); }
+      .proposal-step h3 { margin-top: 30px; }
+      .gantt { grid-template-columns: 1.25fr repeat(5, .7fr); font-size: 11px; }
+      .gantt > div { padding: 8px 4px; }
+      .milestones { display: grid; grid-template-columns: repeat(2,1fr); gap: 15px; }
+      .controls, .hint { display: none; }
+      .logos { left: 28px; }
+      .logos img:first-child { width: 118px; }
+      .logos img:last-child { width: 82px; }
+      .logo-footer { left: 50%; bottom: 22px; }
+      .challenge-block { gap: 11px; margin-bottom: 24px; padding-left: 14px; }
+      .challenge-logos { gap: 16px; }
+      .challenge-logos .escondida { width: 158px; }
+      .challenge-logos .aster { width: 78px; }
+      #portada, #analisis, #propuesta, #inversion, #tiempos, #experiencia, #cierre { background-position: 65% center; }
+      #analisis .chain, #tiempos .gantt { padding: 10px 14px; }
+    }
+    @media print {
+      html { scroll-snap-type: none; }
+      .slide { width: 100vw; height: 56.25vw; min-height: 0; break-after: page; }
+      .controls, .hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="slide dark" id="portada" data-number="01 / 07">
+      <div class="hero-mark" aria-hidden="true"></div>
+      <div class="content">
+        <div class="challenge-block">
+          <div class="challenge-logos" aria-label="BHP Escondida y Aster"><img class="escondida" src="assets/escondida-35.png" alt="BHP Escondida 35 años"><img class="aster" src="assets/aster.png" alt="Aster"></div>
+          <span class="eyebrow">Operaciones Mina - Desafío operacional : Contaminación por polvo en motores</span>
+        </div>
+        <h1>Anticipar la contaminación particulada para proteger motores y extender la vida útil.</h1>
+        <div class="logos logos-inline"><img src="assets/just-partners.png" alt="Just Partners"><span>×</span><img src="assets/made.png" alt="Made"></div>
+        <p class="lead">Inteligencia predictiva para motores CAEX.</p>
+      </div>
+    </section>
+
+    <section class="slide" id="analisis" data-number="02 / 07">
+      <div class="content">
+        <span class="kicker">Análisis</span>
+        <h2>La información operacional debe convertirse en decisiones oportunas.</h2>
+        <div class="analysis-layout">
+          <div><div class="big-number">40.500</div><p class="big-number-label">horas de detención por fallas de motor durante el último año.</p></div>
+          <div class="chain">
+            <div class="chain-step"><span>01</span><div><b>Exposición</b><small>Ruta · carga · polvo</small></div></div>
+            <div class="chain-step"><span>02</span><div><b>Degradación</b><small>Admisión · aceite · temperatura</small></div></div>
+            <div class="chain-step"><span>03</span><div><b>Riesgo</b><small>Anomalía · subsistema · ventana</small></div></div>
+            <div class="chain-step"><span>04</span><div><b>Intervención</b><small>Inspeccionar · muestrear · programar</small></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="source">Fuente: desafío OpenAster BHP Escondida, “Contaminación por polvo en motores”, 2026.</div>
+    </section>
+
+    <section class="slide dark" id="propuesta" data-number="03 / 07">
+      <div class="content">
+        <span class="kicker">Propuesta</span>
+        <h2>Una validación basada en datos históricos y sensorización focalizada.</h2>
+        <div class="proposal">
+          <div class="proposal-step"><span>01</span><h3>Reconstruir</h3><p>24–36 meses de historia por activo.</p></div>
+          <div class="proposal-step"><span>02</span><h3>Completar</h3><p>Sensores solo donde falte evidencia.</p></div>
+          <div class="proposal-step"><span>03</span><h3>Validar</h3><p>12 semanas en shadow mode.</p></div>
+        </div>
+        <p class="proposal-outcome"><b>5–15 camiones</b> · mínimo cinco por modelo seleccionado.</p>
+        <p class="proposal-architecture">Fuentes autorizadas → Edge read-only → MadeOS → Gemelo digital → Alertas</p>
+      </div>
+    </section>
+
+    <section class="slide orange" id="inversion" data-number="04 / 07">
+      <div class="content">
+        <span class="kicker">Inversión y retorno</span>
+        <h2>BHP valida la tecnología sin financiar margen de proveedor.</h2>
+        <div class="cost-layout">
+          <div><span class="roi-label">Impacto por unidad*</span><div class="roi-value">USD 74–131k</div><div class="roi-sub">impacto económico anual estimado por unidad</div></div>
+          <div>
+            <div class="costs">
+              <div class="cost-row"><span>Edge base por unidad</span><b>Desde USD 527,59</b></div>
+              <div class="cost-row"><span>MadeOS · hasta 1 TB</span><b>USD 600/mes</b></div>
+              <div class="cost-row"><span>Sensores + integración</span><b>A costo</b></div>
+              <div class="cost-row"><span>Ingeniería Made</span><b>A costo</b></div>
+            </div>
+            <div class="return-line"><strong>Retorno:</strong> detención evitada + daño secundario evitado − costo del piloto.</div>
+          </div>
+        </div>
+      </div>
+      <div class="source">*Escenario de referencia Made: USD 1,48–2,62M para 20 camiones durante 12 meses. El ROI real por unidad se calcula con costos, horas y reducción validados por BHP. <a href="roi-model.html">Abrir modelo ROI</a></div>
+    </section>
+
+    <section class="slide white" id="tiempos" data-number="05 / 07">
+      <div class="content">
+        <span class="kicker">Tiempos</span>
+        <h2>20 semanas para probar estabilidad, anticipación y utilidad.</h2>
+        <div class="gantt" aria-label="Cronograma del piloto">
+          <div class="head">Frente</div><div class="head">S1–2</div><div class="head">S3–4</div><div class="head">S5–6</div><div class="head">S7–8</div><div class="head">S9–20</div>
+          <div class="label">Datos y seguridad</div><div><span class="bar"></span></div><div></div><div></div><div></div><div></div>
+          <div class="label">Edge, CAN y lectura</div><div><span class="bar blue"></span></div><div><span class="bar blue"></span></div><div></div><div></div><div></div>
+          <div class="label">Gemelo y entorno de prueba</div><div></div><div></div><div><span class="bar green"></span></div><div></div><div></div>
+          <div class="label">Línea base y aprobación</div><div></div><div></div><div></div><div><span class="bar green"></span></div><div></div>
+          <div class="label">Shadow mode</div><div></div><div></div><div></div><div></div><div><span class="bar gray"></span></div>
+        </div>
+        <div class="milestones"><div><b>S2</b>Fuentes habilitadas</div><div><b>S4</b>Lectura en tiempo real</div><div><b>S6</b>Gemelo en prueba</div><div><b>S8</b>Aprobación operacional</div><div><b>S20</b>Decisión de escala</div></div>
+      </div>
+    </section>
+
+    <section class="slide dark" id="experiencia" data-number="06 / 07">
+      <div class="content">
+        <span class="kicker">Capacidades y presupuesto</span>
+        <h2>Presupuesto tecnológico estimado para el piloto.</h2>
+        <div class="experience-layout">
+          <div><div class="budget-value">USD<br>16–50k</div><p class="budget-label">costos directos de tecnología para un piloto de 5–15 unidades.</p></div>
+          <div class="capabilities">
+            <div class="capability"><b>5 unidades · USD 16–19k</b><span>Edge base, sensorización y MadeOS por cinco meses.</span></div>
+            <div class="capability"><b>10 unidades · USD 28–34k</b><span>Edge base, sensorización y MadeOS por cinco meses.</span></div>
+            <div class="capability"><b>15 unidades · USD 41–50k</b><span>Edge base, sensorización y MadeOS por cinco meses.</span></div>
+          </div>
+        </div>
+        <p class="proof-note">Estimación a costo. Excluye ingeniería Made, hardware adicional del edge, y viajes, acreditaciones e implementación de terreno de Just Partners.</p>
+      </div>
+    </section>
+
+    <section class="slide white" id="cierre" data-number="07 / 07">
+      <div class="logos logo-footer"><img src="assets/just-partners.png" alt="Just Partners"><span>×</span><img src="assets/made.png" alt="Made"></div>
+      <div class="content">
+        <span class="kicker">Decisión</span>
+        <h2>Aprobación solicitada: piloto de validación.</h2>
+        <div class="close-list">
+          <div class="close-item"><span>01</span><b>Seleccionar 5–15 unidades</b></div>
+          <div class="close-item"><span>02</span><b>Habilitar históricos y diccionarios</b></div>
+          <div class="close-item"><span>03</span><b>Acordar costos y criterios de éxito</b></div>
+        </div>
+        <p class="closing-line"><strong>La evidencia del piloto fundamentará la decisión de escalamiento.</strong></p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="controls" aria-label="Navegación por slides"></nav>
+  <div class="hint">↑ ↓ · espacio · F pantalla completa</div>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const controls = document.querySelector('.controls');
+    let current = 0;
+    slides.forEach((slide, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot';
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Ir a slide ${index + 1}`);
+      dot.addEventListener('click', () => slide.scrollIntoView({ behavior: 'smooth' }));
+      controls.append(dot);
+    });
+    const dots = [...controls.children];
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          current = slides.indexOf(entry.target);
+          dots.forEach((dot, index) => dot.classList.toggle('active', index === current));
+          history.replaceState(null, '', `#${entry.target.id}`);
+        }
+      });
+    }, { threshold: .62 });
+    slides.forEach(slide => observer.observe(slide));
+    const go = index => slides[Math.max(0, Math.min(slides.length - 1, index))].scrollIntoView({ behavior: 'smooth' });
+    document.addEventListener('keydown', event => {
+      if (['ArrowDown', 'ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); go(current + 1); }
+      if (['ArrowUp', 'ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); go(current - 1); }
+      if (event.key === 'Home') go(0);
+      if (event.key === 'End') go(slides.length - 1);
+      if (event.key.toLowerCase() === 'f') document.documentElement.requestFullscreen?.();
+    });
+    const initial = slides.findIndex(slide => `#${slide.id}` === location.hash);
+    if (initial >= 0) { current = initial; dots[initial].classList.add('active'); }
+    else dots[0].classList.add('active');
+  </script>
+</body>
+</html>
