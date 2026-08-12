@@ -414,6 +414,12 @@
     .exclusions { margin:0; padding:0; list-style:none; border-top:1px solid rgba(24,33,38,.18); }
     .exclusions li { padding:15px 0; border-bottom:1px solid rgba(24,33,38,.18); font-size:clamp(17px,1.3vw,21px); line-height:1.28; }
     .exclusions li::before { content:'—'; margin-right:10px; color:var(--orange); font-weight:900; }
+    .terms-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .terms-card { padding:22px 26px; border:1px solid rgba(24,33,38,.14); border-radius:18px; background:rgba(255,255,255,.82); box-shadow:0 14px 34px rgba(24,33,38,.08); }
+    .terms-card h3 { margin:0 0 12px; color:var(--orange); font-size:clamp(21px,1.8vw,28px); }
+    .terms-card ul { margin:0; padding-left:20px; }
+    .terms-card li { margin:8px 0; font-size:clamp(15px,1.12vw,18px); line-height:1.28; }
+    #anexo-terminos h2 { margin-bottom:22px; font-size:clamp(40px,4.4vw,62px); }
     #anexo-regimen { padding-top:34px; padding-bottom:34px; }
     #anexo-regimen .kicker { margin-bottom:10px; }
     #anexo-regimen h2 { margin-bottom:18px; font-size:clamp(40px,4.4vw,62px); }
@@ -425,6 +431,12 @@
     #anexo-regimen .regime-layout > div:last-child h3 { margin-bottom:12px; }
     #anexo-regimen .exclusions li { padding:10px 0; font-size:clamp(14px,1.1vw,17px); }
     #anexo-regimen .annex-source { margin-top:10px; font-size:10px; line-height:1.25; }
+    #anexo-terminos { padding-top:30px; padding-bottom:30px; }
+    #anexo-terminos h2 { margin-bottom:16px; font-size:clamp(38px,4vw,56px); }
+    #anexo-terminos .terms-grid { gap:14px; }
+    #anexo-terminos .terms-card { padding:15px 20px; }
+    #anexo-terminos .terms-card h3 { margin-bottom:8px; font-size:clamp(19px,1.55vw,25px); }
+    #anexo-terminos .terms-card li { margin:5px 0; font-size:clamp(13px,1vw,16px); line-height:1.22; }
     .annex-source { margin-top:18px; color:rgba(24,33,38,.58); font-size:12px; }
 
     .close-pitch { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(42px, 8vw, 130px); align-items: end; }
@@ -511,6 +523,7 @@
       .annex-grid { grid-template-columns:1fr; }
       .annex-card { min-height:0; }
       .team-grid, .regime-layout { grid-template-columns:1fr; }
+      .terms-grid { grid-template-columns:1fr; }
     }
     @media print {
       html { scroll-snap-type: none; }
@@ -658,7 +671,7 @@
       </div>
     </section>
 
-    <section class="slide annex-slide" id="anexo-kpis" data-number="09 / 12">
+    <section class="slide annex-slide" id="anexo-kpis" data-number="09 / 13">
       <div class="content">
         <span class="kicker">Anexo · Criterios de éxito</span>
         <h2>Metodología, KPIs y entregables.</h2>
@@ -671,7 +684,7 @@
       </div>
     </section>
 
-    <section class="slide annex-slide" id="anexo-bhp" data-number="10 / 12">
+    <section class="slide annex-slide" id="anexo-bhp" data-number="10 / 13">
       <div class="content">
         <span class="kicker">Anexo · Dependencias del piloto</span>
         <h2>Requerimientos a BHP Escondida.</h2>
@@ -683,7 +696,7 @@
       </div>
     </section>
 
-    <section class="slide annex-slide" id="anexo-equipo" data-number="11 / 12">
+    <section class="slide annex-slide" id="anexo-equipo" data-number="11 / 13">
       <div class="content">
         <span class="kicker">Anexo · Capacidad de ejecución</span>
         <h2>Equipo dedicado al desafío.</h2>
@@ -695,7 +708,7 @@
       </div>
     </section>
 
-    <section class="slide annex-slide" id="anexo-regimen" data-number="12 / 12">
+    <section class="slide annex-slide" id="anexo-regimen" data-number="12 / 13">
       <div class="content">
         <span class="kicker">Anexo · Modelo comercial</span>
         <div class="regime-layout">
@@ -704,7 +717,7 @@
             <div class="regime-lines">
               <div class="regime-line"><span>MadeOS · suscripción por CAEX<small>Software, modelos, portal, alertas y soporte remoto.</small></span><b>USD 495<small>por CAEX/mes</small></b></div>
               <div class="regime-line"><span>Procesamiento incluido<small>Volumen dimensionado a 500 GB por CAEX/mes.</small></span><b>500 GB<small>por CAEX/mes</small></b></div>
-              <div class="regime-line"><span>Consumo adicional<small>Sobre el volumen mensual contratado.</small></span><b>USD 990<small>por TB</small></b></div>
+              <div class="regime-line"><span>Consumo adicional<small>Sobre el volumen mensual contratado.</small></span><b>USD 1.750<small>por TB</small></b></div>
               <div class="regime-line"><span>Edge industrial RevPi Connect 5<small>Pago único por unidad desplegada.</small></span><b>USD 3.500<small>por unidad</small></b></div>
             </div>
           </div>
@@ -718,8 +731,21 @@
               <li>Red privada LTE, SIM, APN, ciberseguridad corporativa y servicios provistos por BHP.</li>
               <li>Almacenamiento histórico, retención o transferencia superiores al volumen contratado.</li>
             </ul>
-            <p class="annex-source">Base de precio: edge con margen bruto objetivo de 75,6% sobre el costo de USD 855,13; suscripción dimensionada para cubrir hasta 105 TB/mes de procesamiento, producto y soporte; consumo adicional con 65% sobre el costo de USD 600/TB. Sensorización, integración, acreditaciones y soporte presencial se cotizan por unidad. Contrato sugerido: 36 meses, ajuste anual por IPC de EE.UU. y revisión de volumen cada 12 meses. El ROI se definirá con los resultados observados durante el piloto.</p>
+            <p class="annex-source">Base de precio: edge con margen bruto objetivo de 75,6% sobre el costo de USD 855,13; suscripción dimensionada para cubrir el consumo realista, producto y soporte; consumo adicional con aproximadamente 66% sobre el costo de USD 600/TB. Sensorización, integración, acreditaciones y soporte presencial se cotizan por unidad. Contrato sugerido: 36 meses, ajuste anual por IPC de EE.UU. y revisión de volumen cada 12 meses. El ROI se definirá con los resultados observados durante el piloto.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide annex-slide" id="anexo-terminos" data-number="13 / 13">
+      <div class="content">
+        <span class="kicker">Anexo · Términos comerciales propuestos</span>
+        <h2>Condiciones de operación MadeOS.</h2>
+        <div class="terms-grid">
+          <article class="terms-card"><h3>Servicio y facturación</h3><ul><li>USD 495 por CAEX/mes, facturado mensualmente por unidad activa.</li><li>Incluye hasta 500 GB por CAEX/mes. Excedente: USD 1.750/TB.</li><li>Contrato inicial sugerido de 36 meses, con ajuste anual por IPC de EE.UU.</li><li>Impuestos, retenciones y tipo de cambio se aplican según contrato y legislación vigente.</li></ul></article>
+          <article class="terms-card"><h3>Edge industrial</h3><ul><li>USD 3.500 por unidad, pago único.</li><li>Incluye configuración, hardening, pruebas de aceptación y puesta en servicio lógica.</li><li>Incluye garantía propuesta durante la vigencia contractual y stock de reemplazo para continuidad operativa.</li><li>Made absorbe el riesgo de obsolescencia tecnológica del modelo soportado; los reemplazos por cambios de faena se cotizan aparte.</li></ul></article>
+          <article class="terms-card"><h3>Operación y soporte</h3><ul><li>MadeOS opera en modo read-only y no escribe en ECU, VIMS ni sistemas de control.</li><li>Incluye monitoreo remoto, mantenimiento de modelos y soporte de plataforma.</li><li>Ventanas de instalación, acreditaciones, viajes, maniobras y soporte presencial permanecen a cargo de Just Partners o se cotizan por separado.</li><li>Los niveles de servicio, horarios de atención y tiempos de respuesta se formalizan en el SLA.</li></ul></article>
+          <article class="terms-card"><h3>Datos y cierre contractual</h3><ul><li>BHP conserva la titularidad de sus datos y MadeOS los procesa para prestar el servicio.</li><li>Retención histórica, exportaciones, integraciones OEM y almacenamiento fuera del volumen contratado requieren cotización específica.</li><li>La continuidad, renovación y escalamiento dependen de la validación del piloto y de los criterios de aceptación acordados.</li><li>Estos términos son una base comercial y quedan sujetos a revisión legal, ciberseguridad y Compras BHP.</li></ul></article>
         </div>
       </div>
     </section>
