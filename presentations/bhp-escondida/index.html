@@ -44,6 +44,7 @@
     .logos span { color: #aeb6b8; }
     .dark .logos { padding: 10px 14px; border-radius: 12px; background: rgba(255,255,255,.96); }
     .logo-footer { top: auto; right: auto; bottom: 34px; left: 50%; transform: translateX(-50%); }
+    #cierre .logo-footer { bottom: 84px; }
     .logos-inline { position: static; width: fit-content; margin: 0 0 0; transform: none; }
     .challenge-block { position: relative; display: grid; justify-items: start; gap: 14px; margin-bottom: 30px; padding-left: 19px; }
     .challenge-block::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; border-radius: 3px; background: var(--orange); }
@@ -227,6 +228,7 @@
     #cierre .close-pitch h2 { max-width: none; margin-bottom: 36px; font-size: clamp(28px, 3vw, 48px); letter-spacing: -.045em; white-space: nowrap; }
     #cierre .close-outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; border-top: 1px solid var(--line); }
     #cierre .close-outcome { padding: 22px 0; border-bottom: 1px solid var(--line); }
+    #cierre .kicker { font-size: 13.2px; }
 
     /* Pitch v2: a larger text canvas and only the evidence needed to decide. */
     .slide { padding: clamp(40px, 4.8vw, 74px) clamp(28px, 3.6vw, 61px); }
@@ -358,11 +360,16 @@
 
     .price-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(44px, 8vw, 120px); align-items: start; }
     .price-total { color: var(--orange); font-size: clamp(78px, 9vw, 142px); font-weight: 950; line-height: .82; letter-spacing: -.075em; white-space: nowrap; }
-    .price-total-label { max-width: 500px; margin: 24px 0 0; color: var(--ink); font-size: clamp(22px, 2vw, 29px); font-weight: 800; line-height: 1.22; white-space: nowrap; }
+    .price-total-compact { width: max-content; margin: 18px 0 0 auto; text-align: right; font-size: clamp(58px, 6.2vw, 96px); }
+    .price-total-label { max-width: 500px; margin: 12px 0 0 auto; color: var(--ink); font-size: clamp(22px, 2vw, 29px); font-weight: 800; line-height: 1.22; text-align: right; white-space: nowrap; }
     .price-table { border-top: 1px solid var(--line); }
     .price-row { display: grid; grid-template-columns: 1fr auto; gap: 28px; min-height: 74px; padding: 17px 0; border-bottom: 1px solid var(--line); align-items: center; }
-    .price-row span { color: var(--muted); font-size: 17px; }
+    .price-row span { color: var(--ink); font-size: 17px; font-weight: 800; }
+    .price-row span small { display:block; margin-top:5px; color:var(--muted); font-size:clamp(12px,1vw,15px); font-weight:650; line-height:1.2; }
     .price-row b { font-size: clamp(20px, 1.9vw, 27px); text-align: right; white-space: nowrap; }
+    .price-total-row { margin-top: 10px; border-top: 2px solid var(--ink); }
+    .price-total-row b { color: var(--orange); font-size: clamp(28px, 2.4vw, 38px); }
+    .price-total-row b small { display:block; margin:5px 0 0; color:var(--ink); font-size:.52em; font-weight:800; letter-spacing:-.01em; }
     .price-note { margin: 22px 0 0; color: var(--muted); font-size: 15px; line-height: 1.35; }
     .price-roi { margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--line); }
     .price-roi b { display: block; color: var(--orange); font-size: 13.5px; letter-spacing: .13em; text-transform: uppercase; }
@@ -373,21 +380,33 @@
     #precios .price-roi > span:first-of-type { margin-top: 14px; color: var(--ink); font-size: clamp(22px, 2vw, 29px); font-weight: 800; line-height: 1.22; }
     #precios .price-row span { font-size: clamp(18px, 1.35vw, 21px); }
     #precios .price-row b { font-size: clamp(22px, 2vw, 29px); }
-    #precios .price-note { font-size: 17px; line-height: 1.38; }
+    #precios .price-note { display:none; }
+    #precios .price-layout { grid-template-columns:1.15fr .85fr; }
+    #precios .kicker { font-size: 13.8px; }
+    #precios .price-row span { font-size: clamp(20.7px, 1.55vw, 24px); }
+    #precios .price-row b { font-size: clamp(25.3px, 2.3vw, 33px); }
+    #precios .price-row span small { font-size: clamp(13.8px, 1.15vw, 17px); }
+    #precios .price-impact { align-self:start; margin-top:34px; padding:26px 28px 24px; border:1px solid rgba(24,33,38,.18); border-radius:18px; background:rgba(255,255,255,.58); box-shadow:0 14px 34px rgba(24,33,38,.08); }
+    #precios .price-impact strong { margin-top:0; font-size:clamp(82px,8.5vw,132px); }
+    #precios .price-impact span { margin-top:14px; color:var(--ink); font-size:clamp(22px,1.8vw,28px); font-weight:800; line-height:1.15; }
+    #precios .price-impact b { margin-top:18px; padding-top:14px; border-top:1px solid rgba(24,33,38,.18); font-size:12px; letter-spacing:.12em; }
+    .case-method { margin-top:18px; padding:12px 16px; border-left:4px solid var(--orange); background:rgba(255,255,255,.08); color:rgba(255,255,255,.82); font-size:clamp(14px,1.15vw,18px); line-height:1.28; }
+    .case-method strong { color:var(--white); }
+    #cierre .close-outcome span { max-width:560px; }
 
     .gantt-pitch { display: grid; grid-template-columns: 1.25fr repeat(4, 1fr); border-top: 1px solid var(--line); }
-    .gantt-pitch > div { min-height: 74px; display: flex; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+    .gantt-pitch > div { min-height: 81px; display: flex; align-items: center; padding: 13px 17px; border-bottom: 1px solid var(--line); }
     .gantt-pitch .g-head { min-height: 44px; color: var(--muted); font-size: 11px; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
-    .gantt-pitch .g-label { color: var(--ink); font-size: 18px; font-weight: 850; line-height: 1.12; }
+    .gantt-pitch .g-label { color: var(--ink); font-size: 20px; font-weight: 850; line-height: 1.12; }
     .gantt-pitch .g-label { flex-direction: column; align-items: flex-start; justify-content: center; }
-    .gantt-pitch .g-label .model-training { display: block; margin-top: 7px; color: var(--muted); font-size: 12px; font-weight: 650; line-height: 1.2; }
+    .gantt-pitch .g-label .model-training { display: block; margin-top: 8px; color: var(--muted); font-size: 13px; font-weight: 650; line-height: 1.2; }
     .gantt-pitch .g-cell { justify-content: center; }
-    .gantt-block { width: 100%; height: 13px; border-radius: 100px; background: var(--blue); }
+    .gantt-block { width: 100%; height: 14px; border-radius: 100px; background: var(--blue); }
     .gantt-block.orange { background: var(--orange); }
     .gantt-block.green { background: var(--green); }
     .gantt-block.model { background: #7c61c9; }
-    .gantt-milestones { display: flex; justify-content: space-between; gap: 24px; margin-top: 20px; color: var(--muted); font-size: 13px; }
-    .gantt-milestones b { display: block; color: var(--ink); font-size: 20px; }
+    .gantt-milestones { display: flex; justify-content: space-between; gap: 24px; margin-top: 22px; color: var(--muted); font-size: 14px; }
+    .gantt-milestones b { display: block; color: var(--ink); font-size: 22px; }
     .annex-slide { background: #f4f6f7; color: var(--ink); }
     .annex-slide .content { width: min(1440px,100%); }
     .annex-slide h2 { margin-bottom: 28px; font-size: clamp(42px,4.7vw,68px); }
@@ -425,7 +444,7 @@
     .compliance-table td:nth-child(3) { width:20%; color:var(--muted); }
     .compliance-table td:last-child { width:18%; font-weight:750; }
     #anexo-matriz h2 { margin-bottom:22px; font-size:clamp(40px,4.4vw,62px); }
-    #anexo-equipo h2 { margin-bottom:14px; max-width:1100px; font-size:clamp(30px,3vw,44px); line-height:1.05; }
+    #anexo-equipo h2 { margin-bottom:14px; max-width:none; font-size:clamp(22px,1.9vw,28px); line-height:1.05; letter-spacing:-.03em; white-space:nowrap; }
     #anexo-equipo .team-card { padding:20px 26px; }
     #anexo-equipo .team-card h3 { margin-bottom:14px; }
     #anexo-equipo .team-role { padding:9px 0; }
@@ -456,6 +475,10 @@
     #anexo-regimen .regime-arr { margin-bottom:14px; font-size:clamp(18px,1.7vw,25px); }
     #anexo-regimen .regime-line { padding:10px 0; font-size:clamp(14px,1.08vw,17px); }
     #anexo-regimen .regime-line small { font-size:clamp(11px,.9vw,14px); }
+    #anexo-regimen .jp-pricing-note { margin-top:10px; padding:9px 12px; border-left:4px solid var(--orange); background:rgba(255,255,255,.62); }
+    #anexo-regimen .jp-pricing-note strong { display:block; color:var(--orange); font-size:12px; letter-spacing:.05em; text-transform:uppercase; }
+    #anexo-regimen .jp-pricing-note span { display:block; margin-top:3px; color:var(--ink); font-size:12px; line-height:1.2; }
+    #anexo-regimen .jp-pricing-note small { display:block; margin-top:3px; color:var(--muted); font-size:10px; line-height:1.15; }
     #anexo-regimen .roi-threshold { margin-top:13px; padding:13px 16px; font-size:clamp(15px,1.15vw,18px); }
     #anexo-regimen .regime-layout > div:last-child h3 { margin-bottom:12px; }
     #anexo-regimen .exclusions li { padding:10px 0; font-size:clamp(14px,1.1vw,17px); }
@@ -578,7 +601,7 @@
     <section class="slide dark" id="valor" data-number="03 / 08">
       <div class="content">
         <span class="kicker">Propuesta de valor</span>
-        <h2 class="proposal-impact">55% MENOS DOWNTIME</h2>
+        <h2 class="proposal-impact">HASTA 55% MENOS DOWNTIME</h2>
         <div class="value-proof" aria-label="Elementos de la propuesta de valor">
           <article class="proof-card partner">
             <img src="assets/just-partners-official.png" alt="Just Partners Ingeniería &amp; Consulting">
@@ -646,33 +669,31 @@
             <article class="validation-item"><small>Madurez del modelo</small><strong>65→98%</strong><p>evolución esperada de precisión; falsos positivos de 18% a 2,5%.</p></article>
           </div>
         </div>
+        <div class="case-method"><strong>Método de captura de valor:</strong> horas evitadas × costo BHP/h − costo del piloto. Las horas, eventos de falla y costo BHP/h se validan con BHP antes de calcular el retorno.</div>
       </div>
-      <div class="source">Fuente: Reporte de Validación y Comparativa MadeOS. El 33–50% corresponde a evidencia previa en producción comercial; las metas BHP se validarán con su propia línea base y no son resultados garantizados.</div>
     </section>
 
     <section class="slide" id="precios" data-number="06 / 08">
       <div class="content">
         <span class="kicker">Precios</span>
         <div class="price-layout">
-          <div><div class="price-total">CLP $35,9M</div><p class="price-total-label">881,34 UF · costo total del piloto, con IVA.</p><div class="price-roi"><b>IMPACTO OPERATIVO ESTIMADO · 4 MESES · 5 CAEX</b><strong>112,5 h</strong><span>Horas evitables con 35% de reducción.</span></div></div>
           <div>
             <div class="price-table">
-              <div class="price-row"><span>RR.HH. técnico y de datos</span><b>CLP $13.350.946</b></div>
-              <div class="price-row"><span>CAPEX: edge, materiales y conectividad</span><b>CLP $6.773.990</b></div>
-              <div class="price-row"><span>OPEX: plataforma, logística, HSS y contingencia</span><b>CLP $11.004.662</b></div>
-              <div class="price-row"><span>Administración y seguros</span><b>CLP $4.869.440</b></div>
+              <div class="price-row"><span>CAPEX: edge, materiales y conectividad</span><b>$6.773.990 CLP</b></div>
+              <div class="price-row"><span>OPEX: plataforma, logística, HSS y contingencia</span><b>$11.004.662 CLP</b></div>
+              <div class="price-row"><span>RR.HH. técnico y de datos</span><b>$13.350.946 CLP</b></div>
+              <div class="price-row"><span>Administración y seguros</span><b>$4.869.440 CLP</b></div>
             </div>
-            <p class="price-note">Sin utilidad de proveedor. Incluye CAPEX, OPEX, logística, seguridad, seguros y administración.</p>
+            <div class="price-row price-total-row"><span>Costo total del piloto</span><b>$35,9M CLP <small>881,34 UF · con IVA</small></b></div>
           </div>
         </div>
       </div>
-      <div class="source">Fuente: “presupuesto-piloto-escondida-bhp.pdf”. Referencia UF: CLP $40.846. Todos los valores incluyen IVA. Cálculo: 40.500 h/año ÷ 210 CAEX × 5 CAEX × 4/12 × 35% = 112,5 h.</div>
+      <div class="source">Fuente: “presupuesto-piloto-escondida-bhp.pdf”. Referencia UF: CLP $40.846. Todos los valores incluyen IVA. Cálculo: 40.500 h/año ÷ 210 CAEX × 5 CAEX × 4/12 × 35% = 112,5 h. El presupuesto contempla 7 edge: 5 instalados en CAEX, 1 en inventario de continuidad/reemplazo y 1 unidad tester para el entorno de desarrollo y mejora del edge.</div>
     </section>
 
     <section class="slide white" id="gantt-slide" data-number="07 / 08">
       <div class="content">
         <span class="kicker">Carta Gantt</span>
-        <h2>Acreditación, puesta en marcha y producto en producción.</h2>
         <div class="gantt-pitch" aria-label="Carta Gantt resumida para el piloto de cuatro meses">
           <div class="g-head">Frente</div><div class="g-head">Mes 1</div><div class="g-head">Mes 2</div><div class="g-head">Mes 3</div><div class="g-head">Mes 4</div>
           <div class="g-label">Acreditación y planificación</div><div class="g-cell"><span class="gantt-block orange"></span></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
@@ -680,7 +701,7 @@
           <div class="g-label">Entrenamiento del modelo<small class="model-training">Optimización 3 sem · Validación 2 sem · Prototipo 1 sem</small></div><div class="g-cell"></div><div class="g-cell"><span class="gantt-block model"></span></div><div class="g-cell"><span class="gantt-block model"></span></div><div class="g-cell"></div>
           <div class="g-label">Producto en producción y validación</div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"><span class="gantt-block green"></span></div><div class="g-cell"><span class="gantt-block green"></span></div>
         </div>
-        <div class="gantt-milestones"><div><b>S4</b>Acceso a faena</div><div><b>S10</b>Modelo validado</div><div><b>S16</b>Operación en producción</div></div>
+        <div class="gantt-milestones"><div><b>S4</b>Acceso a faena · gate operativo</div><div><b>S10</b>Modelo validado · gate técnico</div><div><b>S16</b>Operación en producción · decisión</div></div>
       </div>
       <div class="source">Cronograma resumido adaptado de la Carta Gantt del piloto. El producto opera en producción durante los meses 3 y 4; la decisión de escala se entrega al cierre de la semana 16.</div>
     </section>
@@ -694,7 +715,7 @@
           <div class="close-outcomes">
             <div class="close-outcome"><b>ESCALA</b><span><strong>210 CAEX</strong> con telemetría correlacionada y una línea de decisión común.</span></div>
             <div class="close-outcome"><b>META AÑO 1</b><span><strong>55% menos downtime</strong> · 22.275 h anualizadas potencialmente evitables sobre la línea base.</span></div>
-            <div class="close-outcome"><b>ZERO-LOSS</b><span>Visión progresiva: alertas accionables, aprendizaje continuo y reducción sostenida de paros no planeados.</span></div>
+            <div class="close-outcome"><b>DECISIÓN S16</b><span>Escalar por clase de activo, ampliar a la flota o cerrar el piloto con evidencia trazable.</span></div>
           </div>
         </div>
       </div>
@@ -731,9 +752,9 @@
         <h2>Equipo multidisciplinario dedicado, con roles de ingeniería, datos, IA, terreno y ciberseguridad.</h2>
         <div class="team-grid">
           <article class="team-card"><h3>Just Partners</h3><div class="team-role"><b>Juan Ignacio Rivera</b><span>Gerente General · Ing. Civil MSc. · Infraestructura, ingeniería vial y transportes.</span></div><div class="team-role"><b>Ignacio Charlin Reyes</b><span>Gerente de Proyectos · Ing. Civil · Estudios hidráulicos, infraestructura pública y minería.</span></div><div class="team-role"><b>Claudia de la Fuente López</b><span>Directora de Proyectos · Ing. Civil OO.CC. · Eficiencia energética.</span></div><div class="team-role"><b>2 técnicos de terreno</b><span>Instalación, cableado y commissioning en minería.</span></div></article>
-          <article class="team-card"><h3>Made</h3><div class="team-role"><b>Gerardo Peña</b><span>CEO &amp; Co-founder · Diseño industrial y negocios.</span></div><div class="team-role"><b>Ramiro Pantoja</b><span>CTO &amp; Co-founder · Ingeniería mecánica y de software.</span></div><div class="team-role"><b>Gabriel Rodríguez Jordán</b><span>Especialista en inteligencia artificial · Doctor en Ciencias de la Computación · Machine learning, procesamiento de señales y AppSec.</span></div><div class="team-role"><b>Especialista en ciberseguridad</b><span>Seguridad de plataforma, conectividad y gobernanza IT/OT.</span></div></article>
+          <article class="team-card"><h3>Made</h3><div class="team-role"><b>Gerardo Peña</b><span>CEO &amp; Co-founder · Posgrado en negocios. MIT TR 35.</span></div><div class="team-role"><b>Ramiro Pantoja</b><span>CTO &amp; Co-founder · Ingeniería mecánica y de software.</span></div><div class="team-role"><b>Gabriel Rodríguez Jordán</b><span>Especialista en inteligencia artificial · Doctor en Ciencias de la Computación · Machine learning, procesamiento de señales y AppSec.</span></div><div class="team-role"><b>Especialista en ciberseguridad</b><span>Seguridad de plataforma, conectividad y gobernanza IT/OT.</span></div></article>
         </div>
-        <p class="annex-source">Equipo dedicado: 9 personas en total. Los roles y dedicaciones se coordinan con BHP según las ventanas de acreditación, instalación, entrenamiento y validación.</p>
+        <p class="annex-source">Equipo dedicado: 9 personas en total, confirmado y disponible para el piloto. Los roles y dedicaciones se coordinan con BHP según las ventanas de acreditación, instalación, entrenamiento y validación.</p>
       </div>
     </section>
 
@@ -761,6 +782,7 @@
               <div class="regime-line"><span>Consumo adicional<small>Sobre el volumen mensual contratado.</small></span><b>USD 1.750<small>por TB</small></b></div>
               <div class="regime-line"><span>Edge industrial RevPi Connect 5<small>Pago único por unidad desplegada.</small></span><b>USD 4.000<small>por unidad</small></b></div>
             </div>
+            <div class="jp-pricing-note"><strong>Servicios Just Partners</strong><span>Costo directo observado de faena + administración asignada + margen objetivo de Just Partners.</span><small>Se cotiza por alcance, unidad y ventana de trabajo; no forma parte de la suscripción MadeOS.</small></div>
           </div>
           <div>
             <h2>Exclusiones</h2>
@@ -800,10 +822,10 @@
           <thead><tr><th>Criterio</th><th>Evidencia en la propuesta</th><th>Respaldo</th><th>Responsable</th></tr></thead>
           <tbody>
             <tr><td>Solución · 10%</td><td>Arquitectura CAN/J1939 → RevPi Connect 5 → LTE → MadeOS; operación read-only, TRL 9 y evidencia operativa.</td><td>Brochure técnico; ArtisanLab; documentación MadeOS.</td><td>MadeOS</td></tr>
-            <tr><td>Ejecución · 15%</td><td>Equipo dedicado de 9 personas, experiencia minera y tracción verificable de Just Partners.</td><td>CV; proyectos Just Partners; anexo de equipo.</td><td>Just Partners + MadeOS</td></tr>
+            <tr><td>Ejecución · 15%</td><td>Equipo dedicado de 9 personas, confirmado y disponible, con experiencia minera y tracción verificable de Just Partners.</td><td>CV; proyectos Just Partners; anexo de equipo.</td><td>Just Partners + MadeOS</td></tr>
             <tr><td>Caso de negocio · 25%</td><td>40.500 HRS de línea base, KPI de downtime, fórmula de valor y evidencia previa MadeOS.</td><td>Reporte Aster; Reporte MadeOS; datos BHP por validar.</td><td>Equipo conjunto</td></tr>
             <tr><td>Piloto · 25%</td><td>5 CAT 797F, 4 meses, acreditación, entrenamiento, producción, KPIs, Gantt y entregables.</td><td>Metodología de validación; Gantt; criterios de éxito.</td><td>Equipo conjunto</td></tr>
-            <tr><td>Presupuesto · 25%</td><td>CLP $35.999.038 / 881,34 UF con IVA, CAPEX, OPEX, régimen posterior, exclusiones y requerimientos.</td><td>Presupuesto final; modelo comercial; términos contractuales.</td><td>Just Partners + MadeOS</td></tr>
+            <tr><td>Presupuesto · 25%</td><td>CLP $35.999.038 / 881,34 UF con IVA; 5 edge operativos, 1 de continuidad y 1 tester de desarrollo; CAPEX, OPEX, régimen y exclusiones.</td><td>Presupuesto final; modelo comercial; términos contractuales.</td><td>Just Partners + MadeOS</td></tr>
           </tbody>
         </table>
         <p class="annex-source">La matriz sirve como índice de evidencia para el jurado. Los resultados económicos y operativos específicos de BHP se validan durante el piloto.</p>
