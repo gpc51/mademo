@@ -246,7 +246,7 @@
     #valor .proof-card { border-color: rgba(255,255,255,.25); }
     #valor .proof-card h3, #valor .proof-card p { color: var(--white); }
     #valor .source { color: rgba(24,33,38,.66); }
-    #valor .proposal-claim { margin-top: 28px; width: 100%; font-size: clamp(32px, 2.75vw, 42px); line-height: 1.1; letter-spacing: -.035em; white-space: normal; text-align: left; text-align-last: left; }
+    #valor .proposal-claim { margin-top: 28px; width: 100%; max-width: 1260px; font-size: clamp(28px, 2.35vw, 36px); line-height: 1.08; letter-spacing: -.035em; white-space: normal; text-align: left; text-align-last: left; }
     #valor .proposal-claim .claim-emphasis { text-decoration-line: underline; text-decoration-thickness: .08em; text-underline-offset: .12em; }
     #problema { color: var(--white); background-image: linear-gradient(90deg, rgba(10,15,18,.97) 0%, rgba(10,15,18,.88) 54%, rgba(10,15,18,.30) 100%), url("assets/02-analisis.png"); background-position: center; background-size: cover; }
     #problema .problem-label { color: #cbd4d7; }
@@ -416,6 +416,15 @@
     #anexo-evidencia { padding-top:34px; padding-bottom:34px; }
     #anexo-evidencia h2 { margin-bottom:22px; font-size:clamp(40px,4.4vw,62px); }
     #anexo-evidencia .annex-source { margin-top:14px; }
+    .compliance-table { width:100%; border-collapse:collapse; border-top:1px solid rgba(24,33,38,.18); }
+    .compliance-table th, .compliance-table td { padding:14px 16px; border-bottom:1px solid rgba(24,33,38,.16); text-align:left; vertical-align:top; }
+    .compliance-table th { color:var(--orange); font-size:clamp(12px,1vw,15px); letter-spacing:.08em; text-transform:uppercase; }
+    .compliance-table td { color:var(--ink); font-size:clamp(15px,1.18vw,18px); line-height:1.24; }
+    .compliance-table td:first-child { width:19%; font-weight:850; }
+    .compliance-table td:nth-child(2) { width:43%; }
+    .compliance-table td:nth-child(3) { width:20%; color:var(--muted); }
+    .compliance-table td:last-child { width:18%; font-weight:750; }
+    #anexo-matriz h2 { margin-bottom:22px; font-size:clamp(40px,4.4vw,62px); }
     #anexo-equipo h2 { margin-bottom:14px; max-width:1100px; font-size:clamp(30px,3vw,44px); line-height:1.05; }
     #anexo-equipo .team-card { padding:20px 26px; }
     #anexo-equipo .team-card h3 { margin-bottom:14px; }
@@ -587,7 +596,7 @@
             <p>Sistema operativo que analiza data histórica y en tiempo real para prevenir eventos críticos en industrias pesadas.</p>
           </article>
         </div>
-        <h2 class="proposal-claim">No solo medimos la ingesta de polvo: correlacionamos la telemetría instrumentada para entender, identificar y<br>detener el origen de cada falla.</h2>
+        <h2 class="proposal-claim">No solo medimos la ingesta de polvo: correlacionamos la telemetría instrumentada para entender, identificar y detener el origen de cada falla.</h2>
       </div>
       <div class="source">Arquitectura de referencia: Brochure Técnico MadeOS x BHP. Benchmark de downtime: Reporte_MadeOS.md. Interfaces y parámetros finales se validan con BHP y OEM.</div>
     </section>
@@ -770,7 +779,7 @@
       </div>
     </section>
 
-    <section class="slide annex-slide" id="anexo-terminos" data-number="14 / 14">
+    <section class="slide annex-slide" id="anexo-terminos" data-number="14 / 15">
       <div class="content">
         <span class="kicker">Anexo · Términos comerciales propuestos</span>
         <h2>Condiciones de operación MadeOS.</h2>
@@ -780,6 +789,24 @@
           <article class="terms-card"><h3>Operación y soporte</h3><ul><li>MadeOS opera en modo read-only y no escribe en ECU, VIMS ni sistemas de control.</li><li>Incluye monitoreo remoto, mantenimiento de modelos y soporte de plataforma.</li><li>Ventanas de instalación, acreditaciones, viajes, maniobras y soporte presencial permanecen a cargo de Just Partners o se cotizan por separado.</li><li>MadeOS y Just Partners cumplen los requisitos HSEC, de contratistas, capacitación y seguridad aplicables en BHP.</li><li>Los niveles de servicio, horarios de atención y tiempos de respuesta se formalizan en el SLA.</li></ul></article>
           <article class="terms-card"><h3>Datos y cierre contractual</h3><ul><li>BHP conserva la titularidad de sus datos y MadeOS los procesa para prestar el servicio.</li><li>Retención histórica, exportaciones, integraciones OEM y almacenamiento fuera del volumen contratado requieren cotización específica.</li><li>Se aplican la normativa chilena de protección de datos vigente y sus modificaciones durante el contrato.</li><li>La continuidad, renovación y escalamiento dependen de la validación del piloto y de los criterios de aceptación acordados.</li><li>Estos términos son una base comercial y quedan sujetos a revisión legal, ciberseguridad y Compras BHP.</li></ul></article>
         </div>
+      </div>
+    </section>
+
+    <section class="slide annex-slide" id="anexo-matriz" data-number="15 / 15">
+      <div class="content">
+        <span class="kicker">Anexo · Evaluación Open Aster</span>
+        <h2>Matriz de cumplimiento Open Aster.</h2>
+        <table class="compliance-table">
+          <thead><tr><th>Criterio</th><th>Evidencia en la propuesta</th><th>Respaldo</th><th>Responsable</th></tr></thead>
+          <tbody>
+            <tr><td>Solución · 10%</td><td>Arquitectura CAN/J1939 → RevPi Connect 5 → LTE → MadeOS; operación read-only, TRL 9 y evidencia operativa.</td><td>Brochure técnico; ArtisanLab; documentación MadeOS.</td><td>MadeOS</td></tr>
+            <tr><td>Ejecución · 15%</td><td>Equipo dedicado de 9 personas, experiencia minera y tracción verificable de Just Partners.</td><td>CV; proyectos Just Partners; anexo de equipo.</td><td>Just Partners + MadeOS</td></tr>
+            <tr><td>Caso de negocio · 25%</td><td>40.500 HRS de línea base, KPI de downtime, fórmula de valor y evidencia previa MadeOS.</td><td>Reporte Aster; Reporte MadeOS; datos BHP por validar.</td><td>Equipo conjunto</td></tr>
+            <tr><td>Piloto · 25%</td><td>5 CAT 797F, 4 meses, acreditación, entrenamiento, producción, KPIs, Gantt y entregables.</td><td>Metodología de validación; Gantt; criterios de éxito.</td><td>Equipo conjunto</td></tr>
+            <tr><td>Presupuesto · 25%</td><td>CLP $35.999.038 / 881,34 UF con IVA, CAPEX, OPEX, régimen posterior, exclusiones y requerimientos.</td><td>Presupuesto final; modelo comercial; términos contractuales.</td><td>Just Partners + MadeOS</td></tr>
+          </tbody>
+        </table>
+        <p class="annex-source">La matriz sirve como índice de evidencia para el jurado. Los resultados económicos y operativos específicos de BHP se validan durante el piloto.</p>
       </div>
     </section>
   </main>
