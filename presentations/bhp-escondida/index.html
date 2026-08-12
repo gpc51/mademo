@@ -403,6 +403,15 @@
     .team-role:first-of-type { border-top:0; padding-top:0; }
     .team-role b { display:block; font-size:clamp(18px,1.55vw,24px); line-height:1.15; }
     .team-role span { display:block; margin-top:5px; color:#5c6870; font-size:clamp(15px,1.2vw,19px); line-height:1.3; }
+    .evidence-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .evidence-card { padding:28px 32px; border:1px solid rgba(24,33,38,.14); border-radius:18px; background:rgba(255,255,255,.82); box-shadow:0 14px 34px rgba(24,33,38,.08); }
+    .evidence-card h3 { margin:0 0 16px; color:var(--orange); font-size:clamp(24px,2.2vw,34px); }
+    .evidence-card ul { margin:0; padding-left:20px; }
+    .evidence-card li { margin:10px 0; font-size:clamp(17px,1.3vw,21px); line-height:1.3; }
+    .evidence-card strong { color:var(--ink); }
+    #anexo-evidencia { padding-top:34px; padding-bottom:34px; }
+    #anexo-evidencia h2 { margin-bottom:22px; font-size:clamp(40px,4.4vw,62px); }
+    #anexo-evidencia .annex-source { margin-top:14px; }
     .regime-layout { display:grid; grid-template-columns:1.08fr .92fr; gap:34px; align-items:start; }
     .regime-price { margin:4px 0 4px; color:var(--orange); font-size:clamp(64px,7vw,106px); font-weight:950; line-height:.92; letter-spacing:-.065em; }
     .regime-arr { margin:0 0 24px; font-size:clamp(22px,2vw,30px); font-weight:800; }
@@ -671,7 +680,7 @@
       </div>
     </section>
 
-    <section class="slide annex-slide" id="anexo-kpis" data-number="09 / 13">
+    <section class="slide annex-slide" id="anexo-kpis" data-number="09 / 14">
       <div class="content">
         <span class="kicker">Anexo · Criterios de éxito</span>
         <h2>Metodología, KPIs y entregables.</h2>
@@ -684,7 +693,7 @@
       </div>
     </section>
 
-    <section class="slide annex-slide" id="anexo-bhp" data-number="10 / 13">
+    <section class="slide annex-slide" id="anexo-bhp" data-number="10 / 14">
       <div class="content">
         <span class="kicker">Anexo · Dependencias del piloto</span>
         <h2>Requerimientos a BHP Escondida.</h2>
@@ -696,19 +705,31 @@
       </div>
     </section>
 
-    <section class="slide annex-slide" id="anexo-equipo" data-number="11 / 13">
+    <section class="slide annex-slide" id="anexo-equipo" data-number="11 / 14">
       <div class="content">
         <span class="kicker">Anexo · Capacidad de ejecución</span>
-        <h2>Equipo dedicado al desafío.</h2>
+        <h2>Equipo multidisciplinario dedicado, con roles de ingeniería, datos, IA, terreno y ciberseguridad.</h2>
         <div class="team-grid">
           <article class="team-card"><h3>Just Partners</h3><div class="team-role"><b>Juan Ignacio Rivera</b><span>Gerente General · Ing. Civil MSc. · Infraestructura, ingeniería vial y transportes.</span></div><div class="team-role"><b>Ignacio Charlin Reyes</b><span>Gerente de Proyectos · Ing. Civil · Estudios hidráulicos, infraestructura pública y minería.</span></div><div class="team-role"><b>Claudia de la Fuente López</b><span>Directora de Proyectos · Ing. Civil OO.CC. · Eficiencia energética.</span></div><div class="team-role"><b>2 técnicos de terreno</b><span>Instalación, cableado y commissioning en minería.</span></div></article>
           <article class="team-card"><h3>Made</h3><div class="team-role"><b>Gerardo Peña</b><span>CEO &amp; Co-founder · Diseño industrial y negocios.</span></div><div class="team-role"><b>Ramiro Pantoja</b><span>CTO &amp; Co-founder · Ingeniería mecánica y de software.</span></div><div class="team-role"><b>Gabriel Rodríguez Jordán</b><span>Especialista en inteligencia artificial · Doctor en Ciencias de la Computación · Machine learning, procesamiento de señales y AppSec.</span></div><div class="team-role"><b>Especialista en ciberseguridad</b><span>Seguridad de plataforma, conectividad y gobernanza IT/OT.</span></div></article>
         </div>
-        <p class="annex-source">Equipo dedicado: 10 personas en total. Los roles y dedicaciones se coordinan con BHP según las ventanas de acreditación, instalación, entrenamiento y validación.</p>
+        <p class="annex-source">Equipo dedicado: 9 personas en total. Los roles y dedicaciones se coordinan con BHP según las ventanas de acreditación, instalación, entrenamiento y validación.</p>
       </div>
     </section>
 
-    <section class="slide annex-slide" id="anexo-regimen" data-number="12 / 13">
+    <section class="slide annex-slide" id="anexo-evidencia" data-number="12 / 14">
+      <div class="content">
+        <span class="kicker">Anexo · Capacidad de ejecución</span>
+        <h2>Experiencia previa y tracción verificable.</h2>
+        <div class="evidence-grid">
+          <article class="evidence-card"><h3>Just Partners</h3><ul><li><strong>+500 proyectos</strong> desarrollados para clientes públicos y privados.</li><li><strong>+80 clientes</strong> y más de 30 profesionales y especialistas senior.</li><li><strong>Capstone Copper · Minera Santo Domingo:</strong> Ruta C13 y By Pass Ruta C17, con diseño vial, puentes, evaluación económica y asesoría estratégica.</li><li><strong>Cox / Conexión:</strong> campamentos, instalación de faena y permisos sectoriales para Línea Kimal–Lo Aguirre.</li><li><strong>Transelec:</strong> contrato marco para regularización de accesos en subestaciones a lo largo de Chile.</li></ul></article>
+          <article class="evidence-card"><h3>MadeOS</h3><ul><li><strong>ArtisanLab · evidencia operativa documentada:</strong> despliegue de IA industrial en CNC Freiman y CNC Laser.</li><li><strong>11.912 lecturas</strong> de alta frecuencia utilizadas para aislar contaminación por partículas y agarrotamiento mecánico.</li><li>El agente emitió acciones prescriptivas de limpieza y mantenimiento; después se estabilizaron perfiles de velocidad, calidad y riesgo de paro.</li><li>La documentación MadeOS confirma despliegue edge/cloud, conexión read-only, configuración de gemelo digital y alertas accionables.</li><li>Estas capacidades son transferibles al piloto BHP; los resultados mineros se validarán con datos de Escondida.</li></ul></article>
+        </div>
+        <p class="annex-source">Fuentes: justpartners.cl/proyectos-just, justpartners.cl y “Reporte operativo - ArtisanLab.pdf” / “Made OS - Documentation.pdf”.</p>
+      </div>
+    </section>
+
+    <section class="slide annex-slide" id="anexo-regimen" data-number="13 / 14">
       <div class="content">
         <span class="kicker">Anexo · Modelo comercial</span>
         <div class="regime-layout">
@@ -738,7 +759,7 @@
       </div>
     </section>
 
-    <section class="slide annex-slide" id="anexo-terminos" data-number="13 / 13">
+    <section class="slide annex-slide" id="anexo-terminos" data-number="14 / 14">
       <div class="content">
         <span class="kicker">Anexo · Términos comerciales propuestos</span>
         <h2>Condiciones de operación MadeOS.</h2>
