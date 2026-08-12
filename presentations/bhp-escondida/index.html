@@ -44,7 +44,7 @@
     .logos span { color: #aeb6b8; }
     .dark .logos { padding: 10px 14px; border-radius: 12px; background: rgba(255,255,255,.96); }
     .logo-footer { top: auto; right: auto; bottom: 34px; left: 50%; transform: translateX(-50%); }
-    .logos-inline { position: static; width: fit-content; margin: 0 0 30px; transform: none; }
+    .logos-inline { position: static; width: fit-content; margin: 0 0 0; transform: none; }
     .challenge-block { position: relative; display: grid; justify-items: start; gap: 14px; margin-bottom: 30px; padding-left: 19px; }
     .challenge-block::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; border-radius: 3px; background: var(--orange); }
     .challenge-block .eyebrow { margin: 0; }
@@ -223,6 +223,207 @@
     #cierre .vision-grid { margin-top: 0; }
     #cierre .vision-card { min-height: 210px; }
     #cierre .vision-note { margin-top: 16px; }
+    #cierre .close-pitch { display: block; }
+    #cierre .close-pitch h2 { max-width: none; margin-bottom: 36px; font-size: clamp(28px, 3vw, 48px); letter-spacing: -.045em; white-space: nowrap; }
+    #cierre .close-outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; border-top: 1px solid var(--line); }
+    #cierre .close-outcome { padding: 22px 0; border-bottom: 1px solid var(--line); }
+
+    /* Pitch v2: a larger text canvas and only the evidence needed to decide. */
+    .slide { padding: clamp(40px, 4.8vw, 74px) clamp(28px, 3.6vw, 61px); }
+    .content { width: min(1632px, 100%); }
+    h1 { max-width: 1420px; }
+    /* Solo la portada usa H1. Los títulos de sección son H2, con una jerarquía
+       suficientemente visible para una presentación en sala. */
+    h2 { max-width: 1420px; margin-bottom: 38px; font-size: clamp(50px, 5.4vw, 84px); }
+    .slide::before { top: 24px; right: 30px; }
+    .source { left: clamp(28px, 6.4vw, 102px); right: clamp(28px, 6.4vw, 102px); bottom: 18px; }
+
+    #valor { color: var(--ink); background-image: linear-gradient(90deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.91) 54%, rgba(255,255,255,.42) 100%), url("assets/04-inversion.png"); background-position: center; background-size: cover; }
+    #valor { padding-top: 32px; padding-bottom: 32px; }
+    #valor .kicker { color: var(--orange); }
+    #valor .proposal-impact, #valor .proposal-claim { color: var(--ink); }
+    #valor .value-proof { border-color: rgba(255,255,255,.24); background: linear-gradient(135deg, rgba(0,5,10,.68), rgba(0,0,0,.52)); box-shadow: 0 18px 44px rgba(24,33,38,.30), inset 0 1px 0 rgba(255,255,255,.16); backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); }
+    #valor .proof-card { border-color: rgba(255,255,255,.25); }
+    #valor .proof-card h3, #valor .proof-card p { color: var(--white); }
+    #valor .source { color: rgba(24,33,38,.66); }
+    #valor .proposal-claim { margin-top: 28px; width: 100%; font-size: clamp(32px, 2.75vw, 42px); line-height: 1.1; letter-spacing: -.035em; white-space: normal; text-align: left; text-align-last: left; }
+    #valor .proposal-claim .claim-emphasis { text-decoration-line: underline; text-decoration-thickness: .08em; text-underline-offset: .12em; }
+    #problema { color: var(--white); background-image: linear-gradient(90deg, rgba(10,15,18,.97) 0%, rgba(10,15,18,.88) 54%, rgba(10,15,18,.30) 100%), url("assets/02-analisis.png"); background-position: center; background-size: cover; }
+    #problema .problem-label { color: #cbd4d7; }
+    #problema .problem-lines { border-color: rgba(255,255,255,.26); }
+    #problema .problem-line { border-color: rgba(255,255,255,.26); }
+    #problema .problem-line span { color: var(--white); }
+    #problema .problem-number-heading { display: inline-block; width: max-content; max-width: 100%; margin: 0 0 10px; color: var(--orange); font-size: clamp(92px, 11vw, 164px); line-height: .78; letter-spacing: -.08em; }
+    #problema .problem-number-label { width: max-content; max-width: 100%; margin: 0 0 34px; color: #cbd4d7; font-size: clamp(20px, 1.8vw, 26px); line-height: 1.2; white-space: nowrap; text-align: left; }
+    #problema .problem-secondary { max-width: 1450px; margin: 0 0 34px; color: var(--white); font-size: clamp(38px, 3.9vw, 58px); line-height: 1.04; letter-spacing: -.04em; }
+    #problema .kicker { font-size: 13.2px; }
+    #problema .problem-number-heading { font-size: clamp(101px, 12.1vw, 180px); }
+    #problema .problem-number-label { font-size: clamp(22px, 1.98vw, 29px); }
+    #problema .problem-secondary { font-size: clamp(42px, 4.29vw, 64px); }
+    /* Shared title scale: consistent hierarchy without flattening each slide's composition. */
+    .tech-heading h2, .validation-proposition { font-size: clamp(42px, 4.7vw, 68px); line-height: 1.06; letter-spacing: -.04em; }
+    #problema .problem-layout { display: block; }
+    #problema .problem-lines { width: min(52%, 850px); }
+    #problema .problem-line { padding: 16px 0; }
+    #problema .problem-line b { font-size: 13.2px; }
+    #problema .problem-line span { font-size: clamp(21px, 1.82vw, 29px); line-height: 1.18; }
+    #problema .source { font-size: 11px; }
+    #negocio { color: var(--ink); background-image: linear-gradient(90deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.91) 55%, rgba(255,255,255,.42) 100%), url("assets/03-propuesta.png"); background-position: center; background-size: cover; }
+    #negocio .kicker { color: var(--orange); }
+    #negocio .business-main small { color: var(--muted); }
+    #negocio .business-points { border-color: var(--line); }
+    #negocio .business-points div { color: var(--ink); border-color: var(--line); }
+    #negocio .business-points b, #negocio .business-equation b { color: var(--orange); }
+    #negocio .business-equation { color: var(--ink); border-color: var(--line); }
+    #negocio .source { color: rgba(24,33,38,.62); }
+    #negocio { color: var(--white); background-image: linear-gradient(90deg, rgba(18,25,29,.98) 0%, rgba(18,25,29,.88) 51%, rgba(18,25,29,.20) 100%), url("assets/03-propuesta.png"); }
+    #negocio .kicker { color: #ff9567; }
+    #negocio .source { color: rgba(255,255,255,.45); }
+    #negocio h2 { max-width: none; white-space: nowrap; font-size: clamp(32px, 3.4vw, 52px); }
+    #negocio .tech-heading { display: flex; align-items: end; justify-content: space-between; gap: 36px; margin-bottom: 38px; }
+    #negocio .tech-heading h2 { margin: 0; flex: 1; white-space: normal; }
+    #negocio .false-positive { flex: 0 0 auto; padding: 12px 16px; border-left: 2px solid #ff9567; color: #ff9567; font-size: clamp(22px, 2vw, 30px); font-weight: 800; line-height: 1.08; white-space: nowrap; }
+    #negocio .false-positive em { display: block; margin-top: 8px; color: rgba(255,255,255,.7); font-size: clamp(12px, 1.05vw, 15px); font-weight: 500; line-height: 1.2; }
+    #negocio .architecture-kpis { grid-template-columns: repeat(3, 1fr); }
+    #negocio .architecture-kpi em { display: block; margin-top: 3px; color: rgba(255,255,255,.62); font-size: 10px; font-style: italic; line-height: 1.2; }
+    #etapas { background-image: linear-gradient(90deg, rgba(18,25,29,.98) 0%, rgba(18,25,29,.88) 51%, rgba(18,25,29,.16) 100%), url("assets/08-evidencia-cnc.jpg"); background-position: center; background-size: cover; }
+    #etapas .validation-grid { border-color: rgba(255,255,255,.22); }
+    #etapas .validation-item { border-color: rgba(255,255,255,.22); }
+    #etapas .validation-item strong { color: var(--white); }
+    #etapas .validation-item p, #etapas .validation-note { color: #bac5c9; }
+    #etapas .validation-intro { margin: 0 0 12px; color: #dbe2e4; font-size: clamp(15px, 1.35vw, 19px); font-weight: 750; }
+    #etapas .validation-module { width: 100%; margin-top: 0; padding: 18px 22px 0; border: 1px solid rgba(255,255,255,.22); border-radius: 16px; background: rgba(18,25,29,.62); box-shadow: inset 0 1px 0 rgba(255,255,255,.08); backdrop-filter: blur(8px); }
+    #etapas .validation-grid { margin-top: 0; }
+    #etapas .validation-method { margin: 0; color: #bac5c9; font-size: 14px; line-height: 1.3; }
+    #etapas .validation-focus { margin: 5px 0 12px; color: #ff9567; font-size: 12px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    #etapas .validation-item { min-height: 205px; padding: 20px 12px 18px; }
+    #etapas .validation-item strong { margin: 30px 0 9px; font-size: clamp(34px, 4vw, 56px); }
+    #etapas .validation-item p { font-size: 16px; line-height: 1.3; }
+    #etapas .validation-proposition { max-width: none; margin-bottom: 26px; font-size: clamp(25px, 2.47vw, 38px); line-height: 1.06; letter-spacing: -.05em; }
+    #etapas .validation-proposition strong { color: inherit; text-decoration-line: underline; text-decoration-color: var(--orange); text-decoration-thickness: .08em; text-underline-offset: .12em; }
+    #etapas .kicker { font-size: 13.2px; }
+    #etapas .validation-proposition { width: 100%; max-width: 100%; font-size: clamp(26px, 2.45vw, 38px); white-space: normal; }
+    #etapas .validation-intro { font-size: clamp(16.5px, 1.49vw, 21px); }
+    #etapas .validation-item small { font-size: 12.1px; }
+    #etapas .validation-item strong { font-size: clamp(37px, 4.4vw, 62px); }
+    #etapas .validation-item p { max-width: none; font-size: 17.6px; }
+    #etapas .source { font-size: 11px; }
+    #precios { background-image: linear-gradient(90deg, rgba(244,243,238,.97) 0%, rgba(244,243,238,.90) 55%, rgba(244,243,238,.36) 100%), url("assets/06-experiencia.png"); background-position: center; background-size: cover; }
+    #gantt-slide { background-image: linear-gradient(90deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.91) 60%, rgba(255,255,255,.48) 100%), url("assets/05-tiempos.png"); background-position: center; background-size: cover; }
+
+    .proposal-impact { margin-bottom: 26px; color: var(--white); }
+    .value-proof { display: grid; grid-template-columns: .82fr .88fr 1.38fr; gap: clamp(18px, 2.5vw, 40px); margin-top: 0; padding: 10px 12px; border: 1px solid rgba(255,255,255,.18); border-radius: 18px; background: linear-gradient(135deg, rgba(255,255,255,.13), rgba(255,255,255,.035)); box-shadow: 0 18px 44px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.1); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+    .proof-card { min-width: 0; padding: 2px 14px 0; border-right: 1px solid rgba(255,255,255,.14); }
+    .proof-card:last-child { border-right: 0; }
+    .proof-card img { display: block; width: 100%; height: 370px; object-fit: contain; object-position: center; }
+    .proof-card.partner img { width: 88%; height: 370px; object-position: center; margin-inline: auto; }
+    .proof-card.edge { padding-left: 0; padding-right: 0; }
+    .proof-card.edge img { height: 370px; object-position: center; }
+    .proof-card.made { padding-left: 0; padding-right: 0; }
+    .proof-card.made img { width: 100%; height: 370px; object-fit: contain; object-position: center; background: rgba(7,11,14,.72); border-radius: 9px; }
+    .proof-card h3 { margin: 8px 0 5px; color: #ff9567; font-size: 12px; letter-spacing: .08em; }
+    .proof-card p { min-height: 2.4em; margin: 0 0 10px; color: #d6dfe2; font-size: clamp(15px, 1.35vw, 19px); line-height: 1.2; letter-spacing: -.02em; }
+    .proof-card.partner p { font-size: clamp(15px, 1.35vw, 19px); line-height: 1.2; letter-spacing: -.02em; }
+    .proposal-claim { width: 100%; max-width: none; margin: 14px 0 0; color: var(--white); font-size: clamp(29px, 2.95vw, 45px); line-height: 1.05; letter-spacing: -.045em; }
+    .value-list { border-top: 1px solid rgba(255,255,255,.24); }
+    .value-item { display: grid; grid-template-columns: 132px 1fr; gap: 24px; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,.24); }
+    .value-item b { color: #ff9567; font-size: 12px; letter-spacing: .1em; line-height: 1.3; }
+    .value-item span { color: #d6dfe2; font-size: clamp(17px, 1.55vw, 22px); line-height: 1.34; }
+
+    .problem-layout { display: grid; grid-template-columns: .74fr 1.26fr; gap: clamp(44px, 8vw, 130px); align-items: center; }
+    .problem-number { color: var(--orange); font-size: clamp(90px, 13vw, 188px); font-weight: 950; line-height: .78; letter-spacing: -.08em; }
+    .problem-label { margin: 26px 0 0; color: var(--muted); font-size: clamp(14px, 1.4vw, 21px); line-height: 1.2; white-space: nowrap; }
+    .problem-lines { display: grid; border-top: 1px solid var(--line); }
+    .problem-line { display: grid; grid-template-columns: 54px 1fr; gap: 18px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .problem-line b { color: var(--orange); font-size: 12px; letter-spacing: .12em; }
+    .problem-line span { font-size: clamp(22px, 2.2vw, 33px); font-weight: 800; letter-spacing: -.035em; }
+
+    .business-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(44px, 8vw, 120px); align-items: end; }
+    .business-main { font-size: clamp(36px, 4vw, 64px); font-weight: 900; line-height: 1; letter-spacing: -.055em; }
+    .business-main small { display: block; margin-top: 24px; color: rgba(255,255,255,.76); font-size: clamp(18px, 1.7vw, 24px); font-weight: 650; line-height: 1.35; letter-spacing: 0; }
+    .business-points { border-top: 1px solid rgba(255,255,255,.28); }
+    .business-points div { display: grid; grid-template-columns: 128px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.28); color: rgba(255,255,255,.94); font-size: clamp(19px, 1.8vw, 26px); font-weight: 750; line-height: 1.25; }
+    .business-points b { color: #ffd7c6; font-size: 12px; letter-spacing: .1em; }
+    .business-equation { margin-top: 30px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.28); color: rgba(255,255,255,.94); font-size: clamp(19px, 1.8vw, 26px); font-weight: 750; line-height: 1.25; }
+    .business-equation b { color: #ffd7c6; }
+
+    .stage-strip { display: grid; grid-template-columns: repeat(3, 1fr); border-block: 1px solid rgba(255,255,255,.2); }
+    .stage { min-height: 300px; padding: 28px; border-right: 1px solid rgba(255,255,255,.2); }
+    .stage:last-child { border-right: 0; }
+    .stage small { color: #ff9567; font-size: 12px; font-weight: 900; letter-spacing: .13em; }
+    .stage h3 { margin: 58px 0 16px; color: var(--white); font-size: clamp(28px, 2.8vw, 42px); }
+    .stage p { max-width: 320px; margin: 0; color: #b9c4c8; font-size: 16px; line-height: 1.4; }
+    .stage-deliverable { margin-top: 28px; color: #d8e1e4; font-size: 18px; }
+    .stage-deliverable b { color: var(--white); }
+
+    .price-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(44px, 8vw, 120px); align-items: start; }
+    .price-total { color: var(--orange); font-size: clamp(78px, 9vw, 142px); font-weight: 950; line-height: .82; letter-spacing: -.075em; white-space: nowrap; }
+    .price-total-label { max-width: 500px; margin: 24px 0 0; color: var(--ink); font-size: clamp(22px, 2vw, 29px); font-weight: 800; line-height: 1.22; white-space: nowrap; }
+    .price-table { border-top: 1px solid var(--line); }
+    .price-row { display: grid; grid-template-columns: 1fr auto; gap: 28px; min-height: 74px; padding: 17px 0; border-bottom: 1px solid var(--line); align-items: center; }
+    .price-row span { color: var(--muted); font-size: 17px; }
+    .price-row b { font-size: clamp(20px, 1.9vw, 27px); text-align: right; white-space: nowrap; }
+    .price-note { margin: 22px 0 0; color: var(--muted); font-size: 15px; line-height: 1.35; }
+    .price-roi { margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .price-roi b { display: block; color: var(--orange); font-size: 13.5px; letter-spacing: .13em; text-transform: uppercase; }
+    .price-roi strong { display: block; margin-top: 10px; color: var(--orange); font-size: clamp(78px, 9vw, 142px); line-height: .82; letter-spacing: -.075em; white-space: nowrap; }
+    .price-roi span { display: block; margin-top: 10px; color: var(--muted); font-size: 15px; line-height: 1.35; }
+    .price-roi .roi-scale { margin-top: 12px; color: var(--ink); font-size: clamp(18px, 1.65vw, 24px); font-weight: 800; line-height: 1.2; }
+    .price-roi small { display: block; margin-top: 10px; color: var(--ink); font-size: 14px; font-weight: 750; line-height: 1.35; }
+
+    .gantt-pitch { display: grid; grid-template-columns: 1.25fr repeat(4, 1fr); border-top: 1px solid var(--line); }
+    .gantt-pitch > div { min-height: 74px; display: flex; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+    .gantt-pitch .g-head { min-height: 44px; color: var(--muted); font-size: 11px; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
+    .gantt-pitch .g-label { color: var(--ink); font-size: 18px; font-weight: 850; line-height: 1.12; }
+    .gantt-pitch .g-label { flex-direction: column; align-items: flex-start; justify-content: center; }
+    .gantt-pitch .g-label .model-training { display: block; margin-top: 7px; color: var(--muted); font-size: 12px; font-weight: 650; line-height: 1.2; }
+    .gantt-pitch .g-cell { justify-content: center; }
+    .gantt-block { width: 100%; height: 13px; border-radius: 100px; background: var(--blue); }
+    .gantt-block.orange { background: var(--orange); }
+    .gantt-block.green { background: var(--green); }
+    .gantt-block.model { background: #7c61c9; }
+    .gantt-milestones { display: flex; justify-content: space-between; gap: 24px; margin-top: 20px; color: var(--muted); font-size: 13px; }
+    .gantt-milestones b { display: block; color: var(--ink); font-size: 20px; }
+    .annex-slide { background: #f4f6f7; color: var(--ink); }
+    .annex-slide .content { width: min(1440px,100%); }
+    .annex-slide h2 { margin-bottom: 28px; font-size: clamp(42px,4.7vw,68px); }
+    .annex-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .annex-card { min-height:230px; padding:24px 26px; border:1px solid rgba(24,33,38,.16); border-radius:18px; background:rgba(255,255,255,.78); box-shadow:0 14px 34px rgba(24,33,38,.08); }
+    .annex-card h3 { margin:0 0 12px; font-size:clamp(22px,2vw,30px); color:var(--orange); }
+    .annex-card p, .annex-card li { font-size:clamp(17px,1.35vw,21px); line-height:1.35; }
+    .annex-card ul { margin:0; padding-left:20px; }
+    .annex-card strong { color:var(--ink); }
+    .team-image { width:100%; max-height:430px; object-fit:contain; object-position:left center; border-radius:16px; background:#fff; }
+    .team-wrap { position:relative; }
+    .team-label { position:absolute; left:52.8%; top:63.5%; width:21%; padding:5px 0; background:#fff; color:#202830; font-weight:800; font-size:clamp(13px,1.25vw,20px); }
+    .team-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .team-card { padding:28px 32px; border:1px solid rgba(24,33,38,.14); border-radius:18px; background:rgba(255,255,255,.82); box-shadow:0 14px 34px rgba(24,33,38,.08); }
+    .team-card h3 { margin:0 0 22px; font-size:clamp(24px,2.2vw,34px); color:var(--orange); }
+    .team-role { padding:15px 0; border-top:1px solid rgba(24,33,38,.13); }
+    .team-role:first-of-type { border-top:0; padding-top:0; }
+    .team-role b { display:block; font-size:clamp(18px,1.55vw,24px); line-height:1.15; }
+    .team-role span { display:block; margin-top:5px; color:#5c6870; font-size:clamp(15px,1.2vw,19px); line-height:1.3; }
+    .annex-source { margin-top:18px; color:rgba(24,33,38,.58); font-size:12px; }
+
+    .close-pitch { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(42px, 8vw, 130px); align-items: end; }
+    .close-pitch h2 { margin-bottom: 0; }
+    .close-outcomes { border-top: 1px solid var(--line); }
+    .close-outcome { padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .close-outcome b { display: block; color: var(--orange); font-size: 12px; letter-spacing: .13em; }
+    .close-outcome span { display: block; margin-top: 8px; color: var(--ink); font-size: clamp(20px, 1.9vw, 27px); font-weight: 800; line-height: 1.2; }
+    .close-outcome span strong { color: var(--orange); }
+
+    @media (max-width: 1350px) and (min-width: 761px) {
+      .slide { padding-top: 44px; padding-bottom: 44px; }
+      h2 { margin-bottom: 28px; font-size: clamp(42px, 4.7vw, 66px); }
+      .stage { min-height: 248px; padding: 24px; }
+      .stage h3 { margin-top: 36px; }
+      .stage-deliverable { margin-top: 20px; }
+      .gantt-pitch > div { min-height: 62px; }
+      .gantt-milestones { margin-top: 14px; }
+      .price-row { padding: 13px 0; }
+      .price-note { margin-top: 16px; }
+    }
 
     .controls { position: fixed; z-index: 50; right: 22px; top: 50%; transform: translateY(-50%); display: grid; gap: 10px; }
     .dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: rgba(100,113,118,.35); cursor: pointer; }
@@ -259,6 +460,34 @@
       .challenge-logos .aster { width: 78px; }
       #portada, #analisis, #propuesta, #inversion, #tiempos, #evidencia, #experiencia, #cierre { background-position: 65% center; }
       #analisis .chain, #tiempos .gantt { padding: 10px 14px; }
+      .value-grid, .problem-layout, .business-grid, .price-layout, .close-pitch { grid-template-columns: 1fr; }
+      #problema .problem-layout { grid-template-columns: 1fr; }
+      #problema .problem-lines { grid-column: 1; grid-row: 2; }
+      #problema .problem-layout > div:first-child { grid-column: 1; grid-row: 1; }
+      #problema .problem-lines { width: 100%; }
+      .value-proof { grid-template-columns: 1fr; gap: 18px; }
+      .proof-card { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.2); padding-bottom: 18px; }
+      .proof-card img, .proof-card.edge img, .proof-card.made img { height: 140px; }
+      .proposal-claim { font-size: clamp(30px, 7vw, 46px); }
+      .problem-label { white-space: normal; }
+      #problema .problem-number-label { width: auto; white-space: normal; }
+      .price-total-label { white-space: normal; }
+      #negocio h2 { white-space: normal; }
+      #negocio .tech-heading { display: block; margin-bottom: 28px; }
+      #negocio .false-positive { display: inline-block; margin-top: 16px; }
+      #negocio .architecture-kpis { grid-template-columns: 1fr; }
+      #etapas .validation-proposition { white-space: normal; }
+      #cierre .close-pitch h2 { white-space: normal; }
+      #cierre .close-outcomes { grid-template-columns: 1fr; gap: 0; }
+      .stage-strip { grid-template-columns: 1fr; }
+      .stage { min-height: auto; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.2); }
+      .stage h3 { margin-top: 26px; }
+      .gantt-pitch { grid-template-columns: 1.15fr repeat(4, .7fr); }
+      .gantt-pitch > div { padding: 10px 5px; }
+      .gantt-pitch .g-label { font-size: 12px; }
+      .gantt-milestones { display: grid; grid-template-columns: 1fr 1fr; }
+      .annex-grid { grid-template-columns:1fr; }
+      .annex-card { min-height:0; }
     }
     @media print {
       html { scroll-snap-type: none; }
@@ -269,147 +498,177 @@
 </head>
 <body>
   <main>
-    <section class="slide dark" id="portada" data-number="01 / 09">
+    <section class="slide dark" id="portada" data-number="01 / 08">
       <div class="hero-mark" aria-hidden="true"></div>
       <div class="content">
         <div class="challenge-block">
           <div class="challenge-logos" aria-label="BHP Escondida y Aster"><img class="escondida" src="assets/escondida-35.png" alt="BHP Escondida 35 años"><img class="aster" src="assets/aster.png" alt="Aster"></div>
-          <span class="eyebrow">Operaciones Mina - Desafío operacional : Contaminación por polvo en motores</span>
+          <span class="eyebrow">Open Aster · Contaminación por polvo en motores</span>
         </div>
-        <h1>Anticipar la contaminación particulada para proteger motores y extender la vida útil.</h1>
+        <h1>Anticipar la contaminación particulada para proteger motores y extender su vida útil.</h1>
         <div class="logos logos-inline"><img src="assets/just-partners.png" alt="Just Partners"><span>×</span><img src="assets/made.png" alt="Made"></div>
-        <p class="lead">Inteligencia predictiva para motores CAEX.</p>
       </div>
     </section>
 
-    <section class="slide" id="analisis" data-number="02 / 09">
+    <section class="slide dark" id="valor" data-number="03 / 08">
       <div class="content">
-        <span class="kicker">Análisis</span>
-        <h2>Transformar la información operacional en decisiones<br>que anticipen la detención del motor.</h2>
-        <div class="analysis-layout">
-          <div class="analysis-metric"><div class="big-number">40.500</div><p class="big-number-label">horas de detención por fallas de motor durante el último año.</p></div>
-          <div class="chain">
-            <div class="chain-step"><span>01</span><div><b>Exposición</b><small>Ruta · carga · polvo</small></div></div>
-            <div class="chain-step"><span>02</span><div><b>Degradación</b><small>Admisión · aceite · temperatura</small></div></div>
-            <div class="chain-step"><span>03</span><div><b>Riesgo</b><small>Anomalía · subsistema · ventana</small></div></div>
-            <div class="chain-step"><span>04</span><div><b>Intervención</b><small>Inspeccionar · muestrear · programar</small></div></div>
+        <span class="kicker">Propuesta de valor</span>
+        <h2 class="proposal-impact">55% MENOS DOWNTIME</h2>
+        <div class="value-proof" aria-label="Elementos de la propuesta de valor">
+          <article class="proof-card partner">
+            <img src="assets/just-partners-official.png" alt="Just Partners Ingeniería &amp; Consulting">
+            <h3>Just partners</h3>
+            <p>Más de una década de experiencia en proyectos de ingeniería mineros e industriales.</p>
+          </article>
+          <article class="proof-card edge">
+            <img src="assets/revpi-connect-5s.webp" alt="RevPi Connect 5 industrial edge">
+            <h3>Revpi connect 5</h3>
+            <p>El edge industrial más potente del mercado.</p>
+          </article>
+          <article class="proof-card made">
+            <img src="assets/madeos-ui.png" alt="Interfaz de MadeOS">
+            <h3>Made os</h3>
+            <p>Sistema operativo que analiza data histórica y en tiempo real para prevenir eventos críticos en industrias pesadas.</p>
+          </article>
+        </div>
+        <h2 class="proposal-claim">No solo medimos la ingesta de polvo: correlacionamos la telemetría instrumentada para entender, identificar y<br>detener el origen de cada falla.</h2>
+      </div>
+      <div class="source">Arquitectura de referencia: Brochure Técnico MadeOS x BHP. Benchmark de downtime: Reporte_MadeOS.md. Interfaces y parámetros finales se validan con BHP y OEM.</div>
+    </section>
+
+    <section class="slide" id="problema" data-number="02 / 08">
+      <div class="content">
+        <span class="kicker">El problema</span>
+        <h2 class="problem-number-heading">40.500 HRS</h2>
+        <p class="problem-number-label">horas de detención por fallas de motor reportadas durante el último año.</p>
+        <h2 class="problem-secondary">El polvo contamina componentes críticos<br>antes de que el daño sea visible.</h2>
+        <div class="problem-layout">
+          <div class="problem-lines">
+            <div class="problem-line"><b>01</b><span>Motores, mandos finales y componentes críticos están expuestos a partículas suspendidas.</span></div>
+            <div class="problem-line"><b>02</b><span>La contaminación reduce la vida útil y genera fallas costosas.</span></div>
+            <div class="problem-line"><b>03</b><span>El diagnóstico suele llegar tarde: se necesita monitoreo temprano y alertas predictivas.</span></div>
           </div>
         </div>
       </div>
-      <div class="source">Fuente: desafío OpenAster BHP Escondida, “Contaminación por polvo en motores”, 2026.</div>
+      <div class="source">Fuente: Aster, “Contaminación por polvo en motores”, Area Mine Operations, 2026. Reporte público: 40.500 horas de detención por fallas de motor en el último año.</div>
     </section>
 
-    <section class="slide dark" id="propuesta" data-number="03 / 09">
+    <section class="slide dark" id="negocio" data-number="04 / 08">
       <div class="content">
-        <span class="kicker">Propuesta</span>
-        <h2>Datos operacionales convertidos en decisiones de mantenimiento.</h2>
+        <span class="kicker">Tecnología</span>
+        <div class="tech-heading"><h2>Convertimos las señales del motor<br>en decisiones precisas de mantenimiento.</h2></div>
         <div class="architecture-diagram" aria-label="Arquitectura de la propuesta">
           <article class="architecture-stage"><small>01 · Campo</small><h3>CAEX</h3><div class="architecture-nodes"><div class="architecture-node"><b>ECU de motor</b><span>CAT 3524 / 3516 · QSK60</span></div><div class="architecture-node"><b>Backbone CAN</b><span>J1939 · PGN · SPN · DTC</span></div><div class="architecture-node"><b>VIMS</b><span>Carga útil · ciclo · códigos</span></div><div class="architecture-node"><b>Sensores adicionales</b><span>Contaminación y condición</span></div></div></article>
           <article class="architecture-stage"><small>02 · Edge</small><h3>RevPi Connect 5</h3><div class="architecture-nodes"><div class="architecture-node"><b>CAN FD integrado*</b><span>CAN-H · CAN-L · GND</span></div><div class="architecture-node"><b>Pi OS + SocketCAN</b><span>Tramas crudas en CAN0</span></div><div class="architecture-node"><b>Decodificador J1939</b><span>python-can → SPN + DTC</span></div><div class="architecture-node"><b>Búfer local</b><span>Persistencia ante pérdida de red</span></div></div></article>
           <article class="architecture-stage"><small>03 · Enlace</small><h3>4G / LTE seguro</h3><div class="architecture-nodes"><div class="architecture-node"><b>Módem USB 4G/LTE*</b><span>RevPi USB-A 3.2</span></div><div class="architecture-node"><b>TLS 1.3 / IPsec*</b><span>Cifrado · APN privado</span></div></div></article>
           <article class="architecture-stage"><small>04 · MadeOS</small><h3>IA de mantenimiento</h3><div class="architecture-nodes"><div class="architecture-node"><b>API de ingesta HTTPS</b><span>REST POST · payload JSON</span></div><div class="architecture-node"><b>Modelos IA / ML</b><span>Anomalías · RUL · fallas</span></div><div class="architecture-node"><b>Prescripciones con IA</b><span>Mantenimiento prescriptivo</span></div><div class="architecture-node"><b>Alertas y paneles</b><span>Revisión operacional y mantenimiento</span></div></div></article>
         </div>
-        <div class="architecture-kpis" aria-label="Parámetros técnicos de la arquitectura"><div class="architecture-kpi"><b>250 kbps</b><span>baudios del bus CAN*</span></div><div class="architecture-kpi"><b>TLS 1.3</b><span>cifrado del transporte de datos*</span></div></div>
+        <div class="architecture-kpis" aria-label="Parámetros técnicos de la arquitectura"><div class="architecture-kpi"><b>250 kbps</b><span>baudios del bus CAN*</span></div><div class="architecture-kpi"><b>TLS 1.3</b><span>cifrado del transporte de datos*</span></div><div class="architecture-kpi"><b>2,5%</b><span>Tasa de falsos positivos*</span><em>Desempeño alcanzado en entorno de producción</em></div></div>
         <p class="proposal-technical-note">*Parámetros de bus, interfaces, frecuencia y conectividad tomados como arquitectura de referencia; se validan con BHP y OEM antes de instalación.</p>
       </div>
     </section>
 
-    <section class="slide" id="validacion" data-number="04 / 09">
+    <section class="slide dark" id="etapas" data-number="05 / 08">
       <div class="content">
-        <span class="kicker">Validación del piloto</span>
-        <h2>El piloto medirá precisión, adopción e impacto contra una línea base acordada.</h2>
-        <div class="validation-grid" aria-label="Criterios propuestos para validar el piloto">
-          <article class="validation-item"><small>Adopción</small><strong>&gt;85%</strong><p>de alertas y recomendaciones atendidas por los operadores.</p></article>
-          <article class="validation-item"><small>Anticipación RUL</small><strong>100%</strong><p>de anticipación y trazabilidad en cada ventana de producción definida.</p></article>
-          <article class="validation-item"><small>Paros no planeados</small><strong>33–50%</strong><p>de reducción estimada frente al histórico de la línea base; promedio reportado: 43%.</p></article>
-          <article class="validation-item"><small>Madurez del modelo</small><strong>65→98%</strong><p>evolución esperada de precisión; falsos positivos de 18% a 2,5%.</p></article>
+        <span class="kicker">Caso de negocio</span>
+        <h2 class="validation-proposition">Durante el último año, la flota móvil acumuló <strong>40.500 h</strong> de detención por falla de motor.<br>Una reducción estimada de <strong>35% a 55%</strong> sobre la línea base, equivale a <strong>14.175–22.275 h anualizadas.</strong></h2>
+        <div class="validation-module">
+          <p class="validation-intro">Nivel de madurez y métricas de evidencia previa.</p>
+          <div class="validation-grid" aria-label="Criterios propuestos para validar el piloto">
+            <article class="validation-item"><small>Adopción</small><strong>&gt;85%</strong><p>de alertas y recomendaciones atendidas por los operadores.</p></article>
+            <article class="validation-item"><small>TRL</small><strong>9</strong><p>tecnología integrada para operar en entorno productivo y validar desempeño en faena.</p></article>
+            <article class="validation-item"><small>Paros no planeados</small><strong>33–50%</strong><p>de reducción estimada frente al histórico de la línea base; promedio reportado: 43%.</p></article>
+            <article class="validation-item"><small>Madurez del modelo</small><strong>65→98%</strong><p>evolución esperada de precisión; falsos positivos de 18% a 2,5%.</p></article>
+          </div>
         </div>
-        <p class="validation-note">Los umbrales finales, la línea base y las reglas de atribución se acuerdan con BHP antes del inicio del shadow mode.</p>
       </div>
       <div class="source">Fuente: Reporte de Validación y Comparativa MadeOS. Los porcentajes de reducción y precisión son metas de validación y madurez; no resultados garantizados para BHP.</div>
     </section>
 
-    <section class="slide orange" id="inversion" data-number="05 / 09">
+    <section class="slide" id="precios" data-number="06 / 08">
       <div class="content">
-        <span class="kicker">Inversión y retorno</span>
-        <h2>Piloto propuesto: de 3 a 5 unidades por modelo seleccionado.</h2>
-        <div class="cost-layout">
-          <div><span class="roi-label">Retorno por unidad · por hora evitada</span><div class="roi-value">USD 2,3k</div><div class="pilot-roi"><b>Retorno neto total del piloto · 20 semanas*</b><span>USD 0,78–1,31M</span></div></div>
+        <span class="kicker">Precios</span>
+        <div class="price-layout">
+          <div><div class="price-total">CLP $35,9M</div><p class="price-total-label">880 UF · costo total del piloto, con IVA.</p><div class="price-roi"><b>IMPACTO OPERATIVO ESTIMADO · 4 MESES · 5 CAEX</b><strong>112,5 h</strong><span>Horas evitables con 35% de reducción.</span><span class="roi-scale">≈530 h/año a 55% en 5 CAEX.</span><small>Equilibrio: CLP $320.000 por hora evitada.</small></div></div>
           <div>
-            <div class="costs">
-              <div class="cost-row"><span>Edge industrial RevPi Connect</span><b>USD 855,13</b></div>
-              <div class="cost-row"><span>MadeOS · hasta 1 TB</span><b>USD 600/mes</b></div>
-              <div class="cost-row"><span>Integración</span></div>
+            <div class="price-table">
+              <div class="price-row"><span>RR.HH. técnico y de datos</span><b>CLP $13.350.946</b></div>
+              <div class="price-row"><span>CAPEX: edge, materiales y conectividad</span><b>CLP $6.773.990</b></div>
+              <div class="price-row"><span>OPEX: plataforma, logística, HSS y contingencia</span><b>CLP $11.004.662</b></div>
+              <div class="price-row"><span>Administración y seguros</span><b>CLP $4.869.440</b></div>
             </div>
-            <div class="cost-sum"><span>Costo tecnológico por unidad</span><b>USD 3,8k</b></div>
-          </div>
-        </div>
-        <div class="return-line investment-foot"><strong>Retorno:</strong> detención evitada + daño secundario evitado − costo del piloto.</div>
-      </div>
-      <div class="source"><strong>Anexo financiero y nota metodológica.</strong> Piloto de 9–15 unidades (3–5 por modelo). Costo tecnológico máximo por unidad: edge USD 855,13 + sensores USD 2,6k + MadeOS prorrateado 20 semanas = USD 3,8k; excluye integración. El retorno neto total del piloto corresponde a las 20 semanas y usa 20% de reducción objetivo de downtime. Referencia financiera: EBITDA Escondida HY26 = USD 6.084 por camión-hora al asignarlo proporcionalmente a 210 unidades. No es un costo de downtime ni un resultado garantizado.</div>
-    </section>
-
-    <section class="slide white" id="tiempos" data-number="06 / 09">
-      <div class="content">
-        <span class="kicker">Tiempos</span>
-        <h2>30 días para conectar, validar y llevar el gemelo digital a producción.</h2>
-        <div class="gantt" aria-label="Cronograma real de implementación de MadeOS">
-          <div class="head">Frente</div><div class="head">D1–7</div><div class="head">D8–13</div><div class="head">D14–20</div><div class="head">D21–23</div><div class="head">D24–30</div>
-          <div class="label">Conectividad y edge</div><div><span class="bar blue"></span></div><div></div><div></div><div></div><div></div>
-          <div class="label">CAN y flujo de datos</div><div><span class="bar blue"></span></div><div><span class="bar blue"></span></div><div></div><div></div><div></div>
-          <div class="label">Seguridad, PI y plataforma BHP</div><div></div><div><span class="bar blue"></span></div><div></div><div></div><div></div>
-          <div class="label">Gemelo y monitoreo en prueba</div><div></div><div><span class="bar green"></span></div><div><span class="bar green"></span></div><div></div><div></div>
-          <div class="label">Gemelo en unidades piloto</div><div></div><div></div><div><span class="bar green"></span></div><div></div><div></div>
-          <div class="label">Agente IA y aprobación</div><div></div><div></div><div></div><div><span class="bar green"></span></div><div></div>
-          <div class="label">Gemelo digital en producción</div><div></div><div></div><div></div><div><span class="bar green"></span></div><div><span class="bar green"></span></div>
-          <div class="label">Entrenamiento y evaluación RUL</div><div><span class="bar gray"></span></div><div><span class="bar gray"></span></div><div><span class="bar gray"></span></div><div><span class="bar gray"></span></div><div><span class="bar gray"></span></div>
-        </div>
-        <div class="milestones"><div><b>D7</b>Edge conectado</div><div><b>D13</b>Datos y seguridad validados</div><div><b>D20</b>Gemelo en piloto</div><div><b>D23</b>Aprobación</div><div><b>D26</b>Producción</div></div>
-      </div>
-    </section>
-
-    <section class="slide dark" id="evidencia" data-number="07 / 09">
-      <div class="content">
-        <span class="kicker">Evidencia previa</span>
-        <h2>MadeOS ya opera con resultados medibles en un entorno industrial.</h2>
-        <div class="evidence-layout">
-          <div class="evidence-primary"><strong>43%</strong><p>menos paros no planeados observados durante seis meses de operación.</p></div>
-          <div>
-            <div class="evidence-facts">
-              <div class="evidence-fact"><b>&gt;85%</b><span>de alertas y prescripciones atendidas por el personal de piso.</span></div>
-              <div class="evidence-fact"><b>100%</b><span>de las ventanas RUL emitidas con seguimiento preventivo.</span></div>
-              <div class="evidence-fact"><b>1 vs 1,75</b><span>paro registrado frente al valor esperado de la línea base semestral.</span></div>
-            </div>
-            <p class="evidence-note">Caso de manufactura CNC. Esta evidencia demuestra operación y adopción; no se extrapola como resultado garantizado para minería. El piloto BHP validará desempeño bajo condiciones de faena.</p>
+            <p class="price-note">Sin utilidad de proveedor. Incluye CAPEX, OPEX, logística, seguridad, seguros y administración.</p>
           </div>
         </div>
       </div>
-      <div class="source">Fuente: Reporte de Validación y Comparativa MadeOS; periodo observado enero–junio.</div>
+      <div class="source">Fuente: “presupuesto-piloto-escondida-bhp.pdf”. Referencia UF: CLP $40.846. Todos los valores incluyen IVA. Cálculo: 40.500 h/año ÷ 210 CAEX × 5 CAEX × 4/12 × 35% = 112,5 h; a 55% anualizado = ≈530 h/año.</div>
     </section>
 
-    <section class="slide dark" id="experiencia" data-number="08 / 09">
+    <section class="slide white" id="gantt-slide" data-number="07 / 08">
       <div class="content">
-        <span class="kicker">Capacidades de ejecución</span>
-        <h2>Una ejecución segura, trazable y diseñada para aprender en operación.</h2>
-        <div class="capabilities capabilities-wide">
-            <div class="capability"><b>Datos y contexto operacional</b><span>Históricos, telemetría, órdenes de trabajo y diccionario de datos para establecer la línea base.</span></div>
-            <div class="capability"><b>Instrumentación compatible con faena</b><span>Lectura read-only, edge industrial, sensorización complementaria y persistencia local.</span></div>
-            <div class="capability"><b>Gobernanza de validación</b><span>Validación BHP/OEM, ciberseguridad, shadow mode y revisión conjunta de evidencia.</span></div>
+        <span class="kicker">Carta Gantt</span>
+        <h2>Acreditación, puesta en marcha y producto en producción.</h2>
+        <div class="gantt-pitch" aria-label="Carta Gantt resumida para el piloto de cuatro meses">
+          <div class="g-head">Frente</div><div class="g-head">Mes 1</div><div class="g-head">Mes 2</div><div class="g-head">Mes 3</div><div class="g-head">Mes 4</div>
+          <div class="g-label">Acreditación y planificación</div><div class="g-cell"><span class="gantt-block orange"></span></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+          <div class="g-label">Instalación e integración MadeOS</div><div class="g-cell"></div><div class="g-cell"><span class="gantt-block"></span></div><div class="g-cell"></div><div class="g-cell"></div>
+          <div class="g-label">Entrenamiento del modelo<small class="model-training">Optimización 3 sem · Validación 2 sem · Prototipo 1 sem</small></div><div class="g-cell"></div><div class="g-cell"><span class="gantt-block model"></span></div><div class="g-cell"><span class="gantt-block model"></span></div><div class="g-cell"></div>
+          <div class="g-label">Producto en producción y validación</div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"><span class="gantt-block green"></span></div><div class="g-cell"><span class="gantt-block green"></span></div>
         </div>
-        <p class="proof-note">Made aporta la plataforma analítica y la arquitectura de datos; Just Partners lidera viajes, acreditaciones e implementación de terreno; BHP habilita datos, unidades y aprobaciones operacionales.</p>
+        <div class="gantt-milestones"><div><b>S4</b>Acceso a faena</div><div><b>S10</b>Modelo validado</div><div><b>S16</b>Operación en producción</div></div>
       </div>
+      <div class="source">Cronograma resumido adaptado de la Carta Gantt del piloto. El producto opera en producción durante los meses 3 y 4; la decisión de escala se entrega al cierre de la semana 16.</div>
     </section>
 
-    <section class="slide white" id="cierre" data-number="09 / 09">
+    <section class="slide white" id="cierre" data-number="08 / 08">
       <div class="logos logo-footer"><img src="assets/just-partners.png" alt="Just Partners"><span>×</span><img src="assets/made.png" alt="Made"></div>
       <div class="content">
-        <span class="kicker">Visión de impacto</span>
-        <h2>Made convierte 20 semanas de validación en una capacidad predictiva escalable para 210 motores.</h2>
-        <div class="vision-grid">
-          <article class="vision-card"><span>Resultado a 20 semanas</span><h3>BHP valida alertas accionables antes de la falla</h3><p>Riesgo, ventana de intervención, evidencia histórica y recomendación de mantenimiento contrastada en shadow mode.</p></article>
-          <article class="vision-card scale"><span>Retorno neto anual de referencia · 210 unidades</span><div class="scale-value">USD 72,9M</div><p>potencial económico después del costo tecnológico del primer año.</p><div class="scale-roi">Inversión: USD 1,0–1,2M · 30% menos downtime no planificado*</div></article>
+        <span class="kicker">Visión zero-loss</span>
+        <div class="close-pitch">
+          <h2>BHP Escondida: del piloto predictivo a una operación progresivamente zero-loss.</h2>
+          <div class="close-outcomes">
+            <div class="close-outcome"><b>ESCALA</b><span><strong>210 CAEX</strong> con telemetría correlacionada y una línea de decisión común.</span></div>
+            <div class="close-outcome"><b>META AÑO 1</b><span><strong>55% menos downtime</strong> · 22.275 h anualizadas potencialmente evitables sobre la línea base.</span></div>
+            <div class="close-outcome"><b>ZERO-LOSS</b><span>Visión progresiva: alertas accionables, aprendizaje continuo y reducción sostenida de paros no planeados.</span></div>
+          </div>
         </div>
-        <p class="vision-note">*Escenario conservador Made para año 1: 30% de reducción objetivo sobre 40.500 horas/año; USD 6.084 por camión-hora como asignación financiera proporcional de Escondida. Incluye edge USD 855,13/unidad, sensores USD 2,0–2,6k/unidad y MadeOS USD 175/unidad/mes. Excluye integración. Proyección condicionada a la validación del piloto.</p>
+      </div>
+    </section>
+
+    <section class="slide annex-slide" id="anexo-kpis" data-number="09 / 11">
+      <div class="content">
+        <span class="kicker">Anexo · Criterios de éxito</span>
+        <h2>Metodología, KPIs y entregables.</h2>
+        <div class="annex-grid">
+          <article class="annex-card"><h3>1 · Validación técnica</h3><p>Conectividad LTE privada, cifrado SSL/TLS 1.3 y transmisión de 200–260 MB/h por camión.</p><p>Prueba de zonas ciegas con <strong>Offline Buffer</strong>, sello de tiempo y retransmisión automática.</p><p>RevPi Connect 5 en modo <strong>Listen-Only</strong>, sin interferencia con ECU ni VIMS.</p></article>
+          <article class="annex-card"><h3>2 · KPIs y aceptación</h3><p><strong>Modelo:</strong> precisión inicial 30–40%, falsos positivos ≤20%; trayectoria de maduración hacia 98% y 2,5%.</p><p><strong>Operación:</strong> MTTR 7,8 h → 6,0 h en etapa temprana; PMP 55% → 72%; tendencia de reducción de downtime de 20–30%.</p><p>Se valida con alertas registradas por mantenimiento, eventos reales y comparación contra línea base.</p></article>
+          <article class="annex-card"><h3>3 · Entregables</h3><p>Edge RevPi Connect 5, router LTE, decodificador SAE J1939 y canal cifrado.</p><p>Gemelo digital, portal MadeOS 24/7, base de datos en tiempo real, Data Lake histórico y alertas.</p><p>Modelo RUL calibrado con históricos de fallas, informe de resultados y recomendación de escala.</p></article>
+        </div>
+        <p class="annex-source">Fuente: Metodologia de validacion.md y KPIs e Impacto Made (1).pdf. Las metas se validan con datos BHP; no son resultados garantizados.</p>
+      </div>
+    </section>
+
+    <section class="slide annex-slide" id="anexo-bhp" data-number="10 / 11">
+      <div class="content">
+        <span class="kicker">Anexo · Dependencias del piloto</span>
+        <h2>Requerimientos a BHP Escondida.</h2>
+        <div class="annex-grid">
+          <article class="annex-card"><h3>Datos e interfaces</h3><ul><li>Acceso a la interfaz de diagnóstico del camión (CAN/VIMS).</li><li>Datos históricos de telemetría y fallas.</li><li>Acceso a la red 4G para enviar telemetría a nuestra nube.</li></ul></article>
+          <article class="annex-card"><h3>Gobernanza operacional</h3><ul><li>Contraparte operacional con autoridad de mantenimiento.</li><li>Contraparte de IT/OT y ciberseguridad.</li><li>Definición conjunta de cinco CAT 797F con historial de fallas relacionadas con contaminación o motor.</li></ul></article>
+          <article class="annex-card"><h3>Acceso y ejecución</h3><ul><li>Garantizar acceso y tiempo requerido para la implementación.</li><li><em>Opcional:</em> acceso a información adicional de OEM, sujeto a disponibilidad y autorización.</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide annex-slide" id="anexo-equipo" data-number="11 / 11">
+      <div class="content">
+        <span class="kicker">Anexo · Capacidad de ejecución</span>
+        <h2>Equipo dedicado al desafío.</h2>
+        <div class="team-grid">
+          <article class="team-card"><h3>Just Partners</h3><div class="team-role"><b>Juan Ignacio Rivera</b><span>Gerente General · Ing. Civil MSc. · Infraestructura, ingeniería vial y transportes.</span></div><div class="team-role"><b>Ignacio Charlin Reyes</b><span>Gerente de Proyectos · Ing. Civil · Estudios hidráulicos, infraestructura pública y minería.</span></div><div class="team-role"><b>Claudia de la Fuente López</b><span>Directora de Proyectos · Ing. Civil OO.CC. · Eficiencia energética.</span></div><div class="team-role"><b>2 técnicos de terreno</b><span>Instalación, cableado y commissioning en minería.</span></div></article>
+          <article class="team-card"><h3>Made</h3><div class="team-role"><b>Gerardo Peña</b><span>CEO &amp; Co-founder · Diseño industrial y negocios.</span></div><div class="team-role"><b>Ramiro Pantoja</b><span>CTO &amp; Co-founder · Ingeniería mecánica y de software.</span></div><div class="team-role"><b>Gabriel Rodríguez Jordán</b><span>Especialista en inteligencia artificial · Doctor en Ciencias de la Computación · Machine learning, procesamiento de señales y AppSec.</span></div><div class="team-role"><b>Especialistas en ciberseguridad</b><span>Seguridad de plataforma, conectividad y gobernanza IT/OT.</span></div></article>
+        </div>
+        <p class="annex-source">Equipo dedicado: 10 personas en total. Los roles y dedicaciones se coordinan con BHP según las ventanas de acreditación, instalación, entrenamiento y validación.</p>
       </div>
     </section>
   </main>
@@ -417,6 +676,11 @@
   <nav class="controls" aria-label="Navegación por slides"></nav>
   <div class="hint">↑ ↓ · espacio · F pantalla completa</div>
   <script>
+    // Presentación en orden narrativo: problema antes de propuesta de valor.
+    const main = document.querySelector('main');
+    const problemSlide = document.querySelector('#problema');
+    const valueSlide = document.querySelector('#valor');
+    if (main && problemSlide && valueSlide) main.insertBefore(problemSlide, valueSlide);
     const slides = [...document.querySelectorAll('.slide')];
     const controls = document.querySelector('.controls');
     let current = 0;
@@ -429,6 +693,27 @@
       controls.append(dot);
     });
     const dots = [...controls.children];
+    const fitProposalClaim = () => {
+      const claim = document.querySelector('#valor .proposal-claim');
+      const holder = document.querySelector('#valor .value-proof');
+      if (!claim || !holder) return;
+      if (getComputedStyle(claim).whiteSpace !== 'nowrap') {
+        claim.style.wordSpacing = '';
+        return;
+      }
+      const probe = claim.cloneNode(true);
+      probe.style.cssText = 'position:absolute; visibility:hidden; width:max-content; max-width:none; white-space:nowrap; word-spacing:0;';
+      holder.append(probe);
+      const naturalWidth = probe.getBoundingClientRect().width;
+      const targetWidth = holder.getBoundingClientRect().width;
+      probe.remove();
+      const spaces = (claim.textContent.match(/\s/g) || []).length;
+      const extra = Math.max(0, targetWidth - naturalWidth);
+      claim.style.wordSpacing = `${spaces ? extra / spaces : 0}px`;
+    };
+    window.addEventListener('load', fitProposalClaim);
+    window.addEventListener('resize', fitProposalClaim);
+    requestAnimationFrame(fitProposalClaim);
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
