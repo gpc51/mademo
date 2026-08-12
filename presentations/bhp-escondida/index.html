@@ -407,8 +407,9 @@
     .regime-price { margin:4px 0 4px; color:var(--orange); font-size:clamp(64px,7vw,106px); font-weight:950; line-height:.92; letter-spacing:-.065em; }
     .regime-arr { margin:0 0 24px; font-size:clamp(22px,2vw,30px); font-weight:800; }
     .regime-lines { border-top:1px solid rgba(24,33,38,.18); }
-    .regime-line { display:grid; grid-template-columns:1fr auto; gap:20px; padding:16px 0; border-bottom:1px solid rgba(24,33,38,.18); font-size:clamp(16px,1.25vw,20px); line-height:1.25; }
-    .regime-line b { text-align:right; }
+    .regime-line { display:grid; grid-template-columns:1fr 190px; gap:20px; padding:14px 0; border-bottom:1px solid rgba(24,33,38,.18); font-size:clamp(16px,1.25vw,20px); line-height:1.25; }
+    .regime-line b { text-align:left; white-space:nowrap; }
+    .regime-line small { display:block; margin-top:5px; color:#69757b; font-size:clamp(12px,1vw,15px); line-height:1.25; }
     .roi-threshold { margin-top:22px; padding:20px 22px; border-left:5px solid var(--orange); background:rgba(255,255,255,.72); font-size:clamp(18px,1.45vw,23px); line-height:1.32; }
     .exclusions { margin:0; padding:0; list-style:none; border-top:1px solid rgba(24,33,38,.18); }
     .exclusions li { padding:15px 0; border-bottom:1px solid rgba(24,33,38,.18); font-size:clamp(17px,1.3vw,21px); line-height:1.28; }
@@ -419,6 +420,7 @@
     #anexo-regimen .regime-price { font-size:clamp(58px,6.2vw,88px); }
     #anexo-regimen .regime-arr { margin-bottom:14px; font-size:clamp(18px,1.7vw,25px); }
     #anexo-regimen .regime-line { padding:10px 0; font-size:clamp(14px,1.08vw,17px); }
+    #anexo-regimen .regime-line small { font-size:clamp(11px,.9vw,14px); }
     #anexo-regimen .roi-threshold { margin-top:13px; padding:13px 16px; font-size:clamp(15px,1.15vw,18px); }
     #anexo-regimen .regime-layout > div:last-child h3 { margin-bottom:12px; }
     #anexo-regimen .exclusions li { padding:10px 0; font-size:clamp(14px,1.1vw,17px); }
@@ -699,14 +701,12 @@
         <h2>Régimen posterior al piloto.</h2>
         <div class="regime-layout">
           <div>
-            <div class="regime-price">USD 225</div>
-            <p class="regime-arr">por CAEX/mes + USD 2.000 por clase de activo/mes</p>
+            <p class="regime-arr">Precios unitarios para operación en régimen.</p>
             <div class="regime-lines">
-              <div class="regime-line"><span>Flota completa · 210 CAEX</span><b>USD 53.250/mes</b></div>
-              <div class="regime-line"><span>Contrato anual MadeOS</span><b>USD 639.000/año</b></div>
-              <div class="regime-line"><span>Procesamiento incluido</span><b>hasta 35 TB/mes</b></div>
-              <div class="regime-line"><span>Consumo adicional</span><b>USD 720/TB</b></div>
-              <div class="regime-line"><span>Edge industrial · pago único a costo</span><b>USD 855,13/unidad*</b></div>
+              <div class="regime-line"><span>MadeOS · suscripción por CAEX<small>Software, modelos, portal, alertas y soporte remoto.</small></span><b>USD 295<small>por CAEX/mes</small></b></div>
+              <div class="regime-line"><span>Edge industrial RevPi Connect 5<small>Pago único por unidad desplegada.</small></span><b>USD 1.350<small>por unidad</small></b></div>
+              <div class="regime-line"><span>Procesamiento incluido<small>Volumen dimensionado a 180 GB por CAEX/mes.</small></span><b>180 GB<small>por CAEX/mes</small></b></div>
+              <div class="regime-line"><span>Consumo adicional<small>Sobre el volumen mensual contratado.</small></span><b>USD 720<small>por TB</small></b></div>
             </div>
           </div>
           <div>
@@ -719,7 +719,7 @@
               <li>Red privada LTE, SIM, APN, ciberseguridad corporativa y servicios provistos por BHP.</li>
               <li>Almacenamiento histórico, retención o transferencia superiores al volumen contratado.</li>
             </ul>
-            <p class="annex-source">*Edge vendido a costo, sin margen para Made. Materiales, integración y sensorización se cotizan por unidad. Contrato sugerido: 36 meses, ajuste anual por IPC de EE.UU. y revisión de volumen cada 12 meses. El ROI se definirá con los resultados observados durante el piloto.</p>
+            <p class="annex-source">Base de precio: edge con margen bruto objetivo de 36,7% sobre el costo de USD 855,13; suscripción dimensionada para cubrir procesamiento, producto y soporte; consumo adicional con 20% sobre el costo de USD 600/TB. Sensorización, integración, acreditaciones y soporte presencial se cotizan por unidad. Contrato sugerido: 36 meses, ajuste anual por IPC de EE.UU. y revisión de volumen cada 12 meses. El ROI se definirá con los resultados observados durante el piloto.</p>
           </div>
         </div>
       </div>
