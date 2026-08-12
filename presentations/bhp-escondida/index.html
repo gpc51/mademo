@@ -403,6 +403,26 @@
     .team-role:first-of-type { border-top:0; padding-top:0; }
     .team-role b { display:block; font-size:clamp(18px,1.55vw,24px); line-height:1.15; }
     .team-role span { display:block; margin-top:5px; color:#5c6870; font-size:clamp(15px,1.2vw,19px); line-height:1.3; }
+    .regime-layout { display:grid; grid-template-columns:1.08fr .92fr; gap:34px; align-items:start; }
+    .regime-price { margin:4px 0 4px; color:var(--orange); font-size:clamp(64px,7vw,106px); font-weight:950; line-height:.92; letter-spacing:-.065em; }
+    .regime-arr { margin:0 0 24px; font-size:clamp(22px,2vw,30px); font-weight:800; }
+    .regime-lines { border-top:1px solid rgba(24,33,38,.18); }
+    .regime-line { display:grid; grid-template-columns:1fr auto; gap:20px; padding:16px 0; border-bottom:1px solid rgba(24,33,38,.18); font-size:clamp(16px,1.25vw,20px); line-height:1.25; }
+    .regime-line b { text-align:right; }
+    .roi-threshold { margin-top:22px; padding:20px 22px; border-left:5px solid var(--orange); background:rgba(255,255,255,.72); font-size:clamp(18px,1.45vw,23px); line-height:1.32; }
+    .exclusions { margin:0; padding:0; list-style:none; border-top:1px solid rgba(24,33,38,.18); }
+    .exclusions li { padding:15px 0; border-bottom:1px solid rgba(24,33,38,.18); font-size:clamp(17px,1.3vw,21px); line-height:1.28; }
+    .exclusions li::before { content:'—'; margin-right:10px; color:var(--orange); font-weight:900; }
+    #anexo-regimen { padding-top:34px; padding-bottom:34px; }
+    #anexo-regimen .kicker { margin-bottom:10px; }
+    #anexo-regimen h2 { margin-bottom:18px; font-size:clamp(40px,4.4vw,62px); }
+    #anexo-regimen .regime-price { font-size:clamp(58px,6.2vw,88px); }
+    #anexo-regimen .regime-arr { margin-bottom:14px; font-size:clamp(18px,1.7vw,25px); }
+    #anexo-regimen .regime-line { padding:10px 0; font-size:clamp(14px,1.08vw,17px); }
+    #anexo-regimen .roi-threshold { margin-top:13px; padding:13px 16px; font-size:clamp(15px,1.15vw,18px); }
+    #anexo-regimen .regime-layout > div:last-child h3 { margin-bottom:12px; }
+    #anexo-regimen .exclusions li { padding:10px 0; font-size:clamp(14px,1.1vw,17px); }
+    #anexo-regimen .annex-source { margin-top:10px; font-size:10px; line-height:1.25; }
     .annex-source { margin-top:18px; color:rgba(24,33,38,.58); font-size:12px; }
 
     .close-pitch { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(42px, 8vw, 130px); align-items: end; }
@@ -488,6 +508,7 @@
       .gantt-milestones { display: grid; grid-template-columns: 1fr 1fr; }
       .annex-grid { grid-template-columns:1fr; }
       .annex-card { min-height:0; }
+      .team-grid, .regime-layout { grid-template-columns:1fr; }
     }
     @media print {
       html { scroll-snap-type: none; }
@@ -635,7 +656,7 @@
       </div>
     </section>
 
-    <section class="slide annex-slide" id="anexo-kpis" data-number="09 / 11">
+    <section class="slide annex-slide" id="anexo-kpis" data-number="09 / 12">
       <div class="content">
         <span class="kicker">Anexo · Criterios de éxito</span>
         <h2>Metodología, KPIs y entregables.</h2>
@@ -648,7 +669,7 @@
       </div>
     </section>
 
-    <section class="slide annex-slide" id="anexo-bhp" data-number="10 / 11">
+    <section class="slide annex-slide" id="anexo-bhp" data-number="10 / 12">
       <div class="content">
         <span class="kicker">Anexo · Dependencias del piloto</span>
         <h2>Requerimientos a BHP Escondida.</h2>
@@ -660,7 +681,7 @@
       </div>
     </section>
 
-    <section class="slide annex-slide" id="anexo-equipo" data-number="11 / 11">
+    <section class="slide annex-slide" id="anexo-equipo" data-number="11 / 12">
       <div class="content">
         <span class="kicker">Anexo · Capacidad de ejecución</span>
         <h2>Equipo dedicado al desafío.</h2>
@@ -669,6 +690,39 @@
           <article class="team-card"><h3>Made</h3><div class="team-role"><b>Gerardo Peña</b><span>CEO &amp; Co-founder · Diseño industrial y negocios.</span></div><div class="team-role"><b>Ramiro Pantoja</b><span>CTO &amp; Co-founder · Ingeniería mecánica y de software.</span></div><div class="team-role"><b>Gabriel Rodríguez Jordán</b><span>Especialista en inteligencia artificial · Doctor en Ciencias de la Computación · Machine learning, procesamiento de señales y AppSec.</span></div><div class="team-role"><b>Especialistas en ciberseguridad</b><span>Seguridad de plataforma, conectividad y gobernanza IT/OT.</span></div></article>
         </div>
         <p class="annex-source">Equipo dedicado: 10 personas en total. Los roles y dedicaciones se coordinan con BHP según las ventanas de acreditación, instalación, entrenamiento y validación.</p>
+      </div>
+    </section>
+
+    <section class="slide annex-slide" id="anexo-regimen" data-number="12 / 12">
+      <div class="content">
+        <span class="kicker">Anexo · Modelo comercial</span>
+        <h2>Régimen posterior al piloto.</h2>
+        <div class="regime-layout">
+          <div>
+            <div class="regime-price">USD 225</div>
+            <p class="regime-arr">por CAEX/mes + USD 2.000 por clase de activo/mes</p>
+            <div class="regime-lines">
+              <div class="regime-line"><span>210 unidades · hasta 3 clases</span><b>USD 53.250/mes</b></div>
+              <div class="regime-line"><span>ARR MadeOS</span><b>USD 639.000</b></div>
+              <div class="regime-line"><span>Datos incluidos</span><b>hasta 35 TB/mes</b></div>
+              <div class="regime-line"><span>Consumo adicional</span><b>USD 720/TB</b></div>
+              <div class="regime-line"><span>Edge industrial</span><b>USD 855,13/unidad*</b></div>
+            </div>
+            <div class="roi-threshold"><strong>Retorno defendible sin inventar el costo BHP/h:</strong><br>punto de equilibrio de USD 45/h evitada al 35% y USD 29/h al 55%. En el primer año, incluyendo edge, los umbrales son USD 58/h y USD 37/h.</div>
+          </div>
+          <div>
+            <h3>Exclusiones</h3>
+            <ul class="exclusions">
+              <li>IVA, aranceles y variaciones de tipo de cambio.</li>
+              <li>Instalación, acreditaciones, viajes, viáticos y soporte presencial de Just Partners.</li>
+              <li>Sensores complementarios, cableado especial, gabinetes, antenas y obras eléctricas.</li>
+              <li>Licencias OEM, cambios de API y conectores no incluidos en el alcance acordado.</li>
+              <li>Red privada LTE, SIM, APN, ciberseguridad corporativa y servicios provistos por BHP.</li>
+              <li>Almacenamiento histórico, retención o transferencia superiores al volumen contratado.</li>
+            </ul>
+            <p class="annex-source">*Edge referencial a costo de hardware; materiales, integración y sensorización se cotizan por unidad. Contrato sugerido: 36 meses, ajuste anual por IPC de EE.UU. y revisión de volumen cada 12 meses.</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
