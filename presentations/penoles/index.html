@@ -1,0 +1,916 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Presentación ejecutiva de MadeOS para operaciones mineras Peñoles.">
+  <title>Peñoles × MadeOS | Piloto predictivo</title>
+  <style>
+    :root {
+      --ink: #182126;
+      --muted: #647176;
+      --paper: #f4f3ee;
+      --white: #fff;
+      --orange: #e84700;
+      --green: #078b43;
+      --blue: #2d4794;
+      --line: rgba(24,33,38,.15);
+    }
+    .proof-card.partner, .challenge-logos, .logos-inline, .logo-footer { display:none !important; }
+    /* Dos zonas visuales con la misma altura: el panel MadeOS conserva su
+       proporción completa y aprovecha el ancho disponible sin un marco negro
+       añadido por la presentación. */
+    #valor .value-proof { grid-template-columns: .85fr 1.15fr; padding: 0; gap: 0; }
+    #anexo-equipo .team-grid, #anexo-evidencia .evidence-grid { grid-template-columns: 1fr; }
+    #valor .proof-card { padding: 0; }
+    #valor .proof-card.edge, #valor .proof-card.made { display: flex; flex-direction: column; }
+    #valor .proof-card.edge img, #valor .proof-card.made img { flex: 0 0 460px; width: 100%; height: 460px; margin: 0; object-fit: contain; object-position: center; background: transparent; border-radius: 0; }
+    #valor .proof-card h3, #valor .proof-card p { margin-inline: 22px; }
+    #valor .proof-card h3 { margin-top: 14px; }
+    #valor .proof-card p { margin-bottom: 16px; }
+    .jp-pricing-note, .team-card:first-child, .evidence-card:first-child { display:none !important; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+    body { margin: 0; color: var(--ink); background: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; letter-spacing: .005em; }
+    button { font: inherit; }
+    .slide {
+      position: relative; min-height: 100vh; min-height: 100svh; overflow: hidden; scroll-snap-align: start;
+      display: grid; align-items: center; padding: clamp(50px, 6vw, 92px) clamp(34px, 4.5vw, 76px); background: var(--paper);
+    }
+    .slide.dark { color: var(--white); background: var(--ink); }
+    .slide.white { background: var(--white); }
+    .slide.orange { color: var(--white); background: var(--orange); }
+    .slide::before { content: attr(data-number); position: absolute; top: 30px; right: 40px; color: var(--muted); font-size: 12px; font-weight: 900; letter-spacing: .14em; }
+    .slide.dark::before, .slide.orange::before { color: rgba(255,255,255,.5); }
+    .content { width: min(1360px, 100%); margin: auto; }
+    .kicker { display: block; margin-bottom: 22px; color: var(--orange); font-size: 12px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+    .dark .kicker, .orange .kicker { color: #ff9567; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 1320px; margin-bottom: 28px; font-size: clamp(54px, 7.2vw, 106px); line-height: 1.05; letter-spacing: -.045em; }
+    h2 { max-width: 1240px; margin-bottom: 46px; font-size: clamp(43px, 5.2vw, 76px); line-height: 1.08; letter-spacing: -.04em; }
+    h3 { font-size: clamp(24px, 2.4vw, 34px); line-height: 1.15; letter-spacing: -.02em; }
+    .lead { max-width: 830px; margin: 0; color: var(--muted); font-size: clamp(20px, 2vw, 28px); line-height: 1.48; }
+    .dark .lead { color: #bac4c8; }
+    .logos { position: absolute; top: 30px; left: clamp(36px, 8vw, 128px); display: flex; align-items: center; gap: 18px; }
+    .logos img:first-child { width: 150px; }
+    .logos img:last-child { width: 105px; }
+    .logos span { color: #aeb6b8; }
+    .dark .logos { padding: 10px 14px; border-radius: 12px; background: rgba(255,255,255,.96); }
+    .logo-footer { top: auto; right: auto; bottom: 34px; left: 50%; transform: translateX(-50%); }
+    #cierre .logo-footer { bottom: 84px; }
+    .logos-inline { position: static; width: fit-content; margin: 0 0 0; transform: none; }
+    .challenge-block { position: relative; display: grid; justify-items: start; gap: 14px; margin-bottom: 30px; padding-left: 19px; }
+    .challenge-block::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; border-radius: 3px; background: var(--orange); }
+    .challenge-block .eyebrow { margin: 0; }
+    .challenge-logos { display: flex; align-items: center; gap: 26px; }
+    .challenge-logos img { display: block; object-fit: contain; }
+    .challenge-logos .escondida { width: 228px; height: auto; }
+    .challenge-logos .aster { width: 112px; height: auto; }
+    .hero-mark { position: absolute; right: -6vw; bottom: -24vh; width: 52vw; height: 76vh; border: 1px solid rgba(232,71,0,.5); border-radius: 50%; }
+    .hero-mark::before, .hero-mark::after { content: ""; position: absolute; border: 1px solid rgba(232,71,0,.3); border-radius: inherit; }
+    .hero-mark::before { inset: 9%; }
+    .hero-mark::after { inset: 20%; background: rgba(232,71,0,.08); }
+    .signature { margin-top: 48px; color: #9fa9ad; font-size: 14px; font-weight: 750; }
+
+    /* Visual narrative: each image is intentionally composed with protected copy space. */
+    #portada {
+      background-image: linear-gradient(90deg, rgba(10,15,18,.96) 0%, rgba(10,15,18,.78) 45%, rgba(10,15,18,.14) 100%), url("assets/01-portada.png");
+      background-position: center; background-size: cover;
+    }
+    #portada .hero-mark { opacity: .36; }
+    #analisis {
+      background-image: linear-gradient(90deg, rgba(244,243,238,.97) 0%, rgba(244,243,238,.88) 54%, rgba(244,243,238,.36) 100%), url("assets/02-analisis.png");
+      background-position: center; background-size: cover;
+    }
+    #analisis .chain { padding: 0 24px; border-radius: 20px; background: rgba(255,255,255,.48); box-shadow: 0 18px 50px rgba(24,33,38,.08); backdrop-filter: blur(8px); }
+    #propuesta {
+      background-image: linear-gradient(90deg, rgba(18,25,29,.98) 0%, rgba(18,25,29,.88) 51%, rgba(18,25,29,.20) 100%), url("assets/03-propuesta.png");
+      background-position: center; background-size: cover;
+    }
+    #validacion { background: #ecece7; }
+    #inversion {
+      background-image: linear-gradient(90deg, rgba(232,71,0,.98) 0%, rgba(232,71,0,.92) 50%, rgba(183,54,0,.64) 100%), url("assets/04-inversion.png");
+      background-position: center; background-size: cover;
+    }
+    #tiempos {
+      background-image: linear-gradient(90deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.91) 58%, rgba(255,255,255,.50) 100%), url("assets/05-tiempos.png");
+      background-position: center; background-size: cover;
+    }
+    #tiempos .gantt { padding: 9px 20px; border-radius: 20px; background: rgba(255,255,255,.58); box-shadow: 0 18px 50px rgba(24,33,38,.08); backdrop-filter: blur(8px); }
+    #experiencia {
+      background-image: linear-gradient(90deg, rgba(18,25,29,.98) 0%, rgba(18,25,29,.88) 47%, rgba(18,25,29,.18) 100%), url("assets/06-experiencia.png");
+      background-position: center; background-size: cover;
+    }
+    #evidencia {
+      background-image: linear-gradient(90deg, rgba(12,18,21,.98) 0%, rgba(12,18,21,.90) 48%, rgba(12,18,21,.24) 100%), url("assets/08-evidencia-cnc.jpg");
+      background-position: center; background-size: cover;
+    }
+    #cierre {
+      background-image: linear-gradient(90deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.90) 50%, rgba(255,255,255,.22) 100%), url("assets/07-cierre.png");
+      background-position: center; background-size: cover;
+    }
+
+    .analysis-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(45px, 8vw, 120px); align-items: center; }
+    .analysis-metric { align-self: center; transform: translateY(-12px); }
+    .big-number { color: var(--orange); font-size: clamp(86px, 13vw, 190px); font-weight: 950; line-height: .8; letter-spacing: -.08em; }
+    .big-number-label { max-width: none; margin-top: 26px; color: var(--muted); font-size: 17px; white-space: nowrap; }
+    .chain { display: grid; gap: 0; }
+    .chain-step { display: grid; grid-template-columns: 48px 1fr; gap: 20px; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .chain-step:last-child { border-bottom: 0; }
+    .chain-step span { color: var(--orange); font-size: 12px; font-weight: 950; }
+    .chain-step b { display: block; font-size: clamp(25px, 2.6vw, 38px); letter-spacing: -.035em; }
+    .chain-step small { color: var(--muted); font-size: 15px; }
+
+    .proposal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; border-block: 1px solid rgba(255,255,255,.17); }
+    .proposal-step { min-height: 290px; padding: 32px; border-right: 1px solid rgba(255,255,255,.17); }
+    .proposal-step:last-child { border-right: 0; }
+    .proposal-step span { color: #ff9567; font-size: 12px; font-weight: 950; letter-spacing: .15em; }
+    .proposal-step h3 { margin: 84px 0 12px; font-size: clamp(30px, 3.2vw, 48px); }
+    .proposal-step p { max-width: 260px; color: #aeb9bd; font-size: 17px; }
+    .proposal-outcome { margin-top: 34px; color: #dbe2e4; font-size: clamp(22px, 2.2vw, 30px); }
+    .proposal-outcome b { color: var(--white); }
+    .proposal-architecture { margin-top: 18px; color: #8f9ba0; font-size: 14px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+    .architecture-diagram { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 12px; }
+    .architecture-stage { position: relative; min-height: 292px; padding: 22px; border: 1px solid rgba(255,255,255,.22); border-radius: 16px; background: rgba(18,25,29,.66); backdrop-filter: blur(7px); }
+    .architecture-stage:not(:last-child)::after { content: "→"; position: absolute; z-index: 3; top: 50%; right: -22px; width: 28px; color: #ff9567; font-size: 24px; font-weight: 800; text-align: center; transform: translateY(-50%); }
+    .architecture-stage small { color: #ff9567; font-size: 11px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    .architecture-stage h3 { margin: 18px 0 16px; color: var(--white); font-size: clamp(23px, 2.25vw, 34px); }
+    .architecture-stage p { margin: 0; color: #bac5c9; font-size: 15px; line-height: 1.55; }
+    .architecture-nodes { display: grid; gap: 7px; }
+    .architecture-node { padding: 7px 9px; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: rgba(255,255,255,.045); }
+    .architecture-node b { display: block; color: var(--white); font-size: 12px; line-height: 1.2; }
+    .architecture-node span { display: block; margin-top: 2px; color: #aebbc0; font-size: 10px; line-height: 1.3; }
+    .proposal-technical-note { margin: 14px 0 0; color: #97a4a9; font-size: 11px; line-height: 1.35; }
+    .architecture-kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin-top: 14px; background: rgba(255,255,255,.16); }
+    .architecture-kpi { display: flex; align-items: baseline; gap: 12px; padding: 11px 16px; background: rgba(18,25,29,.82); }
+    .architecture-kpi b { color: #ff9567; font-size: clamp(24px, 2.5vw, 34px); line-height: 1; }
+    .architecture-kpi span { color: #bac5c9; font-size: 11px; line-height: 1.25; }
+
+    .validation-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 18px; border-block: 1px solid var(--line); }
+    .validation-item { min-height: 280px; padding: 30px 28px 24px; border-right: 1px solid var(--line); }
+    .validation-item:last-child { border-right: 0; }
+    .validation-item small { color: var(--orange); font-size: 11px; font-weight: 950; letter-spacing: .14em; text-transform: uppercase; }
+    .validation-item strong { display: block; margin: 66px 0 14px; color: var(--ink); font-size: clamp(42px, 5vw, 72px); line-height: .92; letter-spacing: -.055em; }
+    .validation-item p { max-width: 240px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.42; }
+    .validation-note { margin: 25px 0 0; color: var(--muted); font-size: 14px; }
+
+    .evidence-layout { display: grid; grid-template-columns: 1.08fr .92fr; gap: clamp(60px, 9vw, 140px); align-items: end; }
+    .evidence-primary strong { display: block; color: var(--orange); font-size: clamp(92px, 13vw, 190px); font-weight: 950; line-height: .78; letter-spacing: -.085em; }
+    .evidence-primary p { max-width: 580px; margin: 30px 0 0; color: #d2dade; font-size: clamp(20px, 2vw, 28px); line-height: 1.35; }
+    .evidence-facts { display: grid; gap: 0; border-top: 1px solid rgba(255,255,255,.2); }
+    .evidence-fact { display: grid; grid-template-columns: 130px 1fr; gap: 24px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,.2); }
+    .evidence-fact b { color: var(--white); font-size: clamp(28px, 3vw, 44px); letter-spacing: -.04em; }
+    .evidence-fact span { color: #aeb9bd; font-size: 15px; line-height: 1.4; }
+    .evidence-note { margin: 24px 0 0; color: #8c9a9f; font-size: 12px; line-height: 1.4; }
+    #evidencia h2 { margin-bottom: 30px; font-size: clamp(38px, 4.25vw, 62px); }
+    #evidencia .evidence-primary strong { font-size: clamp(86px, 11vw, 160px); }
+    #evidencia .evidence-fact { padding-block: 18px; }
+
+    .cost-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(50px, 8vw, 110px); align-items: center; }
+    .zero { font-size: clamp(130px, 20vw, 270px); font-weight: 950; line-height: .7; letter-spacing: -.09em; }
+    .zero-label { margin-top: 34px; font-size: clamp(24px, 2.6vw, 36px); font-weight: 850; }
+    .roi-label { display: block; margin-bottom: 22px; color: rgba(255,255,255,.72); font-size: 12px; font-weight: 950; letter-spacing: .16em; text-transform: uppercase; }
+    .roi-value { font-size: clamp(64px, 7.4vw, 122px); font-weight: 950; line-height: .9; letter-spacing: -.055em; white-space: nowrap; }
+    .roi-sub { margin-top: 30px; font-size: clamp(21px, 2.25vw, 30px); font-weight: 850; line-height: 1.1; }
+    .costs { display: grid; gap: 19px; }
+    .cost-row { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; padding-bottom: 17px; border-bottom: 1px solid rgba(255,255,255,.25); }
+    .cost-row span { color: rgba(255,255,255,.7); font-size: 17px; }
+    .cost-row b { font-size: clamp(23px, 2.4vw, 34px); text-align: right; }
+    .return-line { margin-top: 34px; padding-top: 24px; color: rgba(255,255,255,.78); font-size: 20px; }
+    .return-line strong { color: var(--white); }
+    .investment-foot { margin: 26px 0 0; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.25); text-align: left; white-space: nowrap; }
+    .pilot-roi { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.25); }
+    .pilot-roi b { display: block; color: rgba(255,255,255,.7); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+    .pilot-roi span { display: block; margin-top: 5px; color: var(--white); font-size: clamp(35px, 4.1vw, 62px); font-weight: 900; letter-spacing: -.045em; line-height: .95; white-space: nowrap; }
+    .cost-sum { display: flex; justify-content: space-between; gap: 18px; align-items: baseline; margin-top: 26px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.25); white-space: nowrap; }
+    .cost-sum span { color: rgba(255,255,255,.7); font-size: 14px; }
+    .cost-sum b { font-size: clamp(20px, 2vw, 27px); text-align: right; }
+    #inversion h2 { margin-bottom: 30px; font-size: clamp(38px, 4.5vw, 66px); }
+
+    .gantt { display: grid; grid-template-columns: 1.5fr repeat(5, 1fr); align-items: center; font-size: 15px; }
+    .gantt > div { min-height: 55px; display: flex; align-items: center; padding: 10px 13px; border-bottom: 1px solid var(--line); }
+    .gantt .head { min-height: 42px; color: var(--muted); font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .gantt .label { font-weight: 850; }
+    .bar { width: 100%; height: 12px; border-radius: 20px; background: var(--orange); }
+    .bar.green { background: var(--green); }
+    .bar.blue { background: var(--blue); }
+    .bar.gray { background: #a9b1b3; }
+    .milestones { margin-top: 30px; display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
+    .milestones b { display: block; color: var(--ink); font-size: 22px; }
+    #tiempos h2 { margin-bottom: 24px; font-size: clamp(26px, 2.3vw, 34px); white-space: nowrap; }
+    #tiempos .gantt > div { min-height: 43px; padding-block: 6px; }
+    #tiempos .milestones { margin-top: 20px; }
+
+    .experience-layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(60px, 10vw, 150px); align-items: end; }
+    .budget-value { color: var(--orange); font-size: clamp(70px, 9.3vw, 132px); font-weight: 950; line-height: .78; letter-spacing: -.09em; }
+    .execution-mark { color: var(--orange); font-size: clamp(52px, 6.4vw, 92px); font-weight: 950; line-height: .8; letter-spacing: -.08em; }
+    .budget-label { max-width: 390px; margin-top: 30px; color: #aeb9bd; font-size: 20px; }
+    .capabilities { display: grid; gap: 24px; }
+    .capabilities-wide { width: min(1120px, 100%); justify-self: start; }
+    .capability { padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,.18); }
+    .capability b { display: block; font-size: clamp(23px, 2.4vw, 33px); }
+    .capability span { color: #aeb9bd; }
+    .proof-note { margin-top: 25px; color: #7f8d92; font-size: 13px; }
+
+    .close-list { margin-top: 58px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
+    .close-item { padding: 28px; background: var(--paper); }
+    .close-item span { color: var(--orange); font-size: 12px; font-weight: 950; }
+    .close-item b { display: block; margin-top: 30px; font-size: clamp(21px, 2.2vw, 31px); line-height: 1.1; }
+    .closing-line { margin-top: 46px; color: var(--muted); font-size: clamp(20px, 2.1vw, 29px); }
+    .closing-line strong { color: var(--ink); }
+    .vision-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 18px; margin-top: 36px; }
+    .vision-card { min-height: 250px; padding: 28px; border: 1px solid var(--line); background: rgba(255,255,255,.72); }
+    .vision-card > span { color: var(--orange); font-size: 12px; font-weight: 950; letter-spacing: .14em; text-transform: uppercase; }
+    .vision-card h3 { margin: 32px 0 10px; font-size: clamp(28px, 3.1vw, 44px); }
+    .vision-card p { max-width: 470px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.45; }
+    .vision-card.scale { color: var(--white); border-color: transparent; background: var(--ink); }
+    .vision-card.scale > span { color: #ff9567; }
+    .scale-value { margin-top: 18px; color: var(--white); font-size: clamp(55px, 6.3vw, 98px); font-weight: 950; line-height: .9; letter-spacing: -.065em; white-space: nowrap; }
+    .vision-card.scale p { color: #c1cbd0; }
+    .scale-roi { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.2); color: var(--white); font-size: 18px; font-weight: 850; }
+    .vision-note { max-width: 1100px; margin-top: 22px; color: var(--muted); font-size: 11px; line-height: 1.35; }
+    .outcome-list { display: grid; gap: 0; margin-top: 24px; }
+    .outcome-item { padding: 13px 0; border-top: 1px solid var(--line); }
+    .outcome-item b { display: block; color: var(--ink); font-size: 18px; }
+    .outcome-item span { color: var(--muted); font-size: 13px; }
+    #cierre h2 { margin-bottom: 24px; font-size: clamp(36px, 4.2vw, 62px); }
+    #cierre .vision-grid { margin-top: 0; }
+    #cierre .vision-card { min-height: 210px; }
+    #cierre .vision-note { margin-top: 16px; }
+    #cierre .close-pitch { display: block; }
+    #cierre .close-pitch h2 { max-width: none; margin-bottom: 36px; font-size: clamp(28px, 3vw, 48px); letter-spacing: -.045em; white-space: nowrap; }
+    #cierre .close-outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; border-top: 1px solid var(--line); }
+    #cierre .close-outcome { padding: 22px 0; border-bottom: 1px solid var(--line); }
+    #cierre .kicker { font-size: 13.2px; }
+
+    /* Pitch v2: a larger text canvas and only the evidence needed to decide. */
+    .slide { padding: clamp(40px, 4.8vw, 74px) clamp(28px, 3.6vw, 61px); }
+    .content { width: min(1632px, 100%); }
+    h1 { max-width: 1420px; }
+    /* Solo la portada usa H1. Los títulos de sección son H2, con una jerarquía
+       suficientemente visible para una presentación en sala. */
+    h2 { max-width: 1420px; margin-bottom: 38px; font-size: clamp(50px, 5.4vw, 84px); }
+    .slide::before { top: 24px; right: 30px; }
+    .source { left: clamp(28px, 6.4vw, 102px); right: clamp(28px, 6.4vw, 102px); bottom: 18px; }
+
+    #valor { color: var(--ink); background-image: linear-gradient(90deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.91) 54%, rgba(255,255,255,.42) 100%), url("assets/04-inversion.png"); background-position: center; background-size: cover; }
+    #valor { padding-top: 32px; padding-bottom: 32px; }
+    #valor .kicker { color: var(--orange); }
+    #valor .proposal-impact, #valor .proposal-claim { color: var(--ink); }
+    #valor .value-proof { border-color: rgba(255,255,255,.24); background: linear-gradient(135deg, rgba(0,5,10,.68), rgba(0,0,0,.52)); box-shadow: 0 18px 44px rgba(24,33,38,.30), inset 0 1px 0 rgba(255,255,255,.16); backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); }
+    #valor .proof-card { border-color: rgba(255,255,255,.25); }
+    #valor .proof-card h3, #valor .proof-card p { color: var(--white); }
+    #valor .source { color: rgba(24,33,38,.66); }
+    #valor .proposal-claim { margin-top: 34px; width: 100%; max-width: none; font-size: clamp(28px, 2.35vw, 36px); line-height: 1.08; letter-spacing: -.035em; white-space: normal; text-align: left; text-align-last: left; }
+    #valor .proposal-claim .claim-emphasis { text-decoration-line: underline; text-decoration-thickness: .08em; text-underline-offset: .12em; }
+    #problema { color: var(--white); background-image: linear-gradient(90deg, rgba(10,15,18,.97) 0%, rgba(10,15,18,.88) 54%, rgba(10,15,18,.30) 100%), url("assets/02-analisis.png"); background-position: center; background-size: cover; }
+    #problema .problem-label { color: #cbd4d7; }
+    #problema .problem-lines { border-color: rgba(255,255,255,.26); }
+    #problema .problem-line { border-color: rgba(255,255,255,.26); }
+    #problema .problem-line span { color: var(--white); }
+    #problema .problem-number-heading { display: inline-block; width: max-content; max-width: 100%; margin: 0 0 10px; color: var(--orange); font-size: clamp(92px, 11vw, 164px); line-height: .78; letter-spacing: -.08em; }
+    #problema .problem-number-label { width: max-content; max-width: 100%; margin: 0 0 34px; color: #cbd4d7; font-size: clamp(20px, 1.8vw, 26px); line-height: 1.2; white-space: nowrap; text-align: left; }
+    #problema .problem-secondary { max-width: 1450px; margin: 0 0 34px; color: var(--white); font-size: clamp(38px, 3.9vw, 58px); line-height: 1.04; letter-spacing: -.04em; }
+    #problema .kicker { font-size: 13.2px; }
+    #problema .problem-number-heading { font-size: clamp(101px, 12.1vw, 180px); }
+    #problema .problem-number-label { font-size: clamp(22px, 1.98vw, 29px); }
+    #problema .problem-secondary { font-size: clamp(42px, 4.29vw, 64px); }
+    /* Shared title scale: consistent hierarchy without flattening each slide's composition. */
+    .tech-heading h2, .validation-proposition { font-size: clamp(42px, 4.7vw, 68px); line-height: 1.06; letter-spacing: -.04em; }
+    #problema .problem-layout { display: block; }
+    #problema .problem-lines { width: min(52%, 850px); }
+    #problema .problem-line { padding: 16px 0; }
+    #problema .problem-line b { font-size: 13.2px; }
+    #problema .problem-line span { font-size: clamp(21px, 1.82vw, 29px); line-height: 1.18; }
+    #problema .source { font-size: 11px; }
+    #negocio { color: var(--ink); background-image: linear-gradient(90deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.91) 55%, rgba(255,255,255,.42) 100%), url("assets/03-propuesta.png"); background-position: center; background-size: cover; }
+    #negocio .kicker { color: var(--orange); }
+    #negocio .business-main small { color: var(--muted); }
+    #negocio .business-points { border-color: var(--line); }
+    #negocio .business-points div { color: var(--ink); border-color: var(--line); }
+    #negocio .business-points b, #negocio .business-equation b { color: var(--orange); }
+    #negocio .business-equation { color: var(--ink); border-color: var(--line); }
+    #negocio .source { color: rgba(24,33,38,.62); }
+    #negocio { color: var(--white); background-image: linear-gradient(90deg, rgba(18,25,29,.98) 0%, rgba(18,25,29,.88) 51%, rgba(18,25,29,.20) 100%), url("assets/03-propuesta.png"); }
+    #negocio .kicker { color: #ff9567; }
+    #negocio .source { color: rgba(255,255,255,.45); }
+    #negocio h2 { max-width: none; white-space: nowrap; font-size: clamp(32px, 3.4vw, 52px); }
+    #negocio .tech-heading { display: flex; align-items: end; justify-content: space-between; gap: 36px; margin-bottom: 38px; }
+    #negocio .tech-heading h2 { margin: 0; flex: 1; white-space: normal; }
+    #negocio .false-positive { flex: 0 0 auto; padding: 12px 16px; border-left: 2px solid #ff9567; color: #ff9567; font-size: clamp(22px, 2vw, 30px); font-weight: 800; line-height: 1.08; white-space: nowrap; }
+    #negocio .false-positive em { display: block; margin-top: 8px; color: rgba(255,255,255,.7); font-size: clamp(12px, 1.05vw, 15px); font-weight: 500; line-height: 1.2; }
+    #negocio .architecture-kpis { grid-template-columns: repeat(3, 1fr); }
+    #negocio .architecture-kpi em { display: block; margin-top: 3px; color: rgba(255,255,255,.62); font-size: 10px; font-style: italic; line-height: 1.2; }
+    #etapas { background-image: linear-gradient(90deg, rgba(18,25,29,.98) 0%, rgba(18,25,29,.88) 51%, rgba(18,25,29,.16) 100%), url("assets/08-evidencia-cnc.jpg"); background-position: center; background-size: cover; }
+    #etapas .validation-grid { border-color: rgba(255,255,255,.22); }
+    #etapas .validation-item { border-color: rgba(255,255,255,.22); }
+    #etapas .validation-item strong { color: var(--white); }
+    #etapas .validation-item p, #etapas .validation-note { color: #bac5c9; }
+    #etapas .validation-intro { margin: 0 0 12px; color: #dbe2e4; font-size: clamp(15px, 1.35vw, 19px); font-weight: 750; }
+    #etapas .validation-module { width: 100%; margin-top: 0; padding: 18px 22px 0; border: 1px solid rgba(255,255,255,.22); border-radius: 16px; background: rgba(18,25,29,.62); box-shadow: inset 0 1px 0 rgba(255,255,255,.08); backdrop-filter: blur(8px); }
+    #etapas .validation-grid { margin-top: 0; }
+    #etapas .validation-method { margin: 0; color: #bac5c9; font-size: 14px; line-height: 1.3; }
+    #etapas .validation-focus { margin: 5px 0 12px; color: #ff9567; font-size: 12px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    #etapas .validation-item { min-height: 205px; padding: 20px 12px 18px; }
+    #etapas .validation-item strong { margin: 30px 0 9px; font-size: clamp(34px, 4vw, 56px); }
+    #etapas .validation-item p { font-size: 16px; line-height: 1.3; }
+    #etapas .validation-proposition { max-width: none; margin-bottom: 26px; font-size: clamp(25px, 2.47vw, 38px); line-height: 1.06; letter-spacing: -.05em; }
+    #etapas .validation-proposition strong { color: inherit; text-decoration-line: underline; text-decoration-color: var(--orange); text-decoration-thickness: .08em; text-underline-offset: .12em; }
+    #etapas .kicker { font-size: 13.2px; }
+    #etapas .validation-proposition { width: 100%; max-width: none; font-size: clamp(28px, 2.15vw, 34px); line-height: 1.06; letter-spacing: -.045em; white-space: normal; }
+    #etapas .validation-intro { font-size: clamp(16.5px, 1.49vw, 21px); }
+    #etapas .validation-item small { font-size: 12.1px; }
+    #etapas .validation-item strong { font-size: clamp(37px, 4.4vw, 62px); }
+    #etapas .validation-item p { max-width: none; font-size: 17.6px; }
+    #etapas .source { font-size: 11px; }
+    #precios { background-image: linear-gradient(90deg, rgba(244,243,238,.97) 0%, rgba(244,243,238,.90) 55%, rgba(244,243,238,.36) 100%), url("assets/06-experiencia.png"); background-position: center; background-size: cover; }
+    #gantt-slide { background-image: linear-gradient(90deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.91) 60%, rgba(255,255,255,.48) 100%), url("assets/05-tiempos.png"); background-position: center; background-size: cover; }
+
+    .proposal-impact { margin-bottom: 26px; color: var(--white); }
+    .value-proof { display: grid; grid-template-columns: .82fr .88fr 1.38fr; gap: clamp(18px, 2.5vw, 40px); margin-top: 0; padding: 10px 12px; border: 1px solid rgba(255,255,255,.18); border-radius: 18px; background: linear-gradient(135deg, rgba(255,255,255,.13), rgba(255,255,255,.035)); box-shadow: 0 18px 44px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.1); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+    .proof-card { min-width: 0; padding: 2px 14px 0; border-right: 1px solid rgba(255,255,255,.14); }
+    .proof-card:last-child { border-right: 0; }
+    .proof-card img { display: block; width: 100%; height: 370px; object-fit: contain; object-position: center; }
+    .proof-card.partner img { width: 88%; height: 370px; object-position: center; margin-inline: auto; }
+    .proof-card.edge { padding-left: 0; padding-right: 0; }
+    .proof-card.edge img { height: 370px; object-position: center; }
+    .proof-card.made { padding-left: 0; padding-right: 0; }
+    .proof-card.made img { width: 100%; height: 370px; object-fit: contain; object-position: center; background: rgba(7,11,14,.72); border-radius: 9px; }
+    .proof-card h3 { margin: 8px 0 5px; color: #ff9567; font-size: 12px; letter-spacing: .08em; }
+    .proof-card p { min-height: 2.4em; margin: 0 0 10px; color: #d6dfe2; font-size: clamp(15px, 1.35vw, 19px); line-height: 1.2; letter-spacing: -.02em; }
+    .proof-card.partner p { font-size: clamp(15px, 1.35vw, 19px); line-height: 1.2; letter-spacing: -.02em; }
+    .proposal-claim { width: 100%; max-width: none; margin: 14px 0 0; color: var(--white); font-size: clamp(29px, 2.95vw, 45px); line-height: 1.05; letter-spacing: -.045em; }
+    .value-list { border-top: 1px solid rgba(255,255,255,.24); }
+    .value-item { display: grid; grid-template-columns: 132px 1fr; gap: 24px; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,.24); }
+    .value-item b { color: #ff9567; font-size: 12px; letter-spacing: .1em; line-height: 1.3; }
+    .value-item span { color: #d6dfe2; font-size: clamp(17px, 1.55vw, 22px); line-height: 1.34; }
+
+    .problem-layout { display: grid; grid-template-columns: .74fr 1.26fr; gap: clamp(44px, 8vw, 130px); align-items: center; }
+    .problem-number { color: var(--orange); font-size: clamp(90px, 13vw, 188px); font-weight: 950; line-height: .78; letter-spacing: -.08em; }
+    .problem-label { margin: 26px 0 0; color: var(--muted); font-size: clamp(14px, 1.4vw, 21px); line-height: 1.2; white-space: nowrap; }
+    .problem-lines { display: grid; border-top: 1px solid var(--line); }
+    .problem-line { display: grid; grid-template-columns: 54px 1fr; gap: 18px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .problem-line b { color: var(--orange); font-size: 12px; letter-spacing: .12em; }
+    .problem-line span { font-size: clamp(22px, 2.2vw, 33px); font-weight: 800; letter-spacing: -.035em; }
+
+    .business-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(44px, 8vw, 120px); align-items: end; }
+    .business-main { font-size: clamp(36px, 4vw, 64px); font-weight: 900; line-height: 1; letter-spacing: -.055em; }
+    .business-main small { display: block; margin-top: 24px; color: rgba(255,255,255,.76); font-size: clamp(18px, 1.7vw, 24px); font-weight: 650; line-height: 1.35; letter-spacing: 0; }
+    .business-points { border-top: 1px solid rgba(255,255,255,.28); }
+    .business-points div { display: grid; grid-template-columns: 128px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.28); color: rgba(255,255,255,.94); font-size: clamp(19px, 1.8vw, 26px); font-weight: 750; line-height: 1.25; }
+    .business-points b { color: #ffd7c6; font-size: 12px; letter-spacing: .1em; }
+    .business-equation { margin-top: 30px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.28); color: rgba(255,255,255,.94); font-size: clamp(19px, 1.8vw, 26px); font-weight: 750; line-height: 1.25; }
+    .business-equation b { color: #ffd7c6; }
+
+    .stage-strip { display: grid; grid-template-columns: repeat(3, 1fr); border-block: 1px solid rgba(255,255,255,.2); }
+    .stage { min-height: 300px; padding: 28px; border-right: 1px solid rgba(255,255,255,.2); }
+    .stage:last-child { border-right: 0; }
+    .stage small { color: #ff9567; font-size: 12px; font-weight: 900; letter-spacing: .13em; }
+    .stage h3 { margin: 58px 0 16px; color: var(--white); font-size: clamp(28px, 2.8vw, 42px); }
+    .stage p { max-width: 320px; margin: 0; color: #b9c4c8; font-size: 16px; line-height: 1.4; }
+    .stage-deliverable { margin-top: 28px; color: #d8e1e4; font-size: 18px; }
+    .stage-deliverable b { color: var(--white); }
+
+    .price-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(44px, 8vw, 120px); align-items: start; }
+    .price-total { color: var(--orange); font-size: clamp(78px, 9vw, 142px); font-weight: 950; line-height: .82; letter-spacing: -.075em; white-space: nowrap; }
+    .price-total-compact { width: max-content; margin: 18px 0 0 auto; text-align: right; font-size: clamp(58px, 6.2vw, 96px); }
+    .price-total-label { max-width: 500px; margin: 12px 0 0 auto; color: var(--ink); font-size: clamp(22px, 2vw, 29px); font-weight: 800; line-height: 1.22; text-align: right; white-space: nowrap; }
+    .price-table { border-top: 1px solid var(--line); }
+    .price-row { display: grid; grid-template-columns: 1fr auto; gap: 28px; min-height: 74px; padding: 17px 0; border-bottom: 1px solid var(--line); align-items: center; }
+    .price-row span { color: var(--ink); font-size: 17px; font-weight: 800; }
+    .price-row span small { display:block; margin-top:5px; color:var(--muted); font-size:clamp(12px,1vw,15px); font-weight:650; line-height:1.2; }
+    .price-row b { font-size: clamp(20px, 1.9vw, 27px); text-align: right; white-space: nowrap; }
+    .price-total-row { margin-top: 10px; border-top: 2px solid var(--ink); }
+    .price-total-row b { color: var(--orange); font-size: clamp(28px, 2.4vw, 38px); }
+    .price-total-row b small { display:block; margin:5px 0 0; color:var(--ink); font-size:.52em; font-weight:800; letter-spacing:-.01em; }
+    .price-note { margin: 22px 0 0; color: var(--muted); font-size: 15px; line-height: 1.35; }
+    .price-roi { margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .price-roi b { display: block; color: var(--orange); font-size: 13.5px; letter-spacing: .13em; text-transform: uppercase; }
+    .price-roi strong { display: block; margin-top: 10px; color: var(--orange); font-size: clamp(78px, 9vw, 142px); line-height: .82; letter-spacing: -.075em; white-space: nowrap; }
+    .price-roi span { display: block; margin-top: 10px; color: var(--muted); font-size: 15px; line-height: 1.35; }
+    .price-roi .roi-scale { margin-top: 12px; color: var(--ink); font-size: clamp(18px, 1.65vw, 24px); font-weight: 800; line-height: 1.2; }
+    .price-roi small { display: block; margin-top: 10px; color: var(--ink); font-size: 14px; font-weight: 750; line-height: 1.35; }
+    #precios .price-roi > span:first-of-type { margin-top: 14px; color: var(--ink); font-size: clamp(22px, 2vw, 29px); font-weight: 800; line-height: 1.22; }
+    #precios .price-row span { font-size: clamp(18px, 1.35vw, 21px); }
+    #precios .price-row b { font-size: clamp(22px, 2vw, 29px); }
+    #precios .price-note { display:none; }
+    #precios .price-layout { grid-template-columns:1.15fr .85fr; }
+    #precios .kicker { font-size: 13.8px; }
+    #precios .price-row span { font-size: clamp(20.7px, 1.55vw, 24px); }
+    #precios .price-row b { font-size: clamp(25.3px, 2.3vw, 33px); }
+    #precios .price-row span small { font-size: clamp(13.8px, 1.15vw, 17px); }
+    #precios .price-impact { align-self:start; margin-top:34px; padding:26px 28px 24px; border:1px solid rgba(24,33,38,.18); border-radius:18px; background:rgba(255,255,255,.58); box-shadow:0 14px 34px rgba(24,33,38,.08); }
+    #precios .price-impact strong { margin-top:0; font-size:clamp(82px,8.5vw,132px); }
+    #precios .price-impact span { margin-top:14px; color:var(--ink); font-size:clamp(22px,1.8vw,28px); font-weight:800; line-height:1.15; }
+    #precios .price-impact b { margin-top:18px; padding-top:14px; border-top:1px solid rgba(24,33,38,.18); font-size:12px; letter-spacing:.12em; }
+    .case-method { margin-top:18px; padding:12px 16px; border-left:4px solid var(--orange); background:rgba(255,255,255,.08); color:rgba(255,255,255,.82); font-size:clamp(14px,1.15vw,18px); line-height:1.28; }
+    .case-method strong { color:var(--white); }
+    #cierre .close-outcome span { max-width:560px; }
+
+    .gantt-pitch { display: grid; grid-template-columns: 1.25fr repeat(4, 1fr); border-top: 1px solid var(--line); }
+    .gantt-pitch > div { min-height: 81px; display: flex; align-items: center; padding: 13px 17px; border-bottom: 1px solid var(--line); }
+    .gantt-pitch .g-head { min-height: 44px; color: var(--muted); font-size: 11px; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
+    .gantt-pitch .g-label { color: var(--ink); font-size: 20px; font-weight: 850; line-height: 1.12; }
+    .gantt-pitch .g-label { flex-direction: column; align-items: flex-start; justify-content: center; }
+    .gantt-pitch .g-label .model-training { display: block; margin-top: 8px; color: var(--muted); font-size: 13px; font-weight: 650; line-height: 1.2; }
+    .gantt-pitch .g-cell { justify-content: center; }
+    .gantt-block { width: 100%; height: 14px; border-radius: 100px; background: var(--blue); }
+    .gantt-block.orange { background: var(--orange); }
+    .gantt-block.green { background: var(--green); }
+    .gantt-block.model { background: #7c61c9; }
+    .gantt-milestones { display: flex; justify-content: space-between; gap: 24px; margin-top: 22px; color: var(--muted); font-size: 14px; }
+    .gantt-milestones b { display: block; color: var(--ink); font-size: 22px; }
+    .annex-slide { background: #f4f6f7; color: var(--ink); }
+    .annex-slide .content { width: min(1440px,100%); }
+    .annex-slide h2 { margin-bottom: 28px; font-size: clamp(42px,4.7vw,68px); }
+    .annex-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .annex-card { min-height:230px; padding:24px 26px; border:1px solid rgba(24,33,38,.16); border-radius:18px; background:rgba(255,255,255,.78); box-shadow:0 14px 34px rgba(24,33,38,.08); }
+    .annex-card h3 { margin:0 0 12px; font-size:clamp(22px,2vw,30px); color:var(--orange); }
+    .annex-card p, .annex-card li { font-size:clamp(17px,1.35vw,21px); line-height:1.35; }
+    .annex-card ul { margin:0; padding-left:20px; }
+    .annex-card strong { color:var(--ink); }
+    .team-image { width:100%; max-height:430px; object-fit:contain; object-position:left center; border-radius:16px; background:#fff; }
+    .team-wrap { position:relative; }
+    .team-label { position:absolute; left:52.8%; top:63.5%; width:21%; padding:5px 0; background:#fff; color:#202830; font-weight:800; font-size:clamp(13px,1.25vw,20px); }
+    .team-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .team-card { padding:28px 32px; border:1px solid rgba(24,33,38,.14); border-radius:18px; background:rgba(255,255,255,.82); box-shadow:0 14px 34px rgba(24,33,38,.08); }
+    .team-card h3 { margin:0 0 22px; font-size:clamp(24px,2.2vw,34px); color:var(--orange); }
+    .team-role { padding:15px 0; border-top:1px solid rgba(24,33,38,.13); }
+    .team-role:first-of-type { border-top:0; padding-top:0; }
+    .team-role b { display:block; font-size:clamp(18px,1.55vw,24px); line-height:1.15; }
+    .team-role span { display:block; margin-top:5px; color:#5c6870; font-size:clamp(15px,1.2vw,19px); line-height:1.3; }
+    .evidence-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .evidence-card { padding:28px 32px; border:1px solid rgba(24,33,38,.14); border-radius:18px; background:rgba(255,255,255,.82); box-shadow:0 14px 34px rgba(24,33,38,.08); }
+    .evidence-card h3 { margin:0 0 16px; color:var(--orange); font-size:clamp(24px,2.2vw,34px); }
+    .evidence-card ul { margin:0; padding-left:20px; }
+    .evidence-card li { margin:10px 0; font-size:clamp(17px,1.3vw,21px); line-height:1.3; }
+    .evidence-card strong { color:var(--ink); }
+    #anexo-evidencia { padding-top:34px; padding-bottom:34px; }
+    #anexo-evidencia h2 { margin-bottom:22px; font-size:clamp(40px,4.4vw,62px); }
+    #anexo-evidencia .annex-source { margin-top:14px; }
+    .compliance-table { width:100%; border-collapse:collapse; border-top:1px solid rgba(24,33,38,.18); }
+    .compliance-table th, .compliance-table td { padding:14px 16px; border-bottom:1px solid rgba(24,33,38,.16); text-align:left; vertical-align:top; }
+    .compliance-table th { color:var(--orange); font-size:clamp(12px,1vw,15px); letter-spacing:.08em; text-transform:uppercase; }
+    .compliance-table td { color:var(--ink); font-size:clamp(15px,1.18vw,18px); line-height:1.24; }
+    .compliance-table td:first-child { width:19%; font-weight:850; }
+    .compliance-table td:nth-child(2) { width:43%; }
+    .compliance-table td:nth-child(3) { width:20%; color:var(--muted); }
+    .compliance-table td:last-child { width:18%; font-weight:750; }
+    #anexo-matriz h2 { margin-bottom:22px; font-size:clamp(40px,4.4vw,62px); }
+    #anexo-equipo h2 { margin-bottom:14px; max-width:none; font-size:clamp(22px,1.9vw,28px); line-height:1.05; letter-spacing:-.03em; white-space:nowrap; }
+    #anexo-equipo .team-card { padding:20px 26px; }
+    #anexo-equipo .team-card h3 { margin-bottom:14px; }
+    #anexo-equipo .team-role { padding:9px 0; }
+    #anexo-equipo .team-role b { font-size:clamp(16px,1.35vw,21px); }
+    #anexo-equipo .team-role span { margin-top:3px; font-size:clamp(13px,1vw,16px); line-height:1.2; }
+    #anexo-equipo .annex-source { margin-top:10px; font-size:11px; }
+    .regime-layout { display:grid; grid-template-columns:1.08fr .92fr; gap:34px; align-items:start; }
+    .regime-price { margin:4px 0 4px; color:var(--orange); font-size:clamp(64px,7vw,106px); font-weight:950; line-height:.92; letter-spacing:-.065em; }
+    .regime-arr { margin:0 0 24px; font-size:clamp(22px,2vw,30px); font-weight:800; }
+    .regime-lines { border-top:1px solid rgba(24,33,38,.18); }
+    .regime-line { display:grid; grid-template-columns:1fr 190px; gap:20px; padding:14px 0; border-bottom:1px solid rgba(24,33,38,.18); font-size:clamp(16px,1.25vw,20px); line-height:1.25; }
+    .regime-line b { text-align:left; white-space:nowrap; }
+    .regime-line small { display:block; margin-top:5px; color:#69757b; font-size:clamp(12px,1vw,15px); line-height:1.25; }
+    .roi-threshold { margin-top:22px; padding:20px 22px; border-left:5px solid var(--orange); background:rgba(255,255,255,.72); font-size:clamp(18px,1.45vw,23px); line-height:1.32; }
+    .exclusions { margin:0; padding:0; list-style:none; border-top:1px solid rgba(24,33,38,.18); }
+    .exclusions li { padding:15px 0; border-bottom:1px solid rgba(24,33,38,.18); font-size:clamp(17px,1.3vw,21px); line-height:1.28; }
+    .exclusions li::before { content:'—'; margin-right:10px; color:var(--orange); font-weight:900; }
+    .terms-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .terms-card { padding:22px 26px; border:1px solid rgba(24,33,38,.14); border-radius:18px; background:rgba(255,255,255,.82); box-shadow:0 14px 34px rgba(24,33,38,.08); }
+    .terms-card h3 { margin:0 0 12px; color:var(--orange); font-size:clamp(21px,1.8vw,28px); }
+    .terms-card ul { margin:0; padding-left:20px; }
+    .terms-card li { margin:8px 0; font-size:clamp(15px,1.12vw,18px); line-height:1.28; }
+    #anexo-terminos h2 { margin-bottom:22px; font-size:clamp(40px,4.4vw,62px); }
+    #anexo-regimen { padding-top:34px; padding-bottom:34px; }
+    #anexo-regimen .kicker { margin-bottom:10px; }
+    #anexo-regimen h2 { margin-bottom:18px; font-size:clamp(40px,4.4vw,62px); }
+    #anexo-regimen .regime-price { font-size:clamp(58px,6.2vw,88px); }
+    #anexo-regimen .regime-arr { margin-bottom:14px; font-size:clamp(18px,1.7vw,25px); }
+    #anexo-regimen .regime-line { padding:10px 0; font-size:clamp(14px,1.08vw,17px); }
+    #anexo-regimen .regime-line small { font-size:clamp(11px,.9vw,14px); }
+    #anexo-regimen .jp-pricing-note { margin-top:10px; padding:9px 12px; border-left:4px solid var(--orange); background:rgba(255,255,255,.62); }
+    #anexo-regimen .jp-pricing-note strong { display:block; color:var(--orange); font-size:12px; letter-spacing:.05em; text-transform:uppercase; }
+    #anexo-regimen .jp-pricing-note span { display:block; margin-top:3px; color:var(--ink); font-size:12px; line-height:1.2; }
+    #anexo-regimen .jp-pricing-note small { display:block; margin-top:3px; color:var(--muted); font-size:10px; line-height:1.15; }
+    #anexo-regimen .roi-threshold { margin-top:13px; padding:13px 16px; font-size:clamp(15px,1.15vw,18px); }
+    #anexo-regimen .regime-layout > div:last-child h3 { margin-bottom:12px; }
+    #anexo-regimen .exclusions li { padding:10px 0; font-size:clamp(14px,1.1vw,17px); }
+    #anexo-regimen .annex-source { margin-top:10px; font-size:10px; line-height:1.25; }
+    #anexo-terminos { padding-top:30px; padding-bottom:30px; }
+    #anexo-terminos h2 { margin-bottom:16px; font-size:clamp(38px,4vw,56px); }
+    #anexo-terminos .terms-grid { gap:14px; }
+    #anexo-terminos .terms-card { padding:15px 20px; }
+    #anexo-terminos .terms-card h3 { margin-bottom:8px; font-size:clamp(19px,1.55vw,25px); }
+    #anexo-terminos .terms-card li { margin:5px 0; font-size:clamp(13px,1vw,16px); line-height:1.22; }
+    .annex-source { margin-top:18px; color:rgba(24,33,38,.58); font-size:12px; }
+
+    .close-pitch { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(42px, 8vw, 130px); align-items: end; }
+    .close-pitch h2 { margin-bottom: 0; }
+    .close-outcomes { border-top: 1px solid var(--line); }
+    .close-outcome { padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .close-outcome b { display: block; color: var(--orange); font-size: 12px; letter-spacing: .13em; }
+    .close-outcome span { display: block; margin-top: 8px; color: var(--ink); font-size: clamp(20px, 1.9vw, 27px); font-weight: 800; line-height: 1.2; }
+    .close-outcome span strong { color: var(--orange); }
+
+    @media (max-width: 1350px) and (min-width: 761px) {
+      .slide { padding-top: 44px; padding-bottom: 44px; }
+      h2 { margin-bottom: 28px; font-size: clamp(42px, 4.7vw, 66px); }
+      .stage { min-height: 248px; padding: 24px; }
+      .stage h3 { margin-top: 36px; }
+      .stage-deliverable { margin-top: 20px; }
+      .gantt-pitch > div { min-height: 62px; }
+      .gantt-milestones { margin-top: 14px; }
+      .price-row { padding: 13px 0; }
+      .price-note { margin-top: 16px; }
+    }
+
+    .controls { position: fixed; z-index: 50; right: 22px; top: 50%; transform: translateY(-50%); display: grid; gap: 10px; }
+    .dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: rgba(100,113,118,.35); cursor: pointer; }
+    .dot.active { background: var(--orange); transform: scale(1.45); }
+    .hint { position: fixed; z-index: 50; right: 24px; bottom: 18px; color: #8a969a; font-size: 11px; }
+    .source { position: absolute; left: clamp(36px, 8vw, 128px); right: clamp(36px, 8vw, 128px); bottom: 24px; color: rgba(100,113,118,.75); font-size: 10px; line-height: 1.3; }
+    .dark .source, .orange .source { color: rgba(255,255,255,.45); }
+
+    @media (max-width: 760px) {
+      .slide { min-height: auto; padding: 86px 28px 70px; }
+      .analysis-layout, .cost-layout, .experience-layout { grid-template-columns: 1fr; }
+      .proposal, .close-list, .architecture-diagram, .architecture-kpis, .validation-grid, .vision-grid { grid-template-columns: 1fr; }
+      .validation-item { min-height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+      .validation-item strong { margin-top: 24px; }
+      .evidence-layout { grid-template-columns: 1fr; }
+      .proposal-step { min-height: auto; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.17); }
+      .proposal-step h3 { margin-top: 30px; }
+      .architecture-stage { min-height: auto; }
+      .pilot-roi span { white-space: normal; }
+      .investment-foot { white-space: normal; }
+      #tiempos h2 { white-space: normal; }
+      .architecture-stage:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -24px; transform: translateX(50%); }
+      .gantt { grid-template-columns: 1.25fr repeat(5, .7fr); font-size: 11px; }
+      .gantt > div { padding: 8px 4px; }
+      .milestones { display: grid; grid-template-columns: repeat(2,1fr); gap: 15px; }
+      .controls, .hint { display: none; }
+      .logos { left: 28px; }
+      .logos img:first-child { width: 118px; }
+      .logos img:last-child { width: 82px; }
+      .logo-footer { left: 50%; bottom: 22px; }
+      .challenge-block { gap: 11px; margin-bottom: 24px; padding-left: 14px; }
+      .challenge-logos { gap: 16px; }
+      .challenge-logos .escondida { width: 158px; }
+      .challenge-logos .aster { width: 78px; }
+      #portada, #analisis, #propuesta, #inversion, #tiempos, #evidencia, #experiencia, #cierre { background-position: 65% center; }
+      #analisis .chain, #tiempos .gantt { padding: 10px 14px; }
+      .value-grid, .problem-layout, .business-grid, .price-layout, .close-pitch { grid-template-columns: 1fr; }
+      #problema .problem-layout { grid-template-columns: 1fr; }
+      #problema .problem-lines { grid-column: 1; grid-row: 2; }
+      #problema .problem-layout > div:first-child { grid-column: 1; grid-row: 1; }
+      #problema .problem-lines { width: 100%; }
+      .value-proof { grid-template-columns: 1fr; gap: 18px; }
+      .proof-card { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.2); padding-bottom: 18px; }
+      .proof-card img, .proof-card.edge img, .proof-card.made img { height: 140px; }
+      .proposal-claim { font-size: clamp(30px, 7vw, 46px); }
+      .problem-label { white-space: normal; }
+      #problema .problem-number-label { width: auto; white-space: normal; }
+      .price-total-label { white-space: normal; }
+      #negocio h2 { white-space: normal; }
+      #negocio .tech-heading { display: block; margin-bottom: 28px; }
+      #negocio .false-positive { display: inline-block; margin-top: 16px; }
+      #negocio .architecture-kpis { grid-template-columns: 1fr; }
+      #etapas .validation-proposition { white-space: normal; }
+      #cierre .close-pitch h2 { white-space: normal; }
+      #cierre .close-outcomes { grid-template-columns: 1fr; gap: 0; }
+      .stage-strip { grid-template-columns: 1fr; }
+      .stage { min-height: auto; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.2); }
+      .stage h3 { margin-top: 26px; }
+      .gantt-pitch { grid-template-columns: 1.15fr repeat(4, .7fr); }
+      .gantt-pitch > div { padding: 10px 5px; }
+      .gantt-pitch .g-label { font-size: 12px; }
+      .gantt-milestones { display: grid; grid-template-columns: 1fr 1fr; }
+      .annex-grid { grid-template-columns:1fr; }
+      .annex-card { min-height:0; }
+      .team-grid, .regime-layout { grid-template-columns:1fr; }
+      .terms-grid { grid-template-columns:1fr; }
+    }
+    @media print {
+      html { scroll-snap-type: none; }
+      .slide { width: 100vw; height: 56.25vw; min-height: 0; break-after: page; }
+      .controls, .hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="slide dark" id="portada" data-number="01 / 07">
+      <div class="hero-mark" aria-hidden="true"></div>
+      <div class="content">
+        <div class="challenge-block">
+          <span class="eyebrow">Operaciones mineras Peñoles · Contaminación por polvo en motores</span>
+        </div>
+        <h1>Anticipar la contaminación particulada para proteger motores y extender su vida útil.</h1>
+      </div>
+    </section>
+
+    <section class="slide dark" id="valor" data-number="03 / 07">
+      <div class="content">
+        <span class="kicker">Propuesta de valor</span>
+        <h2 class="proposal-impact">DOWNTIME MEDIBLE Y TRAZABLE</h2>
+        <div class="value-proof" aria-label="Elementos de la propuesta de valor">
+          <article class="proof-card partner">
+            <img src="assets/revpi-connect-5s.webp" alt="MadeOS edge industrial">
+            <h3>Edge industrial</h3>
+            <p>Captura local, persistencia y conectividad segura para la operación minera.</p>
+          </article>
+          <article class="proof-card edge">
+            <img src="assets/revpi-connect-5s.webp" alt="RevPi Connect 5 industrial edge">
+            <h3>Revpi connect 5</h3>
+            <p>Lee señales J1939, conserva datos ante pérdida de red y habilita decisiones predictivas sin intervenir la unidad.</p>
+          </article>
+          <article class="proof-card made">
+            <img src="assets/madeos-ui.png" alt="Interfaz de MadeOS">
+            <h3>Made os</h3>
+            <p>Correlaciona datos históricos y en tiempo real para explicar anomalías y orientar acciones de mantenimiento.</p>
+          </article>
+        </div>
+      </div>
+      <div class="source">Arquitectura de referencia MadeOS. Interfaces y parámetros finales se validan con Peñoles y OEM.</div>
+    </section>
+
+    <section class="slide" id="problema" data-number="02 / 07">
+      <div class="content">
+        <span class="kicker">El problema</span>
+        <h2 class="problem-secondary">El polvo contamina componentes críticos<br>antes de que el daño sea visible.</h2>
+        <div class="problem-layout">
+          <div class="problem-lines">
+            <div class="problem-line"><b>01</b><span>Motores, mandos finales y componentes críticos están expuestos a partículas suspendidas.</span></div>
+            <div class="problem-line"><b>02</b><span>La contaminación reduce la vida útil y genera fallas costosas.</span></div>
+            <div class="problem-line"><b>03</b><span>El diagnóstico suele llegar tarde: se necesita monitoreo temprano y alertas predictivas.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="source">La línea base, eventos y horas de detención se calcularán con datos históricos proporcionados por Peñoles.</div>
+    </section>
+
+    <section class="slide dark" id="negocio" data-number="04 / 07">
+      <div class="content">
+        <span class="kicker">Tecnología</span>
+        <div class="tech-heading"><h2>Convertimos las señales del motor<br>en decisiones precisas de mantenimiento.</h2></div>
+        <div class="architecture-diagram" aria-label="Arquitectura de la propuesta">
+          <article class="architecture-stage"><small>01 · Campo</small><h3>Flota minera Peñoles</h3><div class="architecture-nodes"><div class="architecture-node"><b>LHD / Scooptram</b><span>Ej. Epiroc Scooptram ST14 SG</span></div><div class="architecture-node"><b>Camiones de bajo perfil</b><span>Acarreo subterráneo y telemetría</span></div><div class="architecture-node"><b>Jumbos y soporte</b><span>Perforación, empernado y servicios</span></div><div class="architecture-node"><b>Interfaces y sensores</b><span>CAN/J1939 u OEM autorizado</span></div></div></article>
+          <article class="architecture-stage"><small>02 · Edge</small><h3>RevPi Connect 5</h3><div class="architecture-nodes"><div class="architecture-node"><b>CAN FD integrado*</b><span>CAN-H · CAN-L · GND</span></div><div class="architecture-node"><b>Pi OS + SocketCAN</b><span>Tramas crudas en CAN0</span></div><div class="architecture-node"><b>Decodificador J1939</b><span>python-can → SPN + DTC</span></div><div class="architecture-node"><b>Búfer local</b><span>Persistencia ante pérdida de red</span></div></div></article>
+          <article class="architecture-stage"><small>03 · Enlace</small><h3>4G / LTE seguro</h3><div class="architecture-nodes"><div class="architecture-node"><b>Módem USB 4G/LTE*</b><span>RevPi USB-A 3.2</span></div><div class="architecture-node"><b>TLS 1.3 / IPsec*</b><span>Cifrado · APN privado</span></div></div></article>
+          <article class="architecture-stage"><small>04 · MadeOS</small><h3>Sistema operativo de mantenimiento predictivo</h3><div class="architecture-nodes"><div class="architecture-node"><b>API de ingesta HTTPS</b><span>REST POST · payload JSON</span></div><div class="architecture-node"><b>Modelos IA / ML</b><span>Anomalías · RUL · fallas</span></div><div class="architecture-node"><b>Prescripciones con IA</b><span>Mantenimiento prescriptivo</span></div><div class="architecture-node"><b>Alertas y paneles</b><span>Revisión operacional y mantenimiento</span></div></div></article>
+        </div>
+        <div class="architecture-kpis" aria-label="Parámetros técnicos de la arquitectura"><div class="architecture-kpi"><b>250 kbps</b><span>baudios del bus CAN*</span></div><div class="architecture-kpi"><b>TLS 1.3</b><span>cifrado del transporte de datos*</span></div><div class="architecture-kpi"><b>2,5%</b><span>Tasa de falsos positivos*</span><em>Desempeño alcanzado en entorno de producción</em></div></div>
+        <p class="proposal-technical-note">*Interfaces, frecuencia y conectividad se definirán con Peñoles y el OEM antes de la instalación.</p>
+      </div>
+    </section>
+
+    <section class="slide dark" id="etapas" data-number="05 / 07">
+      <div class="content">
+        <span class="kicker">Caso de negocio</span>
+        <h2 class="validation-proposition">En otras operaciones mineras, una flota móvil de <strong>210 unidades</strong> registró <strong>40.500 h</strong> de detención por falla de motor durante un año.</h2>
+        <div class="validation-module">
+          <p class="validation-intro">Nivel de madurez y métricas de evidencia previa.</p>
+          <div class="validation-grid" aria-label="Criterios propuestos para validar el piloto">
+            <article class="validation-item"><small>Adopción</small><strong>&gt;85%</strong><p>de alertas y recomendaciones atendidas por los operadores.</p></article>
+            <article class="validation-item"><small>TRL</small><strong>9</strong><p>tecnología integrada para operar en entorno productivo y validar desempeño en faena.</p></article>
+            <article class="validation-item"><small>Paros no planeados</small><strong>33–50%</strong><p>evidencia previa MadeOS en producción comercial; el resultado Peñoles se valida contra su propia línea base.</p></article>
+            <article class="validation-item"><small>Madurez del modelo</small><strong>65→98%</strong><p>evolución esperada de precisión; falsos positivos de 18% a 2,5%.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="precios" data-number="06 / 08">
+      <div class="content">
+        <span class="kicker">Precios</span>
+        <div class="price-layout">
+          <div>
+            <div class="price-table">
+              <div class="price-row"><span>CAPEX: edge, materiales y conectividad</span><b>$6.773.990 CLP</b></div>
+              <div class="price-row"><span>OPEX: plataforma, logística, HSS y contingencia</span><b>$11.004.662 CLP</b></div>
+              <div class="price-row"><span>RR.HH. técnico y de datos</span><b>$13.350.946 CLP</b></div>
+              <div class="price-row"><span>Administración y seguros</span><b>$4.869.440 CLP</b></div>
+            </div>
+            <div class="price-row price-total-row"><span>Costo total del piloto</span><b>$35,9M CLP <small>881,34 UF · con IVA</small></b></div>
+          </div>
+        </div>
+      </div>
+      <div class="source">Estructura de costos referencial. El alcance, número de unidades, moneda, impuestos y logística se definirán con Peñoles.</div>
+    </section>
+
+    <section class="slide white" id="gantt-slide" data-number="06 / 07">
+      <div class="content">
+        <span class="kicker">Carta Gantt</span>
+        <div class="gantt-pitch" aria-label="Carta Gantt resumida para el piloto de cuatro meses">
+          <div class="g-head">Frente</div><div class="g-head">Mes 1</div><div class="g-head">Mes 2</div><div class="g-head">Mes 3</div><div class="g-head">Mes 4</div>
+          <div class="g-label">Acreditación y planificación</div><div class="g-cell"><span class="gantt-block orange"></span></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+          <div class="g-label">Instalación e integración MadeOS</div><div class="g-cell"></div><div class="g-cell"><span class="gantt-block"></span></div><div class="g-cell"></div><div class="g-cell"></div>
+          <div class="g-label">Entrenamiento del modelo<small class="model-training">Optimización 3 sem · Validación 2 sem · Prototipo 1 sem</small></div><div class="g-cell"></div><div class="g-cell"><span class="gantt-block model"></span></div><div class="g-cell"><span class="gantt-block model"></span></div><div class="g-cell"></div>
+          <div class="g-label">Producto en producción y validación</div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"><span class="gantt-block green"></span></div><div class="g-cell"><span class="gantt-block green"></span></div>
+        </div>
+        <div class="gantt-milestones"><div><b>S4</b>Acceso a faena · gate operativo</div><div><b>S10</b>Modelo validado · gate técnico</div><div><b>S16</b>Operación en producción · decisión</div></div>
+      </div>
+      <div class="source">Cronograma resumido adaptado de la Carta Gantt del piloto. El producto opera en producción durante los meses 3 y 4; la decisión de escala se entrega al cierre de la semana 16.</div>
+    </section>
+
+    <section class="slide white" id="cierre" data-number="07 / 07">
+      <div class="logos logo-footer"><img src="assets/just-partners.png" alt="Just Partners"><span>×</span><img src="assets/made.png" alt="Made"></div>
+      <div class="content">
+        <span class="kicker">Visión zero-loss</span>
+        <div class="close-pitch">
+          <h2>Peñoles: del piloto predictivo a una operación progresivamente zero-loss.</h2>
+          <div class="close-outcomes">
+            <div class="close-outcome"><b>PILOTO</b><span>Validar datos, alertas y decisiones de mantenimiento en las unidades priorizadas por Peñoles.</span></div>
+            <div class="close-outcome"><b>ESCALA</b><span>Extender la arquitectura a las clases de activo donde exista evidencia de impacto operacional.</span></div>
+            <div class="close-outcome"><b>VISIÓN</b><span>Reducir progresivamente los paros no planeados mediante mantenimiento predictivo trazable.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide annex-slide" id="anexo-kpis" data-number="08 / 13">
+      <div class="content">
+        <span class="kicker">Anexo · Criterios de éxito</span>
+        <h2>Metodología, KPIs y entregables.</h2>
+        <div class="annex-grid">
+          <article class="annex-card"><h3>1 · Validación técnica</h3><p>Conectividad LTE privada, cifrado SSL/TLS 1.3 y transmisión de 200–260 MB/h por camión.</p><p>Prueba de zonas ciegas con <strong>Offline Buffer</strong>, sello de tiempo y retransmisión automática.</p><p>RevPi Connect 5 en modo <strong>Listen-Only</strong>, sin interferencia con ECU ni VIMS.</p></article>
+          <article class="annex-card"><h3>2 · KPIs y aceptación</h3><p><strong>Modelo:</strong> precisión inicial 30–40%, falsos positivos ≤20%; trayectoria de maduración hacia 98% y 2,5%.</p><p><strong>Operación:</strong> MTTR 7,8 h → 6,0 h en etapa temprana; PMP 55% → 72%; tendencia de reducción de downtime de 20–30%.</p><p>Se valida con alertas registradas por mantenimiento, eventos reales y comparación contra línea base.</p></article>
+          <article class="annex-card"><h3>3 · Entregables</h3><p>Edge RevPi Connect 5, router LTE, decodificador SAE J1939 y canal cifrado.</p><p>Gemelo digital, portal MadeOS 24/7, base de datos en tiempo real, Data Lake histórico y alertas.</p><p>Modelo RUL calibrado con históricos de fallas, informe de resultados y recomendación de escala.</p></article>
+        </div>
+        <p class="annex-source">Las metas se validan con datos, condiciones operacionales y criterios de aceptación acordados con Peñoles.</p>
+      </div>
+    </section>
+
+    <section class="slide annex-slide" id="anexo-penoles" data-number="09 / 13">
+      <div class="content">
+        <span class="kicker">Anexo · Dependencias del piloto</span>
+        <h2>Requerimientos a Peñoles.</h2>
+        <div class="annex-grid">
+          <article class="annex-card"><h3>Datos e interfaces</h3><ul><li>Acceso a la interfaz de diagnóstico del camión (CAN/VIMS).</li><li>Datos históricos de telemetría y fallas.</li><li>Acceso a la red 4G para enviar telemetría a nuestra nube.</li></ul></article>
+          <article class="annex-card"><h3>Gobernanza operacional</h3><ul><li>Contraparte operacional con autoridad de mantenimiento.</li><li>Contraparte de IT/OT y ciberseguridad.</li><li>Definición conjunta de las unidades prioritarias, con historial de fallas de motor, transmisión, hidráulica o contaminación.</li></ul></article>
+          <article class="annex-card"><h3>Acceso y ejecución</h3><ul><li>Garantizar acceso y tiempo requerido para la implementación.</li><li><em>Opcional:</em> acceso a información adicional de OEM, sujeto a disponibilidad y autorización.</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide annex-slide" id="anexo-equipo" data-number="10 / 13">
+      <div class="content">
+        <span class="kicker">Anexo · Capacidad de ejecución</span>
+        <h2>Equipo MadeOS para datos, IA, plataforma y ciberseguridad.</h2>
+        <div class="team-grid">
+          <article class="team-card"><h3>Just Partners</h3><div class="team-role"><b>Juan Ignacio Rivera</b><span>Gerente General · Ing. Civil MSc. · Infraestructura, ingeniería vial y transportes.</span></div><div class="team-role"><b>Ignacio Charlin Reyes</b><span>Gerente de Proyectos · Ing. Civil · Estudios hidráulicos, infraestructura pública y minería.</span></div><div class="team-role"><b>Claudia de la Fuente López</b><span>Directora de Proyectos · Ing. Civil OO.CC. · Eficiencia energética.</span></div><div class="team-role"><b>2 técnicos de terreno</b><span>Instalación, cableado y commissioning en minería.</span></div></article>
+          <article class="team-card"><h3>Made</h3><div class="team-role"><b>Gerardo Peña</b><span>CEO &amp; Co-founder · Posgrado en negocios. MIT TR 35.</span></div><div class="team-role"><b>Ramiro Pantoja</b><span>CTO &amp; Co-founder · Ingeniería mecánica y de software.</span></div><div class="team-role"><b>Gabriel Rodríguez Jordán</b><span>Especialista en inteligencia artificial · Doctor en Ciencias de la Computación · Machine learning, procesamiento de señales y AppSec.</span></div><div class="team-role"><b>Especialista en ciberseguridad</b><span>Seguridad de plataforma, conectividad y gobernanza IT/OT.</span></div></article>
+        </div>
+        <p class="annex-source">Equipo MadeOS disponible para datos, IA, plataforma y ciberseguridad. Los roles de instalación y soporte en campo se definen con Peñoles antes del piloto.</p>
+      </div>
+    </section>
+
+    <section class="slide annex-slide" id="anexo-evidencia" data-number="11 / 13">
+      <div class="content">
+        <span class="kicker">Anexo · Capacidad de ejecución</span>
+        <h2>Experiencia previa y tracción verificable.</h2>
+        <div class="evidence-grid">
+          <article class="evidence-card"><h3>Just Partners</h3><ul><li><strong>+500 proyectos</strong> desarrollados para clientes públicos y privados.</li><li><strong>+80 clientes</strong> y más de 30 profesionales y especialistas senior.</li><li><strong>Capstone Copper · Minera Santo Domingo:</strong> Ruta C13 y By Pass Ruta C17, con diseño vial, puentes, evaluación económica y asesoría estratégica.</li><li><strong>Cox / Conexión:</strong> campamentos, instalación de faena y permisos sectoriales para Línea Kimal–Lo Aguirre.</li><li><strong>Transelec:</strong> contrato marco para regularización de accesos en subestaciones a lo largo de Chile.</li></ul></article>
+          <article class="evidence-card"><h3>MadeOS</h3><ul><li><strong>Pre-seleccionados para implementar MadeOS</strong> en BHP Escondida, la mina de cobre más grande del mundo.</li><li><strong>ArtisanLab · evidencia operativa documentada:</strong> despliegue de IA industrial en CNC Freiman y CNC Laser.</li><li><strong>11.912 lecturas</strong> de alta frecuencia utilizadas para aislar contaminación por partículas y agarrotamiento mecánico.</li><li>El agente emitió acciones prescriptivas de limpieza y mantenimiento; después se estabilizaron perfiles de velocidad, calidad y riesgo de paro.</li><li>La documentación MadeOS confirma despliegue edge/cloud, conexión read-only, configuración de gemelo digital y alertas accionables.</li><li>Estas capacidades se validarán en las clases de activo y condiciones operacionales definidas con Peñoles.</li></ul></article>
+        </div>
+        <p class="annex-source">Fuentes: “Reporte operativo - ArtisanLab.pdf” y “Made OS - Documentation.pdf”.</p>
+      </div>
+    </section>
+
+    <section class="slide annex-slide" id="anexo-regimen" data-number="12 / 13">
+      <div class="content">
+        <span class="kicker">Anexo · Modelo comercial</span>
+        <div class="regime-layout">
+          <div>
+            <h2>Régimen posterior al piloto.</h2>
+            <div class="regime-lines">
+              <div class="regime-line"><span>MadeOS · suscripción por CAEX<small>Software, modelos, portal, alertas y soporte remoto.</small></span><b>USD 495<small>por CAEX/mes</small></b></div>
+              <div class="regime-line"><span>Procesamiento incluido<small>Volumen dimensionado a 500 GB por CAEX/mes.</small></span><b>500 GB<small>por CAEX/mes</small></b></div>
+              <div class="regime-line"><span>Consumo adicional<small>Sobre el volumen mensual contratado.</small></span><b>USD 1.750<small>por TB</small></b></div>
+              <div class="regime-line"><span>Edge industrial RevPi Connect 5<small>Pago único por unidad desplegada.</small></span><b>USD 4.000<small>por unidad</small></b></div>
+            </div>
+            <div class="jp-pricing-note"><strong>Servicios en campo</strong><span>Costo directo observado de faena + administración asignada + margen del proveedor de implementación.</span><small>Se cotiza por alcance, unidad y ventana de trabajo; no forma parte de la suscripción MadeOS.</small></div>
+          </div>
+          <div>
+            <h2>Exclusiones</h2>
+            <ul class="exclusions">
+              <li>IVA, aranceles, retenciones, importación y tipo de cambio, según contrato y legislación vigente.</li>
+              <li>Instalación, acreditaciones, viajes, viáticos y soporte presencial en faena.</li>
+              <li>Sensores complementarios, cableado, gabinetes, antenas, protecciones eléctricas y obras civiles.</li>
+              <li>Licencias OEM, cambios de API, conectores o integraciones adicionales al alcance aprobado.</li>
+              <li>Red LTE privada, SIM, APN e infraestructura de comunicaciones administrada por Peñoles; MadeOS mantiene la seguridad de sus propios componentes.</li>
+              <li>Almacenamiento, retención, exportación o transferencia superiores al volumen contratado.</li>
+              <li>Cambios de alcance, nuevas clases de activo, nuevas unidades o SLA no contemplados.</li>
+              <li>Daños por sobretensión, humedad, intervención no autorizada, pérdida o robo del edge.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide annex-slide" id="anexo-terminos" data-number="13 / 13">
+      <div class="content">
+        <span class="kicker">Anexo · Términos comerciales propuestos</span>
+        <h2>Condiciones de operación MadeOS.</h2>
+        <div class="terms-grid">
+          <article class="terms-card"><h3>Servicio y facturación</h3><ul><li>USD 495 por CAEX/mes, facturado mensualmente por unidad activa.</li><li>Incluye hasta 500 GB por CAEX/mes. Excedente: USD 1.750/TB.</li><li>Contrato inicial sugerido de 36 meses, con ajuste anual por IPC de EE.UU.</li><li>Impuestos, retenciones y tipo de cambio se aplican según contrato y legislación vigente.</li></ul></article>
+          <article class="terms-card"><h3>Edge industrial</h3><ul><li>Precio y configuración se definen según la clase de activo y condiciones de instalación.</li><li>Incluye hardening, imagen MadeOS, pruebas de aceptación y puesta en servicio lógica.</li><li>La cobertura de reemplazo, garantía y obsolescencia se formaliza en el contrato del programa.</li><li>Trabajos presenciales, acreditaciones y flete extraordinario se cotizan por separado.</li></ul></article>
+          <article class="terms-card"><h3>Operación y soporte</h3><ul><li>MadeOS opera en modo read-only y no escribe en ECU ni sistemas de control.</li><li>Incluye monitoreo remoto, mantenimiento de modelos y soporte de plataforma.</li><li>Ventanas de instalación, acreditaciones, viajes, maniobras y soporte presencial se acuerdan por separado.</li><li>Los requisitos HSEC, de contratistas, capacitación y seguridad aplicables se validan con Peñoles.</li><li>Los niveles de servicio, horarios de atención y tiempos de respuesta se formalizan en el SLA.</li></ul></article>
+          <article class="terms-card"><h3>Datos y cierre contractual</h3><ul><li>Peñoles conserva la titularidad de sus datos y MadeOS los procesa para prestar el servicio.</li><li>Retención histórica, exportaciones, integraciones OEM y almacenamiento fuera del volumen contratado requieren cotización específica.</li><li>Se aplican la normativa mexicana de protección de datos vigente y sus modificaciones durante el contrato.</li><li>La continuidad, renovación y escalamiento dependen de la validación del piloto y de los criterios de aceptación acordados.</li><li>Estos términos son una base comercial y quedan sujetos a revisión legal, ciberseguridad y Compras Peñoles.</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide annex-slide" id="anexo-matriz" data-number="15 / 15">
+      <div class="content">
+        <span class="kicker">Anexo · Evaluación Open Aster</span>
+        <h2>Matriz de cumplimiento Open Aster.</h2>
+        <table class="compliance-table">
+          <thead><tr><th>Criterio</th><th>Evidencia en la propuesta</th><th>Respaldo</th><th>Responsable</th></tr></thead>
+          <tbody>
+            <tr><td>Solución · 10%</td><td>Arquitectura CAN/J1939 → RevPi Connect 5 → LTE → MadeOS; operación read-only, TRL 9 y evidencia operativa.</td><td>Brochure técnico; ArtisanLab; documentación MadeOS.</td><td>MadeOS</td></tr>
+            <tr><td>Ejecución · 15%</td><td>Equipo dedicado de 9 personas, confirmado y disponible, con experiencia minera y tracción verificable de Just Partners.</td><td>CV; proyectos Just Partners; anexo de equipo.</td><td>Just Partners + MadeOS</td></tr>
+            <tr><td>Caso de negocio · 25%</td><td>40.500 HRS de línea base, KPI de downtime, fórmula de valor y evidencia previa MadeOS.</td><td>Reporte Aster; Reporte MadeOS; datos BHP por validar.</td><td>Equipo conjunto</td></tr>
+            <tr><td>Piloto · 25%</td><td>5 CAT 797F, 4 meses, acreditación, entrenamiento, producción, KPIs, Gantt y entregables.</td><td>Metodología de validación; Gantt; criterios de éxito.</td><td>Equipo conjunto</td></tr>
+            <tr><td>Presupuesto · 25%</td><td>CLP $35.999.038 / 881,34 UF con IVA; 5 edge operativos, 1 de continuidad y 1 tester de desarrollo; CAPEX, OPEX, régimen y exclusiones.</td><td>Presupuesto final; modelo comercial; términos contractuales.</td><td>Just Partners + MadeOS</td></tr>
+          </tbody>
+        </table>
+        <p class="annex-source">La matriz sirve como índice de evidencia para el jurado. Los resultados económicos y operativos específicos de BHP se validan durante el piloto.</p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="controls" aria-label="Navegación por slides"></nav>
+  <div class="hint">↑ ↓ · espacio · F pantalla completa</div>
+  <script>
+    document.querySelector('#precios')?.remove();
+    document.querySelector('#anexo-matriz')?.remove();
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('body *').forEach(el => {
+        if (el.children.length === 0 && el.textContent) {
+          el.textContent = el.textContent.replace(/BHP Escondida/g, 'Peñoles').replace(/BHP/g, 'Peñoles').replace(/Just Partners \+/g, '').replace(/Just Partners/g, 'Equipo de implementación');
+        }
+      });
+    });
+    // Presentación en orden narrativo: problema antes de propuesta de valor.
+    const main = document.querySelector('main');
+    const problemSlide = document.querySelector('#problema');
+    const valueSlide = document.querySelector('#valor');
+    if (main && problemSlide && valueSlide) main.insertBefore(problemSlide, valueSlide);
+    const slides = [...document.querySelectorAll('.slide')];
+    const controls = document.querySelector('.controls');
+    let current = 0;
+    slides.forEach((slide, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot';
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Ir a slide ${index + 1}`);
+      dot.addEventListener('click', () => slide.scrollIntoView({ behavior: 'smooth' }));
+      controls.append(dot);
+    });
+    const dots = [...controls.children];
+    const fitProposalClaim = () => {
+      const claim = document.querySelector('#valor .proposal-claim');
+      const holder = document.querySelector('#valor .value-proof');
+      if (!claim || !holder) return;
+      if (getComputedStyle(claim).whiteSpace !== 'nowrap') {
+        claim.style.wordSpacing = '';
+        return;
+      }
+      const probe = claim.cloneNode(true);
+      probe.style.cssText = 'position:absolute; visibility:hidden; width:max-content; max-width:none; white-space:nowrap; word-spacing:0;';
+      holder.append(probe);
+      const naturalWidth = probe.getBoundingClientRect().width;
+      const targetWidth = holder.getBoundingClientRect().width;
+      probe.remove();
+      const spaces = (claim.textContent.match(/\s/g) || []).length;
+      const extra = Math.max(0, targetWidth - naturalWidth);
+      claim.style.wordSpacing = `${spaces ? extra / spaces : 0}px`;
+    };
+    window.addEventListener('load', fitProposalClaim);
+    window.addEventListener('resize', fitProposalClaim);
+    requestAnimationFrame(fitProposalClaim);
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          current = slides.indexOf(entry.target);
+          dots.forEach((dot, index) => dot.classList.toggle('active', index === current));
+          history.replaceState(null, '', `#${entry.target.id}`);
+        }
+      });
+    }, { threshold: .62 });
+    slides.forEach(slide => observer.observe(slide));
+    const go = index => slides[Math.max(0, Math.min(slides.length - 1, index))].scrollIntoView({ behavior: 'smooth' });
+    document.addEventListener('keydown', event => {
+      if (['ArrowDown', 'ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); go(current + 1); }
+      if (['ArrowUp', 'ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); go(current - 1); }
+      if (event.key === 'Home') go(0);
+      if (event.key === 'End') go(slides.length - 1);
+      if (event.key.toLowerCase() === 'f') document.documentElement.requestFullscreen?.();
+    });
+    const initial = slides.findIndex(slide => `#${slide.id}` === location.hash);
+    if (initial >= 0) { current = initial; dots[initial].classList.add('active'); }
+    else dots[0].classList.add('active');
+  </script>
+</body>
+</html>
