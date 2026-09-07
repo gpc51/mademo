@@ -612,12 +612,12 @@
           <article class="proof-card edge">
             <img src="assets/revpi-connect-5s.webp" alt="RevPi Connect 5 industrial edge">
             <h3>Revpi connect 5</h3>
-            <p>El edge industrial más potente del mercado.</p>
+            <p>Edge industrial adaptable y durable para capturar, almacenar y transmitir telemetría J1939 de forma segura.</p>
           </article>
           <article class="proof-card made">
             <img src="assets/madeos-ui.png" alt="Interfaz de MadeOS">
-            <h3>Made os</h3>
-            <p>Sistema operativo que analiza data histórica y en tiempo real para prevenir eventos críticos en industrias pesadas.</p>
+            <h3>Detección de polvo e IA predictiva</h3>
+            <p>Identifica señales compatibles con saturación o rotura de filtros y estima riesgo de desgaste por abrasión a partir de variables del motor CAEX.</p>
           </article>
         </div>
         <h2 class="proposal-claim">No solo medimos la ingesta de polvo: correlacionamos la telemetría instrumentada para entender, identificar y detener el origen de cada falla.</h2>
@@ -647,13 +647,12 @@
         <span class="kicker">Tecnología</span>
         <div class="tech-heading"><h2>Convertimos las señales del motor<br>en decisiones precisas de mantenimiento.</h2></div>
         <div class="architecture-diagram" aria-label="Arquitectura de la propuesta">
-          <article class="architecture-stage"><small>01 · Campo</small><h3>CAEX</h3><div class="architecture-nodes"><div class="architecture-node"><b>ECU de motor</b><span>CAT 3524 / 3516 · QSK60</span></div><div class="architecture-node"><b>Backbone CAN</b><span>J1939 · PGN · SPN · DTC</span></div><div class="architecture-node"><b>VIMS</b><span>Carga útil · ciclo · códigos</span></div><div class="architecture-node"><b>Sensores adicionales</b><span>Contaminación y condición</span></div></div></article>
+          <article class="architecture-stage"><small>01 · Campo</small><h3>CAEX</h3><div class="architecture-nodes"><div class="architecture-node"><b>ECM de motor</b><span>CAT 3524 / 3516 · QSK60</span></div><div class="architecture-node"><b>Diagnóstico SAE J1939</b><span>PGN · SPN · DTC</span></div><div class="architecture-node"><b>Conector físico</b><span>Deutsch 9-Pin</span></div><div class="architecture-node"><b>Señales operacionales</b><span>RPM · carga · temperatura</span></div></div></article>
           <article class="architecture-stage"><small>02 · Edge</small><h3>RevPi Connect 5</h3><div class="architecture-nodes"><div class="architecture-node"><b>CAN FD integrado*</b><span>CAN-H · CAN-L · GND</span></div><div class="architecture-node"><b>Pi OS + SocketCAN</b><span>Tramas crudas en CAN0</span></div><div class="architecture-node"><b>Decodificador J1939</b><span>python-can → SPN + DTC</span></div><div class="architecture-node"><b>Búfer local</b><span>Persistencia ante pérdida de red</span></div></div></article>
           <article class="architecture-stage"><small>03 · Enlace</small><h3>4G / LTE seguro</h3><div class="architecture-nodes"><div class="architecture-node"><b>Módem USB 4G/LTE*</b><span>RevPi USB-A 3.2</span></div><div class="architecture-node"><b>TLS 1.3 / IPsec*</b><span>Cifrado · APN privado</span></div></div></article>
           <article class="architecture-stage"><small>04 · MadeOS</small><h3>IA de mantenimiento</h3><div class="architecture-nodes"><div class="architecture-node"><b>API de ingesta HTTPS</b><span>REST POST · payload JSON</span></div><div class="architecture-node"><b>Modelos IA / ML</b><span>Anomalías · RUL · fallas</span></div><div class="architecture-node"><b>Prescripciones con IA</b><span>Mantenimiento prescriptivo</span></div><div class="architecture-node"><b>Alertas y paneles</b><span>Revisión operacional y mantenimiento</span></div></div></article>
         </div>
-        <div class="architecture-kpis" aria-label="Parámetros técnicos de la arquitectura"><div class="architecture-kpi"><b>250 kbps</b><span>baudios del bus CAN*</span></div><div class="architecture-kpi"><b>TLS 1.3</b><span>cifrado del transporte de datos*</span></div><div class="architecture-kpi"><b>2,5%</b><span>Tasa de falsos positivos*</span><em>Desempeño alcanzado en entorno de producción</em></div></div>
-        <p class="proposal-technical-note">*Parámetros de bus, interfaces, frecuencia y conectividad tomados como arquitectura de referencia; se validan con BHP y OEM antes de instalación.</p>
+        <p class="proposal-technical-note">La disponibilidad de señales, frecuencia de captura y parámetros de integración se validan con BHP y OEM antes de la instalación.</p>
       </div>
     </section>
 
@@ -729,7 +728,7 @@
         <div class="annex-grid">
           <article class="annex-card"><h3>1 · Validación técnica</h3><p>Conectividad LTE privada, cifrado SSL/TLS 1.3 y transmisión de 200–260 MB/h por camión.</p><p>Prueba de zonas ciegas con <strong>Offline Buffer</strong>, sello de tiempo y retransmisión automática.</p><p>RevPi Connect 5 en modo <strong>Listen-Only</strong>, sin interferencia con ECU ni VIMS.</p></article>
           <article class="annex-card"><h3>2 · KPIs y aceptación</h3><p><strong>Modelo:</strong> precisión inicial 30–40%, falsos positivos ≤20%; trayectoria de maduración hacia 98% y 2,5%.</p><p><strong>Operación:</strong> MTTR 7,8 h → 6,0 h en etapa temprana; PMP 55% → 72%; tendencia de reducción de downtime de 20–30%.</p><p>Se valida con alertas registradas por mantenimiento, eventos reales y comparación contra línea base.</p></article>
-          <article class="annex-card"><h3>3 · Entregables</h3><p>Edge RevPi Connect 5, router LTE, decodificador SAE J1939 y canal cifrado.</p><p>Gemelo digital, portal MadeOS 24/7, base de datos en tiempo real, Data Lake histórico y alertas.</p><p>Modelo RUL calibrado con históricos de fallas, informe de resultados y recomendación de escala.</p></article>
+          <article class="annex-card"><h3>3 · Entregables</h3><p><strong>Instalación y configuración del dispositivo edge, software de telemetría y conexión 4G con comunicación cifrada.</strong></p><p>Gemelo digital, portal MadeOS 24/7, base de datos en tiempo real, Data Lake histórico y alertas.</p><p>Modelo RUL calibrado con históricos de fallas, informe de resultados y recomendación de escala.</p></article>
         </div>
         <p class="annex-source">Fuente: Metodologia de validacion.md y KPIs e Impacto Made (1).pdf. Las metas se validan con datos BHP; no son resultados garantizados.</p>
       </div>
@@ -740,7 +739,7 @@
         <span class="kicker">Anexo · Dependencias del piloto</span>
         <h2>Requerimientos a BHP Escondida.</h2>
         <div class="annex-grid">
-          <article class="annex-card"><h3>Datos e interfaces</h3><ul><li>Acceso a la interfaz de diagnóstico del camión (CAN/VIMS).</li><li>Datos históricos de telemetría y fallas.</li><li>Acceso a la red 4G para enviar telemetría a nuestra nube.</li></ul></article>
+          <article class="annex-card"><h3>Datos e interfaces</h3><ul><li>Acceso a la interfaz de diagnóstico J1939 del camión mediante conector Deutsch 9-Pin.</li><li>Datos históricos de telemetría y fallas para entrenar y validar los modelos de machine learning.</li><li>Acceso a la red 4G para enviar telemetría a nuestra nube.</li></ul></article>
           <article class="annex-card"><h3>Gobernanza operacional</h3><ul><li>Contraparte operacional con autoridad de mantenimiento.</li><li>Contraparte de IT/OT y ciberseguridad.</li><li>Definición conjunta de cinco CAT 797F con historial de fallas relacionadas con contaminación o motor.</li></ul></article>
           <article class="annex-card"><h3>Acceso y ejecución</h3><ul><li>Garantizar acceso y tiempo requerido para la implementación.</li><li><em>Opcional:</em> acceso a información adicional de OEM, sujeto a disponibilidad y autorización.</li></ul></article>
         </div>
