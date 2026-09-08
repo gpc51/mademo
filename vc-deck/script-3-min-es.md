@@ -58,7 +58,7 @@ El potencial de expansión identificado entre BHP, Peñoles y Security Fleet alc
 
 Nuestro equipo combina acceso industrial, despliegue edge e inteligencia artificial aplicada. Hemos vivido el problema desde manufactura y estamos construyendo la tecnología directamente sobre la operación física.
 
-Estamos levantando una ronda pre-seed de 1.8 millones de dólares mediante cierres escalonados. El primer cierre financia los pilotos activos y el equipo de despliegue. Los siguientes cierres se habilitan con conversiones, unidades conectadas y ARR contratado.
+Estamos levantando una ronda pre-seed de 1.8 millones de dólares mediante SAFE. Son 18 meses para convertir tres pilotos, desplegar más de 100 líneas y activos, y alcanzar un millón de dólares de ARR contratado.
 
 ## 2:55 | Cierre
 

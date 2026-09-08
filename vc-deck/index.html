@@ -307,9 +307,9 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   const close = document.getElementById('closing');
 
   if (problem) {
-    problem.querySelector('.content').innerHTML = '<h2 class="h2">Downtime begins before the visible failure</h2><div class="problem-wide"><div class="problem-chain"><article><small>01 / Fragmented signal</small><h3>Machines show symptoms in separate systems</h3></article><article><small>02 / Lost lead time</small><h3>Diagnosis starts after degradation advances</h3></article><article><small>03 / Compounding loss</small><h3>Production, quality and delivery decline together</h3></article></div><div class="problem-costs problem-costs-single"><article><b>USD 150K</b><span>Potential cost of one high-severity failure event</span></article></div></div>';
+    problem.querySelector('.content').innerHTML = '<h2 class="h2">Downtime begins before the visible failure</h2><div class="problem-wide"><div class="problem-chain"><article><small>01 / Fragmented signal</small><h3>Machines show symptoms in separate systems</h3></article><article><small>02 / Lost lead time</small><h3>Diagnosis starts after degradation advances</h3></article><article><small>03 / Compounding loss</small><h3>Production, quality and delivery decline together</h3></article></div><div class="problem-costs problem-costs-single"><article><b>USD 150K</b><span>Potential cost of one high-severity failure event</span><em class="annual-downtime"><strong>326 hours</strong> of unplanned downtime per year</em></article></div></div>';
     const problemSource = problem.querySelector('.source');
-    if (problemSource) problemSource.innerHTML = 'Source: <a href="https://www.cummins.com/en-na/case-studies/preventech-predictive-analytics-boost-availability">Cummins mining case study, September 2025</a>';
+    if (problemSource) problemSource.innerHTML = 'Sources: <a href="https://www.cummins.com/en-na/case-studies/preventech-predictive-analytics-boost-availability">Cummins mining case study, September 2025</a> · <a href="https://assets.new.siemens.com/siemens/assets/api/uuid%3A1b43afb5-2d07-47f7-9eb7-893fe7d0bc59/TCOD-2024_original.pdf">Siemens, The True Cost of Downtime 2024</a>';
   }
 
   if (solution) {
@@ -322,11 +322,11 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   }
 
   if (ask) {
-    ask.querySelector('.content').innerHTML = '<h2 class="h2">One round. Three milestone-based closes.</h2><div class="raise-staged"><div class="raise-total"><small>Pre-seed target</small><b>USD 1.8M</b><span>Rolling close · 18-month deployment plan</span></div><div class="raise-steps"><article><small>First close</small><b>USD 500K</b><span>Deploy three active pilots and build the core field team</span></article><article><small>Second close</small><b>+ USD 600K</b><span>Two pilot conversions and 60 live lines or assets</span></article><article><small>Final close</small><b>+ USD 700K</b><span>100+ live units and USD 1M contracted ARR</span></article></div></div>';
+    ask.querySelector('.content').innerHTML = '<h2 class="h2">USD 1.8M to scale industrial deployment.</h2><div class="raise-staged raise-single"><div class="raise-total"><small>Pre-seed · SAFE</small><b>USD 1.8M</b><span>18 months of focused execution</span></div><div class="raise-steps"><article><small>Commercial proof</small><b>3</b><span>Pilot conversions into recurring contracts</span></article><article><small>Deployment proof</small><b>100+</b><span>Live production lines and mobile assets</span></article><article><small>Revenue proof</small><b>USD 1M</b><span>Contracted ARR and an OEM-ready deployment playbook</span></article></div></div>';
   }
 
   if (close) {
-    close.querySelector('.close').innerHTML = '<h2 class="h2">Progressively zero-loss physical operations</h2><p class="close-lead">Made reads the signal, understands the context and prescribes the next action.</p><div class="close-signature"><img src="../assets/logo-white.png" alt="Made"><span>Physical AI for factories and fleets</span></div><div class="close-backed"><small>Backed by</small><div><img src="../assets/brands/nvidia-logo.svg" alt="NVIDIA"><img src="../assets/brands/founders-inc-logo.png" alt="Founders, Inc."><img src="../assets/brands/mit-technology-review-logo.svg" alt="MIT Technology Review"><img src="../assets/brands/startup-chile-logo.svg" alt="Start-Up Chile"></div></div>';
+    close.querySelector('.close').innerHTML = '<h2 class="h2">Progressively zero-loss physical operations</h2><p class="close-lead">Made reads the signal, understands the context and prescribes the next action.</p><div class="close-signature"><img src="../assets/logo-white.png" alt="Made"><span>Physical AI for factories and fleets</span></div><div class="close-backed"><small>Backed by</small><div><img src="../assets/brands/nvidia-logo.svg" alt="NVIDIA"><img src="../assets/brands/founders-inc-logo.png" alt="Founders, Inc."><img src="../assets/brands/aws-startups.png" alt="AWS Startups"><img src="../assets/brands/startup-chile-logo.svg" alt="Start-Up Chile"></div></div>';
   }
 
   const polish = document.createElement('style');
@@ -334,6 +334,8 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
     .problem-costs.problem-costs-single{display:flex;justify-content:center}
     .problem-costs-single article{width:min(620px,100%);padding:30px 42px;text-align:center;border-left:0;border-top:2px solid var(--coral)}
     .problem-costs-single span{max-width:none;margin-left:auto;margin-right:auto;font-size:18px}
+    .annual-downtime{display:block;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font:500 14px var(--mono);font-style:normal;color:var(--muted)}
+    .annual-downtime strong{color:var(--text);font-weight:700}
     .solution-video-main.solution-video-raised{height:min(42vh,430px);margin-top:16px}
     #s6 .h2{font-size:clamp(38px,3.05vw,54px);letter-spacing:-.04em;white-space:nowrap}
     .solution-action-strip{width:min(1360px,100%);margin:12px auto 0;display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line)}
@@ -352,6 +354,7 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
     .raise-steps article:last-child{border-right:0}
     .raise-steps b{margin-top:30px;font-size:clamp(30px,3vw,48px);line-height:.92;letter-spacing:-.05em}
     .raise-steps span{margin-top:22px;font-size:15px;line-height:1.45;color:var(--muted)}
+    .raise-single .raise-steps b{font-size:clamp(38px,3.5vw,56px);white-space:nowrap}
     #closing .close-signature{margin-top:44px;padding-top:24px}
     .close-backed{width:100%;margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}
     .close-backed>div{margin-top:18px;display:flex;align-items:center;justify-content:center;gap:54px}
