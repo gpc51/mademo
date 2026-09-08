@@ -298,4 +298,68 @@ const previewSlide=new URLSearchParams(location.search).get('slide');if(previewS
 document.title='Made OS | Investor presentation 2026';
 const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let namingNode;while(namingNode=namingWalker.nextNode()){if(namingNode.nodeValue.includes('MadeOS'))namingNode.nodeValue=namingNode.nodeValue.replaceAll('MadeOS','Made OS')}
 </script>
+<script>
+(() => {
+  const problem = document.getElementById('s4');
+  const solution = document.getElementById('s6');
+  const team = document.getElementById('s15');
+  const ask = document.getElementById('s16');
+  const close = document.getElementById('closing');
+
+  if (problem) {
+    problem.querySelector('.content').innerHTML = '<h2 class="h2">Downtime begins before the visible failure</h2><div class="problem-wide"><div class="problem-chain"><article><small>01 / Fragmented signal</small><h3>Machines show symptoms in separate systems</h3></article><article><small>02 / Lost lead time</small><h3>Diagnosis starts after degradation advances</h3></article><article><small>03 / Compounding loss</small><h3>Production, quality and delivery decline together</h3></article></div><div class="problem-costs problem-costs-single"><article><b>USD 150K</b><span>Potential cost of one high-severity failure event</span></article></div></div>';
+    const problemSource = problem.querySelector('.source');
+    if (problemSource) problemSource.innerHTML = 'Source: <a href="https://www.cummins.com/en-na/case-studies/preventech-predictive-analytics-boost-availability">Cummins mining case study, September 2025</a>';
+  }
+
+  if (solution) {
+    solution.querySelector('.content').innerHTML = '<h2 class="h2">Made turns physical signals into operational action</h2><div class="solution-video-main solution-video-raised"><video autoplay muted loop playsinline controls preload="metadata"><source src="../vc/assets/j1939-predictive-demo.mp4" type="video/mp4"></video><div class="video-meta"><span>J1939 predictive demo</span><span>Signal / context / action</span></div></div><div class="solution-action-strip"><article><small>01</small><b>Read</b><span>Capture the operating signal</span></article><article><small>02</small><b>Understand</b><span>Model the asset in context</span></article><article><small>03</small><b>Prioritize</b><span>Rank risk and available lead time</span></article><article><small>04</small><b>Prescribe</b><span>Assign the next action</span></article></div>';
+  }
+
+  if (team) {
+    const gerardo = team.querySelector('.team-wide article:first-child');
+    if (gerardo) gerardo.innerHTML = '<img src="../assets/gpc.png" alt="Gerardo Peña"><div><small>Customer + product · MIT TR35</small><h3>Gerardo Peña</h3><p>Industrial designer, repeat founder and MIT TR35 honoree. Leads product and commercial strategy.</p></div>';
+  }
+
+  if (ask) {
+    ask.querySelector('.content').innerHTML = '<h2 class="h2">One round. Three milestone-based closes.</h2><div class="raise-staged"><div class="raise-total"><small>Pre-seed target</small><b>USD 1.8M</b><span>Rolling close · 18-month deployment plan</span></div><div class="raise-steps"><article><small>First close</small><b>USD 500K</b><span>Deploy three active pilots and build the core field team</span></article><article><small>Second close</small><b>+ USD 600K</b><span>Two pilot conversions and 60 live lines or assets</span></article><article><small>Final close</small><b>+ USD 700K</b><span>100+ live units and USD 1M contracted ARR</span></article></div></div>';
+  }
+
+  if (close) {
+    close.querySelector('.close').innerHTML = '<h2 class="h2">Progressively zero-loss physical operations</h2><p class="close-lead">Made reads the signal, understands the context and prescribes the next action.</p><div class="close-signature"><img src="../assets/logo-white.png" alt="Made"><span>Physical AI for factories and fleets</span></div><div class="close-backed"><small>Backed by</small><div><img src="../assets/brands/nvidia-logo.svg" alt="NVIDIA"><img src="../assets/brands/founders-inc-logo.png" alt="Founders, Inc."><img src="../assets/brands/mit-technology-review-logo.svg" alt="MIT Technology Review"><img src="../assets/brands/startup-chile-logo.svg" alt="Start-Up Chile"></div></div>';
+  }
+
+  const polish = document.createElement('style');
+  polish.textContent = `
+    .problem-costs.problem-costs-single{display:flex;justify-content:center}
+    .problem-costs-single article{width:min(620px,100%);padding:30px 42px;text-align:center;border-left:0;border-top:2px solid var(--coral)}
+    .problem-costs-single span{max-width:none;margin-left:auto;margin-right:auto;font-size:18px}
+    .solution-video-main.solution-video-raised{height:min(42vh,430px);margin-top:16px}
+    #s6 .h2{font-size:clamp(38px,3.05vw,54px);letter-spacing:-.04em;white-space:nowrap}
+    .solution-action-strip{width:min(1360px,100%);margin:12px auto 0;display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line)}
+    .solution-action-strip article{min-height:82px;padding:13px 22px;border-right:1px solid var(--line);display:grid;grid-template-columns:28px auto;grid-template-rows:auto auto;column-gap:12px;align-content:center}
+    .solution-action-strip article:last-child{border-right:0;background:rgba(255,102,64,.09)}
+    .solution-action-strip small{grid-row:1/3;align-self:center;font:700 12px var(--mono);color:var(--coral)}
+    .solution-action-strip b{font-size:17px;line-height:1.1}
+    .solution-action-strip span{margin-top:5px;font-size:12px;line-height:1.25;color:var(--muted)}
+    .raise-staged{width:100%;margin-top:42px;display:grid;grid-template-columns:.72fr 1.28fr;gap:54px;align-items:stretch}
+    .raise-total{padding:34px;border-top:2px solid var(--coral);background:rgba(255,102,64,.09);display:flex;flex-direction:column;justify-content:center}
+    .raise-total small,.raise-steps small,.close-backed small{font:700 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--coral)}
+    .raise-total b{margin-top:28px;font-size:clamp(68px,7vw,112px);line-height:.82;letter-spacing:-.07em}
+    .raise-total span{margin-top:26px;font-size:16px;color:var(--muted)}
+    .raise-steps{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line)}
+    .raise-steps article{min-height:300px;padding:30px 26px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
+    .raise-steps article:last-child{border-right:0}
+    .raise-steps b{margin-top:30px;font-size:clamp(30px,3vw,48px);line-height:.92;letter-spacing:-.05em}
+    .raise-steps span{margin-top:22px;font-size:15px;line-height:1.45;color:var(--muted)}
+    #closing .close-signature{margin-top:44px;padding-top:24px}
+    .close-backed{width:100%;margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}
+    .close-backed>div{margin-top:18px;display:flex;align-items:center;justify-content:center;gap:54px}
+    .close-backed img{display:block;width:auto;max-width:170px;height:32px;object-fit:contain;filter:grayscale(1) brightness(0) invert(1);opacity:.72}
+    .close-backed img:nth-child(3){height:38px}
+    @media(max-width:1100px){.solution-video-main.solution-video-raised{height:min(38vh,360px)}.solution-action-strip article{padding:11px 14px}.raise-staged{gap:28px}.raise-steps article{padding:22px 18px}.close-backed>div{gap:28px}.close-backed img{max-width:130px;height:26px}}
+  `;
+  document.head.append(polish);
+})();
+</script>
 </body></html>
