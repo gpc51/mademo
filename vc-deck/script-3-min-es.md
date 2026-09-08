@@ -50,7 +50,7 @@ Cada unidad conectada genera software recurrente. El hardware y la implementaci�
 
 Nuestro design partner de manufactura reportó 43 por ciento menos paros no planificados durante seis meses. Sus operadores actuaron sobre más del 85 por ciento de las prescripciones de Made.
 
-El pipeline actual incluye 90 mil dólares en pilotos con BHP Escondida y Minsa. Security Fleet comienza con 50 vehículos, equivalentes a 297 mil dólares de ARR inicial.
+El pipeline actual incluye 90 mil dólares en pilotos con BHP Escondida y Peñoles. Security Fleet comienza con 50 vehículos, equivalentes a 297 mil dólares de ARR inicial.
 
 El potencial de expansión identificado entre BHP, Peñoles y Security Fleet alcanza aproximadamente 34 millones de dólares de ARR.
 
