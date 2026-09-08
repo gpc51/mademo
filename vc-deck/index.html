@@ -322,11 +322,11 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   }
 
   if (ask) {
-    ask.querySelector('.content').innerHTML = '<h2 class="h2">USD 1.8M to scale industrial deployment.</h2><div class="raise-staged raise-single"><div class="raise-total"><small>Pre-seed · SAFE</small><b>USD 1.8M</b><span>18 months of focused execution</span></div><div class="raise-steps"><article><small>Commercial proof</small><b>3</b><span>Pilot conversions into recurring contracts</span></article><article><small>Deployment proof</small><b>100+</b><span>Live production lines and mobile assets</span></article><article><small>Revenue proof</small><b>USD 1M</b><span>Contracted ARR and an OEM-ready deployment playbook</span></article></div></div>';
+    ask.querySelector('.content').innerHTML = '<h2 class="h2">Capital for an 18-month deployment plan</h2><div class="ask-wide"><div class="ask-main"><small>Pre-seed</small><b>USD 1.8M</b><span>Hardware and implementation billed upfront</span></div><div class="ask-use-wide"><article><b>50%</b><span>Product + deployment engineering</span></article><article><b>25%</b><span>Field operations + customer success</span></article><article><b>15%</b><span>Enterprise sales</span></article><article><b>10%</b><span>Security, legal + contingency</span></article></div></div><div class="ask-outcomes"><span><b>3</b> pilot conversions</span><span><b>100+</b> live lines and assets</span><span><b>USD 1M</b> contracted ARR</span></div>';
   }
 
   if (close) {
-    close.querySelector('.close').innerHTML = '<h2 class="h2">Progressively zero-loss physical operations</h2><p class="close-lead">Made reads the signal, understands the context and prescribes the next action.</p><div class="close-signature"><img src="../assets/logo-white.png" alt="Made"><span>Physical AI for factories and fleets</span></div><div class="close-backed"><small>Backed by</small><div><img src="../assets/brands/nvidia-logo.svg" alt="NVIDIA"><img src="../assets/brands/founders-inc-logo.png" alt="Founders, Inc."><img src="../assets/brands/aws-startups.png" alt="AWS Startups"><img src="../assets/brands/startup-chile-logo.svg" alt="Start-Up Chile"></div></div>';
+    close.querySelector('.close').innerHTML = '<div class="close-signature"><img src="../assets/logo-white.png" alt="Made"><span>Physical AI for factories and fleets</span></div><div class="close-backed"><small>Backed by</small><div><img src="../assets/brands/nvidia-logo.svg" alt="NVIDIA"><img src="../assets/brands/founders-inc-logo.png" alt="Founders, Inc."><img src="../assets/brands/aws-startups.png" alt="AWS Startups"><img src="../assets/brands/startup-chile-logo.svg" alt="Start-Up Chile"></div></div>';
   }
 
   const polish = document.createElement('style');
@@ -357,12 +357,17 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
     .raise-single .raise-steps b{font-size:clamp(38px,3.5vw,56px);white-space:nowrap}
     #closing .close-signature{margin-top:44px;padding-top:24px}
     .close-backed{width:100%;margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}
+    .close-backed>small{display:block;text-align:center;color:var(--text)}
+    .ask-use-wide span{font-size:clamp(13px,.95vw,15px)}
     .close-backed>div{margin-top:18px;display:flex;align-items:center;justify-content:center;gap:54px}
     .close-backed img{display:block;width:auto;max-width:170px;height:32px;object-fit:contain;filter:grayscale(1) brightness(0) invert(1);opacity:.72}
     .close-backed img:nth-child(3){height:38px}
     @media(max-width:1100px){.solution-video-main.solution-video-raised{height:min(38vh,360px)}.solution-action-strip article{padding:11px 14px}.raise-staged{gap:28px}.raise-steps article{padding:22px 18px}.close-backed>div{gap:28px}.close-backed img{max-width:130px;height:26px}}
   `;
   document.head.append(polish);
+
+  const pilotPipeline = document.querySelector('#s12 .traction-wide article:nth-child(2) span');
+  if (pilotPipeline) pilotPipeline.textContent = 'BHP USD 40K + Peñoles USD 50K';
 })();
 </script>
 </body></html>
