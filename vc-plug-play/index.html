@@ -959,7 +959,7 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
       text-align:center!important;
       white-space:nowrap!important;
       text-wrap:nowrap!important;
-      font-size:clamp(28px,1.55vw,29px)!important;
+      font-size:26px!important;
       letter-spacing:-.06em!important;
       max-width:1040px!important;
     }
@@ -1031,6 +1031,10 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
     page-break-after: always !important;
   }
   .slide:last-child { break-after: auto !important; page-break-after: auto !important; }
+  #s1 .final-cover,
+  #s1 .final-cover p,
+  #s1 .final-cover img { background: transparent !important; box-shadow: none !important; mix-blend-mode: normal !important; }
+  #s1 .final-cover p { text-shadow: none !important; }
 }
 </style>
 </body></html>
