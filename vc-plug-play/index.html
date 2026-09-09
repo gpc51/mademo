@@ -605,7 +605,7 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   const ask = document.getElementById('s16');
 
   if (cover) {
-    cover.innerHTML = '<div class="cover-copy final-cover"><img src="../assets/logo-white.png" alt="Made"><div class="cover-divider"></div><p>Predictive AI that turns physical signals into actions that prevent unplanned downtime across factories and fleets.</p></div><div class="foot"><span></span><span>01 / 09</span></div>';
+    cover.innerHTML = '<div class="cover-copy final-cover"><img src="../assets/logo-white.png" alt="Made"><p>Predictive AI that turns physical signals into actions that prevent unplanned downtime across factories and fleets.</p></div><div class="foot"><span></span><span>01 / 09</span></div>';
     let background = cover.querySelector('.slide-bg');
     if (!background) { background = document.createElement('img'); background.className = 'slide-bg'; background.alt = ''; cover.prepend(background); }
     background.src = '../vc/assets/slide-01.png';
@@ -649,7 +649,6 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
     #s1:after{z-index:1!important;background:linear-gradient(90deg,rgba(8,10,11,.74),rgba(8,10,11,.42) 55%,rgba(8,10,11,.22))!important}
     #s1 .final-cover{position:relative;z-index:3;max-width:1170px;margin:auto;text-align:center;align-items:center}
     #s1 .final-cover img{width:242px;margin:0 auto 44px}
-    #s1 .cover-divider{width:76px;height:1px;margin:0 auto 36px;background:var(--coral);box-shadow:0 0 18px rgba(255,102,64,.8)}
     #s1 .final-cover p{max-width:1140px;margin:0 auto;color:var(--text);font-size:clamp(24px,2.05vw,36px);line-height:1.12;letter-spacing:-.035em;text-wrap:balance}
     #s1 .foot{position:relative;z-index:3}
     #s6 .h2{max-width:1280px!important}
@@ -842,9 +841,6 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
     #s6:after{background:linear-gradient(90deg,rgba(7,9,10,.82) 0%,rgba(7,9,10,.61) 50%,rgba(7,9,10,.32) 100%)!important}
     #s10:after{background:linear-gradient(90deg,rgba(7,9,10,.90) 0%,rgba(7,9,10,.68) 52%,rgba(7,9,10,.36) 100%)!important}
     #company-status:after{background:linear-gradient(90deg,rgba(7,9,10,.90) 0%,rgba(7,9,10,.66) 50%,rgba(7,9,10,.34) 100%)!important}
-
-    /* Cover divider belongs to the wordmark, not to the full slide. */
-    #s1 .cover-divider{width:242px!important;max-width:100%!important}
 
     /* Problem: the monetary evidence is a single, centered focal block. */
     #s4 .problem-costs-single{margin:clamp(40px,6vh,70px) auto 0!important;text-align:center!important}
