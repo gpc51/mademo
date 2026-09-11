@@ -640,7 +640,7 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   if (ask) {
     const background = ask.querySelector('.slide-bg');
     if (background) background.src = 'assets/connected-fleet.png';
-    ask.querySelector('.content').innerHTML = '<div class="ask-wide"><div class="ask-main"><small>Pre-seed · 18 months</small><b>USD 1.8M</b><span>Hardware and implementation billed upfront</span></div><div class="ask-use-wide"><article><b>50%</b><span>Product + deployment engineering</span></article><article><b>25%</b><span>Field operations + customer success</span></article><article><b>15%</b><span>Enterprise sales</span></article><article><b>10%</b><span>Security, legal + contingency</span></article></div></div><div class="ask-milestones"><small>Round milestones</small><div><span><b>3</b> pilot-to-contract conversions</span><span><b>100+</b> live lines and assets</span><span><b>USD 1M</b> contracted ARR</span></div></div>';
+    ask.querySelector('.content').innerHTML = '<div class="ask-wide"><div class="ask-main"><small>Pre-seed · 18 months</small><b>USD 1.8M</b><span>Hardware and implementation billed upfront</span></div><div class="ask-use-wide"><article><b>50%</b><span>Product + deployment engineering</span></article><article><b>25%</b><span>Field operations + customer success</span></article><article><b>15%</b><span>Enterprise sales</span></article><article><b>10%</b><span>Security, legal + contingency</span></article></div></div><div class="ask-milestones"><small>Round milestones</small><div><span><b>3</b> pilot-to-contract conversions</span><span><b>100+</b> live lines and assets</span><span><b>USD 1M</b> contracted ARR</span></div></div><div class="ask-contact"><small>Contact:</small><div><b>Gerardo Peña</b><span>ger@madeos.ai</span><a href="https://www.madeos.ai" target="_blank" rel="noreferrer">www.madeos.ai</a></div></div>';
   }
 
   const css = document.createElement('style');
@@ -678,6 +678,12 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
     #s10 .h2{max-width:1190px!important;margin-left:auto!important;margin-right:auto!important;text-align:center!important;font-size:clamp(43px,4vw,65px)!important}
     #company-status .h2{max-width:1120px!important;font-size:clamp(42px,3.7vw,61px)!important}
     #s16 .ask-main b{color:var(--text)!important}
+    #s16 .ask-wide,#s16 .ask-milestones{transform:translateY(-1.5vh)}
+    #s16 .ask-contact{width:min(1450px,100%);margin:38px auto 0;padding:16px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;color:var(--muted);font:12px var(--mono);transform:translateY(2vh)}
+    #s16 .ask-contact>small{font:700 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--coral)}
+    #s16 .ask-contact>div{display:flex;align-items:center;justify-content:center;gap:22px}
+    #s16 .ask-contact b{color:var(--text);font-family:var(--sans);font-size:15px}
+    #s16 .ask-contact a{color:var(--text);text-decoration:none}
     @media(max-width:1100px){.final-product-frame{height:44vh!important}.case-protocol article{padding:18px}.case-protocol b{font-size:15px}.revenue-path article{padding:23px}.status-timeline article{padding:20px}.status-bottom{padding:20px}.final-position{height:350px}.status-bottom{grid-template-columns:auto 1fr}.status-bottom i{display:none}.status-bottom strong{margin-top:10px}.status-bottom span:last-child{grid-column:2}}
   `;
   document.head.append(css);
