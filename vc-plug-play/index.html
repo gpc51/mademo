@@ -564,7 +564,7 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
 
   if (team) {
     const third = team.querySelector('.team-third');
-    if (third) third.innerHTML = '<div class="team-skill-mark">AI</div><div><small>Applied AI research</small><h3>Machine learning + vision</h3><p>PhD-level expertise in data analysis, computer vision and intelligent systems for complex operations.</p></div>';
+    if (third) third.innerHTML = '<div><small>Applied AI research</small><h3>Machine learning + vision</h3><p>PhD-level expertise in data analysis, computer vision and intelligent systems for complex operations.</p></div>';
   }
 
   const css = document.createElement('style');
@@ -612,17 +612,17 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   }
 
   if (product) {
-    product.querySelector('.content').innerHTML = '<h2 class="h2">Made turns early failure signals into operational action</h2><div class="product-frame final-product-frame"><img src="assets/madeos-digital-twin.png" alt="Made OS digital twin workspace"><div class="video-meta"><span>Made OS</span><span>Live operating context</span></div></div><div class="product-architecture"><article><small>01 / Input</small><b>Connect</b><span>PLCs, SCADA and vehicle networks. IO-Link adds missing signals.</span></article><article><small>02 / Edge</small><b>Process locally</b><span>Real-time inference, industrial I/O, CAN and local buffer.</span></article><article><small>03 / Secure link</small><b>Send events</b><span>Read-only acquisition. Encrypted outbound events.</span></article><article><small>04 / Action</small><b>Prescribe</b><span>Context, risk and the next action for the operator.</span></article></div>';
+    product.querySelector('.content').innerHTML = '<h2 class="h2">Made turns failure signals into operational actions</h2><div class="product-media-row"><aside class="signal-rail input-rail"><small>Inputs</small><article><b>PLC / SCADA</b><span>Machine and process tags</span></article><article><b>CAN / J1939</b><span>Vehicle and engine telemetry</span></article><article><b>IO-Link</b><span>Missing signals at the edge</span></article><article><b>Operator context</b><span>Interventions and maintenance history</span></article></aside><div class="product-frame final-product-frame"><video autoplay muted loop playsinline preload="metadata" aria-label="Made OS predictive operations demo"><source src="assets/j1939-predictive-demo.mp4" type="video/mp4"></video></div><aside class="signal-rail output-rail"><small>Outputs</small><article><b>55% → 88%</b><span>Planned maintenance</span></article><article><b>65% → 98%</b><span>Model accuracy</span></article><article><b>18% → 2.5%</b><span>False-positive rate</span></article><article class="signal-impact"><b>55% lower</b><span>Unplanned downtime</span></article></aside></div><div class="product-architecture"><article><small>01 / Input</small><b>Connect</b><span>Existing signals enter MadeOS.</span></article><article><small>02 / Edge</small><b>Process telemetry</b><span>Real-time inference on NVIDIA Jetson and Revolution Pi 5, with industrial I/O, CAN and local buffering.</span></article><article><small>03 / Secure link</small><b>Send events</b><span>Read-only acquisition. Encrypted outbound events.</span></article><article><small>04 / Action</small><b>Prescribe</b><span>Operator-ready action with context and timing.</span></article></div>';
   }
 
   if (customerCase) {
     const background = customerCase.querySelector('.slide-bg');
     if (background) background.src = 'assets/artisanlabs-case-bg.png';
-    customerCase.querySelector('.content').innerHTML = '<h2 class="h2">A recurring CNC failure became a scheduled action</h2><div class="case-layout final-case-layout"><div class="case-protocol"><article><small>01 / Signals</small><b>Feed rate + operating hours</b><span>Continuous CNC data on each production window.</span></article><article><small>02 / Prediction</small><b>Remaining useful life</b><span>Estimated before the cutting tool reached failure.</span></article><article><small>03 / Action</small><b>Maintenance + inventory review</b><span>Scheduled before production was interrupted.</span></article></div><div class="case-scoreboard"><article><small>Historical baseline</small><b>3–4</b><span>failures per machine per year</span></article><article><small>Six-month pilot</small><b>1</b><span>unplanned stop versus 1.5–2.0 expected</span></article><article class="case-result"><small>Observed result</small><b>43%</b><span>fewer unplanned stops at the historical midpoint</span></article></div><div class="case-economics"><article class="case-value"><small>Loss exposure</small><b>USD 12K+</b></article><article><small>Implementation</small><b>USD 4K</b><span>upfront per production line</span></article><article><small>Made OS recurring</small><b>USD 1.5K</b><span>per production line / month</span></article></div></div>';
+    customerCase.querySelector('.content').innerHTML = '<h2 class="h2">A recurring CNC failure became a scheduled action</h2><div class="case-layout final-case-layout"><div class="case-protocol"><article><small>01 / Signals</small><b>Feed rate + operating hours</b><span>Continuous CNC data on each production window.</span></article><article><small>02 / Prediction</small><b>Remaining useful life</b><span>Estimated before the cutting tool reached failure.</span></article><article><small>03 / Action</small><b>Maintenance + inventory review</b><span>Scheduled before production was interrupted.</span></article></div><div class="case-scoreboard"><article><small>Monthly baseline → pilot run-rate</small><b>2–3 → 1</b><span>unplanned stops per machine per month</span></article><article class="case-result"><small>Observed reduction</small><b>50–67%</b><span>fewer unplanned stops; 60% at the midpoint</span></article><article class="case-value"><small>Economic exposure</small><b>USD 12K+</b><span>minimum loss exposure per month at the plant</span></article></div></div>';
   }
 
   if (revenue) {
-    revenue.querySelector('.content').innerHTML = '<h2 class="h2">Revenue compounds from pilot validation to native distribution</h2><div class="revenue-path"><article><small>01 / Validate</small><h3>Active pilots</h3><p>BHP, Peñoles and Security Fleet establish measured operating value.</p><b>USD 387K</b><span>pilot + first-cohort value</span><em>estimated close window: 2–4 months</em></article><article><small>02 / Expand</small><h3>Pipeline expansion</h3><p>Validated accounts expand by line, asset, site and fleet.</p><b>USD 34M+</b><span>pipeline expansion potential</span><em>BHP, Peñoles + Security Fleet</em></article><article><small>03 / Distribute</small><h3>Native OEM integration</h3><p>Embed Made OS in PLC, controller and operating-vehicle ecosystems.</p><b>USD 175B</b><span>modeled annual software TAM</span></article></div><p class="revenue-formula">USD 34M+ is pipeline expansion potential. TAM model: 923K manufacturing sites × 3 lines × USD 18K ARR, plus 21.1M operating vehicles × USD 5.94K ARR. Theoretical distribution universe, not short-term revenue.</p>';
+    revenue.querySelector('.content').innerHTML = '<h2 class="h2">Paid pilots convert into recurring software revenue</h2><div class="section-eyebrow">PRICING</div><div class="pricing-strip"><article><small>Implementation</small><b>USD 4K industrial · USD 1K / API</b><span>One-time fee per deployed unit.</span></article><article><small>Baseline software</small><b>USD 1.5K / line · USD 495 / vehicle</b><span>Per connected unit / month.</span></article><article class="performance-pricing"><small>Performance fee</small><b>10% of verified value</b><span>Downtime avoided + OEE uplift.</span></article></div><div class="section-eyebrow gtm-eyebrow">GO-TO-MARKET</div><div class="revenue-path"><article><small>01 / Enter</small><h3>Paid entry pilots</h3><p>Prove value before expansion.</p><b class="account-count">6 target accounts</b><strong class="gross-value">≈ USD 300K</strong><span>Gross potential pilot value<br>BHP · Peñoles · Security Fleet · Agrosuper · CEMEX · PEMEX</span><em>Estimated close: 2–4 months</em></article><article><small>02 / Expand</small><h3>Operational scale</h3><p>Expand by line, asset, site and fleet.</p><b>USD 34M+</b><span>Qualified expansion potential</span></article><article><small>03 / Distribute</small><h3>Native OEM integration</h3><p>Embed MadeOS into PLC, controller and vehicle ecosystems.</p><b>USD 175B</b><span>Modeled annual software TAM</span></article></div><p class="revenue-formula">One-time implementation + baseline software + success fee on verified operational value.</p>';
   }
 
   if (advantage) {
@@ -634,7 +634,7 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   }
 
   if (status) {
-    status.querySelector('.content').innerHTML = '<h2 class="h2">Made is entering the deployment phase</h2><div class="status-timeline"><article><small>Q3 2025 – Q1 2026</small><b>Accelerated</b><span>Startup Chile</span></article><article><small>Q1 2026</small><b>Launched</b><span>Made OS enters the market</span></article><article><small>Q2 2026</small><b>Validated</b><span>ArtisanLabs design partner and Founders Inc. Canopy</span></article><article><small>Q3 2026</small><b>Enterprise ready</b><span>BHP finalist process for a mine pilot</span></article></div><div class="status-bottom"><b>USD 125K</b><span>raised to date</span><i></i><strong>Next</strong><span>Execute pilots on reliable, ordered and traceable industrial telemetry. Automate deployment. Build industrial SLMs.</span></div>';
+    status.querySelector('.content').innerHTML = '<h2 class="h2">Made is entering the deployment phase</h2><div class="status-timeline"><article><small>Acceleration</small><b>Accelerated</b><span>Startup Chile · Founders Inc. Canopy</span></article><article><small>Company</small><b>Launched</b><span>Made OS launched in January 2026</span></article><article><small>Customer proof</small><b>Validated</b><span>ArtisanLabs design partner · 60% fewer unplanned stops at midpoint</span></article><article><small>Enterprise ready</small><b>Enterprise ready</b><ul class="status-bullets"><li>BHP Escondida top 3 global finalist for a mine pilot</li><li>CEMEX Ventures Construction Startup Competition finalist</li></ul></article></div><div class="status-bottom status-raised"><b>USD 125K</b><span>raised</span></div>';
   }
 
   if (ask) {
@@ -647,7 +647,7 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   css.textContent = `
     #s1 .slide-bg{opacity:.64!important;filter:saturate(.72) contrast(1.05) brightness(.66);z-index:0!important}
     #s1:after{z-index:1!important;background:linear-gradient(90deg,rgba(8,10,11,.74),rgba(8,10,11,.42) 55%,rgba(8,10,11,.22))!important}
-    #s1 .final-cover{position:relative;z-index:3;max-width:1170px;margin:auto;text-align:center;align-items:center}
+    #s1 .final-cover{position:relative;z-index:3;max-width:1170px;margin:auto;text-align:center;align-items:center;transform:translateY(5vh)}
     #s1 .final-cover img{width:242px;margin:0 auto 44px}
     #s1 .final-cover p{max-width:1140px;margin:0 auto;color:var(--text);font-size:clamp(24px,2.05vw,36px);line-height:1.12;letter-spacing:-.035em;text-wrap:balance}
     #s1 .foot{position:relative;z-index:3}
@@ -757,11 +757,11 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
 
     #s4 .problem-wide{margin-top:clamp(42px,6vh,76px)!important}
     #s4 .problem-costs-single{max-width:730px!important;margin-top:0!important}
-    #s4 .problem-costs-single article{min-height:190px;padding:30px 34px!important;border-left-width:3px!important}
+    #s4 .problem-costs-single article{min-height:190px;padding:30px 34px!important;border-left:0!important;border-top:1px solid rgba(255,255,255,.18)!important;border-bottom:1px solid rgba(255,255,255,.12)!important;background:transparent!important}
     #s4 .problem-costs-single b{font-size:clamp(55px,5.5vw,88px)!important}
     #s4 .annual-downtime{font-size:clamp(22px,1.9vw,31px)!important}
 
-    #s6 .h2{max-width:1160px!important}
+    #s6 .h2{max-width:1080px!important}
     #s6 .final-product-frame{border-color:rgba(255,255,255,.15)!important;box-shadow:0 24px 70px rgba(0,0,0,.32)!important}
     #s6 .product-architecture{width:min(1180px,100%)!important}
     #s6 .product-architecture article{min-height:118px!important}
@@ -770,6 +770,9 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
     #s8 .revenue-path{margin-top:clamp(36px,5vh,66px)!important}
     #s8 .revenue-path article{min-height:310px!important}
     #s8 .revenue-formula{max-width:1450px!important}
+    #s8 .price-stack{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:25px;padding-top:18px;border-top:1px solid rgba(255,255,255,.16)}
+    #s8 .price-stack strong{font:800 clamp(25px,2.6vw,38px)/.9 var(--sans);letter-spacing:-.055em;color:var(--text)}
+    #s8 .price-stack small{display:block;margin-top:8px;font:10px/1.2 var(--mono);letter-spacing:.02em;color:var(--muted);text-transform:none}
 
     #s10 .h2{max-width:1120px!important}
     #s10 .final-position{margin-top:clamp(58px,8vh,92px)!important}
@@ -863,6 +866,8 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
     #s8 .revenue-path,#company-status .status-timeline{margin-top:0!important}
     #s8 .revenue-formula{margin-top:18px!important}
     #s8 .revenue-path{margin-bottom:0!important}
+    #s8 .revenue-path .account-count{margin-top:24px!important;font-size:clamp(24px,2.35vw,36px)!important;line-height:1!important;letter-spacing:-.05em!important}
+    #s8 .revenue-path .gross-value{display:block!important;margin-top:12px!important;font:800 clamp(34px,3.8vw,59px)/.82 var(--sans)!important;letter-spacing:-.07em!important;color:var(--text)!important}
     #company-status .status-bottom{margin-bottom:0!important}
 
     /* The technical map and team use a fixed, readable heading lane. */
@@ -954,12 +959,12 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
     #s6 .content{align-items:center!important}
     #s6 .h2{
       width:100%!important;
-      max-width:none!important;
+      max-width:1040px!important;
       margin-inline:auto!important;
       text-align:center!important;
       white-space:nowrap!important;
       text-wrap:nowrap!important;
-      font-size:26px!important;
+      font-size:24px!important;
       letter-spacing:-.06em!important;
       max-width:1040px!important;
     }
@@ -967,10 +972,19 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
     /* Product is a single composed unit. Its screen and four stages remain inside
        the projection-safe area instead of competing with the navigation chrome. */
     #s6 .final-product-frame{
-      width:min(1040px,100%)!important;
-      height:auto!important;
+      width:min(1100px,100%)!important;
+      height:clamp(520px,54vh,600px)!important;
       aspect-ratio:16/9!important;
       margin-top:clamp(18px,2.2vh,24px)!important;
+    }
+    #s6 .final-product-frame video{
+      display:block!important;
+      width:100%!important;
+      height:100%!important;
+      object-fit:contain!important;
+      object-position:center!important;
+      background:#090b0c!important;
+      transform:scale(1.035)!important;
     }
     #s6 .product-architecture{
       width:min(1040px,100%)!important;
@@ -983,6 +997,53 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
     #s6 .product-architecture small{font-size:10px!important}
     #s6 .product-architecture b{font-size:17px!important;line-height:1.05!important}
     #s6 .product-architecture span{margin-top:7px!important;font-size:11px!important;line-height:1.28!important}
+
+    /* Product side rails add context without shrinking the product demo. */
+    #s6 .product-media-row{width:min(1540px,100%);display:grid;grid-template-columns:220px 1100px 220px;gap:0;align-items:stretch}
+    #s6 .product-media-row .final-product-frame{width:1100px!important;min-width:1100px!important}
+    #s6 .signal-rail{display:flex;flex-direction:column;justify-content:center;border-block:1px solid rgba(255,255,255,.16)}
+    #s6 .signal-rail>small{padding:14px 0;font:700 10px var(--mono);letter-spacing:.09em;color:var(--coral);text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.12)}
+    #s6 .signal-rail article{position:relative;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+    #s6 .signal-rail article:before{content:"";position:absolute;top:23px;width:6px;height:6px;border:1px solid var(--coral);border-radius:50%;background:var(--bg)}
+    #s6 .input-rail article{padding-left:18px}.input-rail article:before{left:0}.output-rail article{padding-right:18px;text-align:right}.output-rail article:before{right:0}
+    #s6 .output-rail article:before{display:none}
+    #s6 .signal-rail b{display:block;font-size:13px;line-height:1.15}.signal-rail span{display:block;margin-top:6px;font:10px/1.35 var(--mono);color:var(--muted)}
+    #s6 .signal-impact{border-bottom:0!important}.signal-impact b{color:var(--coral)!important}
+    #s6 .product-media-row .final-product-frame{border-left:1px solid rgba(255,255,255,.08)!important;border-right:1px solid rgba(255,255,255,.08)!important;border-radius:0!important;overflow:hidden!important}
+    #s6 .product-media-row .final-product-frame video{object-fit:cover!important;transform:scale(1.01)!important;background:#090b0c!important}
+    #s6 .product-architecture{width:1540px!important;max-width:none!important;grid-template-columns:220px 550px 550px 220px!important}
+    #s6 .product-architecture article:first-child{border-left:1px solid rgba(255,255,255,.12)!important}
+    #s6 .product-architecture article:last-child{border-right:1px solid rgba(255,255,255,.12)!important}
+    #s6 .product-architecture article:first-child span{max-width:175px!important}
+    #s6 .product-architecture article:last-child span{max-width:175px!important}
+    #s6 .output-rail>small{text-align:right!important}
+    #s6 .output-rail b{font-size:18px!important;line-height:1!important;letter-spacing:-.025em!important}
+    #s8 .pricing-strip{width:min(1450px,100%);margin:24px auto 0;display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid rgba(255,255,255,.16)}
+    #s8 .pricing-strip article{min-height:108px;padding:16px 20px;border-right:1px solid rgba(255,255,255,.12);display:flex;flex-direction:column;justify-content:center}
+    #s8 .pricing-strip article:last-child{border-right:0}
+    #s8 .pricing-strip small{font:700 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--coral)}
+    #s8 .pricing-strip b{display:block;margin-top:11px;font:800 clamp(20px,1.8vw,28px)/.95 var(--sans);letter-spacing:-.045em}
+    #s8 .pricing-strip span{display:block;margin-top:7px;font:10px/1.3 var(--mono);color:var(--muted)}
+    #s8 .pricing-strip .performance-pricing{background:rgba(255,102,64,.08);border-right:0}
+    #s8 .pricing-strip{margin-top:14px!important;margin-bottom:34px!important}
+    #s8 .revenue-path{margin-top:0!important}
+    #s8 .section-eyebrow{width:min(1450px,100%);margin:18px auto 0;text-align:center;font:700 10px var(--mono);letter-spacing:.16em;color:var(--coral)}
+    #s8 .gtm-eyebrow{margin-top:28px!important}
+
+    /* Team returns to the original editorial card: identity on the left, proof on the right. */
+    #s15 .team-wide article{display:grid!important;grid-template-columns:112px 1fr!important;gap:28px!important;align-items:center!important;text-align:left!important}
+    #s15 .team-wide article>div{max-width:none!important}
+    #s15 .team-wide img{margin:0!important}
+    #s15 .team-wide p{margin-left:0!important;margin-right:0!important}
+    #s15 .team-wide{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+    #s15 .team-third{display:block!important;min-width:0!important;padding-left:34px!important;padding-right:34px!important;text-align:left!important}
+    #s15 .team-third>div{display:block!important;width:350px!important;max-width:350px!important}
+    #s15 .team-third h3{width:350px!important;max-width:350px!important;white-space:nowrap!important}
+    #s15 .team-third p{width:350px!important;max-width:350px!important}
+    #company-status .status-bullets{margin:14px 0 0;padding-left:18px;color:var(--muted);font-size:14px;line-height:1.4}
+    #company-status .status-bullets li{margin:0 0 8px}
+    #company-status .status-raised{display:flex!important;justify-content:center!important;align-items:baseline!important;gap:14px!important;text-align:center!important}
+    #company-status .status-raised b{font-size:42px!important}
 
     /* The supporting annual metric remains a single readable line in presentation mode. */
     #s4 .annual-downtime{
@@ -1037,4 +1098,24 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   #s1 .final-cover p { text-shadow: none !important; }
 }
 </style>
+<script>
+/* Ask milestone: align the displayed checkpoint with the current round plan. */
+(() => {
+  document.querySelectorAll('#s16 .ask-milestones b').forEach((node) => {
+    if (node.textContent.trim() === 'USD 1M') node.textContent = 'USD 2M';
+  });
+})();
+</script>
+<script>
+/* Product edge copy: describe the deployed telemetry layer without overstating local execution. */
+(() => {
+  const edge = document.querySelector('#s6 .product-architecture article:nth-child(2)');
+  if (edge) {
+    const heading = edge.querySelector('b');
+    const detail = edge.querySelector('span');
+    if (heading) heading.textContent = 'Process telemetry';
+    if (detail) detail.textContent = 'Real-time inference on NVIDIA Jetson and Revolution Pi 5, with industrial I/O, CAN and local buffering.';
+  }
+})();
+</script>
 </body></html>
