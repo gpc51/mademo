@@ -7,6 +7,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  window.madePostHogReady = new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://us-assets.i.posthog.com/static/array.js';
+    script.onload = () => {
+      window.posthog?.init?.('phc_p4YSg59589ph2dTtqFuJXpZLKDYpExRwNhYU9FXmewmG', {
+        api_host: 'https://us.i.posthog.com',
+        autocapture: false,
+        capture_pageview: false,
+        person_profiles: 'identified_only'
+      });
+      resolve(window.posthog);
+    };
+    script.onerror = () => resolve(null);
+    document.head.appendChild(script);
+  });
+</script>
 <style>
 :root{--bg:#101314;--panel:#181c1d;--panel2:#202526;--line:rgba(255,255,255,.12);--text:#f6f7f4;--muted:#a2aaa8;--dim:#68716f;--coral:#ff6640;--coral2:#c9472c;--mint:#a7e5c7;--mono:"JetBrains Mono",ui-monospace,monospace;--sans:Inter,Arial,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:var(--sans);color:var(--text)}
@@ -324,8 +342,55 @@
 </script>
 <script>
 const PIN='NDA4ODgw';
-function unlock(){const input=document.getElementById('pin');if(btoa(input.value.trim())===PIN){document.getElementById('pin-screen').style.display='none';try{sessionStorage.setItem('madeos_vc_pin','1')}catch(e){}}else{const err=document.getElementById('pin-error');err.style.display='block';input.value='';input.focus()}}
-(()=>{const qs=new URLSearchParams(location.search),input=document.getElementById('pin');if(qs.get('pin')&&btoa(qs.get('pin'))===PIN){try{sessionStorage.setItem('madeos_vc_pin','1')}catch(e){}}if(sessionStorage.getItem('madeos_vc_pin')==='1')document.getElementById('pin-screen').style.display='none';else input.focus();input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();unlock()}});const slides=[...document.querySelectorAll('.slide')],dots=document.getElementById('dots'),counter=document.getElementById('counter');let current=0;slides.forEach((s,i)=>{const d=document.createElement('span');d.className='dotnav'+(i===0?' active':'');d.onclick=()=>go(i);dots.appendChild(d)});function go(n){if(n<0||n>=slides.length)return;slides[current].classList.remove('active');slides[current].classList.add('prev');const old=current;current=n;slides[current].classList.remove('prev');slides[current].classList.add('active');setTimeout(()=>slides[old].classList.remove('prev'),380);[...dots.children].forEach((d,i)=>d.classList.toggle('active',i===current));counter.textContent=String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0')}document.getElementById('prev').onclick=()=>go(current-1);document.getElementById('next').onclick=()=>go(current+1);document.addEventListener('keydown',e=>{if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();go(current+1)}if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();go(current-1)}});let x=0;document.addEventListener('touchstart',e=>x=e.touches[0].clientX,{passive:true});document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-x;if(Math.abs(dx)>50)go(dx<0?current+1:current-1)},{passive:true});document.getElementById('deck').style.visibility='visible';if(qs.get('print')==='1')addEventListener('load',()=>setTimeout(()=>print(),700))})();
+function unlock(){
+  const input=document.getElementById('pin');
+  if(btoa(input.value.trim())===PIN){
+    document.getElementById('pin-screen').style.display='none';
+    try{sessionStorage.setItem('madeos_vc_pin','1')}catch(e){}
+    window.startDeckTracking?.();
+  }else{
+    const err=document.getElementById('pin-error');err.style.display='block';input.value='';input.focus();
+  }
+}
+(()=>{
+  const qs=new URLSearchParams(location.search),input=document.getElementById('pin');
+  if(qs.get('pin')&&btoa(qs.get('pin'))===PIN){try{sessionStorage.setItem('madeos_vc_pin','1')}catch(e){}}
+  const isUnlocked=sessionStorage.getItem('madeos_vc_pin')==='1';
+  if(isUnlocked)document.getElementById('pin-screen').style.display='none';else input.focus();
+  input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();unlock()}});
+  const slides=[...document.querySelectorAll('.slide')],dots=document.getElementById('dots'),counter=document.getElementById('counter');
+  let current=0,tracking=false,slideStartedAt=0;
+  const slideProperties=(index)=>({deck:'vc-plug-play',slide_index:index+1,slide_id:slides[index].id,slide_title:slides[index].querySelector('h1,h2')?.textContent.trim()||`Slide ${index+1}`,slide_count:slides.length});
+  const capture=(name,properties)=>window.madePostHogReady?.then(posthog=>posthog?.capture?.(name,properties));
+  const recordDuration=()=>{
+    if(!tracking||!slideStartedAt)return;
+    capture('vc_slide_duration',{...slideProperties(current),duration_seconds:Math.max(1,Math.round((Date.now()-slideStartedAt)/1000))});
+    slideStartedAt=0;
+  };
+  window.startDeckTracking=()=>{
+    if(tracking)return;
+    tracking=true;slideStartedAt=Date.now();
+    capture('vc_deck_viewed',{deck:'vc-plug-play',slide_count:slides.length});
+    capture('vc_slide_viewed',slideProperties(current));
+  };
+  slides.forEach((s,i)=>{const d=document.createElement('span');d.className='dotnav'+(i===0?' active':'');d.onclick=()=>go(i);dots.appendChild(d)});
+  function go(n){
+    if(n<0||n>=slides.length||n===current)return;
+    recordDuration();
+    slides[current].classList.remove('active');slides[current].classList.add('prev');const old=current;current=n;
+    slides[current].classList.remove('prev');slides[current].classList.add('active');setTimeout(()=>slides[old].classList.remove('prev'),380);
+    [...dots.children].forEach((d,i)=>d.classList.toggle('active',i===current));counter.textContent=String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+    if(tracking){slideStartedAt=Date.now();capture('vc_slide_viewed',slideProperties(current));}
+  }
+  document.getElementById('prev').onclick=()=>go(current-1);document.getElementById('next').onclick=()=>go(current+1);
+  document.addEventListener('keydown',e=>{if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();go(current+1)}if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();go(current-1)}});
+  let x=0;document.addEventListener('touchstart',e=>x=e.touches[0].clientX,{passive:true});document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-x;if(Math.abs(dx)>50)go(dx<0?current+1:current-1)},{passive:true});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)recordDuration();else if(tracking)slideStartedAt=Date.now()});
+  addEventListener('pagehide',recordDuration);
+  document.getElementById('deck').style.visibility='visible';
+  if(isUnlocked)window.startDeckTracking();
+  if(qs.get('print')==='1')addEventListener('load',()=>setTimeout(()=>print(),700));
+})();
 </script>
 <script>
 const vcBackgrounds={s1:'slide-01.png',s4:'slide-03.png',s6:'slide-04.png',s7:'slide-12.png',s8:'slide-14.png',s9:'slide-10.png',s10:'slide-15.png',s11:'slide-05.png',s12:'slide-06.png',s15:'slide-01.png',s16:'slide-06.png',closing:'slide-10.png'};
