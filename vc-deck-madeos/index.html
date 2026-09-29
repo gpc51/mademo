@@ -343,23 +343,9 @@
 })();
 </script>
 <script>
-const PIN='NDA4ODgw';
-function unlock(){
-  const input=document.getElementById('pin');
-  if(btoa(input.value.trim())===PIN){
-    document.getElementById('pin-screen').style.display='none';
-    try{sessionStorage.setItem('madeos_vc_pin','1')}catch(e){}
-    window.startDeckTracking?.();
-  }else{
-    const err=document.getElementById('pin-error');err.style.display='block';input.value='';input.focus();
-  }
-}
 (()=>{
-  const qs=new URLSearchParams(location.search),input=document.getElementById('pin');
-  if(qs.get('pin')&&btoa(qs.get('pin'))===PIN){try{sessionStorage.setItem('madeos_vc_pin','1')}catch(e){}}
-  const isUnlocked=sessionStorage.getItem('madeos_vc_pin')==='1';
-  if(isUnlocked)document.getElementById('pin-screen').style.display='none';else input.focus();
-  input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();unlock()}});
+  document.getElementById('pin-screen')?.remove();
+  window.startDeckTracking?.();
   const slides=[...document.querySelectorAll('.slide')],dots=document.getElementById('dots'),counter=document.getElementById('counter');
   let current=0,tracking=false,slideStartedAt=0;
   const slideProperties=(index)=>({deck:'vc-plug-play',slide_index:index+1,slide_id:slides[index].id,slide_title:slides[index].querySelector('h1,h2')?.textContent.trim()||`Slide ${index+1}`,slide_count:slides.length});
