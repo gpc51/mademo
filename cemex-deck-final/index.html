@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Made OS · Construction Startup Competition 2026</title>
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="stylesheet" href="deck.css?v=enterprise6">
+</head>
+<body>
+  <main id="stage" aria-label="Made OS presentation"></main>
+  <nav class="controls" aria-label="Presentation controls">
+    <button id="prev" aria-label="Previous slide">←</button>
+    <button id="index-toggle" aria-label="Slide overview" title="Slide overview (G)">▦</button>
+    <span id="counter" aria-live="polite">01 / 09</span>
+    <button id="next" aria-label="Next slide">→</button>
+    <span class="separator"></span>
+    <button id="notes-toggle" aria-label="Presenter notes" title="Presenter notes (N)">N</button>
+    <button id="presenter-open" aria-label="Open presenter view" title="Separate presenter window (P)">P</button>
+    <button id="fullscreen" aria-label="Fullscreen" title="Fullscreen (F)">⛶</button>
+  </nav>
+  <aside id="notes" hidden aria-label="Presenter notes"><button class="close-panel" id="notes-close" aria-label="Close notes">×</button><div id="notes-content"></div></aside>
+  <aside id="overview" hidden aria-label="Slide overview"><button class="close-panel" id="overview-close" aria-label="Close overview">×</button><p class="label">MADE OS / 13:30 PITCH · 15:00 MAX</p><div id="overview-list"></div></aside>
+  <div id="toast" role="status" hidden></div>
+  <script src="content.js?v=enterprise6"></script>
+  <script src="deck.js?v=enterprise6"></script>
+</body>
+</html>
