@@ -1,0 +1,6 @@
+
+# VINCI deck: only the encrypted build is published
+vinci-deck/deck.src.html
+vinci-deck/*.pdf
+vinci-deck/_build.mjs
+vinci-deck/.access-code
