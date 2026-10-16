@@ -4,3 +4,11 @@ vinci-deck/deck.src.html
 vinci-deck/*.pdf
 vinci-deck/_build.mjs
 vinci-deck/.access-code
+
+# Grupo Mexico deck: only the encrypted build is published
+grupo-mexico-deck/deck.src.html
+grupo-mexico-deck/*.pdf
+grupo-mexico-deck/_build.mjs
+grupo-mexico-deck/_lint.mjs
+grupo-mexico-deck/.access-code
+grupo-mexico-deck/PLAN.md
