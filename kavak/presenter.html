@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Presentador · Made OS · Kavak</title>
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="assets/fonts.css">
+  <style>
+    :root{--bg:#101415;--paper:#f4f5f0;--muted:#c1c9c5;--line:#ffffff30;--orange:#ff7751;--mint:#b3e8d0;--sans:Inter,Arial,sans-serif;--mono:'JetBrains Mono',monospace}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#0d1314;color:var(--paper);font-family:var(--sans)}
+    body{display:grid;grid-template-rows:auto 1fr auto;height:100vh}
+    header{display:flex;align-items:center;gap:28px;padding:18px 28px;border-bottom:1px solid var(--line);font-family:var(--mono)}
+    #pos{font-size:15px;color:var(--orange)}#elapsed{font-size:34px;letter-spacing:-.02em;color:var(--paper)}#slot{font-size:14px;color:var(--muted)}#slot.late{color:var(--orange)}
+    header button{margin-left:auto}
+    main{display:grid;grid-template-columns:1fr 340px;overflow:hidden}
+    #body{overflow:auto;padding:28px 36px}
+    #body h1{font-size:34px;line-height:1.15;letter-spacing:-.03em;font-weight:550;margin:0 0 14px}#body h1 br{display:none}#body h1 em{color:var(--orange);font-style:normal}
+    .cue{font:15px/1.6 var(--mono);color:var(--orange);margin:0 0 16px}
+    .director{border-left:2px solid var(--orange);padding-left:16px;color:var(--mint);font-size:17px;line-height:1.6;margin:0 0 22px}
+    .script p{font-size:22px;line-height:1.6;margin:0 0 16px;color:#e4ebe6}
+    .evidence{font-size:13px;line-height:1.6;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:20px}
+    aside{border-left:1px solid var(--line);padding:24px;overflow:auto}
+    aside .label{font:12px var(--mono);letter-spacing:.06em;color:var(--muted)}
+    #next-title{font-size:22px;line-height:1.25;margin:10px 0 26px}#next-title br{display:none}#next-title em{color:var(--orange);font-style:normal}
+    #list button{display:flex;gap:12px;width:100%;text-align:left;background:none;border:0;border-top:1px solid #ffffff18;color:var(--muted);padding:9px 0;font:15px var(--sans);cursor:pointer}
+    #list button span{font:12px/1.7 var(--mono);color:var(--orange)}#list button[aria-current="true"]{color:var(--mint)}
+    footer{display:flex;gap:10px;padding:14px 28px;border-top:1px solid var(--line)}
+    button{font:inherit;background:#18242399;color:var(--paper);border:1px solid #ffffff30;border-radius:6px;padding:9px 18px;cursor:pointer}
+    button:hover{background:#ffffff14}
+    #status{margin-left:auto;font:13px var(--mono);color:var(--muted);align-self:center}
+  </style>
+</head>
+<body>
+  <header><span id="pos">01 / 10</span><span id="elapsed">00:00</span><span id="slot"></span><button id="reset" title="Reiniciar cronómetro">Reiniciar</button></header>
+  <main><section id="body"></section><aside><p class="label">SIGUIENTE</p><p id="next-title"></p><p class="label">LÁMINAS</p><div id="list"></div></aside></main>
+  <footer><button id="prev">← Anterior</button><button id="next">Siguiente →</button><span id="status">Esperando la presentación…</span></footer>
+  <script>
+  (() => {
+    'use strict';
+    if (!window.DECK && window.opener && window.opener.DECK) window.DECK = window.opener.DECK;
+    if (!window.DECK) { document.body.innerHTML = '<p style="padding:28px">Abre la vista de presentador con la tecla P desde la presentación.</p>'; return; }
+    const slides = window.DECK.slides;
+    const pad = n => String(n).padStart(2, '0');
+    const clock = s => `${pad(Math.floor(s / 60))}:${pad(Math.floor(s) % 60)}`;
+    const escape = t => t.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const channel = typeof BroadcastChannel === 'function' ? new BroadcastChannel('made-kavak-v1') : null;
+    let index = 0, start = 0, end = 0, t0 = Date.now();
+    function send(action, extra = {}) {
+      const msg = {type:'command', action, ...extra};
+      channel?.postMessage(msg);
+      if (window.opener && !window.opener.closed) window.opener.postMessage(msg, location.origin === 'null' ? '*' : location.origin);
+    }
+    function render() {
+      const s = slides[index], n = slides[index + 1];
+      document.getElementById('pos').textContent = `${pad(index + 1)} / ${pad(slides.length)}`;
+      document.getElementById('body').innerHTML = `<h1>${s.title}</h1><p class="cue">${escape(s.cue)}</p><p class="director">${escape(s.direction)}</p><div class="script">${s.script.split('\n\n').map(p => `<p>${escape(p)}</p>`).join('')}</div><p class="evidence">${escape(s.evidence)}</p>`;
+      document.getElementById('next-title').innerHTML = n ? n.title : 'Fin de la presentación';
+      [...document.getElementById('list').children].forEach((b, i) => b.setAttribute('aria-current', String(i === index)));
+      tick();
+    }
+    function tick() {
+      const e = (Date.now() - t0) / 1000;
+      document.getElementById('elapsed').textContent = clock(e);
+      const slot = document.getElementById('slot');
+      slot.textContent = `Lámina ${clock(start)}–${clock(end)} · objetivo ${clock(window.DECK.targetSeconds)}`;
+      slot.classList.toggle('late', e > end);
+    }
+    function onState(d) {
+      if (d?.type !== 'state') return;
+      index = d.index; start = d.start; end = d.end;
+      document.getElementById('status').textContent = 'Conectado a la presentación';
+      render();
+    }
+    slides.forEach((s, i) => {
+      const b = document.createElement('button');
+      b.innerHTML = `<span>${pad(i + 1)}</span>${s.label}`;
+      b.onclick = () => send('goto', {index: i});
+      document.getElementById('list').appendChild(b);
+    });
+    if (channel) channel.onmessage = e => onState(e.data);
+    window.addEventListener('message', e => { if (e.source === window.opener) onState(e.data); });
+    document.getElementById('prev').onclick = () => send('prev');
+    document.getElementById('next').onclick = () => send('next');
+    document.getElementById('reset').onclick = () => { t0 = Date.now(); tick(); };
+    window.addEventListener('keydown', e => {
+      const k = e.key.toLowerCase();
+      if (['arrowright','pagedown'].includes(k)) { e.preventDefault(); send('next'); }
+      else if (['arrowleft','pageup'].includes(k)) { e.preventDefault(); send('prev'); }
+    });
+    setInterval(tick, 1000);
+    render();
+    send('ready');
+  })();
+  </script>
+</body>
+</html>
