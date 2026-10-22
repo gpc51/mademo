@@ -6,7 +6,7 @@
 <title>Made | Plug and Play Pitch 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>
   window.madePostHogReady = new Promise((resolve) => {
     const script = document.createElement('script');
@@ -26,7 +26,7 @@
   });
 </script>
 <style>
-:root{--bg:#101314;--panel:#181c1d;--panel2:#202526;--line:rgba(255,255,255,.12);--text:#f6f7f4;--muted:#a2aaa8;--dim:#68716f;--coral:#ff6640;--coral2:#c9472c;--mint:#a7e5c7;--mono:"JetBrains Mono",ui-monospace,monospace;--sans:Inter,Arial,sans-serif}
+:root{--bg:#101314;--panel:#181c1d;--panel2:#202526;--line:rgba(255,255,255,.12);--text:#f6f7f4;--muted:#a2aaa8;--dim:#68716f;--coral:#ff6640;--coral2:#c9472c;--mint:#a7e5c7;--mono:"JetBrains Mono",ui-monospace,monospace;--sans:Geist,Arial,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:var(--sans);color:var(--text)}
 .deck{position:relative;width:100%;height:100vh;visibility:hidden;background:var(--bg)}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;padding:clamp(38px,5.5vh,72px) clamp(42px,6.6vw,126px) clamp(32px,4vh,52px);opacity:0;pointer-events:none;transform:translateX(18px);transition:opacity .35s ease,transform .35s ease;background:radial-gradient(ellipse at 90% 4%,rgba(255,102,64,.08),transparent 38%),linear-gradient(135deg,#111516 0%,#0e1112 100%);overflow:hidden}.slide-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.30;filter:saturate(.72) contrast(1.06);pointer-events:none;z-index:0}.slide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,17,18,.88) 0%,rgba(14,17,18,.58) 48%,rgba(14,17,18,.28) 100%);pointer-events:none;z-index:0}
@@ -62,7 +62,7 @@
 </head>
 <body>
 <div id="pin-screen"><div class="pin-card">
-  <div class="pin-logo"><svg viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg"><path d="M27.3 13v8.8L9 39H0zM39.6 9.8V39H13.3z" fill="#ff6640"/><text x="46" y="39" font-size="36" font-family="Inter,Arial" font-weight="800" fill="#f6f7f4">Made</text></svg></div>
+  <div class="pin-logo"><svg viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg"><path d="M27.3 13v8.8L9 39H0zM39.6 9.8V39H13.3z" fill="#ff6640"/><text x="46" y="39" font-size="36" font-family="Geist,Arial" font-weight="800" fill="#f6f7f4">Made</text></svg></div>
   <div class="pin-badge">Investor presentation · 2026</div><h2>Confidential</h2><p>Enter the access code<br>shared by the Made team.</p>
   <form onsubmit="event.preventDefault();unlock()"><input id="pin" class="pin-input" inputmode="numeric" maxlength="6" placeholder="······" required><button class="pin-btn">View deck</button></form>
   <div id="pin-error" class="pin-error">Invalid code. Please try again.</div><div class="pin-foot">MADEOS · CONFIDENTIAL · MADEOS.AI</div>
@@ -693,7 +693,7 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   if (ask) {
     const background = ask.querySelector('.slide-bg');
     if (background) background.src = 'assets/connected-fleet.png';
-    ask.querySelector('.content').innerHTML = '<div class="ask-wide"><div class="ask-main"><small>Pre-seed · 18 months</small><b>USD 1M</b><span>USD 125K raised to date</span></div><div class="ask-use-wide"><article><b>50%</b><span>Product + deployment engineering</span></article><article><b>25%</b><span>Field operations + customer success</span></article><article><b>15%</b><span>Enterprise sales</span></article><article><b>10%</b><span>Security, legal + contingency</span></article></div></div><div class="ask-milestones"><small>Round milestones</small><div><span><b>3</b> pilot-to-contract conversions</span><span><b>100+</b> live lines and assets</span><span><b>USD 1M</b> contracted ARR</span></div></div><div class="ask-contact"><small>Contact:</small><div><b>Gerardo Peña</b><span>ger@madeos.ai</span><a href="https://www.madeos.ai" target="_blank" rel="noreferrer">www.madeos.ai</a></div></div>';
+    ask.querySelector('.content').innerHTML = '<div class="ask-wide"><div class="ask-main"><small>Pre-seed · 18 months</small><b>USD 1M</b><span>USD 125K raised to date</span></div><div class="ask-use-wide"><article><b>50%</b><span>Product + deployment engineering</span></article><article><b>25%</b><span>Field operations + customer success</span></article><article><b>15%</b><span>Enterprise sales</span></article><article><b>10%</b><span>Security, legal + contingency</span></article></div></div><div class="ask-milestones"><small>Round milestones</small><div><span><b>3</b> pilot-to-contract conversions</span><span><b>100+</b> live lines and assets</span><span><b>USD 1M</b> contracted ARR</span></div></div><div class="ask-contact"><small>Contact:</small><div><b>Gerardo Peña</b><span>g@madeos.ai</span><a href="https://www.madeos.ai" target="_blank" rel="noreferrer">www.madeos.ai</a></div></div>';
   }
 
   const css = document.createElement('style');
@@ -1203,12 +1203,10 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
 })();
 </script>
 <style>
-@font-face{font-family:Aeonik;src:url('assets/fonts/Aeonik-Regular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:Aeonik;src:url('assets/fonts/Aeonik-Bold.otf') format('opentype');font-weight:700 900;font-style:normal;font-display:swap}
-:root{--sans:Aeonik,Arial,sans-serif}
-html,body,.slide{font-family:Aeonik,Arial,sans-serif!important}
-html,body,.slide{letter-spacing:1.3px}
-html,body,.slide h1,html,body,.slide h2,html,body,.slide h3{letter-spacing:1.5px}
+:root{--sans:Geist,Arial,sans-serif}
+html,body,.slide{font-family:Geist,Arial,sans-serif!important}
+html,body,.slide{letter-spacing:.02em}
+.slide h1,.slide h2,.slide h3{letter-spacing:.015em}
 #s11 .case-scoreboard .case-result{background:transparent!important;border-top-color:rgba(255,255,255,.12)!important}
 #s11 .case-scoreboard .case-value{background:transparent!important;border-top:0!important}
 #s11 .case-scoreboard>article:first-child{background:rgba(255,102,64,.12)!important;border-top:2px solid var(--coral)!important}
