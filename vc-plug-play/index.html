@@ -68,6 +68,7 @@
   <div id="pin-error" class="pin-error">Invalid code. Please try again.</div><div class="pin-foot">MADEOS · CONFIDENTIAL · MADEOS.AI</div>
 </div></div>
 <main class="deck" id="deck">
+<section class="slide" id="gtm-split"><div class="top"><span class="kicker">05 / go-to-market</span><span class="slide-num">05</span></div><div class="content fill"></div><div class="foot"><span></span><span></span></div></section>
 <section class="slide active" id="s1"><div class="content fill" style="display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;width:100%"><div><div class="kicker">MadeOS / investor presentation</div><h1 class="h1" style="margin-top:22px">MadeOS</h1><p class="lead" style="font-size:clamp(20px,2vw,31px);color:var(--text);margin-top:18px">Physical AI for zero-loss operations.</p><p class="lead">From fragmented machine and vehicle signals to the next precise operational action.</p></div><div class="card" style="padding:0;overflow:hidden;height:min(62vh,560px);background:var(--panel)"><div style="height:50%;overflow:hidden"><img src="../assets/edge-device.jpg" alt="Industrial edge system" style="width:100%;height:100%;object-fit:cover"></div><div style="height:50%;display:grid;place-items:center;position:relative;background:linear-gradient(135deg,#1b2927,#202526)"><svg viewBox="0 0 420 180" style="width:90%;height:auto"><path d="M56 116h240l26-28h42v48H56z" fill="none" stroke="#a7e5c7" stroke-width="3"/><path d="M93 116V75h57v41m55 0V75h58v41" fill="none" stroke="#a7e5c7" stroke-width="3"/><circle cx="120" cy="135" r="18" fill="none" stroke="#ff6640" stroke-width="3"/><circle cx="288" cy="135" r="18" fill="none" stroke="#ff6640" stroke-width="3"/><path d="M24 35h116M180 35h105" stroke="#ff6640" stroke-width="2" stroke-dasharray="6 8"/><circle cx="166" cy="35" r="5" fill="#a7e5c7"/></svg></div></div></div><div class="foot"><span>Confidential · Investor presentation · 2026</span><span>01 / 16</span></div></section>
 
 <section class="slide" id="s2"><div class="top"><span class="kicker">01 / company purpose</span><span class="slide-num">02</span></div><div class="content"><h2 class="h2">Every physical operation loses money in the gap between <span class="accent">signal and action.</span></h2><p class="lead">MadeOS closes that gap.</p><div class="flow"><div class="flow-node"><strong>Read</strong><span>the physical world</span></div><div class="arrow">→</div><div class="flow-node"><strong>Understand</strong><span>what changed</span></div><div class="arrow">→</div><div class="flow-node"><strong>Prescribe</strong><span>the next action</span></div><div class="arrow">→</div><div class="flow-node"><strong>Measure</strong><span>the outcome</span></div></div></div><div class="foot"><span>MadeOS · Physical AI for zero-loss operations</span><span>02 / 16</span></div><aside class="notes">The company purpose is reducing operational loss by making the next action precise.</aside></section>
@@ -315,7 +316,7 @@
     companyStatus.innerHTML = '<div class="top"><span class="kicker"></span><span class="slide-num"></span></div><div class="content fill"></div><div class="foot"><span></span><span></span></div>';
     deck.append(companyStatus);
   }
-  const order = ['s1', 's4', 's6', 's11', 's8', 's10', 's15', 'company-status', 's16'];
+  const order = ['s1', 's4', 's6', 's11', 's8', 'gtm-split', 's10', 's15', 'company-status', 's16'];
   const byId = new Map([...deck.querySelectorAll('.slide')].map(slide => [slide.id, slide]));
   [...deck.querySelectorAll('.slide')].forEach(slide => slide.remove());
   order.forEach(id => deck.append(byId.get(id)));
@@ -324,10 +325,11 @@
     '02 / product',
     '03 / customer case',
     '04 / revenue model',
-    '05 / competitive advantage',
-    '06 / team',
-    '07 / current status',
-    '08 / the ask'
+    '05 / go-to-market',
+    '06 / competitive advantage',
+    '07 / team',
+    '08 / current status',
+    '09 / the ask'
   ];
   const slides = [...deck.querySelectorAll('.slide')];
   slides.forEach((slide, index) => {
@@ -341,23 +343,9 @@
 })();
 </script>
 <script>
-const PIN='NDA4ODgw';
-function unlock(){
-  const input=document.getElementById('pin');
-  if(btoa(input.value.trim())===PIN){
-    document.getElementById('pin-screen').style.display='none';
-    try{sessionStorage.setItem('madeos_vc_pin','1')}catch(e){}
-    window.startDeckTracking?.();
-  }else{
-    const err=document.getElementById('pin-error');err.style.display='block';input.value='';input.focus();
-  }
-}
 (()=>{
-  const qs=new URLSearchParams(location.search),input=document.getElementById('pin');
-  if(qs.get('pin')&&btoa(qs.get('pin'))===PIN){try{sessionStorage.setItem('madeos_vc_pin','1')}catch(e){}}
-  const isUnlocked=sessionStorage.getItem('madeos_vc_pin')==='1';
-  if(isUnlocked)document.getElementById('pin-screen').style.display='none';else input.focus();
-  input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();unlock()}});
+  const qs=new URLSearchParams(location.search);
+  document.getElementById('pin-screen')?.remove();
   const slides=[...document.querySelectorAll('.slide')],dots=document.getElementById('dots'),counter=document.getElementById('counter');
   let current=0,tracking=false,slideStartedAt=0;
   const slideProperties=(index)=>({deck:'vc-plug-play',slide_index:index+1,slide_id:slides[index].id,slide_title:slides[index].querySelector('h1,h2')?.textContent.trim()||`Slide ${index+1}`,slide_count:slides.length});
@@ -388,7 +376,7 @@ function unlock(){
   document.addEventListener('visibilitychange',()=>{if(document.hidden)recordDuration();else if(tracking)slideStartedAt=Date.now()});
   addEventListener('pagehide',recordDuration);
   document.getElementById('deck').style.visibility='visible';
-  if(isUnlocked)window.startDeckTracking();
+  window.startDeckTracking();
   if(qs.get('print')==='1')addEventListener('load',()=>setTimeout(()=>print(),700));
 })();
 </script>
@@ -410,7 +398,7 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   const close = document.getElementById('closing');
 
   if (problem) {
-    problem.querySelector('.content').innerHTML = '<h2 class="h2">Downtime begins before the visible failure</h2><div class="problem-wide"><div class="problem-chain"><article><small>01 / Fragmented signal</small><h3>Machines show symptoms in separate systems</h3></article><article><small>02 / Lost lead time</small><h3>Diagnosis starts after degradation advances</h3></article><article><small>03 / Compounding loss</small><h3>Production, quality and delivery decline together</h3></article></div><div class="problem-costs problem-costs-single"><article><b>USD 150K</b><span>Potential cost of one high-severity failure event</span><em class="annual-downtime"><strong>326 hours</strong> of unplanned downtime per year</em></article></div></div>';
+    problem.querySelector('.content').innerHTML = '<h2 class="h2">Downtime begins before the visible failure</h2><div class="problem-wide"><div class="problem-chain"><article><small>01 / Fragmented signal</small><h3>Machines show symptoms in separate systems</h3></article><article><small>02 / Lost lead time</small><h3>Diagnosis starts after degradation advances</h3></article><article><small>03 / Compounding loss</small><h3>Production, quality and delivery decline together</h3></article></div><div class="problem-costs problem-costs-single"><article><b>USD 48.9M</b><span>Illustrative annual accumulated failure exposure</span><em class="annual-downtime"><strong>USD 150K × 326 h</strong> estimated annual calculation</em></article></div></div>';
     const problemSource = problem.querySelector('.source');
     if (problemSource) problemSource.innerHTML = 'Sources: <a href="https://www.cummins.com/en-na/case-studies/preventech-predictive-analytics-boost-availability">Cummins mining case study, September 2025</a> · <a href="https://assets.new.siemens.com/siemens/assets/api/uuid%3A1b43afb5-2d07-47f7-9eb7-893fe7d0bc59/TCOD-2024_original.pdf">Siemens, The True Cost of Downtime 2024</a>';
   }
@@ -510,7 +498,7 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   }
 
   if (problem) {
-    problem.querySelector('.content').innerHTML = '<h2 class="h2">Downtime begins before the visible failure</h2><div class="problem-wide"><div class="problem-chain"><article><small>01 / Fragmented signal</small><h3>Symptoms live in separate operating systems</h3></article><article><small>02 / Lost lead time</small><h3>Diagnosis starts after degradation advances</h3></article><article><small>03 / Compounding loss</small><h3>Production, quality and delivery decline together</h3></article></div><div class="problem-costs problem-costs-single"><article><b>USD 150K</b><span>Potential cost of one high-severity failure event</span><em class="annual-downtime"><strong>326 hours</strong> of unplanned downtime per year</em></article></div></div>';
+    problem.querySelector('.content').innerHTML = '<h2 class="h2">Downtime begins before the visible failure</h2><div class="problem-wide"><div class="problem-chain"><article><small>01 / Fragmented signal</small><h3>Symptoms live in separate operating systems</h3></article><article><small>02 / Lost lead time</small><h3>Diagnosis starts after degradation advances</h3></article><article><small>03 / Compounding loss</small><h3>Production, quality and delivery decline together</h3></article></div><div class="problem-costs problem-costs-single"><article><b>USD 48.9M</b><span>Annualized failure exposure across the operating base</span></article></div></div>';
   }
 
   if (product) {
@@ -677,35 +665,35 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   }
 
   if (product) {
-    product.querySelector('.content').innerHTML = '<h2 class="h2">Made turns failure signals into operational actions</h2><div class="product-media-row"><aside class="signal-rail input-rail"><small>Inputs</small><article><b>PLC / SCADA</b><span>Machine and process tags</span></article><article><b>CAN / J1939</b><span>Vehicle and engine telemetry</span></article><article><b>IO-Link</b><span>Missing signals at the edge</span></article><article><b>Operator context</b><span>Interventions and maintenance history</span></article></aside><div class="product-frame final-product-frame"><video autoplay muted loop playsinline preload="metadata" aria-label="Made OS predictive operations demo"><source src="assets/j1939-predictive-demo.mp4" type="video/mp4"></video></div><aside class="signal-rail output-rail"><small>Outputs</small><article><b>55% → 88%</b><span>Planned maintenance</span></article><article><b>65% → 98%</b><span>Model accuracy</span></article><article><b>18% → 2.5%</b><span>False-positive rate</span></article><article class="signal-impact"><b>55% lower</b><span>Unplanned downtime</span></article></aside></div><div class="product-architecture"><article><small>01 / Input</small><b>Connect</b><span>Existing signals enter MadeOS.</span></article><article><small>02 / Edge</small><b>Process telemetry</b><span>Real-time inference on NVIDIA Jetson and Revolution Pi 5, with industrial I/O, CAN and local buffering.</span></article><article><small>03 / Secure link</small><b>Send events</b><span>Read-only acquisition. Encrypted outbound events.</span></article><article><small>04 / Action</small><b>Prescribe</b><span>Operator-ready action with context and timing.</span></article></div>';
+    product.querySelector('.content').innerHTML = '<h2 class="h2">Made turns failure signals into operational actions</h2><div class="product-media-row"><aside class="signal-rail input-rail"><article><b>PLC / SCADA</b><span>Machine and process tags</span></article><article><b>CAN / J1939</b><span>Vehicle and engine telemetry</span></article><article><b>IO-Link</b><span>Missing signals at the edge</span></article><article><b>Operator context</b><span>Interventions and maintenance history</span></article></aside><div class="product-frame final-product-frame"><video autoplay muted loop playsinline preload="metadata" aria-label="Made OS predictive operations demo"><source src="assets/j1939-predictive-demo.mp4" type="video/mp4"></video></div><aside class="signal-rail output-rail"><small>Outputs</small><article><b>55% → 88%</b><span>Planned maintenance</span></article><article><b>65% → 98%</b><span>Model accuracy</span></article><article><b>18% → 2.5%</b><span>False-positive rate</span></article><article class="signal-impact"><b>55% lower</b><span>Unplanned downtime</span></article></aside></div><div class="product-architecture"><article><small>01 / Input</small><b>Connect</b><span>Existing signals enter MadeOS.</span></article><article><small>02 / Edge</small><b>Process telemetry</b><span>Real-time inference on NVIDIA Jetson and Revolution Pi 5, with industrial I/O, CAN and local buffering.</span></article><article><small>03 / Secure link</small><b>Send events</b><span>Read-only acquisition. Encrypted outbound events.</span></article><article><small>04 / Action</small><b>Prescribe</b><span>Operator-ready action with context and timing.</span></article></div>';
   }
 
   if (customerCase) {
     const background = customerCase.querySelector('.slide-bg');
     if (background) background.src = 'assets/artisanlabs-case-bg.png';
-    customerCase.querySelector('.content').innerHTML = '<h2 class="h2">A recurring CNC failure became a scheduled action</h2><div class="case-layout final-case-layout"><div class="case-protocol"><article><small>01 / Signals</small><b>Feed rate + operating hours</b><span>Continuous CNC data on each production window.</span></article><article><small>02 / Prediction</small><b>Remaining useful life</b><span>Estimated before the cutting tool reached failure.</span></article><article><small>03 / Action</small><b>Maintenance + inventory review</b><span>Scheduled before production was interrupted.</span></article></div><div class="case-scoreboard"><article><small>Monthly baseline → pilot run-rate</small><b>2–3 → 1</b><span>unplanned stops per machine per month</span></article><article class="case-result"><small>Observed reduction</small><b>50–67%</b><span>fewer unplanned stops; 60% at the midpoint</span></article><article class="case-value"><small>Economic exposure</small><b>USD 12K+</b><span>minimum loss exposure per month at the plant</span></article></div></div>';
+    customerCase.querySelector('.content').innerHTML = '<h2 class="h2">A recurring CNC failure became a scheduled action</h2><div class="case-layout final-case-layout"><div class="case-protocol"><article><small>01 / Signals</small><b>Feed rate + operating hours</b><span>Continuous CNC data on each production window.</span></article><article><small>02 / Prediction</small><b>Remaining useful life</b><span>Estimated before the cutting tool reached failure.</span></article><article><small>03 / Action</small><b>Maintenance + inventory review</b><span>Scheduled before production was interrupted.</span></article></div><div class="case-scoreboard"><article><small>Baseline repair exposure</small><b>15 days</b><span>maximum repair time without a spare part</span></article><article class="case-result"><small>Observed reduction</small><b>Up to 55%</b><span>fewer unplanned stops vs. the asset’s own history; 43% on average, Jan–Jun 2026</span></article><article class="case-value"><small>ROI recovered in production</small><b>USD 437K</b><span>annual production recovered across 3 lines</span></article></div></div>';
   }
 
   if (revenue) {
-    revenue.querySelector('.content').innerHTML = '<h2 class="h2">Paid pilots convert into recurring software revenue</h2><div class="section-eyebrow">PRICING</div><div class="pricing-strip"><article><small>Implementation</small><b>USD 4K industrial · USD 1K / API</b><span>One-time fee per deployed unit.</span></article><article><small>Baseline software</small><b>USD 1.5K / line · USD 495 / vehicle</b><span>Per connected unit / month.</span></article><article class="performance-pricing"><small>Performance fee</small><b>10% of verified value</b><span>Downtime avoided + OEE uplift.</span></article></div><div class="section-eyebrow gtm-eyebrow">GO-TO-MARKET</div><div class="revenue-path"><article><small>01 / Enter</small><h3>Paid entry pilots</h3><p>Prove value before expansion.</p><b class="account-count">6 target accounts</b><strong class="gross-value">≈ USD 300K</strong><span>Gross potential pilot value<br>BHP · Peñoles · Security Fleet · Agrosuper · CEMEX · PEMEX</span><em>Estimated close: 2–4 months</em></article><article><small>02 / Expand</small><h3>Operational scale</h3><p>Expand by line, asset, site and fleet.</p><b>USD 34M+</b><span>Qualified expansion potential</span></article><article><small>03 / Distribute</small><h3>Native OEM integration</h3><p>Embed MadeOS into PLC, controller and vehicle ecosystems.</p><b>USD 175B</b><span>Modeled annual software TAM</span></article></div><p class="revenue-formula">One-time implementation + baseline software + success fee on verified operational value.</p>';
+    revenue.querySelector('.content').innerHTML = '<h2 class="h2">Paid pilots convert into recurring software revenue</h2><div class="section-eyebrow">PRICING</div><div class="pricing-strip pricing-strip-refined"><article><small>Baseline software</small><b>USD 1.5K / critical asset</b><span>One price for factories, mines and heavy-duty vehicles.</span></article><article class="performance-pricing"><small>Performance fee</small><b>10% of verified value</b><span>Paid after baseline validation. Customer keeps 90% of recovered value, capped at 1.5× annual software fee.</span></article></div><div class="section-eyebrow gtm-eyebrow">GO-TO-MARKET</div><div class="revenue-path revenue-path-aligned"><article><small>01 / Enter</small><h3>Paid entry pilots</h3><strong class="gross-value">≈ USD 300K</strong><span>Gross potential pilot value<br>BHP · Peñoles · Security Fleet · Agrosuper · CEMEX · PEMEX</span></article><article><small>02 / Expand</small><h3>Operational scale</h3><b>USD 34M+</b><span>Qualified expansion potential</span></article><article><small>03 / Distribute</small><h3>Native OEM integration</h3><b>USD 175B</b><span>Modeled annual software TAM</span></article></div>';
   }
 
   if (advantage) {
-    advantage.querySelector('.content').innerHTML = '<h2 class="h2">Made owns the decision layer across physical operations</h2><div class="position-wide final-position"><div class="position-label top">Prescriptive intelligence</div><div class="position-label bottom">Visibility and alerts</div><div class="position-label left">Single asset</div><div class="position-label right">Cross-industry layer</div><article class="competitor telematics"><b>Telematics + OEMs</b><span>Vehicle visibility</span></article><article class="competitor predictive"><b>Predictive platforms</b><span>Failure detection</span></article><article class="competitor made"><b>Made today</b><span>Context, risk and prescription</span></article><article class="competitor future"><b>Made next</b><span>Industrial SLM + Made Edge</span></article></div>';
+    advantage.querySelector('.content').innerHTML = '<h2 class="h2">Made owns the decision layer across physical operations</h2><div class="position-wide final-position"><div class="position-label top">Prescriptive intelligence</div><div class="position-label bottom">Visibility and alerts</div><div class="position-label left">Single asset</div><div class="position-label right">Cross-industry layer</div><article class="competitor telematics"><b>Telematics + OEMs</b><span>Vehicle visibility</span></article><article class="competitor predictive"><b>Predictive platforms</b><span>Failure detection</span></article><article class="competitor future"><b>Made next</b><span>Native OEM solution.<br>Industrial SLM + Made Edge.</span></article><article class="competitor made"><b>Made today</b><span>Up to 55% fewer unplanned stops vs. the asset’s own history.<br>System One model integrated.<br>Zero-loss is the target.</span></article></div>';
   }
 
   if (team) {
-    team.querySelector('.content').innerHTML = '<h2 class="h2">Built at the intersection of operations and AI</h2><div class="team-wide"><article><img src="../assets/gpc.png" alt="Gerardo Peña"><div><small>CEO</small><h3>Gerardo Peña</h3><p>Industrial designer, repeat founder and MIT TR35 honoree. Leads product and commercial strategy.</p></div></article><article><img src="../assets/Ramiro.png" alt="Ramiro Pantoja"><div><small>CTO</small><h3>Ramiro Pantoja</h3><p>Mechanical engineer and developer. Leads edge, data infrastructure, deployments and AI models.</p></div></article><article class="team-third"><div><small>Applied AI research</small><h3>Machine learning + vision</h3><p>PhD-level expertise in data analysis, computer vision and intelligent systems for complex operations.</p></div></article></div>';
+    team.querySelector('.content').innerHTML = '<h2 class="h2">Built at the intersection of operations and AI</h2><div class="team-wide"><article><img src="../assets/gpc.png" alt="Gerardo Peña"><div><small>CEO</small><h3>Gerardo Peña</h3><p>Industrial designer, repeat founder and MIT TR35 honoree. Leads product and commercial strategy.</p></div></article><article><img src="../assets/Ramiro.png" alt="Ramiro Pantoja"><div><small>CTO</small><h3>Ramiro Pantoja</h3><p>Mechanical engineer and developer. Leads edge, data infrastructure, deployments and AI models.</p></div></article><article class="team-third"><img src="assets/gabriel.jpeg" alt="Gabriel Rodriguez"><div><small>Physical AI lab leader</small><h3>Gabriel Rodriguez</h3><p>PhD computer scientist specializing in AI, cybersecurity and GPU optimization. Builds secure, low-latency SLMs for Made OS at the edge.</p></div></article></div>';
   }
 
   if (status) {
-    status.querySelector('.content').innerHTML = '<h2 class="h2">Made is entering the deployment phase</h2><div class="status-timeline"><article><small>Acceleration</small><b>Accelerated</b><span>Startup Chile · Founders Inc. Canopy</span></article><article><small>Company</small><b>Launched</b><span>Made OS launched in January 2026</span></article><article><small>Customer proof</small><b>Validated</b><span>ArtisanLabs design partner · 60% fewer unplanned stops at midpoint</span></article><article><small>Enterprise ready</small><b>Enterprise ready</b><ul class="status-bullets"><li>BHP Escondida top 3 global finalist for a mine pilot</li><li>CEMEX Ventures Construction Startup Competition finalist</li></ul></article></div><div class="status-bottom status-raised"><b>USD 125K</b><span>raised</span></div>';
+    status.querySelector('.content').innerHTML = '<h2 class="h2">Made is entering the deployment phase</h2><div class="status-timeline"><article><small>Acceleration</small><b>Accelerated</b><span>Startup Chile · Founders Inc. Canopy</span></article><article><small>Company</small><b>Launched</b><span>Made OS launched in January 2026</span></article><article><small>Customer proof</small><b>Validated</b><span>ArtisanLabs design partner · 60% fewer unplanned stops at midpoint</span></article><article><small>Enterprise ready</small><b>Enterprise ready</b><ul class="status-bullets"><li>BHP Escondida top 3 global finalist for a mine pilot</li><li>CEMEX Ventures Construction Startup Competition finalist</li></ul></article></div>';
   }
 
   if (ask) {
     const background = ask.querySelector('.slide-bg');
     if (background) background.src = 'assets/connected-fleet.png';
-    ask.querySelector('.content').innerHTML = '<div class="ask-wide"><div class="ask-main"><small>Pre-seed · 18 months</small><b>USD 1.8M</b><span>Hardware and implementation billed upfront</span></div><div class="ask-use-wide"><article><b>50%</b><span>Product + deployment engineering</span></article><article><b>25%</b><span>Field operations + customer success</span></article><article><b>15%</b><span>Enterprise sales</span></article><article><b>10%</b><span>Security, legal + contingency</span></article></div></div><div class="ask-milestones"><small>Round milestones</small><div><span><b>3</b> pilot-to-contract conversions</span><span><b>100+</b> live lines and assets</span><span><b>USD 1M</b> contracted ARR</span></div></div><div class="ask-contact"><small>Contact:</small><div><b>Gerardo Peña</b><span>ger@madeos.ai</span><a href="https://www.madeos.ai" target="_blank" rel="noreferrer">www.madeos.ai</a></div></div>';
+    ask.querySelector('.content').innerHTML = '<div class="ask-wide"><div class="ask-main"><small>Pre-seed · 18 months</small><b>USD 1M</b><span>USD 125K raised to date</span></div><div class="ask-use-wide"><article><b>50%</b><span>Product + deployment engineering</span></article><article><b>25%</b><span>Field operations + customer success</span></article><article><b>15%</b><span>Enterprise sales</span></article><article><b>10%</b><span>Security, legal + contingency</span></article></div></div><div class="ask-milestones"><small>Round milestones</small><div><span><b>3</b> pilot-to-contract conversions</span><span><b>100+</b> live lines and assets</span><span><b>USD 1M</b> contracted ARR</span></div></div><div class="ask-contact"><small>Contact:</small><div><b>Gerardo Peña</b><span>ger@madeos.ai</span><a href="https://www.madeos.ai" target="_blank" rel="noreferrer">www.madeos.ai</a></div></div>';
   }
 
   const css = document.createElement('style');
@@ -749,6 +737,31 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
     #s16 .ask-contact>div{display:flex;align-items:center;justify-content:center;gap:22px}
     #s16 .ask-contact b{color:var(--text);font-family:var(--sans);font-size:15px}
     #s16 .ask-contact a{color:var(--text);text-decoration:none}
+    /* Updated Plug & Play evidence and commercial terms. */
+    #s4 .problem-costs-single b{font-size:clamp(58px,5.8vw,92px)!important;color:var(--coral)!important}
+    #s4 .problem-costs-single span{max-width:520px!important;font-size:16px!important}
+    #s4 .annual-downtime{font-size:clamp(15px,1.35vw,22px)!important;color:var(--muted)!important}
+    #s6 .input-rail{padding-top:27px!important}
+    #s6 .input-rail>article:first-of-type{border-top:0!important}
+    #s8 .pricing-strip-refined{grid-template-columns:1.25fr 1.1fr .85fr!important}
+    #s8 .pricing-strip-refined article{min-height:138px!important;justify-content:center!important}
+    #s8 .revenue-path-aligned article{min-height:330px!important;justify-content:flex-start!important}
+    #s8 .revenue-path-aligned h3{min-height:82px!important;display:flex!important;align-items:flex-start!important}
+    #s8 .revenue-path-aligned p{min-height:48px!important}
+    #s8 .revenue-path-aligned article>b{margin-top:22px!important;min-height:58px!important;display:flex!important;align-items:flex-start!important}
+    #s10 .competitor.made span,#s10 .competitor.future span{line-height:1.5!important}
+    #s15 .team-third img{width:82px!important;height:82px!important;object-fit:cover!important;border-radius:50%!important;filter:grayscale(.2)!important;margin-bottom:18px!important}
+    #s15 .team-third{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important}
+    #s15 .team-third p{max-width:330px!important;line-height:1.42!important}
+    #s16 .ask-main b{font-size:clamp(72px,7vw,112px)!important}
+    #s6 .top,#s6 .content,#s6 .foot{width:calc(100% - 160px)!important;max-width:none!important}
+    #s6 .product-media-row{width:100%!important;margin-left:auto!important;margin-right:auto!important}
+    #s8 .pricing-strip-refined{grid-template-columns:1fr 1fr!important}
+    #s8 .gtm-eyebrow{margin-top:clamp(42px,6vh,72px)!important}
+    #s10 .competitor.future{top:38px!important;bottom:auto!important}
+    #s10 .competitor.made{top:92px!important;bottom:auto!important}
+    #s10 .competitor.predictive{top:228px!important;bottom:auto!important}
+    #s15 .team-wide>article{border-right:0!important}
     @media(max-width:1100px){.final-product-frame{height:44vh!important}.case-protocol article{padding:18px}.case-protocol b{font-size:15px}.revenue-path article{padding:23px}.status-timeline article{padding:20px}.status-bottom{padding:20px}.final-position{height:350px}.status-bottom{grid-template-columns:auto 1fr}.status-bottom i{display:none}.status-bottom strong{margin-top:10px}.status-bottom span:last-child{grid-column:2}}
   `;
   document.head.append(css);
@@ -900,8 +913,8 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
     if (research) {
       const eyebrow = research.querySelector('small');
       const heading = research.querySelector('h3');
-      if (eyebrow) eyebrow.textContent = 'Team';
-      if (heading) heading.textContent = 'Physical AI labs';
+      if (eyebrow) eyebrow.textContent = 'Physical AI lab leader';
+      if (heading) heading.textContent = 'Gabriel Rodriguez';
     }
   }
 
@@ -1189,4 +1202,113 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   }
 })();
 </script>
+<style>
+@font-face{font-family:Aeonik;src:url('assets/fonts/Aeonik-Regular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Aeonik;src:url('assets/fonts/Aeonik-Bold.otf') format('opentype');font-weight:700 900;font-style:normal;font-display:swap}
+:root{--sans:Aeonik,Arial,sans-serif}
+html,body,.slide{font-family:Aeonik,Arial,sans-serif!important}
+html,body,.slide{letter-spacing:1.3px}
+html,body,.slide h1,html,body,.slide h2,html,body,.slide h3{letter-spacing:1.5px}
+#s11 .case-scoreboard .case-result{background:transparent!important;border-top-color:rgba(255,255,255,.12)!important}
+#s11 .case-scoreboard .case-value{background:transparent!important;border-top:0!important}
+#s11 .case-scoreboard>article:first-child{background:rgba(255,102,64,.12)!important;border-top:2px solid var(--coral)!important}
+#s8 .pricing-strip-refined{grid-template-columns:1fr 1fr!important}
+#s8 .pricing-strip-refined b{font-size:clamp(30px,2.55vw,44px)!important;line-height:.92!important}
+#s8 .gtm-eyebrow{margin-top:44px!important;margin-bottom:18px!important}
+#s8 .revenue-path-aligned{margin-top:0!important}
+#s10 .competitor.future{top:8px!important;right:-6%!important;bottom:auto!important}
+#s10 .competitor.made{top:112px!important;bottom:auto!important}
+#s10 .competitor.predictive{top:230px!important;bottom:auto!important}
+#s15 .team-wide>article{border-right:0!important}
+#company-status .status-raised{display:grid!important;grid-template-columns:1fr 1fr!important;gap:0!important;justify-content:stretch!important;align-items:center!important;text-align:left!important;padding:22px 0!important}
+#company-status .status-raised>div{padding:0 30px!important}
+#company-status .status-raised>div+div{border-left:1px solid var(--line)!important}
+#company-status .status-raised b{display:block!important;font-size:42px!important;line-height:.9!important;letter-spacing:-.04em!important}
+#company-status .status-raised span{display:block!important;margin-top:8px!important;font:11px var(--mono)!important;letter-spacing:.04em!important;text-transform:uppercase!important;color:var(--muted)!important}
+#company-status .status-pipeline b{color:var(--coral)!important}
+#company-status .status-bottom{display:none!important}
+#s16 .ask-main .raised-to-date{display:block!important;margin-top:10px!important;font:11px var(--mono)!important;letter-spacing:.04em!important;text-transform:uppercase!important;color:var(--muted)!important}
+</style>
+<script>
+(() => {
+  setTimeout(() => {
+    document.querySelector('#company-status .status-bottom')?.remove();
+    const main = document.querySelector('#s16 .ask-main');
+    if (main && !main.querySelector('.raised-to-date')) {
+      const node = document.createElement('span');
+      node.className = 'raised-to-date';
+      node.textContent = 'USD 125K raised to date';
+      main.insertBefore(node, main.querySelector('span:last-child'));
+    }
+  }, 50);
+})();
+</script>
+<script>
+(() => {
+  const revenue = document.getElementById('s8');
+  const gtm = document.getElementById('gtm-split');
+  if (!revenue || !gtm) return;
+  revenue.querySelector('.gtm-eyebrow')?.remove();
+  revenue.querySelector('.revenue-path')?.remove();
+  revenue.querySelector('.revenue-formula')?.remove();
+  gtm.querySelector('.content').innerHTML = '<h2 class="h2">Go-to-market scales from paid pilots to OEM distribution</h2><div class="revenue-path revenue-path-aligned"><article><small>01 / Enter</small><h3>Paid entry pilots</h3><strong class="gross-value">≈ USD 300K</strong><span>Gross potential pilot value<br>BHP · Peñoles · Security Fleet · Agrosuper · CEMEX · PEMEX</span></article><article><small>02 / Expand</small><h3>Operational scale</h3><b>USD 34M+</b><span>Qualified expansion potential</span></article><article><small>03 / Distribute</small><h3>Native OEM integration</h3><b>USD 175B</b><span>Modeled annual software TAM</span></article></div>';
+  const bg = gtm.querySelector('.slide-bg');
+  if (bg) bg.src = '../vc/assets/slide-14.png';
+})();
+</script>
+<style>
+#gtm-split .content{align-items:flex-start!important}
+#gtm-split .h2{max-width:1200px!important;margin-left:0!important;text-align:left!important}
+#gtm-split .revenue-path{margin-top:clamp(54px,8vh,92px)!important}
+</style>
+<script>
+(() => {
+  const main = document.querySelector('#s16 .ask-main');
+  if (!main) return;
+  main.querySelectorAll('span').forEach((node) => {
+    if (/Hardware and implementation/i.test(node.textContent)) node.remove();
+    if (/USD 125K raised to date/i.test(node.textContent)) node.remove();
+  });
+  const amount = main.querySelector('b');
+  if (amount) amount.textContent = 'USD 1M';
+  if (!main.querySelector('.raised-to-date')) {
+    const node = document.createElement('span');
+    node.className = 'raised-to-date';
+    node.textContent = 'USD 125K raised to date';
+    main.append(node);
+  }
+})();
+</script>
+<script>
+(() => {
+  const main = document.querySelector('#s16 .ask-main');
+  if (main) {
+    main.querySelectorAll('span').forEach((node) => {
+      if (/USD 125K raised to date/i.test(node.textContent)) node.remove();
+    });
+    const node = document.createElement('span');
+    node.className = 'raised-to-date';
+    node.textContent = 'USD 125K raised to date';
+    main.append(node);
+  }
+  const pricing = document.querySelector('#s8 .content');
+  if (pricing) {
+    pricing.querySelectorAll('.h2').forEach((node) => node.remove());
+    const title = document.createElement('h2');
+    title.className = 'h2';
+    title.textContent = 'Made OS turns avoided downtime into an 8× return';
+    pricing.prepend(title);
+  }
+})();
+</script>
+<style>
+#s8 .content{align-items:flex-start!important;justify-content:flex-start!important}
+#s8 .content>.h2{display:block!important;width:100%!important;max-width:1200px!important;margin:0 0 clamp(54px,8vh,92px)!important;text-align:left!important}
+#s8 .section-eyebrow{margin-top:0!important}
+#s8 .pricing-strip-refined{margin-top:34px!important}
+#s8 .section-eyebrow{position:relative!important;top:28px!important;z-index:5!important;display:block!important;color:var(--coral)!important;font:700 14px var(--mono)!important;letter-spacing:.18em!important;opacity:1!important;text-align:center!important;margin-bottom:42px!important;text-shadow:0 0 14px rgba(255,102,64,.28)!important}
+#s15 .content{justify-content:center!important}
+#s15 .team-wide{margin-top:0!important;align-self:center!important}
+#s15 .team-wide{transform:translateY(94px)!important}
+</style>
 </body></html>
