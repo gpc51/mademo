@@ -6,7 +6,7 @@
 <title>Made | Plug and Play Pitch 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script>
   window.madePostHogReady = new Promise((resolve) => {
     const script = document.createElement('script');
@@ -665,7 +665,7 @@ const namingWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT)
   }
 
   if (product) {
-    product.querySelector('.content').innerHTML = '<h2 class="h2">Made turns failure signals into operational actions</h2><div class="product-media-row"><aside class="signal-rail input-rail"><article><b>PLC / SCADA</b><span>Machine and process tags</span></article><article><b>CAN / J1939</b><span>Vehicle and engine telemetry</span></article><article><b>IO-Link</b><span>Missing signals at the edge</span></article><article><b>Operator context</b><span>Interventions and maintenance history</span></article></aside><div class="product-frame final-product-frame"><video autoplay muted loop playsinline preload="metadata" aria-label="Made OS predictive operations demo"><source src="assets/j1939-predictive-demo.mp4" type="video/mp4"></video></div><aside class="signal-rail output-rail"><small>Outputs</small><article><b>55% → 88%</b><span>Planned maintenance</span></article><article><b>65% → 98%</b><span>Model accuracy</span></article><article><b>18% → 2.5%</b><span>False-positive rate</span></article><article class="signal-impact"><b>55% lower</b><span>Unplanned downtime</span></article></aside></div><div class="product-architecture"><article><small>01 / Input</small><b>Connect</b><span>Existing signals enter MadeOS.</span></article><article><small>02 / Edge</small><b>Process telemetry</b><span>Real-time inference on NVIDIA Jetson and Revolution Pi 5, with industrial I/O, CAN and local buffering.</span></article><article><small>03 / Secure link</small><b>Send events</b><span>Read-only acquisition. Encrypted outbound events.</span></article><article><small>04 / Action</small><b>Prescribe</b><span>Operator-ready action with context and timing.</span></article></div>';
+    product.querySelector('.content').innerHTML = '<h2 class="h2">Made turns failure signals into operational actions</h2><div class="product-media-row"><aside class="signal-rail input-rail"><article><b>PLC / SCADA</b><span>Machine and process tags</span></article><article><b>CAN / J1939</b><span>Vehicle and engine telemetry</span></article><article><b>IO-Link</b><span>Missing signals at the edge</span></article><article><b>Operator context</b><span>Interventions and maintenance history</span></article></aside><div class="product-frame final-product-frame"><video autoplay muted loop playsinline preload="metadata" aria-label="Made OS predictive operations demo"><source src="assets/j1939-predictive-demo.mp4" type="video/mp4"></video></div><aside class="signal-rail output-rail"><small>Outputs</small><article><b>55% → 88%</b><span>Planned maintenance</span></article><article><b>65% → 98%</b><span>Model accuracy</span></article><article><b>18% → 2.5%</b><span>False-positive rate</span></article><article class="signal-impact"><b>Up to 55% lower</b><span>Unplanned downtime vs. the asset’s own history</span></article></aside></div><div class="product-architecture"><article><small>01 / Input</small><b>Connect</b><span>Existing signals enter MadeOS.</span></article><article><small>02 / Edge</small><b>Process telemetry</b><span>Real-time inference on NVIDIA Jetson and Revolution Pi 5, with industrial I/O, CAN and local buffering.</span></article><article><small>03 / Secure link</small><b>Send events</b><span>Read-only acquisition. Encrypted outbound events.</span></article><article><small>04 / Action</small><b>Prescribe</b><span>Operator-ready action with context and timing.</span></article></div>';
   }
 
   if (customerCase) {
@@ -1308,5 +1308,18 @@ html,body,.slide{letter-spacing:.02em}
 #s15 .content{justify-content:center!important}
 #s15 .team-wide{margin-top:0!important;align-self:center!important}
 #s15 .team-wide{transform:translateY(94px)!important}
+</style>
+<style id="made-type">
+/* Sistema tipográfico Made: Mona Sans (ancho variable) + IBM Plex Mono. */
+:root{--sans:"Mona Sans",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+html,body,.slide{font-family:"Mona Sans",Arial,sans-serif!important;letter-spacing:0!important;font-stretch:100%;font-optical-sizing:auto;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.slide h1,.slide h2{font-stretch:112.5%!important;font-weight:640!important;letter-spacing:-.028em!important;line-height:1.02!important}
+.slide h3{font-stretch:106%!important;font-weight:600!important;letter-spacing:-.012em!important}
+.slide p,.slide span,.slide li{font-weight:400}
+.slide [class*="kicker"],.slide small,.slide .slide-num,#counter{font-family:"IBM Plex Mono",ui-monospace,monospace!important;letter-spacing:.06em!important}
+#s4 .problem-costs-single b,#s11 .case-scoreboard b,#s8 .pricing-strip-refined b,#gtm-split .revenue-path b,#s16 .ask-main b,#company-status .status-raised b{font-stretch:118%!important;font-weight:720!important;letter-spacing:-.035em!important;font-variant-numeric:tabular-nums lining-nums}
+#s6 .product-media-row{grid-template-columns:200px minmax(0,1fr) 200px!important}
+#s6 .product-architecture{grid-template-columns:200px minmax(0,1fr) minmax(0,1fr) 200px!important;width:100%!important}
+.slide h1,.slide h2{font-stretch:108%!important}
 </style>
 </body></html>
